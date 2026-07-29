@@ -1,0 +1,303 @@
+%% Harmonic Oscillator Analysis
+% -------------------------------------------------------------------------
+% HarmonicOscillator.mlx
+% -------------------------------------------------------------------------
+% MATLAB Live Script for the chapter "Physics of Motion" from
+% "Physics Finger Exercises" by Michael Kaschke and Holger Cartarius
+% with contributions from Ulrich Potthoff
+% All rights reserved by the authors
+% Free use with book and/or source citation allowed.
+% -------------------------------------------------------------------------
+% Example calculations for the harmonic oscillator
+% a) different damping values (friction coefficients)
+% b) different excitation frequencies and damping (friction coefficients)
+% c) Frequency response, phase response and energy transfer with excitation
+% -------------------------------------------------------------------------
+
+%% Setup and Parameters
+clc
+clear all
+close all 
+addpath('IncludeFolder')
+addpath('Data')
+Colors = GetColorLines;
+Style = ["-", "-.", ":", "--", ":"];
+
+% Physical parameters
+m     = 0.2;                             % Mass
+k     = 1;                               % Restoring force constant
+q0    = 1.0;                             % Initial displacement at t = 0 
+qdot0 = 5.0;                             % Initial velocity
+omega0= sqrt(k/m);                       % Natural frequency
+
+tmax  = 8;                               % Maximum time
+NPkt  = 500;                             % Number of points
+t     = linspace(0,tmax,NPkt);           % Time range
+
+%% Part a) Different Damping Cases
+
+%% Case without damping
+eta10 = 0.00;                            % Friction term 1
+B     = sqrt(q0^2+qdot0^2/omega0^2);     % Constant B  
+theta = atan(omega0*q0/(qdot0));         % Angle theta
+q     = B.*sin(omega0*t+theta);          % Undamped oscillator
+
+%% Case with weak damping
+eta11  = 0.05;                           % Friction term 1
+gamma = eta11/2/m;                       % Critical parameter gamma
+Disc  = omega0^2-gamma^2;                % Discriminator: positive here
+if Disc <= 0                         
+    disp('no weak damping'); 
+    return; 
+end
+omega = sqrt(Disc);                               % Current frequency
+B     = sqrt(q0^2+(qdot0+gamma*q0)^2/omega^2);   % Constant B 
+theta = atan(omega*q0/(qdot0+gamma*q0));          % Angle theta
+q1    = B.*exp(-gamma*t).*sin(omega*t+theta);     % Weakly damped oscillator
+q1e   = B.*exp(-gamma*t);                         % Envelope
+
+%% Case with strong damping
+eta12 = 1.2;                             % Friction term 1
+fac   = eta12/2/m;
+gamma1= fac - sqrt(fac^2-k/m);           % Critical parameter gamma1
+gamma2= fac + sqrt(fac^2-k/m);           % Critical parameter gamma2
+Disc  = fac^2-k/m;                       % Discriminator: positive here
+if Disc <= 0                         
+    disp('no strong damping'); 
+    return; 
+end
+A     = q0 -(qdot0+gamma1*q0)/(gamma1-gamma2);    % Constant A
+B     = (qdot0+gamma1*q0)/(gamma1-gamma2);        % Constant B
+q2    = A.*exp(-gamma1*t) + B.*exp(-gamma2*t);    % Strongly damped oscillator
+
+%% Case with critical damping
+eta13 = 2*m*omega0;                      % Friction term 1
+gamma = eta13/2/m;                       % Critical parameter gamma
+A     = q0;                              % Constant A
+B     = (qdot0+gamma1*q0);               % Constant B
+q3    = A.*exp(-gamma1*t) + B.*t.*exp(-gamma2*t); % Critically damped oscillator
+
+%% Plot: Damping Comparison
+figure();
+title('Harmonic Oscillator');
+plot(t,q,'Color',Colors(4,:),'Linewidth',1,'LineStyle',Style(1));
+hold on
+plot(t,q1, 'Color',Colors(2,:),'Linewidth',1,'LineStyle',Style(2));
+plot(t,q1e,'Color',Colors(2,:),'Linewidth',1,'LineStyle',Style(1));
+plot(t,q2,'Color',Colors(3,:),'Linewidth',1,'LineStyle',Style(4));
+plot(t,q3,'Color',Colors(4,:),'Linewidth',1,'LineStyle',Style(5));
+ylabel('Displacement \it{q} \rm in m','FontSize',14);
+xlabel('Time \it{t} \rm in s','FontSize',14);
+legend('undamped','weak damping','envelope',...
+       'overdamped', 'critical damping','location',...
+       'south','NumColumns',2);
+legend box off
+axis([0 8 -4 4 ])
+grid on
+set(gca,'Fontsize', 16);
+
+%% Part b) Variable Excitation and Damping
+
+%% Variable excitation frequency
+omegaD = omega0*[0.5; 0.9; 1.1; 1.5];    % Excitation frequency
+eta    = [0.01; 0.05; 0.25; 0.75];       % Friction coefficient
+FA     = 0.5;                            % Excitation amplitude
+phiA   = 0;                              % Excitation phase
+
+tmax  = 50;                              % Maximum time
+NPkt  = 500;                             % Number of points
+t     = linspace(0,tmax,NPkt);           % Time range
+
+for index = 1:4
+    indexo  = index;
+    indexe  = 2;
+    omegaA = omegaD(indexo);
+    gamma  = eta(indexe)/2/m;                % Critical parameter gamma
+    Disc   = (2*gamma*omegaA).^2+(omega0^2-omegaA^2).^2; 
+    A      = FA/m/sqrt(Disc);                % Amplitude from excitation
+    NN     = (omega0^2-omegaA^2);            % Denominator
+    if NN==0
+        NN = 1.e-4; 
+    end
+    if(omegaA <= omega0)
+      phi = atan(2*gamma*omegaA/NN);      % Phase between excitation and oscillator 
+    else
+      phi = pi + atan(2*gamma*omegaA/NN); % Shift by pi when omegaA > omega0
+    end
+
+    delta = theta - phi;              % Phase of solution
+    qp = A*cos(omegaA*t + delta);     % Particular solution of inhomogeneous ODE    
+    Disc=omega0^2-gamma^2;            % Positive for weak damping
+    if Disc <= 0                       
+        disp('damping too strong'); 
+        return; 
+    end
+    omega1 = sqrt(Disc);                 
+    theta  = atan(omega1*q0/(qdot0+gamma*q0));      % Angle theta
+    B      = sqrt(q0^2+(qdot0+gamma*q0)^2/omega1^2);% Constant B 
+    qh     = B*exp(-gamma*t).*sin(omega1*t+theta);  % Solution of homogeneous ODE
+    q(index,:) = qp + qh;
+    ttlstr(index,:)=string(strcat('\gamma = ',num2str(gamma,3),...
+                   '  \omega_A/\omega_0 = ',num2str(omegaA/omega0,3)));
+end
+
+%% Plot: Variable Excitation Frequency
+figure();
+for index = 1:4
+    hold on;
+    subplot(2,2,index)
+    plot(t,q(index,:),'Color',Colors(index+1,:),'Linewidth',1,'LineStyle',...
+         Style(1));
+    title(ttlstr(index,:),'FontSize',12)
+    ylabel('q(t) in m');
+    xlabel('t in s','FontSize',8);
+    axis([0 tmax 1.25*min(q(2,:)) 1.25*max(q(2,:))])
+    grid on
+    set(gca,'Fontsize', 16);
+end
+
+%% Variable friction coefficient
+for index = 1:4
+    indexo  = 2;
+    indexe  = index;
+    omegaA = omegaD(indexo);
+    gamma  = eta(indexe)/2/m;                % Critical parameter gamma
+    Disc   = (2*gamma*omegaA).^2+(omega0^2-omegaA^2).^2; 
+    A      = FA/m/sqrt(Disc);                % Amplitude from excitation
+    NN     = (omega0^2-omegaA^2);            % Denominator
+    if NN==0
+        NN = 1.e-4; 
+    end
+    if(omegaA <= omega0)
+      phi = atan(2*gamma*omegaA/NN);      % Phase between excitation and oscillator 
+    else
+      phi = pi + atan(2*gamma*omegaA/NN); % Shift by pi when omegaA > omega0
+    end
+
+    delta = theta - phi;              % Phase of solution
+    qp = A*cos(omegaA*t + delta);     % Particular solution of inhomogeneous ODE    
+    Disc=omega0^2-gamma^2;            % Positive for weak damping
+    if Disc <= 0                       
+        disp('damping too strong'); 
+        return; 
+    end
+    omega1 = sqrt(Disc);                 
+    theta  = atan(omega1*q0/(qdot0+gamma*q0));      % Angle theta
+    B      = sqrt(q0^2+(qdot0+gamma*q0)^2/omega1^2);% Constant B 
+    qh     = B*exp(-gamma*t).*sin(omega1*t+theta);  % Solution of homogeneous ODE
+    q(index,:) = qp + qh;
+    ttlstr(index,:)=string(strcat('\gamma = ',num2str(gamma,3),...
+                   '  \omega_A/\omega_0 = ',num2str(omegaA/omega0,3)));
+end
+
+%% Plot: Variable Friction
+figure();
+for index = 1:4
+    hold on;
+    subplot(2,2,index)
+    plot(t,q(index,:),'Color',Colors(index+1,:),'Linewidth',1,'LineStyle',...
+         Style(1));
+    title(ttlstr(index,:),'FontSize',12)
+    ylabel('q(t) in m');
+    xlabel('t in s','FontSize',8);
+    axis([0 tmax 1.25*min(q(2,:)) 1.25*max(q(2,:))])
+    grid on
+    set(gca,'Fontsize', 16);
+end
+
+%% Part c) Frequency Response Analysis
+
+%% Variable excitation frequency analysis
+omegaMin = 0.001*omega0;
+omegaMax = 2.5*omega0;
+NPkt     = 500;
+omegaA = linspace(omegaMin,omegaMax,NPkt);  
+etamin = 0.02;                          % Minimum eta
+etamax = 2*m*omega0/sqrt(2);            % Maximum eta
+etastep=(etamax-etamin)/5;  
+
+%% Frequency Response Plots
+figure()
+
+% Amplitude response
+subplot(1,3,1)
+jPlot = 0;
+for eta=etamin:etastep:etamax              
+    gamma = eta/2/m;                    % gamma
+    jPlot = jPlot+1;
+    Disc  = (2*gamma*omegaA).^2+(omega0^2-omegaA.^2).^2; 
+    A     = FA/m./sqrt(Disc);           % Amplitude
+    semilogy(omegaA/omega0,A,'Color',Colors(jPlot,:),'Linewidth',1,... 
+             'LineStyle',Style(1));                   % Plot amplitude
+    hold on
+    omega_res = sqrt(omega0^2-2*gamma^2);             % Resonance frequency
+    Amax      = FA/2/m/gamma/sqrt(omega0^2-gamma^2);  % Maximum at resonance
+    line([omega_res/omega0;omega_res/omega0],[Amax;Amax] ,...
+       'Color',Colors(jPlot,:),'Marker','+','MarkerSize',8,'LineWidth',1);
+    str=cat(2,'\gamma=',num2str(gamma,2));
+    text(omega_res/omega0+0.01,1.1*Amax,str,'FontSize',10,...
+        'Color',Colors(jPlot,:));
+end
+title('Amplitude vs Excitation Frequency','FontSize',14)
+ylabel('Amplitude \it A','FontSize',14);
+xlabel('\omega_A/\omega_0','FontSize',14);
+axis([0 2.5 0.1 20])
+grid on
+set(gca,'Fontsize', 16);
+
+% Phase response
+subplot(1,3,2)
+jPlot = 0;
+for eta=etamin:etastep:etamax              
+   gamma = eta/2/m;                    % gamma
+   jPlot = jPlot+1;
+   NN  = (omega0^2-omegaA.^2);  
+   for i=1:NPkt
+     if(omegaA(i)<=omega0)
+       phi(i)= atand(2*gamma*omegaA(i)/NN(i));       % Phase difference    
+     else
+       phi(i)= 180+atand(2*gamma*omegaA(i)/NN(i));  % Phase shift by pi 
+     end
+   end
+   plot(omegaA/omega0,phi,'Color',Colors(jPlot,:),'Linewidth',1,... 
+             'LineStyle',Style(1));                   % Plot phase
+   hold on
+   str=cat(2,'\gamma=',num2str(gamma,2));
+   text(1.05,(1+0.1)*phi(100)+5,str,'FontSize',10,...
+        'Color',Colors(jPlot,:));
+end
+title('Phase Difference','FontSize',14)
+ylabel('Phase \phi','FontSize',14);
+xlabel('\omega_A/\omega_0','FontSize',14);
+axis([0 2.5 0 180])
+grid on
+set(gca,'Fontsize', 16);
+
+% Power transfer
+subplot(1,3,3)
+jPlot = 0;
+for eta=etamin:etastep:etamax              
+   gamma = eta/2/m;                        % gamma
+   jPlot = jPlot+1;
+   Disc  = (2*gamma*omegaA).^2+(omega0^2-omegaA.^2).^2; 
+   NN  = (omega0^2-omegaA.^2);  
+   A     = FA/m./sqrt(Disc);               % Amplitude
+   Power = 0.5*FA.*A.*omegaA.*sind(phi);   % Power
+   semilogy(omegaA/omega0,Power,'Color',Colors(jPlot,:),'Linewidth',1,... 
+             'LineStyle',Style(1));        % Plot power
+   hold on
+   [Power,j]=max(Power);            % Power is maximum
+   str=cat(2,'\gamma=',num2str(gamma,2));
+   text(1.05,Power + 0.02,str,'FontSize',10,...
+        'Color',Colors(jPlot,:));  
+end
+title('Power Transfer','FontSize',14)
+ylabel('Power \it P','FontSize',14);
+xlabel('\omega_A/\omega_0','FontSize',14);
+axis([0 2.5 0.01 10])
+grid on
+set(gca,'Fontsize', 16);
+
+% -------------------------------------------------------------------------
+% End of Program
+% -------------------------------------------------------------------------

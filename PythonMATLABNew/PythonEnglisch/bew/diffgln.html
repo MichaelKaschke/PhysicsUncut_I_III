@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Differenzengleichung – Brython + Plotly</title>
+  <script src="https://cdn.jsdelivr.net/npm/brython@3.11.0/brython.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 40px;
+      background-color: #f9fafa;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    input[type=range] {
+      width: 300px;
+    }
+    .val {
+      font-weight: bold;
+      color: #00509e;
+    }
+    #plot {
+      margin-top: 30px;
+      max-width: 700px;
+    }
+  </style>
+</head>
+<body onload="brython()">
+  <h2>Differenzengleichung: \( x[n+1] = a \cdot x[n] + b \)</h2>
+  <a>up. 2025-06-30</a>
+
+  <label for="a">a = <span id="a_val" class="val">0.8</span></label>
+  <input id="a" type="range" min="-2" max="2" value="0.8" step="0.1">
+
+  <label for="b">b = <span id="b_val" class="val">2.0</span></label>
+  <input id="b" type="range" min="-5" max="5" value="2.0" step="0.1">
+
+  <label for="x0">x₀ = <span id="x0_val" class="val">1.0</span></label>
+  <input id="x0" type="range" min="-10" max="10" value="1.0" step="0.1">
+
+  <label for="n">Iterationen = <span id="n_val" class="val">20</span></label>
+  <input id="n" type="range" min="5" max="100" value="20" step="1">
+
+  <div id="plot"></div>
+
+  <script type="text/python">
+    from browser import document, window
+
+    def simulate(ev=None):
+        a = float(document["a"].value)
+        b = float(document["b"].value)
+        x0 = float(document["x0"].value)
+        n = int(document["n"].value)
+
+        for id in ["a", "b", "x0", "n"]:
+            document[id + "_val"].text = document[id].value
+
+        x_vals = [x0]
+        for _ in range(n):
+            x_vals.append(a * x_vals[-1] + b)
+
+        window.Plotly.newPlot("plot", [{
+            "x": list(range(n + 1)),
+            "y": x_vals,
+            "mode": "lines+markers",
+            "type": "scatter",
+            "line": {"color": "#0077cc"},
+            "marker": {"size": 6}
+        }], {
+            "title": f"x[n+1] = a·x[n] + b (a={a}, b={b})",
+            "xaxis": {"title": "n"},
+            "yaxis": {"title": "x[n]"},
+            "margin": {"t": 40, "b": 50},
+            "paper_bgcolor": "#f9fafa",
+            "plot_bgcolor": "#f9fafa"
+        })
+
+    for s in ["a", "b", "x0", "n"]:
+        document[s].bind("input", simulate)
+
+    simulate()
+  </script>
+</body>
+</html>
