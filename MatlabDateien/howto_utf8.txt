@@ -1,0 +1,50 @@
+Ein zeitgemäßes Zeichenencoding nicht nur für m-Files ist UTF8, damit können u.a. deutsche Umlaute korrekt wiedergegeben werden. 
+So wollen wir es auch Code-Repository handhaben.
+Leider verwenden Matlab-Versionen älter als R2020 standardmäßig kein UTF8, uns ist auch kein offizieller Weg zum direkten Umschalten bekannt. 
+Nichtsdestotrotz findet sich unter 
+https://de.mathworks.com/matlabcentral/answers/280988-how-do-i-get-my-matlab-editor-to-read-utf-8-characters-utf-8-characters-in-blank-squares-in-editors
+der Hinweis auf folgendes Vorgehen, das mit einer Version R2019 erfolgreich verifiziert werden konnte:
+
+>>feature('locale')
+
+liefert
+
+'windows-1252'
+
+oder ggf. eine andere Kodierung, die unten zu ersetzen ist.
+
+Im Installationsverzeichnis befinden sich z.B. unter C:\Program Files\MATLAB\R2019b\bin die zwei Dateien
+
+- lcddata.xml
+- lcddata_utf8.xml
+
+Erstellen wir in einem cmd-Fenster zunächst Sicherheitskopien davon
+
+> copy lcddata.xml lcddata.xml.orig
+> copy lcddata_utf8.xml lcddata_utf8.xml.orig
+
+Dann löschen und umkopieren mittels 
+> del lcddata.xml
+> copy lcddata_utf8.xml lcddata.xm
+
+und editieren dieses neu erstellte lcddata.xml in einem Texteditor wie folgt:
+
+löschen dieses Abschnittes (etwa Zeile 127)
+<encoding name="windows-1252" jvm_encoding="Cp1252">
+    <encoding_alias name="1252">
+</encoding>
+
+und ändern des Abschnittes (etwa Zeile 119)
+<encoding name="UTF-8">
+    <encoding_alias name="utf8"/>
+</encoding>
+in
+<encoding name="UTF-8">
+    <encoding_alias name="utf8"/>
+    <encoding_alias name="windows-1252"/>
+</encoding>
+
+Das ist kein schöner Hack, löst aber das UTF8 Problem, nach einem Matlab-Neustart versteht der Matlab-Editor fortan UTF8!
+
+
+

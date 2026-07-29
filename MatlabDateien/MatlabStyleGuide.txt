@@ -1,0 +1,43 @@
+ein paar Vorschläge für Konventionen/Prämissen zur Diskussion
+-------------------------------------------------------------
+
+
+m-Files lauffähig unter windows und Linux
+matlab Version > xyz  ? ich nutze 2007, 2015, 2022a 
+ggf. Einschränkungen von Studentenversion berücksichtigen
+Funktionalität wichtiger als optimale Programmierung
+Zeichensatz ISO-8859 text
+
+
+Filenamen
+- Camelcase, groß beginnend, z.B. AbplattungPlaneten.m
+- keine Underscores im Filenamen
+- ggf. laufende Endnummer 01,02...
+- einheitliche Sprache, kein denglisch in einem Wort. Da deutsches Buch => deutsche Filenamen
+- ggf. Ausnahmen für eingedeutschte Wörter wie BungeeJumping, Gyrotwisterm, DAE 
+- ggf. Ausnahmen für Kommandos/Makros GetColorLines, Colors, LabelPoints mit explizitem Programmierbezug (aber nicht bei Fachbezug wie Frühlingspunkt o.ä.)
+
+
+Variablen
+- Camelcase, klein beginnend 
+- Laufvariable z.B. iAnz
+
+
+externe Datenfiles
+- IncludeFolder
+- DataFolder für csv,txt ?
+
+
+Kommentare
+- Kommentarsprache einheitlich, deutsch
+- deutsche Umlaute zulässig? oder ä,ö,ü,ß => ae,oe,ue,ss ?
+
+
+tbd.: weiter Regeln in Anlehnung an matlab best pratices:
+
+https://blogs.mathworks.com/loren/2012/01/13/best-practices-for-programming-matlab/
+https://blogs.mathworks.com/videos/2010/03/08/top-10-matlab-code-practices-that-make-me-cry/
+https://de.mathworks.com/matlabcentral/answers/95695-is-there-a-document-describing-matlab-coding-standards-or-a-good-programming-guide-available
+
+
+
