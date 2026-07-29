@@ -1,0 +1,42 @@
+\input{header}
+
+\author{Michael Kaschke, Holger Cartarius und Ulrich Potthoff}
+\title{Fingerübungen der Physik \\ \\ 
+\medskip
+\matlab{} -- Anhang}
+
+%\subtitle{Zusatzmaterial zum Repetitorium und Übungsbuch zu im Studium wenig behandelten Kapiteln der Physik mit ausführlich behandelten Problemen und \matlab-Programmen \\ \\
+%Unter Mitwirkung von Ulrich Potthoff}
+\smallskip
+\maketitle
+
+\frontmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%>
+
+\newpage 
+
+\tableofcontents
+\newcounter{fmpg}\setcounter{fmpg}{\arabic{page}}
+
+\mainmatter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\part*{MATLAB\\ \medskip Teil I Mechanik} \label{chap:matlab}
+%\addcontentsline{toc}{part}{MATLAB} 
+%\addcontentsline{toc}{part}{MATLAB-Skripte}
+
+\makeatletter
+\@addtoreset{chapter}{part}
+\makeatother
+\renewcommand{\thechapter}{M\,\arabic{chapter}}
+\setcounter{chapter}{0}
+
+%\begin{bibunit}[spphys]
+
+\input{solman/solman_matlab_basics} 
+
+\clearpage
+\bibliography{referenzen}
+
+
+\end{document}
+

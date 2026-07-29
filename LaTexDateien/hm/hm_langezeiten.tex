@@ -1,0 +1,113 @@
+
+\section{Himmelsmechanik unseres Sonnensystems über lange Zeiträume}\label{kap:hm_langezeiten}
+
+\subsection{Bahnparameter der Planeten in ihrer zeitlichen Entwicklung}
+
+Bevor wir die Himmelsmechanik endgültig verlassen wollen, werfen wir noch einen Blick auf die Entwicklung unseres Sonnensystems über lange Zeiträume.
+Dabei spielen zwei Effekte eine Rolle, zum einen die Veränderung der Bahnparameter über lange Zeiten, die zu deutlich veränderten Konstellationen (z.\,B. Jahreszeiten) führen, insgesamt aber noch deterministisch sind. Zum anderen kann es über sehr lange Zeiten zur Entstehung von \anf{Chaos} kommen, d.\,h. nicht mehr sicher vorhersagbaren Bahnen und Konstellationen.
+Mit dem ersten Phänomen wollen wir uns noch kurz beschäftigen, zum Thema Chaos verweisen wir auf die detaillierten Darstellungen in \cite{Murray2008, Walter2018} oder die sehr unterhaltsame Darstellung in \cite{Peterson1993}.\\
+Wir haben bereits mehrfach erwähnt, dass weder die Erdbahnebene noch die Erdachse und auch nicht die Apsidenlinie\index{Apsidenlinie} fest im Raum liegen, sondern durch Gravitationseinflüsse der anderen Himmelskörper ständig ihre Lagen ändern. Im Kapitel 1.5.5 hatten wir die Frequenz der Präzession der Erdachse berechnet.\footnote{Für eine vertiefte Betrachtung empfehlen wir auch die Ref. \cite{Rainey2022}.}
+Man kann und muss daher auch die Bahnelemente als zeitabhängig betrachten und jeweils die Angaben zu Epoche und Äquinoktium, auf die sich die Bahnelemente beziehen, berücksichtigen (\kapitel{hm_raum_und_zeit}).
+Starten wir beim Bezugspunkt J2000, dann können wir die zeitliche Entwicklung der Bahnparameter näherungsweise durch ein System von Polynomen beschreiben \cite{Montenbruck1999, Meeus1998}
+\begin{equation}
+x(t) = x_0 + \sum_{k=1}^3 x_k t^k\label{eq:hm_epsilon_schief} \,,
+\end{equation}
+mit $x\!=\!a$, $e$, $i$, $\Omega$, $\varpi$, $M$, $L$ und $L_0$. Auch die Schiefe der Ekliptik $\epsilon$ unterliegt einer zeitlichen Veränderung:
+\begin{equation*}
+\epsilon(t) = \epsilon_0 + \sum_{k=1}^3 \epsilon_k t^k  \,,
+\end{equation*}
+mit $\epsilon_0\!=\!23.43929111\degree,\,\epsilon_1\!=\!46.8150'',\,\epsilon_2\!=\!0.00059'',\,\epsilon_3\!=\!0.00181''$.
+$t$ ist die Zahl der Julianischen Jahrhunderte seit J2000.
+Die linearen Parameter $x_k$ sind in der Tabelle \ref{tab:hm_zeitl_aenderung_bahnparameter_lin} im Anhang zusammengefasst\footnote{Für die Erde gelten, wie weiter oben vermerkt, die Parameter für den Massenmittelpunkt Erde-Mond.}, wobei wir uns wie bisher jeweils auf das Äquinoktium des Datums beziehen wollen.\footnote{In der Tabelle \ref{tab:hm_zeitl_aenderung_bahnparameter_lin} sind auch die Parameter für das Äquinoktium J2000 angegeben.} Die Formeln gelten gut für den Zeitraum von 1800 bis 2050.
+Wir werden uns gleich noch Formeln anschauen, die wir für größere Zeiträume verwenden können. 
+
+\subsection{Berechnungen über einen Zeitraum von 10000 Jahren}\label{kap:hm_altertum_zeiten}
+
+Die Frage ist nun, welche möglichen Konsequenzen neben der offensichtlichen Korrektur der Koordinaten eines Himmelskörpers eine solche Veränderung der Bahnparameter und der Richtung der Erdachse über lange Zeiten hat.
+In \probref{hm_erdbahn_im_jahr} schätzen wir mit einem einfachen Modell die Veränderung der Dauer der Jahreszeiten und des mittleren Sonnenenergieeintrags\index{Sonnenenergieeintrag} pro Zeiteinheit pro Hemisphäre ab.
+Das einfache Modell berücksichtigt die Präzession der Erdachse sowie eine Variation der \gls{exzentr-hm} und der \gls{ekliptikschiefe}.
+Wir können mit dem Modell zeigen, dass sich in einem Zeitraum von ca. 40\,000 Jahren sowohl die Dauer des Sommerhalbjahres als auch der mittlere Energieeintrag pro Zeiteinheit deutlich verändern.
+Wir wollen hier noch etwas genauere Rechnungen für einen Zeitraum von etwa 1000 n.~Chr.\ bis 8000 n.~Chr.\ machen, was natürlich in astronomischen Dimensionen eine unvorstellbar kurze Zeitspanne ist.
+Es entspricht aber in etwa der doppelten Zeitspanne, die vergangen ist, seit Menschen in Babylon und Ägypten begannen, Astronomie zu betreiben.
+Für diesen Zeitraum sind für die Exzentrizität $e$, die Länge des Perihels $\varpi$, sowie die Neigung der Erdachse $\epsilon$ die Parameter für die Näherungspolynome in Tabelle \ref{tab:hm_parameter_longtimes} angegeben:
+
+\begin{table}%tab
+\caption[Parameter für Zeiträume von 2000 Jahren.]{Parameter der Elliptizität $e$, der Ekliptikneigung $\epsilon$ und der Länge des Perihels $\varpi$ für Zeiträume von 2000 Jahren \cite{Meeus1998,Laskar1986}.}
+\centering\begin{tabular}{L{1cm}C{4cm}C{2.5cm}C{3cm}}
+\hline\noalign{\smallskip}
+Ordnung $(t^n)$			&	Ekliptikneigung $\epsilon$ in Bogensekunden ('') \linebreak (wenn nicht anders angegeben)	& Elliptizität $e$ & Länge des Perihels \linebreak $\varpi$ in Grad ($\degree$)  \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+		---				&	$23.439291111\degree$			&	$0.016708634$ 							&$102.9373481$	\\ 
+		$t^1$				&	$-4.68093 \cdot 10^{+1}$	&$-4.20365 \cdot 10^{-5} $		&$+1.7194598028 $\\
+		$t^2$				&	$-1.55000 \cdot 10^{-4}$	&$-1.26736 \cdot 10^{-7}$		&$+4.56833 \cdot 10^{-4}$	\\
+		$t^3$				&	$+1.99925 \cdot 10^{-3}$	&$+1.44400 \cdot 10^{-10}$		&$-1.76800 \cdot 10^{-8}$	\\
+		$t^4$				&	$-5.13800 \cdot 10^{-7}$	&$-2.00000 \cdot 10^{-14}$		&$-3.35830 \cdot 10^{-9}$	\\
+		$t^5$				&	$-2.49670 \cdot 10^{-8}$	&$+3.00000 \cdot 10^{-15}$		&$+8.28000 \cdot 10^{-12}$	\\
+		$t^6$				&	$-3.90500 \cdot 10^{-11}$	&$+0.00000$										&$+5.60000 \cdot 10^{-14}$	\\
+\noalign{\smallskip}\hline\noalign{\smallskip}	
+\end{tabular}
+\label{tab:hm_parameter_longtimes}
+\end{table}
+Wir wollen mit diesen Parametern die Veränderungen in der Zeitgleichung und des Analemmas berechnen, indem wir in \eqref{eq:hm_parameter_alpha_beta} bzw. \eqref{eq:hm_parameter_alpha_beta2} für verschiedene Zeiten (1246, 2000 und 8000) die  entsprechend berechneten Bahnparameter einsetzen.
+Wir beziehen uns dabei auf das jeweilige Äquinoktium des Datums.
+Das Ergebnis in \figref{hm_ZGL_Analemma_long} (siehe \mscr{} \mlhmref{ZGL04.m}) zeigt deutlich, wie die relativ geringen Veränderungen der Ekliptikneigung und der Exzentrizität zu einer Veränderung der ZGL und damit des \gls{analemma}s führen.
+Das Jahr 1246 ist dahingehend interessant, dass die ZGL für die beiden Halbjahre perfekt antisymmetrisch ist.
+Folglich steht das Analemma genau senkrecht und ist voll symmetrisch.\footnote{Wir wollen bemerken, dass wir bei diesen langen Zeiten auf jeden Fall die Größe $\Delta T = \text{UT}- \text{ET}$ zum jeweiligen Zeitpunkt berücksichtigen müssen.
+Nun ist diese Größe nur näherungsweise für die Vergangenheit bekannt und für die Zukunft bestenfalls durch Näherungsformeln beschreibbar \cite{Espenak2014}.
+Wir haben deshalb gesetzt: $\Delta T (1246) = 640\:\text{s} $, $\Delta T (2000) = 64\:\text{s} $ und $\Delta T (8000) = 120000 \:\text{s}$ .
+Die Werte sind mit großer Unsicherheit behaftet und der Effekt ist außer für das Jahr 8000 für unsere Betrachtungen relativ gering.
+Unregelmäßigkeiten in der Erdrotation bleiben bei dieser Betrachtung unberücksichtigt.}
+
+Aus der Drift des \gls{fruehlingspunkt}es entlang der Erdbahn (ausgedrückt durch $\varpi(t)$) folgt auch, wie in \figref{hm_ZGL_Analemma_long}b gut zu erkennen, dass die Jahreszeiten mit anderen Abschnitten der Erdbahn zusammenfallen werden.
+Nach einem Viertel der Präzessionsperiode, also in etwas mehr als 6000 Jahren, wird der Sommer auf den Bahnabschnitt fallen, in dem jetzt Frühling herrscht.
+Die in diesem Bahnabschnitt sichtbaren jetzigen Frühlingssternbilder werden zu Sommersternbildern.
+Die veränderte Lage des Sommers innerhalb eines Jahres ist auch gut im Analemma zu erkennen.
+Dieser Einfluss auf unsere Jahreszeiten resultiert in einem veränderten mittleren Energieeintrag pro Zeit (Jahreszeit) in der jeweiligen Hemisphäre.
+Wie verweisen hier auch auf \probref{hm_erdbahn_im_jahr}. 
+\begin{figure}%
+\includegraphics[width=\textwidth]{ZGL_Analemma_long.pdf}%
+\caption[Zeitgleichung und Analemma für verschiedene Zeiten.]{\fa Zeitgleichung und \fb Analemma für die Jahre 1246, 2000 und 8000 u.Z.}%
+\label{abb:hm_ZGL_Analemma_long}%ZGLAnnalong
+\end{figure}
+
+
+\subsection{Zeiträume von Millionen von Jahren -- Klimaeffekte}\label{kap:hm_ganz_langezeiten}
+
+Wir wollen jetzt unser Modell noch etwas \anf{strapazieren} und auf noch längere Zeiten ausdehnen.
+Wir machen dabei starke Vereinfachungen hinsichtlich der Annahmen für die zeitlichen Entwicklung der Bahnparameter, für die wir einfache Periodizitäten annehmen.
+Für die Exzentrizität haben wir im Mittel $e_m\!=\!0.028$ angenommen.
+Dabei gibt es eine Periode von 405\,000 Jahren (Variation der Exzentrizität um $\pm 0.012$) und einen Zyklus von 100\,000 Jahren (Variation zwischen $-0.03$ und $+0.02$).
+Ebenso nehmen wir für die Ekliptikschiefe eine Periodizität von 41\,000 Jahren um den Mittelwert $22.8\degree$ an und für die Perihelverschiebung einen gleichförmigen Zuwachs von $1.7192 \degree$ pro Jahrhundert.
+\begin{figure}%
+	\includegraphics[width=\textwidth]{Erdbahn_im_Jahr_lsg_low.pdf}%
+	\caption[Veränderung der Bahnparameter der Erde.]{\fa Veränderung der Bahnparameter der Erde über einen Zeitraum von 8000 Jahren und \fb Variation der Differenz UT-ET sowie der mittleren eingestrahlte Sonnenleistung auf die Nordhalbkugel in demselben Zeitraum.}
+	\label{abb:hm_Nordsommer_long}%NordSommer
+	\end{figure}
+
+Wir geben hier nur unser Ergebnis der Rechnungen in \figref{hm_Nordsommer_long} an, zum Vergleich siehe auch die Ref. \cite{Rainey2022}.
+Wir erkennen deutlich Periodizitäten beim mittleren Energieeintrag.
+Will man die Frage beantworten, ob diese ohne Zweifel vorhandenen (astrosolaren) Effekte einen signifikanten Einflussfaktor auf unser Klima\index{Klimaeffekt} darstellen oder vielleicht sogar dominant für die langfristige Entwicklung des Erdklimas mit seinem häufigen Wechsel von Warm- und Kaltperioden sind, dann muss man deutlich längere Zeiten betrachten (\ca 1~Mio.~Jahre) und auch detailliertere Rechnungen anstellen.
+Beispielsweise muss man die Verteilung von Kontinental- und Wassermassen, unterschiedliche Reflektions-, Speicher- und Abstrahlverhalten berücksichtigen und vor allem auch breitengradabhängig rechnen und nicht nur über die Hemisphäre integrieren.
+Auf Grund von solchen (hier nur prinzipiell dargestellten) Berechnungen und deren Vergleich mit empirischen Untersuchungen des Langzeitverhaltens des Klimas ist heute im Allgemeinen anerkannt, dass die in dem \emph{Milankovic}-Zyklus\index{Milankovic-Zyklus}\footnote{Milutin Milankovic (1879--1958) war ein jugoslawischer Bauingenieur, Mathematiker und Geowissenschaftler, der als erster die Berechnung der nach ihm benannten Klima-Zyklen durchführte und damit das Gebiet der der Paläoklimatologie begründete.} gezeigten periodischen Effekte mit den astronomischen Bahnparametern korrelieren (\figref{hm_Milankovic}) \cite{Milankovic1941}.
+Das Bild zeigt die Variation der Erdbahnparameter, die im Vergleich zu unserem Modell deutlich präziser modelliert wurden.
+Gleichwohl werden die wesentlichen Effekte auch in unserem Modell sichtbar.
+Vor allem periodische Veränderungen des solaren Energieeintrags in hohen geographischen Breiten und die Korrelation zu den beobachteten Eiszeiten kann man ableiten.
+Nach der Milankovic-Theorie sind die 100\,000 Jahre-Periodizitäten in den Eiszeiten eben durch die unterschiedliche in den höheren Breiten im nordischen Sommer einfallende Sonnenenergie verursacht, die wiederum aus den Veränderungen in der Erdachsenneigung und der Perihelverschiebung\index{Perihelverschiebung} resultiert.
+Allerdings hat die moderne Klimaforschung gezeigt, dass neben diesen langfristig wirkenden Klimafaktoren auch andere natürliche Faktoren wie Vulkanismus und die solare Aktivität (Sonnenflecken, Protuberanzen) wichtige Rollen spielen.
+In den letzten 100--200 Jahren nimmt aber der Einfluss der anthropogenen Faktoren (Waldrodung, Kohlendioxid-Ausstoß \cite{Bauer2003, Bauer2005}) signifikant zu.
+
+	\begin{figure}%
+	\includegraphics[width=\textwidth]{Nordsommer_long.pdf}%
+	\caption[Mittlere eingestrahlte Sonnenleistung auf die Nordhalbkugel für sehr lange Zeiten.]{\fa Veränderung der Bahnparameter der Erde und \fb Variation der Differenz UT-ET sowie der mittleren eingestrahlten Sonnenleistung auf die Nordhalbkugel während des Nordsommers für sehr lange Zeiten.}%
+	\label{abb:hm_Nordsommer_long_long}%NordSommer
+	\end{figure}
+
+	\begin{figure}%
+	\centering\includegraphics[width=\textwidth]{Milankovic.pdf}%
+	\caption[Milankovic-Zyklen für einen Zeitraum von 1 Million Jahren.]{Milankovic-Zyklen für einen Zeitraum von 1~Mio.~Jahren \cite{Rohde2006}.
+        Das Bild ist gestaltet nach einem für das Global Warming Art Project frei zugänglichem Bild von Robert A. Rhode. }
+	\label{abb:hm_Milankovic}%Milankovic
+	\end{figure}
+
+
+

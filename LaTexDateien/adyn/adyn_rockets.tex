@@ -1,0 +1,190 @@
+\newpage
+\section{Grundlagen der Raketenphysik} \label{kap:adyn_rockets}
+
+Um einen künstlichen Satelliten von der Erdoberfläche (oder von einem anderen Himmelskörper) ins Weltall zu bringen, muss man diesen nach den  Gesetzen der Himmelsmechanik (Kap. \ref{chap:hm}) auf eine bestimmte Geschwindigkeit bringen. Wie bereits erwähnt, war es bereits Oberth, Ziolkowski und Goddard klar, dass ein Kanonenschuss, wie von Jules Verne beschrieben, als Antrieb zum Mond nicht funktionieren würde (Wir rechnen das in \probref{adyn_canonball} nach.). Deswegen kam für einen Flug, der auch im nahezu luftleeren Raum stattfindet, nur ein Raketentriebwerk in Frage. 
+
+\subsection{Raketen-Gleichung}\label{kap:adyn_rocketequ} \index{Raketen-Gleichung|textbf}
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{Rockets01.pdf} 
+	\caption[Zur Herleitung der Raketen-Gleichung.]{Zur Herleitung der Raketen-Gleichung. Die Rakete hat zum Zeitpunkt $t$ die Masse~$m$ (inklusive Treibstoff) und die Geschwindigkeit $\vec{v}_\text{R}$. Nach einem kleinen Zeitinterval $\D t$ hat sich die Gesamtmasse $m$ um die Masse der ausgestoßenen Treibgase $\D m_\text{G} > 0$ verringert. Im Bild sind Raketen- und Treibgasgeschwindigkeit $\vec{v}_\text{R}$ und $\vec{v}_\text{G}$ kollinear  eingezeichnet, das muss \ia nicht der Fall sein. Man beachte, dass die Änderung der Gesamtmasse $\D m$ negativ und durch $\D m = - \D m_\text{G}$ gegeben ist.}
+	\label{abb:adyn_rockets01}
+\end{figure}
+
+Ein Raketentriebwerk funktioniert nach dem Rückstoßprinzip\index{Rückstoßprinzip} und dieses wiederum auf der Impulserhaltung\index{Impulserhaltung}. Wir betrachten zunächst eine solche Rakete im luftleeren Raum in einem Kraftfeld wie \zb dem Gravitationsfeld der Erde (\figref{adyn_rockets01}). Die Rakete verliert während der relativ kurzen Brenndauer ihres Raketentriebwerks an Masse\footnote{Bei einem chemischen Raketenantrieb ist der Brennstoffverbrauch sehr hoch, deshalb fällt dieser Effekt viel stärker ins Gewicht als \zb bei einem nuklearen Raketentriebwerk, das das auszustoßende Gas durch eine Kernreaktion erhitzt. Noch weniger Treibstoff verbrauchen elektrische Raketentriebwerke, zu denen zum Beispiel der Ionenantrieb zählt. Wir werden uns im wesentlichen auf chemische Raketentriebwerke fokussieren. Im \kap{adyn_maneuvers} werden wir kurz auf die Unterschiedlichkeit der Manöver eingehen, die sich für die verschiedenen Triebwerksarten ergeben.} (dabei steigt bei gleich bleibendem Antrieb die Beschleunigung), wir haben es also mit einem dynamischen System sich verändernder Masse zu tun, wie wir es \zb auch schon im Kapitel 1.3.5.5 in Band I untersucht haben. Man muss die  Newtonsche Bewegungsgleichung für solche Systeme in ihrer allgemeinen Form benutzen:
+\begin{align}
+    \vec{F}_\text{ext} = \frac{\D \vec{p}_\text{ges}}{\D t}  = \frac{\D \vec{p}_\text{R}}{\D t} + \frac{\D \vec{p}_\text{G}}{\D t} \,,\label{eq:adyn_rockets01}
+\end{align}
+worin der Gesamtimpuls $\vec{p}_\text{ges}$ aus $\vec{p}_\text{R}$ für den Impuls der Rakete und $\vec{p}_\text{G}$ den Impuls der ausströmenden Gase besteht. Die Gasgeschwindigkeit der ausströmenden Gase $\vec{v}_\text{G}$ wird gemessen im \textit{mitbewegten} Koordinatensystem, welches sich auf den Ort der mitbewegten Düse (oder genauer auf den Schwerpunkt der Rakete) bezieht. Da es verschiedene, die Gasgeschwindigkeit negativ beeinflussende Faktoren gibt, ersetzt man \ia $\vec{v}_\text{G}$ durch $\vec{v}_\text{G,eff}$, worin $\vec{v}_\text{G,eff}$ eine effektive Ausströmgeschwindigkeit der Verbrennungsgase ist. Für diese effektive \textit{Strahlgeschwindigkeit} oder \textit{Schubgeschwindigkeit}\index{Schubgeschwindigkeit}\index{Strahlgeschwindigkeit} gilt $|\vec{v}_\text{G,eff}| < |\vec{v}_\text{G}|$. Als ein typisches Beispiel sei ein sogenanntes kryogenes $\text{H}_2$-$\text{O}_2$-Triebwerk genannt, das theoretisch eine Strahlgeschwindigkeit von \ca $v_\text{G}\approx \SI{5100}{\metre\per\second}$ ermöglichen sollte, dessen effektive Schubgeschwindigkeit $v_\text{G,eff}$ aber nur \ca $\SI{4400}{\metre\per\second}$ beträgt \cite{Messerschmid2017}. Wir schreiben im Folgenden aber der Kürze wegen immer $\vec{v}_\text{G} $, auch wenn wir darunter  $\vec{v}_\text{G,eff} $ verstehen wollen.\\
+Zum Zeitpunkt $t$ sei noch kein Gas ausgetreten, dann gilt:
+\begin{align}
+    \vec{p} \lk t\rk &= \vec{p}_\text{R}(t) =  m\,\vec{v}_\text{R}\,. \label{eq:adyn_rockets01a}
+\end{align}
+Zum Zeitpunkt $t + \D t$ hat sich die Gesamtmasse um Gas der Menge $\D m = -\D m_\text{G}$ verringert\footnote{Man beachte, dass $\D m < 0$, mithin $\D m_\text{G} > 0 $ ist!}, dann gilt im eingezeichneten \textit{festen} \KOS, das als Inertialsystem mit dem Ursprung im Erdmittelpunkt angenommenen werden kann:
+\begin{align}
+    \vec{p} \lk t + \D t \rk &= \vec{p}_\text{R}\lk t +\D t \rk \,+ \, \vec{p}_\text{G} \lk t + \D t \rk \nonumber \\
+		                   &= \lk m + \D m \rk \lk \vec{v}_\text{R} + \D \vec{v}_\text{R}\rk + \D m_\text{G} \lk \vec{v}_\text{R} + \vec{v}_\text{G} \rk \nonumber \\
+										 	 &= m\,\vec{v}_\text{R} \,+\,\killA{\D m \, \vec{v}_\text{R}} + m \,\D \vec{v}_\text{R}\, - \,\cancel{\D m\,\D v_\text{R}} \,\, \killA{\,-\, \D m\,\vec{v}_\text{R}} \, - \,\D m\,\vec{v}_\text{G} \nonumber \\
+											 &= m\,\vec{v}_\text{R} + m \,\D \vec{v}_\text{R} - \D m\,\vec{v}_\text{G} \,.  \label{eq:adyn_rockets01b}
+\end{align}
+
+Wir bilden aus $\D [\vec{p}\lk t + \D t \rk - \vec{p}\lk t\rk]$ den Differentialquotienten über die Zeit und erhalten aus \eqref{eq:adyn_rockets01} bis \eqref{eq:adyn_rockets01b} im kräftefreien Raum wegen der Impulserhaltung 
+\begin{align}
+   \frac{\D \vec{p}_\text{ges}}{\D t } = 0 ~~~~\rightarrow~~~~ m\,\dot{\vec{v}}_\text{R} - \dot{m}\,\vec{v}_\text{G} = 0\,. \label{eq:adyn_rockets02}
+\end{align}
+Für $\vec{F}_\text{ext} = 0$ erhalten wir also die Raketen-Gleichung für den kräftefreien Raum:
+\begin{align}
+    m\,\dot{\vec{v}}_\text{R} = \dot{m}\,\vec{v}_\text{G} = \vec{F}_\text{S} \,. \label{eq:adyn_rockets03}
+\end{align}
+Der Term $\vec{F}_\text{S}$ ist die sogenannte \textit{Schubkraft}\index{Schubkraft}\glslink{thrust}.
+
+Im Normalfall werden als externe Kräfte vor allem die Gravitation $\vec{F}_\text{G}$ und die Reibung $\vec{F}_\text{D}$ wirken.\footnote{Wir benutzen hier den Subskript D für engl. \emph{Drag}\index{Drag}\glslink{drag}, um Verwechslungen mit dem Subskript R für Rakete zu vermeiden.}
+
+Wir können \eqref{eq:adyn_rockets03} für $|\vec{v}_\text{G}| = \con$ leicht integrieren und gehen dabei einfacherweise zu skalaren Größen über, wobei wir vereinfachend annehmen, dass $\vec{v}_\text{R}$ antiparallel zu $\vec{v}_\text{G}$ ist. Das ergibt:
+\begin{align*}
+    \D v_\text{R} = - \frac{\D m}{m}\,v_\text{G}\,,
+\end{align*}
+worin die Zeit nicht explizit enthalten ist, so dass die Integration 
+\begin{align}
+    \Delta v_\text{R} = v_\text{R}\lk t_f\rk - v_\text{R}\lk t_0\rk = - v_\text{G}\,\ln \frac{m(t_f)}{m(t_0)} = v_\text{G}\,\ln \frac{m_0}{m_f} \label{eq:adyn_rocketequ} \,.
+\end{align}
+ergibt. Das ist die berühmte \gls{rocketequ}\index{Raketen-Gleichung}\footnote{Diese Gleichung wird in der Literatur häufig auch als Ziolkowski-Gleichung\index{Ziolkowski-Gleichung|textbf} bezeichnet.}, die die Geschwindigkeitsänderung im freien Raum über eine Brennphase des Triebwerks mit konstanter Strahlgeschwindigkeit\index{Strahlgeschwindigkeit} $v_\text{G}$ hinweg angibt, worin $m_0$ die (Start-)Masse zum Zeitpunkt $t_0$ und $m_f$ die Masse zum Zeitpunkt $t_f$ sind. Diese Geschwindigkeitsänderung $\Delta v_\text{R}$, häufig auch nur $\Delta v$ geschrieben, ist für die Betrachtung der Dynamik eines Raumschiffs/einer Rakete die wichtigste Größe und wird \emph{Antriebsvermögen} \index{Antriebsvermögen} oder \emph{charakteristische Geschwindigkeit}\index{Geschwindigkeit!charakteristische} genannt.
+Die zugehörige Massenänderung ist gegeben durch 
+\begin{align}
+    \Delta m = m_0 \lk  1- e^{-\frac{\Delta v_\text{R}}{\,v_\text{G}}}\rk = m_f\lk e^{\frac{\Delta v_\text{R}}{\,v_\text{G}}} -1\rk  \label{eq:adyn_rockets05} \,.
+\end{align}
+Der Gesamtimpuls zum Zeitpunkt $t_\text{end}$ nach dem sogenannten \gls{Brennschluss}\index{Burn-out}\index{Brennschluss} ist gegeben durch
+\begin{align}
+    p_\text{tot} \lk t_f \rk = \int\limits_0^{t_f} F_\text{S} \lk t'\rk\,\D t' \,,  \label{eq:adyn_rockets06}
+\end{align}
+\bzw $p_\text{tot} = F_\text{S}\,t_f$ für konstanten Schub. In der Raketentechnik benutzt man häufig den spezifischen Impuls\index{Impuls!spezifischer} $I_\text{S}$ (in $\SI{}{\second}$), der definiert ist als Schubkraft geteilt durch den mit der Erdbeschleunigung $g$ multiplizierten Treibstoffdurchsatz $\dot{m}_\text{T}$ (in $\SI{}{\N\per\second}$)\,:
+\begin{align}
+    I_\text{S} = \frac{F_\text{S} }{g\,\dot{m}_\text{T}} = \frac{F_\text{S} \,t_f}{m_\text{T}\,g} = \frac{p_\text{tot}}{m_\text{T}\,g}\,.  \label{eq:adyn_rockets07}
+\end{align}
+In \figref{adyn_rockets02} haben wir die numerische Berechnung eines Raketenfluges von der Erdoberfläche dargestellt. Man erkennt die initiale Beschleunigungsphase bis zum Brennschluss, die bei den angegebenen Parametern (Treibstoffmasse $m_\text{T}(t_0) =\SI{2.688e6}{\kg}$, $v_\text{G}=\SI{3000}{\metre\per\second}$) nur wenig mehr als 3 min dauert. 
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{Rockets02.pdf} 
+	\caption[Dynamik einer einstufigen von der Erdoberfläche gestarteten Rakete.]{Numerische Berechnung der Dynamik einer einstufigen von der Erdoberfläche gestarteten Rakete. Die numerische Rechnung (siehe \mscr\ \mladynref{Raketenstart01.m}) verwendete die vollständige Bewegungsgleichung \eqref{eq:adyn_rockets01}, \dh berücksichtigt auch die Verringerung der Gravitationskraft in größeren Höhen, aber keine Reibung der Erdatmosphäre. Das werden wir in \kap{adyn_reentry} anschauen. Man erkennt, dass bei den gewählten Parametern die Rakete nach dem Brennschluss eine elliptische ballistische Bahn durchläuft, die also keine volle Erdumrundung ergibt (adaptiert nach \cite{Hasbun2018})}.
+	\label{abb:adyn_rockets02}
+\end{figure}
+
+\subsection{Nutzlast-Überlegungen}\index{Nutzlast}\index{Payload}\label{kap:adyn_payload}
+
+\subsubsection{Wirkungsgrad}\label{kap:adyn_efficiency}
+
+Für das Design von Raketensystemen sind neben dem Schub \bzw dem erreichbaren Gesamtimpuls noch zwei Überlegungen wichtig. Zum einen der Wirkungsgrad und zum anderen die maximale Masse, die sich mit einer Rakete auf eine bestimmte Geschwindigkeit und damit auf eine bestimmte Bahn bringen lässt. Wir wenden uns zunächst dem Wirkungsgrad zu und betrachten den wichtigen inneren Wirkungsgrad. Dieser gibt an, wie viel Treibstoffenergie benötigt wird, um eine bestimmte Schubenergie zu erzeugen:
+\begin{align}
+    \eta_\text{int} = \frac{\frac{1}{2}{m_\text{T}\, v_\text{G}{}^2}}{E_\text{T}}  \label{eq:adyn_rockets08}\,.
+\end{align}
+Dieser Wirkungsgrad bestimmt, wie groß $v_\text{G}$ und damit das Antriebsvermögen $\Delta\, v$ bei einer bestimmten Treibstoffmenge $m_\text{T}$ (mit entsprechendem Energieinhalt $E_\text{T}$) letztendlich werden kann.
+
+\subsubsection{Grenzen einstufiger Raketen}\label{kap:adyn_onestagerockets}
+
+Wenn man sich Gleichung \eqref{eq:adyn_rocketequ} anschaut, könnte man auf die Vermutung kommen, dass man die Anfangsmasse (Startmasse) $m_1$ nur hinreichend groß machen müsste, um ein Raumschiff einer Masse $m_2$ auf eine beliebig große Geschwindigkeit zu bringen. Dem ist aber nicht so. Wir betrachten dazu die Massenverhältnisse in einem Raketensystem genauer. Es gilt:
+\begin{align}
+\begin{split}
+    t = t_0 : ~~ m_0 &= m_\text{S} + m_\text{L} + m_\text{T} \; , \\
+		t = t_f : ~~ m_\text{f} &= m_\text{S} + m_\text{L} \;,
+\end{split} \label{eq:adyn_rockets09}
+\end{align}
+worin $m_\text{S}$ die Masse der Struktur (Triebwerk, Schale \usw), $ m_\text{L}$ die Nutzlast (englisch \textit{Payload}) \glslink{payload} und $m_\text{T}$ die Treibstoffmasse jeweils zum Zeitpunkt $t=0$ sind.
+Wir definieren das Nutzlastverhältnis\index{Nutzlastverhältnis} (englisch \textit{payload ratio}) mit
+\begin{align}
+    \mu_\text{L} = \frac{m_\text{L}}{m_0 - m_\text{L}} = \frac{m_\text{L}}{m_\text{S} + m_\text{T}} \label{eq:adyn_rockets10}\,
+\end{align}
+und das \gls{StrukturmassenVerhaeltnis} (englisch \textit{structural mass ratio}) \index{Strukturmassenverhältnis} durch:
+\begin{align}
+    \sigma_\text{S} = \frac{m_\text{S}}{m_0 - m_\text{L}} = \frac{m_\text{S}}{m_\text{S} + m_\text{T}} \label{eq:adyn_rockets11}\,.
+\end{align}
+Bildet man das Verhältnis von Endmasse zu Startmasse, so findet man über das Struktur\-massen-Verhältnis die Beziehung 
+\begin{align}
+    \frac{m_\text{f}}{m_0 } = \frac{\sigma_\text{S} + \mu_\text{L}}{1 + \mu_\text{L}} \label{eq:adyn_rockets12}\,.
+\end{align}
+Das Struktur\-massen-Verhältnis geht direkt in die Lösung der Ziolkowski-Gleichung ein und wir erhalten dann aus \eqref{eq:adyn_rocketequ}:
+\begin{align}
+\begin{split}
+    \frac{\Delta v}{v_\text{G}} &= - \ln \frac{m_\text{f}}{m_0 } = - \ln \frac{\sigma_\text{S} + \mu_\text{L}}{1 + \mu_\text{L}} = \ln \frac{1 + \mu_\text{L}}{\sigma_\text{S} + \mu_\text{L}} ~~\text{\bzw} \\
+		\mu_\text{L} &= \frac{\e^{-\Delta v/v_\text{G}}- \sigma_\text{S}}{1-\e^{-\Delta v/v_\text{G}}}\,. 
+\end{split} \label{eq:adyn_rockets13}
+\end{align}
+Gl. \eqref{eq:adyn_rockets13} setzt das erzielbare Nutzlastverhältnis in Relation zu dem normierten Geschwindigkeitsgewinn $\Delta v/v_\text{G}$. Nun ist aber $v_\text{G}$ auf
+\ca $\SI{4000}{\metre\per\second}$ begrenzt. Aus \figref{adyn_rockets03} kann man erkennen, dass zum Erreichen einer Endgeschwindigkeit von $\SI{8}{\km\per\second}$, selbst wenn man ein äußerst optimistisches Struktur\-massen-Verhältnis von $\sigma_\text{S}=0.1$ annimmt, lediglich ein Nutzlastanteil von 3.5\%  realisiert werden kann. Gleichung \eqref{eq:adyn_rockets13} zeigt, warum größere Nutzlasten \ia mit mehrstufigen Raketen ins All gebracht werden müssen. Dies werden wir im nächsten Kapitel genauer untersuchen.
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{Rockets03.pdf} 
+	\caption[Nutzlastverhältnis als Funktion der Endgeschwindigkeit $\Delta v$.]{Nutzlastverhältnis als Funktion der Endgeschwindigkeit $\Delta v$ bei angenommener Strahlgeschwindigkeit $v_\text{G} = \SI{4000}{\metre\per\second}$ nach Gleichung \eqref{eq:adyn_rockets13}. Die vertikale Linie zeigt die 1.~\gls{vkosmos}.}\index{Geschwindigkeit!1.~kosmische}
+	\label{abb:adyn_rockets03}
+\end{figure}
+
+Zuvor aber noch eine Bemerkung zur charakteristischen Geschwindigkeit $\Delta v$. Im allgemeinen Fall wird man $\Delta v$ nur numerisch berechnen können, insbesondere bei länger andauernden Brennphasen des Triebwerks, wie wir das bei der numerischen Rechnung für \figref{adyn_rockets02} für den Aufstieg der Rakete im Gravitationsfeld der Erde getan haben. Wir hatten dort die anfänglich noch stark wirkende Reibung der Atmosphäre unberücksichtigt gelassen, werden dies aber später im \kap{adyn_launch_reentry} nachholen.\\
+Für die nächsten Kapitel wollen wir den häufigen Fall eines zeitlich relativ kurzen Treibstoffausstoßes  voraussetzen. In diesem Fall können die wirkenden externen Kräfte, insbesondere die Gravitationskraft $F_\text{G}$, als konstant angenommen werden und Gleichung \eqref{eq:adyn_rockets02} wird zu:
+\begin{align}
+     \Delta v &= - v_\text{G} \int_{m_0}^{m_\text{f}} \frac{\D m }{m} + F_\text{G} \int_{m_0}^{m_\text{f}} \frac{1}{\dot{m}} \frac{\D m}{m} = + \lk v_\text{G} - \frac{F_\text{G}}{\dot{m}_\text{T}} \rk\, \ln \frac{m_\text{f}}{m_0}		\,. \label{eq:adyn_rockets14}
+\end{align}
+
+\subsection{Prinzip der Stufenrakete}\label{kap:adyn_multistagerockets}
+
+Wir haben im vorhergehenden Kapitel gesehen, dass mit einer einstufigen Rakete bei gegebenem Antriebsvermögen die Nutzlast äußerst begrenzt ist. Um größere Nutzlasten ins Weltall zu befördern, muss man das Prinzip der Stufenrakete \index{Stufenrakete} anwenden. Dieses besteht darin, dass während des Fluges unnötig gewordene Strukturmassen der Rakete (leere Treibstoffbehälter, Triebwerke etc.) abgeworfen werden, um die verbleibende Antriebsenergie besser für die Beschleunigung der Nutzlasten zu verwenden. Man unterscheidet die Tandemstufung \index{Tandemstufung} (serielle Stufung) und die \index{Parallelstufung} Parallelstufung. Bei der ersteren erfolgt die Stufung übereinander (\figref{adyn_rockets04}a), bei der Parallelstufung entsprechend parallel  (\figref{adyn_rockets04}b). Häufig gibt es auch Mischformen \cite{Walter2018}. \\
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{Mehrstufenraketen.pdf} 
+	\caption[Mehrstufenprinzip bei Raketen.]{Mehrstufenprinzip bei Raketen. \fa Tandemstufung \fb Parallelstufung.}
+	\label{abb:adyn_rockets04}
+\end{figure}
+
+Die Startmasse für eine $N$-stufige Rakete lautet:
+\begin{align}
+     m_0 &= \sum_{i=1}^N \, m_i + m_\text{L} \,, \label{eq:adyn_rockets15}
+\end{align}
+worin $m_\text{L}$ für die Nutzlast steht. Die Massen der einzelnen Stufen $m_i$ werden unterteilt in
+\begin{align*}
+     m_i &= m_{\text{T},i} + m_{\text{S},i}{} + m_{\text{M},i} \,.
+\end{align*}
+Hierin sind $m_{\text{T},i}$ die Massen des Treibstoffs, $ m_{\text{S},i}$ die Strukturmassen und $ m_{\text{M},i}$ die Triebwerksmassen der jeweils $i$-ten Stufe. Die Masse der Rakete nach Abbrennen und Abwerfen der $i$-ten Stufe ist gleichzeitig die Startmasse für die jeweilig nächste Stufe, was die Definition von sogenannten Unterraketen mit den Massen $m_{0,i}$ erlaubt:
+\begin{align}
+\begin{split}
+           m_{0,1} &= \lk \sum_{i=1}^N m_i \rk +  m_{\text{L}} = m_0 \,\\
+		       m_{0,2} &= \lk \sum_{i=2}^N m_i \rk +  m_{\text{L}} \,\\
+					         &\vdots \\
+           m_{0,k} &= \lk \sum_{i=k}^N m_i \rk +  m_{\text{L}} \,\\
+					         &\vdots \\
+         m_{0,N+1} &= m_{\text{L}} = m_{\text{f}} \,.
+\end{split} \label{eq:adyn_rockets16}
+\end{align}
+
+
+Mehrfache Anwendung der Raketen-Gleichung \eqref{eq:adyn_rocketequ} ergibt aus \eqref{eq:adyn_rockets16} für das Antriebsvermögen\index{Antriebsvermögen|textbf} $\Delta v$:
+\begin{align}
+     \Delta v &=  \sum_{i=1}^N v_{\text{G},i} \, \ln \frac{m_{0,i}}{m_{0,i}- m_{\text{T},i}} \,. \label{eq:adyn_rockets17}
+\end{align}
+Man beachte, dass im Nenner des Logarithmus von Gleichung \eqref{eq:adyn_rockets17} der Term $m_{0,i}- m_{\text{T},i}$ stehen muss, da zum Brenn-Endzeitpunkt der Stufe $i$ zwar der Treibstoff verbrannt ist, aber die Strukturen noch nicht abgeworfen worden sind. Man kann nun ein Strukturmassenverhältnis für die jeweiligen Stufen einführen:
+\begin{align}
+     \sigma_{\text{S},i} &= \frac{m_{0,i}- m_{\text{T},i} - m_{0,i+1}}{m_{0,i}} = \frac{m_{\text{M},i} + m_{\text{S},i}}{m_{0,i}}\,. \label{eq:adyn_rockets18}
+\end{align}
+Dieses kann man verstehen als das Verhältnis der momentanen (für $i$-te Stufe) eingesetzten Struktur- und Triebwerksmasse zur aktuellen Gesamtmasse, \dh der Masse der verbleibenden Unterrakete. Mit \eqref{eq:adyn_rockets18} folgt aus \eqref{eq:adyn_rockets17} für das gesamte Antriebsvermögen:
+\begin{align}
+     \Delta v_\text{ges} &=  \sum_{i=1}^N v_{\text{G},i} \, \ln \frac{1}{\sigma_{\text{S},i} + m_{0,i+1}/m_{0,i}} = \sum_{i=1}^N v_{\text{G},i} \, \ln \frac{1}{\sigma_{\text{S},i} + \mu_{i+1}/\mu_i}  \,,\label{eq:adyn_rockets19}
+\end{align}
+wobei wir als 
+\begin{align}
+	\mu_i = m_{0,i}/m_0  \label{eq:adyn_rockets19a}
+\end{align}
+das Massenverhältnis der $i$-ten Unterrakete zur Gesamtstartmasse eingeführt haben, womit insbesondere gilt:
+\begin{align}
+		\mu_1 = 1\,,~~\mu_{N+1} = m_\text{L}/m_0 = \mu_\text{L}\,. \label{eq:adyn_rockets19b}
+\end{align}
+Wir sehen an Gleichung \eqref{eq:adyn_rockets19}, dass für das Antriebsvermögen der Rakete die Struktur\-massen-Verhältnisse und die relativen Massenverhältnisse entscheidend sind. Man kann leicht überprüfen, dass \eqref{eq:adyn_rockets19} für $N=1$ in die Ziolkowski-Gleichung\index{Ziolkowski-Gleichung} übergeht. Offensichtlich stellt \eqref{eq:adyn_rockets19} eine komplexe Optimierungsaufgabe für die Bestimmung des mehrstufigen Raketensystems bei vorgegebener Nutzlast $m_\text{L}$  und Maximierung \bzw Erreichung eines bestimmten Antriebsvermögens $\Delta v_\text{ges}$ dar. 
+Die Stufenoptimierungsaufgabe besteht insbesondere darin,  die Zahl der Stufen $N$ und die Massenaufteilung $m_{0,i}$ auf die einzelnen Raketenstufen so festzulegen, dass die Gesamtmasse  $m_0$ minimal wird. 
+Vorgegeben sind dabei die Gasaustrittsgeschwindigkeiten $v_{\text{G},i}$ der einzelnen Stufen. Ebenso werden die Strukturmassenverhältnisse $\sigma_{\text{S},i}$ der einzelnen Stufen, die von der Beschleunigungsbelastung, der Güte der Konstruktion, der Bauweise und vielen anderen Faktoren abhängen, als bekannte Konstanten vorausgesetzt. Siehe dazu auch \probref{adyn_rocketbasic} und \probref{adyn_rocketopt2}, die Optimierungsaufgabe werden wir speziell in \probref{adyn_rocketopt1} durchführen.
+In \figref{adyn_rockets05} haben wir das Nutzlastverhältnis und das Antriebsvermögen mit den Werten der Saturn V und der Ariane 1 Raketen aufgetragen \cite{Messerschmid2017}. Man erkennt, dass mit höherer Stufenzahl das Antriebsvermögen wie erwartet zunimmt. 
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{ArianeSaturn.pdf} 
+	\caption[Nutzlastverhältnis für mehrstufige Raketen.]{Nutzlastverhältnis für mehrstufige Raketen (Werte für Saturn~V und der Ariane~1 siehe Tabelle \ref{tab:adyn_parameter_raketen} \cite{Messerschmid2017}).}
+	\label{abb:adyn_rockets05}
+\end{figure}
+
+
+
+

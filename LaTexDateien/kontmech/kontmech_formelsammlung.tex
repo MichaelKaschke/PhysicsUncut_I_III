@@ -1,0 +1,107 @@
+\newpage
+\section{Formelsammlung zur Physik des Kontinuums}\label{kap:kontmech_formelsammlung}
+Im Folgenden geben wir zum Arbeitsbuch einige häufig benutzte Formeln und Beziehungen der Himmelsmechanik.
+\subsection{Vektoranalysis}
+Es ist vorteilhaft, Differentialoperatoren nicht nur in kartesischen, sondern auch, je nach Geometrie, in Zylinder- und Kugelkoordinaten anzugeben. \\
+
+\textbf{Ableiten von skalaren Feldern} $\phi\lk\vec{r}\rk$ \textbf{und Vektorfeldern} $\vec{A}\lk \vec{r}\rk$
+\begin{align*}
+    \text{Gradient:}  ~~ &\gradv f = \nablav f ~~~~ \text{\bzw} ~~~~ \lk \nablav f\rk_i = \d_i f \quad \eqref{eq:kontmech_gradient}\\
+    \text{Divergenz:} ~~ &\divv \cdot \vec{A} = \nablav\cdot\vec{A} = \d_i\,F_i \quad \eqref{eq:kontmech_divergenz}\\
+    \text{Rotation:}  ~~ &\rotv\,\vec{A} = \nablav\times \vec{A} ~~~~ \text{bzw.} ~~~~ \lk \rotv \vec{A}\rk_i = \epsilon_{ijk}\,\d_j\,F_k \quad \eqref{eq:kontmech_rotation}
+\end{align*}
+\vspace{0.5cm}
+\textbf{Zweite Ableitungen von skalaren Feldern} $ f\lk r\rk$ \textbf{und Vektorfeldern} $\vec{A}\lk r\rk$
+\begin{align*}
+    \divv\,\gradv f &= \nablav\,\nablav f = \Delta  f  \quad \eqref{eq:kontmech_nablaop05} \\
+    \gradv\,\divv\,\vec{A} &= \nablav\,\lk \nablav\,\vec{A}\rk \\
+    \divv \,\rotv\,\vec{A} &= \nablav\,\lk \nablav\times \vec{A}\rk = 0 \quad \eqref{eq:kontmech_nablaop06} \\
+    \rotv \gradv\, f &= \nablav\times\lk \nablav f \rk = 0 \quad \eqref{eq:kontmech_nablaop07} \\
+    \rotv\,\rotv\,\vec{A} &= \nablav\times\lk \nablav\times\vec{A}\rk = \nablav\,\lk \nablav\,\vec{A}\rk - \Delta \vec{A} \quad \eqref{eq:kontmech_nablaop04} \\
+\end{align*}
+\vspace{0.5cm}
+\textbf{Differentialoperatoren in Zylinderkoordinaten}
+\begin{align*}
+    \nablav  f &= \vec{e}_\rho \,\frac{\d f}{\d \rho} + \vec{e}_\phi \,\frac{1}{\rho}\frac{\d f}{\d \phi} + \vec{e}_z\frac{\d f}{\d z} \\
+    \Delta f &= \underbrace{\frac{1}{\rho}\,\frac{\d}{\d \rho} \lk \rho\,\frac{\d f}{\d \rho }\rk}_{\frac{\d^2 f}{\d \rho^2} + \frac{1}{\rho}\,\frac{\d f}{\d \rho}}+ \frac{1}{\rho^2}\,\frac{\rho^2 f}{\d \phi^2} + \frac{\d^2 f}{\d z^2}
+\end{align*}
+\vspace{0.5cm}
+\textbf{Differentialoperatoren in Kugelkoordinaten}
+\begin{align*}
+    \nablav f &= \vec{e}_r \,\frac{\d f}{\d r} + \vec{e}_\theta \,\frac{1}{r} \frac{\d f}{\d \phi} + \vec{e}_\phi \,\frac{1}{r\sin\theta}\frac{\d f}{\d \phi} \\
+    \Delta f &= \underbrace{\frac{1}{r^2}\,\frac{\d}{\d r}\lk r^2\,\frac{\d f}{\d r} \rk}_{\frac{\d^2 f}{\d r^2} + \frac{2}{r}\,\frac{\d f}{\d r}}
+		+ \frac{1}{r^2\sin\theta} \frac{\d }{\d \theta} \lk \sin\theta \frac{\d f}{\d \theta} \rk + \frac{1}{r^2 \sin^2\theta}\frac{\d^2 f}{\d \phi^2}
+\end{align*}
+\vspace{0.5cm}
+
+\newpage
+\subsection{Wichtige Gleichungen der Kontinuumsmechanik}
+
+\textbf{Kontinuitätsgleichung}
+\begin{equation*}
+  \frac{\partial}{\partial t}\varrho + \divv \vec{j} = \frac{\partial}{\partial t}\varrho + \divv \lk \varrho\, \vec{v} \rk = 0 \qquad  \eqref{eq:kontmech_KontinuitaetsglDiff}
+\end{equation*}
+\vspace{0.5cm}
+\textbf{Euler-Gleichung der Kontinuumsmechanik}
+\begin{equation*}
+  \varrho \lk \lk \vec{v} \cdot \nabla \rk \vec{v} + \frac{\partial}{\partial t}
+  \vec{v} \rk = \vec{f}_\text{V}  + \vec{f}_\text{R} - \vec{\nabla} p \; \qquad
+  \eqref{eq:kontmech_EulerGleichung}
+\end{equation*}
+\vspace{0.5cm}
+\textbf{Bernoulli-Gleichung}
+\begin{equation*}
+  \frac{1}{2} \varrho \, u_1^2 + p_1 = \frac{1}{2} \varrho \, u_2^2 +  p_2  \qquad  \eqref{eq:kontmech_BernoulliGl}
+\end{equation*}
+\vspace{0.5cm}
+\textbf{Navier-Stokes-Gleichung}
+\begin{equation*}
+  \varrho \lk \lk \vec{v} \cdot \nablav \rk \vec{v} + \frac{\partial}{\partial t}
+  \vec{v} \rk = \vec{f}_\text{V}  + \eta \, \Delta \vec{v} - \nablav p \; 
+  \qquad \eqref{eq:kontmech_NavierStokes}
+\end{equation*}
+\vspace{0.5cm}
+\textbf{Navier-Stokes-Gleichung - skaliert}
+\begin{equation*}
+  \lk \tilde{\vec{v}} \cdot \tilde{\nablav} \rk \tilde{\vec{v}}
+  + \frac{\partial}{\partial \tilde{t}} \tilde{\vec{v}} 
+  = \frac{1}{\mathrm{Re}} \, \tilde{\Delta} \tilde{\vec{v}}
+  - \tilde{\nablav} \tilde{p} \; \qquad \eqref{eq:kontmech_NavierStokesSkaliert02}
+\end{equation*}
+\vspace{0.5cm}
+\textbf{Reynoldszahl}
+\begin{equation*}
+  \mathrm{Re} = \frac{\varrho\,u\,l}{\eta}
+\end{equation*}
+\vspace{0.5cm}
+
+\newpage
+\subsection{Wichtige Gleichungen der Wellentheorie}
+
+\textbf{Wellengleichung für die schwingende Saite}
+\begin{equation*}
+  \varrho \frac{\partial^2 y(x,t)}{\partial t^2}
+  - E \frac{\partial^2 y(x,t)}{\partial x^2} = 0 \; \qquad \eqref{eq:kontmech_PDGLSaite2}
+\end{equation*}
+\vspace{0.5cm}
+\textbf{Gruppengeschwindigkeit}
+\begin{equation*}
+  v_\text{Gr} = \frac{\D \omega(k)}{\D k} \qquad \eqref{eq:kontmech_DispersionsRel04}
+\end{equation*}
+\vspace{0.5cm}
+
+\textbf{Korteweg-de-Vries-Gleichung}
+\begin{equation*}
+  \frac{\partial \psi}{\partial t} + 6\,\psi\,\frac{\partial \psi}{\partial x} + \frac{\partial^3 \psi}{\partial x^3} = 0\,\qquad \eqref{eq:kontmech_soliton01}
+\end{equation*}
+\vspace{0.5cm}
+\textbf{Sinus-Gordon-Gleichung}
+\begin{equation*}
+  \frac{1}{c^2}\frac{\partial^2 \psi}{\partial t^2}  - \frac{\partial^2 \psi}{\partial x^2}  + \sin \psi = 0\, \qquad \eqref{eq:kontmech_soliton03}
+\end{equation*}
+\vspace{0.5cm}
+
+
+
+
+

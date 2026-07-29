@@ -1,0 +1,1034 @@
+\section{Kinematik und Dynamik kontinuierlicher Körper}
+\label{kap:kontmech_kindyn}
+
+\subsection{Materiepunkte und Koordinaten}
+\label{kap:kontmech_materiepunkte} \index{Koordinaten!kontinuierliche Körper}
+
+Um Bewegungen kontinuierlicher Körper beschreiben zu können, benötigen wir
+zunächst Koordinaten, in denen wir sie beschreiben können. Anders als beim
+starren Körper ist es nun bei Fluiden nicht mehr sinnvoll, ein unveränderliches
+körperfestes Koordinatensystem einzuführen, da sich der Körper (das Fluid) selbst
+mit der Zeit ändern kann und sich einzelne Teile des Fluids gegeneinander
+bewegen können. Sie wären also auch in einem körperfesten System nicht mehr
+unveränderlich. Zur Beschreibung greift man einzelne Materiepunkte wie den
+Punkt~$\vec{\hat{P}}$ in \figref{kontmech_KontKoerpKoord01} heraus und
+betrachtet das infinitesimale Volumen $V$ um diese herum.
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{KontKoerpKoord.pdf}
+  \caption[Materiepunkt und Raumpunkt eines kontinuierliechen Körpers]{In der
+    Beschreibung eines kontinuierlichen Körpers ordnet man jedem Materiepunkt
+    $\hat{\vec{P}}$ des Körpers einen Raumpunkt $\vec{r}$ zu.}
+    \label{abb:kontmech_KontKoerpKoord01}
+\end{figure}
+
+Der Körper ist dann durch die Ansammlung eines Kontinuums von Materiepunkten
+$\vec{\hat{P}}$ und die darin enthaltene Masse $\D m(\vec{\hat{P}})
+= \varrho(\vec{\hat{P}})\,\mathrm{d}V$ beschrieben. Die Beschreibung erfolge in
+einem raumfesten Koordinatensystem \vec{\Sigma}. Die zugehörigen Vektoren
+nennen wir, wie wir es aus den vorherigen Kapiteln gewohnt sind, $\vec{r}
+= \sum x_i\, \vec{e}_i\,, i=1 \ldots 3 $. Die Punkte $\vec{\hat{P}}$ kann man
+dadurch festlegen, dass man ihnen Koordinaten in $\vec{\Sigma}$ zu einem festen
+Zeitpunkt $t_0$ zuordnet,
+\begin{equation}
+  \vec{\hat{P}} \Leftrightarrow \vec{r}(\vec{\hat{P}},t_0) \; .
+  \label{eq:kontmech_Materiepunkt}
+\end{equation}
+
+Damit bieten sich zwei Möglichkeiten, den
+kontinuierlichen Körper zu beschreiben. Wir können einerseits angeben,
+an welchen Orten $\vec{r}$ sich die Materiepunkte $\vec{\hat{P}}$ in $\vec{\Sigma}$ 
+befinden\footnote{Wir bezeichnen somit die Koordinaten eines Punktes
+  $\vec{\hat{P}}$ mit dem Vektor $\vec{r}(\vec{\hat{P}})$. $\vec{\hat{P}}$ ist
+  nicht zu verwechseln mit dem später eingeführten Druck $p$ im Fluid.}
+\begin{subequations}
+  \begin{equation}
+    \vec{r} = \vec{r}(\vec{\hat{P}},t) \,.
+    \label{eq:kontmech_EulerKoord}
+  \end{equation}
+  Dies nennt man in der Kontinuumsmechanik \gls{eulerscheKoordinaten}\index{Euler-Koordinaten}\indexp{Euler, Leonhard}. Bei der Eulerschen Beschreibung bleibt das \KOS quasi ortsfest. Wenn man eine physikalische Größe wie \zb die Geschwindigkeit $\vec{v}$ an einem Ort $\vec{r}$ zur Zeit $t$ betrachtet, so beschreibt diese Größe zu verschiedenen Zeiten verschiedene Fluidelemente $\vec{\hat{P}}_i$.\\
+	Andererseits kann man einen kontinuierlichen Körper auch dadurch beschreiben, dass
+  man angibt, welcher materielle Punkt $\vec{\hat{P}}$ sich zu einer Zeit $t$
+  am Ort $\vec{r}$ befindet,
+  \begin{equation}
+    \vec{\hat{P}} = \vec{\hat{P}}(\vec{r},t) \; .
+    \label{eq:kontmech_LagrangeKoord}
+  \end{equation}
+  Dies sind \gls{lagrangescheKoordinaten}\index{Lagrange-Koordinaten}\indexp{Lagrange, Joseph-Louis}. Diese werden dadurch ermöglicht,
+  dass niemals zwei materielle Punkte sich am selben Ort befinden können.
+  Dadurch wird Gleichung \eqref{eq:kontmech_EulerKoord} umkehrbar und
+  \eqref{eq:kontmech_LagrangeKoord} kann immer angegeben werden. Bei einer Beschreibung nach Lagrange wird das \KOS quasi mit den Materiepunkten mitbewegt, in der Beziehung \eqref{eq:kontmech_LagrangeKoord} beziehen wir uns immer auf das gleiche Fluidelement $\hat{\vec{P}}$.
+\end{subequations}
+
+\subsection{Kinematik}
+\label{kap:kontmech_kinematik} \index{Kinematik!kontinuierliche Körper}
+
+\subsubsection{Geschwindigkeiten und Strömungen}
+\label{kap:kontmech_Geschwindigkeit} \index{Geschwindigkeit!kontinuierliche Körper} \index{Strömung}
+
+Wir wollen nun im Sinne der Newtonschen Mechanik die Bewegung der Materiepunkte des Fluids betrachten. Die Geschwindigkeit eines Materiepunktes ist, da dieser nach
+\eqref{eq:kontmech_Materiepunkt} selbst in der Zeit unveränderlich ist, nur
+von der Änderung seiner Position abhängig,
+\begin{subequations}
+  \begin{equation}
+    \vec{v}(\vec{\hat{P}} ,t) = \frac{\D}{\D t} \vec{r}(\hat{\vec{P}},t) = \frac{\partial}
+    {\partial t}\vec{r}(\vec{\hat{P}} ,t) \; . \label{eq:kontmech_GeschwZeit}
+  \end{equation}
+  Dies stellt die Geschwindigkeit dar, die ein Materiepunkt zum Zeitpunkt $t$
+  hat. Dieser Materiepunkt ändert dabei natürlich seinen Ort mit der Zeit.
+  Möchte man die Geschwindigkeit wissen, die ein beliebiger Materiepunkt zum
+  Zeitpunkt $t$ an einem bestimmten Ort $\vec{r}$ hat, muss man die
+  Lagrangekoordinate \eqref{eq:kontmech_LagrangeKoord} in die Beziehung \eqref{eq:kontmech_GeschwZeit} für die Geschwindigkeit
+  einsetzen und man erhält
+  \begin{equation}
+    \vec{v}(\vec{r},t) = \vec{v}(\vec{\hat{P}}(\vec{r},t),t) \; .
+    \label{eq:kontmech_GeschwOrt}
+  \end{equation}
+\end{subequations}
+
+Bei dieser Betrachtung wird gleich deutlich, dass man mit einer Geschwindigkeit
+in einer Flüssigkeit oder einem Gas verschiedene physikalische Sichtweisen
+meinen kann. Die gesamte Bewegung des Fluids zu einem Zeitpunkt $t$ nennt man \textit{Strömung}\index{Strömung}. Diese Strömung lässt sich
+entsprechend auch auf verschiedene Arten beschreiben. Ein Spezialfall ist eine
+\emph{stationäre Strömung}, die in der Zeit konstant ist, für die also gilt 
+$\vec{v}(\vec{r},t) = \vec{v}(\vec{r})$.
+
+Die Ortskurve, die ein bestimmter Materiepunkt in der Zeit durchläuft, nennt
+man eine \gls{Bahnlinie}\index{Bahnlinie}. Ist das Geschwindigkeitsfeld
+\eqref{eq:kontmech_GeschwOrt} bekannt, erhält man die Bahnlinie durch
+Integration von diesem Geschwindigkeitsfeld $\vec{v}(\vec{r},t)$ über die Zeit.
+
+Die Linie, die immer tangential an das Geschwindigkeitsfeld zu einem festen
+Zeitpunkt~$t$ anliegt, nennt man eine \gls{Stromlinie}\index{Stromlinie}.
+Diese Stromlinien stellen dar, wie die Strömung zum aktuellen Zeitpunkt $t$ 
+verläuft. In jedem Raumpunkt befindet sich dabei ein anderer Materiepunkt und
+hat aktuell diese Geschwindigkeit $\vec{v}(\vec{r},t)$. Dies muss nicht mit der Bahnkurve
+übereinstimmen, siehe \figref{kontmech_KontKoerpKoord02}. In einer stationären
+Strömung werden jedoch beide Linien übereinstimmen.
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{KontStromlinie.pdf}
+  \caption[Bahn- und Stromlinie einer Strömung]{Eine \gls{Stromlinie} (blau)
+    liegt tangential am Geschwindigkeitsfeld zu einem festen Zeitpunkt (grüne
+    Pfeile) an. Im Gegensatz dazu beschreibt eine \gls{Bahnlinie} (rot) die
+    Ortskurve, die ein Materiepunkt mit der Zeit durchläuft.}
+    \label{abb:kontmech_KontKoerpKoord02}
+\end{figure}
+
+Strömungen werden sehr stark von inneren Reibungen beeinflusst. Das trifft
+besonders stark auf Flüssigkeiten zu. Weil die Reibung, die wir mit der später 
+zu definierenden Viskosität\index{Viskosität} bezeichnen wollen (siehe \kap{kontmech_InnereReibung}),  dabei das Verhalten
+der strömenden Flüssigkeit in der Art der Strömung sehr stark beeinflussen
+kann, unterscheidet man je nach Stärke der Reibung die Art der Strömung.
+Eine \emph{ideale Flüssigkeit}\index{Flüssigkeit!ideale} wird dabei kaum von
+der Reibung beeinflusst.
+Sie ist dadurch gekennzeichnet, dass die Reibungskräfte klein gegen alle
+anderen an der Flüssigkeit angreifenden Kräfte sind. Dieses Verhalten trifft
+meist auch auf Gase zu.  Im Gegensatz dazu ist eine \emph{stark viskose
+  Flüssigkeit} eine, in der die Reibungskräfte dominieren. Die meisten
+\emph{realen Flüssigkeiten} befinden sich im Bereich dazwischen.
+
+Eine Strömung wird als \emph{laminar}\index{Strömung!laminar} bezeichnet,
+wenn \gls{Bahnlinie}n benachbarter
+Materiepunkte nebeneinander liegen, ohne sich zu durchmischen. Viskose
+Flüssigkeiten tendieren zu einem laminaren Strömungsverhalten, weil hier die
+Reibungskräfte gegenüber den beschleunigenden Kräften dominieren. Ist die
+Reibung klein gegen die beschleunigenden Kräfte, kann das Strömungsbild unruhig
+werden. Das geschieht insbesondere dann, wenn die Flüssigkeit an ihren
+Grenzen (\zb dem Rand eines Rohres) durch stärkere Reibungskräfte an diesem
+Rand beeinflusst wird. In diesem Fall kann die Strömung
+\emph{turbulent}\index{Strömung!turbulent} werden (siehe auch Übersicht \ref{tab:kontmech_stroemung_overview}).
+
+
+\subsubsection{Beschleunigungen}
+\label{kap:kontmech_Beschleunigung} \index{Beschleunigung!kontinuierliche Körper}
+
+Als \emph{materielle}\index{Beschleunigung!materielle} oder
+\emph{substantielle Beschleunigung}\index{Beschleunigung!substantielle}
+definieren wir die Beschleunigung, die ein Materieteilchen am Ort $\vec{r}$
+erfährt,\dh in dem wir \eqref{eq:kontmech_GeschwOrt} ableiten:
+\begin{align}
+\begin{split}
+  \vec{a}(\vec{r},t) &= \frac{\D}{\D t} \vec{v}(\vec{r},t) = \dot{\vec{v}}(\vec{r},t)
+  = \sum_{i=1}^3 \frac{\partial \vec{v}(r,t)}{\partial x_i} \frac{\D x_i}{\D t} \,\vec{e}_i
+  + \frac{\partial}{\partial t} \vec{v}(\vec{r},t) \\
+  &= \lk \vec{v}(\vec{r},t) \cdot \nablav \rk \vec{v}(\vec{r},t)
+  + \frac{\partial}{\partial t} \vec{v}(\vec{r},t) \; . 
+\end{split} \label{eq:kontmech_Beschleunigung}
+\end{align}
+Man erkennt hier die Dyade $\cdot \nablav$ \eqref{eq:kontmech_nablaop03} wieder und dass es zwei Beiträge zur Änderung der Geschwindigkeit gibt.
+Einerseits kann sich das Geschwindigkeitsfeld mit der Zeit selbst ändern.
+Dies wird durch die partielle Ableitung im zweiten Term beschrieben. Der
+erste Term berücksichtigt, dass sich der Materiepunkt an einen anderen
+Raumpunkt bewegt und somit auch der räumlichen Änderung des
+Geschwindigkeitsfeldes unterliegt. Diesen Teil der Beschleunigung nennt man
+\emph{Konvektionsbeschleunigung}\index{Konvektionsbeschleunigung}\index{Beschleunigung!Konvektions-}. 
+Man erkennt an \eqref{eq:kontmech_Beschleunigung} wieder, 
+dass wir bei der Beschreibung von Kinematik und Dynamik des Kontinuums auf partielle Differentialgleichungen 
+treffen.
+
+\subsection{Eigenschaften von Strömungen}
+\label{kap:kontmech_EigenschaftenStroemungen} 
+\subsubsection{Stromdichte, Fluss und Kontinuitätsgleichung}
+\label{kap:kontmech_Stromdichte}\index{Kontinuitätsgleichung!kontinuierliche Körper}
+
+Bei der Betrachtung von Strömungen interessiert man sich oft dafür, wie
+sich die Materie, die eine Dichte $\varrho$ haben soll, bewegt. Dazu führen wir die \emph{Stromdichte}\index{Stromdichte}
+\begin{equation}
+  \vec{j} = \varrho \,\vec{v}
+  \label{eq:kontmech_Stromdichte}
+\end{equation}
+ein, die nicht nur die Geschwindigkeit beschreibt, sondern beschreibt, wie
+sich die Materie mit dieser Geschwindigkeit bewegt. In einem differentiellen
+Volumenelement erhalten wir
+\begin{equation*}
+  \vec{j}\,\D V = \varrho\,\D V\,\vec{v} = \D m \, \vec{v} \; .
+\end{equation*}
+Die Stromdichte tritt also für das kontinuierliche System an die Stelle
+des Impulses und hat die Einheit einer Impulsdichte ($\SI{}{\kg\per\metre\squared\per\second}$).
+
+Der \emph{Fluss}\index{Fluss} einer Strömung durch eine Oberfläche lässt sich durch
+\begin{equation*}
+  \Phi = \int_A \vec{j} \cdot \D\vec{A} = \int_A \varrho \,\vec{v} \cdot
+  \D\vec{A}
+\end{equation*}
+berechnen und gibt an, wie viel der Materie in einer gewissen Zeit durch
+die Querschnittsfläche $A$ fließt.
+
+Der Fluss ist ebenfalls entscheidend, wenn wir die Masse in einem
+bestimmten, zeitlich konstanten Volumenelement betrachten möchten. Diese
+können wir jederzeit durch das Integral
+\begin{equation*}
+  m = \int_V \varrho\,\D V
+\end{equation*}
+berechnen. Die Massenerhaltung verlangt, dass die zeitliche Änderung
+der Masse im Volumen gerade der Masse entspricht, die zu- bzw. abfließt.
+Man kann also die Erhaltungsgleichung
+\begin{equation*}
+  \frac{\partial}{\partial t} M = \int_V \frac{\partial}{\partial t}\varrho\,\D V 
+  = -\int_{A = \partial V} \vec{j}\cdot \D\vec{A} = \Phi 
+\end{equation*}
+aufstellen, wobei das Oberflächenintegral gerade über den gesamten Rand
+des Volumens~$V$ geht, den wir mit $\partial V$ bezeichnen wollen, $\Phi$ ist der Materiefluss in $\SI{}{\kg\per\second}$. Das Minus\-zeichen rührt daher, dass die Randfläche
+nach außen orientiert ist. Das Skalarprodukt $\vec{j}\cdot \D\vec{A}$
+liefert also dann einen positiven Wert, wenn es einen Netto-Abfluss von
+Masse gibt. Mit dem Integralsatz von Gauß \eqref{eq:kontmech_Integralsatz_Gauss} lässt sich das Oberflächenintegral
+umformen, so dass wir 
+\begin{equation}
+  \int_V \frac{\partial}{\partial t}\varrho\,\D V 
+  = -\int_V \divv \vec{j}\, \D V
+  \label{eq:kontmech_KontinuitaetsglMakr}
+\end{equation}
+erhalten.
+
+Gleichung \eqref{eq:kontmech_KontinuitaetsglMakr} muss für jedes beliebige
+Volumen gelten. Wir haben nur vorausgesetzt, dass dieses zeitlich konstant sein
+soll. Damit lässt sich dann die differentielle Form der
+\emph{Kontinuitätsgleichung}\index{Kontinuitätsgleichung}
+\begin{equation}
+  \frac{\partial}{\partial t}\varrho + \divv \vec{j} =
+  \frac{\partial}{\partial t}\varrho + \divv \lk \varrho\, \vec{v} \rk = 0
+  \label{eq:kontmech_KontinuitaetsglDiff}
+\end{equation}
+aufstellen.
+
+Ein interessanter Spezialfall sind \emph{inkompressible} Flüssigkeiten\index{Flüssigkeit!inkompressible}.
+Diese zeichnen sich dadurch aus, dass ihre Dichte zeitlich und räumlich
+konstant ist. Das heißt $\partial \varrho/ \partial t = 0$ und $\divv\lk
+\varrho\, \vec{u} \rk = \varrho \divv \vec{u}$. Im Fall imkompressibler Fluide vereinfacht sich
+die Kontinuitätsgleichung zu
+\begin{equation}
+  \divv \vec{v}  = 0 \; .
+  \label{eq:kontmech_KontinuitaetsglInkompr}
+\end{equation}
+Das Strömungsfeld weist also keine Divergenzterme auf. Dies entspricht der
+Tatsache, dass an keinem Punkt in der inkompressiblen Flüssigkeit Masse
+konzentriert oder ausgedünnt werden kann. 
+
+\subsubsection{Formen von Strömungen}
+\label{kap:kontmech_FormenStroemungen}\index{Strömung!Formen}
+
+Strömungen können sehr unterschiedliche Formen annehmen. Wir wollen vor
+allem laminare und turbulente Strömungen unterscheiden.
+
+\index{Strömung!laminar|textbf}%
+Als \emph{laminar} bezeichnen wir Strömungen, bei denen verschiedene
+Schichten der Flüssigkeit oder des Gases sich nicht miteinander mischen. Das heißt
+nicht, dass sie sich alle identisch bewegen müssen. Sie können \zb
+unterschiedliche Geschwindigkeiten haben, gleiten dann aber glatt aneinander
+vorbei. Beispiele sind in \figref{kontmech_FormenStroemungen}a gezeigt.
+Laminare Strömungen treten immer dann auf, wenn der Energieübertrag innerhalb
+der Flüssigkeit oder des Gases groß ist, also die interne Reibung eine große
+Rolle spielt und damit die Bewegung des Kontinuums dominiert. 
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{FormenStroemungen.pdf}
+  \caption[Formen von Strömungen]{Formen von Strömungen. \fa In laminaren
+    Strömungen gleiten unterschiedliche Schichten glatt, \dh ohne Vermischung, aneinander vorbei.
+    \fb In turbulenten Strömungen schneiden sich die \gls{Bahnlinie}n der
+    einzelnen Schichten. Es kommt zu Durchmischungen der Schichten.}
+  \label{abb:kontmech_FormenStroemungen}
+\end{figure}
+
+\index{Strömung!turbulent|textbf}%
+Sobald dies nicht mehr erfüllt ist, können die verschiedenen Schichten leicht
+ineinander eindringen, verwirbeln  und miteinander mischen. Solche Strömungen
+nennen wir \emph{turbulent}. Beispiele dafür sind in
+\figref{kontmech_FormenStroemungen}b gegeben.
+  
+Ein weiteres wesentliches Charakteristikum von Strömungen ist ihre \emph{Rotation}\index{Strömung!Rotation}\index{Rotation!Strömung}.
+Rechnerisch ergibt sich diese aus der Geschwindigkeit durch $\rotv \vec{v}$.
+Sie gibt an, ob sich Objekte, die sich in der Strömung bewegen, in
+eine Rotationsbewegung versetzen lassen. Das ist sehr offensichtlich
+bei vorhandenen Wirbeln der Fall. Tatsächlich sind aber auch rein gerade
+Strömungen nicht rotationsfrei. Im Beispiel nach \figref{kontmech_Rotation} sieht man, 
+dass sich in einer gerade verlaufenden Strömung mit in einer Dimension unterschiedlichen
+Geschwindigkeiten ein Objekt drehen wird. Der zunächst mit seiner langen Seite
+senkrecht zur Strömung ausgerichtete Balken wird an seinen beiden Enden
+unterschiedlich schnell bewegt. Für größere Zeiten sieht man, wie sich das zu
+einer Rotation ausbildet, die mit der Translationsbewegung des
+Massenmittelpunkts in Strömungsrichtung überlagert ist.
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{StroemungRotation.pdf}
+  \caption[Nichtverschwindende Rotation in einer gerade Strömung]
+  {Nichtverschwindende Rotation in einer gerade in $z$-Richtung verlaufenden Strömung mit unterschiedlichen
+    Geschwindigkeiten in den einzelnen Schichten entlang $x$-Richtung.}
+  \label{abb:kontmech_Rotation}
+\end{figure}
+
+Ein besonderer Fall der Strömung eines Fluids ist die \emph{Potentialströmung}\index{Potentialströmung}, bei der das Geschwindigkeitsfeld $\vec{v}(\vec{r})$ ein Potential besitzt. Ein solches Potential ist in einem homogenen Fluid vorhanden, wenn die Strömung wirbelfrei und die inneren Reibungskräfte vernachlässigbar klein sind. Potentialströmungen können sehr vorteilhaft mit mathematischen Methoden der Potentialtheorie behandelt werden, wir verweisen hierzu auf die weiterführende Literatur \cite{Schmutzer2005, Altenbach2018, Rannacher2017}.
+
+\subsection{Dynamik kontinuierlicher Körper}\label{kap:kontmech_dynamik}
+\index{Dynamik!kontinuierliche Körper}
+
+\subsubsection{Euler-Gleichung}\indexp{Euler, Leonhard}
+\label{kap:kontmech_EulerGl}\index{Euler-Gleichung (Kontinuumsmechanik)|textbf}
+
+Auf eine Flüssigkeit oder ein Gas können mehrere Formen von Kräften angreifen.
+Diese verursachen, wie es in Erweiterung der Newtonschen Bewegungsgleichungen
+\eqref{eq:bew_NewtonBGL} sein muss, eine Beschleunigung des Volumenelements
+$\D V$ aus \figref{kontmech_KontKoerpKoord02}. Für dieses differentielle
+Volumenelement formulieren wir unter Benutzung von \eqref{eq:kontmech_Beschleunigung} die Newtonschen Bewegungsgleichungen in
+der Form
+\begin{equation}
+  \varrho\, \D V\, \vec{a}(\vec{r},t) = \sum_i \vec{F}_i  \label{eq:kontmech_kraefte_an_dV}
+\end{equation}
+mit der Summe aller am Volumenelement $\D V$ angreifenden Kräfte. Dabei werden wir
+drei Formen von Kräften unterscheiden:
+
+\begin{enumerate}
+\item Auf das Fluid wirken externe 
+  \emph{Volumenkräfte}\index{Volumenkräfte}, die
+  an jedem Raumpunkt direkt angreifen (wie \zb die Schwerkraft). Diese Kräfte wollen wir mit
+  \begin{equation*}
+    \vec{F}_\text{V} = \vec{f}_\text{V} \D V
+  \end{equation*}
+  bezeichnen, wobei $\vec{f}_V$ die Kraftdichte darstellt.
+\item Die Volumenelemente üben über ihre Grenzflächen eine Kraft auf die benachbarten Elemente aus. Diese Kräfte definieren den Druck $p(\vec{r}')$ an der Stelle $\vec{r}'$ auf ein Volumenelement $\D V$. Ist
+  dieser Druck nicht homogen, resultiert eine Kraft auf das Volumen, die sich durch
+  das Oberflächenintegral
+  \begin{equation*}
+    \vec{F}_\text{D} = -\int_{\partial V} p(\vec{r}')\, \D \vec{A}'
+  \end{equation*}
+  über den Rand $\partial V$ von $\D V$ berechnen lässt, wobei das
+  Flächenelement nach außen orientiert ist. Das differentielle Volumenelement
+  wollen wir durch einen Würfel der Kantenlänge $\Delta l$ beschreiben. Der
+  Materiepunkt, auf den die Kraft wirkt, liege in der Mitte des Würfels.
+\begin{figure}
+  \includegraphics[width=\textwidth]{KontDruck.pdf}
+  \caption[Druck auf das Volumenelement einer Flüssigkeit]{Druck auf das
+    Volumenelement einer Flüssigkeit. Das Volumenelement wird durch einen
+    Würfel approximiert. Die Kräfte wirken entgegen der nach außen orientierten
+    Normalenvektoren auf die Fläche.}
+  \label{abb:kontmech_KraefteDruck}
+\end{figure}
+  Dann wird das Integral (vgl. \figref{kontmech_KraefteDruck}) zu 
+  \begin{align*}
+    - \int_{\partial V} p(\vec{r}')\, \D \vec{A}'
+    = &-p(x-\Delta l/2,y,z) \, \D A \, \lk -\veceX \rk - p(x+\Delta l/2,y,z)
+        \, \D A \, \veceX \\
+      &- p(x,y-\Delta l/2,z) \, \D A \, \lk -\veceY \rk  - p(x,y+\Delta l/2,z)
+        \, \D A \, \veceY \\
+      &- p(x,y,z-\Delta l/2) \, \D A \, \lk -\veceZ \rk  - p(x,y,z+\Delta l/2)
+        \, \D A \, \veceZ \; .
+  \end{align*}
+  Berücksichtigen wir, dass im differentiellen Volumenelement eine
+  Linearisierung des Drucks im Volumen ausreicht, so lässt sich dies
+  umschreiben zu
+  \begin{equation*}
+    \vec{F}_\text{D} = -\frac{\partial p(\vec{r})}{\partial x} \, \Delta l\, \D A \,\veceX 
+		                   - \frac{\partial p(\vec{r})}{\partial y} \, \Delta l \, \D A \, \veceY 
+											 - \frac{\partial p(\vec{r})}{\partial z} \, \Delta l \, \D A\, \veceZ \;  .
+  \end{equation*}
+Letztendlich erhalten wir also:
+  \begin{equation}
+    \vec{F}_\mathrm{D} = -\vec{\nabla} p\, \D V \;  .
+    \label{eq:kontmech_Druckkraft}
+  \end{equation}
+	Wir haben hier bei der Ableitung vorausgesetzt, dass der
+Druck jeweils senkrecht auf die Seitenfläche des betrachteten differentiellen Volumenelements (Würfel der Kantenlänge $l$) wirkt.
+Bei Flüssigkeiten ist das im Allgemeinen erfüllt, bei Festkörperkontinua muss das nicht der Fall sein. Dann muss man den Gradienten des Drucks (einen Vektor) durch den sogenannten \textit{Spannungstensor} $\sigma$\index{Spannungstensor} ersetzen. Umgekehrt kann man sagen, dass für einen Spannungstensor, dessen Nichtdiagonalelemente alle 0 sind, die Diagonalelemente gerade den Gradienten des Drucks darstellen. Wir verweisen dazu auch \kap{kontmech_festelastisch}.
+\item Es wirken Reibungskräfte, die wir zunächst ganz allgemein mit $\vec{F}_\text{R} = \vec{f}_\text{R}
+  \D V$ bezeichnen wollen und später zwischen inneren Reibungen und Reibungen
+  mit dem Rand unterscheiden werden. 
+\end{enumerate}
+In Summe erhalten wir also für \eqref{eq:kontmech_kraefte_an_dV} die
+Bewegungsgleichung eines Materiepunkts in der Euler-Betrachtung im Kontinuum 
+die \emph{Euler-Gleichung}\index{Euler-Gleichung (Kontinuumsmechanik)}
+\begin{equation}
+  \varrho \lk \lk \vec{v} \cdot \nabla \rk \vec{v} + \frac{\partial}{\partial t}
+  \vec{v} \rk = \vec{f}_\text{V}  + \vec{f}_\text{R} - \vec{\nabla} p \; .
+  \label{eq:kontmech_EulerGleichung}
+\end{equation}
+
+% BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{Wasserwellen}\index{Wasserwellen}
+\label{bsp:kontmech_Wasserwellen}
+Wir werden in \kap{kontmech_festLagrange} die Physik der Wellen, wie sie
+in einem kontinuierlichen Medium entstehen, genauer untersuchen. Hier wollen
+schon an einem ersten Beispiel zeigen, wie wir aus der Euler-Gleichung
+\eqref{eq:kontmech_EulerGleichung} das Auftreten von Wasserwellen und deren
+Wellenlängenabhängigkeit von der Wasserhöhe abschätzen können.\\
+Wasserwellen sind Oberflächenwellen an der Grenzfläche zwischen Wasser und Luft und haben Periodendauern von Sekunden bis mehrere Stunden (siehe Gezeitenwelle\index{Welle!Gezeiten-} \kap{bew_gezeiten}).
+Wichtig für unsere Betrachtung ist, dass die Wasserteilchen nur relativ kleine Bewegungen ausführen, ihre Bewegungsenergie aber an benachbarte Teilchen weiter gibt.
+Bei Wellenlängen kleiner als $\SI{1}{\centi\metre}$  bestimmen Oberflächenspannung und Zähigkeit des Wassers die Eigenschaften der Wellen, bei Wellenlängen größer als $\SI{10}{\centi\metre}$ ist die Erdanziehungskraft entscheiden, die Wasserwellen sind dann sogenannte Schwerewellen\index{Welle!Schwere-}.
+Wasserwellen weichen in ihrer Gestalt von der üblichen Sinusform ab. Der Teil der Welle, der oberhalb des Ruhewasserspiegels ($z=0$) liegt, wird als Wellenberg bezeichnet, die höchste Auslenkung als Wellenkamm. Der Teil unterhalb des Ruhewasserspiegels heißt Wellental. Die Wellenhöhe ist die Summe der Beträge der Maximalauslenkungen von Wellenberg und Wellental. Als Wellenlänge $\lambda$ wird der Abstand zweier Wellenkämme bezeichnet (\figref{kontmech_Wasserwellen}).
+
+Wir wollen nun zeigen, wie wir aus der
+Euler-Gleichung \eqref{eq:kontmech_EulerGleichung} mit der Gewichtskraft
+als Volumenkraft,
+\begin{equation}
+  \vec{f}_\text{V} = - \varrho g \veceZ \; ,
+\end{equation}
+eine relevante Aussage für die Ausbreitung von Wasserwellen
+in Abhängigkeit von der Wassertiefe erhalten können. Dazu arbeiten wir mit dem
+Modell nach  \figref{kontmech_Wasserwellen} \cite{Mai2004}. Nach diesem Modell
+bewegen sich  die Wassermoleküle nur in der $x$-$z$-Ebene und es können auch
+nur in dieser Ebene  Druckänderungen auftreten. Die $y$-Richtung wird als
+unendlich ausgedehnt betrachtet.
+
+Wir drücken die Materiepunkte (Wasserteilchen an der Oberfläche)
+$\vec{\hat{P}}$ für eine ruhende Wasseroberfläche aus durch ihre
+Ruhelage-Koordinaten $x_0$ und $z_0$aus. Ihre Lage in der bewegten Welle zum
+Zeitpunkt $t$ ist dann durch
+\begin{equation}
+  x = x(x_0, z_0, t)\; , \quad z = z(x_0, z_0, t)
+\end{equation}
+gegeben. Die Oberfläche des Wassers bezeichnen wir durch die Funktion
+$Z_W(x,t)$ und es gilt
+\begin{equation}
+  z(x_0,z_0=0,t) = Z_\text{W}(x,t) \; ,
+  \label{eq:kontmech_WasserwellenRBLuft}
+\end{equation}
+das heißt die materiellen Punkte $\vec{\hat{P}}$ mit $z(0) = z_0 = 0$ befinden
+sich immer auf dieser Oberfläche $Z_\text{W}(x,t)$.
+
+\begin{center}
+  \includegraphics[width=\textwidth]{WasserwellenKoord.pdf}
+  \captionof{figure}{Koordinatensystem für Wasserwellen.}%
+  \label{abb:kontmech_Wasserwellen}
+\end{center}
+
+Zur Lösung des Problems müssen wir mehrere Gleichungen berücksichtigen. Als
+erstes gehen wir von der Euler-Gleichung \eqref{eq:kontmech_EulerGleichung}
+aus, in der wir entsprechend der Annahme über das Modell die
+Geschwindigkeitskomponenten $v_x$ und $v_y$ berücksichtigen,
+\begin{equation*}
+  \vec{v} = \begin{pmatrix} v_x & 0 &v_z \end{pmatrix}^\text{T} \; .
+\end{equation*}
+Die Euler-Gleichung reduziert sich dann auf die Form
+\begin{equation}
+  \varrho \lk \lk v_x \frac{\partial}{\partial x} + v_z \frac{\partial}
+  {\partial z} \rk \begin{pmatrix} v_x \\ 0 \\ v_z \end{pmatrix}
+  + \frac{\partial}{\partial t} \begin{pmatrix} v_x \\ 0 \\ v_z \end{pmatrix}
+  \rk =  - \begin{pmatrix} \partial p/\partial x \\ 0 \\
+    \partial p/\partial z \end{pmatrix} + \varrho \begin{pmatrix} 0 \\ 0 \\ -g
+  \end{pmatrix}\; .
+  \label{eq:kontmech_WellenEulerGleichung}
+\end{equation}
+
+Da wir davon ausgehen, dass die Bewegung rotationsfrei zustande kommt
+und eine reibungsfreie Flüssigkeit dann auch rotationsfrei bleibt (was in
+\kap{kontmech_laminareStroemungenFluessigkeiten} genauer untersucht wird),
+können wir das Geschwindigkeitsfeld auf eine skalare Funktion $\Psi(x,z,t)$
+zurückführen,
+\begin{equation}  \vec{v} = \nabla \Psi \; , \qquad v_x = \frac{\partial \Psi}
+  {\partial x} \; , \quad v_z = \frac{\partial \Psi}{\partial z} \; .
+  \label{eq:kontmech_WasserwellenPsi}
+\end{equation}
+Wir haben es also mit einer sogenannten \emph{Potentialströmung}\index{Strömung!Potential-} zu tun. Ausgedrückt durch die skalare Funktion $\Psi(x,z,t)$ lässt sich die vektorielle
+Gleichung \eqref{eq:kontmech_WellenEulerGleichung} auf die skalare Darstellung
+\begin{equation}
+  \frac{\varrho}{2} \lk \frac{\partial \Psi}{\partial x} \rk^2
+  + \frac{\varrho}{2} \lk \frac{\partial \Psi}{\partial z}  \rk^2
+  + \varrho \frac{\partial \Psi}{\partial t} = - \varrho g z  - p + C
+  \label{eq:kontmech_WellenEulerSkalar}
+\end{equation}
+mit einer beliebigen Konstanten $C$ zurückführen. Davon kann man sich leicht
+überzeugen, wenn man den Gradienten von Gleichung
+\eqref{eq:kontmech_WellenEulerSkalar} bildet und dabei mit
+\eqref{eq:kontmech_WasserwellenPsi} berücksichtigt, dass
+$\Psi$ und $p$ nicht von der Koordinate $y$ abhängen.
+
+Die Gleichung \eqref{eq:kontmech_WellenEulerSkalar} kann nun
+herangezogen werden, den Druck im Wasser zu bestimmen. Eine wertvolle Information
+für die Wellenausbreitung erhalten wir, indem wir berücksichtigen, dass
+Gleichung \eqref{eq:kontmech_WellenEulerSkalar} insbesondere auch an der
+Grenzschicht zwischen der Wasseroberfläche und der Luft gelten muss. Hier
+kennen wir den Druck und wissen, dass er (bis auf vernachlässigbar kleine
+Änderungen mit $Z_W(x,t)$) konstant dem Atmosphärendruck $p_\mathrm{atm}$
+entsprechen muss. Da die Gleichung für jede beliebige Konstante $C$ gilt,
+wählen wir zur Vereinfachung $C = -p_\mathrm{atm}$ und erhalten
+\begin{equation}
+  \frac{\varrho}{2} \lk \frac{\partial \Psi(x,z=0)}{\partial x} \rk^2
+  + \frac{\varrho}{2} \lk \frac{\partial \Psi(x,z=0)}{\partial z}  \rk^2
+  + \varrho \frac{\partial \Psi(x,z=0)}{\partial t} = - \varrho g Z_w(x,t)
+  \; .
+  \label{eq:kontmech_WellenEulerSkalarOberflaeche}
+\end{equation}
+
+Wasserwellen müssen darüber hinaus eine zweite Gleichung erfüllen. Da eine
+kompressionsfreie Flüssigkeit vorliegt und wir in unserem Modell davon
+ausgehen, dass es keinen Zu- oder Abfluss von Wasser, also keine Quellen und
+keine Senken gibt, gilt die Form \eqref{eq:kontmech_KontinuitaetsglInkompr}
+der Kontinuitätsgleichung \eqref{eq:kontmech_KontinuitaetsglDiff}, die hier
+ die Gestalt
+\begin{equation}
+  \frac{\partial v_x}{\partial x} + \frac{\partial v_z}{\partial z}
+  = 0
+  \label{eq:kontmech_WellenKontinuitaet}
+\end{equation}
+annimmt. Auch hier führen wir die skalare Funktion $\Psi(x,z)$ ein, was uns
+auf 
+\begin{equation}
+  \frac{\partial^2 \Psi}{\partial x^2} + \frac{\partial^2 \Psi}{\partial z^2} = \Delta \, \Psi = 0
+  \label{eq:kontmech_WellenKontPot}
+\end{equation}
+führt. Eine Funktion $\Psi$, die die Wellen beschreibt, muss also zusätzlich
+zu \eqref{eq:kontmech_WellenEulerSkalarOberflaeche} die quellenfreie Laplace-Gleichung
+\eqref{eq:kontmech_laplace_eq} erfüllen, was generell für Potentialströmungen gilt.
+
+Die Eulergleichung und auch \eqref{eq:kontmech_WellenKontPot} sind partielle Differentialgleichungen \cite{Riley2006, Fischer2014}.
+Deswegen müssen wir zusätzlich noch die Randbedingungen berücksichtigten. Eine
+davon haben wir oben schon durch Gleichung \eqref{eq:kontmech_WasserwellenRBLuft}
+kennen gelernt, die sich durch Geschwindigkeiten ausdrücken lässt. Bildet man
+auf beiden Seiten von \eqref{eq:kontmech_WasserwellenRBLuft} die Zeitableitung, erhält man
+\begin{equation}
+  v_z(z_0 = 0) = v_z(z = Z_W(x,t)) = \left . \frac{\partial \Psi}{\partial z}
+  \right |_{z=Z_W(x,t)}
+  = \frac{\partial Z_W(x,t)}{\partial x} v_x + \frac{\partial Z_W(x,t)}
+  {\partial t} \; ,
+  \label{eq:kontmech_WasserwellenRBvzLuft}
+\end{equation}
+was die benötigte Randbedingung an der Grenzschicht zur Luft darstellt. Sie
+sagt aus, dass ein Materiepunkt an der Wasseroberfläche genau die vertikale
+Geschwindigkeit der Welle an der Oberfläche haben muss. Das entspricht einem
+Materiepunkt, der die Welle nicht verlässt.
+
+Die zweite Randbedingung ist am Boden bei $z=-h$ gegeben. Hier muss die
+vertikale Geschwindigkeit der Welle verschwinden, denn die Materiepunkte
+des Wassers können nicht in den Boden eindringen. Man erhält also die
+Forderung
+\begin{equation}
+  v_z(z = -h) = \left . \frac{\partial \Psi}{\partial z} \right |_{z=-h}
+  = 0 \; .
+  \label{eq:kontmech_WasserwellenRBvzBoden}
+\end{equation}
+
+Insgesamt können wir festhalten, dass eine Wasserwelle, die durch den
+Schweredruck dominiert wird, durch die skalare Form der Euler-Gleichung
+an der Oberfläche \eqref{eq:kontmech_WellenEulerSkalarOberflaeche}, durch
+die Kontinuitätsgleichung \eqref{eq:kontmech_WellenKontPot} sowie die
+beiden Randbedingungen \eqref{eq:kontmech_WasserwellenRBvzLuft} und
+\eqref{eq:kontmech_WasserwellenRBvzBoden} gegeben ist.
+
+Analytische Lösungen lassen sich für Wellen mit Amplituden, die klein
+im Vergleich zur Wellenlänge $\lambda$ sind, finden. Tatsächlich ist das für Wasserwellen
+oft erfüllt, sodass wir davon ausgehen und analytische Lösungen angeben
+können. Dazu stellen wir erst fest, dass $\Psi$, $v_x$, $v_z$, $Z_W$ und
+$\partial Z_W / \partial x$ alle von der Größenordnung der Amplitude sind
+und auch in derselben Ordnung
+\begin{equation}
+  v_z(x,z=Z_W) = v_z(x,z=0)
+\end{equation}
+gilt. Wir beschränken uns auf Terme in der niedrigsten Ordnung, was dazu
+führt, dass alle quadratischen Terme in der skalaren Euler-Gleichung
+\eqref{eq:kontmech_WellenEulerSkalarOberflaeche} und der Randbedingungn an
+der Oberfläche \eqref{eq:kontmech_WasserwellenRBvzBoden} vernachlässigt,
+ \dh Null gesetzt werden können. Es verbleiben die Gleichungen
+\begin{equation}
+  \frac{\partial \Psi}{\partial t} = - g Z_W(x,t)
+  \label{eq:kontmech_WellenEulerSkalarOberflaecheLin}
+\end{equation}
+und
+\begin{equation}
+    v_z(z = 0) = \left . \frac{\partial \Psi}{\partial z} \right |_{z=0}
+  = \frac{\partial Z_W(x,t)}{\partial t} \; ,
+  \label{eq:kontmech_WasserwellenRBvzLuftLin}
+\end{equation}
+die zusammen mit der unveränderten (linearen) Kontinuitätsgleichung
+\eqref{eq:kontmech_WellenKontPot} und der ebenfalls schon linearen
+Randbedingung am Boden \eqref{eq:kontmech_WasserwellenRBvzBoden} gelöst werden
+müssen.
+
+Als vernünftigen Ansatz für diesen linearisierten Satz an
+Differentialgleichungen können wir in $x$-Richtung eine sinusförmige Welle
+annehmen. Die Kontinuitätsgleichung \eqref{eq:kontmech_WellenKontPot} lässt
+sich nach Ableitungen in den Variablen $x$ und $z$ separieren. Das legt einen
+Produktansatz (siehe dazu \ua \cite{Riley2006, Fischer2014}) mit einer
+hyperbolischen Funktion nahe. Wir probieren es also mit
+\begin{equation}
+  \Psi(x,z,t) = \Psi_0 \cosh(k z + \varphi_1) \sin(\omega t - k x + \varphi_0)
+  \; ,
+  \label{eq:kontmech_WasswerwellenAnsatz1}
+\end{equation}
+worin wir $k = 2\pi/\lambda $ als sogenannte Wellenzahl\index{Wellenzahl} und $\omega = 2\pi/T$ als Kreisfrequenz der Wellenanregung mit der Periode $T$ eingeführt haben. Tatsächlich löst dieser Ansatz die Kontinuitätsgleichung. Die Konstante
+$\varphi_1$ lässt sich durch die Randbedingung
+\eqref{eq:kontmech_WasserwellenRBvzBoden} einfach bestimmen, denn diese
+fordert
+\begin{equation*}
+  \Psi_0 k \sinh(- k h + \varphi_1) \sin(\omega t - k x + \varphi_0)
+  = 0
+\end{equation*}
+für jedes beliebige $x$ und $t$, was sich nur durch $\varphi_1 = kh$
+erfüllen lässt. Damit lautet unser Ansatz
+\begin{equation}
+  \Psi(x,z,t) = \Psi_0 \cosh \lk k (z + h) \rk
+  \sin(\omega t - k x + \varphi_0) \; .
+  \label{eq:kontmech_WasswerwellenAnsatz2}
+\end{equation}
+
+Nun müssen noch die Gleichungen
+\eqref{eq:kontmech_WellenEulerSkalarOberflaecheLin} und
+\eqref{eq:kontmech_WasserwellenRBvzLuftLin} erfüllt sein. Dazu leiten wir
+\eqref{eq:kontmech_WellenEulerSkalarOberflaecheLin} nach der Zeit ab und
+setzen sie in \eqref{eq:kontmech_WasserwellenRBvzLuftLin} ein. Zusammen mit
+\eqref{eq:kontmech_WasserwellenPsi} erhalten wir
+\begin{equation}
+  \left . \frac{\partial \Psi}{\partial z} \right |_{z=0}
+  = - \frac{1}{g} \left . \frac{\partial^2 \Psi}{\partial t^2} \right |_{z=0}
+  \; .  \label{eq:kontmech_WasswerwellenAnsatz3}
+\end{equation}
+Setzt man in  \eqref{eq:kontmech_WasswerwellenAnsatz3} den Ansatz \eqref{eq:kontmech_WasswerwellenAnsatz2} ein,
+erhält man nach geeignetem Kürzen
+\begin{equation*}
+  k \sinh(kh) = \frac{\omega^2}{g} \cosh(kh)\; ,
+\end{equation*}
+woraus man die \emph{Dispersionsrelation}\glslink{Dispersionsrelation} für Wasserwellen\index{Dispersionsrelation|textbf}
+\begin{equation*}
+  \omega^2 = g k \tanh(kh) 
+  \label{eq:komtech_WasserwellenDispersion}
+\end{equation*}
+gewinnen kann, die die Wellenzahl $k$ (Inverse zur Wellenlänge $\lambda$) in Beziehung zur Anregungsfrequenz $\omega$ setzt. Die Wasserhöhe $h$ ist hierbei ein Parameter. Daraus ergibt sich die \gls{Phasengeschwindigkeit} der Welle\index{Phasengeschwindigkeit|textbf}
+\begin{equation}
+  v_\mathrm{ph} = \frac{\omega}{k} = \sqrt{\frac{g}{k} \tanh(kh)} \; .
+\end{equation}
+
+Zum Schluss wollen wir uns noch zwei wichtige Grenzfälle dieser
+Dispersionsrelation anschauen.
+\begin{itemize}
+\item Im relativ flachen Wasser sei $h\ll \lambda = 2\pi/k$ und man kann $\tanh(kh) \approx kh$
+  nähern, sodass gilt
+  \begin{equation}
+    %\omega^2 \approx g k^2 h = 4\pi^2\,g\,h/\lambda^2; \qquad \text{bzw.} \qquad
+    %v_\mathrm{ph} \approx \sqrt{gh} \; .
+    \omega^2 \approx g k^2 h = \frac{4\pi^2\,g\,h}{\lambda^2} \qquad \text{\bzw} \qquad
+    v_\mathrm{ph} \approx \sqrt{gh} \; .
+  \end{equation}
+\item Im tiefen Wasser (\zb im Ozean) gilt dagegen $h\gg \lambda = 2\pi/k$ und $\tanh(kh) \approx 1$, was
+  auf
+  \begin{equation}
+    %\omega^2 \approx g k = 2\pi\,g/\lambda\; \qquad \text{bzw.} \qquad
+    %v_\mathrm{ph} \approx \sqrt{1/(2\pi)}\sqrt{g\,\lambda}
+    \omega^2 \approx g k = \frac{2\pi\,g}{\lambda}\; \qquad \text{bzw.} \qquad
+    v_\mathrm{ph} \approx \sqrt{\frac{1}{2\pi}}\sqrt{g\,\lambda}
+  \end{equation}
+  führt. Wie zu erwarten ist, hat der Boden hier keinen Einfluss, die
+  Dispersionsrelation und die Phasengeschwindigkeit hängen nicht von der Höhe
+  $h$ ab.
+
+  Wir werden die Ergebnisse bei der Berechnung von Gezeitenwellen in der
+  Himmelsmechanik im Band II verwenden. Eine sehr schöne Simulation der
+  Wasserwellen auf Basis der vorgestellten Theorie findet man in
+  \cite{Girwidz2023}.
+\end{itemize}
+
+\end{example}
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsubsection{Bernoulli-Gleichung}
+\label{kap:kontmech_BernoulliGl}\index{Bernoulli-Gleichung}
+
+Mit dem Wissen über die Euler-Gleichung
+\eqref{eq:kontmech_EulerGleichung} kann man weitere Schlussfolgerungen
+für die Bewegung von Fluiden erhalten, die für viele Anwendungen
+interessant sind. Dazu halten wir nochmals fest, dass Kräfte Arbeit verrichten
+können, wie wir es bereits aus der Mechanik von Massepunkten über Gleichung
+\eqref{eq:bew_Arbeit_infinitesimal} kennen. Wir betrachten im Folgenden das
+Beispiel eines idealisierten Fluids ohne Reibungseffekte.
+
+In einer stationären Fluid-Strömung ($\d \vec{v} /\d t = 0$) durch ein Rohr mit einem veränderlichen Querschnitt,
+wie \zb in \figref{kontmech_StroemungBernoulli} dargestellt,
+muss die Geschwindigkeit des Mediums an den verschiedenen Querschnitten
+(\zb $A_1$ und $A_2$) in der Abbildung unterschiedlich sein, denn andernfalls
+müsste sich an manchen Stellen Masse ansammeln oder verringern, was einer
+stationären Strömung widerspräche.
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{StroemungBernoulli.pdf}
+  \caption[Zur Bernoulli-Gleichung]{Zur Bernoulli-Gleichung: Strömung durch
+    ein Rohr mit unterschiedlichen Querschnitten entlang der Koordinate $x$. Die Geschwindigkeit muss an
+    den Querschnitten $A_1$ und $A_2$ in einer stationären Strömung einer
+    inkompressiblen Flüssigkeit verschieden sein. Das hat Auswirkungen
+    auf den Druck in den beiden Rohrbereichen.}
+  \label{abb:kontmech_StroemungBernoulli}
+\end{figure}
+
+Damit die Geschwindigkeit unterschiedlich sein kann, muss das Gas jedoch entlang der Koordinate $x$
+beschleunigt werden. Nach der Euler-Gleichung \eqref{eq:kontmech_EulerGleichung}
+kann die Beschleunigung in Abwesenheit von äußeren Kräften und Reibung
+allein durch den Druck aufgebracht werden. Tatsächlich transportiert der
+Druck $p$ die Flüssigkeit oder das Gas entlang des Weges $\D x$ durch das Rohr mit Querschnitt $A$ und
+verrichtet dabei die Arbeit
+\begin{equation}
+  \Delta W = \Delta p \,A \,\D x = \Delta p \,\D V \; .
+  \label{eq:kontmech_ArbeitBernoulli}
+\end{equation}
+Diese Arbeit führt zur Beschleunigung und damit zur Änderung der kinetische
+Energie.
+
+Die Strömung kommt mit dieser Erklärung dadurch zustande, dass ein
+Massenelement von seinem nachfolgenden eine Kraft erfährt und diese an das
+Massenelement vor ihm weitergibt. Ist der Rohrquerschnitt konstant, gleichen
+sich diese Kräfte gerade aus und die Geschwindigkeit bleibt konstant. Ein
+Massenelement
+\begin{equation}
+  \D m = \varrho\,\D V \; ,
+  \label{eq:kontmech_Massenelement}
+\end{equation}
+das gerade am Übergang zwischen den beiden Rohrabschnitten ist, wird im
+Rohrabschnitt mit dem Querschnitt $A_1$ beschleunigt und beschleunigt selbst
+ein weiteres Massenelement im Rohrabschnitt mit dem Querschnitt $A_2$. Diese
+Arbeitsleistungen müssen unterschiedlich sein, damit eine Änderung der
+kinetischen Energie auftreten kann. Für eine inkompressible Flüssigkeit ist
+$\varrho$ konstant und nach den Gleichungen \eqref{eq:kontmech_ArbeitBernoulli}
+und \eqref{eq:kontmech_Massenelement} ist das nur möglich, wenn der
+Druck in beiden Rohrabschnitten unterschiedlich ist. Dieser lässt sich sogar
+aus der Energieerhaltung berechnen. Dazu stellen wir zunächst fest, dass
+die Differenz der kinetischen Energie des Gases im Rohrabschnitt mit dem Querschnitt $A_2$
+und der im Abschnitt mit $A_1$ aus der Differenz der Arbeitsleitungen ergeben muss:
+\begin{equation*}
+  \Delta T = \frac{1}{2} \varrho \, \D V \, u_2^2 - \frac{1}{2} \varrho \, \D V \, u_1^2
+  =  \Delta W = p_1 \,\D V - p_2 \,\D V = \Delta p \D V \,.
+\end{equation*}
+Dies lässt sich zur \emph{Bernoulli-Gleichung}\index{Bernoulli-Gleichung}
+\begin{equation}
+  \frac{1}{2} \varrho \, u_1^2 + p_1 = \frac{1}{2} \varrho \, u_2^2 +  p_2
+  \label{eq:kontmech_BernoulliGl}
+\end{equation}
+umformen. Die Konstante
+\begin{equation}
+  p_0 = \frac{1}{2} \varrho \, u^2 + p 
+  \label{eq:kontmech_Staudruck}
+\end{equation}
+lässt sich als der Druck interpretieren, den die Flüssigkeit ruhend (also
+im Grenzfall eines unendlich breiten Rohres) annehmen würde. Der Druck $p$
+ist der \emph{statische Druck der strömenden Flüssigkeit}\index{Druck!statischer}.
+Die Bernoulli-Gleichung ist eine der Grundgleichungen für die Behandlung von Strömungen in Fluiden und ist Grundlage vieler aero- und hydrodynamischer Berechnungen in der Technik. Sie wurde vom Sohn Daniel\indexp{Bernoulli, Daniel}\footnote{Daniel Bernoulli (1700 -- 1782) war ein Schweizer Mathematiker und Physiker, der eng mit Leonhard Euler zusammen arbeitete.} und Vater Johann Bernoulli\indexp{Bernoulli, Johann}\footnote{Johann Bernoulli (1667 -- 1748) war Schweizer Mathematiker und Arzt.
+  Er arbeitete unter anderem auf dem Gebiet der Reihen und Differentialgleichungen.} aufgestellt.\\
+Wir haben hier die Bernoulli-Gleichung aus energetischen Überlegungen (Energieerhaltung, da keine Reibung) hergeleitet. Man kann sie auch direkt aus der Euler-Gleichung \eqref{eq:kontmech_EulerGleichung} herleiten (\probref{kontmech_bernoulli}).
+
+% BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{Schiff in einem Kanal}
+\label{bsp:kontmech_SchiffKanal}
+\smallskip
+
+Der unterschiedliche statische Druck bei unterschiedlichen
+Fließgeschwindigkeiten macht sich auch in der Schifffahrt bemerkbar. Im März
+2021 legte sich das Containerschiff "`Ever Given"' im Suezkanal quer und
+blockierte diesen für mehrere Tage. Dafür kann unter anderem der
+Druckunterschied in strömenden Flüssigkeiten verantwortlich gemacht werden
+\cite{Woehrbach2021}. Um dies darzustellen, soll
+\figref{kontmech_SchiffKanalStroem} als Skizze dienen.
+
+\begin{center}
+  \includegraphics[width=\textwidth]{SchiffKanalStroem.pdf}
+  \captionof{figure}{Strömungen um ein Schiff in einem Kanal.}%
+  \label{abb:kontmech_SchiffKanalStroem}
+\end{center}
+
+Fährt das Schiff nicht in der Mitte des Kanals, muss das ausweichende Wasser an
+beiden Seiten des Schiffes mit unterschiedlichen Geschwindigkeiten fließen.
+Dies bewirkt eine seitliche Kraft auf das Schiff. Durch die Form des Schiffes
+gibt es aber auch einen Unterschied in den seitlichen Kräften zwischen Bug und
+Heck des Schiffes, was in einem Drehmoment resultiert.
+Im eingezeichneten Beispiel ist die Strömungsgeschwindigkeit links vom Schiff
+kleiner als rechts. Damit ist aber der statische Druck auf der linken Seite
+größer als auf der rechten. Es resultiert eine Kraft nach rechts. Am Bug
+sind die Strömungsunterschiede geringer als am Heck. Das heißt, die
+resultierende Kraft ist am Heck größer als am Bug. Folglich wird sich das
+Schiff mit dem Heck nach rechts drehen.
+\probref{kontmech_SchiffKanal} beschäftigt sich ausführlicher mit einem
+solchen Beispiel.
+\end{example}
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\subsubsection{Innere Reibung}
+\label{kap:kontmech_InnereReibung}\index{Reibung!innere}\index{Viskosität|textbf}
+
+Wenn sich Flüssigkeiten und Gase bewegen, stoßen die einzelnen Atome
+oder Moleküle aneinander und übertragen dabei einen Impuls. Dies entspricht
+einer inneren Kraftwirkung oder einer inneren Reibung. Um diese quantifizieren
+zu können, betrachten wir die Situation aus \figref{kontmech_InnereReibung1}a.
+Eine Flüssigkeit ist zwischen zwei Platten eingesperrt. Die rechte Platte
+wird mit einer konstanten Geschwindigkeit $\vec{v}_0 = v_0\,\veceZ$ gegen die
+linke verschoben. Dabei spürt man den Widerstand durch die innere Reibung.
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{InnereReibung.pdf}
+  \caption[Innere Reibung in einer Flüssigkeit]{\fa Eine Flüssigkeit ist
+    zwischen zwei Platten eingespannt. Die rechte Platte wird mit $\vec{v}_0
+    = v_0 \, \veceZ$ gegen die linke bewegt. In der Flüssigkeit bildet sich ein
+    Geschwindigkeitsgradient aus. \fb Für die Kraft auf ein Volumenelement
+    $\D V = \D x\, \D y\, \D z$ müssen die Reibungen an allen Flächen beachtet
+    werden. Hier werden sie bei $y_0$ und $y_0 + \D y$ unterschiedlich
+    angenommen.}
+  \label{abb:kontmech_InnereReibung1}
+\end{figure}
+
+Die Flüssigkeitsmoleküle sind an den Rändern mit beiden
+Platten in Kontakt und haben daher mit diesen die gleiche Geschwindigkeit. Innerhalb
+der Flüssigkeit herrscht also ein Geschwindigkeitsgradient in $y$-Richtung.
+Da die Kraftwirkung nur durch die Impulsübertragung zwischen den
+Flüssigkeitsmolekülen zustande kommen kann, können wir folgende Abhängigkeiten
+voraussetzen:
+\begin{itemize}
+\item Die Kraft zwischen zwei Schichten der Flüssigkeit ist nach den
+  Newtonschen Bewegungsgleichungen \eqref{eq:bew_NewtonBGL} proportional zur
+  Impulsänderung und damit zum Geschwindigkeitsgradienten.
+\item Die Kraft muss proportional zur Zahl der stoßenden Moleküle sein. Diese
+  ist jedoch, da sie (in einer Flüssigkeit immer, in einem Gas zumindest im
+  Mittel) einen festen Raum einnehmen, proportional zur Fläche $A$ der Grenze
+  zwischen zwei Flüssigkeitsschichten. 
+\end{itemize}
+Wir erhalten für die Kraft
+\begin{equation}
+  \vec{F}_\text{R} = \eta \, A \, \frac{\partial v_z}{\partial y}
+  \veceZ \; ,
+  \label{eq:kontmech_ReibungskraftInnere}
+\end{equation}
+wobei wir den Proportionalitätsfaktor $\eta$ als \emph{Viskosität}\glslink{viskositaet} bezeichnen\index{Viskosität}. Die Viskosität hat die Einheit
+$\SI{}{\newton \second \per \metre^2}$ und beschreibt die
+Eigenschaft der Flüssigkeit oder des Gases, Widerstand gegen eine
+Bewegungsänderung zu leisten.
+
+Diese Kraft beschreibt bisher aber nur, welche Reibung an der Grenze zwischen
+zwei Schichten der Flüssigkeit oder des Gases entsteht. Wollen wir die Kraft
+wissen, die auf ein Volumen $\D V$ der Flüssigkeit wirkt, müssen wir uns
+ein solches Flüssigkeitsvolumen herausschneiden, wie es in
+\figref{kontmech_InnereReibung1}b eingezeichnet ist. Auf der rechten Seite
+wird das Volumen von der angrenzenden Schicht beschleunigt, $\D V$ erfährt
+also eine Kraft in positive $z$-Richtung. Auf der linken Seite ist es
+das Volumenelement $\D V$ selbst, das die angrenzende Schicht beschleunigt und
+dabei selbst eine Kraft in negative $z$-Richtung erfährt. Insgesamt ergibt
+sich damit nach \eqref{eq:kontmech_ReibungskraftInnere} die Kraft
+\begin{equation}
+  \vec{F}_{\text{R},y} = \eta \lk {\frac{\partial v_z}
+    {\partial x}}\big|_{y_0 + \D y} - {\frac{\partial v_z}{\partial y}}\big|_{y_0}
+  \rk \,\veceZ \, \D x \, \D z\; .
+\end{equation}
+Liegen am linken und am rechten Rand identische Geschwindigkeitsgradienten vor,
+sieht man sofort, dass das Volumenelement $\D V$ keine resultierende Kraft
+erfährt. Im Allgemeinen ist das aber nicht der Fall. Sehr sicher können wir
+ davon ausgehen, dass wir für den differentiellen Abstand $\D y$ eine
+Linearisierung des Gradienten durchführen können. Wir setzen also an:
+\begin{equation}
+  \frac{\partial v_z}{\partial y}\big|_{y_0 + \D y} =
+  \frac{\partial v_z}{\partial y}\big|_{y_0} + \frac{\partial^2 v_z}
+  {\partial y^2}\big|_{y_0}  \D y \; . 
+\end{equation}
+Für die Kraft auf das Volumenelement ergibt sich somit
+\begin{subequations}
+  \begin{align}
+    \vec{F}_{\text{R},y} &= \eta \lk \killA{\frac{\partial v_z}
+      {\partial y}\big|_{y_0}} +  \frac{\partial^2 v_z}{\partial y^2}\big|_{y_0} \D y
+      - \killA{\frac{\partial v_z}{\partial y}\big|_{y_0}} \rk \, \veceZ\, \D x \, \D z 
+    = \eta \, \frac{\partial^2 v_z}{\partial y^2}\big|_{y_0}\, \veceZ\, \D V \; .
+    %&= \eta \, \frac{\partial^2 v_z}{\partial y^2}\big|_{y_0 }\, \veceZ\,\D x \, \D y \, \D z
+  \end{align}
+  Vollkommen analog überlegt man sich, dass bei einem vorhandenen
+  Geschwindigkeitsgradienten in $x$-Richtung gilt, dass
+  \begin{equation}
+    \vec{F}_{\text{R},x} = \eta \, \frac{\partial^2 v_z}
+    {\partial x^2}\big|_{y_0}\,\veceZ\, \D V \; .
+  \end{equation}
+\end{subequations}
+Ist die Bewegung einer inkompressiblen Flüssigkeit nicht entlang der
+$z$-Richtung ausgerichtet, sondern besitzt sie auch zumindest eine Komponente
+in $x$- oder $y$-Richtung, so ist dieselbe Überlegung für einen Gradienten
+(bzw. einen sich ändernden Gradienten) in $z$-Richtung möglich.\footnote{Ein
+Geschwindigkeitsgradient in $z$-Richtung tritt natürlich auch bei Strömungen
+mit sich ändernden Querschnitten (siehe \kap{kontmech_BernoulliGl})
+oder bei kompressiblen Flüssigkeiten auf, wenn die Bewegung allein in
+$y$- \bzw $z$-Richtung erfolgt.} Im allgemeinen Fall erhält man mit dem
+Laplace-Operator \eqref{eq:kontmech_laplace_eq}
+\begin{equation*}
+  \Delta = \frac{\d^2}{\d x^2} + \frac{\d^2}{\d y^2} + \frac{\d^2}{\d z^2} 
+\end{equation*}
+für die gesamten Kräfte, die sich durch die Reibung der Schichten aneinander
+auf das Volumenelement $\D V$ ergeben
+\begin{align}
+  \vec{F}_{\text{R}} &= \eta \, \Delta \vec{v}\big|_{(x_0, y_0, z_0)} \, \D V
+  = \eta \, \Delta \vec{v}\big|_{\vec{r}_0} \, \D V ~~~\text{\bzw}~~~ \vec{f}_{\text{R}} = \eta \, \Delta \vec{v}\big|_{\vec{r}_0} \; .
+\label{eq:kontmech_InnereReibung}
+\end{align}
+
+\subsection{Navier-Stokes-Gleichung}
+\label{kap:kontmech_NavierStokes}\index{Navier-Stokes-Gleichung|textbf}
+
+Nachdem wir nun einzelnen Kraftterme auf Basis der Euler-Gleichung untersucht und insbesondere die innere
+Reibung eines Fluids geklärt haben, können wir die erhaltenen Beziehungen
+in die Euler-Gleichung \eqref{eq:kontmech_EulerGleichung} \bzw \eqref{eq:kontmech_WellenEulerGleichung} einsetzen. Mit
+der Druckkraft \eqref{eq:kontmech_Druckkraft} und der inneren Reibungskraft
+\eqref{eq:kontmech_InnereReibung} erhält man dann die \emph{Navier-Stokes-Gleichung}
+\begin{equation}
+  \varrho \lk \lk \vec{v} \cdot \nablav \rk \vec{v} + \frac{\partial}{\partial t}
+  \vec{v} \rk = \vec{f}_\text{V}  + \eta \, \Delta \vec{v} - \nablav p \; ,
+  \label{eq:kontmech_NavierStokes}
+\end{equation}
+in der nur noch die Kraftdichte $\vec{f}_\text{V}$ der von außen wirkenden
+Volumenkräfte nicht explizit gegeben sind. Sie ist eine partielle Differentialgleichung in $\vec{v}(\vec{r},t)$ bei gegebenen externen Kräften $ \vec{f}_\text{V}$ und statischen Druck $p$. 
+%Letztere hängen natürlich von der Wechselwirkung mit der Umgebung ab. 
+Wir möchten darauf hinweisen, dass die \NVS \eqref{eq:kontmech_NavierStokes} in der Form \eqref{eq:kontmech_NavierStokes}
+nur für inkompressible Fluide gilt. Es gibt auch eine \NVS für kompressible Fluide, die noch etwas komplizierter ist. Wir verweisen dazu auf \cite{Garvin2023}.
+Wie bei jeder PDGL müssen die Randbedingungen für das betrachtete Volumen berücksichtigt werden. Die Navier\footnote{Claude Louis Marie Henri Navier (1785 -- 1836) war ein französischer Mathematiker, Bauingenieur und Physiker. Er brachte die Elastizitätstheorie in eine mathematisch handhabbare Form und gilt auch als Begründer der Baustatik. 1822 gab er die Navier-Stokes-Gleichungen für die Bewegung einer viskosen Flüssigkeit an.}\indexp{Navier, Claude Louis Marie Henri}-Stokes
+%\footnote{Sir George Gabriel Stokes\indexp{Stokes, Sir George Gabriel} (1819--1903) war ein irischer Mathematiker und Physiker. Er arbeitete auf dem Gebiet der mathematischen und experimentellen Physik und beschäftigte sich hauptsächlich mit der Hydrodynamik, der Elektrodynamik und der Akustik.}
+-Gleichung\indexp{Stokes, Sir George Gabriel} ist damit eine Spezifizierung der Euler-Gleichung der Kontinuumsmechanik bezüglich der inneren Reibung und insbesondere der Einführung der Viskosität.
+Die partielle Differentialgleichung stellt eine große mathematische Herausforderung dar, es ist nicht bekannt, ob es für den allgemeinen dreidimensionalen Fall eine überall definierte (eindeutige) Lösung gibt. Die Frage nach der Lösung dieser Gleichung in ihrer allgemeiner Form  gehört daher zu den großen ungelösten mathematischen Problemen und stellt eines der sogenannten sieben Millennium-Probleme\footnote{Als Millennium-Probleme wurden im Jahr 2000 durch das \textit{Clay Mathematics Institute (CMI)} in Cambridge (Massachusetts, USA) sieben ungelöste mathematische Problem in einer Liste zusammen gefasst. Für die Lösung eines der sieben Probleme wurde jeweils ein Preisgeld von einer Million US-Dollar ausgelobt.} dar.\\
+Drei generelle Bemerkungen seien zur \NVS noch gemacht.
+\begin{itemize}
+	\item Die dominante, \dh gesuchte Variable in der \NVS ist der Geschwindigkeitsvektor $\vec{v}$. Der Druck ist \ia ebenfalls unbekannt, während wie erwähnt die Dichte (für die inkompressible Flüssigkeit) und die externen Kräfte als bekannt angenommen werden können. Die \NVS ist eigentlich in Komponenten geschrieben ein Set von drei Gleichungen. Wir haben aber vier Unbekannte, die 3 Komponenten der Geschwindigkeit (als Funktion von Ort und Zeit) und den Druck. Die dazu notwendige vierte Gleichung ist die Kontinuitätsgleichung \eqref{eq:kontmech_KontinuitaetsglDiff}, die für die inkompressible Flüssigkeit durch $\nablav \vec{v} = 0$ gegeben ist.  
+	\item Der Druck taucht in der Gleichung nur in Form $\nablav p$ auf. Das bedeutet, dass die Dynamik von inkompressiblen Fluiden immer nur von Druckdifferenzen abhängt und nicht von den Absolutwerten des Drucks, was relativ einsichtig ist.
+	\item Wegen des Terms $\lk \vec{v} \cdot \nablav \rk \vec{v}$ ist die Differentialgleichung nichtlinear, dieser Term stellt die eigentliche Schwierigkeit in der Lösung der DGL dar.
+\end{itemize}
+Zwei wichtige lösbare Spezialfälle der Navier-Stokes-Gleichung sollen aber explizit genannt werden, zum einen der Fall, in dem jegliche von außen angreifende Volumenkräfte fehlen,
+\begin{subequations}
+  \begin{align}
+    \varrho \lk \lk \vec{v} \cdot \nablav \rk \vec{v} + \frac{\partial}
+    {\partial t} \vec{v}  \rk &= \eta \, \Delta \vec{v} - \nablav p \; ,
+              \label{eq:kontmech_NavierStokesFrei} \\
+    \intertext{und zum anderen der Fall, in dem eine Flüssigkeit oder ein Gas sich im homogenen Gravitationsfeld befindet, welches eine Kraftdichte $\varrho\,\vec{g}$ hat} 
+    \varrho \lk \lk \vec{v} \cdot \nablav \rk \vec{v} + \frac{\partial}
+    {\partial t} \vec{v} \rk &= \varrho\,\vec{g} + \eta \, \Delta \vec{v}
+                               - \nablav p \; .
+              \label{eq:kontmech_NavierStokesSchwerefeld}
+  \end{align}
+\end{subequations}
+
+
+
+% BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{Überlegungen zu Strömungen anhand des Straßenverkehrs}
+  \label{bsp:VerkehrKreuzung}
+  \smallskip
+  Wie bereits erwähnt werden Methoden der Kontinuumsmechanik in vielen anderen Gebieten zur Problembeschreibung und -lösung verwendet.
+	Angeregt von einer Aufgabe in \cite{Meschede2010} möchten wir uns zum
+  Abschluss des Abschnitts ein Beispiel zur Kinematik und Dynamik des
+  Straßenverkehrs geben und zeigen wie auch in diesem Gebiet Begriffe aus der Kontinuumsmechanik, wie Strömungen \usw verwendet werden können und damit auch veranschaulicht werden.
+	Selbstverständlich
+  lassen sich viele weitere analoge Bilder finden. Wir möchten insbesondere folgende
+  heranziehen:
+
+\begin{itemize}
+\item \textbf{Beispiele für Strom- und Bahnlinien.}\\
+  Stromlinien lassen sich aus den momentanen Geschwindigkeiten der Autos
+  im Straßenverkehr bilden. Wir müssen diese ermitteln und Linien einzeichnen,
+  die tangential an diesem Feld liegen. Bahnlinien sind die tatsächlich
+  gefahrenen Wege der einzelnen Autos. In einem stationär fließenden Verkehr sind Strom-
+  und Bahnlinien identisch, auf einspurigen Straßen ohne Abzweigungen sind sie
+  das sogar immer. Sie unterscheiden sich, wenn ein Auto spontan beschleunigt. Das
+  kann \zb bei einem Spurwechsel ober beim Abbiegen an einer Kreuzung der Fall
+  sein.
+  
+\item \textbf{Messen des Flusses.}\\
+  Den Fluss bestimmt man, indem man die Autos zählt, die einen Querschnitt der
+  Straße in einem festen Zeitintervall durchqueren.
+
+\item \textbf{Kompressibilität und Inkompressibilität der Fahrzeugströmung.}\\
+  In einem stationär fließenden Verkehr ist die Fahrzeugströmung immer
+  inkompressibel. Am Stauende einer Autobahn oder vor einer roten Ampel an
+  einer Kreuzung hingegen verdichten sich die Autos. Hinter einer Verengung (z.B. auf
+  einer Autobahn hinter einer Baustelle) beschleunigen sie wieder. Im
+  Allgemeinen ist der Straßenverkehr (Autodichte) also kompressibel.
+  
+\item \textbf{Divergenz- und Rotationsfreiheit. Beispiele für Quellen und
+    Senken.}\\
+  Divergenzfrei würde bedeuten, es können nie mehr oder weniger Autos im
+  Verkehr werden. Global betrachtet stimmt das, aber definitiv nicht für
+  eine einzelne Straße. Eine Autobahnausfahrt ist eine Senke, eine Auffahrt
+  eine Quelle für Autos auf der Autobahn. Entsprechend können im Stadtverkehr
+  an einer Kreuzung Autos von der Hauptstraße abfahren (Senke für den Verkehr
+  auf der Hauptstraße) oder auf sie auffahren (Quelle).
+
+  Rotationsfrei ist der Verkehr \iA ebenfalls nicht. Neben dem
+  Kreisverkehr gibt es aber auch weitere Beispiele. Eine Rotation liegt
+  bereits dann vor, wenn auf einer mehrspurigen Straße nicht auf allen
+  Spuren gleich schnell gefahren wird. Auf einer Autobahn ist das, bis auf
+  Ausnahmen wie \zb dichter Verkehr, immer der Fall.
+  
+\item \textbf{Beispiele für beide Terme der materiellen Beschleunigung.}\\
+  Die Geschwindigkeit eines Autos hängt natürlich vom Geschwindigkeitsfeld
+  des Verkehrs ab. Stellen wir uns eine Straße vor, auf der in verschiedenen
+  Abschnitten unterschiedliche Geschwindigkeiten gelten, \zb $\SI{30}{\kilo
+    \metre \per \hour}$ vor einer Schule, sonst $\SI{50}{\kilo
+    \metre \per \hour}$. Vor der Schule bremsen alle Autos, dahinter
+  beschleunigen sie. Das entspricht dem ersten Term der materiellen
+  Beschleunigung in \eqref{eq:kontmech_Beschleunigung}, der beschreibt, dass ein Auto in ein anderes
+  Geschwindigkeitsfeld gerät. Ein einzelnes Auto, dessen Fahrer es eventuell
+  eilig hat, kann ein anderes vor der Schule überholen. Es weicht von der
+  Geschwindigkeit aller Autos ab und wird einzeln beschleunigt. Das entspricht
+  dem zweiten Term in Gleichung \eqref{eq:kontmech_Beschleunigung}.
+  
+\item \textbf{Analoga zu den Termen der Navier-Stokes-Gleichung.}\\
+  In der Navier-Stokes-Gleichung tritt die materielle Beschleunigung auf
+  (siehe oben). Diese wird von innerer Reibung beeinflusst. In der
+  Annahme, dass wir keine Unfälle haben, sich die Autos also nicht berühren,
+  wird die innere Reibung dadurch gegeben, dass ein Auto nicht mit anderen
+  zusammenstoßen möchte und \zb hinter einem langsamer werdenden Auto
+  abbremsen muss, um nicht auf dies aufzufahren. Dies entspricht dem
+  Viskositätsterm. Der Druckgradient entspricht z.B. einer roten Ampel (höherer
+  Druck vor dem Auto) oder einer grünen Ampel (niedrigerer Druck vor dem Auto).
+	Äußere Kräfte können z.B. Hangabtriebskräfte auf einer Strecke mit
+  Steigung oder Gefälle sein.   
+  \end{itemize}
+
+\end{example}
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Wir verweisen am Ende dieses Kapitels noch einmal auf Tabelle \ref{tab:kontmech_stroemung_overview}, in der wir die verschiedenen Strömungsarten zusammengefasst haben. Wir wollen uns daran anschließend etwas näher mit dem Spezialfall der laminaren Strömungen beschäftigen.
+\begin{table}
+\caption[Übersicht der verschiedenen Strömungsarten.]{Übersicht der verschiedenen Strömungsarten.}
+\begin{tabular}{L{3cm}L{4.5cm}L{4.5cm}}
+  \hline\noalign{\smallskip}
+  Charakterisierung &  &    \\
+  \noalign{\smallskip}\svhline\noalign{\smallskip}
+	nach innerer Reibung&ideal Fluide\index{Fluid!ideales}, ohne innerer Reibung \linebreak $\eta =0$ &reale Fluide\index{Fluid!reales}, mit innerer Reibung \linebreak $\eta \neq 0$\\
+\rule{0pt}{1pt}\\
+	nach Kompressibilität&inkompressibel \linebreak  $\varrho = \con$ &kompressibel \linebreak  $\varrho \neq \con$ \\
+\rule{0pt}{1pt}\\
+	nach Wirbelfreiheit&wirbelfrei, laminar \linebreak  $\rotv \vec{v} = 0$ & verwirbelt\linebreak  $\rotv \vec{v} \neq 0$  \\
+\rule{0pt}{1pt}\\
+	nach Quellenfreiheit&quellenfrei \linebreak $\divv \vec{v} = 0$ &mit Quellen und Senken \linebreak $\divv \vec{v} \neq  0$\\
+\rule{0pt}{1pt}\\
+	nach zeitlichem Verhalten &stationär \linebreak  $\d \vec{v}/ \d t  = 0$&nicht-stationär \linebreak  $\d \vec{v}/ \d t  \neq 0$ \\
+\rule{0pt}{1pt}\\
+	Potentialströmung&quellenfrei, wirbelfrei \linebreak $\vec{v} = -\gradv \varphi$ &\\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{tabular}
+\label{tab:kontmech_stroemung_overview}
+\end{table}
+

@@ -1,0 +1,1176 @@
+\section{Mechanik starrer Körper}\label{kap:bew_starrer_koerper}
+\index{Körper!starrer}
+
+Die vorherigen Abschnitte betrachteten nur Situationen, in denen ein Körper
+als Punktmasse behandelt werden konnte.
+In vielen Anwendungen greift diese Näherung jedoch
+zu kurz und muss die Ausdehnung des Körpers explizit einbezogen
+werden.
+Das wollen wir in diesem Kapitel tun und dabei annehmen, dass
+der Körper während der gesamten Bewegung seine Form behält, also nicht
+deformierbar ist. 
+Dies ist das Modell des starren Körpers.
+
+Ein starrer Körper kann \zb aus einem System von $N$ diskreten Massepunkten
+bestehen.
+Dies haben wir bereits in \ref{kap:bew_basics_of_systems} betrachtet, sodass wir darauf Bezug nehmen können.
+In den meisten Fällen lässt sich ein starrer Körper jedoch als eine kontinuierliche
+Massenverteilung mit der Dichte $\varrho(\vec{r})$ betrachten, sodass wir das Konzept entsprechend erweitern.
+Die
+Gesamtmasse des Körpers beträgt dann
+\begin{equation}
+  M = \int_V \varrho(\vec{r}) \, \D^3 r  ~,
+\end{equation}
+wobei über sein gesamtes Volumen $V$ integriert wird.
+
+Da der Körper seine Gestalt nicht verändert, ist es sinnvoll, zu seiner
+Beschreibung zwei Koordinatensysteme einzuführen, ein raumfestes KOS $\vec{\Sigma}$ mit
+den Standardachsen $\veceX$, $\veceY$ und $\veceZ$ und ein
+körperfestes KOS $\vec{\Sigma}'$, dessen Achsen wir mit $\vecpeX$, $\vecpeY$ und
+$\vecpeZ$ bezeichnen wollen und das seinen Ursprung im Schwerpunkt des
+Körpers hat (siehe \figref{bew_KOS_starrerKoerper}).
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{StarrKoerpKOS.pdf}
+  \caption[Koordinatensysteme des starren Körpers.]{Zur Beschreibung eines
+    starren Körpers ist es sinnvoll, ein raumfestes Koordinatensystem \index{Koordinatensystem!raumfestes} mit
+    den Standardachsen  $\veceX$, $\veceY$ und $\veceZ$ sowie
+    ein körperfestes\index{Koordinatensystem!körperfestes} mit den Achsen $\vecpeX$, $\vecpeY$ und
+    $\vecpeZ$ heranzuziehen. Das körperfeste System hat seinen Ursprung
+    im Schwerpunkt des Körpers.}
+    \label{abb:bew_KOS_starrerKoerper}
+\end{figure}
+
+Einen Vektor zu einem Punkt des Körpers können wir somit im Koordinatensystem
+$\vec{\Sigma}$ aus dem Schwerpunktsvektor $\vec{R}_S$ und einem Vektor $\vec{r'}$
+aus dem körperfesten System $\vec{\Sigma}'$ mithilfe der entsprechenden Koordinatentransformation
+zusammensetzen (siehe auch \kap{bew_rotating_systems}):
+\begin{equation}
+  \vec{r} = \vec{R}_S + \mathbb{R} \vec{r}' \,.
+\end{equation}
+Der Vektor $\vec{r}'$ zeigt vom Schwerpunkt zum Punkt im Körper. 
+Da er im körperfesten System gegeben ist, hängen seine Koordinaten nicht von der Zeit ab. Wir bezeichnen ihn im Folgenden mit $\vec{x}'$, um eine Verwechslung mit der Darstellung von $\vec{r}$ im körperfesten System $\vec{\Sigma}'$ zu vermeiden. Seine Darstellung im raumfesten System $\vec{\Sigma}$ nennen wir $\vec{x}$.
+
+
+Für die Geschwindigkeit dieses Punktes im raumfesten KOS folgt analog zu \kap{bew_rotating_systems}
+\begin{equation}
+  \vec{v} = \frac{\D}{\D t} \vec{r} = \vec{V}_S + \vec{\omega}' \times \vec{r}' = \vec{V}_S + \vec{\omega} \times \vec{x} \,,
+  \label{eq:bew_Geschw_starrerK}
+\end{equation}
+mit der Schwerpunktgeschwindigkeit $\vec{V}_S$ und der momentanen Winkelgeschwindigkeit
+$\vec{\omega}(t)$ der Drehbewegung des körperfesten Bezugssystems.
+
+\subsection{Grundlagen der Kinematik}\index{Trägheitstensor}\index{Trägheitsmoment} \label{kap:bew_Kinematik_StarrerK}
+
+\subsubsection{Kinetische Energie, Trägheitstensor und Trägheitsmoment}
+\label{kap:bew_StarrerK_kin_Energie}
+
+Die kinetische Energie eines starren Körpers berechnet sich entsprechend Definition \eqref{eq:bew_Ges_Energie} unter Nutzung der Beziehung für die 
+Geschwindigkeit \eqref{eq:bew_Geschw_starrerK} zu
+\begin{align}
+  T &= \frac{1}{2} \int_V \varrho(\vec{x}) \left ( \vec{V}_S
+      + \vec{\omega} \times \vec{x} \right )^2 \, \D^3 x
+      = \frac{1}{2} \int_V \varrho(\vec{x}) \left ( {\vec{V}_S}^2
+      + (\vec{\omega} \times \vec{x})^2 \right ) \, \D^3 x \\
+    &= \frac{1}{2} M\,{\vec{V}_S}^2 + \frac{1}{2} \int_V \varrho(\vec{x})
+      (\vec{\omega} \times \vec{x})^2 \, \D^3 x
+    = T_\mathrm{trans} + T_\mathrm{rot}\,.
+      \label{eq:bew_Kin_Energie_starrerK}
+\end{align}
+Die kinetische Energie setzt sich aus einem Term $T_\mathrm{trans}$, der aus der Translation des Schwerpunkts
+stammt, und der Rotationsenergie $T_\mathrm{rot}$ zusammen.
+Der Mischterm aus dem ersten
+Integral verschwindet, da in diesem $\vec{x}$ linear vorkommt und somit das Integral den
+Schwerpunkt berechnet, der aber gerade den Wert $\vec{x} = \vec{0}$ hat.%
+\footnote{Es gilt ja 
+	$\int_V \varrho(\vec{x})\, \vec{x} \,\D^3 x = \vec{0}$.}
+
+Die Rotationsenergie lässt sich noch so umschreiben, dass wir die Eigenschaft
+des Körpers (seine Massenverteilung) von der Drehachse und der Winkelgeschwindigkeit trennen können.\footnote{$M$ bezeichnet hier die Gesamtmasse des starren Körpers und man muss en bisschen aufpassen, dass man diese nicht mit dem Betrag des Drehmoments verwechselt, das wir \ia mit $\vec{M}_\text{D}$ bezeichnen. Wir werden auch bei den Beispielen zur besseren Eindeutigkeit die Massen häufig mit $m$ bezeichnen.}
+Mit der Rechenregel $(\vec{a} \times \vec{b})^2 = \vec{a}^2 \vec{b}^2 - (\vec{a}\cdot \vec{b)^2}$ der Vektoralgebra (siehe die \onlineZ) folgt
+\begin{equation}
+  T_\mathrm{rot} = \frac{1}{2} \vec{\omega}^T \,\underline{\vec{\Theta}} \,\vec{\omega} = \frac{1}{2} \lk\omega_1\,,\omega_2\,,\omega_3\rk \,\underline{\vec{\Theta}} \,\lk\begin{array} {l} \omega_1\\\omega_2\\ \omega_3\end{array}\rk\,,
+  \label{eq:bew_Trot_starrerK}
+\end{equation}
+worin $\underline{\vec{\Theta}}$ der \emph{Trägheitstensor}\footnote{%
+In der linearen Algebra ist der Begriff des Tensors\index{Tensor} eine Verallgemeinerung des Begriffs der Matrix. 
+Da wir hier keine weitergehende Theorie für Tensoren benötigen, können wir für unsere Zwecke die Begriffe Tensor und Matrix synonym verwenden. Zur Kennzeichnung eines Tensor benutzen wir \ia als Symbol einen unterstrichenen Vektor $\underline{\vec{A}}$ oder $\mathbb{A}$.  
+Für tiefergehende Betrachtungen sei auf \cite{Riley2006, Felder2016, Bartelmann2015} und \cite{Otto2019, Fischer2018} verwiesen.}
+ist, der die Eigenschaften des Körpers enthält und dessen Komponenten
+\begin{subequations}
+  \begin{align}
+    \Theta_{ij} &= \int_V \varrho(\vec{x}) \left ( \vec{x}^2 \delta_{ij} -x_i x_j
+    \right )\, \D^3 x  \\
+    \intertext{\bzw ausgeschrieben}
+    \underline{\vec{\Theta}} &= \begin{pmatrix} \Theta_{11}&\Theta_{12}&\Theta_{13}\\ \Theta_{21}&\Theta_{22}&\Theta_{23}\\ \Theta_{31}&\Theta_{32}&\Theta_{33}
+    \end{pmatrix}
+     = \bigintsss_V \varrho(\vec{x}) \begin{pmatrix} y^2+z^2 & -x\,y & -x\,z \\ -x\,y & x^2+z^2 & -y\,z \\ -x\,z & -y\,z & x^2+y^2 \end{pmatrix} \, \D^3 x \label{eq:bew_traegheitstensor}
+  \end{align}
+\end{subequations}
+lauten. $\delta_{ij}$ ist das Kronecker-Symbol\index{Kronecker-Symbol}\indexp{Kronecker, Leopold}. Ist der Trägheitstensor bekannt, kann für jede Drehung des Körpers\index{Drehung} die kinetische
+Energie mit dieser quadratischen Form und der vektoriellen
+Winkelgeschwindigkeit $\vec{\omega}$ berechnet werden.
+Der Trägheitstensor ist eine physikalische Größe für die Masseverteilung eines
+starren Körpers und spielt damit bei 
+Rotationen die Rolle der trägen Masse, die der Körper bei Translationsbewegungen hat. 
+Da der Trägheitstensor $\underline{\vec{\Theta}}$ symmetrisch ist, hat er nur sechs unabhängige Elemente, seine Diagonalelement heißen \emph{Trägheitsmomente}\index{Trägheitsmomente}.
+
+In den meisten Anwendungen wird
+die Drehachse fest vorgegeben sein.
+Dann ist es unnötig den gesamten
+Trägheitstensor zu kennen.
+Wir benötigen nur das Verhalten des Körpers
+für die Drehung um eine einzige Achse.
+Dazu stellen wir die vektorielle
+Winkelgeschwindigkeit $\vec{\omega}$ als Produkt eines Einheitsvektors $\vec{n}_\omega$,
+der die Richtung der Drehachse beschreibt, und ihres Betrags $\omega$ dar.
+Damit erhalten wir für das quadrierte Kreuzprodukt in der Rotationsenergie
+aus \eqref{eq:bew_Kin_Energie_starrerK}
+\begin{equation*}
+  \left ( \vec{\omega} \times \vec{x} \right )^2 =  \omega^2 \left
+    ( \vec{n_\omega} \times \vec{x} \right )^2 = \omega^2 {x_\perp}^2
+\end{equation*}
+mit dem Anteil $x_\perp$ des Vektors $\vec{x}$, der senkrecht zur
+Drehachse steht.
+Für die Rotationsenergie ergibt sich
+\begin{equation}
+  T_\mathrm{rot} = \frac{1}{2} \omega^2 \int_V \varrho(\vec{x})\, {x_\perp}^2
+ \, \D^3 x = \frac{1}{2} \,J \,\omega^2
+\end{equation}
+mit dem Trägheitsmoment $J$
+\begin{equation}
+  J = \vec{\Theta}_{\,\vec{n_\omega}} = \int_V \varrho(\vec{x})\, {x_\perp}^2 \,\D^3 x ~ ,
+\end{equation}
+das für die gewählte Drehachse $\vec{n_\omega}$ gilt.\\
+Da $\underline{\vec{\Theta}}$ symmetrisch ist, hat $\underline{\vec{\Theta}}$ drei reelle Eigenwerte mit
+zueinander paarweise senkrechten Eigenvektoren.
+Diese Eigenwerte $\Theta_1\,, \Theta_2\,, \Theta_3$ heißen \emph{Hauptträgheitsmomente}\index{Hauptträgheitsmomente},
+die wir fortan mit $J_1\,, J_2\,, J_3$ bezeichnen wollen,
+die Richtungen der Eigenvektoren heißen Hauptträgheitsachsen.
+Wir können diese als Koordinatenachsen des körperfesten Systems $\vec{\Sigma}'$ vereinbaren.
+Dann nimmt $\underline{\vec{\Theta}}'$ (also der Trägheitstensor $\underline{\vec{\Theta}}$ ausgedrückt in seinen Komponenten im körperfesten System $\vec{\Sigma}'$) eine einfache Diagonalform an\footnote{Da die Angabe des Hauptträgheitssysems nur im körperfesten KOS $\vec{\Sigma}'$ sinnvoll ist, verwenden wir $\vec{J}$ nur in diesem und verzichten hier auf die Angabe eines Striches und Unterstriches als Tensor, da wir die Diagonalelemente $\Theta_{ii}$ als Komponenten $J_1, J_2, J_3$ eines Vektors $\vec{J}$ betrachten können.
+Die Diagonalmatrix $\vec{J}$ oder ihre Komponenten beziehen sich immer auf $\vec{\Sigma}'$.}:
+\begin{equation}
+\lk \begin{array} {lll} \Theta_{11}&0&0\\ 0&\Theta_{22}&0\\ 0&0&\Theta_{33}
+            \end{array}\rk = \lk \begin{array} {lll} J_{1}&0&0\\ 0&J_{2}&0\\ 0&0&J_{3} \end{array}\rk\, = \lk \begin{array} {lll} J_x&0&0\\ 0&J_y&0\\ 0&0&J_z \end{array} \rk \,\widehat{=}  \,
+\lk \begin{array} {l} J_{1}\\ J_{2}\\ J_{3} \end{array} \rk \,=\,\vec{J}\,. \label{eq:bew_traegheitsmoment}
+\end{equation}
+Die Trägheitsmomente eines starren Körpers findet man, indem man zunächst den Trägheitstensor nach \eqref{eq:bew_traegheitstensor} berechnet und dann für diesen das Eigenwertproblem 
+\begin{equation}
+  \underline{\vec{\Theta}} \, \vec{n}_{\omega_i} = J_i \, \vec{n}_{\omega_i}
+\end{equation}
+löst und gegebenenfalls die Hauptachsen $\vec{n}_{\omega_i}$ mit $i = 1,2,3$ bestimmt.
+Falls mehrere Trägheitsmomente (Eigenwerte) gleich sind, müssen die entsprechenden Eigenvektoren so
+gewählt werden, dass alle paarweise orthogonal sind. \\
+Bei Körpern mit Symmetrieachsen\index{Symmetrieachsen} längs der Koordinatenachsen des körperfesten Systems ist der Trägheits\-tensor automatisch diagonal.
+Die Symmetrieachsen stellen genau die Hauptträgheitsachsen\index{Hauptträgheitsachsen} dar, siehe dazu das folgende Beispiel und \probref{bew_traegheitsmomente}, in der wir Trägheitsmomente verschiedener Körper berechnen.
+
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{Trägheitstensor eines Quaders}
+\label{bsp:bew_Traegheitstensor}
+\smallskip
+
+Wir berechnen den Trägheitstensor für einen Quader mit den Kantenlängen $a$,
+$b$ und $c$ und der homogenen Massendichte $\varrho = M/V = M/(abc)$, der sich
+um Achsen durch seinen Schwerpunkt dreht.
+Die Achsen sind dabei parallel zu den
+Kanten gewählt.
+Wir führen das Koordinatensystem wie in \figref{bew_TraegTensorQuad}
+ein und berechnen zunächste die Diagonalelemente des Trägheitstensors, wobei wir
+mit dem (1,1)-Element beginnen.
+\begin{multline*}
+  \Theta_{1,1} = \int_{x=-a/2}^{a/2} \int_{y=-b/2}^{b/2} \int_{z=-c/2}^{c/2}
+  \varrho \left (x^2+y^2+z^2-x^2 \right ) \D z \D y \D x\\
+  = \varrho \int_{x=-a/2}^{a/2} \int_{y=-b/2}^{b/2} \int_{z=-c/2}^{c/2}
+  \left (y^2+z^2 \right ) \D z \D y \D x\\
+  = \varrho \int_{x=-a/2}^{a/2} \int_{y=-b/2}^{b/2} 
+  \left [ z y^2+ \frac{1}{3} z^3 \right ]_{z=-c/2}^{c/2} \D y \D x
+  = \varrho \int_{x=-a/2}^{a/2} \int_{y=-b/2}^{b/2}
+  \left ( c y^2+ \frac{c^3}{12} \right ) \D y \D x \\
+  = \varrho \int_{x=-a/2}^{a/2} 
+  \left [ \frac{c}{3} y^3+ \frac{c^3}{12} y \right ]_{y=-b/2}^{b/2} \D x 
+  = \varrho \int_{x=-a/2}^{a/2} 
+  \left ( \frac{b^3c}{12} + \frac{b c^3}{12} \right ) \D x \\
+  = \varrho \left ( \frac{b^3c}{12} + \frac{b c^3}{12} \right ) \left [ x
+  \right ]_{x=-a/2}^{a/2} =  \varrho \frac{abc}{12} \left ( b^2 + c^2 \right )
+  =  \frac{M}{12} \left ( b^2 + c^2 \right )
+\end{multline*}
+Analog erhält man
+\begin{align*}
+  \Theta_{2,2} &= \frac{M}{12} \left ( a^2 + c^2 \right ) ~~~\text{und}~~~\Theta_{33} = \frac{M}{12} \left ( a^2 + b^2 \right ) \,.
+\end{align*}
+Da die Koordinatenachsen den Symmetrieachsen des Körpers entsprechen, erwarten
+wir, dass der Trägheitstensor diagonal ist.
+Tatsächlich sieht man auch
+schnell an der Berechnung, dass die Nebendiagonalelemente verschwinden.
+Dazu
+betrachten wir als Beispiel das $(1,2)$-Element
+\begin{equation*}
+  \Theta_{1,2} = \int_{x=-a/2}^{a/2} \int_{y=-b/2}^{b/2} \int_{z=-c/2}^{c/2}
+  \varrho \left ( -xy \right ) \D x \D y \D z  \,.
+\end{equation*}
+Dieses ist linear in $x$ und in $y$, wobei die Grenzen jeweils symmetrisch
+um die Null gewählt sind.
+Jede Integrationen längs dieser beiden Achsen ergibt für sich schon Null.
+
+\begin{center}
+  \includegraphics[width=\textwidth]{QuaderTraegheitstensor.pdf}
+\captionof{figure}{Zur Berechnung des Trägheitstensors eines Quaders.}\label{abb:bew_TraegTensorQuad}
+\end{center}
+
+Folglich ergibt sich der Trägheitstensor zu
+\begin{equation*}
+  \underline{\vec{\Theta}} = \frac{M}{12} \begin{pmatrix} b^2 + c^2 & 0 & 0 \\
+    0&a^2+c^2&0 \\ 0&0& a^2+b^2\end{pmatrix} ~ \,,
+\end{equation*}
+aus dem man direkt die Hauptträgheitsmomente $J_1$, $J_2$ und $J_3$ ablesen
+kann.
+\end{example}
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\subsubsection{Impuls}
+
+Der Gesamtimpuls lässt sich ähnlich bestimmen wie die kinetische Energie:
+\begin{equation}
+  \vec{P} = \int_V \varrho(\vec{x}) \left (\vec{V}_S
+    + \vec{\omega} \times \vec{x} \right ) \,\D^3 x
+  =  \vec{V}_S  \int_V \varrho(\vec{x}) \,\D^3 x = M \, \vec{V}_S = \vec{P}_S.
+  \label{eq:bew_Gesamtimpuls_starrerK}
+\end{equation}
+Er ergibt sich allein durch den Impuls des Schwerpunkts. 
+Das ist selbstverständlich, da sich dort der Definition nach gerade alle relativen Impulse der Körperpunkte aufheben müssen.
+
+\subsubsection{Drehimpuls und Drehmoment}\index{Drehimpuls}\index{Drehmoment}  \label{kap:bew_Drehimpuls_StarrerK}
+
+Der Drehimpuls des starren Körpers bezüglich des Ursprungs des raumfesten Koordinatensystems ist
+\begin{equation*}
+  \vec{L} = \int_V \varrho(\vec{r}) \, \lk \vec{r} \times \vec{v} \rk\,\D^3 x
+  = \int_V \varrho(\vec{x}) \left ( \vec{R}_S + \vec{x} \right ) \times \left (
+  \vec{V}_S + \vec{\omega} \times \vec{x} \right ) \,\D^3 x ~ .
+\end{equation*}
+Das Integral lässt sich am einfachsten durch Ausmultiplizieren der Terme berechnen, denn zwei der Terme enthalten $\varrho(\vec{x})\vec{x}$ und verschwinden.
+Es verbleibt
+\begin{align}
+  \vec{L} &= \int_V \varrho(\vec{x}) \lk \vec{R}_S \times \vec{V}_S\rk\,\D^3 x
+  +  \int_V \varrho(\vec{x})\, \lk\vec{x} \times \left ( \vec{\omega} \times
+  \vec{x} \right )\rk\, \D^3 x \notag \\
+    &= \vec{r_S} \times \left ( M \vec{V}_S \right )
+      + \int_V \varrho(\vec{x}) \left ( \vec{\omega} \vec{x}^2 - \vec{x}\,
+      \left ( \vec{x} \cdot \vec{\omega} \right ) \right )\, \D^3 x
+      = \vec{L}_S + \vec{L}_\mathrm{rot}\,.
+\end{align}
+Der erste Term ist der Drehimpuls des Schwerpunkts bezüglich des Ursprungs des raumfesten Koordinatensystems $\vec{\Sigma}$.
+Der zweite Term beschreibt einen Beitrag zum Drehimpuls durch die Rotationsbewegung des starren Körpers um eine Achse durch den Schwerpunkt.
+Dieser lässt sich noch umschreiben,
+wenn wir eine beliebige seiner Komponenten betrachten:
+\begin{align*}
+  L_{\mathrm{rot},i} &= \int_V \varrho(\vec{x}) \left ( \omega_i \vec{x}^2
+    - x_i \sum_j x_j \omega_j \right ) \,\D^3 x = \sum_j \underbrace{\left( \int_V \varrho(\vec{x}) \left ( \delta_{ij} \vec{x}^2
+      - x_i x_j \right ) \, \D^3 x \right )}_{\Theta_{ij}} \omega_j .
+\end{align*}
+Somit ergibt sich mit \eqref{eq:bew_traegheitstensor} für die Drehbewegung um eine Achse durch den Schwerpunkt
+\begin{equation}
+  \vec{L}_\mathrm{rot} = \underline{\vec{\Theta}} \,\vec{\omega}
+\end{equation}
+und für den gesamten Drehimpuls
+\begin{equation}
+  \vec{L} = \vec{L}_S + \vec{L}_\mathrm{rot} =  \vec{R}_S \times \vec{P}_S + \underline{\vec{\Theta}}\,\vec{\omega} ~.
+  \label{eq:bew_Gesamtdrehimpuls_starrer_K}
+\end{equation}
+
+Greifen an den Punkten $\vec{r}$ des Körpers Kräfte $\vec{F}(\vec{r}) =
+\vec{f}(\vec{r})\,\D V$ mit der Kraftdichte $\vec{f}(\vec{r})$ an, so
+ergibt sich ein Drehmoment von
+\begin{align}
+  \vec{M}_\text{D} &= \int_V \left ( \vec{r} \times \vec{f}(\vec{r}) \right )\,\D^3 x
+      = \int_V \left ( \left ( \vec{R}_S + \vec{x} \right )
+      \times \vec{f}(\vec{x}) \right )\, \D^3 x \notag \\
+    &= \vec{R}_S \times \int_V \vec{f}(\vec{x})\, \D^3 x
+      + \int_V \left ( \vec{x} \times \vec{f}(\vec{x}) \right ) \,\D^3 x ~ .
+      \label{eq:bew_Drehmoment_starrer_K}
+\end{align}
+Auch das Drehmoment lässt sich also aufteilen in einen Anteil, der so wirkt,
+als würden alle Kräfte am Schwerpunkt angreifen, und einen zweiten Anteil, der
+das Drehmoment bezüglich des Schwerpunkts beschreibt.
+Für eine diskrete Massenverteilung lautet \eqref{eq:bew_Drehmoment_starrer_K}
+\begin{align}
+  \vec{M}_\text{D} &= \vec{R}_S \times \sum_{k=1}^N \vec{F}_k(\vec{x}_k)\, 
+      + \sum_{k=1}^N \left ( \vec{x}_k \times \vec{F}_k(\vec{x}_k) \right ) \; .
+      \label{eq:bew_Drehmoment_starrer_K2}
+\end{align}
+
+Ein typisches Beispiel, das im Sonnensystem wichtig ist, ist die Wirkung
+einer weit entfernten Masse auf einen rotierenden Planeten. Die weit
+entfernte Masse (\zb die Sonne) kann in diesem Fall als Massepunkt $m$ am
+Ort $\tilde{\vec{x}}$ angenommen werden. Die Gravitationskraft aus
+\eqref{eq:bew_Gravitationskraft} muss hier in der Form als Kraftdichte
+\begin{equation}
+  \vec{f}(\vec{x}) = \frac{G \, m \, \varrho(\vec{x})}{|\tilde{\vec{x}}-
+    \vec{x}|^3}
+  \, \left ( \tilde{\vec{x}} - \vec{x} \right )
+  \label{eq:bew_KraftdichteGravitation}
+\end{equation}
+mit der Massendichte $\varrho(\vec{x})$ des Planeten angesetzt werden.
+Daraus ergibt sich das Drehmoment
+\begin{equation} 
+  \vec{M}_\text{D} = \int_V \left ( \vec{x} \times \frac{G \, m \,
+      \varrho(\vec{x})} {|\tilde{\vec{x}}-\vec{x}|^3} \, \left ( \tilde{\vec{x}} - \vec{x} \right )
+  \right )\,\D^3 x \;
+  = \int_V \left ( \vec{x} \times \frac{G \, m \, \varrho(\vec{x})}
+    {|\tilde{\vec{x}}-\vec{x}|^3} \, \tilde{\vec{x}} \right )\,\D^3 x \; .
+  \label{eq:bew_DrehmomentGravitation}
+\end{equation}
+Wir werden \eqref{eq:bew_DrehmomentGravitation} vielfach anwenden, \ua in \probref{bew_DrehmomentPraezErde} und besonders auch bei der Theorie der Gezeiten in der Himmelsmechanik (Band II).
+
+\subsubsection{Steinerscher Satz}\index{Satz von Steiner} \label{kap:bew_Traegheitsmoment}
+
+Der Trägheitstensor \eqref{eq:bew_traegheitstensor} wurde bezüglich des
+Schwerpunkts des Körpers berechnet.
+Es gibt jedoch Anwendungen, in denen die
+Drehachse nicht durch den Schwerpunkt verläuft.
+Um zu sehen, wie sich
+das auswirkt, nehmen wir nun an, dass wir neben dem körperfesten
+Koordinatensystem $\vec{\Sigma}'$ (mit Ursprung im Schwerpunkt) ein zweites, dazu achsenparalleles Koordinatensystem $\tilde{\vec{\Sigma}}$ haben, dessen Ursprung auf der Drehachse liegt (siehe \figref{bew_Steinerscher_Satz}). Der Ursprung dieses Koordinatensystems ist bezüglich des Schwerpunktes um den Vektor $-\vec{a}$ verschoben.
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{SteinerSatz.pdf}
+  \caption[Steinerscher Satz.]{Steinerscher Satz. Die Rotation erfolge nun um eine Achse, die nicht durch den Schwerpunkt geht.
+    Das neue Koordinatensystem $\tilde{\vec{\Sigma}}$ ist \emph{achsenparallel} zum körperfesten System (mit Ursprung im Schwerpunkt) $\vec{\Sigma}'$, allerdings mit seinem Ursprung nun auf der Drehachse.}
+    \label{abb:bew_Steinerscher_Satz}
+\end{figure}
+
+Den Trägheitstensor hatten wir als Eigenschaft des Körpers für die Berechnung
+der kinetischen Energie \bzw des Drehimpulses eingeführt.
+Wir wiederholen die Rechnung in dem neuen KOS $\tilde{\vec{\Sigma}}$ und können so erkennen, welchen Trägheitstensor wir für die neue Drehachse benötigen.%
+\footnote{Wir erinnern daran, dass die kinetische Energie vom Bezugssystem abhängt
+(\kap{bew_basics_of_systems}).}
+Aus der kinetischen Energie \eqref{eq:bew_Kin_Energie_starrerK} wird jetzt
+\begin{align}
+  T  = T_\mathrm{trans} + T_\mathrm{rot}
+  = T_\mathrm{trans} + \frac{1}{2} \int_V \tilde{\varrho}(\vec{\tilde{x}})\,
+  (\vec{\omega} \times \vec{\tilde{x}})^2 \, \D^3 \tilde{x} ~ ,
+\end{align}
+wobei $T_\mathrm{trans}$ jetzt der Translation des Ursprungs von $\vec{\Sigma}'$
+entspricht. 
+Führen wir die identische Rechnung zur Einführung des Trägheitstensors ein zweites Mal aus, so sehen wir, dass sich der Trägheitstensor ergibt zu
+\begin{align*}
+  \tilde{\Theta}_{ij}
+  &= \int_V \tilde{\varrho}(\vec{\tilde{x}}) \left (\vec{\tilde{x}}^2
+    \delta_{ij} -\tilde{x}_i \tilde{x}_j \right ) \,\D^3 \tilde{x} \\
+  &= \int_V \varrho(\vec{x}) \left ( (\vec{a} + \vec{x})^2 \delta_{ij} -
+    (a_i+x_i) (a_j+x_j)  \right ) \,\D^3 x~.
+\end{align*}
+Berücksichtigt man erneut, dass Terme der Form $\varrho(\vec{x})x_i$
+verschwinden, erhält man
+\begin{align}
+  \tilde{\Theta}_{ij}
+  &= \int_v \varrho(\vec{x})\left ( \vec{x}^2 \delta_{ij} - x_i x_j \right )
+  \,\D^3 x
+  + \int_v \varrho(\vec{x}) \left ( \vec{a}^2 \delta_{ij} - a_i a_j \right )
+  \,\D^3 x \notag \\
+  &= \Theta_{ij} + M \left ( \vec{a}^2 \delta_{ij} - a_i a_j \right )\,.
+\end{align}
+Dies ist der \emph{Steinersche}%
+\footnote{Jakob Steiner (1796--1863) war ein Schweizer Mathematiker,
+der vor allem auf dem Gebiet der sogenannten synthetischen Geometrie arbeitete.}
+Satz\index{Steinersche Satz}\indexp{Steiner, Jakob}:
+Der Trägheitstensor (\bzw das Trägheitsmoment) für eine Rotation, die
+nicht um den Schwerpunkt erfolgt, ist gleich der Summe aus dem Trägheitstensor
+$\Theta$ für die Rotation um den Schwerpunkt und einem zweiten Anteil, der
+so groß ist, als würde die gesamte Masse des Körpers im Schwerpunkt vereint um die neue Drehachse rotieren.\\
+Daraus folgt insbesondere, dass das Trägheitsmoment für eine Rotation um den Schwerpunkt immer kleiner ist als das für jede dazu parallel verschobene Drehachse.
+Diese Beziehungen gelten natürlich genauso für das Trägheitsmoment bezüglich einer festen Achse. Mit der Aufteilung
+\begin{equation*}
+  \omega^2 \left ( \vec{n_\omega} \times \vec{\tilde{x}} \right )^2 =
+  \omega^2 \left ( \vec{n_\omega} \times \left ( \vec{a} + \vec{x} \right )
+  \right )^2 =  \omega^2 \left ( {a_\perp}^2 + 2 \left (  \vec{n_\omega} \times
+      \vec{a} \right ) \cdot \left (  \vec{n_\omega} \times \vec{x} \right )
+    + {x_\perp}^2 \right )
+\end{equation*}
+in der kinetischen Energie erhält man (wobei lineare Terme in $\vec{x}$ im Integral wieder verschwinden)
+\begin{align*}
+  T_\mathrm{rot}
+  &= \frac{1}{2} \omega^2 \int_V \varrho(\vec{x})\,{x_\perp}^2
+    \,\D^3 x +  \frac{1}{2} \omega^2 \int_V \varrho(\vec{x})\, {a_\perp}^2 \,\D^3 x \\
+  &= \frac{1}{2} \omega^2 \int_V \varrho(\vec{x}) \,{x_\perp}^2
+    \,\D^3 x + \frac{1}{2} M \,{a_\perp}^2 \,\omega^2 
+\end{align*}
+oder das Trägheitsmoment
+\begin{equation}
+  \tilde{J} = J + M {a_\perp}^2 ~ , \label{eq:bew_SteinerSatz}
+\end{equation}
+also ebenfalls die Summe aus dem ursprünglichen Trägheitsmoment und einem weiteren Term, der der Rotation der im Schwerpunkt vereinten Gesamtmasse senkrecht zur Drehachse entspricht.\\
+Der Steinersche Satz erlaubt eine sehr simple Berechnung von Trägheitsmomenten für Körper, die aus einfachen Körperformen zusammengesetzt sind, da die Definition des Trägheitstensors \eqref{eq:bew_traegheitstensor} additiv ist (\probref{bew_traegheitsmomente}). 
+Der Trägheitstensor eines starren Körpers ist also die Summe der Trägheitstensoren seiner Teile (bei gleichem Bezugspunkt).
+Dabei wird als Bezugspunkt für einen frei beweglichen starren Körper am besten der Schwerpunkt gewählt, bei Körpern, die in einem Punkt \bzw in einer Achse ortsfest sind, ist dieser Punkt \bzw diese Achse der Bezugspunkt/die Bezugsachse und das Trägheitsmoment wird über den Steinerschen Satz berechnet.
+
+\subsection{Bewegungsgleichung des starren Körpers}\label{kap:bew_BWG_StarrerK}
+
+Für die Bewegungsgleichungen eines starren Körpers lässt sich ausnutzen, dass wir bereits Ausdrücke für den Gesamtimpuls und den Gesamtdrehimpuls gefunden haben.
+Die Schwerpunktsbewegung wird durch die Summe der an den Körper angreifenden Kräfte bestimmt:
+\begin{equation}
+  \frac{\D \vec{P}_S}{\D t} =  \int_V \vec{f}(\vec{x})\, \D^3 x = \vec{F}\,.
+\end{equation}
+Die zeitliche Änderung des Gesamtdrehimpulses ergibt sich durch das
+von außen angreifende Drehmoment nach Gleichung
+\eqref{eq:bew_Drehmoment_starrer_K}:
+\begin{equation}
+  \frac{\D\, \vec{L}}{\D t} = \vec{M}_\text{D}\,. \label{eq:bew_DrehimpulsSatz}
+\end{equation}
+Wir interessieren uns im Normalfall jedoch speziell für die Drehbewegung
+des starren Körpers unabhängig von der Bewegung des Schwerpunkts.
+Gehen wir zusätzlich noch davon aus, dass die Drehbewegung um den Schwerpunkt erfolgt \bzw die Drehachse durch den Schwerpunkt geht, beschreiben wir die Drehbewegung am besten im Schwerpunktsystem.
+In diesem gilt $\vec{R}_S = \vec{0}$.
+Damit verschwindet der Schwerpunktdrehimpuls $\vec{L}_S$ in Gleichung
+\eqref{eq:bew_Gesamtdrehimpuls_starrer_K}.
+Das Drehmoment aus
+\eqref{eq:bew_Drehmoment_starrer_K} reduziert sich zu
+\begin{equation*}
+  \vec{M}_\text{D} = \int_V \left ( \vec{x} \times \vec{f}(\vec{x}) \right )\, \D^3 x
+\end{equation*}
+und man erhält
+\begin{equation}
+  \frac{\D\, \vec{L}_\mathrm{rot}}{\D t} = \frac{\D}{\D t} \underline{\vec{\Theta}} \,\vec{\omega}
+  = \vec{M}_\text{D} = \int_V \left ( \vec{x} \times \vec{f}(\vec{x}) \right )\, \D^3 x
+  ~ .
+  \label{eq:bew_Drehbew_starrer_K}
+\end{equation}
+Die Änderung des Drehimpulses ist also gleich dem gesamten von außen angreifenden Drehmoment.
+Auch dieses Ergebnis hatten wir für starre Massepunktsysteme in \kap{bew_basics_of_systems} bereits hergeleitet.
+
+\subsubsection{Euler-Gleichungen} \index{Euler-Gleichung}\label{kap:bew_Euler_Gl}
+
+Die Bewegungsgleichung \eqref{eq:bew_Drehbew_starrer_K} für die Drehbewegung ist im raumfesten System mit zeitabhängigem Trägheitstensor $\Theta(t)$ gegeben. 
+Vorteilhafter ist allerdings die Darstellung in einem körperfesten System, da dort $\underline{\vec{\Theta}}$ konstant ist.
+Deswegen wollen wir nun die Bewegungsgleichung %mit der Drehmatrix $\mathbb{R}$
+in ein körperfestes System $\vec{\Sigma}'$ transformieren.
+Wir erhalten
+\begin{subequations}
+  \begin{align}
+    \frac{\D}{\D t} \vec{L'}_\mathrm{rot} + \vec{\omega}' \times
+    \vec{L}_\mathrm{rot}' = \vec{M}_\text{D}'
+    \intertext{und da der Trägheitstensor im
+    körperfesten System zeitlich konstant ist}
+    \underline{\vec{\Theta}}' \dot{\vec{\omega}}' + \vec{\omega}' \times
+    \underline{\vec{\Theta}}' \vec{\omega}'= \vec{M}_\text{D}' ~ .  \label{eq:bew_EulerGleichung01}
+  \end{align}
+\end{subequations}
+Man beachte, dass selbst bei $\vec{M}_\text{D}'=\vec{0}$ der Drehimpuls nicht erhalten ist, da das System $\vec{\Sigma}'$ kein Inertialsystem ist.
+Gleichung \eqref{eq:bew_EulerGleichung01} besagt, dass die zeitliche Änderung des Drehimpulses und das Drehmoment beim starren Körper \ia nicht parallel sind.
+Die Gleichungen sind nichtlinear in $\vec{\omega}'$ und deswegen relativ kompliziert zu lösen.
+
+Wir betrachten im Folgenden die Bewegung zunächst nur in einem körperfesten System, welches als Hauptträgheitsachsensystem gewählt ist. Dann können wir
+die Komponentengleichungen von \eqref{eq:bew_EulerGleichung01} wie folgt schreiben:
+\begin{equation}
+  \begin{aligned}
+    \Theta_{11} \, \dot{\omega}'_1 + (\Theta_{33}-\Theta_{22}) \,\omega'_2 \,\omega'_3 &= J_1 \, \dot{\omega}'_1 + (J_3-J_2) \,\omega'_2 \,\omega'_3 = M'_1\; ,\\
+    \Theta_{22} \, \dot{\omega}'_2 + (\Theta_{11}-\Theta_{33}) \,\omega'_1 \,\omega'_3 &= J_2 \, \dot{\omega}'_1 + (J_1-J_3) \,\omega'_1 \,\omega'_3 = M'_2\; ,\\
+    \Theta_{33} \, \dot{\omega}'_3 + (\Theta_{22}-\Theta_{11}) \,\omega'_1 \,\omega'_2 &= J_3 \, \dot{\omega}'_1 + (J_3-J_2) \,\omega'_1 \,\omega'_2 = M'_3 \;.
+		\label{eq:bew_EulerGleichung02} 
+  \end{aligned}
+\end{equation}
+Gleichungen \eqref{eq:bew_EulerGleichung01} und \eqref{eq:bew_EulerGleichung02} sind die \emph{Euler-Gleichungen} \index{Euler-Gleichung|textbf} für die Rotation eines starren Körpers. 
+Sie entsprechen den Newtonschen Bewegungsgleichungen für Massepunkte.
+Der Einfachheit halber werden in der Literatur häufig die Striche für die Größen $\vec{M'}_\text{D}$ und $\vec{\omega}'$ des körperfesten Systems $\vec{\Sigma}'$ bei den Variablen weggelassen, wenn klar ist, dass man in $\vec{\Sigma}'$ rechnet.
+Aber auch in diesen Fällen müssen wir uns immer in Erinnerung halten, dass die Größen in den Bewegungsgleichungen (Euler-Gleichungen) in Koordinaten des körperfesten Systems aufgeschrieben sind. 
+
+\subsubsection{Euler-Winkel}\index{Euler-Winkel} \label{kap:bew_EulerWinkel}
+
+Wir haben bei der Herleitung der Euler-Gleichungen angenommen, dass wir die momentane Winkelgeschwindigkeit in Koordinaten des körperfesten Systems $\vec{\Sigma}'$ ausdrücken können. 
+Das ergibt die einfache Struktur von \eqref{eq:bew_EulerGleichung02}, macht aber den Vektor $\vec{\omega}'$ sehr unanschaulich. 
+Eleganter wäre eigentlich, die Bewegung im raumfesten System $\vec{\Sigma}$ zu beschreiben. 
+Dazu führen wir drei zeitabhängige Winkel, die sogenannten \emph{Euler-Winkel} oder auch \emph{Eulerschen Winkel}\index{Euler-Winkel}\index{Eulersche Winkel} ein. 
+Diese geben die momentane Orientierung des körperfesten Systems $\vec{\Sigma}'$ und damit des Körpers im raumfesten System $\vec{\Sigma}$ an.
+
+Wir nehmen an, dass $\vec{\Sigma}'$ und $\vec{\Sigma}$ einen gemeinsamen Ursprung haben. 
+Durch eine zeitabhängige Rotation, welche eine Summe dreier Einzeldrehungen ist, kann man $\vec{\Sigma}$ in $\vec{\Sigma}'$ transformieren. 
+Diese drei Winkel, die benötigt werden, um die Rotation vollständig zu beschreiben, sind gerade die Euler-Winkel. 
+Die Einzeldrehungen, für die das raumfeste System $\vec{\Sigma}$ (Achsen $\veceX$, $\veceY$, $\veceZ$) aus dem körperfesten $\vec{\Sigma}'$ (Achsen $\vecpeX$, $\vecpeY$, $\vecpeZ$) hervorgeht, sind:
+\begin{enumerate}
+\item Drehung um die Achse $\veceZ$ um den Winkel $\varphi$.
+  (Die neue temporäre $\veceX$-Achse heißt Knotenlinie.)
+\item Drehung um die Knotenlinie um den Winkel $\vartheta$.
+\item Drehung um die nun erhaltene $\vecpeZ$-Achse um den Winkel $\psi$.
+\end{enumerate}
+Alle Drehungen erfolgen dabei in mathematisch positiver Richtung. Um letztlich die Bewegung des starren Körpers im System $\vec{\Sigma}$ beschreiben zu können, müssen wir die Beziehung zwischen $\vec{\omega}$ und den Euler-Winkeln ermitteln.
+Dazu betrachtet man eine kleine Drehung  $\vec{\omega}\,\D t$, die sich aus jeweils infinitesimalen Änderungen der Euler-Winkel um $\D \varphi$ um die Achse $\veceZ$, um $\D \vartheta$ um die Knotenlinie und um $\D \psi$ um die $\vecpeZ$-Achse zusammensetzt. 
+Diese infinitesimale Drehung kann man aus geometrischen Überlegungen aus \figref{bew_EulerWinkel} ableiten und benutzt dabei die Rotationsmatrizen aus \kapitel{bew_rotating_systems}. 
+Wir möchten dies hier nicht im Einzelnen tun, sondern verweisen stattdessen auf \probref{bew_EulerWinkel} und geben hier lediglich das Ergebnis an:
+\begin{align}
+\vec{\omega}' = 
+\begin{pmatrix}	\omega'_1 \\ \omega'_2 \\ \omega'_3 \end{pmatrix} = \,
+\begin{pmatrix}
+		\dot{\varphi}\,\sin\vartheta\,\sin\psi + \dot{\vartheta}\,\cos\psi \\
+		\dot{\varphi}\,\sin\vartheta\,\cos\psi - \dot{\vartheta}\,\sin\psi \\
+		\dot{\varphi}\,\cos\vartheta + \dot{\psi}
+\end{pmatrix}. \label{eq:bew_EulerWinkel} 
+\end{align}
+\begin{figure}
+  \includegraphics[width=0.95\textwidth]{EulerWinkel.pdf}
+    \caption[Definition der Euler-Winkel.]{%
+    \fa Definition der Euler-Winkel als Verknüpfung dreier
+    Rotationen. \fb
+    Perspektivische Darstellung der Koordinatensysteme
+    $\vec{\Sigma}$ und $\vec{\Sigma}'$ mit den Euler-Winkeln.}\label{abb:bew_EulerWinkel}
+\end{figure}
+Sind die Parameter für die Dynamik eines starren Körpers durch $\vec{J}$ und $\vec{M}'$ gegeben, muss man also zunächst aus den Euler-Gleichungen \eqref{eq:bew_EulerGleichung02} die momentane Winkelgeschwindigkeit $\vec{\omega}'(t)$ (in Koordinaten von $\vec{\Sigma}'$) bestimmen. 
+Damit kann man dann die drei gekoppelten Diffentialgleichungen \eqref{eq:bew_EulerWinkel} nach $\varphi(t),\,\vartheta(t),\,\psi(t)$ lösen. 
+Das wird recht schwierig, denn einerseits ist \eqref{eq:bew_EulerGleichung02} eine nichtlineare DGL, andererseits liegen die gesuchten Größen (Euler-Winkel) in \eqref{eq:bew_EulerWinkel} auch noch als Argumente von Winkelfunktionen vor. Wir werden dennoch eine Lösung versuchen und uns dem allgemeinen Problem zunächst über ein paar Spezialfälle nähern. Wir werden den Euler-Winkeln übrigens in der Himmelsmechanik (Band II, Kapitel 3) in etwas anderer Notation wieder begegnen.
+
+\subsection{Kreisel} \label{kap:bew_Kreisel}
+
+\subsubsection{Rotation eines \emph{kräftefreien} Kreisels} \index{Kreisel}\index{Kreisel!kräftefreier|textbf}\label{kap:bew_kfKreisel}
+
+Ein Kreisel ist ein starrer Körper, der um eine Achse rotiert.
+In einer ersten Einschränkung werden wir davon ausgehen, 
+dass er um eine Achse durch seinen Schwerpunkt rotiert.
+Auf diesen können also die Eulerschen Kreiselgleichungen
+\eqref{eq:bew_EulerGleichung02} angewendet werden.
+Zunächst werden wir den
+Spezialfall des kräftefreien Kreisels betrachten.
+Für diesen verschwindet
+also das Drehmoment $\MD$ und die Euler-Gleichungen
+\eqref{eq:bew_EulerGleichung02} lassen sich auf die Form
+\begin{equation}
+  \begin{aligned}
+    J_1 \, \dot{\omega}_1' + (J_3-J_2) \,\omega_2' \,\omega_3' = 0\\
+    J_2 \, \dot{\omega}_2' + (J_1-J_3) \,\omega_1' \,\omega_3' = 0\\
+    J_3 \, \dot{\omega}_3' + (J_2-J_1) \,\omega_1' \,\omega_2' = 0
+  \end{aligned}
+  \label{eq:bew_Kreisel_frei}
+\end{equation}
+bringen.
+Man realisiert einen kräftefreien Kreisel \zb dadurch, dass man ihn im Schwerpunkt $S$ unterstützt und 
+damit die Schwerkraft kompensiert.
+Alternativ betrachtet man einen frei fallenden Kreisel im bewegten Koordinatensystem.
+Schöne und instruktive Experimente zum kräftefreien Kreisel sind auf der ISS von Alexander 
+Gerst\footnote{Alexander Gerst (geb.~1976) ist ein deutscher Geophysiker, Vulkanologe und Astronaut.
+Er flog zweimal zur Internationalen Raumstation ISS\index{ISS!Internationale Raumstation}\indexp{Gerst, Alexander} 
+und übernahm am 3.\,10.\,2018 für fast drei Monate als erster Deutscher
+die Funktion des ISS-Kommandanten.} 
+durchgeführt worden \cite{Gerst2018}.
+
+Man sieht an \eqref{eq:bew_Kreisel_frei} sofort, dass sich aus \eqref{eq:bew_Kreisel_frei} für den Fall einer Rotation um eine der Hauptträgheitsachsen 
+(also um eine der Koordinatenachsen von $\vec{\Sigma}'$, \zb $\omega_1'=\omega_0'$ mit $\omega_2'=\omega_3'=0$) 
+$\dot{\vec{\omega}'}=\vec{0}$
+ergibt und die Rotation somit zeitlich konstant ist. 
+
+Dies gilt jedoch nur für eine exakte Ausrichtung entlang einer der
+Hauptträgheitsachsen, was sich in der Realität nicht erfüllen lassen wird.
+Um die Stabilität solcher Drehungen nahe einer der Hauptträgheitsachsen zu untersuchen, 
+legen wir das Koordinatensystem so, dass $J_1 > J_2 > J_3$ gilt. 
+Weiterhin nehmen wir an, dass wir eine kleine Störung $\vec{\Delta\omega}'$ der Rotation um eine der Hauptträgheitsachsen haben.
+Setzt man \zb für eine Rotation um die $\vecpeX$-Achse einen \anf{gestörten} Vektor der Winkelgeschwindigkeit 
+\begin{equation}
+  \vec{\omega}_0' + \vec{\Delta\omega}' = 
+  \begin{pmatrix} \omega_0'
+    + \Delta\omega_1'(t) \\  \Delta\omega_2'(t) \\ \Delta\omega_3'(t)
+  \end{pmatrix} \label{eq:bew_Kreisel_frei_lin}
+\end{equation}
+an und linearisiert die Bewegungsgleichungen in den $\Delta\omega_i'$, so
+findet man als Ergebnis, dass die Störung in der
+$\vecpeY$-$\vecpeZ$-Ebene erhalten bleibt, jedoch nicht größer wird.
+Eine
+Rotation um die $\vecpeX$-Achse ist also stabil.
+Gleiches findet man für
+eine Rotation um die $\vecpeZ$-Achse.
+Jedoch wird, falls eine Rotation
+um die $\vecpeY$-Achse gestört wird, die Störung exponentiell anwachsen.
+Eine solche Rotation ist also instabil.
+Die ausführliche Betrachtung erfolgt
+numerisch in  Beispiel \ref{bsp:bew_unsymm_Kreisel} und \probref{bew_freier_Kreisel}. 
+Wir merken uns jedoch, dass für einen nicht-symmetrischen
+Kreisel die Rotationen nur um die beiden Hauptträgheitsachsen mit dem jeweils größten bzw. kleinsten
+Trägheitsmoment stabil sind.
+Eine Rotation um die Hauptträgheitsachse mit dem
+mittleren Trägheitsmoment ist instabil.
+
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{Störung der Rotation um freie Hauptträgheitsachsen }
+\label{bsp:bew_unsymm_Kreisel}
+\medskip
+
+Die Bewegungsgleichungen \eqref{eq:bew_Kreisel_frei} des kräftefreien unsymmetrischen
+Kreisels lassen sich numerisch einfach integrieren.
+Damit lässt sich die
+Stabilität der Rotationen um die Hauptträgheitsachsen gut analysieren.
+Wir
+wählen das Verhältnis der drei Hauptträgheitsmomente $J_1 : J_2 : J_3 =
+3:4:5$, $J_1$ und $J_2$ sind also die extremen Trägheitsmomente und $J_2$
+liegt dazwischen.
+Die Näherung für kleine Störungen (siehe \probref{bew_freier_Kreisel}) sagt voraus, dass die
+Rotationen um die $\vecpeX$- und $\vecpeZ$-Achsen stabil, die um
+$\vecpeY$ instabil sein sollten.
+Die exemplarischen Ergebnisse sind (numerisch im \mscr{} 
+\mlbewref{KfKreiselFreieAchsen.m} ausgeführt) wie folgt:
+
+\begin{itemize}
+\item Für eine Rotation um die $\vecpeX$-Achse mit
+  $\omega_1' = 1/\mathrm{s}$, die leicht durch einen zusätzlichen Beitrag
+	$\Delta \omega_2'$ gestört wird, ergibt sich Bild \figref{bew_KfKreiselstabil}.
+ 
+\begin{center}
+    \includegraphics[width=\textwidth]{KfKreiselstabil.pdf}
+\captionof{figure}{Stabile Rotation eines kräftefreien Kreisels um seine Hauptachsen.}\label {abb:bew_KfKreiselstabil}
+\end{center}
+
+Im linken Teil von \figref{bew_KfKreiselstabil} sieht man den zeitlichen
+Verlauf der drei Kreisfrequenzen für eine Anfangsstörung von
+$\Delta \omega_2'= \SI{0.05}{\per\s}$.
+Die Erwartung aus der linearen Näherung der Störung \eqref{eq:bew_Kreisel_frei_lin}
+ist gut erfüllt. Es ergibt sich eine Oszillation der Störung zwischen der
+$\vecpeY$- und $\vecpeZ$-Richtung, sie wird jedoch betragsmäßig nicht größer.
+Die Rotation um die $\vecpeX$-Achse ändert sich kaum. Dies erkennt man auch
+in der rechten Abbildung, in der der zeitliche Verlauf aller drei Komponenten
+von $\vec{\omega}'$ dargestellt ist.
+Für die kleinen Anfangsstörungen $\Delta \omega_2' = \SI{0.05}{\per\s}$ und
+$\Delta\omega_3' = \SI{0.05}{\per\s}$ oszilliert die Spitze des Vektors
+$\vec{\omega}'$ mit kleinen Abständen um den eigentlich beabsichtigten Wert
+$\vec{\omega}' = (1.0,0,0)\SI{}{\per\s}$ (linkes Bild).
+Erst für die deutlich größere Störung von $\Delta \omega_2' \geq \SI{0.25}
+{\per\s}$ ergibt sich eine leichte sichtbare Abweichung der Richtung des
+Vektors $\vec{\omega}'$ und auch eine zeitliche Variation von $\omega_1'(t)$.
+
+\item Nun betrachten wir eine Rotation um die $\vecpeY$-Achse (mit dem mittleren Trägheitsmoment $J_2$ 
+und der Winkelgeschwindigkeit $\omega_2' = \SI{1.0}{\per\s}$), die 
+wiederum durch einen kleinen zusätzlichen Beitrag, hier nun $\Delta \omega_1'$, gestört wird.
+Die Erwartung aus der linearen Näherung mit dem Ansatz
+\eqref{eq:bew_Kreisel_frei_lin} ist nun, dass sich die Störung exponentiell
+vergrößert.  Dies geschieht auch für die Anfangsstörung
+$\Delta \omega_1' = \SI{0.05}{\per\s}$ zunächst.
+Dann wird die Störung jedoch so
+groß, dass die lineare Näherung nicht mehr gültig ist.
+Es ergibt sich eine in (\figref{bew_KfKreiselinstabil}) deutlich sichtbare
+erhebliche Abweichung von der ursprünglichen Rotation, bei der im Zeitverlauf
+alle drei Komponenten von $\vec{\omega}'$ ähnlich große Werte annehmen und die
+Bewegung nichts mehr mit einer reinen Rotation um die $\vecpeY$-Achse
+zu tun hat.
+Obwohl die Störung am Beginn nicht größer ist als im vorherigen
+Beispiel, ergibt sich nach kurzer Zeit ein vollständig anderes Verhalten.
+Durch die Instabilität der Achse spielt es fast keine Rolle, wie groß
+die Anfangsstörungen sind, wie man im rechten Teil von
+\figref{bew_KfKreiselinstabil} erkennt. Für die Anfangsstörungen
+$\Delta \omega_1' = \SI{0.05}{\per\s}$, $\SI{0.25}{\per\s}$ und
+$\SI{0.5}{\per\s}$ ergibt sich jeweils ein sehr ähnliches Verhalten. 
+
+\begin{center}
+    \includegraphics[width=\textwidth]{KfKreiselinstabil.pdf}
+\captionof{figure}{Instabile Rotation eines kräftefreien Kreisels um seine freien Hauptachsen.}\label {abb:bew_KfKreiselinstabil}
+\end{center}
+
+\end{itemize}
+\end{example}
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Rotation eines kräftefreien \emph{symmetrischen} Kreisels} \index{Kreisel!kräftefreier!}\index{Kreisel!symmetrischer}\label{kap:bew_Kreisel_kraeftefrei}
+
+Bisher haben wir nur freie Rotationen um die Hauptträgheitsachsen des Kreisels betrachtet.
+Wir wollen jetzt die Bewegung des Kreisels einschränken und den Kreisel \emph{im Schwerpunkt} festhalten \bzw unterstützen. Dieser Kreisel ist dann auch kräftefrei.
+Eine solche Kräftefreiheit kann man dadurch realisieren, dass man den Kreisel in einer sogenannten kardanischen\footnote{Gerolamo Cardano\indexp{Cardano, Gerolamo} (1501--1576) war ein italienischer Arzt, Philosoph und Mathematiker. Er arbeitete auf vielen Gebieten, \ua in der Wahrscheinlichkeitsrechnung und Kombinatorik, in der Erforschung von Krankheiten wie Tuberkulose und Typhus und an mechanischen Konstruktionen. Nach ihm ist die kardanische Aufhängung und die Kardanwelle benannt.} (oder cardanischen)\index{Kardanische Aufhängung}\index{Cardanische Aufhängung} Aufhängung befestigt (Abb. \figref{bew_KfSymmKrRealisierung}). Alternativ kann man sich natürlich auch für entsprechende Studien an kräftefreien Kreiseln auf einen Raumflug begeben.\\
+Als weiteren Spezialfall wollen wir den kräftefreien Kreisel als symmetrisch annehmen. 
+Darunter versteht man
+einen Kreisel, für den zwei Trägheitsmomente identisch sind, $J_1 = J_2
+= J_{12} \neq J_3$. Die Achse $\vecpeZ$, die senkrecht zur den beiden
+identischen Hauptträgheitsmomenten steht, heißt Figurenachse $\vec{f}$. 
+
+\begin{figure}
+\includegraphics[width=\textwidth]{KfSymmKrRealisierung.pdf} 
+	\caption[Realisierung des kräftefreien symmetrischen Kreisels.]{Realisierung des kräftefreien symmetrischen Kreisels \fa Kardanische Aufhängung (Euler-Kreisel) und \fb Unterstützung im Schwerpunkt (nach Klein\footnotemark\indexp{Klein, Felix Christian} und Sommerfeld \cite{Klein1910}).} \label{abb:bew_KfSymmKrRealisierung}
+\end{figure}
+\footnotetext{Felix Christian Klein (1849--1925) war ein deutscher Mathematiker, der im 19.~Jahrhundert bedeutende Fortschritte vor allem in der Geometrie erzielte. Klein beschäftigte sich mit der Funktionentheorie und kümmerte sich um die Anwendung der Mathematik. Er engagierte sich sehr für die Mathematikdidaktik und die Lehre generell. Sommerfeld war einer seiner besten Schüler.}
+
+Da wir in diesem Kapitel den Kreisel sowohl im System $\vec{\Sigma}$ als auch im mitbewegten System $\vec{\Sigma'}$ betrachten wollen, kennzeichnen wir wie vereinbart die Größen im mitrotierenden System mit Strichen.
+Aus den Kreiselgleichungen \eqref{eq:bew_EulerGleichung02} folgt damit
+\begin{equation*}
+  J_3\,\dot{\omega}_3' = 0 \qquad \text{und} \qquad \omega_3' = \con~ .
+\end{equation*}
+Setzt man mit dem Wissen, dass $\omega_3'$ konstant ist,
+\begin{equation*}
+  \Omega = \frac{J_3-J_{12}}{J_{12}} \,\omega_3' = \con~ ,
+\end{equation*}
+erhält man für die Bewegungsgleichungen der anderen beiden Komponenten
+die gekoppelten Differentialgleichungen
+\begin{equation*}
+  \begin{aligned}
+    \dot{\omega}_1' &= - \Omega \, \omega_2' ~ ,\\
+    \dot{\omega}_2' &= \phantom{-}  \Omega \, \omega_1' ~ .\\
+  \end{aligned}
+\end{equation*}
+Die Lösungen lassen sich einfach finden, da dieses DGL-System in eine DGL zweiter Ordnung überführt werden kann, 
+die der harmonischen Schwingungsgleichung entspricht. Insgesamt erhält man
+\begin{equation}
+  \vec{\omega}' = 
+	\begin{pmatrix} \omega_1' \\ \omega_2' \\ \omega_3' \end{pmatrix} = 
+	\begin{pmatrix} \omega_\perp' \, \cos(\Omega \,t + \Delta
+    \alpha) \\ \omega_\perp' \, \sin(\Omega\, t + \Delta \alpha) \\
+    \omega_3' \end{pmatrix}
+  \label{eq:bew_Nutation_omega}
+\end{equation}
+mit der zeitunabhängigen (konstanten) Amplitude
+$\omega_\perp' = \sqrt{{\omega_1 '}^2 + {\omega_2 '^2}}$ der Drehung mit der betragsmäßig 
+konstanten Winkelgeschwindigkeit
+$\omega' = \left| \vec{\omega}'\right| = \sqrt{{\omega_\perp'}^2 + {\omega_3'}^2}$
+um die $\vecpeZ$-Achse.
+Für den Drehimpuls gilt
+\begin{equation}
+  \vec{L}' = 
+	\begin{pmatrix} J_{12}\,\omega_1' \\ J_{12}\,\omega_2' \\ J_3\, \omega_3' \end{pmatrix} =
+	\begin{pmatrix} J_{12} \, \omega_\perp' \, \cos(\Omega\, t + \Delta
+    \alpha) \\ J_{12} \, \omega_\perp' \, \sin(\Omega\, t + \Delta \alpha) \\
+    J_3 \, \omega_3' \end{pmatrix} ~
+  \label{eq:bew_Nutation_L}
+\end{equation}
+
+und damit $L'^2 = \con$, wie zu erwarten war.
+Man sieht aus \eqref{eq:bew_Nutation_omega} und \eqref{eq:bew_Nutation_L}
+also, dass sowohl $\vec{\omega}'$ als auch $\vec{L}'$ eine Drehung um
+die $\vecpeZ$-Achse (die Figurenachse) des körperfesten Systems ausführen, allerdings in
+unterschiedlicher Art und Weise, da nach \eqref{eq:bew_Nutation_L} $\vec{L}'$ und $\vec{\omega}'$ unterschiedliche
+Richtungen haben (siehe \figref{bew_KfSymmKrNutation} a). Man nennt diese Bewegung \emph{Nutation} (aus dem Lateinischen \textit{nutare} für "`nicken"').\index{Nutation|textbf}\footnote{Vielfach wird diese Bewegung auch \textit{(reguläre) Präzession}\index{Präzession|textbf}\index{Präzession!reguläre|textbf} genannt, vor allem im angelsächsischen Raum. Auch Klein und Sommerfeld \cite{Klein1910} verwendeten diesen Begriff. Da wir den Begriff Präzession für eine Bewegung beim schweren Kreisel reservieren wollen, verwenden wir hier den Begriff Nutation.}
+
+\begin{figure}
+\includegraphics[width=\textwidth]{KfSymmKrNutation.pdf} 
+	\caption[Nutation eines kräftefreien symmetrischen Kreisels.]{Ein kräftefreier symmetrischer Kreisel führt eine Nutationsbewegung aus.
+    \fa Im körperfesten System führen die Drehachse $\vec{\omega}'$ und auch der Drehimpuls $\vec{L}'$ eine Kreisbewegung um die Figurenachse $\vec{F}=\vecpeZ$
+    aus. \fb Im raumfesten System ist der Drehimpuls für die kräftefreie Bewegung konstant. Man sieht eine Drehbewegung der Figurenachse und
+    der momentanen Drehachse um die feststehende Drehimpulsachse. \fc Übersicht der Rotationsbewegungen der einzelnen Achsen des kräftefreien symmetrischen
+Kreisels.
+$\vartheta_\text{N}, \alpha_\text{PK}, \alpha_\text{RK}$ sind die Öffnungswinkel von Nutations-, Pol- \bzw Rastpolkegel.}\label{abb:bew_KfSymmKrNutation}
+\end{figure}
+Die Nutation ist zwar dynamisch, aber in ihrer periodischen Entwicklung stabil.
+Wir nehmen diese jedoch für gewöhnlich nicht im körperfesten System wahr,
+sondern beobachten sie aus dem raumfesten System heraus.
+Da die Bewegung nach Voraussetzung kräftefrei ist und somit auch kein Drehmoment wirkt,
+ist in diesem System der Drehimpuls nach Richtung und Betrag konstant,
+die Drehimpulsachse liegt folglich stabil im Raum.
+Die Figurenachse $\vec{f} = \vecpeZ$ rotiert auf dem \emph{Nutationskegel} mit dem 
+Öffnungswinkel $\vartheta_\text{N}$ um die Drehimpulsachse. 
+Wir wollen die Nutation im raumfesten System im folgenden Beispiel näher untersuchen.
+\newpage
+%Begin BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{Dynamik der Nutation eines kräftefreien symmetrischen Kreisels}
+  \medskip
+	
+	Es wurde bereits erwähnt, dass die Nutationsbewegung dadurch gekennzeichnet ist, 
+	dass die Drehimpulsachse fest im Raum steht,
+  da aufgrund der Kräfte- und Drehmomentfreiheit der Drehimpuls erhalten ist.
+  Die Beschreibung der Drehbewegung im raumfesten System erfolgt mithilfe der Euler-Winkel
+  \eqref{eq:bew_EulerWinkel}.
+  Man erhält mit
+  \eqref{eq:bew_Nutation_omega}
+  \begin{equation}
+    \begin{pmatrix} \omega_1'\\ \omega_2' \\ \omega_3' \end{pmatrix}
+    = \begin{pmatrix} \omega_\perp' \, \cos(\Omega \,t + \Delta
+      \alpha) \\ \omega_\perp' \, \sin(\Omega\,t + \Delta \alpha) \\
+      \omega_3' \end{pmatrix}
+    = \begin{pmatrix}
+      \dot{\varphi}\,\sin\vartheta\,\sin\psi + \dot{\vartheta}\,\cos\psi \\
+      \dot{\varphi}\,\sin\vartheta\,\cos\psi - \dot{\vartheta}\,\sin\psi \\
+      \dot{\varphi}\,\cos\vartheta + \dot{\psi}
+    \end{pmatrix} \; .
+    \label{eq:bew_DGL_Eulerwinkel_Nutation}
+  \end{equation}
+  Das raumfeste System legen wir so, dass die Drehimpulsachse mit der
+  $\veceZ$-Achse des KOS übereinstimmt.
+  Dann wird die Neigung der Figurenachse
+  gegenüber dem Drehimpuls gerade durch den Euler-Winkel $\vartheta$ ausgedrückt.
+  Dieser berechnet sich nach nach \eqref{eq:bew_Nutation_L} zu
+  \begin{equation}
+    \vartheta_\text{N} = \arctan \lk \frac{\sqrt{{L_x'}^2 + {L_y'}^2}}{L_z'} \rk = \arctan \left ( \frac{J_{12} \omega_\perp'}{J_3 \omega_3'}
+    \right ) \; . \label{eq:bew_Nutationswinkel}
+  \end{equation}
+  und ist, wie bereits erwähnt, konstant.
+  Gleichung \eqref{eq:bew_DGL_Eulerwinkel_Nutation} vereinfacht sich zu
+  \begin{equation}
+	   \begin{pmatrix} \omega_1'\\ \omega_2' \\ \omega_3' \end{pmatrix} =
+		 \begin{pmatrix} \omega_\perp' \, \cos(\Omega\,t + \Delta
+      \alpha) \\ \omega_\perp' \, \sin(\Omega\,t + \Delta \alpha) \\
+      \omega_3' \end{pmatrix}
+    = \begin{pmatrix}
+      \dot{\varphi}\,\sin\vartheta_\text{N}\,\sin\psi \\
+      \dot{\varphi}\,\sin\vartheta_\text{N}\,\cos\psi \\
+      \dot{\varphi}\,\cos\vartheta_\text{N} + \dot{\psi}
+    \end{pmatrix} \; .
+    \label{eq:bew_DGLEuler_Nutation2}
+  \end{equation}
+  Eine Lösung findet man leicht, indem man die ersten beiden Zeilen dieser
+  vektoriellen Gleichung quadriert und addiert.
+  Daraus ergibt sich sofort
+  \begin{equation}
+    \dot{\varphi} = \frac{\omega_\perp'}{\sin\vartheta_\text{N}} = \Omega' \qquad
+    \text{bzw.}\qquad \varphi(t) = \frac{\omega_\perp'}{\sin\vartheta_\text{N}}\,t  +\varphi_0 = \Omega' \,t +\varphi_0 \,. \label{eq:bew_DGLEuler_Nutation2a}
+  \end{equation}
+  Die dritten Zeile führt mit diesem Resultat auf
+  \begin{align*}
+    \dot{\psi} &= \omega_3' - \omega_\perp' \cot\vartheta_\text{N} = \omega_3'
+    - \frac{J_3\,\omega_3'}{J_{12}} = \frac{J_{12}-J_3}{J_{12}}\,\omega_3'
+                 = \con = -\, \Omega \\
+    \text{\bzw} \qquad \psi(t) &= -\, \Omega \, t + \psi_0 \; .
+  \end{align*}
+  Ein Vergleich mit den ersten beiden Zeilen legt die Integrationskonstante
+  $\psi_0$ fest auf $\psi_0 = -\Delta \alpha \pm \pi/2$, sodass
+  \begin{equation}
+    \psi(t) = -\,\Omega\, t  - \Delta \alpha \pm \frac{\pi}{2} \; . \label{eq:bew_DGLEuler_Nutation2b}
+  \end{equation}
+  Damit haben wir in diesem geeignet gewählten Koordinatensystem $\vec{\Sigma}$ alle drei Euler-Winkel bestimmt.
+  Die Figurenachse, die mit dem konstanten 
+  Winkel $\vartheta_\text{N}$ gegen den konstanten Drehimpuls geneigt ist, läuft mit der konstanten Winkelgeschwindigkeit $\dot{\varphi} = \Omega'$ um den raumfesten Drehimpuls herum.
+	Dazu dreht sich der Kreisel mit der ebenfalls konstanten Winkelgeschwindigkeit $\dot{\psi} = \Omega$ um seine Figurenachse. 
+	Dieses Ergebnis lässt sich auch numerisch finden.
+  Dazu bringt man die Gleichungen \eqref{eq:bew_DGLEuler_Nutation2} auf eine geeignete
+  Form, in der die drei Zeitableitungen der Euler-Winkel isoliert auf den linken Seite des Gleichungssystems stehen.
+	Dies gelingt \zb für $\dot{\varphi}$ durch
+  die Multiplikation der ersten Zeile mit $\sin\psi$ und Addition der mit
+  $\cos\psi$ multiplizierten zweiten Zeile.  Analog ergibt sich durch Multiplikation der ersten Zeile mit $\cos\psi$
+  und Subtraktion der zweiten mit $\sin\psi$ multiplizierten Zeile eine
+  Differentialgleichung für $\dot{\vartheta}$ und schließlich gewinnt man aus der dritten Zeile von \eqref{eq:bew_DGLEuler_Nutation2} 
+	unter Nutzung der Beziehung für $\dot{\varphi}$ eine Beziehung für $\dot{\psi}$. Insgesamt erhält man also
+\begin{align}
+  \frac{\D}{\D t}\, {\begin{pmatrix}\varphi\\\vartheta\\\psi\end{pmatrix}}
+    =
+    \begin{pmatrix}
+      \frac{\sin\psi}{\sin\vartheta} & \frac{\cos\psi}{\sin\vartheta} & 0 \\
+      \cos\psi               & -\sin\psi              & 0 \\
+      -\sin\psi\cot\vartheta         & -\cos\psi\cot\vartheta         & 1
+    \end{pmatrix} \,
+    \vec{\omega}\,.
+  \label{eq:bew_DGLEuler_Nutation2c}
+\end{align}
+Integriert man diese gekoppelten Differentialgleichungen erster Ordnung mit den passenden Anfangsbedingungen $\vartheta(0) = \vartheta_\text{N}$,
+$\psi(0) = -\Delta \alpha \pm \frac{\pi}{2}$ (und einem beliebigen $\varphi(0)$), so findet man die in \figref{bew_SymmKreiselEulerWinkel} 
+dargestellte numerische Lösung für die Winkelgeschwindigkeit $\vec{\omega}$ und die Euler-Winkel (\mscr{} \mlbewref{KfSymmKreiselNutation.m}).
+Man findet hier also, sofern man das raumfeste Koordinatensystem durch  die oben gegebenen Anfangsbedingungen so legt, dass der Drehimpuls auf
+die $\veceZ$-Achse fällt, für die Euler-Winkel sowohl das konstante  $\vartheta = \vartheta_\text{N}$ als auch die konstanten Winkelgeschwindigkeiten 
+von $\dot{\varphi}$ und $\dot{\psi}$ wieder.
+Im \mscr{} \mlbewref{KfSymmKreiselSimulation.m} ist eine Simulationsrechnung der 
+Nutation des kräftefreien symmetrischen Kreisels sowohl im körper- als auch im raumfesten System ausgeführt.
+\begin{center}
+    \includegraphics[width=\textwidth]{SymmKreiselEulerWinkel.pdf}
+\captionof{figure}[Dynamik der Nutation eines kräftefreien symmetrischen Kreisels.]{Dynamik der Nutation eines kräftefreien symmetrischen Kreisels. \fa Zeitliche Entwicklung von $\vec{\omega}$, \fb Zeitliche Entwicklung der Euler-Winkel. Parameter: $J_1 = J_2 = \SI{1}{\kg\metre\squared}\,,\, J_3 = \SI{1.5}{\kg\metre\squared}$.} \label{abb:bew_SymmKreiselEulerWinkel}
+\end{center}
+\end{example}
+%Ende BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Wie wir gesehen haben, gibt es im raumfesten System $\vec{\Sigma}$ neben der Nutation der Figurenachse um die Drehimpulsachse auch 
+eine Drehung der Achse der Winkelgeschwindigkeit $\vec{\omega}$ um die $\vec{L}$-Achse. Diese rotiert auf dem sogenannten \emph{Rastpolkegel}, der den 
+Öffnungswinkel 
+\begin{align}
+	\alpha_\text{RPK} = \arctan{\frac{\omega_\perp'}{\omega_3'}} = \arctan{\frac{\sqrt{{\omega_1'}^2+{\omega_2'}^2}}{\omega_3'}} \label{eq:bew_Nutation_alphaRPK}
+\end{align}
+hat. Im körperfesten System $\vec{\Sigma}'$ hingegen rotiert diese $\vec{\omega}$-Achse um die Figurenachse auf dem \emph{Polkegel}, dessen Öffnungswinkel $\alpha_\text{PK}$ durch den Winkel zwischen den Komponenten $L_3 \,\vecpeZ$ und $\vec{\omega}_3'\,\vecpeZ$ gegeben ist: 
+\begin{align}
+	\alpha_\text{PK} = \arctan{\frac{\Omega\,\sin\vartheta_\text{N}}{\Omega' + \Omega\,\cos\vartheta_\text{N}}}\,. \label{eq:bew_Nutation_alphaPK}
+\end{align}
+Anschaulich kann man sich das so vorstellen, dass der Polkegel auf dem Rastpolkegel abrollt, wobei die
+Kontaktlinie beider Kegel gerade der Achse der Winkelgeschwindigkeit entspricht (die dort quasi \anf{rastet}, daher der Name Rastpolkegel).
+Diese komplizierten Bewegungen der einzelnen Achsen sind in \figref{bew_KfSymmKrNutation}b und c gezeigt.
+Sie sind gewissermaßen notwendig, damit die Drehimpulserhaltung gewährleistet ist.
+Die einzelnen Bewegungen und ihr Zusammenhang mit den Euler-Winkeln ist noch einmal in Tabelle
+\ref{tab:bew_KfSymmKrNutation} zusammengefasst.
+
+\begin{table}%
+\caption[Übersicht über die Rotationsbewegungen des kräftefreien symmetrischen Kreisels.]{Übersicht über die Rotationsbewegungen des kräftefreien symmetrischen Kreisels.}
+\begin{tabular}{L{2.0cm}L{1.9cm}@{\ }C{0.7cm}L{1.2cm}C{1.0cm}L{5.0cm}}
+\hline\noalign{\smallskip}
+Kegel & Öffnungswinkel & KOS & Rotation &Euler-Winkel & Rotationsfrequenz  \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+Nutationskegel\footnote{In manchen Büchern und vor allem in der angelsächsischen Literatur wird der Nutationskegel\index{Nutationskegel}\index{Polkegel}\index{Rastpolkegel} auch als Präzessionskegel\index{Präzessionskegel} bezeichnet. Wir benutzen den Begriff Präzession ausschließlich für den schweren Kegel, \dh einem nicht kräftefreien Kegel (\kap{bew_Kreisel_schwer}).} & $\vartheta_\text{N}$\hfill\eqref{eq:bew_Nutationswinkel}
+               & $\vec{\Sigma}'$ & $\vec{f}$ um $\vec{L}$      &           & $\Omega'=\omega_\perp'/\sin\vartheta_\text{N}$\\
+Nutationskegel & $\vartheta_\text{N}$\hfill\eqref{eq:bew_Nutationswinkel}   
+               & $\vec{\Sigma}\phantom' $ & $\vec{L}$ um $\vec{F}$      &           & $\Omega = L/J_{12} = J_3\,\omega_3' /\lk J_{12}\,\cos\vartheta_\text{N} \rk$ \\
+Rastpolkegel   & $\alpha_\text{RPK}$\hfill\eqref{eq:bew_Nutation_alphaRPK} 
+               & $\vec{\Sigma}\phantom' $ & $\vec{\omega}'$ um $\vec{f}$& $\varphi$ & $\Omega = L/J_{12} = J_3\,\omega_3  /\lk J_{12}\,\cos\vartheta_\text{N} \rk$ \\
+Polkegel       & $\alpha_\text{PK}$\hfill\eqref{eq:bew_Nutation_alphaPK}  
+               & $\vec{\Sigma}'$ & $\vec{\omega}$ um $\vec{L}$ & $\psi$    & $\Omega'=\omega_\perp'/\sin\vartheta_\text{N}$\\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{tabular}
+\label{tab:bew_KfSymmKrNutation}
+\end{table}
+
+Im Allgemeinen wird bei einem symmetrischen Kegel, der in Rotation versetzt wird,
+die Figurenachse mit der Drehimpulsachse zusammenfallen.
+Man kann sich aber ein Auseinanderfallen dieser beiden Achsen \zb dadurch entstanden denken,
+dass die ursprünglich kollineare Ausrichtung von Drehimpuls- und Figurenachse
+durch einen Stoß oder eine interne Massenverlagerung gestört wird.
+Letzteres ist \zb bei der Erde der Fall.
+Ihre Symmetrieachse fällt wegen sich verändernder Masseverteilungen (\zb durch Vegetationsperioden)
+nicht genau mit ihrer Drehachse zusammen. Letztere verläuft durch den Schwerpunkt des Erdkörpers.
+Deswegen \anf{taumelt} (nutiert) auch der Erdkörper (\probref{bew_Polbewegung}).%
+\footnote{Wir werden im nachfolgenden Kapitel sehen, dass noch andere, wesentlich größere Effekte auf den Erdkreisel wirken.}
+
+\subsubsection{Bewegung eines schweren symmetrischen Kreisels} \index{Kreisel!schwerer!|textbf}\label{kap:bew_Kreisel_schwer}
+
+Unter einem \anf{schweren} Kreisel versteht man einen starren Körper, dessen Unterstützungs\-punkt nicht mit dem Schwerpunkt des Körpers übereinstimmt. %Wir haben bei diesem folglich ein von Null verschiedenes Drehmoment. 
+Befindet sich ein solcher Kreisel in einem Schwerefeld so bewirkt die Gewichtskraft ein Drehmoment $\vec{M}_\text{D}$, welches die Bewegung des Kreisels beeinflusst (\figref{bew_SchwererKreisel}). 
+
+In die Kreiselgleichungen \eqref{eq:bew_EulerGleichung02} muss nun das Drehmoment 
+%\textit{Segway}\footnote{Der Segway Personal Transporter ist ein elektrisch angetriebenes Einpersonen-Fahrzeug mit nur zwei auf derselben (geometrischen) Achse liegenden Rädern, das sich durch eine elektronische Antriebsregelung selbst in Balance hält. Ein elektronischer Regelkreis lässt den Segway automatisch in die Richtung fahren, in die sich der Fahrer lehnt. Sobald die Kreisel-Neigungssensoren (Halbleiter-Gyroskope) registrieren, dass sich der Fahrer nach vorne oder hinten neigt, drehen die Räder in die entsprechende Richtung.}, 
+\begin{equation*}
+  \MD = \vec{s} \times m \,\vec{g} = s \,\vecpeZ \times m \,\vec{g}
+\end{equation*}
+bezüglich des Unterstützungspunktes eingesetzt werden. Dies kann im Allgemeinen eine sehr aufwendige Lösung erfordern.
+
+%\begin{figure}
+  %\includegraphics[width=\textwidth]{SchwererKreisel01.pdf}
+  %\caption[Schwerer symmetrischer Kreisel.]{Beispiele eines schweren
+    %symmetrischen Kreisels. a) Der Unterstützungspunkt (hier die Auflage auf
+    %dem Boden) stimmt nicht mit dem Schwerpunkt überein. Dadurch wirkt
+    %ein Drehmoment auf den Kreisel, das die Bewegung beeinflusst. Das Drehmoment greift am Schwerpunkt an und zeigt in die Papierebene hinein. b) Anwendung des Prinzips des schweren Kreisels im maritimen Kreiselkompass. Einblick in einen Kreiselkompass der Firma  Anschütz-Raytheon.
+    %}\label{abb:bew_SchwererKreisel}
+%\end{figure}
+\begin{figure}
+  \includegraphics[width=\textwidth]{SchwererKreisel.pdf}
+  \caption[Schwerer symmetrischer Kreisel.]{Beispiel  eines schweren
+    symmetrischen Kreisels. Der Unterstützungspunkt (hier die Auflage auf
+    dem Boden) stimmt nicht mit dem Schwerpunkt überein. Dadurch wirkt
+    ein Drehmoment auf den Kreisel, das die Bewegung beeinflusst. Das Drehmoment greift am Schwerpunkt an und zeigt in die Papierebene hinein.}\label{abb:bew_SchwererKreisel}
+\end{figure}
+
+Wir wollen wieder einen besonders interessanten Spezialfall betrachten. Dazu gehen wir davon aus, dass die Figurenachse $\vec{f}=\vecpeZ$,\,$\vec{\omega}$ und $\vec{L}$ parallel zueinander liegen und dies im wesentlichen auch so bleibt, weil das Drehmoment nur eine kleine Änderung der Bewegung hervorruft. Mit dieser Annahme steht das Drehmoment wegen
+	\[\MD = m \, g \,\vecpeZ \times \veceZ \;\propto \;\vec{L} \times \veceZ\]
+senkrecht zum Drehimpuls, da es senkrecht zur Figurenachse gerichtet ist. Die Darstellung in \figref{bew_SchwererKrPraezessionL}a verdeutlicht dies.
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{SchwererKrPraezessionL.pdf}
+  \caption[Drehmoment auf einen schweren Kreisel.]{Präzession aufgrund eines
+    Drehmoments am schweren symmetrischen Kreisel für den nutationsfreien
+    Spezialfall, in dem der Drehimpuls $\vec{L}$, die Rotationsachse
+    $\vec{\omega}$ und die Figurenachse $\vec{f}=\vecpeZ$ aufeinander liegen.
+    Durch die Gewichtskraft wirkt ein Drehmoment, das senkrecht zum Drehimpuls
+    liegt und dessen Richtung ändert. Es ergibt sich eine Rotation des
+    Drehimpulses um die $\veceZ$-Achse. 
+		%c) Präzession und Nutation des schweren symmetrischen Kreisels überlagert.
+    \label{abb:bew_SchwererKrPraezessionL}}
+\end{figure}
+%
+Das Drehmoment folgt aus
+\begin{equation*}
+  \MD = \vec{s} \times \vec{F}_\mathrm{G} = \left ( s \sin\vartheta\,
+    \vec{e}_\varrho + s \cos \vartheta \, \veceZ \right ) \times
+  (-mg)\,\veceZ = m\,g\,s\sin\vartheta \, \vec{e}_\varphi \; ,
+\end{equation*}
+wobei hier Zylinderkoordinaten ($\vec{e}_\varrho, \vec{e}_\varphi, \vec{e}_z = \vec{e}_3$) für das raumfeste Koordinatensystems $\vec{\Sigma}$
+eingeführt wurden. Die Aufteilung des Drehimpulses erfolgt in eine Komponente parallel zur
+$\veceZ$-Achse und eine senkrecht dazu. In Zylinderkoordinaten lässt
+sich das schreiben als (\figref{bew_SchwererKrPraezessionL}b)
+\begin{align*}
+  \vec{L} &= L_\varrho \,\vec{e}_\varrho + L_3 \,\veceZ \,,
+            \intertext{woraus sich für die Zeitableitung ergibt}
+            \frac{\D}{\D t} \vec{L} &= \dot{L}_\varrho \, \vec{e}_\varrho +  L_\varrho\,\dot{\vec{e}}_\varrho + \dot{L}_3 \,\veceZ
+                                      = \dot{L}_\varrho \,\vec{e}_\varrho +  L_\varrho \,\dot{\varphi} \, \vec{e}_\varphi + \dot{L}_3 \,\veceZ \\
+          &\overset{!}{=} \MD = m\,g\,s\, \sin\vartheta \, \vec{e}_\varphi = \text{const} \, \vec{e}_\varphi\; .
+\end{align*}
+Daraus liest man sofort wegen $\D (L^2) / \D t = 2\,\vec{L}\,\D \vec{L}/\D t $ ab, dass auch $ L = \D \left| \vec{L}\right|/\D t = 0$ und 
+\begin{equation}
+  \dot{\varphi} = \frac{m \,g \,s \,\sin\vartheta}{L_\varrho} = \frac{m\, g\, s\, \sin\vartheta}{\left | \vec{L} \right | \sin\vartheta} = \frac{m\, g\, s}{\left | \vec{L} \right |} = \frac{m\, g\, s}{J_3 \,\omega_F} = \con  = \omega_P \label{eq:bew_SchwererKr01}
+\end{equation}
+gelten. Hier ist wobei $\omega_\text{F}$ die Kreisfrequenz der schnellen Drehbewegung um die
+Figurenachse. Die Komponenten $L_\varrho$ und $L_3$ und damit der Betrag
+des Drehimpulses sind, wie es sein muss, konstant.
+Im betrachteten Spezialfall folgt die Figurenachse der Bewegung des
+Drehimpulses und im Ergebnis erhält man eine Drehung des schweren symmetrischen
+Kreisels mit der Winkelgeschwindigkeit
+\begin{equation}
+  \omega_P = \frac{m\, g\, s}{J_3\,\omega_\text{F}} \label{eq:bew_SchwererKr02}
+\end{equation}
+um die $\veceZ$-Achse. Diese Bewegung heißt \emph{Präzession}\index{Präzession} und $\omega_P$ wird
+\emph{Präzessionskreisfrequenz} oder oft auch kurz \emph{Präzessionsfrequenz}\index{Präzessionsfrequenz} genannt. Ausführlicher, insbesondere über den hier
+gewählten Spezialfall hinaus, erfolgt die Betrachtung in
+\kap{bew_SchwererSymmKr}. Dafür führen wir jedoch zunächst den
+Lagrange-Formalismus für den starren Körper ein.
+
+\subsection{Lagrange-Formalismus für einen Kreisel}\index{Lagrange-Formalismus} \label{kap:bew_Lagrange_StarrerK}
+
+Der Lagrange-Formalismus für starre Körper folgt in allen Punkten den in 
+\kap{bew_lagrange_formalism} dargelegten Grundzügen für Massepunkte.
+Als besondere Zwangsbedingung kommt hinzu,
+dass sich die Massepunkte des Systems nicht unabhängig voneinander
+bewegen können.
+Die einzigen verbleibenden Freiheitsgrade sind diejenigen,
+die bereits durch die Betrachtung der kinetischen Energie in
+\kap{bew_StarrerK_kin_Energie} offensichtlich wurden, nämlich
+die Position des Schwerpunkts $\vec{R}_S$ und die aktuelle Rotation
+$\vec{\xi}$ des Körpers.
+Dabei entspricht die Rotation $\vec{\xi}$ drei
+Freiheitsgraden und kann beispielsweise durch die Angabe einer Drehachse (2
+Koordinaten) und eines Drehwinkels (1 Koordinate) oder durch die drei
+Euler-Winkel beschrieben werden.
+Insgesamt haben wir es also bei einem
+freien starren Körper mit sechs Freiheitsgraden zu tun.
+Diese können
+durch zusätzliche Zwangsbedingungen (\zb Einspannen am Schwerpunkt und
+somit $\vec{R}_S = \conv$) weiter eingeschränkt werden.
+
+Gibt es keine weiteren Einschränkungen, sind geeignete generalisierte
+Koordinaten bereits durch $\vec{R}_S$ und $\vec{\xi}$ gegeben.
+Für den allgemeinen freien starren Körper erhält man die kinetische
+Energie nach Gleichungen \eqref{eq:bew_Kin_Energie_starrerK} und
+\eqref{eq:bew_Trot_starrerK}, nämlich
+\begin{equation}
+  T = T_\mathrm{trans} + T_\mathrm{rot}
+  = \frac{1}{2} M\,{\vec{V}_S}^2 +  \frac{1}{2} \vec{\omega}^T \underline{\vec{\Theta}} \,\vec{\omega} 
+  \label{eq:bew_Lagrange_starrerK1}
+\end{equation}
+mit $\vec{V}_S = \dot{\vec{R}}_S$ und $\vec{\omega} = \dot{\vec{\xi}}$.
+
+Das Potential kann im allgemeinen Fall sowohl von der Position des
+Schwerpunkts $\vec{R}_S$ als auch der Lage des Körpers $\vec{\xi}$
+abhängen, sodass man die allgemeine Lagrange-Funktion
+\begin{equation}
+  \mathcal{L}(\vec{R}_S,\vec{\xi},\vec{V}_S,\vec{\omega}) =
+  T(\vec{V}_S,\vec{\omega}) - U(\vec{R}_S,\vec{\xi})
+= \frac{1}{2} M\,{\vec{V}_S}^2 +  \frac{1}{2} \vec{\omega}^T \underline{\vec{\Theta}} \,\vec{\omega} - U(\vec{R}_S,\vec{\xi})
+\end{equation}
+erhält.
+In vielen Anwendungen ist man jedoch wieder nicht an der Bewegung
+des Schwerpunkts interessiert.
+Das gilt insbesondere für Fälle, in denen
+der starre Körper keine Translation ausführt.
+In diesem Fall reduziert sich die Lagrange-Funktion auf
+\begin{equation}
+  \mathcal{L}(\vec{\xi},\vec{\omega}) = T(\vec{\omega}) - U(\vec{\xi}) =
+  \frac{1}{2} \,\vec{\omega}^T \underline{\vec{\Theta}} \,\vec{\omega} - U(\vec{\xi})
+  ~.   \label{eq:bew_Lagrange_starrerK2}
+\end{equation}
+Für viele Anwendungen stellen die in \kap{bew_EulerWinkel}
+eingeführten Euler-Winkel eine geeignete und elegante Darstellung bereit.
+Mit der Annahme, dass das körperfeste Koordinatensystem ein Hauptachsensystem
+ist, beträgt die kinetische Energie
+\begin{equation*}
+  T(\vec{\omega}) = \frac{1}{2} \lk J_1 \omega_1'^2 + J_2 \omega_2'^2
+    + J_3 \omega_3'^2 \rk
+\end{equation*}
+\bzw mithilfe der Euler-Winkel \eqref{eq:bew_EulerWinkel} ausgedrückt
+\begin{equation*}
+  T(\vec{\omega}) = \frac{1}{2} \left ( J_1\,(\dot{\varphi} \sin\vartheta \sin
+    \psi + \dot{\vartheta} \cos\psi)^2 + J_2 \,(\dot{\varphi} \sin\vartheta \cos
+    \psi - \dot{\vartheta} \sin\psi)^2
+    + J_3 \,(\dot{\varphi} \cos\vartheta + \dot{\psi})^2 \right ) \,. 
+\end{equation*}
+Die Lagrange-Funktion lautet dann
+\begin{multline}
+  \mathcal{L}(\varphi,\vartheta,\psi,\dot{\varphi},\dot{\vartheta},\dot{\psi})
+  = \frac{1}{2} \Bigl ( J_1 (\dot{\varphi} \sin\vartheta \sin
+    \psi + \dot{\vartheta} \cos\psi)^2 + J_2 (\dot{\varphi} \sin\vartheta \cos
+    \psi - \dot{\vartheta} \sin\psi)^2 \\
+    + J_3 (\dot{\varphi} \cos\vartheta + \dot{\psi})^2 \Bigr )
+  -U(\varphi,\vartheta,\psi) ~ .  \label{eq:bew_Lagrange_starrerK3}
+\end{multline}
+
+\subsection{Dynamik des schweren symmetrischen Kreisels}\index{Kreisel!schwerer symmetrischer} \label{kap:bew_SchwererSymmKr}
+
+Eine typische Anwendung, die den Vorteil des Lagrange-Formalismus sichtbar
+macht, ist der symmetrische schwere Kreisel aus
+\figref{bew_SchwererKreisel}.
+Ausgedrückt in den Euler-Winkeln lautet seine Lagrange-Funktion mit $J_{12}=J_1=J_2$
+\begin{equation}
+  \mathcal{L} = \frac{J_{12}}{2}\, \left ( \dot{\varphi}^2 \sin^2\vartheta + \dot{\vartheta}^2
+\right ) + \frac{J_3}{2}\, \left (\dot{\varphi} \cos\vartheta + \dot{\psi}
+\right )^2 - m\,g\,s\,\cos{\vartheta} \,.  \label{eq:bew_Lagrange_starrerK4}
+  \end{equation}
+  Die Koordinaten $\varphi$ und $\psi$ sind zyklisch (das Potential hängt nur von $\vartheta$ ab)
+  und führen direkt auf die beiden Erhaltungsgrößen
+  \begin{align*}
+    p_\psi &= \frac{\partial \mathcal{L}}{\partial \dot{\psi}} =
+    J_3 \left ( \dot{\varphi} \cos\vartheta + \dot{\psi} \right )
+             = J_3 \,\omega_3 = \con
+    \intertext{und}
+    p_\varphi &= \frac{\partial \mathcal{L}}{\partial \dot{\varphi}}
+    = J_{12} \, \dot{\varphi} \sin^2\vartheta + J_3 \left ( \dot{\varphi}
+                \cos\vartheta + \dot{\psi} \right ) \cos\vartheta =
+    J_{12}\, \dot{\varphi} \sin^2\vartheta + J_3\,\omega_3 \cos\vartheta = \con\,.
+  \end{align*}
+  Aus ihnen lassen sich die Zeitentwicklungen der Winkel $\varphi$ und $\psi$ zu
+  \begin{align}
+	\begin{split}
+    \dot{\varphi} &= \frac{p_\varphi - J_3 \, \omega_3 \cos\vartheta}{J_{12} \sin^2
+    \vartheta} ~ , \\ 
+    \dot{\psi} &= \omega_3 - \frac{p_\varphi - J_3 \, \omega_3 \cos\vartheta}
+    {J_{12} \sin^2 \vartheta} \cos\vartheta ~ 
+	\end{split} \label{eq:bew_Lagrange_starrerK4a}
+  \end{align}
+  berechnen. Eine weitere Erhaltungsgröße ist die Gesamtenergie $E = T + U$.
+  Setzt man in diese das Wissen \eqref{eq:bew_Lagrange_starrerK4a} über $\dot{\varphi}$ und $\dot{\psi}$ 
+	 ein, erhält man
+  \begin{align}
+    E &= \frac{J_{12}}{2} \,\left ( \dot{\varphi}^2 \sin^2\vartheta
+      + \dot{\vartheta}^2 \right )
+    + \frac{J_3}{2}\, \left (\dot{\varphi} \cos\vartheta + \dot{\psi} \right )^2
+    + mg s \cos{\vartheta} \nonumber \\
+    &=  \frac{J_{12}}{2} \,\dot{\vartheta}^2 + \underbrace{\frac{\left ( p_\varphi - J_3 \,\omega_3\,
+        \cos\vartheta \right )^2}{2 J_{12} \,\sin^2\vartheta}
+      + \frac{J_3}{2}\, \omega_3^2 + m\,g\,s\,\cos{\vartheta}}_{U_\mathrm{eff}(\vartheta)}
+      = \frac{J_{12}}{2}\, \dot{\vartheta}^2 + U_\mathrm{eff}(\vartheta) ~.
+			\label{eq:bew_Lagrange_starrerK4b}
+  \end{align}
+Die Energie hängt nur noch von $\dot{\vartheta}$ und einem effektiven Potential $U_\mathrm{eff}(\vartheta)$ ab, das wiederum eine Funktion nur von $\vartheta$ ist.
+Dieses Potential hat für die Kreiselparameter
+$m=\SI{1}{\kg}$ (Masse), $J_3 = \SI{0.6}{\kg\metre\squared}$, $J_{12} = \SI{0.4}{\kg\metre\squared}$ (Trägheitsmomente), $\omega_3 = \SI{1}{\per\s}$ (Rotationskreisfrequenz der Figurenachse), $s=\SI{20}{\centi\metre}$ (Abstand des Auflagepunktes zum Schwerpunkt) und dem
+Verhältnis der zyklischen \anf{Impulse}
+		\[\frac{p_\varphi}{p_\psi} = \frac{p_\varphi}{J_3\,\omega_3} = \frac{1}{3}
+	\] die in \figref{bew_SchwererKrPot} dargestellte Form.
+  Daraus gewinnt man eine isolierte Bewegungsgleichung für $\vartheta$,
+  \begin{equation}
+    J_{12} \ddot{\vartheta} = \frac{\left ( p_\varphi - J_3\, \omega_3
+        \cos\vartheta \right )^2}{J_{12} \sin^3\vartheta} \cos\vartheta
+    -J_3\, \omega_3 \,\frac{p_\varphi-J_3\, \omega_3\cos\vartheta}{J_{12}\sin\vartheta}
+    + m\,g\,s\,\sin\vartheta \; . \label{eq:bew_Lagrange_starrerK4c}
+  \end{equation}
+  Diese Gleichung kann im Allgemeinen nur numerisch gelöst werden.
+  Für verschiedene Gesamtenergien $E$, die durch die verschiedenen Linien im Potentialdiagramm dargestellt 
+	sind, haben wir die Bewegungsabläufe im \mscr{} \mlbewref{SchwererKreiselPraez02.m}
+  für den Winkel des Drehimpulses zur $z$-Achse (dem Euler-Winkel $\vartheta$) beispielhaft berechnet
+  und in \figref{bew_SchwererKrPtheta} dargestellt. 
+
+\begin{figure}
+\begin{minipage}{\textwidth}
+\leftfigure{\includegraphics[width=0.9\textwidth]{SchwererKrPot.pdf}}%
+\hspace{\fill}
+\rightfigure{\includegraphics[width=0.9\textwidth]{SchwererKrPtheta.pdf}}
+\leftcaption[Effektives Potential eines schweren Kreisels.]{Effektives Potential eines schweren Kreisels als Funktion des Euler-Winkels $\vartheta$.} \label{abb:bew_SchwererKrPot}
+\rightcaption[Dynamik des Euler-Winkels $\vartheta$ beim schweren Kreisel.]{Dynamik des Euler-Winkels $\vartheta$ beim schweren Kreisel für verschiedene Energien (Werte aus Abb.\ \figref{bew_SchwererKrPot}).}\label{abb:bew_SchwererKrPtheta}
+\end{minipage}
+\end{figure}
+
+  Man erkennt deutlich, wie die Bewegung am linken und rechten Rand des
+  Potentials umkehrt. Der Neigungswinkel des Kreisels vollführt eine periodische
+  Bewegung zwischen diesen Extremwerten, die bei geringer Energie noch nahezu harmonisch ist,
+  für höhere Energien aufgrund der Steilheit des Potentials aber in nickähnliche Bewegungen übergeht.
+  Da der Drehimpulsvektor in diesem Fall nicht mit der Figurenachse und der Richtung der Winkelgeschwindigkeit $\vec{\omega}$ 
+  übereinstimmt, ist die Wirkung des Drehmoments mit einer Nutation\index{Nutation} überlagert
+  und die gesamte Bewegung des Kreisels inklusive der Veränderungen von $\psi$ und $\varphi$ relativ kompliziert.
+	
+\subsubsection{Schwerer Kreisel ohne Nutation}\label{kap:bew_SchwererSymmKr_O_Nutation}
+
+  Wir können zunächst für sehr geringe Energien diese zusätzliche Nutationsbewegung vernachlässigen und erhalten  eine reine Präzession\index{Präzession!reine}%
+  \footnote{Mitunter wird diese Präzession ohne begleitende Nutation auch \textit{reguläre Präzesssion}\index{Präzession!reguläre} oder \textbf{astronomische Präzession} genannt. Letzterer Begriff wird in \kap{bew_praez_erde} klarer werden. Zur unterschiedlichen Verwendung von Begrifflichkeiten siehe auch die Bemerkungen in \kap{bew_Kreisel_kraeftefrei}.},
+  also eine Drehung der Drehimpulsachse des Kreisels im Raum durch die Wirkung
+  des Drehmoments. Diese erhält man exakt als Spezialfall, wenn die
+  Anfangsbedingungen so gewählt werden, dass $\vartheta(t=0)$ sich gerade im
+  Minimum des effektiven Potentials befindet und damit die Anfangswinkelgeschwindigkeit $\dot{\vartheta}(t=0) = 0$ ist. 
+  Das Ergebnis für diesen Spezialfall ist in \figref{bew_SchwererKrEuler_o_N} dargestellt,
+  hierbei ergibt sich eine stabile
+  Neigung $\vartheta$ der Figurenachse. Diese dreht sich jedoch durch
+  das wirkende Drehmoment im Raum, wie an der linearen Zunahme von $\varphi$
+  zu sehen ist. Dabei führt der Kreisel eine Eigendrehung mit der
+  Frequenz $\dot{\psi}$ um die Figurenachse aus.
+\begin{figure}
+\begin{minipage}{\textwidth}
+\leftfigure{\includegraphics[width=0.45\textwidth]{SchwererKrEulerWohneN.pdf}}%
+\hspace{\fill}
+\rightfigure{\includegraphics[width=0.45\textwidth]{SchwererKrEulerWmitN.pdf}}
+\leftcaption[Dynamik der Euler-Winkel ohne Nutation.]{Dynamik der Euler-Winkel beim schweren Kreisel ohne Nutation.}\label{abb:bew_SchwererKrEuler_o_N}
+\rightcaption[Dynamik der Euler-Winkel mit Nutation.]{Dynamik der Euler-Winkel beim schweren Kreisel mit Nutation.  Man erkennt am Winkel $\vartheta$ die Nickbewegungen der Nutation, ebenso ist die Eigendrehung um die Figurenachse von der Nutation überlagert.} \label{abb:bew_SchwererKrEuler_m_N}
+\end{minipage}
+\end{figure}
+
+\subsubsection{Schwerer Kreisel mit Nutation}\label{kap:bew_SchwererSymmKr_M_Nutation}
+
+Für den allgemeineren Fall mit  $\dot{\vartheta}(t=0) \neq 0$ ist der Bewegungsablauf im \mscr{} \mlbewref{SchwererKreiselSim.m} berechnet und in \figref{bew_SchwererKrEuler_m_N} dargestellt. Deutlich erkennbar sind die Nickbewegungen sowohl im Winkel $\vartheta$ als auch im Winkel $\varphi$.\\
+Die Präzession und die Nutation des Erdkreisels spielen, wie bereist erwähnt, 
+in der Astronomie und der Himmelsmechanik (Band II, Kapitel 3) 
+eine wichtige Rolle.
+Da die Erde nahezu ein Rotationsellipsoid ist, bewirkt seine Äquatorwulst, dass die Gezeitenkräfte von Mond und Sonne ein Drehmoment erzeugen, das die Erdachse aufzurichten versucht und zur Präzession der Erdachse führt (sogenannte \emph{lunisolare Präzession})\index{Präzession!lunisolare|textbf}.
+Die Erdachse bewegt sich dadurch auf einem Präzessionskegel um eine Achse, die in etwa rechtwinklig auf der Ebene der Erdbahn um die Sonne steht. Der (nahezu) konstante Winkel zwischen der Erdachse und der Achse des Kegels ist die sogenannte Schiefe der Ekliptik; diese beträgt derzeit etwa $23.44\degree$. Ein voller Umlauf dieser Präzessionsbewegung der Erdachse dauert etwa $\SI{25700}{}$ bis $\SI{25850}{}$ Jahre.\footnote{Die Beiträge zur astronomischen Präzession sind vor allem 
+die Gezeitenkräfte von Mond und Sonne, aber auch Beiträge anderer Planeten und Effekte der Allgemeinen Relativitätstheorie.
+Alle diese Beträge sind nicht konstant. Daher kann die Präzessionsperiode bisher nur auf etwa ein Jahrhundert angegeben werden.} (siehe \kap{bew_praez_erde}).
+

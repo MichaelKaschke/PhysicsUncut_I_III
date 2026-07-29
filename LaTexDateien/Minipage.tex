@@ -1,0 +1,202 @@
+\thispagestyle{empty}
+\newgeometry{paperwidth=14cm, paperheight=21cm, oneside}
+\hspace{-1cm}
+\begin{minipage}[t]{0.45\textwidth}
+\begin{scriptsize}
+
+\subsection*{Zylinderkoordinaten}
+\begin{align*}
+    x_1 &\equiv x  = \varrho\,\cos\phi && \hat{e}_\varrho = \cos\phi\,\hat{e}_1 + \sin\phi\,\hat{e}_2 \\
+    x_2 &\equiv y  = \varrho\,\sin\phi && \hat{e}_\phi = \cos\phi\,\hat{e}_2 + \sin\phi\,\hat{e}_1\\
+    x_3 &\equiv z &&\hat{e}_\text{z}\,\, = \hat{e}_3
+\end{align*}
+\vspace{-0.5cm}
+\begin{align*}
+    dV &= d^3x = \varrho\,d\varrho\,d\phi\,dz \\
+    \nabla f &= \hat{e}_\varrho \frac{\d f}{\d \varrho} + \hat{e}_\phi \frac{\d f}{\d \phi} + \hat{e}_\text{z} \frac{\d f}{\d z} \\
+    \Delta f &= \underbrace{\frac{1}{\varrho}\,\frac{\d}{\d \varrho}\lk \varrho\,\frac{\d f}{\d \varrho\rk}}_{\substack{\frac{\d^2 f}{\d \varrho^2} + \frac{1}{\varrho}\,\frac{\d f}{\d \varrho}}}+ \frac{1}{\varrho^2}\,\frac{\varrho^2 f}{\d \phi^2} + \frac{\d^2 f}{\d z^2}
+\end{align*}
+
+\subsection*{Kugelkoordinaten}
+\subsubsection*{(sphärische \\ Polarkoordinaten)}
+\begin{align*}
+    x_1 &\equiv x = r\,\sin\theta\,\cos\phi \\
+    x_2 &\equiv y = r\,\sin\theta\,\sin\phi \\
+    x_3 &\equiv z = r\,\sin\theta 
+\end{align*}
+\vspace{-0.5cm}
+\begin{align*}
+    dV = d^3x = r^2\,dr\,d\Omega = r^2\,dr\,\sin\theta\,d\theta\, d\phi
+\end{align*}
+\vspace{-0.5cm}
+\begin{align*}
+    \hat{e}_\text{r} &= \sin\theta\,\cos\phi\,\hat{e}_1 + \sin\theta\,\sin\phi\,\hat{e}_2 + \cos\theta\,\hat{e}_3 \\
+    \hat{e}_\theta &= \cos\theta\,\cos\phi\,\hat{e}_1 + \cos\theta\,\sin\phi\,\hat{e}_2 - \sin\theta\,\hat{e}_3 \\
+    \hat{e}_\phi &= \cos\phi\,\hat{e}_2 - \sin\phi\,\hat{e}_1 \\
+    \nabla f &= \hat{e}_\text{r}\,\frac{\d f}{\d r} + \hat{e}_\theta\,\frac{1}{r}\,\frac{\d f}{\d \theta} + \hat{e}_\phi\,\frac{1}{r\,\sin\theta}\,\frac{\d f}{\d \phi}  
+\end{align*}
+\vspace{-0.5cm}
+\begin{align*}
+    \Delta f &= \lk \Delta_\text{r} + \frac{1}{r^2}\,\Delta_\Omega\rk\,f \\
+    \Delta_\text{r} &:= \frac{1}{r^2}\,\frac{\d}{\d r}\,r^2\,\frac{\d}{\d r} \equiv \frac{1}{r}\,\frac{\d^2}{\d r^2} \equiv \frac{\d^2}{\d r^2} + \frac{2}{r}\,\frac{\d}{\d r} \\
+    \Delta_\Omega &:= \frac{1}{\sin\theta}\,\frac{\d}{\d\theta}\,\sin\theta\,\frac{\d}{\d \vartheta} + \frac{1}{\sin^2\vartheta}\,\frac{\d^2}{\d \phi^2}
+\end{align*}
+
+\end{scriptsize}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.45\textwidth}
+\begin{scriptsize}
+\subsection*{Vektorrechnung}
+\subsubsection*{Dreidimensional}
+
+\begin{align*}
+    a\,\lk b \times c\rk &= b\,\lk c\times a\rk = c\,\lk a \times b\rk \\
+    a\times \lk b\times c\rk &= \lk a\,c\rk\,b-\lk a\,b\rk\,c \\
+    \lk a \times b\rk\, \lk c \times d\rk &= \lk a\,c\rk\,\lk b\,d\rk - \lk a\,d\rk\,\lk b\,c\rk \\
+    \lk a \times b\rk^2 &= a^2\,b^2-\lk a\,b\rk^2
+\end{align*}
+Kronecker-Symbol:
+\begin{align*}
+    \delta_\text{i, j} = \left\{\begin{array}{rcl}1 & \text{wenn}\, i = j\\0 &\text{wenn}\,  i\neq j \end{array}\right
+\end{align*}
+Levi-Civita-Symbol:
+\begin{align*}
+    \delta_\text{i, j} = \left\{\begin{array}{rcl}+1 & \text{wenn $ijk$ gerade Permutation von 123}\\ -1 &\text{wenn $ijk$ ungerade Permutation von 123} \\ 0 & \text{sonst} \end{array}\right \\
+    \vspace{1cm}
+    \epsilon_\text{ijk}\,\epsilon_\text{lmk} = \delta_\text{il}\,\delta_\text{jm} - \delta_\text{im}\,\delta_\text{jl}, ~~~~~~ \epsilon_\text{ijk}\,\epsilon_\text{ljk} = 2\,\delta_\text{il}
+\end{align*}
+Einstein'sche Summenkonvention (kartesiche Koordinaten):
+\begin{align*}
+    a\,b = a_\text{i}\,b_\text{i} \equiv \sum\limits_{i=1}^{3}\,a_\text{i}\,b_\text{i}, ~~~~~~ \lk  a\times b \rk_\text{i} = \epsilon_\text{ijk}\,a_\text{j}\,b_\text{k}
+\end{align*} 
+Ableiten von skalraren Feldern $\phi\lk r\rk$, Vektorfeldern $X\lk r\rk$:
+\begin{align*}
+    \text{Gradient:} ~~ &\textbf{grad}\phi = \nabla\phi ~~~~ \text{bzw.} ~~~~ \lk \nabla\phi\rk_\text{i} = \d_\text{i}\phi \\
+    \text{Divergenz:} ~~ &\text{div}\,X = \nabla\,X = \d_\text{i}\,X_\text{i} \\
+    \text{Rotation:} ~~ &\textbf{rot}\,X = \nabla\times X ~~~~ \text{bzw.} ~~~~ \lk \textbf{rot X}\rk_\text{i} = \epsilon_\text{ijk}\,\d_\text{j}\,X_\text{k}
+\end{align*}
+Zweite Ableitungen:
+\begin{align*}
+    \text{div}\,\textbf{grad}\phi &= \nabla\,\nabla\phi = \Delta \phi \\
+    \textbf{grad}\,\text{div}\,X &= \nabla\,\lk \nabla\,X\rk \\
+    \text{div}\,\textbf{rot}\,X &= \nabla\,\lk \nabla\times X\rk = 0 \\
+    \textbf{rot grad}\phi &= \nabla\times\lk \nabla\phi \rk = 0 \\
+    \textbf{rot rot}\,X &= \nabla\times\lk \nabla\times X\rk = \nabla\,\lk \nabla\,X\rk - \Delta X
+\end{align*}
+\subsection*{Komplexe Zahlen}
+Polardarstellung komplexer Zahlen:
+\begin{align*}
+    z = x+ ij = |z|\,e^{i\phi}, ~~~~ |z| = \sqrt{x^2+y^2}, ~~~~ \tan\phi = \frac{y}{x} \\
+\end{align*}
+\vspace{-0.7cm} \\
+Euler'sche Formel:
+\begin{align*}
+    e^{i\phi} = \cos\phi + i\,\sin\phi
+\end{align*}
+\end{scriptsize}
+\end{minipage}
+\newpage
+%------------------------------------------
+%-------------------------------------------
+%---------------------------------------------
+\thispagestyle{empty}
+\newgeometry{paperwidth=14cm, paperheight=21cm, oneside}
+\hspace{-1cm}
+\begin{minipage}[t]{0.45\textwidth}
+\begin{scriptsize}
+\subsection*{Mechanik}
+Lagrange-Gleichungen erster Art: 
+\begin{align*}
+    m_\text{i}\,\ddot{x}_\text{i} = F_\text{i} + \sum\limits_{a=1}^{r}\lambda_\text{a}\,\nabla_\text{i}\,f_\text{a}, 
+\end{align*}
+\vspace{-0.5cm}
+\begin{align*}
+    f_\text{a}\lk t, x_1, ..., x_\text{N}\rk = 0
+\end{align*}
+Lagrange-Gleichungen zweiter Art:
+\begin{align*}
+    \frac{d}{dt}\,\frac{\d T}{\d q_\text{j}}=Q_\text{j}, ~~~~ \frac{d}{dt}\,\frac{\d L}{\d \dot{q}_\text{j}}-\frac{\d L}{\d q_\text{j}} = 0, ~~~~ L=T-U
+\end{align*}
+Hamilton'sche kanonische Gleichungen:
+\begin{align*}
+    \frac{\d H}{\d p_\text{i}} = \dot{q}_\text{i}, ~~~~ \frac{\d H}{\d q_\text{i}} = -\dot{p}_\text{i}, ~~~~ H = \sum\limits_{i}^{}\dot{q}_\text{i}\,\frac{\d L}{\d \dot{q}_\text{i}} - L
+\end{align*}
+\subsubsection*{Vierdimensional}
+Kronecker-Symbol:
+\begin{align*}
+    {\delta_\nu}^\mu = \left\{\begin{array}{rcl}1 & \text{wenn}\, \mu = \nu\\0 &\text{wenn}\,  \mu\neq \nu \end{array}\right
+\end{align*}
+Minkowski-Metrik:
+\begin{align*}
+    \lk\eta_{\mu\nu}\rk = \lk\eta^{\mu\nu}\rk = 
+    \begin{pmatrix}
+        1 & 0 & 0 & 0\\
+        0 & -1 & 0 & 0\\
+        0 & 0 & -1 & 0\\
+        0 & 0 & 0 & -1\\
+    \end{pmatrix}, 
+\end{align*}
+\vspace{-0.5cm}
+\begin{align*}
+    \eta^{\mu\nu}\,\eta_{\mu\nu} = {\delta_\nu}^\mu 
+\end{align*}
+Lorentz-invariantes Skalarprodukt \\ (mit Summenkonvention):
+\begin{align*}
+    a_\mu\,b^\mu &= \eta_{\mu\nu}\,a^\nu\,b^\mu = a_0\,b^0 + a_\text{i}\,b^{\text{i}} \\
+    &= a^0\,b^0 - a^{\text{i}}\,b^{\text{i}}
+\end{align*}
+
+\end{scriptsize}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.45\textwidth}
+\begin{scriptsize}
+\vspace{0.3cm}
+Viererortsvektor:
+\begin{align*}
+    \lk x^\mu\rk = 
+    \begin{pmatrix}
+        x^0\\
+        x^1\\
+        x^2\\
+        x^3\\
+    \end{pmatrix} 
+    \equiv
+    \begin{pmatrix}
+        c\,t\\
+        x\\
+        y\\
+        z\\
+    \end{pmatrix}, ~~~~ \mu \in \{ 0,1,2,3\}
+\end{align*}
+Vierergradient:
+\begin{align*}
+    \d_\mu \equiv \frac{\d}{\d x^\mu}, ~~~~ \lk\d_\mu\rk = \begin{pmatrix}
+        \frac{1}{c}\,\d_\text{t}\\
+        \nabla\\
+    \end{pmatrix}, 
+\end{align*}
+\vspace{-0.5cm}
+\begin{align*}
+    \lk\d^\mu\rk = \lk\eta^{\mu\nu}\,\d_\nu\rk = 
+    \begin{pmatrix}
+        \frac{1}{c}\,\d_\text{t}\\
+        -\nabla\\
+    \end{pmatrix}
+\end{align*}
+Wellen-, d'Alembert- oder Quabla-Operator:
+\begin{align*}
+    \d_\mu\,\d^\mu \equiv \d^2\equiv \square = \frac{1}{c^2}\,{\d_\text{t}}^2-\nabla^2 \equiv \frac{1}{c^2}\,{\d_\text{t}}^2 - \Delta
+\end{align*}
+Vierdimensionales Levi-Civita-Symbol:
+\begin{align*}
+    \epsilon^{\mu\nu\sigma\tau} :=  
+    \left\{\begin{array}{rcl}+1 &\text{wenn $\mu\nu\sigma\tau$ gerade Permutation von 0123}\\ -1 &\text{wenn $\mu\nu\sigma\tau$ ungerade Permutation von 0123} \\ 0 & \text{sonst} \end{array}\right
+\end{align*}
+\begin{align*}
+    \epsilon^{0123} = +1, ~~~~ \epsilon_{0123} = \eta_{00}\,\eta_{11}\,\eta_{22}\,\eta_{33}\,\epsilon^{0123} = -1
+\end{align*}
+\end{scriptsize}
+\end{minipage}
+

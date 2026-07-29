@@ -1,0 +1,342 @@
+
+
+\section{Berechnungen zu Sonnenfinsternissen}\label{kap:hm_sofis}\index{Sonnenfinsternis}\index{Mondfinsternis}
+
+Für Menschen ist eine totale Sonnenfinsternis (\figref{hm_Sofi2017})\footnote{Das Bild der totalen Sonnenfinsternis wurde mit einer Canon EOS700D und einem Celestron-Nexstar-5-Teleskop aufgenommen. Die Einzelbilder der partiellen Phasen wurden mit einer Canon 5D und einem 105-mm-Objektiv (M.~Kaschke, L.~Steger) fotografiert.} vermutlich mit eines der beeindruckendsten Phänomene, die man beobachten kann.
+Die Kombination aus Seltenheit und Kürze einer solchen bogensekundengenau eintretenden Sonnenfinsternis (Englisch: \emph{Total Eclipse}), der abrupte Wechsel von Tag zu Nacht, das stundenlange Warten darauf und die oft tagelange Anreise in die häufig weit abgelegene Totalzone und nicht zuletzt das im Allgemeinen mit Jubel begrüßte Wiedererscheinen der Sonne, all das macht das Erlebnis einer Sonnenfinsternis einzigartig und unvergesslich.
+Wenn man bedenkt, dass bereits vor über 3000 Jahren Astronomen eine solche Sonnenfinsternis auf Minuten und wenige Kilometer genau vorhersagen konnten, kann man sich vorstellen, welche (nicht nur mentale) Macht diese Astronomen, die häufig auch die Hohepriester der herrschenden Dynastien waren, über die Menschen hatten.
+Wir sind in der Lage, mit den in diesem Kapitel der Himmelsmechanik erarbeiteten Methoden und Kenntnissen diese Berechnungen selbst anzustellen.
+Wir werden dabei nahezu das gesamte \anf{Handwerkszeug}, das wir in den vorausgehenden Kapiteln kennengelernt haben, anwenden können. 
+
+\begin{figure}%
+\centering\includegraphics[width=0.7\textwidth]{Sofi2017.jpg}%
+\caption[Kompositaufnahme der Sonnenfinsternis 21.\,08.\,2017.]{Kompositaufnahme der Sonnenfinsternis 21.\,08.\,2017 am Snake River (Oregon/Idaho USA).} 
+\label{abb:hm_Sofi2017}%Sofi2006
+\end{figure}
+
+\subsection{Mondbahn und Ekliptik -- Auftreten der Finsternisse}\label{kap:basics_sofis}
+
+Wir beginnen zunächst mit der Geometrie der Finsternisse.
+Wiederum ist es bei der Betrachtung von Sonnen- und Mondfinsternissen vorteilhaft, in das geozentrische KOS zu wechseln.
+Dazu werden wir das bereits in \kapitel{hm_naeherungsformeln_sonne} benutzte geozentrische Bild der \anf{scheinbaren} Bewegung der Sonne auf der Himmelssphäre (\figref{hm_wahre_sonne_geoz}) mit der Bahn des Erdmondes ergänzen.
+Dies ist in \figref{hm_Eclipse1} zu sehen.
+Die Mondbahn hat eine Neigung von ca.$\:5\degree$ gegenüber der Ekliptik und ihre Schnittpunkte mit der Ekliptik sind als \glslink{aufstknoten}{aufsteigender ($\ascnode$)}  \index{Knoten!aufsteigender} \bzw \glslink{abstknoten}{absteigender ($\descnode$) Knoten} \index{Knoten!absteigender} gekennzeichnet.
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{Eclipse1.pdf}%
+\caption[Geozentrisches Bild der scheinbaren Bewegung von Sonne und Mond.]{Geozentrisches Bild der scheinbaren Bewegung von Sonne und Mond auf der Himmelssphäre.}%
+\label{abb:hm_Eclipse1}%GeozentrGeometrie
+\end{figure}
+
+Da von der Erde aus betrachtet die scheinbaren Durchmesser\index{Durchmesser!scheinbarer} von Sonne und Mond einen etwa gleich großen Winkeldurchmesser von $0.5\degree$ haben, erscheinen beide Himmelskörper auch gleich groß auf der Himmelssphäre.
+Die Sonne \anf{durchläuft} die Ekliptik einmal in einem tropischen Jahr.
+Der Mond braucht für einen Bahnumlauf (z.\,B. von ${\ascnode}$ bis ${\ascnode}$) einen (siderischen) Monat.
+Ebenfalls eingezeichnet ist der Schatten, den die Erdkugel auf die Himmelssphäre wirft.
+Dieser hat in der Mondentfernung etwa einen Winkeldurchmesser von $1.4\degree$.
+Man erkennt schon aus der Abbildung, dass Sonnen- und Mondfinsternisse nur in der Nähe der Knoten stattfinden können, weil es sonst nicht zu einer Position der drei Himmelskörper kommt, in der sich die Schatten von Mond und Erde überschneiden.
+In \figref{hm_Eclipse2} haben wir solche möglichen Konstellationen in der Nähe des aufsteigenden Knotens $\ascnode$\glslink{aufstknoten}\ dargestellt. 
+Wir betrachten zunächst die Situationen bei Mondfinsternissen (\figref{hm_Eclipse2}a).
+Offensichtlich gibt es eine Mondfinsternis nur bei Vollmond.
+Die Sonne muss also (im Bild nicht dargestellt) in der Nähe des absteigenden Knotens $\descnode$ der Mondbahn stehen: Der Erdschatten wandert durch den aufsteigenden Knoten $\ascnode$.
+In der dargestellten Situation von Mond und Erdschatten\index{Erdschatten} kommt es dann zu einer partiellen Mondfinsternis.
+Im Falle der Sonnenfinsternis stehen sowohl Sonne als auch Mond (und Mondschatten) in der Nähe des Knotens.
+Wir müssen uns daher von der Position des geozentrischen Beobachters lösen und einen topozentrischen Beobachter auf der Erdkugel annehmen, da wegen der Nähe des Mondes zur Erde dessen Parallaxe relativ groß ist und nicht mehr vernachlässigt werden kann.
+Folglich ist der Schattenbereich des Mondes, der von der Gesamtheit der Beobachter auf der Erdoberfläche gesehen wird, größer als der Winkeldurchmesser des Mondes.
+Mit anderen Worten: Die auf etwa $2\degree$ vergrößerten Schattenkreise enthalten alle Positionen der Mondoberfläche, die von irgendeinem Punkt auf der Erdoberfläche gesehen werden können.
+Bei einer Überdeckung eines solchen Mondschattenkreises mit der Sonne, wie in der Situation in \figref{hm_Eclipse2}b dargestellt, kommt es zu einer (partiellen) Sonnenfinsternis.
+Diese ist dann für bestimmte Punkte auf der Erdoberfläche sichtbar.
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{Eclipse2.pdf}%
+\caption[Mond, Sonne und Schattenpositionen einer möglichen Finsternis.]{Mond, Sonne und Schattenpositionen einer möglichen Mondfinsternis. \fa Mondfinsternis (MF) und \fb Sonnenfinsternis (SF) am aufsteigenden Knoten der Mondbahn.}%
+\label{abb:hm_Eclipse2}%AufsteigenederKnoten
+\end{figure}
+
+Mit diesem Verständnis ist es nun möglich, die Zeiten für eine mögliche Sonnenfinsternis (oder Mondfinsternis) zu berechnen.
+Wir müssen die Neumondzeitpunkte für Sonnenfinsternisse bzw. Vollmondzeitpunkte für Mondfinsternisse berechnen und die zu diesen Zeiten vorliegende ekliptikale geozentrische Breite des Neumondes $\beta_{\newmoon}$ bzw. Vollmondes $\beta_{\fullmoon}$ bestimmen.\footnote{Wir wollen uns im Folgenden auf die Sonnenfinsternis konzentrieren.
+Alle Herleitungen gelten völlig analog auch für die Mondfinsternis (siehe auch \probref{hm_MoFi}).}
+
+Am einfachsten bestimmt man die Neumondzeiten, indem man die Funktion $\Delta \lambda (t)$ als Differenz der geozentrisch-ekliptikalen Längen von Sonne und Mond bildet,
+\begin{equation}
+  \Delta \lambda (t) = \lambda_\text{\astrosun} (t) - \lambda_\text{M} (t) \; ,
+  \label{eq:hm_newmoon_determ}
+\end{equation}
+und die Nullstellen dieser Funktion ermittelt.\footnote{Nochmaliger Hinweis: Bei der Berechnung der Finsternis-Koordinaten ist darauf zu achten, dass man die Ephemeridenzeit ET benutzt und die Lichtlaufzeit von der Sonne zur Erde berücksichtigt.}
+Für die geozentrischen Koordinaten von Mond und Sonne haben wir in den \mscren entsprechende Routinen hinterlegt, die auch die relativ genauen analytischen Reihenentwicklungen für die Mond- und Sonnenbahn (siehe \kapitel{stoerungsrechnung}) verwenden.
+Ein Berechnungsbeispiel für die Neumondzeiten über einen Zeitraum von 100 Jahren ist in \probref{hm_MoFi} zu finden.
+
+\subsection{Schattengrößen und Orte einer totalen Sonnenfinsternis}
+In \figref{hm_Eclipse3} haben wir die Schattenkegel\index{Schattenkegel}\index{Schattengröße} eingezeichnet, die der Mond (hier auf die Erde) wirft.
+Man erkennt einen \gls{ks}bereich\index{Kernschatten} (KS) und zwei Halbschattenbereiche\index{Halbschatten} (HS).
+Je nach Abstand zwischen Erde und Mond kann es dann im KS-Bereich zur Ausbildung einer \glslink{tf}{totalen Finsternis}\index{Sonnenfinsternis!totale} (TF) oder einer \glslink{rf}{ringförmigen Finsternis}\index{Sonnenfinsternis!ringförmige} (RF) kommen.
+Wir wollen den Durchmesser des Schattenkegels auf der Erdoberfläche berechnen.
+Aus \figref{hm_Eclipse4} können wir die geometrische Beziehung ableiten.
+Wir starten mit
+\begin{align*}
+	q\sin\eta &= R_\text{M} ~~\text{und}\\
+	(q + r_\text{\astrosun M})\,\sin\eta &= R_\text{\astrosun}\,.
+\end{align*}
+Daraus folgt sofort
+\begin{align}
+	\sin\eta &= \frac{R_\text{\astrosun} - R_\text{M}}{r_\text{\astrosun M}} ~~\text{und} ~~ 
+	q = \frac{R_\text{M}\, r_\text{\astrosun M}}{R_\text{\astrosun} - R_\text{M}} \,.\label{eq:hm_sofi_basic01}
+\end{align}
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{Eclipse3.pdf}%
+\caption[Geometrie von Kern- und Halbschatten.]{Geometrie von Kern- und Halbschatten, sowie von totaler (TF), partieller (PF) und ringförmiger (RF) Sonnenfinsternis (Zur besseren Anschaulichkeit nicht maßstäblich und auch nicht in den korrekten Proportionen gezeichnet!)}%
+\label{abb:hm_Eclipse3}%Schatten- und Finsternisarten
+\end{figure} 
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{Eclipse4.pdf}%
+\caption{Schattendurchmesser einer totalen Sonnenfinsternis.}%
+\label{abb:hm_Eclipse4}%Schattendurchmesser
+\end{figure}
+
+Ferner können wir aus \figref{hm_Eclipse4} ablesen:
+\begin{equation*}
+\frac{d_\text{K}}{2} = (p-q)\,\tan\eta \,.
+\end{equation*}
+Mit der Näherung für kleine Winkel $\tan\eta\!\approx\!\sin\eta$ erhält man schließlich unter Nutzung von \eqref{eq:hm_sofi_basic01} für den Kernschattendurchmesser
+\begin{align}
+\frac{d_\text{K}}{2} &= \frac{p\,R_\text{\astrosun}}{r_\text{\astrosun M}} - \lk 1+\frac{p}{r_\text{\astrosun M}} \rk R_\text{M} ~ \nonumber\\
+\rightarrow d_\text{K}(p) &= 2R_\text{\astrosun}\lk \frac{p}{r_\text{\astrosun M}} \rk - 2 R_\text{M} \lk 1+\frac{p}{r_\text{\astrosun M}}\rk \,. \label{eq:hm_schattenkegel1}
+\end{align}
+Setzt man die Werte $2R_\text{\astrosun}\!=\! 218.4 R_\text{\earth}$ und $2R_\text{M}\!=\! 0.545 R_\text{\earth}$ ein und nimmt in guter Näherung $r_\text{\astrosun M}\!\approx\! 1\:\text{AE} - 380000\:\text{km}\pm 25000\:\text{km}$ an, dann findet man für den Kernschattendurchmesser Werte zwischen $250$ und $350\:$km.
+Das heißt, dass nur ein kleiner Teil der Erdoberfläche vom Kernschatten getroffen wird, was die oft langen Reisen zu den Finsternisorten erklärt.
+Entsprechend gilt für den Halbschattendurchmesser
+\begin{align}
+D_\text{H}(p) &= 2R_\text{\astrosun}\lk \frac{p}{r_\text{\astrosun M}} \rk + 2 R_\text{M} \lk 1+\frac{p}{r_\text{\astrosun M}}\rk \,. \label{eq:hm_schattenkegel2}
+\end{align}
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{Eclipse5.pdf}%
+\caption[Auftreffpunkt der Kernschattenachse auf der Erdoberfläche.]{Berechnung des Auftreffpunktes der Kernschattenachse auf der Erdoberfläche.}%
+\label{abb:hm_Eclipse5}%Schnittpunkt Schattenachse
+\end{figure}
+Den Ort des Auftreffens der Achse des KS-Kegels ermitteln wir mit Hilfe von \figref{hm_Eclipse5}.
+Die Achse $\vec{s}_\text{A}$ wird durch die Richtung von der Sonnenmitte zur Mondmitte definiert und kann andererseits als
+\begin{equation}
+\vec{s}_\text{A} = \frac{\vec{r}_\text{B} - \vec{r}_\text{M}}{\abs{\vec{r}_\text{B} - \vec{r}_\text{M}}} ~\label{eq:hm_achse_ks_kegel}
+\end{equation}
+beschrieben werden.
+Hierin sind $\vec{r}_\text{M}$ der geozentrische Ortsvektor des Mondes und $\vec{r}_\text{B}$ der Vektor des Auftreffpunktes der Schattenachse auf der Erdoberfläche, also dort, wo sich ein Beobachter einer TF idealerweise befinden sollte.
+Aus \figref{hm_Eclipse5} lesen wir ferner ab, dass
+\begin{align}
+	\vec{r}_\text{B} &= \vec{r}_\text{M} + p\,\vec{s}_\text{A} = \lk \begin{matrix} x_\text{M} + p \,s_{\text{A},x} \\ y_\text{M} + p \,s_{\text{A},y} \\z_\text{M} + p \,s_{\text{A},z}\end{matrix}\rk\, = \,\lk \begin{matrix} x_\text{B} \\ y_\text{B} \\ z_\text{B} \end{matrix} \rk \,, \label{eq:hm_auftreffvek}\\
+	\vec{r}_\text{B}^2 &= x_\text{B}^2 + y_\text{B}^2 + z_\text{B}^2 = R_\text{\earth}^2 \,. \label{eq:hm_auftreffvek2}
+\end{align}
+In \eqref{eq:hm_auftreffvek2} haben wir zunächst noch die Kugelgestalt der Erde angenommen.
+Setzt man nun \eqref{eq:hm_auftreffvek} in \eqref{eq:hm_auftreffvek2} ein, ergibt sich
+\begin{equation*}
+p^2 + 2p \,\vec{r}_\text{M}\,\vec{s}_\text{A} + (r_\text{M}^2 - R_\text{\earth}^2) = 0
+\end{equation*}
+mit den Lösungen
+\begin{equation}
+p = p_0 \pm \sqrt{D} \,,\label{eq:hm_lsg_p}
+\end{equation}
+worin $p_0$ und $D$ durch
+\begin{align*}
+	p_0 &= - \lk x_\text{M} e_x + y_\text{M} e_y + z_\text{M} e_z\rk ~~\text{\bzw} ~~	D = p_0^2 + R_\text{\earth}^2 - r_\text{M}^2 \,
+\end{align*}
+gegeben sind. Physikalisch sinnvoll ist nur die Lösung mit dem negativen Vorzeichen, da diese einen Punkt auf der Tagseite der Erde beschreibt.
+Die Lösung $p = p_0 + \sqrt{D}$ beschreibt einen Punkt auf der Nachtseite der Erde.
+Falls $D\!<\!0$, läuft die Schattenachse an der Erde vorbei und es kommt zu keiner Finsternis.
+Damit haben wir den \anf{Zentralort} der totalen Finsternis auf der Erdoberfläche bestimmt:
+\begin{equation}
+\vec{r}_\text{B} = \vec{r}_\text{M} + (p_0 - \sqrt{D}) \,\vec{s}_\text{A} \,. \label{eq:hm_zentralort_tot_finsternis}
+\end{equation} 
+Damit eine totale Sonnenfinsternis auftreten kann, muss gemäß \figref{hm_Eclipse5} noch gelten, dass
+\begin{equation*}
+r_\text{M}^2 - p_0^2 < R_\text{\earth}^2 \,.
+\end{equation*}
+Bisher haben wir die Erde als perfekte Kugel betrachtet.
+Jetzt müssen wir deren Abplattung berücksichtigen.
+Die Erde kann als Rotationsellipsoid mit einem um $(1-f) = 0.996647$ gestauchten Polarradius gegenüber dem mittleren Radius $R_\text{\earth}$ angenommen werden.
+Die bisherigen Rechnungen kann man glücklicherweise einfach weiter verwenden, indem man in \eqref{eq:hm_auftreffvek2} die $z$-Koordinate der Beobachterkoordinaten um den Betrag der Abplattung $(1-f)$ staucht. \eqref{eq:hm_auftreffvek2} lautet dann
+\begin{align}
+		\vec{r}_\text{B}^2 &= x_\text{B}^2 + y_\text{B}^2 + z_\text{B}^2 \, (1-f)^2 = R_\text{\earth}^2 \,. \label{eq:hm_auftreffvek3}
+\end{align}
+Alle anderen Berechnungsschritte bleiben wie oben dargestellt.
+
+\subsection{Berücksichtigung der Abplattung der Erde}
+Wir müssen zur Ortsbestimmung der Finsternis noch die Rotation der Erde berücksichtigen.
+Ohne Abplattung der Erde wäre das relativ einfach, weil wir aus den geozentrischen Koordinaten des Mondes über die Deklination direkt die Breite des Beobachtungspunktes erhielten und aus der Rektaszension des Mondes über die Sternzeit auch die geographische Länge berechnen könnten.
+Durch die Abplattung der Erde ist aber die geographische Breite nicht gleich der geozentrischen Breite (die wiederum der Deklination entspricht).
+Für die Umrechnung \glslink{geozentrkoord} von geozentrischen $(\varphi_\text{B}',\,\lambda'_\text{B})$ in geographische\index{Koordinaten!geographische} Koordinaten $(\varphi_\text{B},\,\lambda_\text{B})$ eines Beobachtungspunktes auf der Erde besteht in guter Näherung der Zusammenhang \cite{Montenbruck1999}:
+\begin{align}
+\varphi &= \varphi' + 0.1924\degree\,\sin(2\varphi')\; , \qquad ~~\lambda = \lambda'\,. \label{eq:hm_umrechnung_geogr_geozent_Koord}
+\end{align}
+Die geographische Länge kann über die bekannte Beziehung \eqref{eq:hm_LMST} mittels der Sternzeit $\theta(t)$ aus der Rektaszension berechnet werden (siehe \kapitel{hm_raum_und_zeit}):
+\begin{equation}
+\alpha = \theta_0(t) + \lambda\,a\,e \; .\label{eq:hm_geogr_laenge_rektaszension}
+\end{equation}
+Damit kann der Ortsvektor des Auftreffpunktes der Schattenachse auf der Erdoberfläche geschrieben werden als
+\begin{align}
+\lk \begin{matrix} x_\text{B} \\ y_\text{B} \\ z_\text{B} \end{matrix}\rk &= \lk \begin{matrix} r_\text{B}\cos\varphi' \cos\lambda \\ r_\text{B}\cos\varphi' \sin\lambda \\ r_\text{B}\sin\varphi' \end{matrix}\rk = \mathbb{R}_z\lk\theta(t)\rk\,\lk \begin{matrix} r_\text{B}\cos\delta \cos\alpha \\ r_\text{B}\cos\delta \sin\alpha \\ r_\text{B}\sin\delta \end{matrix}\rk \,. \label{eq:hm_schattenachse_auf_erde}
+\end{align}
+Zur Erinnerung $x_\text{B}, y_\text{B}, z_\text{B}, r_\text{B}$ sind bekannt \bzw berechnet, bestimmt werden aus \eqref{eq:hm_schattenachse_auf_erde} $\lambda, \varphi'$.
+Ebenfalls sei nochmals der Hinweis gegeben, dass die Koordinatenberechnung $(\alpha,\,\delta)$ immer mit der ET zu erfolgen hat.
+Für die Berechnung der Sternzeit brauchen wir aber nach Gleichung \eqref{eq:hm_UT_3} die UT.
+Zwischen beiden Zeiten besteht ein Unterschied $\Delta T$.
+Man muss diesen also für den Zeitraum der Finsternis kennen oder zumindest über Näherungs-Polynome \cite{Espenak2014} abschätzen können.
+Mit \eqref{eq:hm_schattenachse_auf_erde} können wir nun den geographischen Ort $(\varphi(\varphi'=\delta),\,\lambda(\alpha))$ zur Zeit des Auftretens des Schattenkegels der Sonnenfinsternis berechnen.
+Die Linie entlang aller geographischen Orte, die so zu den verschiedenen Zeitpunkten der maximalen Finsternis berechnet werden, wird Zentrallinie genannt. 
+
+\subsection{Finsternisdauer}\index{Sonnenfinsternis!Dauer}
+Mit den Beziehungen \eqref{eq:hm_lsg_p} und \eqref{eq:hm_zentralort_tot_finsternis} lassen sich zu dem mittels \eqref{eq:hm_newmoon_determ} ermittelten Finsterniszeitpunkt $t_0$ die kartesischen Koordinaten des Schattenkegels zu
+\begin{align}
+\vec{r}_\text{B0}(t_0) &= \lk \begin{matrix} x_\text{B0}(t_0) \\ y_\text{B0}(t_0) \\ z_\text{B0}(t_0)\end{matrix} \rk
+\label{eq:hm_schatten_kartes_1}
+\end{align}
+und zu einem etwas späteren Zeitpunkt $t_1\!=\!t_0+\Delta t$ zu
+\begin{align}
+\vec{r}_\text{B1}(t_1) &= \lk \begin{matrix} x_\text{B1}(t_1) \\ y_\text{B1}(t_1) \\ z_\text{B1}(t_1)\end{matrix} \rk \label{eq:hm_schatten_kartes_2}
+\end{align}
+berechnen.
+$(\vec{r}_\text{B1} - \vec{r}_\text{B0})/\Delta t$ ist dann ein Maß für die Geschwindigkeit, mit der sich der Kernschatten fortbewegt.
+Um aber die Bewegung des Schattens relativ zur Erdoberfläche zu berechnen, muss man noch die Rotation der Erde berücksichtigen, denn in der Zeit $\Delta t$ dreht sich die Erde um einen Winkel
+\begin{equation}
+\xi = \frac{2\pi\!\Delta t}{d_\diamond} \,. \label{eq:hm_winkeldrehung_erde}
+\end{equation}
+Hierin ist $d_\diamond$ die Dauer eines Sterntages. In der Zeitspanne $\Delta t$ haben sich also die äquatorialen Koordinaten des Punktes $\vec{r}_\text{B1}(t_0+\Delta t)$ durch Drehung so verändert, dass dieser Punkt zur Zeit $t_0$ die Koordinate
+\begin{equation}
+\vec{r}'_\text{B1} (t_0) = \mathbb{R}_z(\xi)\,\vec{r}_\text{B1}(t_1) ~ \label{eq:hm_koord_nach_winkeldrehung}
+\end{equation}
+hat.
+Der Kernschatten legt folglich im Zeitraum $\Delta t$ bezogen auf das \emph{earth-fixed} KOS (siehe \kapitel{hm_koordinatensysteme}) den Weg $\Delta\vec{r}\!=\!\vec{r}'_\text{B1}-\vec{r}_\text{B0}$ zurück.
+Da $\Delta t$ eine kurze Zeit ist, kann man die Rotationsmatrix $\mathbb{R}_z(\xi)$ für kleine Winkel $\xi$ vereinfachen und näherungsweise schreiben:
+
+\begin{equation*}
+\Delta\vec{r} = \lk \begin{matrix} \Delta x \\ \Delta y \\ \Delta z \end{matrix}\rk  = \lk \begin{matrix} x'_\text{B1} \\ y'_\text{B1} \\ z'_\text{B1} \end{matrix}\rk - \lk \begin{matrix} x_\text{B0}\\ y_\text{B0} \\ z_\text{B0} \end{matrix}\rk = \lk \begin{matrix} x_\text{B1} + \xi y_\text{B1} - x_\text{B0} \\ y_\text{B1} - \xi x_\text{B1} - y_\text{B0} \\ z_\text{B1} - z_\text{B0} \end{matrix}\rk\,\,.
+\end{equation*}
+
+
+Unter Benutzung von \figref{hm_Eclipse5} zerlegt man $\Delta\vec{r}$ in einen Anteil parallel zu $\vec{e}$ und einen Anteil senkrecht zu $\vec{e}$:
+\begin{align*}
+	\Delta r_\parallel &= \Delta\vec{r}\cdot\vec{e} = \Delta x\,e_x + \Delta y\, e_y + \Delta z\, e_z ~~\text{und} \\
+	\Delta r_\perp &= \sqrt{\Delta r^2 - \Delta r_\parallel^2} \,.
+\end{align*}
+Die tatsächliche, effektive Geschwindigkeit, mit der sich der Kernschatten senkrecht zur Einfallrichtung des Schattenkegels weiterbewegt, ist $v_\perp\!=\!\Delta r_\perp / \Delta t$.
+Die Dauer der totalen Finsternis an einem Punkt ist dann gegeben durch
+\begin{equation}
+t_z = \frac{\abs{d}}{v_\perp}\,, \label{eq:hm_dauer_kernschatten}
+\end{equation}
+worin $d$ der nach \eqref{eq:hm_schattenkegel1} berechnete Durchmesser des Kernschattens zur jeweiligen Zeit ist.
+
+Wir haben damit alle Berechnungsformeln, um den Zeitpunkt, den geographischen Ort (inkl.\ Breite der Totalitätszone) und die Dauer der Totalität zu berechnen.
+
+\subsection{Zusammenfassende Darstellung des Algorithmus in \matlab}
+Wir gehen im Folgenden noch einmal zusammenfassend die Einzelschritte zur Berechnung der Daten für eine totale Sonnenfinsternis an, wie diese auch in den \mscren \mlhmref{Sonnenfinsternis01.m}, \mlhmref{Sonnenfinsternis02.m} und \mlhmref{Sonnenfinsternis03.m} hinterlegt sind.
+Wir folgen hierbei der exzellenten Darstellung des Themas in \cite{Montenbruck1999}, haben diese aber auf die Berechnungen in \matlab{} angepasst. 
+
+\begin{enumerate}[1.]
+  \item Mit Hilfe der \mscre \mlhmiref{SonneExakt.m} und \mlhmiref{MondExakt.m}  berechnen wir die geozentrisch-ekliptikalen Koordinaten von Sonne und Mond und untersuchen die Funktion $\Delta \lambda (t)\!=\!\lambda_\text{\astrosun} (t)\!-\!\lambda_\text{M} (t)$ über einen bestimmten Zeitraum hinweg auf Nullstellen.
+          Dabei ist als Zeit ET zu nehmen.
+          Für die Sonne müssen wir wegen der Lichtlaufzeit $\tau_\text{\,L}\!=\!8.32 \:\text{min}$ die Zeiten entsprechend zurückversetzt berechnen.
+	\item Gibt es eine Nullstelle $t_0$, so wird an dieser die geozentrisch-ekliptikale Breite des Neumondes $\beta_\text{\newmoon}$ bestimmt.
+          Ist $\left| \beta_\text{\newmoon} \right| < 52'$ dann ist eine totale Sonnenfinsternis sicher, bei $\left| \beta_\text{\newmoon} \right| > 1\degree\:35'$ ist keine Finsternis (weder total noch partiell) möglich.
+          Kommt es zu einer Finsternis, dann nennen wir die Neumondzeit $t_0 = t_\text{F}$.
+	\item Von diesem Zeitpunkt aus betrachten wir einen Zeitraum von $t_\text{F} - 6 \text{h}$ bis $t_\text{F} + 6 \text{h}$ und berechnen in Intervallen von ein bis zwei Minuten die Koordinaten des Schnittpunktes der Schattenachse mit der Erde zum jeweiligen Zeitpunkt.
+          Wir berücksichtigen dabei die Abplattung der Erde, indem wir die $z$-Koordinate entsprechend \eqref{eq:hm_auftreffvek3} korrigieren.
+          Wiederum müssen wir bei der Berechnung der Schattenachse die Lichtlaufzeit $\tau_\text{ L}$ berücksichtigen.
+          Wir erhalten so die geographischen Koordinaten\index{Koordinaten!geographische} der Zentrallinie der Sonnenfinsternis.
+	\item Über die Geschwindigkeit des Kernschattens und \eqref{eq:hm_dauer_kernschatten} erhalten wir die Dauer der Sonnenfinsternis für den jeweiligen Punkt auf der Zentrallinie.
+	\item Wir können noch für beliebige Orte und Zeiten (entlang oder abseits der Zentrallinie) weitere Daten über den Ablauf der Sonnenfinsternis wie die Kontaktzeiten oder den Grad der Verfinsterung berechnen.
+          Dabei gehen wir folgendermaßen vor:
+	\begin{enumerate} [(a)]
+		\item Wir wählen eine Zeit $t$ um die Finsterniszeit $t_\text{F}$ und geographische Koordinaten $(\varphi,\,\lambda)$.
+		\item Aus den geozentrisch-äquatorialen Koordinaten von Sonne und Mond bestimmen wir die Richtung der Schattenachse und die senkrecht dazu liegende Hauptebene durch den Erdmittelpunkt (\figref{hm_Eclipse5}).
+		\item Wir berechnen dann Öffnungswinkel $\eta$ und Radien der Schattenkegel auf der Hauptebene nach \eqref{eq:hm_schattenkegel1} \bzw \eqref{eq:hm_schattenkegel2}.
+                  Eleganter weise legen wir dazu ein weiteres kartesisches $u$-$v$-$w$-\,KOS fest, dessen $w$-Achse die Richtung der Schattenachse hat und dessen $u$-Achse senkrecht auf der Schattenachse steht und in der Äquatorebene der Erde liegt.
+		\item In diesem KOS berechnen wir auch die Koordinaten des Mondes ($u_\text{M}$, $v_\text{M}$, $w_\text{M}$).
+		\item Mit den in geozentrische Koordinaten\glslink{geozentrkoord}\ umgerechneten geographischen Koordinaten\index{Koordinaten!geographische} des Beobachtungsortes berechnen wir dessen Projektionskoordinaten auf die Hauptebene ($u_\text{B}$, $v_\text{B}$, $w_\text{B}$).
+		\item Mit diesen Werten können wir den Abstand $\Delta A_\text{BS}\!=\!A_\text{BS}\!-\! d$ des Beobachters vom Rand des Schattenkegels bestimmen.
+                  Ist $\Delta A_\text{BS}\!=\! 0$, dann liegt der Beobachter genau auf dem Rand des Schattenkegels (Halbschatten oder Kernschatten).
+                  Bei $\Delta A_\text{BS}\!=\! -d$ liegt er genau auf der Zentrallinie.
+		\item Damit können wir die sogenannten Kontaktzeiten -- das sind die \anf{Berührungen} des Beobachterortes durch die Schattenkreise -- bestimmen.
+                  Diese werden durch die Nullstellen der Funktion $\Delta A_\text{BS}$ ermittelt, und zwar zunächst für den Halbschatten-Kreis (1.\ und 3.\ Kontaktzeit) und dann für den Kernschatten (2.\ und 3.\ Kontaktzeit).
+		\item Ebenso können wir auf diese Weise numerisch das Minimum von $\Delta A_\text{BS}$ ermitteln.
+                  Das ergibt dann den Zeitpunkt und Grad der maximalen Verfinsterung.
+	\end{enumerate}
+\end{enumerate}
+
+Damit haben wir die Charakteristika einer Sonnenfinsternis ziemlich umfassend berechnet.
+In den Tabellen \ref{tab:hm_Zentrallinie2017} und \ref{tab:hm_Beobachtung1999_2017} sind die mit den \mscren \mlhmref{Sonnenfinsternis01.m}--\mlhmref{Sonnenfinsternis03.m} berechneten Werte für die beobachteten Sonnenfinsternisse in den Jahren 1999, 2006 und 2017 gelistet.
+An die in den Programmen verwendeten Routinen für die Positionsberechnung von Sonne und Mond werden extrem hohe Anforderungen gestellt.%
+\footnote{Um die Zeiten der Verfinsterung auf eine Sekunde genau berechnen zu können, braucht man Genauigkeiten in der Ephemeridenrechnung von etwa einer Bogensekunde.
+Die \mscre \mlhmiref{SonneExakt.m} und \mlhmiref{MondExakt.m} wurden auf Basis von Daten aus \cite{Montenbruck1999, Meeus1998} geschrieben und liefern damit Genauigkeiten von besser als 5 Bogensekunden über einen Zeitraum von mehreren Jahrzehnten.
+Die in den Tabellen \ref{tab:hm_Zentrallinie2017} und \ref{tab:hm_Beobachtung1999_2017} aufgeführten Werte einige Sekunden von den in astronomischen Almanachen angegebenen Werten abweichen, da die zu Grunde liegenden Algorithmen verschieden sein können.}
+\figref{hm_Eclipse6} zeigt den Verlauf dieser und der kommenden mit über 4 Minuten totaler Finsternis relativ langen Sonnenfinsternis von 2024.
+Man sieht, dass Orte gibt, die im Abstand von 7 Jahren zweimal in den Genuss einer totalen Sonnenfinsternis kommen. 
+
+\begin{table}
+\caption{Berechnung der Zentrallinie der Sonnenfinsternis von 2006.}
+\centering\begin{tabular}{R{1cm}R{1cm}R{1.5cm}R{1.5cm}R{1.5cm}L{1.5cm}}
+\hline\noalign{\smallskip}
+Datum	& UT & $\varphi\,[\degree ']$ & $\lambda \,[\degree ']$ & Dauer [min:s] & Phase \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+29.\,03.\,2006 & 08:00 &--- &	--- &	---& partiell \\
+29.\,03.\,2006 & 08:10 &--- &	--- &	---& partiell \\
+29.\,03.\,2006 & 08:20 &--- &	--- &	---& partiell \\
+29.\,03.\,2006 & 08:30 &--- &	--- &	---& partiell \\
+29.\,03.\,2006 & 08:40 & - 04 05 &	 - 25 33 &	 2:28 & total \\
+29.\,03.\,2006 & 08:50 & - 00 42 &	 - 11 50 &	 2:56 & total \\
+29.\,03.\,2006 & 09:00 & + 02 24 &	 - 05 42 &	 3:16 & total \\
+29.\,03.\,2006 & 09:10 & + 05 24 &	 - 01 08 &	 3:30 & total \\
+29.\,03.\,2006 & 09:20 & + 08 21 &	 + 02 34 &	 3:43 & total \\
+29.\,03.\,2006 & 09:30 & + 11 15 &	 + 05 46 &	 3:52 & total \\
+29.\,03.\,2006 & 09:40 & + 14 08 &	 + 08 37 &	 4:00 & total \\
+29.\,03.\,2006 & 09:50 & + 17 00 &	 + 11 17 &	 4:05 & total \\
+29.\,03.\,2006 & 10:00 & + 19 54 &	 + 13 52 &	 4:09 & total \\
+29.\,03.\,2006 & 10:10 & + 22 38 &	 + 16 26 &	 4:11 & total \\
+29.\,03.\,2006 & 10:20 & + 25 42 &	 + 19 05 &	 4:10 & total \\
+29.\,03.\,2006 & 10:30 & + 28 40 &	 + 21 55 &	 4:07 & total \\
+29.\,03.\,2006 & 10:40 & + 31 39 &	 + 25 02 &	 4:02 & total \\
+29.\,03.\,2006 & 10:50 & + 34 42 &	 + 28 36 &	 3:46 & total \\
+29.\,03.\,2006 & 11:00 & + 37 47 &	 + 32 47 &	 3:45 & total \\
+29.\,03.\,2006 & 11:10 & + 40 57 &	 + 37 54 &	 3:34 & total \\
+29.\,03.\,2006 & 11:20 & + 44 10 &	 + 44 30 &	 3:19 & total \\
+29.\,03.\,2006 & 11:30 & + 47 25 &	 + 53 38 &	 3:00 & total \\
+29.\,03.\,2006 & 11:40 & + 50 32 &	 + 68 21 &	 2:34 & total \\
+29.\,03.\,2006 & 11:50 & --- 	 &	 ---  		&	--- & partiell \\
+29.\,03.\,2006 & 12:00 & ---  	 &	 ---  		&	 --- & partiell \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{tabular}
+\label{tab:hm_Zentrallinie2017}
+\end{table}
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{SolarEclipseLines.pdf}%
+\caption[Pfad der Sonnenfinsternisse von 1999, 2006, 2017 und 2024.]{Pfad der Sonnenfinsternisse von 1999, 2006, 2017 und 2024. Die blauen Pfeile markieren die jeweiligen Beobachtungsorte, an denen von den Autoren Aufnahmen und Messungen gemacht wurden, die in den Übungen Eingang gefunden haben.}%
+\label{abb:hm_Eclipse6}%
+\end{figure}
+
+\begin{table}
+\caption[Beobachtungsdaten am Beobachtungsort der Sonnenfinsternis 1999.]{Beobachtungsdaten am Beobachtungsort der Sonnenfinsternis 1999 (11.08.1999: Oberkochen (D): $\varphi\!=\!48.1\degree$, $\lambda\!=\!10.9\degree$) und 2017 (21.08.2017: Snake River Idaho (USA): $\varphi\!=\!44.3\degree$, $\lambda\!=\!-117.1\degree$).}
+\centering
+\begin{tabular}{L{1.5cm}L{2cm}L{1.5cm}L{2cm}}
+\hline\noalign{\smallskip}
+Datum	& Zeitpunkt (UT) & Phase & Bemerkung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+11.\,08.\,1999 & 09:15:39 & partiell & 	1.\ Kontakt \\
+11.\,08.\,1999 & 10:36:38 & total & 	2.\ Kontakt \\
+11.\,08.\,1999 & 10:37:26 & total & 	Maximum \\
+11.\,08.\,1999 & 10:38:18 & total & 	3.\ Kontakt \\
+11.\,08.\,1999 & 12:00:42 & partiell & 	4.\ Kontakt \\
+\hline\noalign{\smallskip}
+Datum	& Zeitpunkt (UT) & Phase & Bemerkung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+21.\,08.\,2017 & 16:10:19 & partiell & 	1.\ Kontakt \\
+21.\,08.\,2017 & 17:25:13 & total & 	2.\ Kontakt \\
+21.\,08.\,2017 & 17:26:14 & total & 	Maximum \\
+21.\,08.\,2017 & 17:27:24 & total & 	3.\ Kontakt \\
+21.\,08.\,2017 & 18:48:28 & partiell & 	4.\ Kontakt \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{tabular}
+\label{tab:hm_Beobachtung1999_2017}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

@@ -1,0 +1,201 @@
+\input{headerAB}
+
+%\thispagestyle{plain}%\mp
+%\restoregeometry 
+%\begin{textblock}{3}(0,0)
+%\includegraphics{BuchtitelseiteWB3.pdf}
+%\end{textblock}
+%\leavevmode
+%\newpage 
+%\thispagestyle{empty}
+%\quad 
+%\newpage
+\pagestyle{fancy}
+
+\author{Michael Kaschke, Gerhard Paulus\\ \\
+}
+\title{Fingerübungen der Physik\\ \\
+Band VI \\ \\ Energie \\ \\ Workbook\\}
+
+\subtitle{Ein Übungsbuch zu im Studium selten behandelten Kapiteln der Physik mit ausführlich dargestellten Problemen und \matlab-Programmen.}
+\smallskip
+\maketitle
+
+\begin{dedication}
+%\;\;\;Für alle Studenten und Studentinnen, die uns mit ihren neugierigen Fragen immer wieder
+%zeigen, dass es in der Physik auch in den kleinsten Nischen ganz viel zu entdecken gibt und \\
+%für alle, die Freude an der Schönheit und der großartigen Vielfalt der Physik gefunden haben oder vielleicht auch mit Hilfe dieses Buches für sich entdecken mögen.\\
+\textsc{Michael Kaschke, Gerhard Paulus}\\ 
+\medskip
+\medskip
+\end{dedication}
+
+\frontmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%>
+
+%\include{vorwort4}
+
+%\include{vorwort4}
+
+\textcolor{red}{\textbf{Hinweise zur Erstellung von Mauskriptvorlagen in Word für LaTeX-Übersetzung}}\\ \\
+
+\textcolor{red}{Bitte auch die tex-files optbas\_geometrisch.tex und optbas\_wellenoptisch anschauen!} \\ 
+
+
+Gleichungsbenennung: \\
+
+\zb \textcolor{violet}{\textbackslash label \{} \textcolor{red}{eq:}\textcolor{green}{optbas}\_\textcolor{blue}{gleichungsinhalt01} \} \\
+
+
+Gleichungsaufruf:
+
+\zb \textcolor{violet}{\textbackslash eqref \{} \textcolor{red}{eq:}\textcolor{green}{optbas}\_\textcolor{blue}{gleichungsinhalt01} \} \\
+
+
+
+Abbildungsbenennung: \\
+
+\zb \textcolor{violet}{\textbackslash label \{}  \textcolor{red}{abb:}\textcolor{green}{optbas}\_\textcolor{blue}{bildinhalt01} \} \\
+
+
+Abbildungsaufruf:
+
+\zb \textcolor{violet}{\textbackslash figref \{} \textcolor{green}{optbas}\_\textcolor{blue}{bildinhalt01} \}  ~~~~~~~~(Aufpassen !!!!!!!) \\
+
+
+
+Kapitelbenennung: \\
+
+\zb \textcolor{violet}{\textbackslash label \{}  \textcolor{red}{kap:}\textcolor{green}{optbas}\_\textcolor{blue}{kapitelinhalt} \} \\
+
+
+Kapitelaufruf:
+
+\zb \textcolor{violet}{\textbackslash kap \{} \textcolor{green}{optbas}\_\textcolor{blue}{kapitelinhalt} \}  ~~~~~~~~(Aufpassen !!!!!!!) \\
+
+
+
+Übungsbenennung: (3 Kategorien)\\
+
+\zb \textcolor{violet}{\textbackslash einfach \{}  \textcolor{green}{optbas}\_\textcolor{blue}{uebungsinhalt} \} {Übungstitel} \\
+\zb \textcolor{violet}{\textbackslash mittel \{}  \textcolor{green}{optbas}\_\textcolor{blue}{uebungsinhalt} \} {Übungstitel} \\
+\zb \textcolor{violet}{\textbackslash schwierig \{}  \textcolor{green}{optbas}\_\textcolor{blue}{uebungsinhalt} \} {Übungstitel} \\
+
+
+Übungsaufruf:
+
+\zb \textcolor{violet}{\textbackslash probref \{} \textcolor{green}{optbas}\_\textcolor{blue}{uebungsinhalt} \}  ~~~~~~~~(Aufpassen !!!!!!!) \\
+
+
+Indexeinträge:
+
+Bitte auch gleich Begriffe die in das Sachwortverzeichnis und/oder in ein Glossar aufgenommen werden sollen entsprechend kennzeichnen:\
+
+\zb Kardinalstrahl 
+schreibt man 
+
+Kardinalstrahl \textcolor{violet}{\textbackslash index\{ Kardinalstrahl\} }  ~~~~~~~~~~~~~ Indexeintrag\\ 
+Zernike-Polynome \textcolor{violet}{\textbackslash glslink\{ Zernike-Polynome \} }  ~~~~~~~~~~~~~ Indexeintrag
+
+
+\newpage 
+\setcounter{tocdepth}{4}
+\pdfbookmark[0]{Inhaltsverzeichnis}{toc}
+\tableofcontents
+
+\mainmatter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\newcounter{fmpg}\setcounter{fmpg}{\arabic{page}}
+%\setcounter{chapter}{2}
+
+%% Ab hier die Zusammenfassung von Band I und Band II
+
+
+\phantomsection
+\addcontentsline{toc}{part}{Zusammenfassung Inhalt Band I - Band V}
+\thispagestyle{empty}
+  \begin{flushright}
+    \LARGE
+    \textbf{Inhalt von Band I - Band V \\}
+  \end{flushright}
+  \vspace*{\fill}
+\newpage
+
+\input{bew/bew_zusammenfassung}
+\input{kontmech/kontmech_zusammenfassung}
+\input{hm/hm_zusammenfassung}
+\input{adyn/adyn_zusammenfassung}
+\input{aero/aero_zusammenfassung}
+\input{spo/spo_zusammenfassung}
+\input{edyn/edyn_zusammenfassung}
+\input{optbas/opt_zusammenfassung}
+
+%% Ende Zusammenfassung
+
+\newpage
+\phantomsection
+\addcontentsline{toc}{part}{Band V - Energie}
+\thispagestyle{empty}
+  \begin{flushright}
+    \LARGE
+    \textbf{Band IV \\ \bigskip Energie\\}
+  \end{flushright}
+  \vspace*{\fill}
+
+%% Achtung diese Zeile auch in edyn/edynAB aktivieren 
+\addtocontents{toc}{\protect\setcounter{tocdepth}{3}}% alles zeigen bei WorkBook
+
+\include{energy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\backmatter
+
+%\clearpage
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+\renewcommand{\listfigurename}{} % Unterdrückt automatische Überschrift 
+\thispagestyle{fancy}
+\fancyhead[LO]{\nouppercase{\normalsize Abbildungsverzeichnis}}
+\fancyhead[RE]{\nouppercase{\normalsize Abbildungsverzeichnis}}
+{\Large\bfseries\noindent Abbildungsverzeichnis\par} % einheitliche Größe Large
+\vspace{1ex}
+\listoffigures
+\raggedbottom \pagebreak \thispagestyle{empty}
+\clearpage
+%https://tex.stackexchange.com/questions/74439/table-of-contents-incorrect-page-numbering
+
+%\clearpage
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Übungsverzeichnis}
+\thispagestyle{fancy}
+\fancyhead[LO]{\nouppercase{\normalsize Übungsverzeichnis}}
+\fancyhead[RE]{\nouppercase{\normalsize Übungsverzeichnis}}
+\listofprob
+\raggedbottom \pagebreak \thispagestyle{empty}
+
+%\clearpage
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Stichwortverzeichnis}
+\thispagestyle{fancy}
+\fancyhead[LO]{\nouppercase{\normalsize Stichwortverzeichnis}}
+\fancyhead[RE]{\nouppercase{\normalsize Stichwortverzeichnis}}
+\printindex
+\raggedbottom \pagebreak \thispagestyle{empty}
+
+%\clearpage
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Personenverzeichnis}
+\thispagestyle{fancy}
+\fancyhead[LO]{\nouppercase{\normalsize Personenverzeichnis}}
+\fancyhead[RE]{\nouppercase{\normalsize Personenverzeichnis}}
+\printindex[personen]
+
+\input{footer} 
+
+\frontmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 

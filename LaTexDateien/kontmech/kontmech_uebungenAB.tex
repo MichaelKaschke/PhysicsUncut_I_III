@@ -1,0 +1,956 @@
+%%% Anmerkung 2024-01-14 (hc.):
+%%% Kommentierungen für AB gesetzt (vgl. dazu Kommentar von mk in
+%%% kontmech_uebenen.tex):
+%%% 
+%%% Links auf Lösungen hier gesetzt, da extra file kontmech_uebungenAB.tex
+%%% Einfaches Ändern durch  ersetzen %\hyperref.. <--> \hyperref.
+%%% Links auf Lösungsbank auskommentiert.
+%%% Einfaches Ändern durch  ersetzen %%\href{FingerUeb1_AB.pdf.. <--> %\href{FingerUeb1_AB.pdf..
+
+
+\section{Übungen zu Kapitel \ref{chap:kontmech} -- Physik des Kontinuums}\label{kap:kontmech_uebungen}
+
+\medskip
+Die Übungen sind mit Schwierigkeitsindikatoren markiert, von einfach ($\ast$) über mittel ($\ast \ast$) bis schwierig ($\ast \ast \ast$).
+Zusatzaufgaben sind zum Teil mit ($\ast \ast \ast \;!$) markiert und eher als Erweiterung des Theorieteils zu betrachten.
+Einige wenige Übungen sind rein analytisch, die große Mehrzahl beinhaltet aber \matlab-Anwendungen. 
+Die entsprechenden \mscre finden sich im GitHub unter \githubSN \, \bzw
+in den \onlineZ{} (\MKc).\\
+
+%-----------------------------------------------------------------------------------------------------------
+
+\subsection{Übungen zu Bewegungen von Flüssigkeiten und Gasen}
+
+\medskip
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung1
+\einfach{kontmech_diffoperators}{Differentialoperatoren}
+Berechnen Sie numerisch die Differentialoperatoren der folgenden Felder und stellen Sie die Felder und die Differentialoperatoren graphisch jeweils passend als Kontur- und 3D-Graphik dar.
+\begin{enumerate}
+	\item $\gradv \varphi$ für
+\begin{subequations}
+		\begin{align}
+			\varphi(\vec{r}) &= (x\,y)\,\e^{-r^2}\,,\quad r^2 = x^2+y^2+z^2\,, \label{eq:kontmech_uebg1_1a}  \\
+			\varphi(\vec{r}) &=  C\,\frac{\e^{-\alpha\,r}}{r}\,,\quad r^2 = x^2+y^2+z^2~~~~\text{(Yukawa-Potential)}\,.\indexp{Yukawa, Hideki} \label{eq:kontmech_uebg1_1b}
+		\end{align}
+\end{subequations}
+	\item $\divv \vec{f}$ für 
+		\begin{align}
+			\vec{f}(\vec{r}) &= \begin{pmatrix} x-z\\xz\\y^2\end{pmatrix} \quad \text{und} \quad 
+			\vec{f}(\vec{r}) = \begin{pmatrix} 5x^2\\3y^2\\0\end{pmatrix} \,. \label{eq:kontmech_uebg1_2}
+		\end{align}
+	\item $\rotv \vec{f}$ für 
+		\begin{align}
+			\vec{f}(\vec{r}) &= 0.5\, \begin{pmatrix} yz^2\\-xz^2\\0\end{pmatrix} \quad \text{und} \quad 
+			\vec{f}(\vec{r}) = \begin{pmatrix} 0\\2xz+3y^2\\4yz^2\end{pmatrix} \,. \label{eq:kontmech_uebg1_3}
+		\end{align}
+\end{enumerate}
+
+\medskip
+\hyperref[lsg:kontmech_diffoperators]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+%\href{FingerUeb1_AB.pdf#lsg:kontmech_diffoperators}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\begin{prob} %Übung2
+  \einfach{kontmech_ueb_vectoranalysis}{Übungen zur Vektorrechnung und Vektoranalysis}
+
+Folgende Übungen werden zur Festigung der Fertigkeiten in der Vektorrechnung und Vektoranalysis empfohlen:
+\begin{itemize}
+  \item Beweisen Sie die Graßmann\footnote{Hermann Günther Graßmann (1809 -- 1877) war ein deutscher Mathematiker und Physiker. Er gilt als einer der Begründer der Vektor- und Tensorrechnung.}\indexp{Graßmann, Hermann Günther}\index{Graßmann-Identität}-Identität (\ref{eq:kontmech_vecbasics04}\,b) in kartesischen Koordinaten. Wiederholen Sie die Rechnung unter jeweiliger Verwendung des Levi-Civita-Symbols \eqref{eq:kontmech_levicivita} und der Einsteinschen Summenkonvention (Gl. \eqref{eq:kontmech_dot_cross_einstein}).
+  \item Wiederholen Sie \probref{bew_KOS_Formel}, diesmal jedoch unter Verwendung der Jacobi-Matrix\index{Jacobi-Matrix}:
+	\begin{equation}
+   \mathbb{J} = \begin{pmatrix} \frac{\d x}{\d x'} & \frac{\d x}{\d y'} & \frac{\d x}{\d z'} \\
+                               \frac{\d y}{\d x'} & \frac{\d y}{\d y'} & \frac{\d y}{\d z'} \\
+                               \frac{\d z}{\d x'} & \frac{\d z}{\d y'} & \frac{\d z}{\d z'} \end{pmatrix} \quad \text{\bzw} \quad J_{i,j} = \frac{\d x_i}{d x_j{}'} \,. \label{eq:kontmech_jacobimatrix}
+	\end{equation}
+	Hierin sind $x,y,z$ die kartesischen Koordinaten und $x', y', z'$ die Kugel- \bzw Zylinderkoordinaten, also $r, \phi, \theta$ \bzw $\rho, \phi, z$ 
+  \item Berechnen Sie nun, wiederum unter Verwendung der Jacobi-Matrix, $\gradv \varphi$, $\divv \vec{f}$, $\rotv \vec{f}$ und $\gradv \vec{f}$ in Zylinder- und Kugelkoordinaten.
+\end{itemize}
+  
+  \medskip  
+	
+	\medskip
+\hyperref[lsg:kontmech_ueb_vectoranalysis]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+%\href{FingerUeb1_AB.pdf#lsg:kontmech_ueb_vectoranalysis}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\begin{prob} %Übung3
+\mittel{kontmech_integralsaetze}{Integralsätze der Vektoranalysis}
+Überprüfen \bzw berechnen Sie jeweils analytisch und numerisch:
+\begin{enumerate}
+	\item den Integralsatz von Stokes für die Vektorfelder nach \eqref{eq:kontmech_uebg1_3} für einen Einheitskubus ohne Deckel ($z=1$).
+	\item den Integralsatz von Stokes für die Vektorfelder nach \eqref{eq:kontmech_uebg1_3} für ein Einheitsquadrat bei $z=1$ parallel zur $x$-$y$-Ebene und eines bei $y=1$ parallel zur $x$-$z$-Ebene.
+	\item den Integralsatz von Gauß für die Vektorfelder nach \eqref{eq:kontmech_uebg1_2} für einen Einheitskubus mit Zentrum im Ursprung, der entlang der kartesischen Achsen ausgerichtet ist.
+	\item unter Benutzung des Integralsatzes von Gauß das Volumen eines Fasses der Höhe $h$, wobei 
+	\begin{enumerate}[i)]
+	\item das Fass einen $z$-abhängigen Radius in $z \in [0,h]$ mit $r(z) = r_0\,\sqrt{1+C\, \sin(\pi\,z/h)}$ habe \bzw 
+	\item das Fass die Form einer um die $z$-Achse rotierenden Ellipse habe, für die $x^2/3^2 + z^2/2^2 = 1 (z \in [-h,h])$ gilt. 
+  \end{enumerate}
+   Berechnen Sie das Volumen des Fasses mit der Höhe $h=\SI{2}{\metre}$ und einem Deckflächenradius-Radius von $R=\SI{1}{\metre}$ und einer Mittendicke von $a=\SI{1.5}{\metre}$ .
+\end{enumerate}
+
+\medskip
+\hyperref[lsg:kontmech_integralsaetze]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+%\href{FingerUeb1_AB.pdf#lsg:kontmech_integralsaetze}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung4
+\einfach{kontmech_bernoulli}{Bernoulli-Gleichung}
+Leiten Sie die Bernoulli-Gleichung direkt aus der Euler-Gleichung her.\\
+
+\medskip
+\hyperref[lsg:kontmech_bernoulli]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+%\href{FingerUeb1_AB.pdf#lsg:kontmech_bernoulli}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\begin{prob} %Übung5
+\mittel{kontmech_magnus}{Magnus-Effekt, Flettner-Rotoren}
+Bereits in den 20er Jahren des 20. Jahrhunderts entwickelte Anton Flettner\footnote{Anton Flettner (1885--1961) war ein Ingenieur und Erfinder, der über 1000 Patente anmeldete, vor allem für technische Lösungen in der Schifffahrt und der Flugzeugtechnik.}\indexp{Flettner, Anton} Wind\-antriebssysteme für Schiffe, die den \emph{Magnus}\indexp{Magnus, Heinrich Gustav }\footnote{Heinrich Gustav Magnus (1802--1870) war ein deutscher Physiker und Chemiker, der als Professor an der Humboldt-Universität zu Berlin als Begründer einer der wichtigsten Physikerschulen des 19. Jahrhunderts gilt. Zu seinen Schülern zählten \ua  Hermann von Helmholtz\indexp{Helmholtz, Hermann von}.}\emph{-Effekt} nutzbar machten. Der Magnus-Effekt besagt, dass ein rotierender, runder Körper (Zylinder oder Kugel), der von einem Fluid umströmt wird, eine Querkraft erfährt.\footnote{Man möchte Albert Einstein\indexp{Einstein, Albert} nur zustimmen, der zu den Flettner-Rotoren schrieb, "`dass die Wirkungsweise der Flettner-Rotoren dem Laien meist ein Mysterium bleibt, trotzdem dabei nur rein mechanische Wirkungen zur Verwendung kommen, die jeder gefühlsmäßig zu beherrschen glaubt"'.} Obwohl die von Flettner auf dieser Idee  konstruierten Schiffe erfolgreiche Probefahrten absolvierten, konnte sich das Rotorsystem aus rein wirtschaftlichen Gründen nicht durchsetzen. Heute ist das System wegen der erzielbaren Energieeinsparung und der Reduktion der Kohlendioxid-Emission durch die Schifffahrt wieder häufiger auf den Weltmeeren zu sehen, \ua bei den Ostseefähren zwischen Deutschland und Dänemark (\figref{kontmech_flettner}).\\
+Wir sind sicher, dass unsere Leser den Magnus-Effekt aus der Bernoulli-Gleichung \eqref{eq:kontmech_BernoulliGl} herleiten können. Wie groß ist die Leistung eines Flettner-Rotors und daraus die Energieeinsparung bei einer Strecke über die Ostsee von 50 Seemeilen und durchschnittlicher Windstärke 7 aus Westen? Welche Rotationsgeschwindigkeit des Zylinders würden Sie wählen? Berücksichtigen Sie auch die Antriebsleistung für die Rotoren (\ca $\SI{50}{\kilo\watt}$). Was halten Sie von Schiffen mit vier Rotoren \bzw was muss man bei deren Konstruktion berücksichtigen?\\
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{FlettnerRotor.jpg}
+    \caption[Schiff mit einem Flettner-Rotor.]{Schiff mit einem Flettner-Rotor.}
+    \label{abb:kontmech_flettner}
+  \end{figure}
+
+\medskip
+\hyperref[lsg:kontmech_magnus]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+%\href{FingerUeb1_AB.pdf#lsg:kontmech_magnus}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung6
+  \mittel{kontmech_SchiffKanal}{Kräfte auf ein Schiff in einem Kanal}
+	
+    \begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{EverGiven.jpg}
+    \caption[Die Ever Given im Suez-Kanal 2021.]{Die Ever Given im Suez-Kanal 2021.}
+    \label{abb:kontmech_SuzeKanalEverGiven}
+  \end{figure}
+	Das Containerschiff \textit{Ever Given} erlangte weltweite Bekanntheit als es am 23. März 2021 im Suezkanal auf Grund lief, sich schräg stellte und dadurch die Schifffahrtsrinne des Kanals sechs Tage lang blockierte. Wir wollen die Havarie etwas genauer untersuchen. Um zu bestimmen, welche Kräfte durch den statischen Druck auf ein
+  Schiff wirken, das in einem Kanal fährt, bedienen wir uns eines einfachen
+  Modells. Es besteht aus dem Schiffskörper, der in
+  \figref{kontmech_SchiffKanalAbmessungen} dargestellt ist.
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{SchiffKanalAbm.pdf}
+    \caption[Schiff in einem Kanal.]{Abmessungen eines Schiffs, das in einem
+      Kanal fährt, um die darauf wirkenden Kräfte zu bestimmen.}
+    \label{abb:kontmech_SchiffKanalAbmessungen}
+  \end{figure}
+
+  Wir orientieren uns an Zahlen, die in der Größenordnung der Ever Given auf
+  ihrer Fahrt im Suezkanal liegen \cite{Woehrbach2021}. Dazu nehmen wir ein
+  Schiff der Länge $l = \SI{400}{\metre}$, die sich auf $l_1 = \SI{380}
+  {\metre}$ und $l_2 = \SI{20}{\metre}$ aufteilt, sowie der Breite $b =
+  \SI{60}{\metre}$ an. Es hat einen Tiefgang von $c = \SI{16}{\metre}$ mit
+  der Aufteilung $c_1 = \SI{6}{\metre}$ und $c_2 = \SI{10}{\metre}$. Der Kanal
+  habe eine Breite von $a = \SI{200}{\metre}$. Das Schiff befahre ihn nicht auf
+  der Mittellinie, sodass die Abstände zum Rand $a_1 = \SI{140}{\metre}$ und
+  $a_2 = \SI{60}{\metre}$ betragen. Die Geschwindigkeit des Schiffes relativ
+  zum Wasser liege etwas oberhalb von 10\,Knoten, also etwa $v_0=\SI{6}
+  {\metre \per \second}$.
+
+  Zur Berechnung nehmen wir vereinfacht an, dass das Schiff eine homogene
+  Massendichte habe und das Wasser, das vom Schiff verdrängt wird, nur
+  seitlich ausweicht und sich genau zur Hälfte auf beide Seiten des Schiffes
+  aufteilt. Daraus ergeben sich links und rechts unterschiedliche
+  Fließgeschwindigkeiten, die zu einem Unterschied im statischen Druck führen.
+  Geben Sie die gesamte Kraft und das Drehmoment bezüglich des
+  Massenmittelpunktes an.
+  
+  \medskip
+\hyperref[lsg:kontmech_SchiffKanal]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+%\href{FingerUeb1_AB.pdf#lsg:kontmech_SchiffKanal}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung7
+  \einfach{kontmech_BarometrischeHoehenformel}{Barometrische Höhenformel}
+  Berechnen Sie die Druck- und Dichteverteilung in der Erdatmosphäre für
+  den Fall einer rein statischen Atmosphäre. Gehen Sie dazu davon aus,
+  dass nur die Gewichtskraftdichte
+  \begin{equation*}
+    \vec{f}_g = -\varrho g \veceZ
+  \end{equation*}
+  wirkt. Die notwendige Beziehung zwischen dem Druck und der Dichte lässt
+  sich aus der Zustandsgleichung idealer Gase der Thermodynamik
+  \begin{equation*}
+    p V = \nu R T
+  \end{equation*}
+  mit dem Druck $p$, dem Volumen $V$, der Stoffmenge $\nu$, der Gaskonstanten
+  $R$ und der Temperatur $T$ gewinnen. Im Ergebnis erhält man die
+  \glslink{baroHoeheBew}{barometrischen Höhenformel}
+  \index{Höhenformel!barometrische|textbf}, die \iA von der Temperatur abhängen wird.
+  Diesen komplizierteren Verlauf wollen wir hier jedoch nicht betrachten.
+
+\medskip
+\hyperref[lsg:kontmech_BarometrischeHoehenformel]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+%\href{FingerUeb1_AB.pdf#lsg:kontmech_BarometrischeHoehenformel}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung8
+\schwierig{kontmech_rotating_sprinkler}{Rotierender Rasensprinkler}	
+
+\begin{enumerate} 
+\item [a)] \textbf{Drehzahl}\\
+Berechnen Sie die Drehgeschwindigkeit eines rotierenden Rasensprinklers (Rasensprengers) (\figref{kontmech_rotating_sprinkler}). Der Sprinkler hat eine Armlänge $L$ und die beiden Ausströmdüsen haben jeweils einen Durchmesser von $A_\text{D}$. Der Sprinkler kann sich frei drehen, zeigt aber eine Reibung, die in einem Drehmoment $\vec{M}_\text{Reibung}=\eta\,\vec{\omega}$ resultiert, welches von der Drehzahl \bzw der Rotationsfrequenz $\omega$ abhängt. Wir nehmen einen konstanten Wasserfluss von $Q$ an, zudem sei die Flüssigkeit inkompressibel und reibungsfrei. 
+\item [b)] \textbf{Druck}\\
+Berechnen Sie den notwendigen Druck am Wassereinlass als Funktion der Rotationsfrequenz $\omega$ und die daraus resultierende Reichweite.
+\item [c)] \textbf{Blockierter Gartenschlauch}\\
+Es ist eine alltägliche Erfahrung, dass bei einer teilweisen Blockade des Wasseraustritts eines Gartenschlauchs, der Wasserstrahl weiter \bzw höher schießt. Warum ist das so? Geben Sie ohne Rechnung eine physikalische Erklärung. 
+\end{enumerate}
+          
+\textbf{Zusatz }\\
+Betrachten Sie auch das "`Anlaufverhalten"' des Rasensprinklers, indem Sie die Bewegungsgleichung \bzw die Bilanzgleichung für alle Drehimpulse des Systems auch für den nicht-stationären Fall aufschreiben und numerisch lösen. Was werden Sie beobachten? \\
+
+	\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{RegularSprinkler.pdf}
+    \caption[Physik am Rasensprinkler.]{Physik am Rasensprinkler. \fa Prinzipaufbau und physikalische Größen. \b Geometrie. Die Düsen haben einen Winkel $\phi_\text{D}$ relativ zur Tangente des durch die horizontalen Arme definierten Kreises. }
+    \label{abb:kontmech_rotating_sprinkler}
+  \end{figure}
+
+\medskip
+\hyperref[lsg:kontmech_rotating_sprinkler]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+%\href{FingerUeb1_AB.pdf#lsg:kontmech_rotating_sprinkler}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+\begin{prob} %Übung9
+  \schwierig{kontmech_reverse_sprinkler}{Feynmans inverser Rasensprinkler}
+  In seinem Buch \textit{"`Surely You're Joking, Mr. Feynman"'}%
+  \footnote{Deutsche Ausgabe: "`Sie belieben wohl zu scherzen, Mr. Feynman."' (Piper 2018.)}
+  \cite{Feynman1985} veröffentlichte Richard Feynman eine Episode zu einem
+  Experiment, das den später nach ihm benannten\footnote{Tatsächlich war das
+    Prinzip aber schon vor Feynman \ua von Ernst Mach \cite{Mach2012} erwähnt
+    worden.} inversen Rasensprinkler (\textit{Inverse Sprinkler} oder auch
+  \textit{Reverse Sprinkler}) zum Gegenstand hatte.
+  Feynman wollte in einem Experiment in seinem Labor in Princeton klären, ob
+  ein in einem Wassertank versenkter Rasensprinkler, der an eine Saugpumpe
+  (\figref{kontmech_reverse_sprinkler}) angeschlossen war, sich entgegengesetzt
+  zum normalen Betrieb (in Luft und mit Wasserdruck) dreht oder wie auch
+  behauptet wurde, sich überhaupt nicht dreht.\footnote{Das Experiment schlug
+    übrigens fehl und endete in einem Chaos im Labor und Feynman hat sich bis
+    zum Ende seines Lebens nie mehr öffentlich zum Problem des
+    \textit{Reverse Sprinklers} geäußert.}
+
+  Die Debatte über Feynmans inversen Rasensprinkler hat über Jahrzehnte die
+  Gemüter der Physiker erhitzt und es gibt in der Literatur dazu zahlreiche,
+  zum Teil sich heftig widersprechende Abhandlungen darüber. 
+	Eine Zusammenstellung findet sich \ua in \cite{Jenkins2004}.
+  Im Internet zugängliche Videos zeigen sowohl rotierende als auch nicht
+  rotierende Sprinkler.
+  Es hat sich in letzter Zeit ein Konsensus herausgebildet \cite{Jenkins2004,
+    Mungan2005, Rueckner2015, Beals2017}, dass ein Sprinkler in der exakten
+  Auslegungsform nach \figref{kontmech_reverse_sprinkler} sich bis auf einen
+  kurzen Moment beim Anschalten und Abschalten nicht bewegt.\\
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{ReverseSprinkler.pdf}
+    \caption[Feynmans inverser Rasensprinkler.]{Feynmans inverser Rasensprinkler. \fa Normaler Rasensprinkler mit Wasseraustritt in die Umgebungsluft.
+		\fb Idee von Ernst Mach \cite{Mach2012} mit Saugvorrichtung an einem Rotationsrad \cite{Mach2012}. \fc Feynmans inverser Rasensprinkler in einem Wassertank eingetaucht.}
+    \label{abb:kontmech_reverse_sprinkler}
+\end{figure}
+Begründen Sie diesen Konsensus und die entsprechenden experimentellen Befunde.
+Beachten Sie dabei die spezielle Form der S- \bzw L-förmigen Konstruktion des
+Sprinklers, bei der das abfließende Wasser genau im Drehpunkt nach unten
+weg gesaugt wird. Unterscheiden Sie ferner zwischen der Anschaltphase und dem
+stationären Betrieb, starten Sie mit letzterem und betrachten Sie die
+Drehimpulse und Drehmomente des Gesamtsystems aus Sprinkler, Wasser und
+Wassertank.\\
+Hinweis: Berücksichtigen Sie bei der Berechnung der Drehmomente zum einen die
+Kraft, die durch den Wasserdruck im Rohr auf die Wand des Saugrohrarms des
+Sprinklers am Punkt A durch den Wasserdruck $p_\text{R}$ im Rohr ausgeübt wird
+und zum anderen die Wirkung des Druckverlustes bei einem Wasserdruck im Tank
+$p_\text{T}$ zum Druck $p_\text{R}$ im Saugrohrarm.
+
+\medskip
+\hyperref[lsg:kontmech_reverse_sprinkler]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+%\href{FingerUeb1_AB.pdf#lsg:kontmech_reverse_sprinkler}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung10
+  \mittel{kontmech_StroemungRechteckrohr}{Strömung durch Rohre}
+  Berechnen Sie das Geschwindigkeitsprofil einer stationären, laminaren
+  Strömung, die sich bei konstantem Druckgradienten für zwei Geometrien in
+  einem Rohr ergibt. Lösen Sie dazu numerisch die partielle
+  Differentialgleichung \eqref{eq:kontmech_NaStstat}, die sich als Spezialfall
+  der Navier-Stokes-Gleichung ergibt.
+
+  \begin{enumerate}
+  \item Lösen Sie das zunächst für ein kreisrundes Rohr und vergleichen
+    Sie die numerische Lösung mit der analytischen, die in Beispiel
+    \ref{bsp:kontmech_laminareStroemungen} in Kapitel
+    \ref{kap:kontmech_laminareStroemungenFluessigkeiten} berechnet wurde.
+
+  \item Führen Sie dann die identische Rechnung für ein rechteckiges Rohr
+    numerisch durch. Vergleichen Sie ihr Ergebnis mit der Lösung für das kreisrunde
+    Rohr.
+  \end{enumerate}
+  
+\medskip
+\hyperref[lsg:kontmech_StroemungRechteckrohr]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+%\href{FingerUeb1_AB.pdf#lsg:kontmech_StroemungRechteckrohr}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\begin{prob} %Übung11
+  \schwierig{kontmech_StroemungTorricelli}{Gesetz von Torricelli - Strömung aus einer Tonne}
+Wir betrachten einen oben offenen, großen und gefüllten Behälter wie \zb eine Regentonne, die unten ein Loch hat.
+Das Gesetz von Torricelli\footnote{Evangelista Torricelli (1608--1647) war ein italienischer Physiker und Mathematiker. Er wurde 1642 in Florenz der Nachfolger von Galileo Galilei als Hofmathematiker. Er arbeitete auf dem Gebiet der Physik der Gase und Flüssigkeiten und war an der Entwicklung der Infinitesimalrechnung beteiligt. 1644 entwickelte er das Quecksilberbarometer. Ihm zu Ehren wurde für lange Zeit die heute nicht mehr gebräuchliche physikalische Maßeinheit für Luftdruck benannt: 1 Torr entsprach  $\SI{1}{\mm}$ Quecksilbersäule.}\indexp{Torricelli, Evangelista}\index{Gesetz von Torricelli} besagt, dass die Austrittsgeschwindigkeit eines Wasserstrahls aus der Öffnung eines solchen Gefäßes nur von der Füllhöhe des Behälters abhängt, nicht von dessen Form und nicht von der Größe der Öffnung.\\
+Erklären Sie dieses der Intuition widersprechende Gesetz mit Hilfe der Bernoulli-Gleichung.
+Berechnen Sie nun numerisch die Strömungsverhältnisse in der Tonne nach \figref{kontmech_StroemungTorricelli} aus der \NVS \phantom{i}\eqref{eq:kontmech_NavierStokes}\index{Navier-Stokes-Gleichung}, wobei wir jetzt annehmen wollen, dass sich der Flüssigkeitsspiegel mit einer Geschwindigkeit $v_\text{S}$ nach unten bewegt und die Viskosität durch $\eta_\text{W}=\SI{1.0e-3}{\kg\per\metre\per\second}$ des Wassers \bzw $\eta_\text{Et}=\SI{1.2e-3}{\kg\per\metre\per\second}$ für Ethanol gegeben ist. Die Reynolds-Zahl ist durch $\mathrm{Re}=v_\text{S}\,H\,\varrho/\eta$ gegeben.\\
+Überlegen Sie sich insbesondere sinnvolle Randbedingungen für $v_x(x=0),\,v_z(x=0),\, v_z(z=0)$ \usw \\
+Berechnen Sie sowohl die Strömungslinien als auch die Wirbellinien und stellen Sie diese graphisch dar.  (Übung nach \cite{Hoffmann2000}).\\
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{Torricelli.pdf}
+    \caption[Gesetz von Torricelli.]{Gesetz von Torricelli. Strömung aus einem Zylinder.}
+    \label{abb:kontmech_StroemungTorricelli}
+  \end{figure}
+
+Wir wollen darauf hinweisen, dass es eine ganze Reihe ausgefeilter numerischer Pakete auf Basis der Finite-Differenzen-Methode\index{Finite Differenzen Methode} und anderer Methoden gibt, mit denen man komplexe Strömungsprofile für ein breites Feld von Anwendungen von der Flugzeugtechnik bis zur Medizin berechnen kann. Wir empfehlen durchaus, dies mal mit einer Testversion auszuprobieren. \matlab{} bietet als Toolbox die \matlab{}  OpenFOAM and CFD Fluid Dynamics Toolbox
+ unter \url{https://www.cfdtool.com} \bzw \url{https://www.mathworks.com/matlabcentral} (CFD Toolbox) an.\\
+Als Beispiele für professionelle CFD Pakete mit Testversionen für Studenten seien genannt:\\
+\url{https://www.ansys.com/de-de/products/fluids}\\
+\url{https://www.simscale.com/product/cfd/}\\
+Es ist und bleibt aber stets sehr instruktiv und immer eine Erlebnis, ein
+Problem wie oben dargestellt, ausgehend von den Fundamentalgleichungen (hier
+der \NVS) für einfache Fälle selbst zu programmieren und damit zu berechnen.
+Im vorliegenden, zweidimensionalen Problem ist es lohnenswert, die
+Stromfunktion $\vec{u}=u(x,y)\veceZ$ mit $\vec{v}=\rotv \vec{u}$ und den
+Wirbelvektor $\vec{\Omega}=\Omega(x,y)\veceZ = 1/2\,\rotv \vec{v}$ einzuführen.
+Die Navier-Stokes-Gleichung lässt sich dann durch $u(x,y)$ und $\Omega(x,y)$
+ausdrücken. Dieses Problem lässt sich in zwei gekoppelte, lineare
+Gleichungssysteme aufspalten, die sich durch ein iteratives Verfahren,
+\zb ein SOR-Verfahren, lösen lassen.
+
+\medskip
+\hyperref[lsg:kontmech_StroemungTorricelli]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+%\href{FingerUeb1_AB.pdf#lsg:kontmech_StroemungTorricelli}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung12
+  \schwierig{kontmech_StroemungTank}{Strömung durch einen Tank}
+Nutzen Sie die \matlab-Lösungen von \probref{kontmech_StroemungTorricelli} und berechnen Sie aus der \NVS{} \eqref{eq:kontmech_NavierStokes} die Strömung für einen Durchfluss durch einen Behälter nach \figref{kontmech_StroemungTank}. (Dies stellt eine Variation des Gesetzes von Torricelli dar.) Nehmen Sie zunächst $B=H$ und $a=b$ an und berechnen Sie wiederum die Strömungslinien und Wirbellinien und stellen Sie diese graphisch dar. (Idee zur Übung nach \cite{Hoffmann2000}. Siehe auch Bemerkungen in \probref{kontmech_StroemungTank}.)
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{Tankdurchfluss.pdf}
+    \caption[Strömung durch einen Tank.]{Strömung durch einen Tank.}
+    \label{abb:kontmech_StroemungTank}
+  \end{figure}
+
+\medskip
+\hyperref[lsg:kontmech_StroemungTank]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+%\href{FingerUeb1_AB.pdf#lsg:kontmech_StroemungTank}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+
+\newpage
+\begin{prob} %Übung13
+\einfach{kontmech_IdealerWirbel}{Idealer Wirbel}
+Häufig nehmen Wirbel in strömenden Flüssigkeiten im Inneren eine nahezu ideale
+Form an. Ein idealer Wirbel besteht aus einem Wirbelkern, in dem die
+Winkelgeschwindigkeit konstant ist. Nach einem recht schmalen Übergangsbereich
+liegt eine Strömung mit konstanter Umlaufgeschwindigkeit vor. Berechnen
+Sie für diese beiden Bereiche den Wirbelvektor und die Zirkulation. Zeigen
+Sie an diesem Beispiel die Gültigkeit der Beziehung
+\eqref{eq:kontmech_ZirkulationWirbelvektor}.
+
+\medskip
+\hyperref[lsg:kontmech_IdealerWirbel]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+%\href{FingerUeb1_AB.pdf#lsg:kontmech_IdealerWirbel}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung14
+\schwierig{kontmech_UmformungWirbelsatz}{Helmholtzscher Wirbelsatz}
+Zeigen Sie, dass für die Umformung der Navier-Stokes-Gleichung folgende Beziehung gilt:
+\begin{equation}
+  \rotv \lk \lk \vec{v} \cdot \gradv \rk \vec{v} \rk
+  = \rotv \lk \rotv \vec{v} \times \vec{v} \rk \,. \label{eq:kontmech_umformumg_NSG}
+\end{equation}
+
+\medskip
+\hyperref[lsg:kontmech_UmformungWirbelsatz]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+%\href{FingerUeb1_AB.pdf#lsg:kontmech_UmformungWirbelsatz}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung15
+\mittel{kontmech_fluesse}{Ist der Rhein laminar oder turbulent?}
+Schätzen Sie ab, ob der Rhein von Köln nach Düsseldorf laminar oder turbulent fließt.\\
+Können Sie eine Näherungsformel für Gewässer herleiten? Fügen Sie in der Formel einen Proportionalitätsfaktor $\gamma$ für die Rauigkeit des Bodens des Gewässers ein, mit $\gamma = 1 $ für ideal glatte Oberfläche und $\gamma \gg 1 $ für raue Oberflächen, wie \zb ein Kiesbett.\\
+
+\medskip
+\hyperref[lsg:kontmech_fluesse]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+%\href{FingerUeb1_AB.pdf#lsg:kontmech_fluesse}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\begin{prob} %Übung16
+  \schwierig{kontmech_StokesReibung}{Stokes-Reibung}\index{Stokes-Reibung}
+  Leiten Sie aus der Navier-Stokes-Gleichung die Beziehung 
+  \indexp{Stokes, Sir George Gabriel}
+  \begin{align}
+    \vec{F_\text{R}} = - 6\,\pi\,\eta\,R_0\,v\,\frac{\vec{v}}{\left|\vec{v}\right|}  \label{eq:kontmech_StokesReibungKugel}
+  \end{align}
+  für die sogenannte Stokes-Reibungskraft in einer viskosen Flüssigkeit
+  (Viskosität $\eta$) auf kugelförmige Körper (Radius $R_0$) her. Die
+  Bedingungen, unter denen wir die Stokes-Reibung vorfinden, sind:
+  \begin{itemize}
+  \item kleine Reynolds-Zahl ($\ll 1$), 
+  \item hohe Reibung,
+  \item vernachlässigbare Trägheitskräfte in der umströmenden Flüssigkeit.
+  \end{itemize}
+  
+\medskip
+\hyperref[lsg:kontmech_StokesReibung]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+%\href{FingerUeb1_AB.pdf#lsg:kontmech_StokesReibung}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+% ----------------------------------------------------------------------------------------------------------
+% ----------------------------------------------------------------------------------------------------------
+\newpage
+\subsection{Übungen zur Dynamik deformierbarer, fester Körpern}
+
+\medskip
+
+% -----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung17
+  \mittel{kontmech_WelleSaite}{Fortschreitende Welle auf der eingespannten
+    Saite}
+  Fertigen Sie analog zum Vorgehen aus Beispiel
+  \ref{bsp:kontmech_finiteDiffSaite} ein Programm an, das folgende
+  laufenden Wellen auf einer an beiden Enden eingespannten Saite für mehrere
+  Zeitschritte berechnet.
+  \begin{enumerate}
+  \item Ein Störung in Form eines Gauß-Pakets, das sich, ohne sich zu verformen,
+    auf der Saite bewegt.
+  \item Eine Welle, die dadurch entsteht, dass eines der eingespannten Enden
+    periodisch (sinusförmig) auf und ab bewegt wird.
+  \end{enumerate}
+
+  \medskip
+  \hyperref[lsg:kontmech_WelleSaite]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+  %\href{FingerUeb1_AB.pdf#lsg:kontmech_WelleSaite}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+% -----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung18
+  \schwierig{kontmech_AchterbahnKont}{Achterbahn-Bewegungsgleichungen im kontinuierlichen Ansatz}
+  Bilden Sie den Kontinuums-Grenzwert des Ansatzes aus
+  \probref{bew_achterbahn_diskret}, in der ein Zug auf einer Achterbahn aus
+  Punktmassen gebildet wurde, die über Federn miteinander verbunden sind.
+  Dadurch geht der Zug in ein kontinuierliches Band über, das in Erweiterung
+  der Darstellung aus Kapitel \ref{kap:rollercoaster} jedoch elastisch
+  ist.
+
+  Gehen Sie von einer allgemeinen Beziehung $z=h(x)$ aus und zeigen Sie,
+  dass mit den Bezeichnungen, die in Kapitel \ref{kap:kontmech_festLagrange}
+  für die schwingende Saite eingeführt wurden, die Bewegungsgleichung
+  \begin{equation}
+    \frac{\partial^2 x}{\partial t^2} = -\frac{h'(x)h''(x)}{1 + h'(x){}^2}
+    \lk \frac{\partial x}{\partial t} \rk^2
+    - \frac{g h'(x)}{1 + h'(x){}^2}
+    +\frac{\Phi}{\varrho_L}\, \frac{h'(x)h''(x)}{1 + h'(x){}^2} \lk
+    \frac{\partial x}{\partial l} \rk^2
+    + \frac{\Phi}{\varrho_L}\, \frac{\partial^2 x}{\partial l^2}
+    \label{eq:kontmech_DGLAchterbahnzug}
+  \end{equation}
+  lautet.
+  
+  \medskip
+  \hyperref[lsg:kontmech_AchterbahnKont]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+  %\href{FingerUeb1_AB.pdf#lsg:kontmech_AchterbahnKont}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+% -----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung19
+  \mittel{kontmech_AchterbahnZug}{Elastischer Achterbahnzug auf einer
+    Gaußkurven-Strecke}
+  Stellen Sie ein Programm zur numerischen Lösung der partiellen
+  Differentialgleichung \eqref{eq:kontmech_DGLAchterbahnzug} eines
+  elastischen, kontinuierlichen Zuges auf einer Achterbahnstrecke auf.
+  Gehen Sie wie in \probref{bew_achterbahn} von einer Gaußkurve als
+  Achterbahnstrecke aus. Als numerisches Lösungsverfahren können Sie
+  die Methode der finiten Differenzen wählen und sich an Beispiel
+  \ref{bsp:kontmech_finiteDiffSaite} orientieren.
+
+  \medskip
+  \hyperref[lsg:kontmech_AchterbahnZug]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+  %\href{FingerUeb1_AB.pdf#lsg:kontmech_AchterbahnZug}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+% -----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung20
+  \mittel{kontmech_AchterbahnBeschleunigungen}{Normalbeschleunigung eines
+    Fahrgastes im Achterbahnzug}
+  Stellen Sie die Gleichungen für die Normalbeschleunigung auf, die auf einen
+  Fahrgast im Achterbahnzug wirkt. Gehen
+  Sie dabei von dem aus \probref{kontmech_AchterbahnZug} vorliegenden
+  numerischen Bahnverlauf aus und berücksichtigen Sie wie im diskreten Modell
+  aus \probref{bew_achterbahn_diskret}, dass auf die Fahrgäste die Schwere- und
+  die Radialbeschleunigung wirken. Vernachlässigen Sie analog zum diskreten
+  Modell die Federkräfte, da die Fährgäste in tangentialer Richtung nicht
+  fest mit dem Wagen verbunden sind. Werten Sie die Normalbeschleunigungen aus
+  und tragen Sie diese zusammen mit ihren $x$- und $z$-Komponenten über dem
+  Bahnverlauf auf.
+  
+  \medskip
+  \hyperref[lsg:kontmech_AchterbahnBeschleunigungen]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+  %\href{FingerUeb1_AB.pdf#lsg:kontmech_AchterbahnBeschleunigungen}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+% -----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung21
+  \einfach{kontmech_ElastizitaetTorsion}{Elastizitäts-/Torsionsmodul im
+    dreidimensionalen Spannungstensor}
+  Verifizieren Sie, dass Sie im dreidimensionalen Spannungstensor nach
+  Gleichung \eqref{eq:kontmech_Spannungstensor1} die Beziehungen
+  \eqref{eq:kontmech_Elastizitaetsmodul4} für das Elastizitätsmodul und
+  \eqref{eq:kontmech_Torsionsmodul3} für das Torsionsmodul erhalten. Gehen
+  Sie für letzteres wieder von der Kleinwinkelnäherung aus.
+  
+  \medskip
+  \hyperref[lsg:kontmech_ElastizitaetTorsion]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+  %\href{FingerUeb1_AB.pdf#lsg:kontmech_ElastizitaetTorsion}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+% -----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung22
+  \schwierig{kontmech_BogenSpannung}{Bogen mit Spannung durch eine Saite}
+  Wir betrachten einen Bogen, der durch eine Seite gespannt ist (siehe
+  \figref{kontmech_UebungBogen}).
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{BogenAufbau.pdf}
+    \caption[Bogen gespannt mit einer Saite]{Bogen, der mit einer
+      Seite gespannt ist. Die Krümmung in der Ruhelage wird durch den
+      Winkel $\theta$ beschrieben.}
+    \label{abb:kontmech_UebungBogen}
+  \end{figure}
+  In Abhängigkeit von der Krümmung in der Ruhelage, die durch den Winkel
+  $\theta$ gegeben ist, lässt sich mit dem Elastizitätsmodul $E$, dem
+  Flächenträgheitsmoment $I$, der Masse $M$ des Bogens, seiner Länge $L$,
+  der externen Spannkraft pro Länge $F_l$ und der Koordinate $s$ entlang
+  des Bogens die Bewegungsgleichung für eine Auslenkung $n$ aus der Ruhelage
+  aufstellen \cite{Cross2001}:
+  \begin{equation*}
+    \frac{M}{L} \frac{\partial^2 n}{\partial t^2} = F_l - E I\,
+    \frac{\partial^4 n}{\partial s^2}
+  \end{equation*}
+  Für eine numerische Lösung diskretisieren wir den Bogen in $N$ Elemente,
+  führen die Masse $m=M/N$ und die Länge $h=L/N$ eines Elements sowie die
+  Spannkraft $F=F_l h$ auf ein Element ein und multiplizieren mit diesem $h$,
+  was auf die Gleichung
+  \begin{equation*}
+    m \frac{\partial^2 n}{\partial t^2} = F - E I h\,
+    \frac{\partial^4 n}{\partial s^2}
+  \end{equation*}
+  führt. Unter der Annahme einer harmonischen Schwingung gewinnen wir daraus
+  die gewöhnliche Differentialgleichung 4. Ordnung
+  \begin{equation*}
+    \frac{\partial^4 n}{\partial s^2} = 
+    \frac{m \omega^2}{E I h} n + \frac{F}{E I h} \; ,
+  \end{equation*}
+  für die die Randbedingungen $\partial^2n/\partial s^2 = \partial^3n/
+  \partial s^3 = 0$ im Fall eines freien Endes gelten \cite{Cross2001}. Dies
+  entspricht auch der betrachteten Modellierung. Die externe Kraft wirkt nur
+  an den Punkten, an denen die gespannte Saite befestigt ist. Dort kann sie
+  durch
+  \begin{equation}
+    F= T_1 \cos(\vartheta)\,\frac{\partial n}{\partial s} - 2k\,n\,
+    \sin^2(\vartheta)
+  \end{equation}
+  mit der Spannkraft $T_1$ in der Ruhelage und der Federkonstanten $k$
+  der Saite beschrieben werden.
+  
+  Lösen Sie die Differentialgleichung numerisch für verschiedene Winkel
+  $\vartheta$. Zeigen Sie damit, dass für kleine Winkel die Schwingungsfrequenz
+  $f = \omega/(2\pi)$ kleiner ist als für den Bogen ohne Seite, für
+  zunehmenden Winkel aber ansteigt und deutlich größer werden kann als
+  im Fall ohne spannende Saite. Verwenden Sie die folgenden Materialparameter
+  für den Aluminiumbogen aus \cite{Cross2001}: $EI = \SI{3{,}09}{\kilo\gram\,
+    \metre^2}$, $M = \SI{118}{\gram}$, $L = \SI{52}{\centi\metre}$, $k =
+  \SI{2{,}1e4}{\newton\per\metre}$.
+
+  Für die numerische Lösung ist es empfehlenswert, von einer festen
+  Intervallzahl $N$ auszugehen und die Spannkraft in zwei Intervallen
+  nahe, jedoch nicht exakt am Rand (freies Ende) anzusetzen, ansonsten
+  verschwindet sie \cite{Cross2001,Cross1999}. Neben den gegebenen
+  Randbedingungen lauten die zwei verbleibenden Startbedingungen $n(0) = n_a$
+  mit einem beliebigen $n_a$ (lineare Differentialgleichung) und
+  $\partial n(0)/\partial s = n'_a$. In einer Nullstellensuche bestimmt man
+  $n'_a$ und $\omega$ so, dass die Bedingungen auch am anderen Ende des Bogens
+  erfüllt sind. Man muss darauf achten, dass die Spannkraft der Saite immer
+  in die richtige Richtung angesetzt wird. 
+  
+	Es ist interessant, dass obwohl der Rahmen eines Saiteninstruments beim Einlegen der Saiten einer großen Spannkraft unterliegt, dieser durch das Anbringen mehrerer Saiten nicht versteift wird. Hingegen wird ein Bogen, wie wir ihn gerade beschrieben haben, viel steifer, wenn er bespannt ist. Ein Tennisschläger - ähnlich wie ein Saiteninstrument - wird eher weicher, wenn die Saiten hinzugefügt werden. Die Erklärung ist, dass durch die Bespannung die Modenfrequenzen für Querschwingungen bei einem Bogen zunehmen und bei einem Schläger abnehmen. Die Wirkung der Saiten hängt also von der Art der Biegung des Rahmens im Zustand ohne Bespannung ab \cite{Cross2001}.
+	
+  \medskip
+  \hyperref[lsg:kontmech_BogenSpannung]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+  %\href{FingerUeb1_AB.pdf#lsg:kontmech_BogenSpannung}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+% -----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung23
+  \schwierig{kontmech_Chladni}{Chladnische Klangfiguren}
+  Stellen Sie die Differentialgleichung für eine dünne, elastische Scheibe
+  auf, die zu Deformationsschwingungen in der Form fähig ist, dass die
+  Schwingungsamplitude senkrecht zur Scheibenfläche ist. Finden Sie mit einem
+  numerischen Lösungsverfahren für partielle Differentialgleichungen einige
+  Eigenmoden für eine Scheibe, die
+  \begin{enumerate}
+  \item eine Kreisform,
+  \item eine quadratische Form,
+  \item eine Rechteckform mit unterschiedlichen Kantenlängen
+  \end{enumerate}
+  hat.
+  
+  \medskip
+  \hyperref[lsg:kontmech_Chladni]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+  %\href{FingerUeb1_AB.pdf#lsg:kontmech_Chladni}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+% ----------------------------------------------------------------------------------------------------------
+% ----------------------------------------------------------------------------------------------------------
+
+\newpage
+\subsection{Übungen zu Wellen}
+
+\medskip
+
+% ----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung24
+  \mittel{kontmech_Dispersion}{Wellenausbreitung und Dispersion}
+Wir wollen Lösungen einer sich linear ausbreitenden, fortlaufenden Welle, der allgemeinen Form
+\begin{equation}
+ \psi(t,x) = f(\omega t \pm kx) \label{eq:kontmech_fortl_welle01}
+\end{equation}
+berechnen. Hierin sind $k$ als Wellenzahl und $\omega$ als Kreisfrequenz definiert. Durch Einsetzen in die Wellengleichung \eqref{eq:kontmech_PDGLSaite2} ergab sich die \gls{Dispersionsrelation}\index{Dispersionsrelation} 
+\begin{equation}
+  \omega = \sqrt{\frac{E}{\varrho}}\,k = v_\text{Ph}\,k ~~~~\text{mit}~~v_\text{Ph} = \sqrt{\frac{E}{\varrho}} \,.
+  \label{eq:kontmech_DispersionsRel02}
+\end{equation}
+Hierin ist $v_\text{Ph}$ die \textit{Phasengeschwindigkeit}\index{Phasengeschwindigkeit}, die als Ausbreitungsgeschwindigkeit gleicher Phasen anzusehen ist.
+Allgemeiner gilt für Dispersionsrelationen $\omega = \omega(k)$ \bzw $v_\text{Ph} = v_\text{Ph}(k)$, womit man dann
+die \textit{Gruppengeschwindigkeit}\index{Gruppengeschwindigkeit}
+\begin{equation}
+  v_\text{Gr} = \frac{\D \omega(k)}{\D k}  \label{eq:kontmech_DispersionsRel04}
+\end{equation}
+definieren kann, die die Geschwindigkeit ist, mit der sich die Amplitudeneinhüllende eines Wellenpakets fortbewegt. Für verlustfreie Medien kann diese auch als die Geschwindigkeit der Signal(Energie)-Übertragung verstanden werden.\\
+Eine einfache Rechnung (Kettenregel) ergibt einen Zusammenhang zwischen Phasen- und Gruppengeschwindigkeit:
+\begin{equation}
+  v_\text{Gr} = \frac{\D \omega(k)}{\D k} = \frac{(\D v_\text{Ph}\,k)}{\D k} = v_\text{Ph} + k \frac{\D v_\text{Ph}(k)}{\D k} = v_\text{Ph} - \lambda \frac{\D v_\text{Ph}(\lambda)}{\D \lambda}\,, \label{eq:kontmech_DispersionsRel05}
+\end{equation}
+wobei wir im letzten Schritt die Wellenzahl $k$ durch die Wellenlänge $\lambda = 1/k$ ersetzt haben. Wenn die Phasengeschwindigkeit nicht von der Wellenlänge \bzw Wellenzahl abhängt, dann sind Phasengeschwindigkeit und Gruppengeschwindigkeit gleich. Ist $v_\text{Ph} > v_\text{Gr} $ so zeigt das Material, in dem sich die Welle ausbreitet, \textit{normale Dispersion}\index{Dispersion!normale}, im Fall von  $v_\text{Ph} < v_\text{Gr}$ \textit{anormale Dispersion}.\index{Dispersion!anormale}
+\begin{enumerate}
+\item Berechnen Sie die Überlagerung zweier Wellen der Form $\psi_i(x,t) = \cos(k_i\,x - \omega_i\,t)$ mit $i=1,2$, die sich in Medien mit drei unterschiedlichen Dispersion ausbreiten: $v_\text{Gr}  = 0.5\, v_\text{Ph}$ und $v_\text{Gr}  = 1.5, v_\text{Ph}\,.$ 
+\item Wiederholen Sie die Rechnung für Überlagerung zweier gegeneinander laufender Wellen der Form $\psi_i(x,t) = \cos(k_i\,x - (-1)^i\,\omega_i\,t)$ mit $i=1,2$. 
+\item Überlagern Sie nun numerisch eine große Zahl $N \approx 50$ von Wellen der Form $\psi_i(x,t) = \cos(k_i\,x - \omega_i\,t)$ mit $i=-N,N$. 
+Wir erhalten ein Wellenpaket. 
+Wir wollen eine lineare normale Dispersion wie folgt annehmen:
+\begin{align}
+	  v_\text{Ph}(k_i) = v_{\text{Ph},0} + v_\text{d}\; \frac{\left|k_i\right|-k_0}{k_0} \,. \label{eq:kontmech_DispersionsRel06}
+\end{align}
+Die Konstante $v_\text{d}$ hat ebenfalls die Dimension einer Geschwindigkeit und ist für normale Dispersion negativ, damit \eqref{eq:kontmech_DispersionsRel05} erfüllt ist, $v_{\text{Ph},0}$ ist die Phasengeschwindigkeit und $k_0$ die Wellenzahl für die Mittenwellenlänge $\lambda_0 = 1/k_0$.
+Die Gruppengeschwindigkeit für diese Mittenwellenlänge ist $v_{\text{Gr},0} = v_{\text{Ph},0} + v_\text{d}\,$.
+Beschreiben Sie das Verhalten des Wellenpaketes.\\
+\end{enumerate}
+\hyperref[lsg:kontmech_Dispersion]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+  %\href{FingerUeb1_AB.pdf#lsg:kontmech_Dispersion}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+% ----------------------------------------------------------------------------------------------------------
+\newpage
+\begin{prob} %Übung25
+  \schwierig{kontmech_Dispersion2}{Ausbreitung eines Wellenpakets unter Dispersion}
+Wir betrachten in Erweiterung von \probref{kontmech_Dispersion} ein sich ausbreitendes Wellenpaket mit einer Gauß-förmigen Amplitudeneinhüllenden: 
+\begin{equation}
+ \psi(t,x) = A_0\,\e^{-t^2/\tau_\text{P}{}^2}\, \mathrm{exp}\lek{\im (k_0\,x - \omega_0\,t + \varphi(t))}\rek\,\label{eq:kontmech_DispersionsRel07}
+\end{equation}
+worin $\tau_\text{P}$ eine Zeitkonstante ist, die die Ausdehnung des Wellenpaketes beschreibt und $\varphi(t)$ eine mögliche zeitabhängige Phase, die zu Beginn $\varphi =0$ ist.
+Dieses Wellenpaket durchläuft nun ein dispersives Medium. Die Dispersion soll wie in \probref{kontmech_Dispersion} durch
+\begin{align}
+   v_\text{Gr} = v_\text{Ph} + k \frac{\D v_\text{Ph}(k)}{\D k} = v_\text{Ph} - \lambda \frac{\D v_\text{Ph}(\lambda)}{\D \lambda}\,, \label{eq:kontmech_DispersionsRel08}
+\end{align}
+beschrieben werden.
+
+Wir definieren noch die instantane Frequenz, die als zeitliche Ableitung der Phase des Wellenpaketes definiert ist:
+\begin{align*}
+   \omega_i(t) = \omega_0 + \frac{\D \varphi}{\D t} \,.
+\end{align*}
+Offensichtlich gilt für unser Wellenpaket vor Eintritt in das dispersive Medium $\omega_i(t) = \omega_0$.
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{DispersionGauss.pdf}
+    \caption[Wellenpaketausbreitung im dispersiven Medium.]{Auseinanderlaufen eines Gauß-förmigen Wellenpaketes bei Dispersion.}
+    \label{abb:kontmech_DispersionGauss}
+  \end{figure}
+
+Auf Basis der Linearität der Wellengleichung kann man zeigen, dass sich ein solches Wellenpaket nach Durchlaufen eines dispersiven Mediums entsprechend \figref{kontmech_DispersionGauss} verbreitert und unter der verbreiterten Einhüllenden die instantane Frequenz des Wellenpaketes eine Zeitabhängigkeit hat, die von der Dispersion des Mediums abhängt. Wir werden das in der Elektrodynamik und Optik am Beispiel optischer Pulse genauer untersuchen (siehe auch \cite{Saleh2008, Schubert1986, Kaschke2014}). \\
+
+Eine Methode der Behandlung der Ausbreitung von Wellenpaketen in dispersiven Medien besteht darin, dass man das Medium als Spektralfilter betrachtet, welches das Ausgangsspektrum des Wellenpaketes entsprechend filtert. Wir wollen das numerisch mit \matlab{} durchführen, indem wir zunächst die Fourier\footnote{Jean Baptiste Joseph Fourier (1768--1830 in Paris) war ein französischer Mathematiker und Physiker, der sich mit der Wärmeausbreitung in Festkörpern beschäftigte und dabei die Fourier-Reihen herleitete. 
+Mit der nach ihm benannten Fourier-Analyse legte er einen wesentlichen Grundstein für moderne Physik und Technik}\indexp{Fourier, Jean Baptiste Joseph}\index{Fourier-Transformation}-Transformierte \cite{Arens2008} des Eingangswellenpaketes berechnen.\footnote{Bei diesem Aufgabenteil setzen wir Kenntnisse der Methode der Fourier-Transformation voraus. Wir werden diese ausführlich in Band IV und Band V behandeln und benutzen.}
+
+Wegen der Linearität der Wellengleichung können wir zeitliche Verbreiterung des Wellenpaketes und den Frequenzverlauf innerhalb des Wellenpaketes nach Durchlaufen des dispersiven Mediums als Wirkung eines linearen Filter im Frequenzraum betrachten. Wir brauchen dazu die Fourier-Transformierte des dispersiven Mediums und bilden anschließend das Produkt von den beiden Fourier-Transformierten. Die Rücktransformation des Produktes ergibt die zeitliche Form des Wellenpaketes nach Durchlaufen des dispersiven Mediums.\\
+
+  \medskip
+  \hyperref[lsg:kontmech_Dispersion2]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+  %\href{FingerUeb1_AB.pdf#lsg:kontmech_Dispersion2}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob} 
+
+
+
+% ----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung26
+\mittel{kontmech_soliton1}{Solitonen I}\index{Solitonen}
+Solitonen sind sogenannte Einzelwellen (Englisch: \textit{Solitary Waves}), die sich formstabil über theoretisch unbegrenzt lange Strecken ausbreiten. Sie bewegen sich mit einer konstanten Amplitude und einem festen symmetrischen Profil. Ihre Kammlinien (das sind die Verbindungslinien zwischen den höchsten Punkte eines Wellenzuges) sind somit Geraden. 
+Solitonen wurden erstmals 1834 von dem schottischen Ingenieur Russell\footnote{John Scott Russell (1808--1882) war ein schottischer Ingenieur und Schiffbauer. Bekannt ist er durch die Entdeckung der Solitonen und die Konstruktion für sehr großer Schiffe (zumindest für die damalige Zeit).}\indexp{Russell, John Scott} beschrieben. Russell ritt mehrere Kilometer neben einer etwa 10 Meter langen und etwa einen halben Meter hohen Wasserwelle, die sich in einem engen Kanal ausbreitete und deren Wellenform sich kaum veränderte.
+
+Solitonen entstehen durch ein Wechselspiel von Dispersion\index{Dispersion} und nichtlinearer Wechselwirkung des Ausbreitungsmedium mit der Welle. In \cite{Saleh2008} wird ein anschauliches mechanisches Analogon für ein Soliton gegeben (\figref{kontmech_soliton_principle}). Danach bewegt sich eine Sportwagen, ein LKW und ein Fahrrad nacheinander als Teil einer Welle. Der Sportwagen hat eine größere Eigengeschwindigkeit als der LKW und dieser wiederum als der Fahrradfahrer. Auf einem festen Untergrund würde die Welle auseinanderlaufen, die unterschiedlichen Eigengeschwindigkeiten ergeben sich aus der Dispersion des Mediums. Ist der Untergrund elastisch (das entspricht der Nichtlinearität), dann sinkt der LKW ein und erzeugt eine rücktreibende Kraft auf den Sportwagen und eine vorwärtstreibende Kraft auf den Radfahrer. Sind Nichtlinearität und Dispersion gut aufeinander abgestimmt, bleiben die drei zusammen. Wir haben dann ein "`Soliton"'.\\
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{SolitonModell.pdf}
+    \caption[Mechanisches Analogon eines Solitons.]{Mechanisches Analogon eines Solitons (nach \cite{Saleh2008}).}
+    \label{abb:kontmech_soliton_principle}
+  \end{figure}
+	
+Erst 1895 wurde das Phänomen der Solitonenwellen mathematisch-physikalisch durch die Korteweg-de-Vries-Gleichung\index{Korteweg-de-Vries-Gleichung} (KdV-Gleichung) beschrieben. Die KdV-Gleichung ist im Gegensatz zu den bisher behandelten Wellengleichungen \eqref{eq:kontmech_GrundformPDGL2} \bzw \eqref{eq:kontmech_WasswerwellenAnsatz3} eine nichtlineare Wellengleichung, da sie ja die Nichtlinearität des Ausbreitungsmediums beinhalten muss:
+\begin{equation}
+  \frac{\partial \psi}{\partial t} + 6\,\psi\,\frac{\partial \psi}{\partial x} + \frac{\partial^3 \psi}{\partial x^3} = 0\,. \label{eq:kontmech_soliton01}
+\end{equation}
+Hier ist $\psi$ die Wellenhöhe und $x$ wurde als Ausbreitungsrichtung gewählt.
+Man findet als Lösung für die KdV-Gleichung: 
+\begin{align}
+  \psi(x,t) = \frac{c}{2}\;\sech^2\lek \frac{\sqrt{c}}{2}\;\lk x-ct \rk \rek = \frac{c}{2}\;\lek \cosh\lk \frac{\sqrt{c}}{2}\;\lk x-ct \rk \rk \rek^{-2} \,.\label{eq:kontmech_soliton02}
+\end{align}
+Hier steht $c$ für die Ausbreitungsgeschwindigkeit in $x$\,-Richtung. Offensichtlich sind Amplitude und Ausbreitungsgeschwindigkeit nicht unabhängig voneinander. 
+Da die KdV-Gleichung nichtlinear ist, gilt anders als für die Wellengleichung \eqref{eq:kontmech_WasswerwellenAnsatz3} kein Superpositionsprinzip.
+\begin{enumerate}
+	\item Stellen Sie die Solitonen-Lösungen \eqref{eq:kontmech_soliton02} in einer Simulation graphisch dar und beobachten Sie Form und Ausbreitung in Abhängigkeit vom Parameter $c$.
+	\item Zeigen Sie durch Einsetzen von \eqref{eq:kontmech_soliton02} in die KdV-Gleichung \eqref{eq:kontmech_soliton01}, dass diese tatsächlich Lösungen sind.
+	\item Zeigen Sie: Wenn $\psi_1$ und $\psi_2$ Lösungen der KdV-Gleichung sind, dann sind $\psi_1+\psi_2$ und $\alpha\,\psi_1$ keine Lösungen.
+	\item Lösen Sie die KdV-Gleichung numerisch mit der Methode der finiten Differenzen\index{Finite Differenzen Methode}. 
+	\item Solitonen bleiben nach der Interaktion mit anderen Solitonen erhalten. Berechnen Sie numerisch die dabei beobachtete Phasenverschiebung.  
+\end{enumerate}
+
+\medskip
+\hyperref[lsg:kontmech_soliton1]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+%\href{FingerUeb1_AB.pdf#lsg:kontmech_soliton1}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung27
+\mittel{kontmech_soliton2}{Solitonen II}
+Neben der Korteweg-de-Vries-Gleichung gibt es andere nichtlineare Wellengleichungen, die Solitonen als Lösungen haben. Wir möchten zwei Gleichungen angeben:\\
+
+\textit{\textbf{Sinus-Gordon-Gleichung (SG-Gleichung)}}\\
+
+Die Sinus-Gordon\footnote{Walter Gordon (1893--1939) war ein deutscher Physiker, der vor allem im Bereich der mathematischen Physik und der Quantenelektrodynamik arbeitete.}\indexp{Gordon, Walter}-Gleichung\index{Sinus-Gordon-Gleichung} beschreibt unter anderem den Kontinuumsgrenzwert einer Kette harmonisch gekoppelter Pendel. Sie wird oft als Näherung für nichtlineare Wellenphänomene, beispielsweise in der nichtlinearen Optik, verwendet. Der Name Sinus-Gordon-Gleichung\index{Klein-Gordon-Gleichung} ist ein Wortspiel mit Anspielung auf die ähnliche Form der Klein\footnote{Oskar Benjamin Klein (1894--1977) war ein schwedischer Physiker, der auf den Gebieten der Relativitätstheorie und der Quantentheorie arbeitete.}\indexp{Klein, Oskar Benjamin}-Gordon-Gleichung, welche spinlose Teilchen im Rahmen der Quantenmechanik relativistisch korrekt beschreibt. Die Sinus-Gordon-Gleichung lautet:
+\begin{equation}
+  \frac{1}{c^2}\frac{\partial^2 \psi}{\partial t^2}  - \frac{\partial^2 \psi}{\partial x^2}  + \sin \psi = 0\,. \label{eq:kontmech_soliton03}
+\end{equation}
+Auch für die SG-Gleichung kann man geschlossene Lösungen angeben:
+\begin{equation}
+  \psi(x,t) = 4 \arctan \lk \mathrm{exp}\lek \pm \frac{x-vt}{\sqrt{1-(v/c)^2}}
+  \rek \rk \; .
+  \label{eq:kontmech_soliton04}
+\end{equation}
+
+\textbf{\textit{Nichtlineare Schrödinger-Gleichung (NLS-Gleichung)}} \\
+
+Die Ausbreitung von Lichtimpulsen in Wellenleitern mit nichtlinearem Brechungsindex kann mit der nichtlinearen Schrödinger\footnote{Erwin Rudolf Josef Alexander Schrödinger (1887--1961) war ein österreichischer Physiker und Wissenschaftstheoretiker. Er gilt als einer der Begründer der Quantenmechanik und erhielt 1933 den Nobelpreis für Physik.}\indexp{Schrödinger, Erwin Rudolf Josef Alexander}-Gleichung beschrieben werden:
+\begin{equation}
+  \im\,\frac{\partial \psi}{\partial t} + \frac{1}{2}\,\frac{\partial^2 \psi}{\partial x^2} + g\, \left|\psi\right|^2\,\psi = 0  \,. \label{eq:kontmech_soliton05}
+\end{equation}
+Sie wird als Modell für Wasserwellen oder auch in der nichtlinearen Optik benutzt. Optische Solitonen sind von großer Bedeutung und Gegenstand der Forschung. Es gelang, optische Solitonen über mehr als $\SI{100e6}{\kilo\metre}$ ohne merkliche Verluste über geeignete Glasfasern zu übertragen \cite{Saleh2008}.
+Auch für die NLS-Gleichung kann man geschlossene Lösungen angeben. Die sogenannte Fundamentallösung lautet:
+\begin{align}
+	\psi(x,t) = A_0\;\sech \lk \frac{t- x/v }{\tau_0} \rk \mathrm{exp}\lek -\im \frac{x}{x_0} \rek \,.\label{eq:kontmech_soliton06}
+\end{align}
+Hier sind $\tau_0$ die zeitliche Impulslänge, $z_0$  ist eine Größe für die lineare Dispersion (Dispersionslänge) und $A_0$ ist die Maximalamplitude des Solitons, die wiederum über $A_0\,\tau_0 = C_\text{nl,d}$ mit dem Materialparameter $C_\text{nl,d}$ verknüpft ist, der sowohl von der Dispersion als auch der Nichtlinearität abhängt und eine Konstante ist.
+Es gibt aber eine ganze Reihe von Lösungen für die NLS-Gleichung. So gibt es auch Solitonen höherer Ordnung, \zb ist das Soliton 2.Ordnung gegeben durch \cite{Saleh2008}:
+\begin{align}
+	%\psi(x,t) = 4 \, \frac{\cosh{3t} + 3 \e^{4\im z}\, \cosh{t}}{\cosh{4t} + 4\cosh{2t} + 3\cosh{4z}} \e1{\im z/2} \,.\label{eq:kontmech_soliton07}
+	\psi(x,t) = 4 \, \frac{\cosh{3t} + 3 \e^{4\im x}\, \cosh{t}}{\cosh{4t} + 4\cosh{2t} + 3\cosh{4x}} \mathrm{exp}\lek -\im \frac{x}{2} \rek \,.\label{eq:kontmech_soliton07}
+\end{align}
+
+Wir wollen die verschiedenen Solitonen-Lösungen etwas miteinander vergleichen und dabei auch auf \probref{kontmech_soliton1} zurück greifen.
+\begin{enumerate}
+	\item Stellen Sie die Solitonen-Lösungen Gl. \eqref{eq:kontmech_soliton04} und Gl. \eqref{eq:kontmech_soliton06}, als Zusatz gern auch nach Gl. \eqref{eq:kontmech_soliton07}, in einer Simulation graphisch dar und beobachten Sie Form und Ausbreitung in Abhängigkeit von den Parametern.
+	\item Zeigen Sie durch Einsetzen in die Gleichung \eqref{eq:kontmech_soliton03} \bzw \eqref{eq:kontmech_soliton05}, dass dies tatsächlich Lösungen der jeweiligen PDGL sind.
+	\item Lösen Sie die PDGL \eqref{eq:kontmech_soliton03} und \eqref{eq:kontmech_soliton05} numerisch mit der Methode der finiten Differenzen. 
+	\item Vergleichen Sie die verschiedenen Solitonen-Lösungen miteinander, welche Gemeinsamkeiten, welche Unterschiede gibt es? 
+\end{enumerate}
+
+\medskip
+\hyperref[lsg:kontmech_soliton2]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+%\href{FingerUeb1_AB.pdf#lsg:kontmech_soliton2}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+\begin{prob} %Übung28
+\mittel{kontmech_tsunamis}{Tsunamis}
+Nach den verheerenden Folgen des Tsunamis vom Dezember 2004 im Indischen Ozean sind zahlreiche Artikel zur Mathematik von Tsunamis erschienen. Oft werden Solitonen zur mathematischen Modellierung von Tsunamis herangezogen \cite{Ziegler2005}. Obwohl Tsunamis und Solitonen ähnliche Eigenschaften aufweisen, handelt es sich doch um grundsätzlich unterschiedliche Wasserwellenphänomene. Es gibt sowohl Argumente für eine Modellierung als Soliton als auch Argumente für die Flachwasserwellentheorie \cite{Constantin2007}.
+
+\begin{enumerate}
+	\item Berechnen Sie den Energieeintrag in den indischen Ozean durch das Erdbeben. Bei diesem schnellte auf einer elliptischen Fläche von 100 km Breite und 1000 km Länge ein Teil der Burma-Platte, der von der absinkenden indischen Platte nach unten gezogen wurde, nach oben zurück und übertrug so enorme Energie auf das darüberliegende Wasser. Zusätzlich wird vermutet, dass Unterwasser-Erdrutsche den Effekt noch verstärkten. Insgesamt wurde schätzungsweise eine Energie von rund 475 Megatonnen TNT (1 MT (TNT) = \SI{4.184e15}{\joule}) freigesetzt. Schätzen Sie die Masse des bewegten Wassers ab und die ungefähre Höhe der Absenkung des Ozeanbodens.
+	\item Argumentieren Sie entweder für das Tsunami- oder das Flachwasserwellen-Modell.
+	\item Berechnen Sie numerisch das Aufsteilen einer Wasserwelle im Küstenbereich durch die abnehmende Wassertiefe.
+\end{enumerate}
+
+\medskip
+\hyperref[lsg:kontmech_tsunamis]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+%\href{FingerUeb1_AB.pdf#lsg:kontmech_tsunamis}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+
+%%%%%%%%%%%%%%%%%%%Zusatzaufgaben---------------------------------------------------------------------------
+
+\subsection{Weiterführende Zusatzaufgaben und Probleme}
+\medskip
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Zusatz1
+  \zusatz{kontmech_Hurrican}{Entstehung und Strömungsprofile eines Hurrikans}
+  Erklären Sie die Entstehung und die Strömungsprofile eines Hurrikans. Können
+  Sie eine Abschätzung der Größenordnung der Terme in der
+  Navier-Stokes-Gleichung machen? 
+	
+  \medskip  
+
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+\begin{prob} %Zusatz2
+  \zusatz{kontmech_Regentropfen}{Fallgeschwindigkeit von Regentropfen}
+  Berechnen Sie die maximale Fallgeschwindigkeit von Regentropfen. Berücksichtigen Sie dabei die unterschiedlich Form als Funktion der Größe.
+
+  Phillip Lenard\footnote{Philipp Eduard Anton Lenard (1862--1947) war ein
+    deutscher Physiker, der für seine Arbeiten über Kathodenstrahlen und die
+    Entwicklung der Elektronentheorie 1905 den Nobelpreis für Physik erhielt.
+    Später wurde er zum erklärten Gegner Einsteins und der Relativitätstheorie
+    und zum Wortführer einer nationalsozialistisch-rassistisch geprägten
+    "`Deutschen Physik"'.}\indexp{Lenard, Philipp Eduard Anton} fand
+  heraus, dass größere Regentropfen schneller fallen als kleine. Sind jedoch
+  Regentropfen größer als $\SI{4.5}{\mm}$ bis $\SI{5}{\mm}$, zerfallen sie in
+  zwei oder mehrere kleine. Lenard schlussfolgerte, dass Regentropfen niemals
+  schneller fallen können als ca. $\SI{29}{\km\per\hour}$. Wie stehen Sie zu
+  dieser Aussage? Berechnen Sie die maximale Fallgeschwindigkeit für Tropfen
+  im Bereich von $\SI{1}{\milli\metre}$ bis $\SI{5}{\milli\metre}$ und
+  berücksichtigen Sie dabei die Formveränderung von einer annähernden
+  Kugelform zu einer Form, die einem Hamburger-Brötchen ähnelt und die wir
+  durch eine Halbkugel annähern wollen. Die Berechnung der exakten Form eines
+  Regentropfen als Funktion seiner Größe (und damit Masse) erfolgt unter
+  Berücksichtigung von Oberflächenspannung und hydrostatischen und
+  aerostatischen Druck und findet sich für interessierte Leser in
+  \cite{Beard1987} und in einer zusammenfassenden Darstellung in
+  \cite{Lim2006}.
+  
+  %\begin{figure}
+    %\centering
+    %\includegraphics[width=\textwidth]{Platzhalter.pdf}
+    %\caption[Regentropfen verschiedener Größe.]{Regentropfen verschiedener
+      %Größe.}
+    %\label{abb:kontmech_regentropfen}
+  %\end{figure}
+\medskip  
+
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%------------------------------------------------------------------------------------------------------------
+
+
+

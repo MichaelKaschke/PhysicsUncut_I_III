@@ -1,0 +1,180 @@
+\section{Formelsammlung zur Physik der Bewegung von Körpern}\label{kap:bew_formelsammlung}
+Im Folgenden geben wir zum Arbeitsbuch einige häufig benutzte Formeln und Beziehungen der Himmelsmechanik.
+
+\subsection{Koordinatensysteme und Differentialoperatoren}
+
+\textbf{Kartesische Koordinaten}
+\begin{align*}
+    x_1 &\equiv x \\ 
+    x_2 &\equiv y \\
+    x_3 &\equiv z \\
+		\vec{r} &= x_1\,\vec{e}_1 + x_2\,\vec{e}_2 +x_3\,\vec{e}_3 = x\,\veceX + y\,\veceY + z\,\veceZ \\
+    \D V &= \D^3x = \D x,\D y\,\D z 
+\end{align*}
+\textbf{Zylinderkoordinaten}
+\begin{align*}
+    x_1 &\equiv x = \rho\,\cos\phi \\ 
+    x_2 &\equiv y = \rho\,\sin\phi \\
+    x_3 &\equiv z \\
+    \D V &= \D^3x = \rho\,\D \rho\,\D\phi\,\D z 
+\end{align*}
+\vspace{0.5cm}
+\textbf{Einheitsvektoren Zylinderkoordinaten}
+\begin{align*}
+    \vec{e}_\rho &= \cos\phi\,\vec{e}_1 + \sin\phi\,\vec{e}_2 \\
+		\vec{e}_\phi &= \cos\phi\,\vec{e}_2 + \sin\phi\,\vec{e}_1 \\
+		\vec{e}_z &= \vec{e}_3
+\end{align*}
+\vspace{0.5cm}
+\textbf{Kugelkoordinaten \bzw sphärische Polarkoordinaten}
+\begin{align*}
+    x_1 &\equiv x = r\,\sin\theta\,\cos\phi \\
+    x_2 &\equiv y = r\,\sin\theta\,\sin\phi \\
+    x_3 &\equiv z = r\,\sin\theta\\
+    \D V &= \D^3x = r^2\,\D r\,\D \Omega = r^2\,\D r\,\sin\theta\,\D \theta\, \D \phi
+\end{align*}
+\vspace{0.5cm}
+\textbf{Einheitsvektoren Kugelkoordinaten}
+\begin{align*}
+    \vec{e}_r &= \sin\theta\,\cos\phi\,\vec{e}_1 + \sin\theta\,\sin\phi\,\vec{e}_2 + \cos\theta\,\vec{e}_3 \\
+    \vec{e}_\theta &= \cos\theta\,\cos\phi\,\vec{e}_1 + \cos\theta\,\sin\phi\,\vec{e}_2 - \sin\theta\,\vec{e}_3 \\
+    \vec{e}_\phi &= \cos\phi\,\vec{e}_2 - \sin\phi\,\vec{e}_1 \\
+\end{align*}
+\vspace{0.5cm}
+
+\newpage
+\subsection{Vektorrechnung}
+
+\textbf{Vektorprodukte}
+\begin{align*}
+    \vec{a}\,\lk \vec{b} \times \vec{c}\rk &= \vec{b}\,\lk \vec{c}\times \vec{a}\rk = \vec{c}\,\lk \vec{a} \times \vec{b}\rk \\
+    \vec{a}\times \lk \vec{b}\times \vec{c}\rk &= \lk \vec{a}\,\vec{c}\rk\,\vec{b}-\lk \vec{a}\,\vec{b}\rk\,\vec{c} \qquad \qquad   \eqref{eq:kontmech_vecbasics04} \\
+    \lk \vec{a} \times \vec{b}\rk\, \lk \vec{c} \times \vec{d}\rk &= \lk \vec{a}\,\vec{c}\rk\,\lk \vec{b}\,\vec{d}\rk - \lk \vec{a}\,\vec{d}\rk\,\lk \vec{b}\,\vec{c}\rk \\
+    \lk \vec{a} \times \vec{b}\rk^2 &= \vec{a}^2\,\vec{b}^2-\lk \vec{a}\,\vec{b}\rk^2
+\end{align*}
+\vspace{0.5cm}
+
+\textbf{Kronecker-Symbol}
+\begin{align*}
+    \delta_{ij} = \left\{\begin{array}{rcl}1 & \text{wenn}\, i = j\,,\\0 &\text{wenn}\,  i\neq j\,. \end{array}\right. \quad\quad \eqref{eq:bew_kronecker}
+\end{align*}
+\vspace{0.5cm}
+
+\textbf{Levi-Civita-Symbol}
+\begin{align*}
+ \epsilon_{ijk} = \left\{ \begin{array}{rcl}+1 & \text{wenn $i,j,k$ gerade Permutation von 1,2,3}\,,\\ -1 &\text{wenn $i,j,k$ ungerade Permutation von 1,2,3}\,,\\ 0 & \text{sonst}\,. \end{array}\right.  \quad\quad \eqref{eq:bew_levicivita} \,.
+\end{align*}
+\vspace{0.5cm}
+
+\textbf{Einstein'sche Summenkonvention (kartesiche Koordinaten)}:
+\begin{align*}
+    a\,b = a_\text{i}\,b_\text{i} \equiv \sum\limits_{i=1}^{3}\,a_\text{i}\,b_\text{i}, ~~~~~~ \lk  a\times b \rk_\text{i} = \epsilon_\text{ijk}\,a_\text{j}\,b_\text{k}
+\end{align*} 
+\vspace{0.5cm} 
+
+\textbf{Polardarstellung komplexer Zahlen}
+\begin{align*}
+    z = x+ ij = |z|\,e^{i\phi}, ~~~~ |z| = \sqrt{x^2+y^2}, ~~~~ \tan\phi = \frac{y}{x} \\
+\end{align*}
+\vspace{0.5cm} 
+
+\textbf{Euler'sche Formel}
+\begin{align*}
+    e^{i\phi} = \cos\phi + i\,\sin\phi
+\end{align*}
+
+\newpage
+\subsection{Wichtige Gleichungen der Newtonschen Mechanik}
+
+\textbf{2. Newtonsche Axiom}
+\begin{align*}
+	\vec{F} = \dot{\vec{p}} = \frac{\D}{\D t}(m \vec{v}) = m\vec a \quad\quad \eqref{eq:bew_NewtonBGL} \,.
+\end{align*}
+\medskip
+
+\textbf{Drehmoment, Drehimpuls}
+\begin{align*}
+			\vec{M}_\text{D} &= \vec{r} \times \vec{F} \,,\quad\quad \eqref{eq:bew_Drehmoment} \\
+			\vec{L} &= \vec{r} \times \vec{p}  = m \vec{r} \times \vec{v} \,,\quad\quad\eqref{eq:bew_Drehimpuls} \\
+			\frac{\D \vec{L}}{\D t} &= \dot{\vec{r}} \times \vec{p} + \vec{r} \times \dot{\vec{p}} = \vec{r} \times \vec{F} = \vec{M}_\text{D}\,. \quad\quad\eqref{eq:bew_Drehimpuls_Ableitung}
+\end{align*}
+
+\textbf{Systeme von Massepunkten}
+\begin{align*}
+	&\text{Gesamtmasse} &M &= m_\text{ges} = \sum\nolimits_{i} m_i\,, \\
+        &\text{\gls{com}}&\vec{R}_S &= (1/M)\,\sum\nolimits_{i} m_i \vec{r}_i\,,\\
+	&\text{Äußere Gesamtkraft}&\vec{F}^\text{\,(ext)} &= \sum\nolimits_{i} \vec{F}^\text{\,(ext)}_i\,, \quad \eqref{eq:bew_Gesamtgroessen}\\ 
+	&\text{Gesamtimpuls}&\vec{p} &= \sum\nolimits_{i} \vec{p}_i = \sum\nolimits_{i} m_i \dot{\vec{r}}_i\,, \\ 
+	&\text{Äußeres Gesamtdrehmoment}&\vec{M}_\text{D}^\text{\,(ext)} &= \sum\nolimits_{i} \vec{M}_{\text{D}\,i}^\text{\,(ext)} = \sum\nolimits_{i} \vec{r}_i \times \vec{F}^\text{\,(ext)}_i\,, \\ 
+	&\text{Gesamtdrehimpuls} &\vec{L} &= \sum\nolimits_{i} \vec{L}_i = \sum\nolimits_{i} m_i \vec{r}_i \times \dot{\vec{r}}_i\,. 
+\end{align*}
+
+\textbf{Schwerpunktsatz, Gesamtimpulserhaltungssatz m Systeme von Massepunkten}
+\begin{align*}
+	\dot{\vec{p}} &= \vec{F}^\text{\,(ext)}\, \qquad \eqref{eq:bew_Schwerpunkt_Satz2} \\ 
+	\vec{M}_\text{D}^\text{\,(ext)} &= 0 \quad \Leftrightarrow \quad \vec{L} = \con\, \qquad \eqref{eq:bew_Ges_Drehimpulserhaltung} 
+\end{align*}
+
+
+\subsection{Wichtige Gleichungen des Lagrange-Formalismus}
+
+\textbf{Lagrange-Gleichungen erster Art}
+\begin{align*}
+    m_\text{i}\,\ddot{x}_\text{i} &= F_\text{i} + \sum\limits_{a=1}^{r}\lambda_\text{a}\,\nabla_\text{i}\,f_\text{a}\, \qquad \eqref{eq:bew_Lagrange_I} 
+		~~~\text{mit Zwangsbedingungen} ~~~ f_\text{a}\lk t, x_1, ..., x_\text{N}\rk = 0 
+\end{align*}
+\vspace{0.5cm} 
+\textbf{Lagrange-Gleichungen zweiter Art}
+\begin{align*}
+	\mathcal{L} &= T - U = T(t, q_j, \dot{q}_j) - U(t, q_j) ~\quad~\text{Lagrange-Funktion} \\
+		\frac{\D}{\D t} \frac{\partial \mathcal{L}}{\partial \dot{q}_j} - \frac{\partial \mathcal{L}}{\partial q_j} &=  \left\{\frac{\D}{\D t} \frac{\partial }{\partial \dot{q}_j} - \frac{\partial}{\partial q_j} \right\} \mathcal{L} = 0 \qquad j = 1 \ldots F\, \quad \eqref{eq:bew_LagrangeGl_II}
+\end{align*}
+%\begin{align*}
+    %\frac{d}{dt}\,\frac{\d T}{\d q_\text{j}}=Q_\text{j}, ~~~~ \frac{d}{dt}\,\frac{\d L}{\d \dot{q}_\text{j}}-\frac{\d L}{\d q_\text{j}} = 0, ~~~~ L=T-U
+%\end{align*}
+\vspace{0.5cm} 
+\textbf{Kanonischer oder generalisierter Impuls}
+\begin{align*}
+	p_j = \frac{\partial \mathcal{L}}{\partial \dot{q}_j}\,\quad \eqref{eq:bew_Lagrange_II_f}
+\end{align*}
+\vspace{0.5cm} 
+\textbf{Hamilton-Funktion}
+\begin{align*}
+	\mathcal{H} = \sum\limits_{i} \dot{q}_i \frac{\partial \mathcal{L}}{\partial \dot{q}_i} -  \mathcal{L} =  \sum\limits_{i} p_i \dot{q}_i - \mathcal{L}\, \quad \eqref{eq:bew_Hamilton_Fkt}
+\end{align*}
+
+\subsection{Wichtige Gleichungen der Mechanik des starren Körpers}
+
+\textbf{Trägheitstensor} $\underline{\vec{\Theta}}$,\, \textbf{Trägheitsmoment J} 
+\begin{align*}
+    \Theta_{ij} &= \int_V \varrho(\vec{x}) \left ( \vec{x}^2 \delta_{ij} -x_i x_j
+    \right )\, \D^3 x  ~~~ \text{\bzw ausgeschrieben} \\
+    \underline{\vec{\Theta}} &= \begin{pmatrix} \Theta_{11}&\Theta_{12}&\Theta_{13}\\ \Theta_{21}&\Theta_{22}&\Theta_{23}\\ \Theta_{31}&\Theta_{32}&\Theta_{33}
+    \end{pmatrix}
+     = \bigintsss_V \varrho(\vec{x}) \begin{pmatrix} y^2+z^2 & -x\,y & -x\,z \\ -x\,y & x^2+z^2 & -y\,z \\ -x\,z & -y\,z & x^2+y^2 \end{pmatrix} \, \D^3 x \\
+   J &= \vec{\Theta}_{\,\vec{n_\omega}} = \int_V \varrho(\vec{x})\, {x_\perp}^2 \,\D^3 x ~ \qquad \eqref{eq:bew_traegheitstensor} 
+\end{align*}
+\vspace{0.5cm} 
+\textbf{Steinersche Satz} 
+\begin{align*}
+  \tilde{\Theta}_{ij}
+  &= \int_v \varrho(\vec{x})\left ( \vec{x}^2 \delta_{ij} - x_i x_j \right )
+  \,\D^3 x
+  + \int_v \varrho(\vec{x}) \left ( \vec{a}^2 \delta_{ij} - a_i a_j \right )
+  \,\D^3 x \qquad \eqref{eq:bew_SteinerSatz} \\
+  &= \Theta_{ij} + M \left ( \vec{a}^2 \delta_{ij} - a_i a_j \right )\, ~~~\text{\bzw} ~~~\tilde{J} = J + M {a_\perp}^2 ~ \, 
+\end{align*}
+\vspace{0.5cm} 
+\textbf{Bewegungsgleichung} 
+\begin{align*}
+  \frac{\D\, \vec{L}}{\D t} &= \vec{M}_\text{D}\, \quad \text{Inertialsystem} \quad \eqref{eq:bew_DrehimpulsSatz} \\
+	\underline{\vec{\Theta}}' \dot{\vec{\omega}}' + \vec{\omega}' \times
+    \underline{\vec{\Theta}}' \vec{\omega}' &= \vec{M}_\text{D}' \quad \text{körperfestes System} \quad \eqref{eq:bew_EulerGleichung01}
+\end{align*}
+\vspace{0.5cm} 
+\textbf{Euler-Gleichungen} 
+\begin{align*}
+    \Theta_{11} \, \dot{\omega}'_1 + (\Theta_{33}-\Theta_{22}) \,\omega'_2 \,\omega'_3 &= J_1 \, \dot{\omega}'_1 + (J_3-J_2) \,\omega'_2 \,\omega'_3 = M'_1\; \\
+    \Theta_{22} \, \dot{\omega}'_2 + (\Theta_{11}-\Theta_{33}) \,\omega'_1 \,\omega'_3 &= J_2 \, \dot{\omega}'_1 + (J_1-J_3) \,\omega'_1 \,\omega'_3 = M'_2\; \quad 		\eqref{eq:bew_EulerGleichung02} \\
+    \Theta_{33} \, \dot{\omega}'_3 + (\Theta_{22}-\Theta_{11}) \,\omega'_1 \,\omega'_2 &= J_3 \, \dot{\omega}'_1 + (J_3-J_2) \,\omega'_1 \,\omega'_2 = M'_3 \;
+\end{align*}

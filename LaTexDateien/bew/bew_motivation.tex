@@ -1,0 +1,52 @@
+ \begin{minipage}{0.5\textwidth}
+\includegraphics[width=\textwidth]{Pendeluhr.jpg}
+\end{minipage}
+\medskip
+\begin{minipage}{0.5\textwidth}
+\begin{flushright}
+\small
+\emph{Nichts ist älter in der Natur\\
+als die Bewegung.\\}
+\medskip
+Galileo Galilei (1564--1642)\\
+in seinen Discorsi \\
+\medskip
+\medskip
+\emph{Zustand ist ein albernes Wort;\\
+weil nichts steht und\\
+alles beweglich ist.\\}
+\medskip
+Johann Wolfgang von Goethe (1749--1832)
+\normalsize
+\end{flushright}
+\end{minipage}
+
+\section{Motivation}\label{kap:bew_motivation}
+
+Die abgebildete alte Pendeluhr stammt aus unserem Familienbesitz.
+Schon als Kinder waren wir fasziniert, wenn wir durch Verschieben der Pendelmasse der Uhr die Ganggenauigkeit beeinflussen und die Uhr auf wenige Sekunden Abweichung pro Tag genau einstellen konnten.
+Allerdings erfuhren wir dabei auch, dass es durch Temperaturveränderungen in einem im Winter nicht beheizten Zimmer immer wieder zu größeren Gangabweichungen kam.
+Erst viel später im Gymnasium oder im Grundstudium der Physik lernten wir dann, dass es sich hierbei um ein Paradebeispiel eines physikalischen Pendels\index{Pendel!physikalisches} handelt.\\
+Viele Physiker haben sich über Jahrhunderte hinweg mit der Theorie des Pendels und verschiedener Pendelformen beschäftigt.
+Das Pendel hat in der Geschichte der Menschheit über lange Zeit hinweg eine wesentliche Rolle bei der Zeitmessung gespielt.
+Später sollte das Federpendel sogar als Modell bei der Entwicklung der Quantenmechanik bedeutend werden.
+Auch Philosophen und Künstler wurden vielfach von den Schwingungen des Pendels inspiriert.\footnote{Eine sehr schöne und umfangreiche Zusammenfassung zur Physik, Geschichte und Kunst rund um das Pendel findet man in \cite{Matthews2005}.} Wir werden deshalb in den Übungen auch eine Reihe von Pendeln betrachten und diverses Physikerhandwerk daran üben, insbesondere auch das Arbeiten mit Erhaltungssätzen und das Lösen von Differentialgleichungen.\\
+Bei uns Kindern waren als Spielzeug auch Kreisel\index{Kreisel} beliebt, wobei besonders der Peitschenkreisel in Erinnerung geblieben ist.
+Mechanische Spielzeuge zeigen eine Vielfalt physikalischer Phänomene und sind daher didaktisch sehr wertvoll.
+Selbst große Physiker wie Einstein\footnote{Albert Einstein\indexp{Einstein, Albert} (1879--1955) war einer der bedeutendsten Physiker der Geschichte.
+Seine Forschungen zu Raum und Zeit sowie zum Wesen der Gravitation haben unser modernes Weltbild maßgeblich geprägt.} haben sich nicht nur in ihrer Kindheit mit diesen Spielzeugen beschäftigt.
+So schrieb Sommerfeld\footnote{Arnold Sommerfeld\indexp{Sommerfeld, Arnold} (1868--1951) war ein bedeutender deutscher theoretischer Physiker, der sowohl als Forscher, als auch als akademischer Lehrer hoch anerkannt war.
+Besondere Verdienste erwarb er sich durch die Anwendung fortschrittlicher mathematischer Methoden auf physikalische und technische Probleme.} mit seinem Lehrer Felix Klein ein umfangreiches Werk über die Theorie des Kreisels\cite{Klein1910} und bemerkte: \anf{Der Kreisel ist vor allen anderen mechanischen Vorrichtungen dafür geeignet, den Sinn für wirkliche Mechanik zu wecken.} Wir werden deshalb auch verschiedene Kreisel in unseren Übungen behandeln.\\
+Die Bewegungen von Pendel und Kreisel sind in ihrer Vielfalt wunderbar dafür geeignet, grundlegende Techniken und Methoden der Newtonschen Mechanik zu erörtern und anzuwenden.
+Auch den mächtigen Apparat der Lagrange\footnote{Joseph-Louis de Lagrange\indexp{Lagrange, Joseph-Louis} (1736--1813) war ein italienischer Mathematiker und Astronom,
+der 1788 in seinem berühmten Lehrbuch \emph{Mécanique analytique} die analytische Mechanik begründete.
+In diesem Werk setzt er bewusst seine abstrakte analytische Methodik gegen Newtons geometrische Methode.
+Lagrange betonte, dass \anf{in seinem gesamten Werk keine Bilder zu finden sein werden, nur algebraische Operationen} \cite{Wong2006}.
+Wir finden, sowohl Modellbilder und Analytik haben ihren Platz und ihre Berechtigung.}-Gleichungen\index{Lagrange-Gleichungen} können wir vorteilhaft zur Lösung einiger komplexer Probleme einsetzen.
+Wir werden dabei Effekte und Phänomene der Reibung, der Resonanz und der nichtlinearen Kopplung berücksichtigen, die uns eine Vielfalt bisweilen überraschender Effekte bis hin zum chaotischen Verhalten eines Systems liefern.
+Hinter der Behandlung von Pendeln, Kreiseln, physikalischen Spielzeugen und anderen Themen steht in diesem Kapitel auch das Ziel, die formale mathematische Beschreibung der Physik zu visualisieren.
+Hier setzen wir an verschiedenen Stellen ganz bewusst auf \matlab{} und bleiben nicht bei der analytischen Lösung stehen, sondern versuchen in den Übungen mittels numerischer Methoden den mathematischen Formalismen und analytischen Lösungen sehr anschauliche Bilder zuzuordnen. Wir sehen einen hohen Wert solcher durchgearbeiteten Beispiele und Übungen, gerade auch für das Verständnis der Lagrange-Dynamik \cite{Scheiger2023}.\\
+Da wir den \anf{Fingerübungen} genügend Platz einräumen wollen, können wir in diesem Grundlagenkapitel der "`Physik der Bewegung"' nicht die gesamten theoretischen Grundlagen der Mechanik im Detail nachvollziehen und behandeln.
+Wir verweisen deshalb auf die zahlreichen sehr guten Lehrbücher, insbesondere auf \cite{Schmutzer2005, Greiner2003, Greiner2004, Bartelmann2015, Reineker2006, Feynman2001, Kuypers2012, Morin2008, Mitter1989}.
+Im Folgenden haben wir aber vor allem auch zur Einführung der verwendeten einheitlichen Notation im Buch eine kurze Zusammenfassung der Mechanik (Kinematik und Dynamik) zusammen gestellt und empfehlen  dabei besonders die Referenz \cite{Bartelmann2015} und das ausgezeichnete und kurz gefasste Lehrbuch von Mitter \cite{Mitter1989} zur Vertiefung und Wiederholung.
+

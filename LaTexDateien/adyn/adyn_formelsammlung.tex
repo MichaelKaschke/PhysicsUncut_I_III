@@ -1,0 +1,129 @@
+\newpage
+\section{Formelsammlung zur Astrodynamik}\label{kap:adyn_formelsammlung}
+Im Folgenden geben wir zum Arbeitsbuch einige häufig benutzte Formeln und Beziehungen der Astrodynamik.
+
+\subsection{Wichtige Gleichungen zum Raketenproblem}
+
+\textbf{Raketen-Gleichung, Ziolkowski-Gleichungg}
+\begin{align*}
+\begin{split}
+    \Delta v_\text{R} = v_\text{R}\lk t_f\rk - v_\text{R}\lk t_0\rk = - v_\text{G}\,\ln \frac{m(t_f)}{m(t_0)} = v_\text{G}\,\ln \frac{m_0}{m_f} \,.
+\end{split} \quad\quad \eqref{eq:adyn_rocketequ} \,.
+\end{align*} 
+\medskip
+
+\textbf{Mehrstufenrakete Geschwindigkeitsbudget}
+\begin{align*}
+\begin{split}
+     \Delta v_\text{ges} &=  \sum_{i=1}^N v_{\text{G},i} \, \ln \frac{1}{\sigma_{\text{S},i} + m_{0,i+1}/m_{0,i}} = \sum_{i=1}^N v_{\text{G},i} \, \ln \frac{1}{\sigma_{\text{S},i} + \mu_{i+1}/\mu_i} 
+\end{split} \quad\quad \eqref{eq:adyn_rockets19} \,.
+\end{align*}
+
+\subsection{Formeln zu Umlaufbahnen}
+
+\textbf{Greenwich Sternzeit (GMST)}
+\begin{align*}
+\begin{split}
+    \theta_0 =  280.4606\degree + 360.9856473\degree d ~~~\text{mit}~~~d = \mathrm{MJD} - 51544.5
+\end{split} \quad\quad \eqref{eq:adyn_orbit06} \,.
+\end{align*}
+\medskip
+
+\textbf{Topozentrisches \KOS Einheitsvektoren}
+\begin{align*}
+\begin{split}
+    \vec{e}_\text{O} &= 
+    \begin{pmatrix}
+        -\sin\lambda_\text{B}\\
+        +\cos\lambda_\text{B}\\
+        0
+    \end{pmatrix} ~~~ \text{(Ost-Richtung)}\,,~~~
+    \vec{e}_\text{N} = 
+    \begin{pmatrix}
+        -\sin\varphi_\text{B}\cos\lambda_\text{B}\\
+        -\sin\varphi_\text{B}\sin\lambda_\text{B}\\
+        \cos\varphi_\text{B}
+    \end{pmatrix} ~~~ \text{(Nord-Richtung)}\,,\\
+    \vec{e}_\text{Z} &= 
+    \begin{pmatrix}
+        \cos\varphi_\text{B}\cos\lambda_\text{B}\\
+        \cos\varphi_\text{B}\sin\lambda_\text{B}\\
+        \sin\varphi_\text{B}
+    \end{pmatrix} ~~~ \text{(Zenit-Richtung)}
+\end{split} \quad\quad \eqref{eq:adyn_statobserv04} \,.
+\end{align*}
+
+\newpage
+\subsection{Wichtige Formeln zum Hohmann-Transfer und Lambert-Transfer}
+
+\textbf{Hohmann-Transfer}
+\begin{align*}
+\begin{split}
+    v_1 &= \sqrt{\frac{G\,m_\text{E}}{r_1}}= \sqrt{\frac{G\,m_\text{E}}{R_\text{E}+h_1}} \,,\\
+		v_2 &= \sqrt{\frac{G\,m_\text{E}}{r_2}}= \sqrt{\frac{G\,m_\text{E}}{R_\text{E}+h_2}} \,,\\
+    v_\text{P} &= \sqrt{G\,m_\text{E}}\,\sqrt{\frac{2}{r_1}-\frac{1}{\frac{1}{2}\,\lk r_1+r_2\rk}} = \sqrt{\frac{G\,m_\text{E}}{a_\text{H}}\,\frac{r_2}{r_1}}\,,\\
+    v_\text{A} &= \sqrt{G\,m_\text{E}}\,\sqrt{\frac{2}{r_2}-\frac{1}{\frac{1}{2}\,\lk r_1+r_2\rk}} = \sqrt{\frac{G\,m_\text{E}}{a_\text{H}}\,\frac{r_1}{r_2}}\,,\\
+    \Delta v   &= \Delta v_1 + \Delta v_2 = \lk v_\text{P}-v_1\rk +\lk v_2-v_\text{A}\rk\,,
+\end{split} \quad\quad \eqref{eq:adyn_hohmann04} \,.
+\end{align*}
+\medskip
+
+\textbf{Lambert-Transfer}
+\begin{align*}
+\begin{split}
+		t_\text{F} &= \sqrt{\frac{a^3}{\mu}}\,\lk \alpha-\beta-\lek\sin\alpha -\sin\beta\rek\rk\,,\\
+		\text{mit} \\
+		\sin^2\lk \frac{\alpha}{2}\rk &= \frac{s}{2a}\,,\quad
+		\sin^2\lk\frac{\beta}{2}\rk   = \frac{s-c}{2a}\,,\quad
+		s= \frac{r_1+r_2+c}{2}\,,
+\end{split} \quad\quad \eqref{eq:adyn_lsglambert07}, \eqref{eq:adyn_lsglambert06a}, \eqref{eq:adyn_lsglambert06b}\,.
+\end{align*}
+
+\subsection{Wichtige Formeln Gravity-Assist-Manövern}
+
+\textbf{Gravity-Assist-Manöver - Endgeschwindigkeit}
+\begin{align*}
+\begin{split}
+       v_2{}^2 &= v_1{}^2 - \frac{2\,C_1}{C_2{}^2} + \frac{4\,v_1{}'\,v_\text{P}}{C_2}\,\sqrt{1-\frac{1}{C_2{}^2}}\,\sqrt{1-\lk\frac{C_1}{2\,v_1{}'\,v_\text{P}}\rk^2}\\
+			 \text{mit} ~~ C_1 &= v_1{}^2 - v_\text{P}^2 - v_1{}'^2 \,,\\
+        C_2 &= 1+\frac{r_\text{per}}{\mu_\text{P}}\,v_1{}'{}^2 \,,\\
+        v_1{}'&= \sqrt{v_1{}^2 +v_\text{P}{}^2 - 2\,v_1\,v_\text{P}\,\cos\gamma_1}\,,
+\end{split} \quad\quad \eqref{eq:adyn_lsgswingby08a} ~ \text{bis} ~ \eqref{eq:adyn_lsgswingby08d}\,.
+\end{align*}
+\medskip
+
+\textbf{Ablenkwinkel beim Gravity-Assist-Manöver}
+\begin{align*}
+\begin{split}
+		\sin\lk \frac{\left|\vartheta'\right|}{2} \rk & \:=\: \frac{1}{1 + 2\,\lk v_\infty{}^2/\tilde{v}_\text{F}{}^2\rk}\,,\\
+		 \text{mit} ~~ \tilde{v}_\text{F} &= \sqrt{\frac{2\mu_\text{P}}{r_\text{per}}}
+\end{split} \quad\quad \eqref{eq:adyn_Streuung13b}, \eqref{eq:adyn_swingby09c}\,.
+\end{align*}
+\medskip
+
+\newpage
+\subsection{Wichtige Formeln zu Rendezvous-Manövern und Start/Reentry}
+
+\textbf{Clohessy-Wiltshire-Gleichungen}
+\begin{align*}
+\begin{split}
+    x'\lk t\rk = &\lk 6\,y_0' +4\,\frac{\dot{x}_0'}{\omega_0}\rk\,\sin\lk \omega_0 t\rk + \frac{2\dot{y}_0'}{\omega_0}\,\cos\lk \omega_0 t\rk + x_0' -2\,\frac{\dot{y}_0'}{\omega_0} - \lk 3\,\dot{x}_0' + 6\,\omega_0\,y_0'\rk\,t\,, \\
+\dot{x}'\lk t\rk = &\lk 6\,\omega_0\,y_0' +4\,\dot{x}_0'\rk\,\cos\lk\omega_0 t\rk - 2\,\dot{y}_0'\,\sin\lk\omega_0t\rk -3\,\dot{x}_0' - 6\,\omega_0\,y_0'\,, \\
+y'\lk t\rk = &-\lk 3\,y_0' +2\,\frac{\dot{x}_0'}{\omega_0}\rk\,\cos\lk \omega_0 t\rk + \frac{\dot{y}_0'}{\omega_0}\,\sin\lk \omega_0 t\rk + 4\,y_0' + 2\,\frac{\dot{x}_0'}{\omega_0} \,, \\
+\dot{y}'\lk t\rk = &\lk 3\,\omega_0\,y_0' +2\,\dot{x}_0'\rk\,\sin\lk\omega_0 t\rk + \dot{y}_0'\,\cos\lk\omega_0t\rk  
+\end{split} \quad\quad \eqref{eq:adyn_rendez14a} ~-~\eqref{eq:adyn_rendez14d}\,.
+\end{align*}
+\medskip
+
+
+\textbf{Start von der Erde - Reentry in Erdatmosphäre}
+\begin{align*}
+\begin{split}
+        \frac{\D v}{\D t} &= \frac{F_\text{S}(t)\,\cos\alpha-F_\text{D}(h,v)}{m_\text{R}} -g(h)\,\sin\gamma\,, \\
+        v\,\frac{\D \gamma}{\D t}&= \frac{F_\text{S}(t)\,\sin\alpha + F_\text{A}(h,v)}{m_\text{R}} - \lk g(h) -\frac{v^2}{R_\text{E} + h}\rk \,\cos\gamma\,, \\
+        \frac{\D r}{\D t} &= \frac{\D h}{\D t} - v\,\sin\gamma\,~~\,~\rightarrow ~~ \frac{\D h}{\D t} \approx v\,\sin\gamma \,,\\
+        \frac{\D s}{\D t} &= \lk \frac{R_\text{E}}{r}\rk\,v\,\cos\gamma\,~~\rightarrow ~~ \frac{\D x}{\D t} \approx \,v\,\cos\gamma
+\end{split} \quad\quad \eqref{eq:adyn_launch01} \,.
+\end{align*}
+\medskip
+

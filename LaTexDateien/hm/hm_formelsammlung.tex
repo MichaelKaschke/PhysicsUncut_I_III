@@ -1,0 +1,250 @@
+\section{Formelsammlung zur Himmelsmechanik}\label{kap:hm_formelsammlung}
+Im Folgenden geben wir zum Arbeitsbuch einige häufig benutzte Formeln und Beziehungen der Himmelsmechanik.
+\subsection{Wichtige Gleichungen des Zweikörperproblems}
+\textbf{Spezifischer Drehmoment}
+\begin{align*}
+    L &= \sqrt{\mu_\text{G}\,p} = r\,v\,\cos\gamma =  r^2\dot{\upsilon} = \sqrt{a\,\mu_\text{G}(1-e^2)}=  r_\text{A}\,v_\text{A} = r_\text{P}\,v_\text{P}
+ \quad\quad \eqref{eq:hm_drehimpuls_von_ae}\,.
+\end{align*}
+\medskip
+
+\textbf{Spezifische Energie}
+\begin{align*}
+    H = \frac{v^2}{2} - \frac{\mu_\text{G}}{r} = - \frac{\mu_\text{G}}{2a}~~~~\eqref{eq:hm_bewgl1} \,.
+\end{align*}
+\medskip
+
+\textbf{Laplace-Vektor}
+\begin{align*}
+    \vec{e} = \frac{\lk v^2 - \frac{\mu_\text{G}}{r}\rk \, \vec{r} - \lk \vec{r}\cdot\vec{v}\rk \vec{v}}{\mu_\text{G}} ~~~~\eqref{eq:hm_laplace_int}\,.
+\end{align*}
+\medskip
+
+\textbf{Bahngleichung}
+\begin{align*}
+    r = \frac{p}{1+e\cos \upsilon }\quad\quad \eqref{eq:hm_bahnglg}\,.
+\end{align*}
+\medskip
+
+\textbf{Radius- und Geschwindigkeitsänderung}
+\begin{align*}
+    \dot{r} &= \frac{r\,\dot{\upsilon}\,e\sin \upsilon }{1 + e\cos \upsilon }\quad\quad
+    \dot{\upsilon} = \frac{n\,a^2}{r^2}\,\sqrt{1-e^2}
+\end{align*}
+\medskip
+
+\textbf{Kepler-Gleichung Ellipse}
+\begin{align*}
+E-e\,\sin E = \sqrt{\frac{\mu_\text{G}}{\abs{a_\text{ell}}^3}} (t-t_0) = M  \quad\quad \eqref{eq:hm_keplerglg}\,.
+\end{align*}
+\medskip
+
+\textbf{Kepler-Gleichung Hyperbel}
+\begin{align*}
+e \sinh E_\text{hyp} - E_\text{hyp}  &= \sqrt{\frac{\mu_\text{G}}{\abs{a_\text{hyp}}^3}} (t-t_0) = M_\text{hyp}(t-t_0)\quad\quad  \eqref{eq:hm_hyplsg3}\,.
+\end{align*}
+\medskip
+
+\newpage
+\textbf{Näherungslösung Kepler-Gleichung Ellipse}
+\begin{align*}
+\begin{split}
+E = M &+\lk e-\frac{1}{8}e^3\rk \sin M + \lk \frac{1}{2} e^2 - \frac{1}{6} e^4 \rk \sin 2M  \\
+      &+ \frac{3}{8}e^3\,\sin 3M + \frac{1}{3} e^4\,\sin 4M + \mathcal{O}(e^5) 
+\end{split} \quad\quad \eqref{eq:hm_entwicklung_4Ord} \,. 
+\end{align*}
+\medskip
+
+\textbf{Mittelpunktsgleichung Ellipse}
+\begin{align*}
+\begin{split}
+\mathcal{C}=\upsilon-M &= 2e \sin M + \frac{5}{4}e^2\,\sin(2M) + e^3 \lk \frac{13}{12} \sin(3M) - \frac{1}{4} \sin M \rk  \\
+&+ e^4 \lk \frac{103}{96} \sin(4M) - \frac{11}{24} \sin(2M)  \rk + \mathcal{O}(e^5) 
+\end{split} \quad\quad \eqref{eq:hm_mpglg_nu-M} \,. 
+\end{align*}
+
+\textbf{Zeitgleichung Ellipse}
+\begin{align*}
+\begin{split}
+\tau_\text{ZGL} &= \text{WOZ}-\MOZ=\tau_\text{w,\astrosun}=\theta_\text{w}(t_\text{d})\!-\!\alpha_\text{\astrosun}(t_\text{d}) \\
+                &= -C+(\lambda_\text{\astrosun}-\alpha_\text{\astrosun}) \\
+                &= -C+\tan^2\lk\frac{\epsilon}{2}\rk \sin(2\lambda_\text{\astrosun})-\frac{1}{2}\tan^4 \lk \frac{\epsilon}{2}\rk \sin(4\lambda_\text{\astrosun})+\mathcal{O}\lk \tan^6 \lk \frac{\epsilon}{2} \rk\rk \,. 
+\end{split} \quad\quad \eqref{eq:hm_tau_ZGL_C1}\,.
+\end{align*}
+
+\textbf{Reduktion auf Ekliptik I}
+\begin{align*}
+\begin{split}
+\mathcal{R} = -\tan^2\lk\frac{i}{2}\rk \sin\lek 2(M+\omega) \rek + \frac{1}{2} \lek \tan^2\lk\frac{i}{2}\rk\rek^2 \sin\lek 4(M+\omega) \rek - \ldots  
+\end{split} \quad\quad \eqref{eq:hm_reduktions_formel3} \,. 
+\end{align*}
+
+\textbf{Reduktion auf Ekliptik II}
+\begin{align*}
+\begin{split}
+l(M) =& M + \varpi + 2e\sin M + \lek \frac{5}{4} e^2 - \tan^2\lk\frac{i}{2}\rk \cos(2\omega) \rek \sin(2M) \\ 
+      &+ \lek -\tan^2\lk\frac{i}{2}\rk \sin(2\omega)\rek \cos(2M) + \ldots 
+\end{split} \quad\quad \eqref{eq:hm_reduktions_formel4} \,. 
+\end{align*}
+
+\textbf{Gaußschen Vektoren}
+\begin{align*}
+\begin{split}
+\vec{P} &= \lk\begin{array}{c} + \cos\omega\cos\Omega - \sin\omega\cos i\sin\Omega\\ + \cos\omega\sin\Omega + \sin\omega\cos i\cos\Omega\\ + \sin\omega\sin i \end{array}\rk \,, \\
+\vec{Q} &= \lk\begin{array}{c} -\sin\omega\cos\Omega - \cos\omega\cos i\sin\Omega\\ -\sin\omega\sin\Omega + \cos\omega\cos i\cos\Omega\\ + \cos\omega\sin i \end{array}\rk \,, \\
+\vec{R} &= \lk\begin{array}{c} + \sin i\sin\Omega\\ -\sin i\cos\Omega\\ + \cos i \end{array}\rk ~~\text{manchmal auch}~~ \vec{W}~~{genannt}.\\
+\end{split}  \quad\quad \eqref{eq:hm_gauss_vektoren}
+\end{align*}
+
+
+\newpage
+\textbf{Radius- und Geschwindigkeitsänderung (Betrag und Vektor)}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{L{2.5cm}C{3cm}C{0.5cm}C{0.5cm}L{2.5cm}C{3cm}}
+& &&\\
+Abstand:  & $\Delta \vec{r}= \vec{r}_2-\vec{r}_1$ &&&Abstand: & $\Delta \vec{v}= \vec{v}_2-\vec{v}_1$\\
+&&&&&\\
+Radiale Änderung:  & $\Delta r_\text{r} = ( \vec{r}_1\cdot\Delta \vec{r})/|\vec{r}_1|$ &&&Radiale Änderung:& $\Delta v_\text{r} = (\vec{r}\cdot\Delta \vec{v})/|\vec{r}_1|$\\
+& &&&&\\
+Tagentiale Änderung: & $\Delta r_\text{t} = \sqrt{\lk \Delta\vec{r}\rk^2 -\Delta r_\text{r}{}^2}$ &&&Tagentiale Änderung: & $\Delta v_\text{t} = \sqrt{\lk \Delta\vec{v}\rk^2 -\Delta v_\text{r}{}^2}$ \\
+&&&&&\\
+\end{tabular} 
+\caption{Radius- und Geschwindigkeitsänderung }
+\end{table}
+
+\subsection{Wichtige geometrische Formeln des Zweikörperproblems}
+\begin{table}[h!]
+\centering
+\begin{tabular}{L{2cm}C{3.5cm}C{3.5cm}C{3.5cm}}
+\hline
+& & & \\
+& Ellipse & Parabel & Hyperbel \\
+& & & \\
+\hline
+& & &\\
+  & $E_{n+1} = E_n + \frac{M-E_n+e\,\sin E_n}{1-e\cos E_n}$ & nicht definiert & $H_{n+1} = H_n + \frac{M-e\sinh H_n + H_n}{e\cosh H_n -1}$  \\
+& & &   \\
+Exzentrische Anomalie \linebreak \eqref{eq:hm_exzentrische_Anomalie} & $\sin E = \frac{\sin\upsilon\,\sqrt{1-e^2}}{1+e\cos\upsilon}$ & & $\sinh H = \frac{\sin \upsilon\,\sqrt{e^2-1}}{1+e\cos \upsilon} $ \\
+& & $B = \tan\frac{\upsilon}{2}$  & \\
+&$\cos E = \frac{e+\cos\upsilon}{1+e\cos \upsilon} $& & $\cosh H = \frac{e+\cos\upsilon}{1+e\cos\upsilon}$\\
+& && \\
+\hline
+&&&\\
+ & $\sin\upsilon = \frac{\sin E\,\sqrt{1-e^2}}{1-e\cos E}$ & $\sin \upsilon=\frac{p\,B}{r}$ & $\sin \upsilon = \frac{-\sinh \, \sqrt{e^2-1}}{1-e\cosh H}$\\
+Wahre Anomalie \linebreak \eqref{eq:hm_relations2}&&&\\
+& $\cos\upsilon = \frac{\cos E-e}{1-e\cos E}$ & $\cos\upsilon = \frac{p-r}{r}$ & $\cos\upsilon = \frac{\cosh H -e}{1-e\cosh H}$\\
+&&&\\
+\hline 
+&&&\\
+ & $\sin\gamma = \frac{e\sin E}{\sqrt{1-e^2\,\cos^2 E}}$ &  & $\sin\gamma = \frac{-e\sinh H }{\sqrt{e^2\,\cosh^2 H -1}}$ \\
+FPA & &$\gamma=\frac{\upsilon}{2}$&\\
+&$\cos\gamma = \sqrt{\frac{1-e^2}{1-e^2\,\cos^2 E}}$&& $\cos\gamma = \sqrt{\frac{e^2-1}{e^2\,\cosh^2 H-1}}$\\
+&&&\\
+\hline
+
+\end{tabular}
+\caption{Geometrische Formeln des Zweikörperproblems}
+\end{table}
+
+\newpage
+\subsection{Vergleich Ellipse-Parabel-Hyperbel}
+\begin{table}[h!]
+\centering
+\begin{tabular}{L{2.0cm}C{2.5cm}C{3.0cm}C{3.0cm}C{3.0cm}}
+
+\hline
+& & & & \\
+& Kreis & Ellipse & Parabel & Hyperbel \\
+& & & &\\
+\hline
+& & &&\\
+Bahngleichung  & $r=a$ &$r=\frac{p}{1+e\cos\upsilon}$ & $r = \frac{p}{2}\,\lk 1+B^2\rk$ & $r=\frac{p}{1+e\cos\upsilon}$\\
+&&&& \\
+Periapsis $r_\text{P}$ oder $r_\text{per}$ &$ r_\text{P} = a$ & $r_\text{P} = a\,\lk 1-e\rk $& $r_\text{P}=\frac{p}{2}$ & $r_\text{P} = a\,\lk 1-e\rk$\\
+&&&& \\
+Apoapsis $r_\text{A}$ & $r_\text{A} = a$ & $r_\text{A} = a\,\lk 1+e\rk$ & $r_\text{A}=a$ & $r_\text{A} = a\,\lk 1+e\rk$\\
+&&&& \\
+Halbparameter $p$ &$p= a$ & $r_\text{P} = a\,\lk 1-e^2\rk $& $r_\text{P}=\frac{L^2}{\mu_\text{G}}$ & $r_\text{P} = a\,\lk 1-e^2\rk$\\
+&&&& \\
+Große Halbachse $a$ & $a=r$  & $a=-\frac{\mu_\text{G}}{2H}$ & $a=\infty$ & $a=-\frac{\mu_\text{G}}{2H}$ \\
+&&&& \\
+Geschwindigkeit &$v = \sqrt{\frac{\mu_\text{G}}{r}}$ 
+                &$v =\sqrt{2\,\lk \frac{\mu_\text{G}}{r} + H \rk} \linebreak 
+								    = \sqrt{\frac{2\mu_\text{G}}{r} - \frac{\mu_\text{G}}{a}} \linebreak 
+									  =\sqrt{\frac{\mu_\text{G}}{r}\,\lk 2-\frac{1-e^2}{1+e\cos\upsilon}\rk}$							   &$v_\text{esc} = \sqrt{\frac{2\mu_\text{G}}{r}}$
+								&$v= \sqrt{\frac{2\mu_\text{G}}{r} - \frac{\mu_\text{G}}{a}} $\\
+&&&& \\
+Exzentrizität $e$ & $e=0$ &$e = \sqrt{1+\frac{2H\,L^2}{\mu_\text{G}{}^2}}$ & $e=1$ &$e = \sqrt{1+\frac{2H\,L^2}{\mu_\text{G}{}^2}}$ \\
+&&&& \\
+Mittlere Bewegung $n$ & $n = \frac{2\pi}{T_\text{P}} = \sqrt{\frac{\mu_\text{G}}{a^3}}$ & $n = \frac{2\pi}{T_\text{P}} = \sqrt{\frac{\mu_\text{G}}{a^3}}$ & $n= 2\,\sqrt{\frac{\mu_\text{G}}{p^3}}$ &   $n = \frac{2\pi}{T_\text{P}}= \sqrt{\frac{\mu_\text{G}}{a^3}}$\\
+&&&& \\
+Mittlere Anomalie $M$ & nicht definiert& $M=E-e\sin E$ & $\frac{B^3}{3} + B -n\,\Delta t = 0 $ & $M = e\sinh H -H$\\
+&&&& \\
+Umlaufperiode $T_\text{P}$ & $T_\text{P} = 2\pi\,\sqrt{\frac{a^3}{\mu_\text{G}}}$ & $T_\text{P} = 2\pi\,\sqrt{\frac{a^3}{\mu_\text{G}}}$ & nicht definiert& nicht definiert\\
+&&&& \\
+Energie $H$ & $H=-\frac{\mu_\text{G}}{2a}<0$ &$H=-\frac{\mu_\text{G}}{2a} <0$ & $H=0$ &$H=-\frac{\mu_\text{G}}{2a} >0$\\
+&&&& \\
+Drehimpuls $L$ & $L=\sqrt{\mu_\text{G}\,r}$ &$L=\sqrt{\mu_\text{G}\,a\,(1-e^2)}$  & $L=\sqrt{\mu_\text{G}\,p}$ & $L=\sqrt{\mu_\text{G}\,\,a\,(1-e^2)}$ \\
+&&&& \\
+\hline
+\end{tabular}
+\caption{Vergleich Ellipse-Parabel-Hyperbel}
+\end{table}
+
+\newpage
+\subsection{Dynamik im Zentralkraftfeld}
+
+\textbf{Verallgemeinertes Zentralkraftfeld}
+\begin{align*}
+\begin{split}
+	U_\text{\,ZK}(r) &= -\frac{\mu_\text{G}}{r} + \Delta U_2 + \Delta U_3 = -\frac{\mu_\text{G}}{r}  + \frac{\kappa_2}{r^2} + \frac{\kappa_3}{r^3} + \ldots \,,\\
+  \upsilon &= - \bigintss{\frac{L}{\sqrt{2H + 2\mu_\text{G}\, q - \lk L^2 + 2\kappa_2 \rk q^2 - 2\kappa_3\,q^3}}\, \D q } 
+\end{split} \quad\quad \eqref{eq:hm_allg_ZK_1},\eqref{eq:hm_allg_ZK_3} \,. 
+\end{align*}
+\medskip
+
+\textbf{Gezeitenkraft - allgemeine Definition}
+\begin{align*}
+\begin{split}
+    \vec{F}_\text{Gez} &= \frac{G\,M\,m}{r^3}\,\vec{r} - \frac{G\,M\,m}{r'{}^3}\,\vec{r}_\text{HK}\\
+    \text{mit} ~~\vec{r}'&= \vec{r} + \vec{R} = \vec{r} + R_\text{E}\frac{\vec{R}}{\left|\vec{R}\right|}\\
+		\text{und} ~~\vec{r}'{}^2 &= \lk \vec{R} + \vec{r}\rk^2 = R^2 + r^2 + 2\,\lk \vec{R}\cdot\vec{r}\rk= r^2\,\lk 1+\underbrace{\frac{R^2}{r^2}}_{\substack{\approx 0}} + \frac{2\,\vec{R}\cdot\vec{r}}{r^2}\rk
+\end{split} \quad\quad \eqref{eq:hm_gezeiten12}\,.
+\end{align*}
+\medskip
+
+\textbf{Gezeitenkraft-Näherung}
+\begin{align*}
+\begin{split}
+     \vec{F}_\text{Gez} &\approx -\frac{G\,m\,M}{r^3}\,\lek \lk \vec{r} + \vec{R}\rk\,\lk 1-3\,\frac{\lk\vec{R}\cdot\vec{r}\rk}{r^2} \rk - \vec{r}\rek \approx -\frac{G\,m\,M}{r^3}\,\lk \vec{R} - \frac{3\,\lk \vec{R}\cdot\vec{r}\rk}{r^2} \lk \vec{r} + \vec{R}\rk \rk
+\end{split} \quad\quad \eqref{eq:hm_gezeiten13} \,.
+\end{align*}
+\medskip
+
+\textbf{Gravitationspotential - beliebige Massenverteilung}
+\begin{align*}
+\begin{split}
+        U\lk \vec{r}\rk &= -G\int\frac{\varrho\lk\vec{r}'\rk}{|\vec{r}'-\vec{r}|}\,d^3\,\vec{r}' 
+\end{split} \quad\quad \eqref{eq:hm_pot_theo01} \,.
+\end{align*}
+\medskip
+
+\textbf{Gravitationspotential - rotationssymmetrische Massenverteilung}
+\begin{align*}
+\begin{split}
+        U\lk r,\theta\rk &= \sum_{n=0}^\infty\Phi_n\lk r\rk\,\PL n\lk \cos\theta\rk
+\end{split} \quad\quad \eqref{eq:hm_pot_theo07} \,.
+\end{align*}
+\medskip
+
+\textbf{Gravitationspotential - Rotationsellipsoid}
+\begin{align*}
+\begin{split}
+						U\lk r,\theta\rk &= -\frac{G\,M}{r} + \frac{2}{5}\,\varepsilon\,\frac{G\,M\,{R_0}^2}{r^3}\,P_2\lk \cos\theta\rk + \mathcal{O}\lk \varepsilon^2\rk \\
+					  &= -\frac{G\,M}{r} + \varepsilon\,J_0\,\frac{G}{r^3}\,P_2\lk \cos\theta\rk
+\end{split} \quad\quad \eqref{eq:hm_pot_theo11}, \eqref{eq:hm_pot_theo12} \,.
+\end{align*}
+\medskip
+

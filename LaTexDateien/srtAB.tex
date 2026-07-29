@@ -1,0 +1,27 @@
+%\input{header.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\IfFileExists{header.tex}{\input{header.tex}}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begingroup
+\let\cleardoublepage\relax
+\chapter[Relativistische Physik]{Relativistische Physik}\label{chap:srt}
+\def\chapname{srt}
+\bibliographystyle{spphys}
+
+\input{srt/srt_motivation}
+\clearpage
+\input{srt/srt_relphys}
+
+\renewcommand\glslongextraNameAlign{p{36mm}}
+\renewcommand\glslongextraDescAlign{p{60mm}}
+\clearpage
+\bgroup
+\small
+\printunsrtglossary[type=srt]
+\egroup
+\clearpage
+\bibliography{referenzen}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\input{footer.tex}

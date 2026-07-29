@@ -1,0 +1,1657 @@
+
+
+\section{Himmelsmechanik unseres Sonnensystems}\label{kap:hm_keplergleichung}
+
+\subsection{Erdbahn (Ekliptik)}\index{Erdbahn} \label{kap:erdbahn}
+Wegen der besonderen Bedeutung der Erdbahn (Ekliptik) \glslink{ekliptik} bzw. der scheinbaren \anf{Sonnenbahn}\index{Sonnenbahn!scheinbare} (im geozentrischen System) für viele Himmelsphänomene wollen wir uns mit der Erdbahn etwas näher beschäftigen.
+Sie wird in guter Näherung durch eine Keplerellipse beschrieben, deren geringe numerische Exzentrizität $e\!\approx\!0.0167$ die Bahn nur relativ wenig von einer Kreisbahn abweichen lässt.
+Einige Bahnparameter hatten wir bereits eingeführt (Tabelle \ref{tab:hm_bahnparameter}).
+Die große Halbachse $a = a_\text{\earth}$ der Erdbahn beträgt etwa 149.6 Millionen Kilometer, woraus sich über den mittleren Abstand der Erde von der Sonne die \gls{ae} AE ergibt.
+Im zeitlichen Mittel beträgt der Abstand zwischen Erde und Sonne etwas mehr als eine AE (nämlich $1.00014\:\text{AE}$), da sich die Erde wegen ihrer ungleichförmigen Bahngeschwindigkeit etwas länger in Sonnenferne aufhält als in Sonnennähe (\probref{hm_erdbahn_im_jahr}). 
+
+Wir müssen an dieser Stelle noch eine Bemerkung zum Abstand zwischen Sonne (\astrosun) und Erde (\earth) machen: Wegen der großen Massenverhältnisse $m_\text{\astrosun} \gg m_\text{\earth}$ ist das ZKP effektiv ein Einkörperproblem, \dh in guter Näherung bewegt sich die Erde um die \anf{ruhende} Sonne.
+Nun hat die Erde ja aber einen durchaus massereichen Mond (\leftmoon).
+Daher bewegt sich nicht der Erdmittelpunkt auf der Kepler-Ellipse um die Sonne, sondern der gemeinsame Schwerpunkt von Mond und Erde.
+Dieser Schwerpunkt liegt im Erdinneren \ca $\SI{4000}{\kilo\metre}$ vom Erdmittelpunkt entfernt.
+Der Erdmittelpunkt selbst kreist um diesen Schwerpunkt und vollführt folglich eine Art Schlangenlinie entlang der Ellipsenbahn mit einer Periode entsprechend der Umlaufzeit des Mondes um die Erde.
+Wenn wir im Folgenden von der \anf{Erdbahn} sprechen, ist in der Regel die gleichmäßige Ellipsenbahn des Erde-Mond-Schwerpunkts gemeint.
+Bei Angabe von Zeitpunkten, in denen bestimmte Bahnpunkte durchlaufen werden (\zb das Perihel), ist daher zu unterscheiden, ob sich die Angaben auf den Erde-Mond-Schwerpunkt oder auf den Erdmittelpunkt beziehen (siehe auch Tabelle \ref{tab:hm_bahnparameter} im Tabellenanhang).
+
+Für die Berechnung der Bahn als Funktion der Zeit messen wir die Zeit in Bruchteilen von Julianischen Jahrhunderten, die seit dem Zeitpunkt J\,2000 $=$ 01.\,01.\,2000, 12:00 UT $=$ 2451545.0 vergangen sind.
+Wir benutzen dann anstelle von $T$ (in Julianischen Tagen) zur besseren Unterscheidung die Bezeichnung $t$ für (vergangene) Julianische Jahrhunderte:
+\begin{equation}
+t = \frac{T-\text{J\,2000}}{36525} = \frac{T- 2451545.0}{36525} = \frac{\text{MJD}-51544.5}{36525}~.\\
+\label{eq:hm_julian_centuries}
+\end{equation}
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{Bahn_Ekliptik.pdf}%
+\caption[Verlauf einer Planetenbahn relativ zur Ekliptik.]{Verlauf einer Planetenbahn relativ zur Ekliptik. Gezeigt ist die Bahn eines Planeten P in der Nähe des Frühlingspunktes $\vernal$ und des aufsteigenden Knotens K. Dieser ist bei der Erdbahn nicht definiert. Deswegen wird der Frühlingspunkt $\vernal$ als Bezugspunkt der Bahngleichung genommen (mathematisch gleichbedeutend mit $\Omega=0$). $\text{P}_0$ bezeichnet das Perihel, $\text{E}_\text{P}$ die Projektion des Planeten P auf die Ekliptik und $\text{E}_\text{Q}$  die Projektion des Hilfsplaneten Q. Dieser entspricht quasi einem auf der Kreisbahn mit der entsprechenden mittleren Anomalie $M$ sich mit konstanter Geschwindigkeit bewegenden \anf{mittleren} Planeten.}
+\label{abb:hm_planetenbahnen_rel_ekliptik}
+\end{figure}
+
+Um die Position der Erde relativ zur Sonne \bzw später eines beliebigen Planeten als Funktion der Zeit zu berechnen, betrachten wir \figref{hm_planetenbahnen_rel_ekliptik}.
+Wir schauen quasi von der Sonne in der Ekliptik-Ebene auf die Bahn des Planeten in Richtung des aufsteigenden Knotens\glslink{aufstknoten}\ K,
+und haben auch den Frühlingspunkt $\vernal$ ins Blickfeld gelegt.\footnote{Die Abbildung entspricht der Darstellung \ref{abb:hm_bahnelemente}, aber aus einer anderen Perspektive.}\\
+Für die Erde vereinfacht sich das Bild erheblich, da $i\!=\!0$ und $\Omega\!=\!0$ (Äquinoktium des Datums).
+Wir können zunächst relativ einfache Formeln für die heliozentrisch-ekliptikale Länge der Erde $l_\text{\earth}$ (siehe \ref{tab:hm_astro_KOS}) gewinnen: 
+\begin{align} 
+\begin{split}
+l_\text{\earth} &= \upsilon + \omega + \Omega\ = \upsilon + \varpi = (\upsilon-M)+M+\varpi \\
+                &= \mathcal{C} + M + \varpi \,, 
+\end{split} \label{eq:hm_ekl_laenge_erde1}
+\end{align}
+worin $\mathcal{C}\!=\!\upsilon-M$ die \gls{mittelpunktsglg} \eqref{eq:hm_mpglg_nu-M} ist.
+Für die heliozentrische Breite der Erde gilt $b_\text{\earth}\!=\!0$.
+Wir wollen die Zeitabhängigkeit explizit ausdrücken und wählen als Zeitreferenzpunkt die Epoche $t_\text{E}$ (\zb J2000).
+\begin{align} 
+l_\text{\earth} &= \mathcal{C}(t-t_\text{E}) + M(t-t_\text{E}) + \varpi_0 + \dot\varpi (t-t_\text{E}) \,, \label{eq:hm_ekl_laenge_erde2}
+\end{align}
+worin $\varpi_0 = \varpi(t_\text{E})$ ist und wir den linearen Term in der zeitlichen Entwicklung von $\varpi$ explizit mitgenommen haben (entsprechend Tabelle \ref{tab:hm_zeitl_aenderung_bahnparameter_lin}).
+Dieser Term repräsentiert die bereits erwähnte Verschiebung des Frühlingspunktes durch die Präzession der Erdachse.
+Wir schreiben die mittlere Anomalie $M(t)$ nach \eqref{eq:hm_mittlere_anomalie} als:
+\begin{equation}
+M(t-t_\text{E}) = n_\text{anom} \cdot (t-t_\text{E}) = n_\text{anom}\,t + M_0 \\
+\label{eq:hm_mittlere_anomalie_ansatz}
+\end{equation}
+mit $M_0\!=\!357.5256\degree$ und $n_\text{anom}\!=\! 360\degree \cdot 36525/T_\text{anom}\!=\!35999.0498\,\degree/\text{Jh.}$ (\cite{Meeus1998,Montenbruck2001,Montenbruck1999} und Tabelle \ref{tab:hm_bahnparameter}).
+Hierin ist $T_\text{anom}\!=\!365.259636\: \text{d}$ das \glslink{anomjahr}{anomalistische Jahr}\index{Jahr!anomalistisches}, also die Zeit zwischen zwei Durchgängen der Erde durch das Perihel.\\
+Andererseits ist die \emph{mittlere Länge} $L_\text{\earth}(t)$ der Erde definiert als die ekliptikale Länge einer mit konstanter Umlaufgeschwindigkeit $n_\text{trop}$ (gegeben durch die Umlaufzeit eines tropischen Jahres) auf einer Kreisbahn umlaufenden \emph{mittleren Erde} (siehe Definition des tropischen Jahres in \kapitel{hm_zeitdefinition}), also
+\begin{equation}
+L_\text{\earth}(t) = n_\text{trop}\,t + L_\text{\earth0} ~ .\\ \label{eq:hm_ekl_laenge_erde3}
+\end{equation}
+Hier ist $L_\text{\earth0}$ die mittlere Länge zum Zeitpunkt $t_\text{E}$ (also zur Epoche) und \linebreak $n_\text{trop}\!=\! 360\degree \cdot 36525 / T_\text{trop}\!=\! 36000.7690\:\degree/\text{Jh}$.
+Die Differenz von Gleichung \eqref{eq:hm_ekl_laenge_erde3} und \eqref{eq:hm_ekl_laenge_erde2} ergibt dann (für die mittlere Länge ist $\mathcal{C} = 0$)
+\begin{align}
+M(t) - L_\text{\earth}(t) = \varpi(t) = \dot \varpi \, t + \varpi_0 = (n_\text{anom} -n_\text{trop})\cdot t + (M_0-L_\text{\earth0}) ~,\label{eq:hm_ekl_laenge_erde4}
+\end{align}
+worin $\varpi_0\!=\! 102.9400\degree$ die Länge des Perihels zur Epoche $t_\text{E}$ ist.
+Der Term $ (n_\text{anom} -n_\text{trop})\, t $ beschreibt die Verschiebung des Frühlingspunktes auf Grund der Präzession.\\
+Wir können also zusammenfassen: Die wahre ekliptikale Länge\index{Länge!ekliptikale}\index{Koordinaten!ekliptikale} $l_\text{\earth}$ des Planeten berechnet sich aus der Summe der Mittelpunktsgleichung $\mathcal{C}$ (hier wird jetzt auch der Begriff \anf{Anomalie} sinnfällig), der mittleren Anomalie $M$ und der (zeitabhängigen) Länge des Perihels $\varpi$.\footnote{Wir weisen nochmals darauf hin, dass $\varpi\!=\!\omega + \Omega$ kein echter Winkel ist, sondern die Summe aus zwei Winkeln in verschiedenen Ebenen darstellt.}
+Wir werden die Gleichungen \eqref{eq:hm_ekl_laenge_erde1} \eqref{eq:hm_ekl_laenge_erde2} in den folgenden Kapiteln ausgiebig verwenden und geben sie deshalb hier auch mit numerischen Werten im Gradmaß ($l_\text{\earth}\degree)$ bis zur Ordnung $e^3$ an:
+\begin{align} 
+l_\text{\earth} =& (2e - \frac{e^3}{4})\,\sin M + \frac{5}{4} e^2 \,\sin(2M) + e^3 \lk \frac{13}{12}\sin(3M) - \frac{1}{4} \sin M \rk + M + \varpi ~,\label{eq:hm_ekl_laenge_bogenmass}
+\end{align}
+\begin{align}
+\begin{split} 
+l_\text{\earth}\degree(t) =& \underbrace{1.914443\degree\,\sin M + 0.019996\degree\,\sin(2M) + 0.0002895\degree\,\sin(3M)}_{=\mathcal{C}(M(t))} \\ 
+                    &+ \underbrace{35999.0498\:\frac{\degree}{\text{Jh.}}\: t + 357.5256\degree}_{=M(t)} + \underbrace{102.9400\degree + 1.7192\:\frac{\degree}{\text{Jh.}}\:t}_{=\varpi(t)} ~. \nonumber
+\end{split} \label{eq:hm_ekl_laenge_gradmass}
+\end{align}
+$r_\text{\earth}(t)$ berechnet sich direkt aus \eqref{eq:hm_mpglg_r/a} durch Multiplikation mit $a$. \\
+Wir können nun ins geozentrische Bild wechseln und aus den Erdkoordinaten sehr einfach die geozentrisch-ekliptikale Länge $\lambda_\text{\astrosun}$ der Sonne berechnen.
+Da sich an der Zeitdynamik und den relativen Abständen nichts ändert, ist dies geometrisch gesehen einfach ein Wechsel des Bezugspunktes: 
+\begin{equation} 
+\lambda_\text{\astrosun}(t) = l_\text{\earth}(t) + 180\degree ~\ \textrm{und} ~\ \beta_\text{\astrosun}(t) = -\beta_\text{\earth}(t) \approx\,0 \,. \\
+\label{eq:hm_lambda_S(T)}
+\end{equation}
+
+Mit den Beziehungen \eqref{eq:hm_ekl_laenge_bogenmass}--\eqref{eq:hm_lambda_S(T)} haben wir nun ein gutes Instrumentarium zur Verfügung, um für jeden Zeitpunkt aus $\lambda_\text{\astrosun}(t)$ die Koordinaten $(\alpha_\text{\astrosun},\,\delta_\text{\astrosun})$ über die Transformation aus dem ekliptikalen ins äquatoriale KOS der Sonne nach \eqref{eq:hm_drehung_x_achse_linear2} zu berechnen. 
+
+\subsection{Berechnung der Kulmination der Sonne (Analemma) und ihrer Auf- und Untergänge} \label{kap:kulmination_sonne}
+
+Die tägliche und jährliche \anf{Bewegung} der Sonne aus Sicht eines geozentrischen (\bzw topozentrischen) Beobachters auf der Erde zählt mit Sicherheit zu den frühesten physikalisch-astronomischen Beobachtungen und Messungen der Menschheit.
+Die Beobachtungen von Auf- und Untergängen der Sonne, ihres Höchststandes (\textit{Kulmination}) \glslink{kulmination} und den jeweiligen jahreszeitlichen Veränderungen \glslink{analemma} waren Grundlage der astronomischen Weltbilder seit den ersten Zivilisationen und ebenso bestimmend für Zeitmessung und Navigation.
+Es ist daher kein Wunder, dass gerade die hochentwickelten Kulturen der Menschheitsgeschichte besonders ausgefeilte und genaue Kalender und andere Zeitmesssysteme auf Basis von Sonnen- und Mondlauf hatten und diese über Jahrhunderte bis zur Entwicklung von Uhren mit hoher Präzision Grundlage der menschlichen Zeitmessung waren (siehe \kapitel{hm_zeitdefinition}).
+
+Wir wollen in diesem Kapitel Aufgangs- und Untergangszeiten der Sonne, sowie den Zeitpunkt ihrer Kulmination für verschiedene geographische Breiten und Längen auf der Erdoberfläche\index{Längengrad}\index{Breitengrad} und jeden Tag des Jahres berechnen.
+Wir werden dabei mit der Lösung der Kepler-Gleichung die Bewegung der Erde um die Sonne beschreiben und zeigen, dass damit die verschiedenen Phänomene gut berechenbar sind.
+Anschließend wollen wir einfache Praxisformeln herleiten. 
+
+Wir werden in den folgenden Kapiteln häufig von der (scheinbaren) Bewegung der Sonne um die Erde sprechen.
+Selbstverständlich meinen wir damit eigentlich die Bewegung der Erde um die Sonne.
+Die scheinbare und wahre Bewegung sind über die in Tabelle \ref{tab:hm_Umrechung_KOS} im Tabellenanhang angegebene Transformation vom heliozentrischen ins geozentrische KOS (siehe \kapitel{hm_koordinatensysteme}) einfach ineinander überführbar.
+Oft ist das geozentrische Bild mit der (scheinbaren) Bewegung der Sonne sogar anschaulicher und wird deswegen auch gern benutzt.
+
+\subsubsection{Die Zeitgleichung und das Analemma} \label{kap:zeitgleichung}
+
+Wir wissen bereits, dass die Kulmination der wahren Sonne von der Kulmination der mittleren Sonne (die laut Definition genau um 12:00 MOZ kulminiert) abweichen wird.
+Die mittlere Sonne \anf{bewegt} sich gleichmäßig entlang des Äquators.
+Die wahre Sonne hat entlang ihrer elliptischen Bahn unterschiedliche Geschwindigkeiten (2.\ Keplersches Gesetz) und außerdem erfolgt ihre scheinbare Bewegung entlang der Ekliptik, die ja gegen den Äquator geneigt ist.
+Beide Sonnen \anf{treffen} aber definitionsgemäß nach dem Ablauf eines Jahres wieder zusammen, haben also die gleiche Umlaufzeit.
+Das Vorgehen bei der Berechnung der Kulmination ist nun wie folgt: 
+\begin{itemize}
+	\item Aus der Lösung der Kepler-Geichung\index{Kepler-Gleichung} berechnen wir im heliozentrischen Koordinatensystem die heliozentrisch-ekliptikale Länge der Erde \eqref{eq:hm_ekl_laenge_bogenmass} als Funktion der Zeit (\zb jeweils am Mittag 12:00 UT an den jeweiligen Tagen eines Jahres).\footnote{Streng genommen müssten wir für diese Berechnung die ET anstelle UT nehmen. Für unsere Rechnung kann man das aber vernachlässigen. Warum? Überprüfen Sie die Abweichung.}
+          Wir benutzen dafür die Bezeichnung $t_\text{d}$.
+	\item Daraus ermitteln wir die geozentrisch-ekliptikale Länge der Sonne $\lambda_\text{\astrosun}(t_\text{d}$) und rechnen diese in geozentrisch-äquatoriale Koordinaten $\alpha_\text{\astrosun}(t_\text{d}), \delta_\text{\astrosun}(t_\text{d})$ um:
+\begin{align} 
+\begin{split}
+	\alpha_\text{\astrosun}(t_\text{d}) &= \arctan\lek \cos\epsilon\tan\lambda_\text{\astrosun}(t_\text{d})\rek \,, \\
+	\delta_\text{\astrosun}(t_\text{d}) &= \arcsin\lek\sin\epsilon\sin\lambda_\text{\astrosun}(t_\text{d})\rek \,.
+\end{split} \label{eq:hm_alpha_s_delta_s}
+\end{align}
+\item Wir erhalten so die Deklination und die Rektaszension der (wahren) Sonne als Funktion der Zeit.
+\item Wir berechnen dann die Sternzeit nach \eqref{eq:hm_UT_2} und erhalten daraus über \eqref{eq:hm_std_winkel_tau} den Stundenwinkel $\tau_\text{ZGL}$ der Sonne.
+  Dieser entspricht der sogenannten \emph{\gls{zeitglg}} (ZGL).
+  Der Stundenwinkel ist ja für ein Himmelsobjekt laut \kapitel{hm_zeitdefinition} die Zeit, die ein Körper noch bis zum Meridiandurchgang braucht oder bereits hinter sich hat.
+  Damit gibt die Zeitgleichung das Vor- bzw. Nachgehen der (wahren) Sonne gegenüber einer gleichmäßig laufenden mittleren Sonne (UT) an:
+\begin{equation} \label{eq:hm_tau_zgl}
+\tau_\text{ZGL}= \text{WOZ}-\MOZ=\tau_\text{w,\astrosun}=\theta_\text{w}(t_\text{d})\!-\!\alpha_\text{\astrosun}(t_\text{d}) \,.
+\end{equation}
+\end{itemize}
+\begin{figure}
+\includegraphics[width=\textwidth]{ZGL01a.pdf}\\
+\includegraphics[width=\textwidth]{ZGL01b.pdf}\\
+\caption[Berechnete Zeitgleichung und Abweichung von publizierten Werten.]{Berechnete Zeitgleichung und Abweichung von publizierten Werten nach Klausmann \cite{Klausmann1990} und JPL \cite{JPL2020}.}
+\label{abb:hm_Zeitgleichung}
+\end{figure}
+Mit der Zeitgleichung \eqref{eq:hm_tau_zgl}, die in \figref{hm_Zeitgleichung} aufgetragen ist, können wir somit direkt die tägliche Abweichung der Kulminationszeit der (wahren) Sonne von 12:00 lokaler (mittlerer) Ortszeit berechnen.
+Wir erkennen, dass von Jahresbeginn bis ins Frühjahr die wahre Sonne der mittleren Sonne voraus ist.
+Die Verhältnisse kehren sich dann im Sommer um.
+Im Herbst und frühen Winter hinkt die wahre Sonne dann der mittleren hinterher. \\
+Mit \eqref{eq:hm_UT_3} lässt sich die Kulminationszeit für jede geographische Länge einfach berechnen.
+\figref{hm_Zeitgleichung} zeigt die Abweichung unserer Rechnung von hochgenauen Rechnungen wie sie vom JPL \cite{JPL2020} zur Verfügung gestellt werden.
+Die Übereinstimmung ist sehr gut.%
+\footnote{In der Abbildung wird sichtbar, dass in der JPL-Rechnung Störungen der reinen Keplerbahn durch den Mond zu einer periodischen Abweichung in Monatsabständen und zu einer Abweichung auf einer größeren Zeitskala führen.}
+Beim Vergleich mit den empirischen Daten aus \cite{Klausmann1990} muss man berücksichtigen, dass diese über viele Jahre gemittelt wurden, sodass hier neben dem Schaltjahreseffekt\index{Schaltjahr} (366 anstelle von 365 Tagen) auch jährliche Veränderungen der Bahnparameter und insbesondere des Frühlingspunktes eingehen.
+
+Trägt man für die Sonne deren Deklination über ihren Stundenwinkel (für \zb 12:00 UT) für jeden Tag des Jahres auf, dann erhält man ein sogenanntes \emph{Analemma}\index{Analemma}\glslink{analemma}.
+In \figref{hm_Analemma_01} zeigen wir Analemmas für jeweils drei verschiedene Exzentrizitäten $e$ und Ekliptikschiefen $\epsilon$.
+Wäre die Erdbahn kreisförmig und die Erdachse normal zur Ekliptik, dann wäre die Zeitgleichung konstant gleich $0$.
+Die Abhängigkeit des Analemmas von Exzentrizität $e$ und Ekliptikschiefe $\epsilon$ kann man zur Bestimmung dieser Parameter aus dem Analemma nutzen (\mscr e \mlhmref{AnalemmaOkoFit.m} und \mlhmref{AnalemmaFindExz.m}). 
+
+\begin{figure}
+\includegraphics[width=\textwidth]{Analemma01.pdf}
+\caption[Berechnete Analemmas für verschiedene Parameter.]{Berechnete Analemmas für verschiedene Parameter $\epsilon$, $e$ (vgl. \mscr{} \mlhmref{Analemma01.m}).}
+\label{abb:hm_Analemma_01}
+\end{figure}
+
+Zur Beobachtung eines Analemmas nimmt man im Laufe eines Jahres an jedem Tag zum gleichen Zeitpunkt (auf $\pm 2\:\text{s}$ genau) mit einer fest montierten Kamera (Sonnenbeobachtungs-Schutzfilter nicht vergessen!) ein Bild auf und überlagert am Ende eines Jahres alle Aufnahmen mit einem Hintergrundbild.%
+In \figref{hm_Analemma_02} zeigen wir ein Analemma, welches in den Jahren 2019/20 täglich um 08:40 MOZ aufgenommen wurde und dessen Fit an die berechnete Kurve (\mscr{} \mlhmref{AnalemmaOkoFit.m}).\footnote{Das Komposit wurde von Bertram Hönlinger, Dietmar Mondon und Michael Kaschke mit einer Nikon D800 und einem ZEISS Classic Distagon T$\ast$ 2.8/21 ZF.2 Objektiv aufgenommen. Man bekommt so übrigens auch einen nachträglichen Wetterbericht über die Anzahl der Sonnentage.} 
+Um einen Fit mit den berechneten Kurven zu bekommen, überführt man sowohl die Aufnahmedaten als auch die Vorwärtsberechnungen in das topozentrisch-horizontale KOS, wobei es dabei zu den charakteristischen Verzeichnungen kommt.
+Man erkennt sehr gut, dass die Annahme einer doppelt so großen Exzentrizität der Erdbahn zu einer massiven Abweichung des berechneten Analemmas von der beobachten Kurve führen würde.
+Für die Bilddatenumrechnung sei an dieser Stelle auf die detaillierte Darstellung in \cite{Montenbruck2001} und \cite{Smart1986} verwiesen. 
+
+\begin{figure}
+\includegraphics[width=1.0\textwidth]{Analemma2020.jpg}
+\includegraphics[width=1.0\textwidth]{Analemmafit.pdf}
+\caption[Aufnahme eines Analemmas in den Jahren 2019/2020.]{Aufnahme eines Analemmas in den Jahren 2019/2020  und Fit mit der Exzentrizität als Parameter (Modellierung ausgeführt in den \mscr en \mlhmref{AnalemmaOkoFit.m} und \mlhmref{AnalemmaFindExz.m}).}
+\label{abb:hm_Analemma_02}
+\end{figure}
+
+In \figref{hm_Analemma_03} haben wir noch schließlich berechnete Analemmas für zwei Standorte auf der Erde für verschiedene Tageszeiten dargestellt.
+Man beachte die Effekte des Polarsommers \bzw Polarwinters auf das Analemma von Tromsø.
+
+\begin{figure}
+\includegraphics[width=1.0\textwidth]{Analemma03.pdf}
+\caption[Berechnete Analemma-Bilder für zwei geographische Orte.]{Berechnete Analemma-Bilder für Oberkochen, Deutschland \fa und Tromsø, Norwegen \fb \mscr{} (\mlhmref{Analemma02.m}).}
+\label{abb:hm_Analemma_03}
+\end{figure}
+
+\subsubsection{Refraktionskorrekturen, Parallaxe}\index{Refraktionskorrektur}
+
+Zur Berechnung von Auf- und Untergangszeiten\index{Aufgangszeiten}\index{Untergangszeiten} müssen wir das topozentrisch-horizontale KOS benutzen und den Stundenwinkel $\tau$ des Himmelskörpers bei $h\!=\!0$ mit \eqref{eq:hm_Alt-Az-Koord} berechnen.
+Dabei müssen wir aber Einflussfaktoren wie Refraktion, Parallaxe und scheinbaren Durchmesser $D_\text{O}$ des Himmelskörpers berücksichtigen, die wir hier kurz vorstellen wollen. 
+
+\subparagraph{\textbf{\gls{refraktion}}}
+In der Astronomie ist vor allem die Ablenkung der Lichtstrahlen durch die Erdatmosphäre und die damit verbundene \anf{scheinbare} Änderung der Koordinaten von Bedeutung.
+Physikalisch gesehen wird diese Brechung (Refraktion) der aus dem All kommenden Lichtstrahlen durch die optisch dichter werdenden Schichten der Atmosphäre verursacht.
+Als Folge davon werden die Lichtstrahlen zur Erde hin gekrümmt (\probref{hm_refrak_optik}).
+Da Beobachter immer von einer geradlinigen Ausbreitung ausgehen, weicht die Beobachtungsrichtung vom tatsächlichen Lichtweg ab (\figref{hm_refraktion}).
+Alle Objekte werden daher unter einer größeren Höhe (der scheinbaren Höhe $h'$) als der wahren, d.\,h. berechneten (sogenannten astrometrischen) Höhe\index{Höhe!wahre}\index{Höhe!scheinbare}\index{Höhe!astrometrische} $h$ gesehen.
+Der Unterschied ist in Horizontnähe am größten und bei der Beobachtung eines Objektes im Zenit gleich Null. 
+
+\begin{figure}
+\begin{minipage}{\textwidth}
+\leftfigure{\includegraphics[width=0.5\textwidth]{Refraktion.pdf}}
+\hspace{\fill}
+\rightfigure{\includegraphics[width=0.5\textwidth]{TopozentrischeParallaxe.pdf}}
+\leftcaption{Refraktion in der Himmelsbeobachtung.}\label{abb:hm_refraktion}
+\rightcaption{Parallaxe und Horizontalparallaxe.}\label{abb:hm_parallaxe}
+\end{minipage}
+\end{figure}
+
+Die sogenannte \emph{Refraktionskurve}\index{Refraktionskurve} $R(h')\!=\!R(90\degree-z')=h'-h$ gibt die Abhängigkeit von der scheinbaren Höhe\index{Höhe!scheinbare} $h'$ über dem Horizont bzw. von der Zenitdistanz $z'\!=\!90\degree-h'$ an.\footnote{Unglücklicherweise bezeichnet man die Refraktion mit $R$, was oft zu Verwechslungen mit Radien und Abmessungen führt. Da in der Literatur und insbesondere in Tabellen aber $R$ benutzt wird, halten wir uns ebenfalls an die Konvention.}
+Der genaue Wert hängt von vielen Parametern ab, \ua den Brechzahlen der Luftschichten, die wiederum eine Funktion der atmosphärischen Bedingungen wie Druck, Temperatur und der geographischen Breite sind.
+Zur Berechnung von $R(h')$ ausgehend von der scheinbaren Höhe (oder alternativ $R(h)$), wurden verschiedene Modelle entwickelt (\probref{hm_refrak_optik}), woraus entsprechende Refraktionstafeln berechnet wurden.
+Für unsere Zwecke reicht zunächst die Betrachtung der sogenannten Normalrefraktion in Horizontnähe.
+Man kann dabei mit folgenden Formeln arbeiten \cite{Meeus1998}, wobei $h$ bzw. $h'$ in \textdegree\ einzusetzen sind und das Ergebnis in Bogenminuten ausgegeben wird:
+\begin{equation} \label{eq:hm_Normalrefraktion1}
+R(h')=h'-h=\frac{1}{\tan \lk{h'+\frac{7.31\degree}{h'+4.4\degree}}\rk} ~~~\left[ \text{Ausgabe in Bogenminuten} \right] ~,
+\end{equation}
+\begin{equation} \label{eq:hm_Normalrefraktion2}
+R(h)=h'-h=\frac{1}{\tan\lk{h+\frac{10.3\degree}{h+5.11\degree}}\rk} ~~~ \left[ \text{Ausgabe in Bogenminumten} \right] ~.
+\end{equation}
+
+Für die Bestimmung eines Aufgangs ist die scheinbare Höhe gleich Null.
+Man muss also den Zeitpunkt für $h\!=\!-R(h'\!=\!0)$ berechnen.
+Aus \eqref{eq:hm_Normalrefraktion1} bestimmt man $R(h'\!=\!0)\!=\!34'$.
+Mit diesem Wert werden wir nun weiterrechnen.
+
+\subparagraph{\textbf{\gls{parallaxe}}}\index{Parallaxe}
+Wir hatten bereits in \kapitel{hm_koordinatensysteme} auf den Unterschied zwischen einem topozentrischen und einem geozentrischen KOS hingewiesen und in Tabelle \ref{tab:hm_Umrechung_KOS} auch die Transformation zwischen beiden angegeben.
+Der Unterschied zwischen beiden KOS muss dann berücksichtigt werden, wenn der Erdradius im Verhältnis zum Abstand des beobachteten Himmelsobjektes nicht mehr zu vernachlässigen ist.
+Das ist auf alle Fälle beim Mond im Verhältnis zur Erde, aber auch den inneren Planeten und unter Umständen (\zb bei Berechnung von Sonnenfinsternissen) bei der Sonne der Fall.
+Durch die Parallaxe ist die topozentrische Höhe $h_\text{t}$ kleiner als die geozentrisch (berechnete) Höhe $h_\text{g}$.
+Die Parallaxe wirkt also der Refraktion entgegen.
+Wir können für $h_\text{t}\!=\!0$ die sogenannte Horizontalparallaxe aus \figref{hm_parallaxe} bestimmen zu
+\begin{equation} \label{eq:hm_Parallaxe}
+p=\arcsin\lk \frac{R_\text{\earth}}{\Delta} \rk ~.
+\end{equation}
+Für die Sonne berechnet sich ein Betrag von etwa 9'' (Bogensekunden), für den Mond schon beträchtliche 57' (Bogenminuten).
+Die Parallaxe ist also beim Mond definitiv nicht mehr zu vernachlässigen.
+
+
+\subparagraph{\textbf{Scheinbarer Durchmesser}}\index{Durchmesser!scheinbarer|textbf} 
+Für die Aufgangsberechnung haben wir außerdem noch den Winkeldurchmesser $D_\text{O}$ des Himmelsobjektes zu berücksichtigen, unter dem dieses von der Erde aus erscheint.
+Wir messen bei Aufgängen das Erscheinen des oberen Rands, müssen also $R_\text{O}\!=\!D_\text{O}/2$ in der Berechnung der Aufgangshöhe berücksichtigen.
+Mit $D_\text{O \astrosun} = 32'$ und $D_\text{O M} = 29' \ldots 34'$ ergibt sich insgesamt für die Korrektur der Höhe
+\begin{equation}\label{eq:hm_Parallaxe_2}
+h_\text{A,U}=0\text{\textdegree}-R\lk h'=0 \rk +p-R_\text{O} =  \begin{cases} -50' ~~ &\text{Sonne} \\ +\; 6' \ldots 8' ~~ &\text{Mond}\end{cases}  ~.
+\end{equation}
+
+
+\subsubsection{Berechnung der Auf- und Untergänge} \label{kap:auf-untergaenge}\index{Aufgänge}\index{Untergänge}
+Wir könnten nun $h_\text{A,U}$ aus \eqref{eq:hm_Parallaxe_2} in \eqref{eq:hm_Alt-Az-Koord} einsetzen und den Stundenwinkel $\tau$ bzw. die Sternzeit $\theta$ bestimmen, woraus sich wiederum die Ortszeit für den Auf- \bzw Untergang bestimmen lässt.
+Da aber bei der Sonne sowohl Rektaszension $\alpha$ als auch Deklination $\delta$ selbst zeitabhängig sind, können wir die transzendente Bestimmungsgleichung \eqref{eq:hm_Alt-Az-Koord} nicht analytisch, sondern nur mittels numerischer Verfahren lösen.
+Dazu geht man iterativ vor:
+\begin{enumerate}
+	\item Man startet mit der Berechnung der \gls{sternzeit} $\theta_i$ für $t_i\!=$ 12:00 UT aus dem Datum und der geographischen Länge.
+          Man berechnet daraus die Deklination $\delta_i$ und die Rektaszension $\alpha_i$, die die Sonne zu dieser Zeit hat.
+          Daraus ergibt sich der Stundenwinkel $\tau_i\!=\!\theta_i-\alpha_i$. 
+	\item Wir berechnen dann den Stundenwinkel $T_i$ aus \eqref{eq:hm_Alt-Az-Koord} und daraus eine neue Uhrzeit $t_{i+1}$ für den Auf- bzw. Untergang mittels
+\begin{align}
+T_i &= \pm \lk \frac{1^\text{h}}{15\degree} \rk \arccos\lk \frac{\sin h_\text{A,U}-\sin\delta(\tau_i)\sin\varphi}{\cos\delta(\tau_i)\cos\varphi}\rk \label{eq:hm_std_winkel_Ti} ~,\\
+t_{i+1} &=t_i + (T_i-\tau_i) ~.\nonumber
+\end{align}
+Dabei muss man auf einige Sonderfälle achten, z.\,B. wenn $T_i$ in \eqref{eq:hm_std_winkel_Ti} komplex wird.
+Dann geht die Sonne an dem Tag nicht unter, was z.\,B. im Polarsommer in hohen geographischen Breiten der Fall sein kann. 
+\end{enumerate}
+Eine alternative Methode der Berechnung besteht darin, dass man für den Tag von 0:00 bis 24:00 in Intervallen von z.\,B. 1 h die Höhe $h_\text{A,U}$ als Funktion der Ortszeit (bzw. Sternzeit) berechnet und in den Intervallen nach möglichen Nullstellen sucht.
+Dazu eignen sich numerische Nullstellenverfahren.
+Wir folgen in \mlhmref{Sonnenaufgang01.m} \bzw \mlhmref{Sonnenaufgang02.m} diesem Weg (siehe auch \cite{Montenbruck1999}) und nutzen die Methode der quadratischen Interpolation.
+Diese bietet den Vorteil, gegebenenfalls auch zwei Nullstellen in einem Intervall ermitteln zu können.
+Das Programm ist in dieser Form auch anwendbar auf die Berechnung von Auf- und Untergangszeiten des Mondes oder von Satelliten, sofern man die Berechnungsformeln für deren äquatoriale Koordinaten kennt. 
+
+Das Ergebnis einer Sonnenauf- und -untergangs-Berechnung ist in \figref{hm_Sonnenauf_untergang} für Oberkochen ($\phi\!=\!48.8\degree$ und $\lambda\!=\!10.1\degree$) zu sehen.
+Man erkennt in der vergrößerten Darstellung (rechtes Bild) sehr schön, dass der kürzeste Tag des Jahres wegen der ZGL weder mit dem frühesten Sonnenuntergang noch auch mit dem spätesten Sonnenaufgang zusammenfällt.
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{Sunrise01.pdf}\\%
+\caption[Berechnung der Sonnenaufgangs- und Sonnenuntergangszeiten.]{Berechnung der Sonnenaufgangs- und Sonnenuntergangszeiten. \fa SA, SU, Taglänge in Oberkochen (Breite $\phi\!=\!48.8\degree$ und Länge $\lambda\!=\!10.1\degree$). \fb SA, SU und Taglänge um den Jahreswechsel. Die $x$-Achse in \fa ist mit den Anfangsbuchstaben der Monate bezeichnet.}%}%
+\label{abb:hm_Sonnenauf_untergang}%
+\end{figure}
+
+\subsubsection{Näherungsformeln und deren Herleitung} \label{kap:hm_naeherungsformeln_sonne}
+\subparagraph{\textbf{Reihenentwicklung der Zeitgleichung}}
+Wir wollen jetzt handhabbare Formeln für die Zeitgleichung sowie Auf- und Untergangszeiten der Sonne herleiten.
+Dazu starten wir mit der geozentrischen Darstellung in \figref{hm_wahre_sonne_geoz}. 
+\begin{figure}%
+\includegraphics[width=\textwidth]{Wahre_und_mittlere_Sonne.pdf}%
+\caption{Bewegung der wahren und der mittleren Sonne im geozentrischen Bild.}%
+\label{abb:hm_wahre_sonne_geoz}%
+\end{figure}
+In dieser Abbildung haben wir neben der \anf{wahren} Sonne $\text{S}_\text{\astrosun}$ zwei weitere \anf{Hilfssonnen} $\text{S}_\text{E}$ und $\text{S}_\text{A}$ eingezeichnet.
+Die Sonne $\text{S}_\text{A}$ bewege sich mit konstanter Umlaufgeschwindigkeit in der Äquatorebene und die Sonne $\text{S}_\text{E}$ ebenfalls mit konstanter Winkelgeschwindigkeit auf der Ekliptik.
+Die wahre Sonne $\text{S}_\text{\astrosun}$ bewege sich entlang der Ekliptik entsprechend der Keplergesetze mit veränderlicher Geschwindigkeit.
+Die Hilfssonnen sind so definiert, dass beide mit der wahren Sonne in den Äquinoktien\index{Aequinoktium@Äquinoktium} \glslink{aequinox} zusammentreffen.
+In \figref{hm_wahre_sonne_geoz} sind die geozentrischen Parameter entsprechend denen des heliozentrischen Bildes von \figref{hm_planetenbahnen_rel_ekliptik} definiert.
+\begin{align*}
+\lambda_\text{\astrosun}&=\angle\vernal\text{ES}_\text{\astrosun}       ~&\text{Länge der wahren Sonne} \\
+\Lambda_\text{M}&=\Lambda_\text{\astrosun}=\angle\vernal\text{ES}_\text{E}~&\text{Länge der mittleren Sonne}  \\
+\alpha_\text{\astrosun}&=\angle\vernal\text{ES'}          ~&\text{Rektaszension der wahren Sonne}  \\
+\alpha_\text{M}&=\angle\vernal\text{ES}_\text{A}          ~&\text{Rektaszension der mittleren Sonne}  \\
+\upsilon&=\lambda_\text{\astrosun}-\varpi=\angle\text{P}_0\text{ES}_\text{\astrosun}  ~&\text{wahre Anomalie}  \\
+M&=\Lambda_\text{\astrosun}-\varpi=\angle\text{P}_0\text{ES}_\text{E}~&\text{mittlere Anomalie}
+\end{align*}
+
+Da die beiden Hilfssonnen mit gleicher Geschwindigkeit umlaufen, gilt $\Lambda_\text{\astrosun}\!=\!\alpha_\text{M}$.
+Mit der Definition der Zeitgleichung \eqref{eq:hm_tau_zgl} erhält man
+\begin{align}
+\begin{split}  
+\tau_\text{ZGL} &= \text{WOZ} - \MOZ = (\theta - \alpha_\text{\astrosun}) - \underbrace{(\theta-\alpha_\text{M})}_{0} = \alpha_\text{M}-\alpha_\text{\astrosun} = \Lambda_\text{\astrosun}-\alpha_\text{\astrosun} \\ 
+&= (\Lambda_\text{\astrosun} - \lambda_\text{\astrosun}) + (\lambda_\text{\astrosun}-\alpha_\text{\astrosun}) = (\Lambda_\text{\astrosun} + \varpi) - (\lambda_\text{\astrosun}+\varpi)+(\lambda_\text{\astrosun}-\alpha_\text{\astrosun})  \\
+&=\underbrace{(\Lambda_\text{\astrosun}-\varpi) - (\lambda_\text{\astrosun}-\varpi)}_{-\mathcal{C}\text{, siehe \eqref{eq:hm_mpglg_nu-M}}} + \underbrace{(\lambda_\text{\astrosun} -\alpha_\text{\astrosun})}_{\text{Reduktion $\mathcal{R}$, siehe \eqref{eq:hm_reduktions_formel4}}} \,. 
+\end{split} \label{eq:hm_tau_ZGL_C}
+\end{align}
+Die ersten beiden Terme ergeben also den negativen Wert der Mittelpunktsgleichung.
+Der dritte Term ist die sogenannte \emph{\gls{reduktion}}\index{Reduktion} der Ekliptik auf den Äquator, \dh die Differenz zwischen bekannter ekliptikaler Länge und gemessener äquatorialer Rektaszension.
+Die Herleitung dieser Reduktion, die nur von $\lambda_\text{\astrosun}$ und $\epsilon$ abhängt, ist in \kapitel{reduktion_ekliptik} in Beispiel \ref{bsp:herleitung_redformel_ekl} detailliert ausgeführt. 
+Wir benutzen hier das Ergebnis der Rechnung und erhalten 
+\begin{align}
+\begin{split}
+\tau_\text{ZGL} &= -C+(\lambda_\text{\astrosun}-\alpha_\text{\astrosun}) \\
+                &= -C+\tan^2\lk\frac{\epsilon}{2}\rk \sin(2\lambda_\text{\astrosun})-\frac{1}{2}\tan^4 \lk \frac{\epsilon}{2}\rk \sin(4\lambda_\text{\astrosun})+\mathcal{O}\lk \tan^6 \lk \frac{\epsilon}{2} \rk\rk \,. 
+\end{split} \label{eq:hm_tau_ZGL_C1}
+\end{align}
+Man kann sich also merken: Die \emph{Zeitgleichung} ist die Summe von (negativer) Mittelpunktsgleichung (\emph{Wirkung der Exzentrizität}) und Reduktion der Ekliptik\index{Reduktion!auf den Äquator} auf den Äquator (\emph{Wirkung der Ekliptikschiefe}).
+Wir wollen jetzt in der Form der ZGL \eqref{eq:hm_tau_ZGL_C1} die i.\,A. nicht bekannte ekliptikale Länge der wahren Sonne $\lambda_\text{\astrosun}$ durch die tabellierte bzw. die einfach berechenbare Länge $\Lambda_\text{\astrosun}$ der mittleren Sonne ersetzen.
+Wir können dabei folgende Beziehungen nutzen:
+\begin{align*}
+\lambda_\text{\astrosun} &= \Lambda_\text{\astrosun} + \mathcal{C} =\Lambda_\text{\astrosun}+2e\sin M + \frac{5}{4}e^2\sin(2M) +\mathcal{O}(e^3) \,,\\
+\sin(2\lambda_\text{\astrosun}) &\approx \sin(2\Lambda_\text{\astrosun})+4e\sin M \cos(2\Lambda_\text{\astrosun}) +\mathcal{O}(e^3)\,,\\
+\sin(4\lambda_\text{\astrosun}) &\approx \sin(4\Lambda_\text{\astrosun}) + \mathcal{O}(e^3)\,.
+\end{align*}
+Mit der Abkürzung $y=\lek\tan\lk\frac{\epsilon}{2}\rk\rek^2$ erhalten wir dann
+ \begin{align*}
+\tau_\text{ZGL} &= -\mathcal{C} + \underbrace{y \sin(2\Lambda_\text{\astrosun})- \frac{1}{2} y^2 \sin(4\Lambda_\text{\astrosun})}_{\text{T}_\text{I}} + 
+\underbrace{4 e y \cos(2\Lambda_\text{\astrosun}) \sin(M)}_{\text{T}_\text{II}}  ~.\label{eq:hm_tau_ZGL_D}
+\end{align*}
+Der Term $\mathcal{C}$ beschreibt wie bereits erwähnt den Effekt der Exzentrizität, der Term $T_\text{I}$ den der Schiefe der Ekliptik; er verschwindet mit $\epsilon \rightarrow 0$.
+Term  $T_\text{II}$ ist ein Mischterm.
+$\Lambda_\text{\astrosun}$ ist in einschlägigen Tabellen (siehe auch Tabelle \ref{tab:hm_bahnparameter} im Anhang) aufgeführt.
+Wir ersetzen $M = \Lambda_\text{\astrosun} - \varpi$ und erhalten mit 
+\begin{equation*}
+\Lambda_\text{\astrosun} = n(t-t_0) + \Lambda_\text{\astrosun 0} = 359999.0498\degree \:t + 280.4656\degree ~~
+\end{equation*}
+und den bekannten Beziehungen für trigonometrische Funktionen die Zeitgleichung in der folgenden Form:
+\begin{align}
+\tau_\text{ZGL} &= \sum_{k} \alpha_k \sin(k\Lambda_\text{\astrosun}) + \beta_k\cos(k\Lambda_\text{\astrosun}) = \sum_{k} \gamma_k\sin(\kappa_k t+\delta_k)\,, \label{eq:hm_parameter_alpha_beta} 
+\end{align}
+wobei
+\begin{align*}
+\kappa_k &= kn\,\frac{2\pi}{360\cdot 36525}~, \:\gamma_k = -\frac{24\cdot 60}{2\pi}\sqrt{\alpha_k^2+\beta_k^2}~~\: \text{und} \\
+\delta_k &= k \, \Lambda_{\astrosun,0}+\arctan\lk \frac{\beta_k}{\alpha_k}\rk -\pi ~.
+\end{align*}
+Die Koeffizienten der Summen $\alpha_k$, $\beta_k$ bzw. $y_k$, $\delta_k$, $\kappa_k$ sind Funktionen der Bahnparameter der Erde $e$, $\varpi$, $n$, $\Lambda_\text{\astrosun,0}$, sowie der Ekliptikschiefe $\epsilon$ und damit auch abhängig von der Zeit.\footnote{Wir kommen darauf in \kapitel{hm_langezeiten} zurück.
+Man beachte, dass in \eqref{eq:hm_parameter_alpha_beta} nur die Entwicklung bis zur Ordnung $e^2$ enthalten ist.} Wir rechnen mit den Werten für das Äquinoktium des Datums, $t$ sind wiederum die seit J2000 vergangenen Jahrhunderte.
+Die Koeffizienten $y_k$ sind in Zeitsekunden umgerechnet und für die Sinus-Funktion nutzen wir $\sin(x-\pi)\!=\!-\sin x$.
+Für die Parameter $\alpha_k$, $\beta_k$ bis $k\!=\!4$ erhalten wir
+\begin{align}
+\begin{split}
+\alpha_1 &= -2e\cos\varpi -2e\tan^2\lk\frac{\epsilon}{2}\rk\cos\varpi \,, ~~~\beta_1 = +2e\sin\varpi-2e\tan^2\lk\frac{\epsilon}{2}\rk\sin\varpi \,,   \\ 
+\alpha_2 &= -\frac{5}{4}e^2\cos(2\varpi) +\tan^2\lk\frac{\epsilon}{2}\rk \,, ~~~\beta_2 = +\frac{5}{4}e^2\sin(2\varpi)\,,  \\
+\alpha_3 &= +2e\tan^2\lk\frac{\epsilon}{2}\rk\cos\varpi \,, ~~~\beta_3 = -2e \tan^2\lk\frac{\epsilon}{2}\rk\sin \varpi \,, \\
+\alpha_4 &= -\frac{1}{2}\tan^4\lk\frac{\epsilon}{2}\rk \,,  ~~~\beta_4 = 0 \,. 
+\end{split}\label{eq:hm_parameter_alpha_beta2}
+\end{align}
+Daraus berechnen wir mit den Bahnparametern aus Tabelle \ref{tab:hm_bahnparameter} die Zeitgleichung in der üblichen Form: 
+\begin{align}
+\tau_\text{ZGL} &=\! 7.364186\,\sin(0.017202\, t_\text{d}-0.062882) \nonumber  \\
+								& \!-9.93481\,\sin(0.034404\, t_\text{d} + 0.368790) + \ldots \label{eq:hm_ZGL21}
+\end{align}
+mit
+\begin{align*}
+y_k      &= \! (-7.364186,\,-9.93481,\,-0.329614,\,-0.21222, \ldots) ~~\text{in Zeitminuten,} \\
+\kappa_k &= \! (0.017202,\,0.034404,\,0.051606,\,0.068808, \ldots) ~~\text{im Bogenmaß,} \\
+\delta_k &= \! (-0.062882,\,0.361758,\,0.321940,\,0.730548,\ldots) ~~\text{im Bogenmaß}. 
+\end{align*}
+Hierin haben wir die Parameter $\kappa_k  \rightarrow 100 \kappa_k$ und $t\!\rightarrow \!t_\text{d}$ mit $t_\text{d} = 0 \ldots 365$ für die Tage eines Jahres gesetzt, was wegen der Periodizität in $\kappa_k$ für das Jahr 2000 streng gilt, für Jahre um 2000 näherungsweise.\footnote{Für andere Jahre muss man die Parameter \eqref{eq:hm_parameter_alpha_beta2} neu berechnen, siehe auch \kapitel{hm_altertum_zeiten}.} Dies ist die allgemein bekannte und gut handhabbare Form der Zeitgleichung.
+Die ersten beiden Terme zeigen über \eqref{eq:hm_parameter_alpha_beta2} die Beiträge der Exzentrizität und der Ekliptikschiefe (\figref{hm_reihenent_zeitglg}).
+Zur Verdeutlichung sind die deutlich kleineren Terme mit $3\omega$ und $4\omega$ jeweils um einen Faktor 10 vergrößert dargestellt.
+Da wir in unserer Berechnung wiederum sechs Bahnparameter (inklusive der Zeit $T_0$) benutzt haben, muss man die Reihe mindestens bis $k\!=\!2$ entwickeln, was meist schon ausreichend genaue Ergebnisse liefert.
+Alle in der Literatur vorhandenen und leicht unterschiedlichen Zeitgleichungen basieren letztendlich auf dieser Grundform.
+Sie unterscheiden sich in der Wahl des Äquinoktiums und der Ordnung $k$ der Reihenentwicklung.
+In \mlhmref{ZGL03.m} sind die verschiedenen publizierten Zeitgleichungen \cite{Wetzel2007,Rempel2019} miteinander verglichen.
+\begin{figure}%
+\includegraphics[width=\textwidth]{ZGL02.pdf}%
+\caption{Reihenentwicklung der Zeitgleichung.}%
+\label{abb:hm_reihenent_zeitglg}%
+\end{figure}
+
+Nach gleicher Methodik kann auch die Deklination als Funktion der seit einem Zeitpunkt vergangenen Tage $t_\text{d}$ berechnet werden.
+Wir geben hier nur das erste Glied der Reihenentwicklung im Bogenmaß an:
+\begin{equation}
+\delta(t_\text{d}) = 0.4095 \, \sin(0.016906 t_\text{d} - 1.35393) \,. \label{eq:hm_delta_von_T_hash}
+\end{equation}
+
+\subparagraph{{Näherungsformel für den Sonnenaufgang und Sonnenuntergang}}\index{Sonnenaufgang}\index{Sonnenuntergang}
+Mit den beiden letzten Formeln wollen wir nun ebenfalls Berechnungsformeln für den Sonnenaufgang \bzw -untergang herleiten.
+Wir haben in \kapitel{auf-untergaenge} zur Bestimmung des Aufgangs eines Himmelskörpers mit zeitlich veränderlicher Deklination und Rektaszension (wie z.\,B. Sonne und Mond) eine numerische Methode wählen müssen, weil es gemäß \eqref{eq:hm_Alt-Az-Koord} keine geschlossene Umkehrfunktion $\tau(h)$ zur Funktion $h(\tau)$  gibt.
+Da sich aber die Deklination der Sonne im Verlauf eines Tages nur geringfügig ändert, lassen sich bei bekannter Zeitgleichung die Zeitpunkte für die Auf- und Untergänge der Sonne näherungsweise mit relativ einfachen Formeln bestimmen, ohne dass man auf den mathematisch-numerischen Apparat für die iterative Lösung zurückgreifen muss.
+Da der Kulminationszeitpunkt\glslink{kulmination}\ über die ZGL bekannt ist und die Deklination der Sonne innerhalb von $\pm 9$ h um den Kulminationszeitpunkt herum als näherungsweise konstant angenommen werden kann, muss man nur noch den Schnittpunkt des Tagbogens der Sonne mit dem Horizont berechnen.
+Als \emph{\gls{tagbogen}} wird der geometrische Bogen bezeichnet, den die Sonne (bzw. jeder andere Himmelskörper) über dem Horizont beschreibt.
+\begin{figure}%
+\includegraphics[width=\textwidth]{TagbogenGeometrie02.pdf}%
+\caption[Geometrie des Tagbogens der Sonne.]{Geometrie des Tagbogens der Sonne (nach \cite{Praxl2016}) -- B Beobachter, A/U Auf- bzw. Untergangspunkt der Sonne am Horizont, N/S Nord-Süd-Richtung am Horizont. }%
+\label{abb:hm_geom_tagbogen}%
+\end{figure}
+Wir betrachten dazu \figref{hm_geom_tagbogen} und können aus der Teilabbildung a direkt die folgenden Beziehungen ablesen:
+\begin{align*}
+\overline{\text{PM}} &= R \sin\varphi  = \overline{\text{PB}} \tan\varphi \,, \\
+\overline{\text{PH}} &= \overline{\text{PM}} \tan\delta \,, \\
+\rightarrow \frac{\overline{\text{PH}}}{\overline{\text{PB}}} &= \tan\varphi \tan\delta ~.
+\end{align*}
+Andererseits folgt aus der Teilabbildung b für den halben Tagbogen $\tau_\text{B}$ :
+\begin{align}
+\cos \tau_\text{B} \!&=\!-\cos(180\degree - \tau_\text{B}) = - \frac{\overline{\text{PH}}}{\overline{\text{PB}}} = -\tan\varphi\tan\delta ~~ \text{und somit} \nonumber \\
+\tau_\text{B}\!&=\!\arccos(-\tan\varphi\tan\delta) ~.	\label{eq:hm_tau_B}
+\end{align}
+Für die Aufgangszeiten erfolgt die Umrechnung von $\tau_\text{B}$ in Zeitstunden durch Multiplikation von $24 \text{h}/2\pi$.
+Im Interesse übersichtlicher Notation lassen wir die Umrechnungsfaktoren vom Bogenmaß ins Zeitmaß weg und gehen davon aus, dass $\tau_\text{B}$ genauso wie $\tau_\text{\,ZGL}$ in der jeweils für die Formel richtigen Einheit benutzt werden.
+Bei der Benutzung von \eqref{eq:hm_tau_B} für die Aufgangszeiten\footnote{Die Formel \eqref{eq:hm_tau_B} gilt nur für $\abs{\tan\varphi\tan\delta}\!<\!1$, ansonsten wird der Himmelskörper zirkumpolar und geht weder auf noch unter, was im Sommer \zb in Breiten nördlich des Polarkreises für die Sonne der Fall ist.} müssen wir das Vorzeichen von $\tau_\text{B}$ beachten.
+Zur Klarheit addieren oder subtrahieren wir $\abs{\tau_\text{B}}$ zur Kulminationszeit und erhalten dann für die Auf-/Untergangszeitpunkte 
+\begin{equation}
+t_\text{A,U} = \text{12:00 h} \,\text{UT} - \frac{\lambda}{15}+ \tau_\text{ZGL} + \tau_\text{A,U} ~~\text{mit}~~ \tau_\text{A} = -\abs{\tau_\text{B}} \text{ bzw. } \tau_\text{U} = \abs{\tau_\text{B}} \,. \label{eq:hm_untergangszeitp}
+\end{equation}
+Man berücksichtige, dass $\abs{\tau_\text{B}}$ in \eqref{eq:hm_untergangszeitp} von der Deklination $\delta$ nach \eqref{eq:hm_ZGL21} abhängt und somit ebenso wie $\tau_\text{ ZGL}$ vom jeweiligen Tag.
+Jetzt müssen wir aber noch den Effekt der Refraktion und des scheinbaren Durchmessers der Sonne berücksichtigen.
+Wir nehmen wieder die Refraktion in Horizonthöhe mit $R\!=\!34'$ an, den scheinbaren Radius der Sonne mit $d_\text{\astrosun}/2=16'$ und vernachlässigen die Parallaxe.
+In erster Näherung ist dann der beobachtete Tagbogen in Horizontnähe gegenüber dem geometrisch-astronomischen (wahren) Tagbogen parallel verschoben (\figref{hm_verl_tagbogen_ref}), was zu einer Nordverschiebung des Azimuts beim Sonnenaufgang führt.
+Damit einher geht eine Tagbogenverlängerung\index{Tagbogenverlängerung} $\Delta\tau_\text{B}$, \dh die Sonne ist wegen der Refraktion früher am Himmel sichtbar als es rein geometrisch-astrometrisch der Fall wäre.
+Die (halbe) Tagbogenverlängerung ist die Zeit, die die Sonne bräuchte, um die Höhe $h_r\!=\!R+d_\text{\astrosun}/2$ zu durchlaufen.
+Wir starten gemäß \eqref{eq:hm_Alt-Az-Koord} mit
+\begin{equation*}
+\sin h(t) = \cos\delta(t) \cos\tau \cos\varphi + \sin\delta(t)\sin\varphi ~~\text{und}~~0<t<24\:\text{h} \,.
+\end{equation*}
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{Tagbogenverlaengerung.pdf}%
+\caption[Tagbogenverlängerung durch Refraktion und scheinbaren Durchmesser.]{Verlängerung des Tagbogens durch Refraktion und scheinbaren Durchmesser.}%
+\label{abb:hm_verl_tagbogen_ref}%
+\end{figure}
+
+Berücksichtigen wir, dass $\D t=\D \tau$, wir ferner für die kleine Zeitspanne des Aufgangs die Deklination der Sonne $\cos\delta(t)\!=\!\cos\delta_\text{A}$ als konstant annehmen können und für sehr kleine Höhen $\sin h\!\approx\!h$ und $\cos h\!\approx\! 1$ gilt, können wir die Vertikalgeschwindigkeit der Sonne zum Stundenwinkel des Aufgangs wie folgt berechnen:
+\begin{equation*}
+\frac{\D h}{\D \tau} \bigg|_{\tau_\text{A}}\! = -\cos\delta\cos\varphi\sin\tau_\text{A} \,.
+\end{equation*}
+Man beachte hierbei die Winkel-Zeitumrechnung entsprechend $2\pi\!\hat{=}\!24 \:\text{h}$.
+Die Tagbogenverlängerung (beim Aufgang) können wir dann zu
+\begin{align}
+\Delta\tau_\text{A} &= \frac{h_r}{\lk \frac{\D h}{\D \tau}\rk} = \frac{h_r}{-\cos\delta\cos\varphi\sin\tau_\text{A}} 
+\nonumber \\
+&= -\frac{h_r}{\cos\delta\cos\varphi\sqrt{1-\cos^2\tau_\text{A}}} = -\frac{h_r}{\sqrt{\cos^2\delta-\sin^2\varphi}} \,\label{eq:hm_tagbogverl}
+\end{align}
+ermitteln. Wie man am Nenner erkennt, gilt \eqref{eq:hm_tagbogverl} nur, wenn $\abs{\varphi}\!<\!\pi/2-\abs{\delta}$, \dh nicht in Polargebieten zur Sommer- und Winterzeit.
+Aufgrund der angenommenen Symmetrie des Tagbogens ist $\Delta\tau_U\!=\!-\Delta\tau_A$.
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{Tagbogenverlaengerung02.pdf}%
+\caption[Tagbogenverlängerung durch Refraktion und scheinbaren Radius.]{Tagbogenverlängerung durch Refraktion und scheinbaren Radius im Laufe eines Jahres für verschiedene geographische Breiten nach \eqref{eq:hm_tagbogverl} (\mscr{} \mlhmref{TagbogenVerlaengerung.m}).}%
+\label{abb:hm_tagbogenverl_nach_Delta_tau_A}%
+\end{figure}
+\figref{hm_tagbogenverl_nach_Delta_tau_A} (\mlhmref{TagbogenVerlaengerung.m}) zeigt sehr deutlich, dass die so berechneten Tagbogenverlängerungen bei großen geographischen Breiten\index{Breitengrad} und zu den Sonnenwenden am größten sind, was unmittelbar einsichtig ist, wenn man sich die Höhe der Sonne im Tagesverlauf für verschiedene Jahreszeiten vergegenwärtigt. In \probref{hm_tageslauf_sonne} werden die Höhe der Sonne im Tagesverlauf unter Berücksichtigung der Refraktion und der über den Tag veränderlichen Deklination mittels der Keplerlösung berechnet und die Abweichung zur Näherung bestimmt.
+
+Damit sind wir nun in der Lage, die Auf- und Untergangszeiten der Sonne in UT vollständig für alle geographischen Breiten und Tage des Jahres in der lokalen Ortszeit WOZ anzugeben:
+\begin{equation} \label{eq:hm_aufgangszeiten}
+t_\text{A,U}(\lambda,\varphi,\delta(t_\text{d})) = 12\!:\!00\:\text{h UT} - \frac{\lambda}{15\degree} + \tau_\text{ ZGL}(\delta) \mp \abs{\tau_\text{ B}}(\varphi,\delta) \mp \abs{\Delta\tau_\text{B}}(\varphi,\delta) \,.
+\end{equation}
+Hierin ist $\delta\!=\!\delta(t_\text{d})$ als Funktion durch \eqref{eq:hm_delta_von_T_hash} gegeben und damit eine Funktion des bestimmten Tages eines Jahres.
+Für $\tau_\text{ ZGL}(\delta)$ kann im Prinzip jede der verschiedenen Formeln der Zeitgleichung benutzt werden.
+\figref{hm_sonne_untergang_baabe} zeigt die nach \eqref{eq:hm_aufgangszeiten} berechneten Zeiten für den Sonnenaufgang und Sonnenuntergang, die Kulminationszeiten und die Tageslängen für zwei Orte verschiedener geographischer Breiten.
+Die Abweichungen zur numerischen Lösung bleiben im Mittel im Bereich von einer Minute. %(siehe dazu auch die \mscre \ref{mls:hm_tagbogenverl} und \ref{mls:hm_tageslauf_sonne}).
+\begin{figure}%
+\includegraphics[width=\textwidth]{Sunrise02.pdf}\\%
+\caption[Sonnenaufgang und -untergang für Tromsø und Ushuaia.]{Sonnenaufgang und -untergang für \fa Tromsø, Norwegen (Breite $69.8\degree$N und Länge $19.0\degree$E) und \fb Ushuaia, Argentinien (Breite $54.8\degree$S, Länge $68.3\degree$W). Die $x$-Achsen sind in Monaten angegeben: \anf{J}$=$Januar, \anf{F}$=$Februar, \anf{M}$=$März, \ldots}%
+\label{abb:hm_sonne_untergang_baabe}%
+\end{figure}
+
+\subparagraph{\textbf{Berechnung des Auf- bzw. Eintauchwinkels der Sonne}}
+Zum Schluss wollen wir noch den Auf- \bzw Eintauchwinkel $\vartheta$ der Sonne in den Horizont berechnen.
+Der Eintauchwinkel wird eine Funktion der Deklination und geographischen Breite sein.
+Der Eintauchwinkel kann nach \figref{hm_verl_tagbogen_ref} wie folgt berechnet werden:
+\begin{equation}
+\tan\vartheta = \frac{\Delta h}{\Delta \mathcal{A}} \,.
+\label{eq:hm_tan_vartheta}
+\end{equation}
+Unter Benutzung der Kettenregel erhalten wir
+\begin{equation*}
+\tan\vartheta = \frac{\D h}{\D \mathcal A} = \frac{\D h}{\D \tau}\frac{\D \tau}{\D \mathcal{A}} = \frac{\D h}{\D \tau} \lk \frac{\D \mathcal{A}}{\D \tau} \rk^{-1} \,.
+\end{equation*}
+Wir bilden die impliziten Ableitungen der Transformationsgleichung für $\sin h$ und $\sin \mathcal A$, sodass 
+\begin{equation}
+\frac{\D h}{\D \tau} = -\cos\delta\cos\varphi\sin\tau ~~\:\text{bzw.} ~~ \:\frac{\D \mathcal{A}}{\D \tau} = \frac{\cos\delta\cos\tau}{\cos\mathcal{A}}\,.
+\label{eq:hm_dh_dtau}
+\end{equation}
+Formel \eqref{eq:hm_dh_dtau} in \eqref{eq:hm_tan_vartheta} eingesetzt ergibt
+\begin{equation*}
+\tan\vartheta = -\cos\varphi\cos\mathcal{A}_\text{A}\tan\tau_\text{A} \,.
+\end{equation*}
+Wir benutzen noch einmal die Transformationsformeln für $\cos\mathcal{A}$ und $\tan\tau$.
+Mit $\cos\mathcal{A}\!=\!-\sin\delta/\cos\varphi$ eingesetzt in $\tan\tau\!=\!-\sin\mathcal{A}/(\tan\varphi\sin\delta)$ erhalten wir schließlich 
+\begin{equation}
+\tan\vartheta = \sqrt{\frac{\cos^2\varphi}{\sin^2\varphi} - \frac{\sin^2\delta}{\sin^2\varphi}} = \sqrt{\frac{\cos^2\delta}{\sin^2\varphi}-1} \,.
+\label{eq:hm_tan_vartheta_2}
+\end{equation}
+
+\subparagraph{\textbf{Anwendung der Formeln für Sonnenauf- und -untergänge}}
+Wir haben mit der Beziehung \eqref{eq:hm_aufgangszeiten} und mit \eqref{eq:hm_tan_vartheta_2} unser Ziel erreicht und zwei an jedem Ort der Erde und für jeden Tag des Jahres gültige \anf{Taschenrechnerformeln} erhalten.
+Während eines sommerlichen Familien-Ostseeurlaubs 2020 konnten wir die Gültigkeit obiger Formel wenige Tage vor der Sommersonnenwende in Baabe ($\varphi\!=\!54.3591652\degree,\,\lambda\!=\!13.7061473\degree$) überprüfen.\footnote{Die Aufnahme wurde von Sylvia und Michael Kaschke mit einem ZEISS Batis Objektiv mit $\SI{135}{\milli\metre}$ Brennweite und einer Sony Alpha IIC am 10.\,6.\,2020 gemacht!}
+Die beobachtete Aufgangszeit um 04:32:20 MESZ stimmt sehr gut mit den Berechnungen überein (Tabelle \ref{tab:hm_beob_sonnenaufgang_baabe}).
+Dies ist insbesondere bemerkenswert, da durch die Temperatur- und Druckvariation in der Nähe des Horizonts die Höhen eines Himmelsobjektes um bis zu $0.3$\textdegree\ variieren können\cite{Meeus1998}.
+Deswegen macht es auch keinen Sinn, die Aufgangszeiten wesentlich genauer als auf eine Minute zu berechnen. Unsere Näherungsformeln sind also gut anwendbar.
+Signifikante Abweichungen bei diesen ergeben sich erst bei der Anwendung in größeren geographischen Breiten.
+Generell gilt in der Himmelsmechanik, dass man zum einen mit hoher Genauigkeit (z.\,B. bei den Bahnparametern bzw. der Zeit in JD) rechnen muss, andererseits sollte man berücksichtigen, was überhaupt bis zu welcher Genauigkeit beobachtet werden kann.
+Kulminationen sind im Allgemeinen auf wenige Zeitsekunden, Planetenpositionen für Amateure auf ca. $10$ bis $20$ Bogensekunden und Aufgänge wie oben beschrieben auf ca. eine Zeitminute genau beobachtbar.
+
+\begin{table}%
+\caption[Beobachtungen und Berechnungen des Sonnenaufgangs in Baabe.]{Beobachtungen und Berechnungen des Sonnenaufgangs in Baabe am 10.6.2020 (alle Zeiten in MESZ).}
+\begin{tabular}{L{4cm}L{2.5cm}L{2.5cm}}
+\hline\noalign{\smallskip}
+  & Astrometrisch & Scheinbar \\
+  &(Sonnenzentrum) & (Oberer Rand) \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+JPL\cite{JPL2020} & 04:39:00 & 04:32:00 \\
+Berechnet nach \eqref{eq:hm_tau_zgl} & 04:39:35 & 04:32:30 \\
+Näherungsformel \eqref{eq:hm_ZGL21} & 04:39:50 & 04:32:10 \\
+Beobachtet am 10.\,06.\,2020 & --- & 04:32:40 \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{tabular}
+\label{tab:hm_beob_sonnenaufgang_baabe}
+\end{table}
+Auch der Aufgangswinkel $\vartheta$ konnte vermessen werden.
+Wenn man in Abb. \ref{eq:hm_sonnenaufgang_baabe_foto} die Anstiege für die eingezeichneten Regressionsgeraden bestimmt, so erhält man einen Winkel von $\vartheta_1\!=\!25.5$\textdegree\ für den oberen Rand der Sonne und $\vartheta_2\!=\!26.8$\textdegree{} für den unteren Rand.
+Aus einer Rechnung im \mscr~\mlhmref{SonnenaufgangBaabe.m} findet man unter Verwendung der Refraktionsformeln \eqref{eq:hm_Normalrefraktion1} \bzw \eqref{eq:hm_Normalrefraktion2} Werte um $\vartheta\!=\!24.6$\textdegree.
+Im Rahmen der Messgenauigkeit stimmt das gut mit unserer Messung überein.
+Aus den unterschiedlichen gemessenen Winkeln wird aber auch deutlich, dass die Refraktion im Bereich $0$\textdegree\ bis $2$\textdegree\ nicht als konstant angenommen werden kann. 
+\begin{figure}%
+\includegraphics[width=\textwidth]{SunRiseBaabe.pdf}%
+\caption[Verlauf des Sonnenaufgangs an der sommerlichen Ostsee.] {Verlauf des Sonnenaufgangs an der sommerlichen Ostsee.}%
+\label{eq:hm_sonnenaufgang_baabe_foto}%
+\end{figure}
+In den \textbf{Übungen} \ref{prob:hm_abflachung_sonne} bis \ref{prob:hm_sonnenaufgang_mars} haben wir einige Beispiele zur Berechnung von Aufgangssituationen auf der Erde bzw. auf einem anderen Planeten vorgesehen.
+Die Methodik, die wir bei der Erde verwendet haben, ist auch auf solche Fälle übertragbar.
+In der \probref{hm_analytic_sunrise} wird nach \cite{Reinsch2003} eine Methode dargestellt, mit der eine zumindest für die Breitengrade zwischen $25\degree$ und $65\degree$ brauchbare analytische Formel für den Sonnenaufgang hergeleitet wird.
+
+\subsubsection{Konstruktion von Sonnenuhren}\index{Sonnenuhr}\label{kap:sonnenuhren}
+
+Mit unserem Wissen über die Berechnung der Koordinaten der  Sonne als Funktion und der Zeitgleichung können wir auch an die Berechnung von Sonnenuhren gehen.
+Sonnenuhren sind die ältesten Zeitmesser auf der Erde.\footnote{In der Literatur wird debattiert, ob Wasser- \bzw Sanduhren noch älter sind. Diese Uhren können aber nur Intervalle messen und bestimmen die Zeit nicht in Bezug zur astronomisch definierten Zeit.}
+Es gibt ausgezeichnete und umfangreiche Literatur zu diesem Thema \cite{Meyer2008, Kloeckl2017}, weshalb wir uns hier auf die Grundprinzipien beschränken und ansonsten auf die Literatur bzw. die Übungen verweisen.
+
+\subparagraph{\textbf{Grundprinzip und Begriffe einer Sonnenuhr}}
+
+Mit einer Sonnenuhr wird durch die Sonne ein (Schatten-)Bild eines Stabes oder eines anderen Objektes auf einem geeignet zu konstruierenden Ziffernblatt erzeugt (\figref{hm_sundial_RvB}).
+Aus dem Stand der Sonne bzw. deren Schatten kann dann die Tageszeit (Uhrzeit) unmittelbar abgelesen werden.
+Die Tageszeit kann je nach Gestaltung der Sonnenuhr bzw. ihres Zifferblatts als Wahre Ortszeit (WOZ), \gls{moz} (MOZ) oder Zonenzeit (MEZ) angezeigt werden.
+Mit Hilfe von Sonnenuhren lassen sich auch jahreszeitliche Informationen ablesen, z.B. das Datum, Sonnenwenden und Äquinoktien.
+Wir wollen dabei folgende Begriffe aus der \gls{gnomonik} (Lehre von den Sonnenuhren) verwenden (\figref{hm_sundial06}):
+
+\begin{figure}%
+\includegraphics[width=0.4\textwidth]{SunDial.jpg}%
+\caption[Sonnenuhr am Bürgermeisteramt in St. Pierre d'Oléron in Frankreich.]{Sonnenuhr am Bürgermeisteramt in St. Pierre d'Oléron in Frankreich. Die Inschrift auf der Uhr sagt: La vie s'envole, mais les oeuvres demeurent. (Wir bedanken uns bei Rudolf von Bünau für das Bild.)}%
+\label{abb:hm_sundial_RvB}%
+\end{figure}
+
+\renewcommand*{\arraystretch}{1}
+\begin{longtable}{L{1.5 cm}L{0.5 cm}L{8.5 cm}}
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+Begriff & &Erklärung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\endhead
+  \textit{\gls{gnomon}} & & Schattenwerfender Stab.\index{Gnomon}\\ 
+  \textit{\gls{nodus}} & & Spitze des Gnomons\index{Nodus} (auch Auge genannt).\\ 
+  \textit{\gls{lineatur}} & & Menge der vom Gnomon oder Nodus geworfenen Schatten auf einer Ziffernblattebene\index{Lineatur}, auf der die Zeit abgelesen werden kann.\\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\end{longtable}
+\renewcommand*{\arraystretch}{1}
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{Sonnenuhr06.pdf}%
+\caption[Grundprinzip einer Äquatorial- und einer Horizontal-Sonnenuhr.]{Grundprinzip von Sonnenuhren. \fa Äquatorial-Sonnenuhr und \fb Horizontal-Sonnenuhr. $\varphi$ ist die geographische Breite, NP der Himmelsnordpol und N, S die Nord- \bzw Südrichtung in der Horizontebene.}%
+\label{abb:hm_sundial06}%
+\end{figure}
+
+\subparagraph{\textbf{Äquatoriale (Polstab-)Sonnenuhr}}
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{Sonnenuhr01.pdf}%
+\caption[Prinzip und Ausführung einer Äquatorial-Sonnenuhr.]{Prinzip und Ausführung einer Äquatorial-Sonnenuhr. \fa Draufsicht auf Lineaturebene (parallel zur Äquatorebene), \fb Schrägansicht.}%
+\label{abb:hm_sundial01}%
+\end{figure}
+
+Diese Sonnenuhr ist die einfachste Sonnenuhr, man findet sie häufig in Gärten oder Parks.
+Bei ihr liegt das Ziffernblatt mit der Lineatur in einer Ebene, die parallel zur Äquatorebene ist.
+Die Lineatur ist gleichmäßig aufgeteilt und der Schattenstab steht senkrecht auf dem Ziffernblatt und zeigt damit zum Himmelsnordpol (\figref{hm_sundial02}). \\
+Bei positiver Deklination der Sonne kann der Schatten direkt auf dem Ziffernblatt abgelesen werden, bei negativen Deklinationen müsste das Ziffernblatt transparent sein, da die Sonne von unten den Stab beleuchtet.
+Man hilft sich, indem man entweder das Ziffernblatt transparent macht oder als halbkreisförmiges Band gestaltet. \\
+Die Lineatur ist relativ zur Nordrichtung als Schatten per Definition durch den Stundenwinkel $\tau$ gegeben, den wir im Folgenden mit $\sigma_\text{A}$  bezeichnen wollen. Will man eine Beziehung der Lineatur zur bürgerlichen Zeit herstellen, so ist unter Annahme einer mittleren Sonne die Lineatur durch
+
+	\begin{align}
+				\sigma_\text{A} = \text(MOZ) \frac{15\degree}{\mathrm{h}}+\lambda - \text{Z}\cdot15\degree \label{eq:hm_sundial01}
+		\end{align}
+gegeben, worin die MOZ wie in \kap{hm_zeitdefinition} definiert die mittlere Ortszeit in Stunden (h), $\lambda$ die geographische Länge und Z die Zeitzone bedeuten.\\
+
+\subparagraph{\textbf{Horizontal-Sonnenuhr}}
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{Sonnenuhr03.pdf}%
+\caption[Prinzip der Horizontal-Sonnenuhr.]{\fa Prinzip der Horizontal-Sonnenuhr und \fb Berechnungsgrundlage der Lineatur. $R$ ist hier Radius des Ziffernblatts der Horizontal-Sonnenuhr, $r$ der Radius des Ziffernblatts der Äquatorial-Sonnenuhr.}%
+\label{abb:hm_sundial02}%
+\end{figure}
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{Sonnenuhr04.pdf}%
+\caption[Prinzip der Vertikal-Sonnenuhr.]{\fa Prinzip der Vertikal-Sonnenuhr und \fb Berechnungsgrundlage der Lineatur bei O-W-Ausrichtung der Wand.}%
+\label{abb:hm_sundial04}%
+\end{figure}
+
+Diese Sonnenuhr findet man auf ebenen Flächen, sie sind sehr einfach zu bauen, dafür ist die Lineatur etwas komplizierter.
+Die Konstruktion der Lineatur einer solchen Horizontal-Sonnenuhr ergibt sich aus \figref{hm_sundial02}. \\
+Der Schattenstab ist wieder zum Himmelsnordpol ausgerichtet, er bildet also zwischen Horizont- und Ziffernblattebene den Winkel $\varphi$, dessen Größe gleich der geographischen Breite des Aufstellungsortes entspricht.
+Aus \figref{hm_sundial02} erkennt man, dass die Lineatur nicht mehr gleichmäßig ist.
+Sie ergibt sich gemäß einfacher geometrischer Überlegungen zu
+		\begin{align}
+				\tan \sigma_\text{H} = \frac{r}{R}\,\tan\sigma_\text{A}  = \sin\varphi\,\tan\sigma_\text{A}\,. \label{eq:hm_sundial02}
+		\end{align}
+$\sigma_\text{H}$ ist hier der Winkel zwischen der Linie für die aktuelle Zeit und der 12:00 Stunden-Linie auf dem horizontalen Ziffernblatt, $\sigma_\text{A}$ der entsprechende Winkel auf dem äquatorialen Ziffernblatt.\\
+\subparagraph{\textbf{Vertikal-Sonnenuhr}}
+Diese Sonnenuhr findet man häufig an Hauswänden.
+Ihre Konstruktion ist für eine in West-Ost-Richtung verlaufende Wand völlig analog der Horizontal-Sonnenuhr, nur erfolgt hier die Projektion nicht auf den Horizont, sondern auf eine dazu senkrechte Ebene. Die Uhr stellt quasi eine um $90\degree$ gedrehte Horizontal-Sonnenuhr dar, sodass wir folgende Beziehung erhalten:
+		\begin{align}
+				\tan\sigma_\text{V}= \sin(90\degree - \varphi)\,\tan\sigma_\text{A} = \cos\varphi\,\tan\sigma_\text{A} \,. \label{eq:hm_sundial03}
+		\end{align}
+Etwas schwieriger ist die Berechnung, wenn die Wand um einen Winkel $\alpha$  gegen die Ost-West-Achse gedreht ist, was sicher häufig vorkommt (\figref{hm_sundial05}). Diese Berechnung wird in \probref{hm_VertikalAnalemmaSonnenuhr} ausgeführt. 
+
+\subparagraph{\textbf{Analemmatische Sonnenuhren}}
+Bisher haben wir bei der Berechnung der Lineatur die Zeitgleichung nicht berücksichtigt, \dh wir haben nach \eqref{eq:hm_sundial01} ein Ziffernblatt für die MOZ berechnet.
+Da aber die WOZ von der MOZ bis zu $\pm 15 \,\mathrm{min}$ variiert, wollen wir uns eine Sonnenuhr überlegen, die die ZGL und die unterschiedliche Deklination der Sonne im Laufe eines Jahres berücksichtigt. Eine solche Sonnenuhr steht \zb vor dem Galilei-Museum in Florenz (\figref{hm_sundial07}). 
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{Sonnenuhr07.pdf}%
+\caption[Analemmatische Sonnenuhr vor dem Galilei-Museum in Florenz.]{\fa Analemmatische Sonnenuhr vor dem Galilei-Museum in Florenz (Florenz, Italien) und \fb Konstruktionsprinzip. Nodus (Nd), Nodus-Schattenpunkt (SP), Azimut ($\mathcal{A}$), Höhe $H$ des Schattenstabes und Höhe $h$ der Sonne (S) sind dargestellt. }%
+\label{abb:hm_sundial07}%
+\end{figure}
+
+Bei dieser Sonnenuhr erfolgt das Ablesen der Zeit nicht durch eine Schattenlinie, sondern durch den Punktschatten eines Nodus (Nd), der zu jedem Datum einen anderen Punkt des Ziffernblatts beschattet. Der Schattenstab der Höhe $H$ muss daher nicht auf den Himmelspol ausgerichtet sein, da es nur auf den Schatten des Nodus ankommt. Wir betrachten die Position $\vec{r}_\text{n}$ des Nodusschattens (SP) in der Horizont-Ziffernblattebene ($x$-$y$-Ebene), wobei $\vec{n}$ die Richtung zum Nodus ist und $\vec{s}$ die Richtung vom Nodus-Schattenpunkt SP zur Sonne S.
+Dann gilt (\figref{hm_sundial07}b:
+		\begin{align}
+				\vec{r}_\text{n} &= \vec{n}+q\,\vec{s} \,, ~~~~ \vec{r}_\text{n}\,\veceZ = 0 = \vec{n}\,\veceZ + q\,\vec{s}\,\veceZ \,, ~~~~~q = -\frac{\vec{n}\,\veceZ}{\vec{s}\,\vec{e}_z} \,, \nonumber \\
+				\longrightarrow \vec{r}_\text{n} &= \vec{n}-\frac{\vec{n}\,\veceZ}{\vec{s}\,\veceZ}\vec{s} = \frac{(\vec{s}\,\veceZ)\,\vec{n}-(\vec{n}\,\veceZ)\,\vec{s}}{\vec{s}\,\veceZ} = \frac{\veceZ\times(\vec{n}\times\vec{s})}{\vec{s}\,\veceZ} \,. \label{eq:hm_sundial04}
+		\end{align}
+Man erkennt aus \eqref{eq:hm_sundial04}, dass die Abbildung der Sonnenrichtung $\vec{s}$ auf das Ziffernblatt nichtlinear ist, da $\vec{s}$ in Zähler und Nenner steht.
+Im Fall der Sonnenuhr von Florenz ist die Höhe des Nodusstabes $H \approx \SI{3}{\metre}$.
+Im KOS von \figref{hm_sundial07} ergeben sich die Vektoren $\veceZ,\, \vec{n}$ und der Richtungsvektor zur Sonne $\vec{s}$ zu:
+	\begin{align*}
+                \veceZ&= 
+                \begin{pmatrix}
+                0 \\
+                0 \\
+                1
+                \end{pmatrix}\,, ~~~~~
+                \vec{n}= 
+                \begin{pmatrix}
+                0 \\
+                0 \\
+                H
+                \end{pmatrix} ~~~~\text{und}~~~~
+                \vec{s}= 
+                \begin{pmatrix}
+                s_\text{x} \\
+                s_\text{y} \\
+                s_\text{z}
+                \end{pmatrix} = 
+                \begin{pmatrix}
+               	\cos h \, \cos\mathcal{A} \\
+               	\cos h \, \sin\mathcal{A} \\
+               	\sin h 
+								\end{pmatrix}  \,. 
+	\end{align*}
+Hier haben wir Azimut $\mathcal{A}$ und der Höhe $h$ der Sonne verwendet, die man \zb wie in \kap{zeitgleichung} beschrieben zu beliebigen Zeiten $t$ eines Jahres berechnen kann. Die Schattenlänge und Richtung ergeben sich dann zu (siehe auch \probref{hm_VertikalAnalemmaSonnenuhr}):
+		\begin{align}
+				\vec{r}_\text{n} = \frac{H}{s_\text{z}(t)}
+				\begin{pmatrix}
+				-s_\text{x}(t) \\
+				-s_\text{y}(t) \\
+				0
+				\end{pmatrix} = H 
+				\begin{pmatrix}
+				-\cot\lek h(t)\, \cos\mathcal{A}(t) \rek \\
+				-\cot\lek h(t)\, \sin\mathcal{A}(t) \rek \\
+				0
+				\end{pmatrix}\,. \label{eq:hm_sundial06}
+		\end{align}
+Man kann mit den Ergebnissen der Rechnung \zb die Linien gleichen Datums (\bzw gleicher Deklination) auftragen und darauf die Uhrzeit markieren.
+Alternativ kann man die Stundenlinien (\dh die Punkte für eine feste Uhrzeit) im Laufe eines Jahres auftragen.
+Dies ist Gegenstand der \probref{hm_VertikalAnalemmaSonnenuhr}.\\
+Wir möchten auch noch auf die relativ einfach und zugleich interessant konstruierte äquatorial-analemmatische Sonnenuhr von Hermann Zeuner \cite{Zeuner2011} verweisen, die in der \probref{hm_Aalener_Sonnenuhr} (Zusatzübung) näher betrachtet werden kann.
+
+\subsection{Berechnung von Planetenbahnen}\index{Planetenbahnen}\label{kap:hm_bahnen_hk_ss}
+
+\subsubsection{Berechnung der Planetenbahnen mit Gaußschen Vektoren} \label{kap:hm_bahnen_hk_PQR}
+Wir können nun analog zum Vorgehen in \kapitel{erdbahn} auch Bahnen mit einer Bahnneigung~$i$ zur Ekliptik (\figref{hm_planetenbahnen_rel_ekliptik}) behandeln und damit die Berechnung der Planetenbahnen unseres Sonnensystems in Angriff nehmen.
+Dazu müssen die Bahnkoordinaten $r$, $\upsilon$, die aus der Kepler-Gleichung berechnet werden, auf die Ekliptik projiziert (\anf{reduziert}) werden.
+Diese Projektion ist als eine der Koordinatentransformationen in Tabelle \ref{tab:hm_Umrechung_KOS} gelistet.
+Wir wollen hier aber noch einen anderen, sehr eleganten Weg aufzeigen.
+Die Abbildung der Vektoren zwischen beiden KOS kann durch eine Matrix-Transformation wie folgt beschrieben werden:
+\begin{equation}
+\vec{r}_\text{Ekl} = \lk\begin{array}{c} x\\ y\\ z \end{array}\rk = \mathbb{U}\cdot \vec{r}_\text{Bahn} = \lk\begin{array}{ccc} \vec{P} & \vec{Q} & \vec{R} \end{array}\rk \vec{r}_\text{Bahn} = \mathbb{U} \cdot \lk\begin{array}{c} r\cos\upsilon\\ r\sin\upsilon\\ 0 \end{array}\rk ~. \label{eq:hm_gauss_ansatz}
+\end{equation}
+Die Matrix $\mathbb{U}$ setzt sich aus drei Spalten-Vektoren $\vec{P}$, $\vec{Q}$, $\vec{R}$, den sogenannten Gaußschen\footnote{Johann Carl Friedrich Gauß (auch oft Gauss) (1777 -- 1855) war ein deutscher Mathematiker, Astronom, Geodät und Physiker. Wegen seiner überragenden wissenschaftlichen Leistungen galt er bereits zu seinen Lebzeiten als \textit{Princeps mathematicorum - Fürst der Mathematiker}. Seine Arbeiten erstreckten sich von vielen Feldern der Mathematik und Physik auch auf angewandte Gebiete, zum Beispiel der Landesvermessung und der elektromagnetischen Telegraphie.}\indexp{Gauß, Johann Carl Friedrich} Vektoren, zusammen, deren Herleitung im Detail in Beispiel \ref{bsp:herleitung_gauss_vek} beschrieben wird.
+Die Gaußschen Vektoren\index{Vektoren!Gaußsche} stellen für eine Bahn jeweils Konstanten (für das betrachtete Äquinoktium) dar, da sie nur von den Bahnparametern abhängen:
+\begin{align}
+\begin{split}
+\vec{P} &= \lk\begin{array}{c} + \cos\omega\cos\Omega - \sin\omega\cos i\sin\Omega\\ + \cos\omega\sin\Omega + \sin\omega\cos i\cos\Omega\\ + \sin\omega\sin i \end{array}\rk \,, \\
+\vec{Q} &= \lk\begin{array}{c} -\sin\omega\cos\Omega - \cos\omega\cos i\sin\Omega\\ -\sin\omega\sin\Omega + \cos\omega\cos i\cos\Omega\\ + \cos\omega\sin i \end{array}\rk \,, \\
+\vec{R} &= \lk\begin{array}{c} + \sin i\sin\Omega\\ -\sin i\cos\Omega\\ + \cos i \end{array}\rk \,. 
+\end{split} \label{eq:hm_gauss_vektoren}
+\end{align}
+Der Vorteil ist offensichtlich.
+Wenn man die zeitliche Entwicklung der Bahnkoordinaten berechnet hat, braucht man für die Projektion auf die Ekliptik die Matrix $\mathbb{U}$ nur einmal auszurechnen.
+Diese Methodik ist dann sehr effizient, wenn man viele Koordinaten über viele Stützstellen berechnen muss oder die Geschwindigkeiten des Himmelskörpers braucht.
+
+%BEISPIEL 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{\textbf{\textit{Herleitung der Gaußschen Vektoren}}}
+Wir wollen die Gaußschen Vektoren nach \eqref{eq:hm_gauss_vektoren} herleiten.
+Wir starten dabei von den kartesischen Koordinaten der Bahnebene und wollen daraus die heliozentrischen kartesischen Koordinaten herleiten.
+Dazu benutzen wir für die Transformation zwischen den beiden KOS die Drehmatrizen mit den entsprechenden Bahnparametern.
+\medskip\\
+Die gesamte Transformation kann man als Abfolge dreier Rotationen betrachten:
+\begin{enumerate}[(1)]
+	\item \emph{Drehung in der Bahnebene um die $z$-Achse zur Berücksichtigung der Perihellage $\omega$ relativ zum aufsteigenden Knoten}\\
+	Der Ausgangsvektor ist gegeben als
+	\begin{align*}
+	\vec{r}_0 = \lk\begin{matrix} r \cos \upsilon \\ r \sin \upsilon \\ 0 \end{matrix} \rk\,.
+\end{align*}
+	Nach der Drehung um $-\omega$ zeigt die neue $x$-Achse in Richtung des Knotens.
+        Die Drehung wird beschrieben durch 
+	\begin{align*}
+	\vec{r}_1\:=\:\mathbb{R}_z(-\omega)\, \vec{r}_0 = 
+	\lk\begin{matrix} +\cos \omega &\; -\sin \omega &\; 0 \\
+	                     +\sin \omega &\; +\cos \omega &\; 0 \\
+                          0         &\;     0        &\; 1 \end{matrix} \rk \cdot \vec{r}_0 \ \:=\: 
+													r \lk\begin{matrix} \cos u \\ \sin u \\ 0 \end{matrix} \rk 
+\end{align*}
+mit $u\!=\!\upsilon+\omega$.
+	\item \emph{Drehung der Bahnebene um die $x$-Achse in die Ekliptikebene zur Korrektur der Bahnneigung $i$ gegenüber der Ekliptik}
+\begin{align*}
+	\vec{r}_2\:=\:\mathbb{R}_x(-i)\cdot \vec{r}_1 =
+	\lk\begin{matrix} 1 &\; 0 &\; 0 \\ 0 &\; +\cos i &\; -\sin i \\ 0 &\; +\sin i &\; +\cos i \end{matrix} \rk \cdot \vec{r}_1 \ =
+	r \lk\begin{matrix} \cos u \\ \sin u \cos i\\ \sin u \sin i \end{matrix} \rk ~\,.
+\end{align*}
+	\item \emph{Drehung um die $z$-Achse in der Ekliptikebene zur Berücksichtigung der Knotenlage $\Omega$ relativ zum Frühlingspunkt} $\vernal$
+	\begin{align*}
+	\vec{r}_3 = \mathbb{R}_z(-\Omega)\cdot \vec{r}_2 &=
+	\lk\begin{matrix} +\cos \Omega &\; -\sin \Omega &\; 0 \\
+	                     +\sin \Omega &\; +\cos \Omega &\; 0 \\
+                          0         &\;     0        &\; 1 \end{matrix} \rk\cdot \vec{r}_2 \\
+        &= r\,\lk\begin{matrix} \cos u \cos \Omega - \sin u \cos i \sin \Omega \\ \cos u \sin \Omega - \sin u \cos i \cos \Omega \\ \sin u \sin i \end{matrix} \rk \,.
+\end{align*}
+\end{enumerate}
+Man kann die Gesamttransformation natürlich auch mit einer Matrix $\mathbb{U} (-\omega,-i,-\Omega)\!=\! \mathbb{R}_z(-\Omega) \mathbb{R}_x(-i) \mathbb{R}_z(-\omega)$ beschreiben.
+Durch Ausmultiplizieren findet man
+\begin{align*}
+\mathbb{U} = \lk
+\begin{matrix}
+       + \cos\omega\cos\Omega - \sin\omega\cos i\sin\Omega &\; -\sin\omega\cos\Omega - \cos\omega\cos i\sin\Omega &\; + \sin i\sin\Omega \\
+       + \cos\omega\sin\Omega + \sin\omega\cos i\cos\Omega &\; -\sin\omega\sin\Omega + \cos\omega\cos i\cos\Omega &\;- \sin i\cos\Omega \\
+			 + \sin\omega\sin i                                  &\; + \cos\omega\sin i                                 &\; + \cos i \end {matrix} \rk \,.
+\end{align*}
+Die Spalten dieser Matrix $\mathbb{U}$ entsprechen nun genau den Gaußschen Vektoren $\vec{P},\,\vec{Q},\,\vec{R}$ in \eqref{eq:hm_gauss_vektoren}.
+Man kann leicht zeigen, dass die Gaußschen Vektoren Einheitsvektoren sind.
+Diese Einheitsvektoren spannen ein sogenanntes \textit{kartesisch-perifokales Koordinatensystem}\index{Koordinatensystem!perifokales} auf. 
+Dieses ist dadurch definiert, dass dessen Ursprung weiterhin im Nullpunkt des Zentralkörpers (z.\,B.\, der Sonne $\astrosun$) liegt und dessen $x,y$-Ebene die Bahnebene des durch die Bahnparameter gegebenen Himmelskörpers ist \cite{Walter2018}.
+Der Vektor $\vec{R}$ zeigt dann logischerweise in Richtung des Drehimpulses  $\vec{L}$ und der Vektor $\vec{P}$ in Richtung des Laplace-Vektors $\vec{e}$. \\ 
+\end{example}
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Dem aufmerksamen Leser wird nicht entgangen sein, dass die hier eingeführten Winkel eine große Ähnlichkeit mit den Euler-Winkeln\index{Euler-Winkel} aus Kapitel 1.4.2.2 (Band I) haben, die wir beim starren Körper eingeführt haben, ja diesen auf  Grund der Bildungsvorschrift sogar entsprechen. Wir empfehlen dem Leser nachzuvollziehen, dass folgende Äquivalenzen gelten:
+\begin{longtable}{p{0.33\textwidth}p{0.05\textwidth}p{0.33\textwidth}}
+\hline\noalign{\smallskip}
+Starrer Körper & &Himmelsmechanik \\
+Euler-Winkel & &Bahnparameter \\
+\hline\noalign{\smallskip}
+$\varphi$ & &$\omega$ \\
+$\vartheta$ & &$i$\\
+$\psi$ & &$\Omega$
+%\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{longtable} \label{bsp:herleitung_gauss_vek}
+\medskip
+
+In den \mscren \mlhmref{InnerePlaneten.m} \bzw \mlhmref{AeusserePlaneten.m} sind die Rechnungen für die inneren und äußeren Planeten ausgeführt (Ergebnisse in \figref{hm_proj_bahnen_innere_pl} und \figref{hm_bahnen_aussere_pl}).
+Aus der Berechnung der Bahnen für die äußeren Planeten für den Zeitraum 1920--2020 können wir auch sehen, dass es Jahre gab, in denen selbst zu Zeiten, als Pluto noch ein \anf{vollwertiger} Planet war, Neptun wegen der Exzentrizität der Pluto-Bahn der am weitesten von der Sonne entfernte Planet war.
+
+Wegen der wechselseitigen Störungen der äußeren Planeten ist es streng genommen eigentlich nicht möglich, ihre Bahnen durch (mittlere) Bahnparameter zu beschreiben.\\
+Die Rechnungen nach \mlhmref{AeusserePlaneten.m} können daher nur als grobe Näherungen betrachtet werden und sind nur auf ca. ein Grad genau.\footnote{Für die Behandlung von Störungen der einfachen Keplerbahn durch andere Himmelskörper verweisen wir auf die einführende Diskussion der Störungsrechnung im \kap{stoerungsrechnung} und auf weiterführende Literatur \cite{Murray2008,Brouwer1961,Guthmann2000}.}
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{InnerePlaneten.pdf}\\%
+\caption[Projektion der Bahnen der inneren Planeten auf die Ekliptik.]{Projektion der Bahnen der inneren Planeten auf die Ekliptik für das Jahr 2004 in Draufsicht (oben) und 3D-Darstellung (unten). Die Bahnen sind unterschiedlich für die Zeiträume 01.\,01.\,2004 bis 07.\,06.\,2004 (durchgezogen) und 08.\,06.\,2004 bis 31.\,12.\,2004 (gestrichelt) gezeichnet. Für den 08.\,06.\,2004 erkennt man einen Venustransit\index{Venustransit}, das ist ein Durchgang der Venus vor der Sonnenscheibe, wie er von der Erde aus beobachtet werden konnte (dicke blaue durchgezogene Linie).}%
+\label{abb:hm_proj_bahnen_innere_pl}%
+\end{figure}
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{AeusserePlaneten.pdf}%
+\caption{Bahnen der äußeren Planeten im Zeitraum von 1920 bis 2020.}%
+\label{abb:hm_bahnen_aussere_pl}%
+\end{figure}
+
+\subsubsection{Näherungsformel für die Berechnung der Bahnen von Planeten -- Reduktion auf die Ekliptik}\label{kap:reduktion_ekliptik}\index{Reduktion!auf die Ekliptik}
+Bei Planeten ist im Gegensatz zu den später behandelten Kometen die Neigung der Bahn $i$ gegen die Ekliptik im Allgemeinen relativ klein.
+Deshalb kann man eine Näherungsformel für die Berechnung der ekliptikalen Koordinaten aus den Bahnkoordinaten herleiten.
+Die Herleitung dieser sogenannten Reduktionsformel\index{Reduktionsformel} ist in Beispiel \ref{bsp:herleitung_redformel_ekl} im Detail ausgeführt.
+Man startet bei \figref{hm_planetenbahnen_rel_ekliptik} und benutzt die aus der sphärischen Trigonometrie bekannte Beziehung (siehe auch die \onlineZ)
+\begin{equation}
+\tan(l-\Omega) = \cos\epsilon\tan(\upsilon+\omega)~. \label{eq:hm_reduktions_formel1}
+\end{equation}
+
+Die sogenannte Reduktion\index{Reduktion} $\mathcal{R}$ ist definiert als Differenz von ekliptikaler Länge und wahrer Anomalie (abzüglich des konstanten Wertes $\varpi$ der Länge des Perihels):
+\begin{equation}
+\mathcal{R} = l-(\upsilon+\varpi) \label{eq:hm_reduktions_formel2} ~.\\
+\end{equation}
+
+Wir geben hier das Resultat für $\mathcal{R}$ an und verweisen auf die detaillierte Rechnung in Bsp. \ref{bsp:herleitung_redformel_ekl}:
+\begin{equation}
+\mathcal{R} = -\tan^2\lk\frac{i}{2}\rk \sin\lek 2(M+\omega) \rek + \frac{1}{2} \lek \tan^2\lk\frac{i}{2}\rk\rek^2 \sin\lek 4(M+\omega) \rek - \ldots  ~.\label{eq:hm_reduktions_formel3}\\
+\end{equation}
+Aus \eqref{eq:hm_reduktions_formel2} folgt mit der Beziehung $l(t)\!\approx\!\upsilon(t) + \varpi + \mathcal{R}(t)\!\approx\!\mathcal{C}(t)+M(t)+\varpi + \mathcal{R}(t)$ die ekliptikale Länge $l$ als Funktion der mittleren Anomalie $M$\glslink{mittlereanom}:
+\begin{align}
+\begin{split}
+l(M) =& M + \varpi + 2e\sin M + \lek \frac{5}{4} e^2 - \tan^2\lk\frac{i}{2}\rk \cos(2\omega) \rek \sin(2M) \\ 
+      &+ \lek -\tan^2\lk\frac{i}{2}\rk \sin(2\omega)\rek \cos(2M) + \ldots\,. 
+\end{split} \label{eq:hm_reduktions_formel4} 
+\end{align}
+In ähnlicher Weise lassen sich Berechnungsformeln für die ekliptikale Breite $b$ und den Abstand $r$ gewinnen:
+\begin{align}
+b(M(t)) =& -ie\sin\omega + i\sin\omega\cos M + i\cos\omega\sin M \label{eq:hm_reduktions_formel5} \\ 
+      & +ie\sin\omega\cos(2M) + ie\cos\omega\sin(2M) +\ldots\nonumber \\ \nonumber\\
+r(M(t)) =& a\lk 1+\frac{e^2}{2} \rk - ae\cos M - a \frac{e^2}{2} \cos(2M) +\ldots\,. \label{eq:hm_reduktions_formel6} 
+\end{align}
+Diese elegante und einfach programmierbare Berechnung der ekliptikalen Koordinaten ist als Näherung für viele Anwendungsfälle, insbesondere für Planeten mit geringer Bahnneigung, gut geeignet.
+In den \textbf{Übungen} \ref{prob:hm_opposition_mars}, \ref{prob:hm_erdaufgang_von_mond} und \ref{prob:hm_erdaufgang_von_apollo} sind einige Anwendungsbeispiele für die Berechnung von Planeten- und Mondbahnen ausgeführt.\\
+  
+%BEISPIEL 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{Herleitung der Reduktionsformel auf die Ekliptik\index{Reduktion!auf die Ekliptik}}
+\itshape Wir wollen die Reduktionsformel \eqref{eq:hm_reduktions_formel3} herleiten und starten dazu von \figref{hm_planetenbahnen_rel_ekliptik}.
+Wir benutzen dabei vorteilhafterweise die Formeln, die wir bei der Herleitung der Mittelpunktsgleichung in \probref{hm_alternative_MPG} erhalten haben.\\
+\upshape
+In \figref{hm_planetenbahnen_rel_ekliptik} gilt im sphärischen Dreieck PKE$_\text{P}$ nach der sphärischen Trigonometrie
+\begin{equation*}
+\cos i = \frac{\tan \overline{\text{KE}}_\text{P}}{\tan \overline{\text{KP}}} = \frac{\tan(l-\Omega)}{\tan(\upsilon+\omega)} = \frac{\tan\Theta}{\tan u} \,,
+\end{equation*}
+worin $\upsilon$ wieder die wahre Anomalie ist und $l$ die ekliptikale Länge, also
+\begin{equation*}
+\tan\Theta = \cos i \tan u \,.
+\end{equation*}
+Wir drücken nun $\cos i$ durch den Tangens des halben Winkels aus und erhalten
+\begin{equation*}
+\tan\Theta = \frac{1-\tan^2\lk\frac{i}{2}\rk}{1+\tan^2\lk\frac{i}{2}\rk} \tan u \equiv \frac{1-y}{1+y} \tan u \,.
+\end{equation*}
+Diese Gleichung haben wir in gleicher Struktur in \probref{hm_alternative_MPG} ausgewertet und sind dort auf die folgende Form gekommen:
+\begin{align*}
+\upsilon &= E + 2 \lk x\sin E + \frac{x^2}{2}\sin 2E + \frac{x^3}{3}\sin 3E + \ldots \rk ~.
+\end{align*}
+Hier ist $x\!=\!-y$, $\upsilon \!=\! 2 \Theta$ und $E\!=\!2u$ zu setzen, woraus folgt:
+\begin{align*}
+\Theta &= u- y\sin 2u + \frac{y^2}{2}\sin 4u - \frac{y^3}{3}\sin 6u + \ldots \,.
+\end{align*}
+Wir setzen jetzt wieder $\Theta\!=\!l-\Omega$ und $u\!=\!\upsilon+\omega$ und können schreiben:
+\begin{align*}
+l - (\Omega  + \omega) &= l - \varpi \\
+&= \upsilon - y\sin\lk 2(\upsilon+\omega)\rk + \frac{y^2}{2}\sin\lk 4(\upsilon+\omega)\rk + \ldots ~.
+\end{align*}
+Für die meisten Planeten ist $i\!<\!10\degree$, sodass $y\!=\!\tan^2(i/2)$ eine kleine Größe ist und wir Terme mit $y^2$ und höher vernachlässigen können.
+Wir setzen jetzt für $\upsilon$ die Mittelpunktsgleichung \eqref{eq:hm_mpglg_nu-M} mit $\upsilon\!=\! M + \mathcal{C} = M + 2e\sin M + \frac{5e^2}{4}\sin(2M) +  \ldots$ ein und erhalten
+\begin{align*}
+l & \approx \! \varpi + \underbrace{M + 2e\sin M + \frac{5e^2}{4}\sin(2M)}_{\upsilon = M + \mathcal{C}} \\ 
+&- y\lek \sin(2(\upsilon)) \cos(2\omega) + \cos(2(\upsilon)) \sin(2\omega)\rek + \ldots ~.
+\end{align*}
+Wir können für kleine $e$ in den Winkelfunktionen $\upsilon \approx M$ setzen und erhalten schließlich
+\begin{align}
+\begin{split}
+l &\approx \! \varpi + M + 2e\sin M + \lek \frac{5e^2}{4} - \tan^2\lk\frac{i}{2}\rk \cos(2\omega) \rek \sin(2M) \\
+& - \lek \tan^2\lk\frac{i}{2}\rk \sin(2\omega) \rek \cos(2M) + \mathcal{O}\lk e^3,\tan^4\lk\frac{i}{2}\rk \rk\,,
+\end{split} \label{eq:hm_reduktions_formel_Bsp}
+\end{align}
+was Gleichung \eqref{eq:hm_reduktions_formel4} entspricht.\\
+Vergleicht man die Geometrie von \figref{hm_planetenbahnen_rel_ekliptik}, für die wir die Reduktionsformel abgeleitet haben, mit der Geometrie von \figref{hm_wahre_sonne_geoz}, erkennt man, dass wir die Reduktionsformel auch in diesem Fall, der sogenannten Reduktion auf den Äquator\index{Reduktion!auf den Äquator}, anwenden können.
+Wir müssen dann nur folgende Substitution vornehmen: $l\!\rightarrow\!\lambda $ und $\upsilon + \varpi\!\rightarrow\!\alpha$. \\
+
+\label{bsp:herleitung_redformel_ekl}
+\end{example}
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Venustransit}\index{Venustransit} \label{kap:hm_veustransit}
+
+In \figref{hm_proj_bahnen_innere_pl} haben wir gesehen, dass am 08.\,06.\,2004 Erde, Venus und Sonne in einer Linie \anf{lagen}.
+Unter Berücksichtigung des scheinbaren Durchmessers der Sonne von \ca $30'$ ergibt unsere Rechnung, dass zumindest prinzipiell (abhängig von der genauen topozentrischen Position) ein Beobachter auf der Erde einen Venustransit beobachten kann, \dh er kann sehen, wie sich die Venus vor die Sonne bewegt
+(Tab.~\ref{tab:hm_venustransit}).
+Tatsächlich war für viele Beobachter in Mitteleuropa das Wetterglück auf ihrer Seite und der Transit sehr schön zu beobachten (\figref{hm_venustransit}).
+Venustransits gehören zu den seltensten der exakt vorhersagbaren astronomischen Ereignisse.
+Kein im Jahre 2004 lebender Mensch hatte zuvor einen solchen Transit beobachten können, weil im gesamten vergangenen 20.\ Jahrhundert kein einziger stattfand.
+Der nächste Transit wird erst wieder im Jahre 2117 zu verfolgen sein.
+Seit dem Aufkommen des Teleskops konnten überhaupt nur sieben Venustransits von Menschen beobachtet werden (1639, 1761, 1769, 1874, 1882, 2004, 2012). 
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{VenustransitKombi.pdf}%
+\caption[Venustransit 2004.]{\fa Venustransit 2004 (Private Aufnahme um 06:40 UT in 48.8°N/10.7°O) und \fb Berechnung mit den \mscr en \mlhmref{VenusTransit01.m} und \mlhmref{VenusTransit02.m}.}%
+\label{abb:hm_venustransit}%
+\end{figure}
+
+Unserer Rechnungen mit den \mscr en \mlhmref{VenusTransit01.m} \bzw \mlhmref{VenusTransit02.m} ergeben relativ genaue Ergebnisse, weichen jedoch geringfügig von den Daten des \textit{\gls{jplhm}~(JPL)}\index{Jet Propulsion Lab (JPL)} \cite{JPL2020} ab.%
+\footnote{Mit unserem \mscr{} findet man noch mit guter Genauigkeit einen weiteren Transit der Venus für den 06.\,06.\,2012.} Dies erklärt sich, wenn man bedenkt, dass wir
+\begin{itemize}
+	\item reine Keplerbahnen angenommen haben, \dh den Einfluss der anderen Planeten und vor allem des Mondes auf die Erdbahn vernachlässigt haben,
+	\item die Präzession der Erdachse in unserer Rechnung nicht berücksichtigt haben.
+\end{itemize}
+Die Berücksichtigung dieser Effekte ist Gegenstand der Störungstheorie, deren Grundidee wir in \kap{stoerungsrechnung} vorstellen wollen. 
+
+\begin{table}%
+\caption[Koordinaten von Erde, Venus und Sonne am 08.06.2004 um 08:00 und 12:00 UT.]{Koordinaten von Erde, Venus und Sonne am 08.06.2004 um 08:00 und 12:00 UT. Die Rektaszension $\alpha$ ist wie üblich in \text{hh}$^\text{h} \text{mm}^\text{m} \text{ss}^\text{s}$ angegeben.}
+\begin{adjustbox}{width=\textwidth,totalheight=\textheight,keepaspectratio}
+\begin{tabular}{l|c|cc|cc|cc}
+\hline\noalign{\smallskip}
+ - & UT & \multicolumn{2}{c|}{Sonne} & \multicolumn{2}{c|}{Venus} & \multicolumn{2}{c}{Erde} \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+Heliozentrisch & & & & $l$ & $b$ & $l$ & $b$ \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\multirow{2}{*}{JPL \cite{JPL2020}} & 08:00 &  &  & $257.7883\degree$ & $-0.0665\degree$ & $257.8015\degree$ & $0.0007\degree$ \\
+                                    & 12:00 &  &  & $258.0527\degree$ & $-0.0822\degree$ & $257.9609\degree$ & $0.0007\degree$\\
+\hline\noalign{\smallskip}		
+\multirow{2}{*}{\mlhmref{InnerePlaneten.m}} 
+																	& 08:00 &  &  & $257.7885\degree$ & $-0.0662\degree$ & $257.8015\degree$ & $-0.0005\degree$ \\
+																	& 12:00 &  &  & $258.0529\degree$ & $-0.0813\degree$ & $257.9837\degree$ & $-0.0005\degree$ \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+Geozentrisch & & $\lambda$ & $\beta$ & $\lambda$ & $\beta$ &  &  \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\multirow{2}{*}{JPL \cite{JPL2020}} & 08:00 & $77.8605\degree$ & $-0.0002\degree$ & $77.9079\degree$ & $-0.1691\degree$ &  &  \\
+                                    & 12:00 & $78.0199\degree$ & $-0.0002\degree$ & $77.8031\degree$ & $-0.2086\degree$ &  &  \\
+\hline\noalign{\smallskip}		
+\multirow{2}{*}{\mlhmref{InnerePlaneten.m}} 
+                                  & 08:00 & $77.8243\degree$ & $0.0005\degree$ & $77.9143\degree$ & $-0.1630\degree$ &  &  \\
+																	& 12:00 & $77.9837\degree$ & $0.0005\degree$ & $77.8097\degree$ & $-0.2025\degree$ &  &   \\		
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+Äquatorial & & $\alpha$ & $\delta$ & $\alpha$ & $\delta$ &  &  \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+JPL \cite{JPL2020} 
+	& 08:00 & $05^\text{h}06^\text{m}51^\text{s}$ & $22\degree52'46''$ & $05^\text{h}07^\text{m}16^\text{s}$ & $22\degree42'55''$ &  &  \\
+	& 12:00 & $05^\text{h}07^\text{m}41^\text{s}$ & $22\degree53'38''$ & $05^\text{h}06^\text{m}50^\text{s}$ & $22\degree40'00''$ &  &  \\
+\hline\noalign{\smallskip}		
+\mlhmref{InnerePlaneten.m}
+	& 08:00 & $05^\text{h}07^\text{m}04^\text{s}$ & $22\degree52'54''$ & $05^\text{h}07^\text{m}31^\text{s}$ & $22\degree43'37''$ &  &  \\
+	& 12:00 & $05^\text{h}07^\text{m}45^\text{s}$ & $22\degree53'46''$ & $05^\text{h}07^\text{m}05^\text{s}$ & $22\degree40'42''$ &  &  \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{tabular}
+\end{adjustbox}
+\label{tab:hm_venustransit}
+\end{table}
+
+\begin{figure}
+\includegraphics[width=\textwidth]{VenusParallax_exakt.pdf}%
+\caption[Messung der Venus-Parallaxe für zwei Beobachter auf der Erde.]{Messung der Venus-Parallaxe für zwei Beobachter auf der Erde (allgemeiner Fall, nach \cite{Backhaus2020}).}%
+\label{abb:hm_VenusParallax}%
+\end{figure}
+
+Venustransits sind auch wissenschaftshistorisch sehr interessant.
+Die gleichzeitige Beobachtung des Transits von verschiedenen Orten der Erde aus erlaubte erstmalig die genaue Bestimmung des Abstandes zwischen Sonne und Erde, \dh der Astronomischen Einheit\index{Astronomischen Einheit} (AE)\glslink{ae}.
+Hierbei nutzte man aus, dass die Position der Venus relativ zur Sonnenscheibe im Prinzip gut messbar ist (\figref{hm_VenusParallax}).
+Deshalb machte Halley\indexp{Halley, Edmund}\footnote{Edmund Halley (1656--1742) war königlicher Astronom und Leiter der Sternwarte in Greenwich, Mathematiker, Kartograph, und Meteorologe. Neben seinen Berechnungen von Kometenbahnen erforschte Halley auch den Erdmagnetismus, den Monsun, die Eigenbewegung von Sternen und berechnete die \index{Höhenformel!barometrische} \glslink{baroHoeheHm}{barometrische Höhenformel}.} bereits 1716 den Vorschlag, beim (für ihn) nächsten Venustransit 1761 (den er nicht mehr erlebte) von verschiedenen Orten der Erde (effektiver Abstand $d_\text{eff}$) aus die Parallaxe $\nu_\text{1,2}$ der Venus auf der Sonnenscheibe gleichzeitig zu vermessen (\figref{hm_VenusParallax}).
+Um daraus die Sonnenentfernung so genau wie möglich bestimmen zu können, muss die Entfernung Sonne-Venus auf die Entfernung Erde-Sonne nach dem 3.~Keplerschen Gesetz $a_\text{\earth}\!=\!a_\text{\venus}\,\sqrt[3]{T_\text{\earth}^2/T_\text{\venus}^2} $ hochgerechnet werden, woraus sich dann mit $\Delta\nu = \nu_\text{1} -\nu_\text{2}$ die astronomische Einheit bestimmen lässt zu
+\begin{equation}
+1 \text{AE} = a_\text{\earth} =\frac{d_\text{eff}}{\lk \frac{a_\text{\earth}}{a_\text{\venus}} - 1 \rk \Delta\nu}\,.\label{eq:hm_Venus_AE_Messung}
+\end{equation}
+Die Entfernung zwischen Erde und Sonne ist die Grundlage für die Bestimmung der Größe des Sonnensystems und damit auch für die Messung der astrophysikalischen Eigenschaften (wie Massen, Dichten) von Planeten und Sternen.
+Bis zum 17. Jahrhundert existierten nur vage Vorstellungen über die Größenordnung dieser Entfernung und die Bestimmung dieser Größe galt für viele Jahrhunderte als eines der Hauptprobleme der Astronomie.
+Deshalb war es auch nicht ganz verwunderlich, dass 1761 (und auch 1769) auf Basis von Halleys Vorschlag mit viel Geld eine ganze Reihe von Expeditionen über Monate in entlegenste Gebiete geschickt wurden -- wobei einige dann am Tag des Venustransits einen bewölkten Himmel oder defekte Instrumente vorfanden.\footnote{Eine sehr schöne und spannende Darstellung dieses ersten großen internationalen Wissenschaftsabenteuers findet man in \cite{Wolf2017}.
+Eine ebenfalls lesenswerte und kurz zusammengefasste Geschichte der Bestimmung der AE findet sich in \cite{Hudson2004}.} Heute in Zeiten des Internets ist das natürlich viel einfacher realisierbar \cite{Backhaus2014}.
+Wir empfehlen dazu Beispiel \ref{bsp:venustransit} und \probref{hm_venus_2004_2012} durchzuarbeiten, in denen wir konkret die Vorgehensweise zur Bestimmung der Astronomischen Einheit nachvollziehen.
+
+%BEISPIEL 7 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example}{Venustransit und Bestimmung der AE}
+\begin{enumerate}[(a)]
+  \item Wir wollen zeigen, wie aus der gleichzeitigen fotografischen Beobachtung des Venustransits an zwei verschiedenen Positionen auf der Erde mit bekannten Koordinaten die Astronomische Einheit bestimmt werden kann (siehe \figref{hm_VenusTransit2012}).
+    Wir wollen dazu Daten einer solchen Beobachtung, die man im Internet \zb unter \cite{Venustransit2012} finden kann, benutzen.\\
+\begin{center}
+	\includegraphics[width=0.9\textwidth]{VenusTransit2012.pdf} 
+\captionof{figure}[Venustransit 2012.]{Venustransit 2012. Zeitgleiche Aufnahmen des Transits aus Tromsø (links) und Canberra (Mitte) \cite{Venustransit2012}. Im rechten Bild sind die beiden Bilder mit der gleichen Ausrichtung der Sonnenachse überlagert. (Man benutzt dazu z.B. die Position der Sonnenflecken). Im rechten Bild ist in der Mitte zur Verdeutlichung eine Vergrößerung des Winkelunterschiedes der in den beiden Standorten sich unterscheidenden Venusprojektionen zu sehen.}\label{abb:hm_VenusTransit2012}
+\end{center}
+
+Man kann aus dem Bild durch Ausmessen den Winkelunterschied für die beiden Projektionen zu $\Delta\nu \approx 0.021 \, b_\text{w\astrosun}$ bestimmen, worin $b_\text{w\astrosun} = 0.5317\degree$ der Bildwinkel der Sonne ist, unter dem sie von der Erde aus erscheint.
+        Den effektiven Abstand zwischen Tromsø und Canberra berechnet man zu $d_\text{eff} = 11415 \:\text{km}$ (\probref{hm_venus_2004_2012}).
+        Aus \eqref{eq:hm_Venus_AE_Messung} ergibt sich dann mit den Werten $	T_\text{\venus} = 224.701 \:\text{d}, T_\text{\earth} = 365.256 \:\text{d}$:
+\begin{align*}
+	\gamma \!&= \!\frac{a_\text{\earth}}{a_\text{\venus}}=\sqrt[3]{\frac{T_\text{\earth}^2}{T_\text{\venus}^2}}= 1.382~~\text{und daraus}\\ 
+\rightarrow a_\text{\earth} \!&=\:\!152.6\: \text{Mio km}
+\end{align*}
+
+Dieser Wert stimmt relativ gut mit dem exakten Wert überein.
+Ungenauigkeiten resultieren vor allem aus der Bestimmung von $\Delta\nu$ aus den Fotografien.
+	\item Man kann die Bestimmung der Astronomischen Einheit auch durch einen einzigen Beobachter an einem festen Ort der Erde realisieren.
+          Bei der zeitlichen Verfolgung des Venustransits nutzt man die durch die Erdrotation entstehende Parallaxe aus.
+          Man muss dann die sogenannten Kontaktzeiten bestimmen, z.\,B. die Zeit $T_\text{II}$ bzw. $T_\text{III}$, wenn der Rand der Venusprojektion den Rand der \anf{Sonnenscheibe} von innen berührt.
+          Alternativ bestimmt man die Transitzeit $T_\text{TR}$, die sich die Venusprojektion vom Ort des Beobachters betrachtet auf der Sonnenscheibe befindet.
+          Diese Transitzeit beträgt einige Stunden und muss sehr genau ermittelt werden, was hohe Anforderungen an die Messung stellt.
+          Wir wollen die Genauigkeit der Kontaktzeitmethode\index{Kontaktzeitmethode} mit der Genauigkeit der Parallaxenmethode\index{Parallaxe} an zwei Beobachtungsorten vergleichen \cite{Rempel2019} und nehmen dabei zunächst für eine erste Abschätzung vereinfachend an, dass die Planeten Erde und Venus sich auf kreisförmigen Bahnen in der Ekliptikebene um die Sonne bewegen.\\
+	Wir betrachten dazu in \figref{hm_VenusTransitd}
+        den Fall (a).
+        Für die Länge der Projektion auf der Sonne gilt
+	\begin{align*}
+		\frac{\D s_\text{\venus}-\D s_\text{\earth}}{a_\text{\earth}-a_\text{\venus}}&=\frac{\D P_\text{B} - \D s_\text{\earth}}{a_\text{\earth}}~.
+		\end{align*}
+		Mit den Beziehungen für die Winkelgeschwindigkeiten $\D s_i\!=\!\omega_i a_i \D t$, $\D P_\text{B}\!=\!\Omega_\text{B} a_\text{\earth} \D t$ und $\gamma\!=\! a_\text{\earth}/a_\text{\venus}$ erhalten wir
+	\begin{align*}
+\Omega_\text{B} = \frac{1}{a_\text{\earth}} \frac{\D P_\text{B}}{\D t}= \frac{\omega_\text{\venus} - \omega_\text{\earth} }{\gamma-1} ~.
+	\end{align*}
+$\Omega_\text{B}$ ist die Winkelgeschwindigkeit des Projektionspunktes auf der Sonnenscheibe.
+Wir nehmen weiter an, dass der Venustransit durch den Sonnenmittelpunkt verlaufe.
+Dann ist die maximal mögliche Transitzeit gegeben durch
+\begin{equation*}
+T_\text{TR,max} = \frac{b_\text{w\astrosun}}{\Omega_\text{B}}=28500 \:\text{s} \approx \:7\:\text{h}\:54\:\text{min} \,.
+\end{equation*}	
+Wie wir in \figref{hm_venustransit} sehen, erfolgt der Transit aber entlang einer Sehne mit der relativen Länge $l_\text{S\astrosun}$.
+Wir können diese Länge wiederum gut im Verhältnis zu $b_\text{w\astrosun}$ aus den fotografischen Aufnahmen zu $\approx 0.78$ bestimmen, woraus sich eine Transitzeit $T_\text{TR,B}$ in guter Näherung ergibt zu
+\begin{equation*}
+T_\text{TR}= \frac{l_\text{S\astrosun} \, b_\text{w\astrosun}}{\Omega_\text{B}} = 22230\:\text{s} \approx \:6\:\text{h}\:11\:\text{min} \,.
+\end{equation*}	
+Das entspräche der Transitzeit für einen Beobachter im Erdmittelpunkt.
+
+\begin{center}
+	\includegraphics[width=\textwidth]{Venustransitd.pdf}
+\captionof{figure}[Schematische Darstellung der Kontaktzeitmethode.]{Schematische Darstellung der Kontaktzeitmethode.
+Betrachtung der Venus-Projektionen \fa ohne \fb mit Erdrotation.}\label{abb:hm_VenusTransitd}
+\end{center}
+
+Jetzt kommt noch die Erdrotation ins Spiel, die uns wiederum eine Parallaxe liefert.
+Anstelle der räumlichen Differenz zweier Beobachter zum gleichen Zeitpunkt müssen wir jetzt die räumliche Differenz eines ortsfesten Beobachters zu zwei Zeiten betrachten.
+Aus \figref{hm_VenusTransitd}b erkennen wir, dass die Erdrotation eine zusätzliche Winkelgeschwindigkeit $\Omega_\text{B}$ für die Projektion bewirkt, die sich über 
+\begin{equation*}
+\frac{d_\text{eff}}{a_\text{\earth} - a_\text{\venus}} = \frac{\D P_\text{R}}{a_\text{\venus}}
+\end{equation*}	
+berechnet zu 
+\begin{equation*}
+\Omega_\text{R} = \frac{1}{a_\text{\earth}} \frac{\D P_\text{R}}{\D t} = \frac{d_\text{eff}}{T_\text{TR} a_\text{\earth} \lk \gamma -1 \rk}  \,.
+\end{equation*}	
+Die reale von einem Beobachter auf der Erdoberfläche gemessene Transitzeit ist daher gegeben durch
+\begin{align*}
+T_\text{TR,B} &= \frac{b_\text{w\astrosun} \, l_\text{S\astrosun}}{\Omega_\text{B} + \Omega_\text{R}}
+= \frac{b_\text{w\astrosun} \, l_\text{S\astrosun}}{\Omega_\text{B} + \lek d_\text{eff} / \lk T_\text{TR,B} \:  a_\text{\earth} (\gamma -1) \rk \rek} \; .
+\end{align*}
+Auch hier haben wir wieder eine Bestimmungsgleichung für die Astronomische Einheit in einer Abhängigkeit zu bekannten terrestrischen Distanzen ($d_\text{eff}$) und einer Zeitmessung erhalten:
+\begin{equation}
+1 \text{AE}\!=\!a_\text{\earth} \!=\!\frac{d_\text{eff}}{(\gamma - 1 )\lk b_\text{w\astrosun} \, l_\text{S\astrosun} - \Omega_\text{B} \, T_\text{TR,B} \rk}  \,.\label{eq:hm_Venus_AE_KontaktMessung}
+\end{equation}
+Die Größen $b_\text{w\astrosun}$, $\Omega_S$ und $\gamma$ sind bekannt.
+$l_\text{S\astrosun}$ und $T_\text{TR,B}$ werden gemessen.
+Damit man eine ausreichende Genauigkeit bei der Bestimmung der Astronomische Einheit bekommt, muss man die Sehnenlänge $l_\text{S\astrosun}$ und vor allem $T_\text{TR,B}$ sehr genau bestimmen, da der Nenner in \eqref{eq:hm_Venus_AE_KontaktMessung} gegen Null geht.
+Das ist die eigentliche Herausforderung dieser Methode.
+In \probref{hm_venus_2004_2012} berechnen wir für Messwerte von 2004 nach dieser einfachen Methode den Wert der AE.
+Zudem verfeinern wir die Methode, indem wir die Annahmen konzentrischer und koplanarer Kreisbahnen fallen lassen. \\
+
+\end{enumerate}
+\label{bsp:venustransit}
+\end{example}
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Analog zu Venustransits gibt es auch Merkurtransits.
+Diese sind auf Grund der kürzeren Umlaufperiode des Merkurs naturgemäß häufiger.
+Sie erlauben ebenfalls die Bestimmung der Astronomischen Einheit, allerdings mit geringerer Präzision.
+Die letzten Merkurtransits wurden in Europa im Mai 2016 und im November 2019 beobachtet, und den nächsten wird es schon wieder 2032 geben.
+Das wirft die Frage auf, ob es auch gemeinsame Transits von Merkur und Venus vor der Sonne geben kann.
+Tatsächlich gibt es solche und der nächste wird \anf{schon} am 26.\,07.\,69163 beobachtbar sein \cite{Meeus2004}.
+Für solche großen Zeitabstände reicht die Genauigkeit unserer Rechnung allerdings nicht aus.
+Die für den 22.\,11.\,2065 vorhergesagte Bedeckung des Planeten Jupiter durch die Venus ist hingegen mit unserer einfachen Keplerrechnung (\probref{hm_jupiterbedeckung_venus}, \mscr{} \mlhmref{InnerePlaneten.m}) zumindest prinzipiell vorhersagbar.
+Für die Bestimmung der genauen Beobachtungszeiten und -koordinaten reicht das aber nicht mehr aus.
+Dazu braucht man genauere Ephemeriden.
+Wir werden uns deswegen jetzt mit den grundlegenden Prinzipien der Störungsrechnung beschäftigen, mit welcher man genauere Planetenbahnen auch über längere Zeiten berechnen kann.
+Zunächst aber wollen wir uns noch mit dem Mehrkörperproblem etwas genauer beschäftigen, das wir bereits in der Physik der Bewegung (Band I, Kapitel 1) vorgestellt und für Spezialfälle (eingeschränktes Dreikörperproblem) behandelt hatten.
+
+\subsection{Das Mehrkörperproblem}\index{Mehrkörperproblem} \label{kap:mehrkoerperproblem}
+
+So einfach und elegant die Bahnberechnung auf Basis des Zweikörperproblems\index{Zweikörperproblem} auch ist, die Nichtberücksichtigung von Störungen der einfachen Keplerbahn durch andere Himmelskörper stellt eine echte Begrenzung für die Berechnung vieler realer Situationen in der Astronomie dar.
+Der logische Schritt wäre daher, die Bewegungsgleichung \eqref{eq:hm_beschl_zk} auf $N$ Körper (\figref{hm_Nkp} als Beispiel für $N\!=\!3$) zu erweitern.
+Wir starten daher mit dem allgemeinen Ansatz
+\begin{equation}
+\vec{F}_i = m_i\,\ddot{\vec{r}}_i= -\sum_{j=1,j\neq i}^N \frac{G \, m_i m_j}{\left|\vec{r}_j - \vec{r}_i\right|^3}\cdot (\vec{r}_j - \vec{r}_i) \ \  ~~\text{für}~i=1,\ldots,N.\\
+\label{eq:hm_beschl_N_koerper}\
+\end{equation}
+
+\begin{figure}
+\includegraphics[width=\textwidth]{NKP.pdf}%
+\caption[Geometrie eines Mehrkörperproblems.]{Geometrie eines Mehrkörperproblems am Beispiel der Störung der Erdbahn durch einen weiteren äußeren Planeten. ZK = Zentralkörper ist in den folgenden Betrachtungen die Sonne, $\text{P}_3$ die Erde und $\text{P}_2$ ein äußerer Planet oder der Erdmond.}
+\label{abb:hm_Nkp}%
+\end{figure}
+
+Wie schon in Band I gezeigt, ist schon das Dreikörperproblem ($N=3$) bis auf Spezialfälle nicht mehr geschlossen analytisch lösbar.
+Es können daher auch keine geschlossenen Bewegungsgleichungen wie die Kepler-Gleichung\index{Kepler-Gleichung} für ein vermeintlich einfaches System, wie z.\,B. Sonne, Mond und Erde mehr angegeben werden. Es gibt aber für bestimmte Spezialfälle Lösungen (siehe Band I), die physikalisch interessante und auch für die Praxis (\zb die Raumfahrt) relevante Schlussfolgerungen erlauben. 
+
+\subsubsection{Ansätze zur Behandlung des Mehrkörperproblems}\label{kap:stoerungsrechnung}
+
+Für das \textit{allgemeine} Mehrkörperproblem ohne Einschränkungen gibt es nun drei grundsätzliche Ansätze, mit denen man das (nichtlineare) System aus $3N$ Differentialgleichungen zweiter Ordnung basierend auf \eqref{eq:hm_beschl_N_koerper} behandeln kann: 
+\begin{itemize}
+	\item eine \emph{allgemeine Störungstheorie}, die auf \emph{analytische Reihenentwicklungen} führt,
+	\item eine \emph{numerische Integration} und 
+	\item \emph{spezielle Störungstheorien}, die die numerische Integration vorbereiten.
+\end{itemize}
+
+Jede dieser Methoden hat ihre spezifischen Einsatzbereiche.
+Die allgemeine Störungstheorie mit ihren analytischen Reihenentwicklungen wird meist in der Planetentheorie benutzt, während die numerische Integration \zb bei der Berechnung von Kometen- und Asteroidenbahnen und auch in der Raumfahrt eingesetzt wird.
+Wir stellen im Folgenden nur die Grundzüge der beiden ersten Methoden dar. 
+%Mit einigen speziellen Störungsrechnungen werden wir uns im Kap. Astrodynamik (Kap. \ref{chap:adyn}) beschäftigen. 
+Für eine ausführliche Behandlung empfehlen wir als weiterführende Literatur \ua die Darstellungen in \cite{Fitzpatrick2022, Walter2018, Guthmann2000, Brouwer1961, Murray2008}.\footnote{Eine sehr schöne und kompakte Darstellung der Effekte einer störenden Kraft auf die Keplerbahn findet man in \cite{Burns1976}. In dieser Darstellung werden die Effekte über die Wirkung der Störungskraft auf den Drehimpuls des ZKP beschrieben. Wir empfehlen diese Darstellung als gute physikalische Einführung in die Methode der Störungsrechnungen.} 
+
+\subsubsection{Grundidee der allgemeinen Störungsrechnung (analytische Reihenentwicklungen)}\index{Reihenentwicklung}\index{Störungsrechnung}  \label{kap:Reihenentwicklung}
+
+Wir starten von den Annahmen, dass 
+\begin{itemize}
+	\item die Störungen relativ klein sind,
+	\item die Massen der beteiligten Himmelskörper relativ weit voneinander entfernt sind und
+	\item die Bahnen der Himmelskörper kleine Exzentrizitäten haben und hinreichend stabil sind.
+\end{itemize}
+Letztere Annahme werden wir in den späteren Kapiteln \ref{kap:Periheldrehung} und \ref{kap:hm_langezeiten} noch etwas genauer betrachten.
+Unter diesen Annahmen kann man die Bahnen als Überlagerung ungestörter, sogenannter mittlerer Kepler-Ellipsen und kleiner periodischer Störungen, sogenannter Störterme, darstellen.
+Wir hatten ja schon im vorhergehenden Kapitel gesehen, dass sich die ekliptikalen Koordinaten $l(t)$, $b(t)$, $r(t)$ als Funktion der Zeit (bzw. der mittleren Anomalie) in einer Reihenentwicklung angeben lassen (siehe Gleichungen \eqref{eq:hm_reduktions_formel4}--\eqref{eq:hm_reduktions_formel6}).
+Die Störungen durch den anderen Planeten ergeben nun zusätzliche Terme in dieser Reihenentwicklung, welche als Argument die mittlere Anomalie des \bzw der \anf{störenden} Himmelskörper und die des gestörten Planeten, dessen Bahn wir berechnen wollen, enthalten.\footnote{Die mittleren Anomalien aller Planeten sind in Tabelle \ref{tab:hm_bahnparameter} angegeben.
+Die Betrachtungen, die wir im Folgenden für den Fall $N\!=\!3$ anstellen, lassen sich ohne weiteres auf allgemeine Fälle $N>3$ übertragen.}
+
+\subparagraph{\textbf{Die Störungsfunktion am Beispiel des Dreikörperproblems }}\index{Dreikörperproblem}\index{Störungsfunktion} \label{kap:stoerungsfunktion} 
+ 
+Ein relativ einfacher und instruktiver Fall ist das koplanare Dreikörperproblem (siehe Kapitel 1.2.3.5 im Band I). Selbst dieses Problem erfordert schon eine anspruchsvolle mathematische Behandlung und lässt erahnen, welche mathematische technische Komplexität hinter der Störungsrechnung liegt. 
+Wir verweisen hier auf die Spezialliteratur und empfehlen insbesondere \cite{Fitzpatrick2022} und \cite{Murray2008}.\\
+%Wir skizzieren hier nur die generelle Vorgehensweise und verweisen ansonsten auf die Spezialliteratur cite{Fitzpatrick2022, Murray2008}.\\
+
+\subparagraph{\textbf{Standard-Störungsrechnungen und Tabellen}} \label{kap:stoerungstabellen}
+
+Die berechneten Störungsterme, wie im vorhergehenden Teil skizziert,  werden \ia in umfangreichen Tabellen angegeben (\ua \cite{Montenbruck1999, Murray2008}).
+Es ist eine der großen Leistungen vieler Generationen von Astronomen, Mathematikern und Physikern, die mit diesen analytischen Reihenentwicklungen -- die oft hunderte von Termen umfassen -- hochgenaue Berechnungen für die Planeten ermittelt und damit auch ganz wesentlich zum Erkenntnisfortschritt in der Physik und Astrophysik beigetragen haben (siehe \kapitel{Periheldrehung}).\footnote{Man mache sich klar, dass diese Rechnungen bis in die Mitte des 20.\ Jahrhunderts ohne elektronische Computer gemacht wurden. Man sprach auch davon, dass Astronomie im 18.\ und 19.\ Jahrhundert \iw Rechnen war, wofür sehr oft Frauen als sogenannte \anf{Computer} eingesetzt wurden. Viele dieser Frauen leisteten später wichtige eigenständige Beiträge in der Astronomie und Astrophysik.}
+Darüber hinaus gab es aber auch ganz praktische und ökonomisch hochrelevante Beweggründe für diese enorme Arbeit.
+So waren die genauen Berechnungen der (scheinbaren) Sonnenbahn und der Mondbahn für die maritime Navigation erforderlich.
+%Deswegen wurde gerade in diese theoretischen Berechnungen entsprechend viel Aufwand gesteckt.
+Die von Simon Newcomb\footnote{Simon Newcomb (1835--1909) war ein kanadischer Astronom und Mathematiker, der am Observatorium der US-Marine in Washington, D.\,C.\ zur Theorie der scheinbaren Bewegung der Sonne und zur Bestimmung der Planetenpositionen als Navigationshilfe arbeitete.}\indexp{Newcomb, Simon} entwickelte Theorie zur scheinbaren Sonnenbewegung ist heute noch ein Standard, weswegen wir die wesentlichen Terme in \mlhmiref{SonneExakt.m} (\zb zur Berechnung von Sonnenfinsternissen) mit angegeben haben.
+Die Berechnung der Mondbahn ist im Vergleich zur Störungsrechnung für die Planetenbahnen noch etwas komplexer, da die Gravitationskräfte von Sonne und Erde auf den Mond etwa gleich groß sind.
+Dennoch kann man das Prinzip der Reihenentwicklung auch hier anwenden.
+Danach ist die mittlere Mondbahn in grober Näherung eine Ellipse mit Exzentrizität $e\!=\!0.0549$ und Neigung $i\!=\!5.145\degree$ gegen die Ekliptik.
+Viele der periodischen Mondbahnabweichungen von dieser Ellipsenbahn waren schon im Altertum bzw. Mittelalter bekannt.
+In \mlhmiref{MondExakt.m} haben wir wiederum die wichtigsten Terme der Mondbahn nach der von Ernest~W.~Brown\indexp{Brown, Ernest William}\footnote{Ernest William Brown (1866--1938) war ein US-amerikanischer Mathematiker und Astronom.
+Seine Theorie über die Bewegung des Mondes galt bis \ca 1985 als bestes Modell und war die mathematische Grundlage der NASA-Mondlandung.} Anfang des 20.\ Jahrhunderts entwickelten Mondtheorie angegeben. 
+In den \textbf{Übungen} \ref{prob:hm_jupiterbedeckung_venus} und \ref{prob:hm_Zusatz_ErdeTransit_from_Mars} kann man anhand der Berechnung der Jupiterbedeckung durch die Venus am 22.\,November\,2065 \bzw des Erdtransits am 10.\,November\,2084 vom Mars aus gesehen sehr schön die Unterschiede in der Genauigkeit zwischen der einfachen Keplerlösung und der Berechnung über die Reihenentwicklung nach der Störungstheorie erkennen. 
+
+In den \mscren \mlhmref{Sonnenfinsternis01.m} und \mlhmref{Sonnenfinsternis02.m} haben wir neben den Koordinatenberechnungen für Sonne und Mond nach der Newcombschen \bzw Brownschen Theorie auch für die einzelnen Planeten die \mscre \mlhmiref{SonneExakt.m}, \mlhmiref{MondExakt.m}, \mlhmiref{VenusExakt.m} \usw hinterlegt: Die ersten Terme der Reihenentwicklung finden sich in den Dateien \mlhmdref{VenusPos.csv} \usw \cite{Montenbruck1999, Meeus1998}. Damit lassen sich Berechnungen mit maximalen Fehlerabweichungen von wenigen Bogensekunden über viele Jahre realisieren.
+
+\subsubsection{Berechnung von Himmelskörperbahnen durch numerische Integration}\index{Numerische Integration}\label{kap:hm_numerische_proced}
+
+Im Gegensatz zu den Reihenentwicklungen wird bei den numerischen Verfahren versucht, die Bahnberechnung der einzelnen Massen durch die direkte numerische Integration aller Bewegungsgleichungen \eqref{eq:hm_beschl_N_koerper} zu realisieren.
+Zur Integration dieser Bewegungsgleichungen gibt es verschiedene Verfahren \cite{Press2007}, von denen einige in \matlab{} hinterlegt sind.
+Das Grundprinzip dieser Verfahren für ein Differentialgleichungssystem 2.~Ordnung ist ausführlich im Kapitel 1.3.1 im Band I und in den \onlineZ{} erläutert. 
+Bei der Anwendung im astronomischen Bereich ist auf ausreichende Genauigkeit und Stabilität der Lösung zu achten, insbesondere bei Anwendung der Verfahren mit variabler Schrittweite, bei denen zum einen die zeitlichen Veränderungen mit ausreichender Genauigkeit berechnet werden muss und zum anderen aber die Rechenzeit optimiert werden soll.\\
+Heute werden in den Großrechenzentren der astronomischen Institute leistungsstarke Rechner und Programme eingesetzt, um die Ephemeriden\index{Ephemeride|textbf} von Himmelskörpern zu berechnen.
+Das Jet Propulsion Laboratory \cite{JPL2020} ist ein Paradebeispiel dafür.
+Die analytischen Reihenentwicklungen wurden mithilfe der Computertechnik ebenfalls weiter entwickelt und haben im Vergleich zur Mitte des 20.~Jahrhunderts eine viel größere Genauigkeit.
+Beispiele sind hier die semi-analytische Mondbahnberechnung der ELP (\emph{Ephemeride Lunaire Parisienne}) \cite{ELP2020} und die VSOP (\emph{Variations Séculaires des Orbites Planétaires}), eine wiederum semi-analytische Theorie für die Planetenbahnen, in der komplexe analytische Reihenentwicklungen mit effizienten numerischen Approximationsmethoden verbunden werden \cite{VSOP2020}. 
+
+Wir wollen anmerken, dass für fast alle Übungen und Beispiele in diesem Buch die in \matlab{} implementierten leistungsstarken numerischen Verfahren zur Integration von Differentialgleichungen des beschriebenen Typs vollkommen ausreichend sind. 
+Wir berechnen im Folgenden exemplarisch die Bahn des Kometen Shoemaker-Levy 9\index{Komet!Shoemaker-Levy}\indexp{Shoemaker, Eugene Merle}\footnote{Eugene Merle Shoemaker (1928--1997) war ein US-amerikanischer Geologe, Impaktforscher und Astronom. Bekannt wurde er als Mitentdecker des Kometen Shoemaker-Levy 9 (mit seiner Frau Carolyn Shoemaker und David H.~Levy). Er konnte in seinen geologischen Forschungen nachweisen, dass der Barringer-Meteorkrater in den USA und tatsächlich auch das Nördlinger Ries durch einen Meteoriteneinschlag entstanden sind. 1969 war er auch Chefwissenschaftler der Apollo-11-Mission.} (\kapitel{kometen}), der sich in der Nähe eines Planeten befindet und dessen Bahn daher massiv durch diesen gestört wird. Aus der Beobachtung seiner Bahn wurde bald klar, dass dieser vom Jupiter eingefangen werden würde. Im Gravitationsfeld des Jupiters zerbrach der Komet dann durch die Wirkung von Gezeitenkräften (siehe \kap{hm_gezeiten}) in rund $\SI{100000}{\km}$ Entfernung in 21 Fragmente bis zu $\SI{1}{\km}$ Größe. Wir wollen hier das Fragment D/1993 F2  betrachten. (Das \anf{D} in seiner Bezeichnung steht für \anf{disappeared}.)
+
+%BEISPIEL 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{Shoemaker-Levy 9 (D/1993 F2)} \label{bsp:hm_shoemaker_levy}
+\textit{Wir wollen die durch den Jupiter gestörte Bahn des Kometen Shoemaker-Levy 9\index{Komet!Shoemaker-Levy} (D/1993 F2) in heliozentrischen Koordinaten berechnen.}
+Aus den berichteten Beobachtungsdaten für Shoemaker-Levy 9 finden wir die Position und Geschwindigkeit des Kometen
+in ekliptikalen Koordinaten zu den Zeiten  $t_1\equiv 01.01.1993$ und $t_2\equiv 02.01.1993$ jeweils um 00:00 ET:
+\begin{align*}
+	l_1&= 181.1041\degree~,\; b_1 = -0.5639\degree~,\; r_1 = 5.478189665071 \:\text{AE} ~,\\
+	l_2&= 181.1747\degree~,\; b_2 = -0.5688\degree~,\; r_2 = 5.478141861326 \:\text{AE} ~.
+	\end{align*}
+Daraus können wir die kartesischen heliozentrischen Koordinaten $(x_1,y_1,z_1), (x_2,y_2,z_2)$ gewinnen und daraus wiederum durch Differenzenbildung näherungsweise die Anfangsgeschwindigkeit $(\dot x_1,\dot y_1,\dot z_1)$ und damit den Anfangsvektor für unsere numerischen Berechnungen zu
+\begin{equation*}
+\lk \dot x_1,\dot y_1,\dot z_1 \rk = \lk x_2 - x_1, y_2 - y_1, z_2 - z_1 \rk \:/ \:\text{1d} \,,
+\end{equation*}	
+\begin{align*}
+\vec{\psi}(t_0) &= \lk \begin{array}{c} -5.476907295330\:\text{AE}\\ -0.105554056709 \:\text{AE}\\ -0.053914988291\:\text{AE}\\ +0.000186643064 \: \text{AE/d}\\ -0.006747501846\: \text{AE/d}\\ -0.000468003540\: \text{AE/d} \end{array}\rk\,.
+\end{align*}
+Vergleicht man zu diesem Zeitpunkt die Gravitation der Sonne \bzw des Jupiters auf den Kometen, so ergibt sich bereits zu $t_0$ ein Verhältnis von
+\begin{equation*}
+\frac{F_{\jupiter}}{F_{\astrosun}} = \frac{m_{\jupiter}}{m_{\astrosun}} \cdot \frac{\vec{r}_\text{K}^2}{\left| {\vec{r}_\text{K}-\vec{r}_{\jupiter} }\right|^2} = 7.978 \,.
+\end{equation*}	
+
+\begin{center}
+\includegraphics[width=\columnwidth]{SL9b_Variante.pdf} 
+\captionof{figure}[Bahn des Kometen Shoemaker-Levy 9 in den Jahren 1993/94.]{Bahn des Kometen Shoemaker-Levy 9 in den Jahren 1993/94 bis zum Aufschlag auf den Jupiter.}\label{abb:hm_SL9Bahn}
+\end{center}
+
+Die Rechnung zeigt, dass der Komet sich bereits zu diesem Zeitpunkt im \anf{Einfangbereich} des Jupiters befand und dass eine dramatische Zunahme der Kräfte des Jupiters $F_{\jupiter}$ zu erwarten war. 
+Wir könnten nun mit den Anfangswerten an die Lösung des Dreikörperproblems mit dem bekannten und in den \onlineZ{} beschriebenen \textit{Runge-Kutta-Verfahren}\index{Runge-Kutta-Verfahren} gehen, können das Problem aber etwas vereinfachen, da wir die Bahn des Jupiters als weiterhin ungestört annehmen können.
+Wir benutzen deshalb in \mlhmref{SL9numerisch.m} auch die in \matlab{} hinterlegten Routinen (\zb \textcolor{mygreen}{\texttt{ode45}}) zur Lösung des Differentialgleichungssystems für $\vec{\psi}(t)$.
+Das Ergebnis der Berechnung ist in \figref{hm_SL9Bahn} zu sehen.
+Mit guter Genauigkeit berechnet das Programm den Zusammenprall von SL9 (D/1993 F2) für den 17.\,07.\,1994 um 20:35 UT.
+Der so berechnete Zeitpunkt weicht nur wenig vom tatsächlich beobachteten Zeitpunkt 18.\,07.\,1994, 00:35 UT ab. 
+Aus den Rechnungen wird allerdings auch deutlich, wie extrem kritisch die Ergebnisse von den Anfangsparametern (Ort und Geschwindigkeit des Kometen) und der Masse des Jupiters abhängen.
+In \figref{hm_SL9Bahnberechnung} haben wir diese Parameter etwas variiert.
+Es zeigt sich, dass im Fall einer höheren Jupitermasse der Komet erwartungsgemäß früher auf den Jupiter aufschlagen würde.
+In den Fällen der um 20\% erhöhten oder veränderten Anfangsgeschwindigkeiten des Kometen würde dieser den Jupiter aber \anf{verfehlen}.
+Dies zeigt noch einmal deutlich, wie wichtig hochgenaue Beobachtungsdaten für Berechnungen in der Himmelsmechanik sind. \\
+
+\begin{center}
+\includegraphics[width=\textwidth]{SL9a.pdf}
+\captionof{figure}[Bahnberechnung des Kometen Shoemaker-Levy 9 in den Jahren 1993/94.]{Bahnberechnung des Kometen Shoemaker-Levy 9 in den Jahren 1993/94 mit verschiedenen Annahmen für Jupitermasse und Anfangsgeschwindigkeiten.}\label{abb:hm_SL9Bahnberechnung}
+\end{center}
+
+Zum Schluss berechnen wir noch, mit welcher Geschwindigkeit der Komet auf den Jupiter prallt.
+Unsere numerischen Rechnungen ergeben für den letzten Rechenschritt vor dem Zusammenprall 
+\begin{align*}
+\vec{v}_\text{SL9} &= \lk \begin{array}{c} +0.013395176\\ +0.006460533 \\ -0.029725683 \end{array}\rk \:\text{AE/d} \;\: \text{bzw.}\ \;\vec{v}_{\jupiter} = \lk \begin{array}{c} +0.005323551\\ -0.004907594 \\ -0.000098762 \end{array}\rk \:\text{AE/d} 
+\end{align*}
+eine Aufprallgeschwindigkeit von
+\begin{equation*}
+  v_\text{impact} = \sqrt{\left|{\vec{v}_\text{SL9}-\vec{v}_{\jupiter}}\right|^2} \approx \SI{57.1}{\kilo\metre\per\second}~.
+\end{equation*}
+Diese Geschwindigkeit liegt nahe an der 2.~kosmischen Geschwindigkeit\index{Geschwindigkeit!2.~kosmische} des Jupiters von 
+\begin{equation*}
+  v_\text{escape} = \sqrt{\frac{2 G\, m_{\jupiter}}{R_{\jupiter}}}\approx \SI{59.5}{\kilo\metre\per\second}~,
+\end{equation*}
+was verständlich ist, da der Komet den Jupiter auf dessen Bahn unter einem Winkel von nahezu $90\degree$ trifft.
+Hierin ist $R_{\jupiter}$ der Radius des Jupiters.
+Aus \cite{Crawford1996} können wir die Gesamtgröße des Kometen vor dem Zerbrechen mit $\SI{1.4}{\kilo\metre}$ entnehmen.
+Mit einer mittleren Dichte von $\SI{0.5}{\gram\per\centi\metre^3}$ ergibt sich daraus eine kinetische Aufprallenergie von $\SI{1.17e21}{\joule}$.
+Das entspricht einer unglaublichen \anf{Explosionskraft} von \ca \SI{280}{\giga\tonne} TNT, was gleichbedeutend mit der Sprengkraft von etwa 18 Millionen Hiroshima-Bomben ist.\\
+
+\end{example}
+%%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Obwohl offensichtlich ist, dass die in Beispiel \ref{bsp:hm_shoemaker_levy} berechnete Bahn des Kometen erheblich von einer reinen Keplerbahn abweicht, werden wir im \kap{kometen} sehen, dass man für näherungsweise Berechnungen von weniger gestörten Kometenbahnen durchaus die Keplerlösung mit effektiven Bahnparametern benutzen kann.
+\subsection{Periheldrehung des Merkurs}\index{Periheldrehung} \label{kap:Periheldrehung}
+Wie wir gesehen haben, gibt es gravitative Einflüsse der anderen Planeten auf ein ideales ZKP (reines Sonne-Planet-System), die zu Störungen der reinen Keplerlösungen und -ellipsen führen.
+Wir wollen eine dieser Störungen -- die auch wissenschaftshistorisch sehr interessant ist -- in diesem Kapitel etwas genauer betrachten.
+Wir möchten uns aber zunächst der Frage zuwenden, unter welchen Bedingungen wir bei vorhandenen Störungen überhaupt von stabilen und geschlossenen Bahnen sprechen können.
+Unter \anf{stabil} verstehen wir, dass der Radius $r$ der Bahn über die Zeit in einem endlichen Bereich bleibt.
+Unter \anf{geschlossen} verstehen wir, dass es einen ausgezeichneten Punkt der Bahn gibt (\zb das Perihel), der sich nach einem vollen Umlauf $T_\text{P}$ wieder an derselben Position befindet, also $\lek r(t_0+T_\text{P}), \upsilon(t_0+T_\text{P})\rek\!=\!\lek r(t_0), \upsilon(t_0) \rek$.
+
+\subsubsection{Bedingungen für stabile und geschlossene Bahnen}\index{Bahn!geschlossene}\index{Bahn!stabile} \label{kap:Stabile_Bahnen}
+Wir wollen nun ein allgemeines Gravitationspotential $U_\text{\,ZK}(r)$ annehmen, welches aber immer noch ein \gls{zkf}\index{Zentralkraftfeld} (ZK) repräsentiert.
+Die Bewegung findet wegen der weiterhin geltenden Drehimpulserhaltung in einer Ebene statt.
+Die Bewegung eines Planeten mit Masse $m$ in diesem ZK kann durch folgendes Potential eines Gravizentrums\footnote{Hierbei haben wir wie bisher auch das \pot{} auf die Masse $m$ \anf{normiert}. Wir werden später im Kapitel, wenn es um die Berechnung von Merkur-Messwerten geht, die entsprechenden Größen mit der Masse des Merkurs $m_{\mercury}$ multiplizieren.} beschrieben werden:
+\begin{align}
+%U_\text{Z}(r) &= -\frac{\mu_\text{G}}{r} + \frac{\kappa_2}{r^2} + \frac{\kappa_3}{r^3} +\ldots = -\frac{\mu_\text{G}}{r} + \sum \limits_{i}{} \Delta U_i(r) \,, \label{eq:hm_bwg_allg_ZK}
+U_\text{\,ZK}(r) &= -\frac{\mu_\text{G}}{r} + \sum \limits_{i}{} \Delta U_i(r) \,. \label{eq:hm_bwg_allg_ZK}
+\end{align}
+Daraus ergibt sich folgende allgemeine Bewegungsgleichung:
+\begin{equation}
+%\vec{b}_\text{\,ZK}(r) & = \frac{\vec{F}_\text{\,ZK}}{m} = 
+\ddot{\vec{r}} = -\frac{\d U_\text{\,ZK}(r)}{\d r} \lk \frac{\vec{r}}{r} \rk = \lek - \frac{\mu_\text{G}}{r^2} + \sum \limits_{i}^{} \Delta g_i(r) \rek \vec{e}_r \label{eq:hm_bwg_allg_ZK2}
+\end{equation}
+mit $\Delta g_i(r)\!=\!-\d \Delta U_i(r)/\d r$.
+Die Zusatzterme im Potential $U_\text{\,ZK}(r)$ sollen als klein angenommen werden.
+Wir können dann die Methoden der Störungsrechnung verwenden.
+Bisher sind wir stillschweigend davon ausgegangen, dass die Störungen so beschaffen sind, dass man weiterhin von nur leicht veränderten Keplerbahnen sprechen kann.
+Bevor wir an die Bahnberechnung gehen, möchten wir das aber jetzt genauer untersuchen und ein paar allgemeine Erkenntnisse zur Stabilität von Planetenbahnen ableiten.
+In Polarkoordinaten kann eine Kraft geschrieben werden als
+\begin{equation*}
+\vec{F} = F_r\,\vec{e}_r + F_\upsilon\,\vec{e}_\upsilon\,.
+\end{equation*}
+Bei der Betrachtung der Stabilität einer Bahn interessiert uns nur der Betrag der Radialkomponente $F_r$ der Kraft \bzw Beschleunigung, die geschrieben werden kann als
+\begin{equation}
+b_r(r) = b(r) = \frac{F_r(r)}{m} = \frac{\d U_\text{\,ZK}(r)}{m\,\d r} = \ddot{r}-\dot{\upsilon}^2 r \,. \label{eq:hm_b_r_1}
+\end{equation}
+Mit dem ebenfalls auf die Masse $m$ normierten Drehimpuls $L\!=\!r^2\dot{\upsilon}$ \eqref{eq:hm_drehimp_z_polar} folgt daraus
+\begin{equation}
+b(r) = \ddot{r} - \frac{L^2}{r^3}\,. \label{eq:hm_b_r_2}
+\end{equation}
+Wir betrachten zunächst nahezu kreisförmige Bahnen, für die wegen $r=a$ und damit $\ddot{r}\!=\!0$
+\begin{equation}
+b(a) = -\frac{L^2}{a^3} \label{eq:hm_b_r_3}
+\end{equation}
+gilt. Nehmen wir nun eine leichte Störung des Planeten an, dann ist es gerechtfertigt, dessen Bahnbewegung als eine kleine Oszillation $\xi\!=\! r-a$ um den Radius $a$ zu betrachten.
+Wir können dann die Bewegungsgleichungen \eqref{eq:hm_b_r_2} linearisieren.
+Mit $\ddot{a}\!=\!0$ und $\xi\!\ll\! a$ folgt
+\begin{equation}
+	b(\xi+a) = \ddot{\xi} - \frac{L^2}{(\xi+a)^3} \approx \ddot{\xi} - \frac{L^2}{a^3} \lk 1-\frac{3\xi}{a} + \mathcal{O}(\xi^2) \rk ~. \label{eq:hm_b_r_4}
+	%= \ddot{\xi} - \frac{L^2}{a^3}\lk 1+\frac{\xi}{a}\rk^{-3} 
+	\end{equation}
+Andererseits können wir die linke Seite von $b(\xi+a)$ in \eqref{eq:hm_b_r_4} als Taylorentwicklung $b(\xi+a)= b(a) + \xi \, b'(a)$ schreiben:
+\begin{align*}
+	b(a) + \xi b'(a) &= \ddot{\xi} + b(a)\lk 1 - \frac{3\xi}{a}\rk ~,
+\end{align*}
+woraus eine Differentialgleichung für die Störung $\xi(t)$
+\begin{align}
+	\ddot{\xi} + \xi\lek -\frac{3}{a} b(a) + b(a) - b(a) - b'(a) \rek &= 0 \nonumber\\
+	\Rightarrow \ddot{\xi} + \xi\lek \lk -\frac{3}{a}\rk b(a) - b'(a) \rek &= 0 \label{eq:hm_Stoer_1} ~~
+\end{align}
+folgt.
+Das ist eine harmonische Schwingungsgleichung, deren Lösung mit der Frequenz 
+\begin{equation}
+\omega = \sqrt{\lk -\frac{3}{a} \rk b(a) - b'(a)} \label{eq:hm_lsg_Stoer}
+\end{equation}
+durch
+\begin{equation*}
+\xi = A\E^{i\omega t} + B\E^{-i\omega t} 
+\end{equation*}
+gegeben ist.
+Wir erhalten eine erste Bedingung für die Stabilität einer Bahn.
+Stabile (d.\,h. auch periodisch oszillierende) Bahnen sind nur möglich, wenn $\omega$ in \eqref{eq:hm_lsg_Stoer} reell ist, was auf folgende Forderung an die Charakteristik des Zentralkraftfeldes führt:
+\begin{equation}
+\frac{F_r(a)}{m} = b(a) < \frac{a \, b'(a)}{3} \,.\label{eq:hm_stab_bedingung}
+\end{equation}
+Bei imaginärem $\omega$ hingegen wird die Bahn instabil.
+Man rechnet leicht nach, dass für das Newtonsche Gravitationsgesetz Bedingung \eqref{eq:hm_stab_bedingung} erfüllt ist.\footnote{In \probref{hm_hill_sphere} stellen wir für ein spezifisches Dreikörperproblem eine detaillierte Stabilitätsbetrachtung an.}
+Das gilt auch für allgemeinere Fälle nach Gleichung \eqref{eq:hm_bwg_allg_ZK}, sofern die Potential-Anteile  $\Delta U_i(r)$ des ZK bestimmte Verhältnisse und Vorzeichen haben.
+Aber selbst im Fall eines reellen $\omega$ wird die Bahn im Allgemeinen nicht mehr vollständig geschlossen sein.
+Das wird beispielsweise deutlich, wenn man die wahre Anomalie $\upsilon_{\text{P}_0}\!=\!\dot{\upsilon}\, 2\pi/\omega = \!\dot{\upsilon}\, T_\text{P}$ berechnet.
+Diese entspricht dem vom Radiusvektor in einer Periode $T_\text{P}$ zu \anf{identischen} Radien der Bahn (\zb dem Perihel) überstrichenen Winkel, der sich mit \eqref{eq:hm_lsg_Stoer} und \eqref{eq:hm_b_r_3} und  $L\!=\!\sqrt{-b(a)\,a^3}$ berechnet zu
+\begin{align}
+	\upsilon_{\text{P}_0} &= \frac{2\pi}{\omega}\frac{L}{a^2} = \frac{2\pi}{\omega}\frac{\sqrt{-b(a)\,a^3}}{a^2} = \frac{2\pi}{a^2}\,\frac{\sqrt{-b(a)\, a^3}}{\sqrt{\lk -\frac{1}{a}\rk \lek 3b(a) + a\,b'(a) \rek}} \nonumber\\
+	\Rightarrow \upsilon_{\text{P}_0} &= 2\pi\,\frac{1}{\sqrt{3+a\,\frac{b'(a)}{b(a)}}} = \frac{2\pi}{\gamma} \,. \label{eq:hm_upsilon_P0}
+\end{align}
+Die Winkeldifferenz $\Delta\upsilon_{\text{P}_0}\!=\!\upsilon_{\text{P}_0} - 2\pi$ bezeichnen wir als Perihelverschiebung\index{Perihelverschiebung|textbf}.
+Sie wird häufig auch als \emph{Perihelpräzession}\index{Perihelpräzession} bezeichnet. 
+\begin{figure}
+\begin{minipage}{\textwidth}
+\leftfigure{\includegraphics[width=0.5\textwidth]{Perihel01.pdf}}
+\hspace{\fill}
+\rightfigure{\includegraphics[width=0.5\textwidth]{StoerpotentialMerkur.pdf}}
+\leftcaption{Periheldrehung.}\label{abb:hm_perihel_01}
+\rightcaption[Anziehungskräfte auf den Merkur durch die Sonne und äußere Planeten.]{Anziehungskräfte auf den Merkur durch die Sonne und die äußeren Planeten. Schattiert ist der Aufenthaltsbereich des Merkurs gezeigt. Man beachte die Größenunterschiede im Betrag von Sonne zu Planeten von $\approx \SI{1e6}{}$.}\label{abb:hm_stoerpotential_merkur}
+\end{minipage}
+\end{figure}
+
+Aus \eqref{eq:hm_upsilon_P0} erkennen wir, dass $\upsilon_{\text{P}_0}$ nach einer Periode nur dann gleich $2\pi$ ist, wenn 
+\begin{equation}
+\gamma = 3+a\,\frac{b'(a)}{b(a)} \equiv 1 \,. \label{eq:hm_perihel_bed}
+\end{equation}
+Für die Newtonsche Gravitationskraft $\mu{_\text{G}}/a^2$ (normiert auf die Masse $m$) ist $b(a)\!=\!-1/a^2$ und $b'(a)\!=\!2/a^3$. Für diesen Fall folgt dann
+\begin{equation*}
+3+a\lk \frac{2}{a^3}\rk \lk-\frac{a^2}{1} \rk = 1 \,
+\end{equation*}
+und damit keine Perihelverschiebung. Für jedes von $r^{-2}$ abweichende Kraftfeld ergibt die linke Seite von \eqref{eq:hm_perihel_bed} einen Wert $\neq\! 1$ und damit nach \eqref{eq:hm_upsilon_P0} mit $\upsilon_{\text{P}_0}\!\neq\!2\pi$ (\probref{hm_potential_merkur}) eine nicht mehr vollständig geschlossene Bahn.
+So ist \zb das Perihel nach einem vollen Umlauf nicht mehr bei der gleichen Anomalie zu finden.
+Es hat sich etwas verschoben \bzw verdreht, ebenso wie die Apsidenlinie (\figref{hm_perihel_01}).\footnote{Wir haben die Stabilitätsbedingung \eqref{eq:hm_stab_bedingung} und auch die Beziehung für die Perihelverschiebung \eqref{eq:hm_upsilon_P0} auf Basis annähernd kreisförmiger Bahnen abgeleitet \cite{Price1979}.
+Sie gelten aber im Prinzip genauso für elliptische Bahnen. Wir verweisen hierzu auf \cite{Davies1983}.} 
+
+\subsubsection{Berechnung des Störpotentials und der Periheldrehung für den Planeten Merkur\, ($\mercury$)}\index{Störpotential} \label{kap:Stoerpotential_Merkur}
+Die Frage ist nun, wie solche Zusatzpotentiale $\Delta U_i(r)$ in der Realität beschaffen sind und ob man eine solche Verschiebung des Perihels berechnen und messen kann.
+Wir möchten mit einem einfachen physikalischen Modell das Störpotential für den Merkur berechnen.
+Für diesen muss sich das größte Störpotential ergeben, da alle anderen Planeten außerhalb seiner Bahn liegen und damit der Anziehung des Merkurs durch die Sonne entgegen wirken.
+Unser Modell für das Störpotential \cite{Price1979, Davies1983} beruht auf der Annahme, dass die zeitlich gemittelten Störungen der anderen Planeten auf den Merkur jeweils durch das Potential eines massebeladenen Rings mit Radius $a_k$ der jeweiligen Planetenbahn und der Ring-Massendichte $\rho_k=m_k/{2\pi a_k}$ mit $k=2 \ldots 8$ gegeben ist.
+Hier ist $m_k$ die Masse des $k$-ten Planeten, wobei man aber wegen der verschwindenden Beiträge von Uranus und Neptun nur bis $k\!=\!6$ (also bis zum Saturn) aufsummieren muss.
+Der Vorteil dieser Herangehensweise ist, dass man mit der oben abgeleiteten Beziehung \eqref{eq:hm_upsilon_P0} die Perihelverschiebung\index{Perihelverschiebung} $\Delta \upsilon_{\text{P}_0}$ näherungsweise berechnen kann, ohne die komplexe Bewegungsgleichung explizit lösen zu müssen.
+Die mittleren Beschleunigungen der anderen Planeten auf den Merkur können entsprechend dieses Ringmodells nach folgender Formel aufsummiert werden (\probref{hm_potential_merkur}):
+\begin{equation}
+\Delta g_{\,\mercury}(r) = G \pi \sum \limits_{k=2}^{6} \lk \frac{m_k}{2\,\pi\,a_k} \rk \frac{r}{a_k^2 - r^2} \,.
+\label{eq:hm_merkur_mittlere_beschl}
+\end{equation}
+Hierin ist $r$ der Bahnradius des Merkurs \cite{Price1979}.
+Die nach diesem Modell des massebehafteten Rings berechnete Gravitationskraft der äußeren Planeten auf den Merkur ist tatsächlich eine Zentralkraft (\figref{hm_stoerpotential_merkur}) und muss (da alle $a_k\!>\!r_{\mercury}$ sind) eine abstoßende Kraft sein, \dh sie wirkt der anziehenden Gravitationskraft der Sonne entgegen.
+Für das Potential können wir schreiben:
+\begin{align}
+	\Delta \,U_{\,\mercury}(r) &= -G \pi \sum \limits_{k=2}^{6} \lk \frac{m_k}{2\,\pi\,a_k^3} \rk \bigintsss \frac{r}{\lk 1 - \frac{r^2}{a_k^2}\rk}\,\D r \nonumber \\
+	&= \frac{1}{2} G \pi \sum \limits_{k=2}^{6} \lk \frac{m_k}{2\,\pi\,a_k} \rk \log \lk 1- \frac{r^2}{a_k^2} \rk \nonumber \\
+	&\approx \frac{1}{2} G \pi \sum \limits_{k=2}^{6} \lk \frac{m_k}{2\,\pi\,a_k} \rk \lek \frac{r^2}{a_k^2} + \mathcal{O}\lk \frac{r^4}{a_k^4}\rk \rek \,. \label{eq:hm_merkur_mittleres_potential}
+\end{align}
+Setzt man in \eqref{eq:hm_merkur_mittlere_beschl} die Werte für $a_k, m_k$ aus Tabelle \ref{tab:hm_bahnparameter} aus dem Tabellenanhang ein und ebenso  $r\!=\!a_{\mercury}$, dann erhält man  für das Verhältnis der Zusatzkraft zur Anziehungskraft der Sonne
+\begin{equation*}
+\frac{\Delta g_{\,{\mercury}} (a_{\mercury})}{-\mu_G/a_{\mercury}^2} \:\approx \:-\frac{\pi}{m_{\astrosun}} \, a_{\mercury}^2\, 100 \:\text{kg\,m}^{-2} \approx - \SI{6e-7}{} \,.
+\end{equation*}
+Das ist im Verhältnis zur Anziehung durch die Sonne eine sehr kleine abstoßende Störung (Man beachte die logarithmische Darstellung in \figref{hm_stoerpotential_merkur}.).
+Wir werden aber gleich sehen, welche doch messbare Wirkung dieses geringe resultierende Potential hat und vor allem auch wissenschaftshistorisch hatte.
+Wir berechnen dazu für die Merkurbahn die Größen $b(a)$ und $b'(a)$, die wir für \eqref{eq:hm_upsilon_P0} brauchen:
+\begin{align*}
+		m_{\mercury} \, b_{\mercury}(a_{\mercury}) &= \underbrace{-\frac{\mu_\text{G} \, m_{\mercury}}{a_{\mercury}^2}}_{F_0 \approx \SI{-1.31e22}{}\:\text{N}} + \underbrace{m_{\mercury} \, \Delta \,g_{\,{\mercury}} (a_{\mercury})}_{\Delta F \approx \SI{7.56e15}{} \text{N}} ~, \nonumber \\  
+	m_{\mercury} \, b'_{\mercury}(a_{\mercury}) \, a_{\mercury} &= \underbrace{+\frac{2 \mu_\text{G} \, m_{\mercury}}{a_{\mercury}^2}}_{-2 \, F_0} + \underbrace{m_{\mercury} \, a_{\mercury} \, \frac{\d }{\d r} \lk \Delta \,g_{\,{\mercury}}(r) \rk \bigg|_{r=a_{\mercury}}} _{\mu_\text{G} \pi\, a_{\mercury} \, m_{\mercury} \, S(r)}  
+\end{align*}
+mit der Summe
+\begin{equation*}
+	S=S(a_{\mercury})=\sum\limits_{k=2}^{6}\lk \frac{m_k}{2\pi \, {r_k}^2} \rk \frac{{r_k}^2+{a_{\mercury}}^2}{\lk {r_k}^2-{a_{\mercury}}^2 \rk^2}\,.
+\end{equation*}
+Das setzen wir in \eqref{eq:hm_upsilon_P0} ein und erhalten für die wahre Anomalie
+\begin{align}
+	\upsilon_{\text{P}_0} &= 2\pi \lk {3 + \frac{-2 F_0 + G\pi \, a_{\mercury}\, m_{\mercury} \, S}{F_0+\Delta F} }\rk^{-\frac{1}{2}} \nonumber \\
+	  & = 2\pi \lk {\frac{1+ 3 \frac{\Delta F}{F_0} + \frac{1}{F_0}\, G\pi \, a_{\mercury}\, m_{\mercury} \, S}{1 +\frac{\Delta F}{F_0}} }\rk^{-\frac{1}{2}} \nonumber\\
+		&\approx 2\pi \lk { 1 - \frac{\Delta F}{F_0} - \frac{G\pi \, a_{\mercury}\, m_{\mercury} \, S}{2F_0} }\rk + \mathcal{O}\lk {\lk \frac{\Delta F}{F_0}\rk^2}\rk \,. \label{eq:hm_mercury_perihel_shift1}
+\end{align}
+Mit den Daten des Merkurs $a_{\mercury}$, $m_{\mercury}$, den Werten für $F_0, \Delta_F$ und $S$ (siehe \mlhmref{StoerpotentialMerkur.m}), sowie der siderischen Umlaufzeit des Merkurs von 87.969 d berechnen wir für die Verschiebungsrate $\Delta \dot{\upsilon}_{\text{P}_0}$ des Perihels 
+\begin{align}
+\begin{split}
+	\Delta \dot{\upsilon}_{\text{P}_0} &= \frac{\upsilon_{\text{P}_0} - 2 \pi}{T_{\mercury}}  \\
+	&= \frac{\Delta \upsilon_{\text{P}_0}}{T_{\mercury}} = \frac{2 \pi}{F_0 T_{\mercury} } \, \lk{- \Delta F - \frac{1}{2} G\pi a_{\mercury} m_{\mercury} S}\rk \approx 531.5''/\text{Jh.} 
+\end{split} \label{eq:hm_mercury_per_shift2}
+\end{align}
+Das Ergebnis der Berechnung der Potentialanteile der einzelnen Planeten ist in \mlhmref{StoerpotentialMerkur.m} ausgeführt und in \figref{hm_stoerpotential_merkur} dargestellt.\\
+Wir haben mit relativ einfachen Überlegungen eine gute Abschätzung für die Perihelverschiebung für annähernd kreisförmige Bahnen erhalten.\footnote{Unsere Betrachtungen zur Abschätzung der Perihelverschiebung beruhten auf der Näherungsannahme kreisförmiger Bahnen \cite{Price1979, Stump1988}.
+In \cite{Davies1983} und \cite{Stewart2005} wird eine Erweiterung auf elliptische Bahnen angegeben.
+Der Effekt ist aber relativ klein ($<\! 1''$).
+Unsere Näherung war also gerechtfertigt.} Es wäre aber doch schön, wenn wir auch die Bahn explizit als Funktion der Zeit berechnen könnten. Das wollen wir in \probref{hm_perihel_kappa3} tun.\\
+
+
+\subsubsection{Bahnberechnung für ein verallgemeinertes Zentralkraftfeld}\index{Zentralkraftfeld} \label{kap:Allg_ZK__Merkur}
+Mit \eqref{eq:hm_merkur_mittleres_potential} haben wir das Störpotential (\bzw Kraftfeld) für den Merkur in einer Form bestimmt, die leider keine direkte Integration der Bewegungsgleichung erlaubt.
+Man ist also auf Störungsrechnungen angewiesen.
+Wir wollen aber zunächst für Potentiale, die sich als Reihenentwicklung von $r^{-n}$ darstellen lassen, einen analytischen Ansatz versuchen.
+Wir schreiben dazu \eqref{eq:hm_bwg_allg_ZK} in folgender Form:
+\begin{align}
+	U_\text{\,ZK}(r) &= -\frac{\mu_\text{G}}{r} + \Delta U_2 + \Delta U_3 = -\frac{\mu_\text{G}}{r}  + \frac{\kappa_2}{r^2} + \frac{\kappa_3}{r^3} + \ldots \,.
+	\label{eq:hm_allg_ZK_1}
+\end{align}
+Die spezifische, wiederum auf die Masse $m$ normierte Gesamtenergie des Systems $H$ in Polarkoordinaten ist dann mit \eqref{eq:hm_bewgl1} gegeben durch
+\begin{equation}
+	H = \frac{1}{2} (\dot{r}^2 + r^2\dot{\upsilon}^2) + U(r) \,. \label{eq:hm_total_energy}
+\end{equation}
+Mit dem Drehimpuls $L = r^2\dot{\upsilon}$ aus \eqref{eq:hm_drehimp_z} schreiben wir $\dot{\upsilon}\!=\!L/r^2$ und setzen das in die Gleichung für die Energie \eqref{eq:hm_total_energy} ein:
+\begin{align}
+  H &= \frac{1}{2} \dot{r}^2 + \frac{r^2}{2} \frac{L^2}{r^4} + U(r)
+      \qquad \Rightarrow \qquad
+      \dot{r}^2 = 2H - 2 \underbrace{\lk \frac{L^2}{2 r^2} + U(r) \rk}_{U_\text{eff}} \nonumber \\
+\Rightarrow \dot{r} &= \sqrt{2 H - 2 \lk \underbrace{-\frac{\mu_\text{G}}{r} + \frac{L^2}{2r^2}}_{U_\text{eff, K}} + \underbrace{\frac{\kappa_2}{r^2}}_{\Delta U_1} + \underbrace{\frac{\kappa_3}{r^3}}_{\Delta U_2} \rk} ~. \label{eq:hm_allg_ZK_2}
+\end{align}
+Hierin sind $U_\text{eff,K}(r)$ und $U_\text{eff}(r)$ das effektive Potential des Keplerproblems \bzw des allgemeinen ZK-Feldes, wobei
+\begin{equation*}
+U_\text{eff,K}(r)\!=\! -\frac{\mu_\text{G}}{r} + \frac{L^2}{2r^2} ~ \;~\text{und}\;~ U_\text{eff}(r) = U_\text{eff,K}(r) + \Delta U_2 + \Delta U_3 ~~   \,.
+\end{equation*}
+Um $r(\upsilon)$, \dh die Bahn zu berechnen, schreiben wir die Zeitableitung des Bahnradius als
+\begin{align*}
+	\dot{r} &= \frac{\D r}{\D t} = \frac{\D r}{\D \upsilon}\frac{L}{r^2} = \sqrt{2\lk H - U_\text{eff}(r)\rk} ~,\\
+\text{woraus}~~ \D \upsilon &= \frac{L\,\D r}{r^2\sqrt{2 \lk H - U_\text{eff}(r)\rk}}  ~~\text{folgt.}
+\end{align*}
+Jetzt substituieren wir $r\!=\!1/q$ und $\D r = -1/q^2\,\D q$ und erhalten
+\begin{align*}
+\D \upsilon &= -\frac{L \killA{q^2}\,\D q}{\killA{q^2} \sqrt{2H - 2U_\text{eff}(q)}} = -\frac{\D q}{\sqrt{2H/L^2 - 2 U_\text{eff}(q)/L^2}} ~. 
+\end{align*}
+Das ergibt dann ausgeschrieben
+\begin{align}
+\upsilon &= - \bigintsss{\frac{L}{\sqrt{2H + 2\mu_\text{G}\, q - \lk L^2 + 2\kappa_2 \rk q^2 - 2\kappa_3\,q^3}}\, \D q } ~. \label{eq:hm_allg_ZK_3} 
+\end{align}
+Dieses Integral gilt es nun zu lösen.
+Wir haben das in Beispiel \ref{bsp:perihel_kappa2} für das Störpotential $\kappa_2 /r^2$ ausgeführt.
+
+%BEISPIEL 8 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{Integration der Bewegungsgleichung für ein ZK mit Störpotential $\kappa_2/{r^2}$}
+Wir setzen in \eqref{eq:hm_allg_ZK_3} $\kappa_3\!=\!0$, sodass wir ein leicht modifiziertes Keplerproblem erhalten.
+Wir erkennen, dass im Fall $\kappa_2 \neq 0$ das effektive Keplerpotential des ungestörten Falls $U_\text{eff, K}(r)$ durch einen Korrekturfaktor $2\kappa_2/L^2$ vergrößert wird.
+Wir könnten daher direkt die Lösung für die Bahn aus dem reinen ZKP nehmen und entsprechend modifizierte Parameter verwenden.
+Wir wollen aber die Bahngleichung für das gestörte System noch einmal explizit herleiten, da dies sehr instruktiv ist.
+Dazu nutzen wir für \eqref{eq:hm_allg_ZK_3} die Abkürzungen
+\begin{align*}
+	\hat{A} &= \frac{2H}{L^2} < 0 ~\text{, da die Ellipsenbahn gebunden ist} ~,\\
+	\hat{B} &= \frac{2\mu_\text{G}}{L^2} > 0 \,, \\
+	\hat{C} &= -\lk 1+\frac{2\kappa_2}{L^2}\rk < 0 ~\text{, da laut Voraussetzung }\frac{\kappa_2}{L^2}\ll 1 \,.
+\end{align*}
+In Integraltafeln finden wir für $\hat{C}\!<\!0$ und $\Delta\!=\!4\hat{A}\hat{C} - \hat{B}^2\!<\! 0$, was in unserem Fall erfüllt ist, für das Integral folgende Lösung:
+\begin{align}
+	\int \frac{1}{\sqrt{\hat{A} + \hat{B}q + \hat{C}q^2}} \,\D q &= \frac{-1}{\sqrt{-\hat{C}}}\,\arcsin\lk\frac{2\hat{C}q + \hat{B}}{\sqrt{-\Delta}}\rk \,. \label{eq:hm_allg_ZK_4}
+\end{align}
+In der Lösung \eqref{eq:hm_allg_ZK_4} des Integrals setzen wir
+\begin{align}
+D&=\sqrt{-\Delta}\!=\sqrt{\hat{B}^2-4\hat{A} \hat{C}} =\sqrt{\frac{8H}{L^2}\lk 1+ \frac{2\kappa_2}{L^2}\rk + \frac{4\mu_\text{G}^2}{L^4}} ~, \label{eq:hm_allg_ZK_5} \\
+B&\!=\hat{B} ~ \text{und} ~ \nonumber \\
+ C&\!=\!\sqrt{-\hat{C}}\!=\!\sqrt{1+2\kappa_2/L^2} \approx 1+\kappa_2/L^2~ . \nonumber 
+\end{align}
+Damit folgt 
+\begin{align*}
+	\upsilon-\upsilon_0 &= \frac{1}{C}\,\arcsin\lk \frac{B-2C^2 q}{D}\rk \bigg|^{q(\upsilon)}_{q_0} = \frac{1}{C}\,\arcsin\lk \frac{B-2C^2 \frac{1}{r}}{D}\rk \bigg|_{r_0}^{r(\upsilon)} \\
+											&= \frac{1}{C}\,\arcsin \lk \frac{B-\frac{2C^2}{r}}{D} \rk - \underbrace{\frac{1}{C}\,\arcsin \lk \frac{B-\frac{2C^2}{r_0}}{D} \rk}_{\equiv K_0/C} ~~
+\end{align*}
+und umgeformt
+\begin{equation*}
+\sin\lek C(\upsilon-\upsilon_0) + K_0\rek	= \frac{B-\frac{2C^2}{r(\upsilon)}}{D} \,.  
+\end{equation*}
+Das ist schon eine Gleichung für die Bahn, allerdings noch eine implizite.
+Wir wollen $r(\upsilon)$ explizit gewinnen und formen die Gleichung deshalb weiter um zu
+\begin{equation*}
+	r(\upsilon) = \frac{\frac{2C^2}{B}}{1-\frac{D}{B}\sin \lek C(\upsilon-\upsilon_0) + K_0\rek} ~. 
+\end{equation*}
+Wir wählen die Integrationskonstante $K_0$ ohne Beschränkung der Allgemeinheit so, dass sich 
+\begin{equation*}
+C\upsilon_0 - K_0 = \frac{\pi}{2} 
+\end{equation*}
+ergibt, denn dann ist $\sin\lk C \upsilon - C \upsilon_0 + K_0 \rk  = -\cos \lk C \upsilon \rk$, womit  wir schließlich erhalten:
+\begin{equation}
+	r(\upsilon) = \frac{\frac{2C^2}{B}}{1+\frac{D}{B}\,\cos(C\upsilon)} ~. \label{eq:hm_allg_ZK_6} 
+\end{equation}
+\label{bsp:perihel_kappa2}
+\end{example}
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Schreiben wir \eqref{eq:hm_allg_ZK_6} aus dem Beispiel mit 
+\begin{equation*}
+C=\sqrt{1+2\kappa_2/L^2} \approx 1+ \frac{\kappa_2}{L^2} ~~
+\end{equation*}
+und unter Umbenennung der Parameter 
+\begin{align*}
+\frac{2C^2}{B} &= \hat{p} = \frac{L^2}{\mu_\text{G}} \lk {1+ \frac{2\kappa_2}{L^2}} \rk = p \lk {1+ \frac{2\kappa_2}{L^2}} \rk \,,\\
+\frac{D}{B} &= \hat{e} = \sqrt{1 + \frac{2H L^2}{\mu_\text{G}^2} \lk 1 + \frac{2\kappa_2}{L^2} \rk} = e \sqrt{ 1 + \frac{4H\kappa_2}{\mu_\text{G}^2 e^2}}\,,
+\end{align*} 
+erhalten wir schließlich 
+\begin{equation}
+	r(\upsilon) = \frac{2C^2/B}{1+\frac{D}{B}\,\cos(C\upsilon)}=\frac{\hat{p}}{1+\hat{e}\cos(C\upsilon)} ~. \label{eq:hm_allg_ZK_7}
+\end{equation}
+Gleichung \eqref{eq:hm_allg_ZK_7} sieht genauso aus wie die Bahngleichung für die Ellipse im Keplerfall \eqref{eq:hm_kegelschnitt}, allerdings mit modifizierten Parametern.
+Wir erkennen, wie nicht anders zu erwarten war, dass für $\kappa_2 \rightarrow 0$ die Werte in die bekannten Werte für das reine Keplerproblem übergehen.
+Beides ist nicht verwunderlich, da durch den $\kappa_2/r^2$-Term im Potential ja nur die Größe des effektiven Potentials verändert wird, nicht aber die $r$-Abhängigkeit des Gesamtpotentials.
+Durch den Zusatzterm wird quasi ein \anf{effektiver Drehimpuls} des Systems erzeugt.
+Man sieht aber anhand von \eqref{eq:hm_allg_ZK_6}, dass durch diesen effektiven Drehimpuls der Term mit $\cos(C\upsilon)$ nicht mehr $2\pi$-periodisch bezüglich $\upsilon$ ist, $r(\upsilon)$ ist minimal für $\upsilon_{\text{P}_0}\!=\!0$ (Perihel) und maximal für $\upsilon_{\text{Ap}}\!=\!C /\pi$ (Aphel).
+In einem Zeitintervall, das dann einem vollen Umlauf entspricht, nimmt also die wahre Anomalie um $2\pi/C$ zu.\footnote{Eigentlich müsste man zeigen, dass die siderische Umlaufzeit für die gestörte Keplerellipse gleich der des ungestörten Falls ist. Das ist aber leicht einsichtig, da wegen der Drehimpulserhaltung auch im allgemeinen ZK-Feld weiterhin der Flächensatz gilt.}
+Die Perihelverschiebung ergibt sich mit \eqref{eq:hm_allg_ZK_7} demnach zu 
+\begin{equation}
+\Delta \upsilon_{\text{P}_0} = 2\pi/C  - 2\pi=  2\pi \lk \frac{1}{\sqrt{1+2\kappa_2/L^2}} -1 \rk \approx -2\pi \frac{\kappa_2}{L^2} ~. 
+\label{eq:hm_allg_ZK_8}
+\end{equation}
+Es ist interessant, dass die Perihel-Änderung umso kleiner ist, je größer der Drehimpuls ist.
+Das ist aber einsichtig, denn die relative Änderung des effektiven Potentials gegenüber dem reinen Keplerproblem ist bei großem Drehimpuls entsprechend kleiner.
+Wir zeigen in \figref{hm_simulationen_merkur1} verschiedene mit \mlhmref{PerihelKappa2.m} berechnete Simulationen von Bahnkurven für ein Potential mit Zusatzterm $\kappa_2\!\neq\! 0$, wobei die Parameter bewusst unrealistisch groß gewählt wurden, um die Effekte deutlich sichtbar zu machen. 
+
+\begin{figure}
+\includegraphics[width=\textwidth]{simulation_merkur1.pdf}%
+\caption[Simulation von Bahnformen für verschiedene Parametersätze.]{Simulation von Bahnformen für verschiedene Parametersätze des Zentralkraftfeldes. Die Parameter sind $e=0.5, a = 1 $ und $\kappa_2 = -0.1\, \mu_\text{G}, + 0.1\, \mu_\text{G}, -0.2\, \mu_\text{G} \:\text{und}\: +0.2\,\mu_\text{G}$ für die Bilder \fa bis \fd. Um die Effekte deutlich sichtbar zu machen, wurden die Parameter unrealistisch groß gewählt. Siehe \mscr~\mlhmref{PerihelKappa2.m}.}%
+\label{abb:hm_simulationen_merkur1}%
+\end{figure} 
+
+\subsubsection{Merkur-Perihelverschiebung -- relativistischer Effekt}\index{Perihelverschiebung!relativistische} \label{kap:Relativistic_Merkur}
+So schön und nachvollziehbar unsere Rechnungen zur Perihelverschiebung des Merkurs in \kapitel{Stoerpotential_Merkur} auch waren, die von vielen Astronomen mit Methoden der Störungsrechnung sehr genau berechnet wurden, gibt es doch leider einen Haken.
+Man fand nämlich zwischen den berechneten ca. $531''$/Jh. und den tatsächlich beobachteten ca. $572''$/Jh. eine signifikante, nicht erklärbare Differenz von $41''$/Jh.
+Auch der französische Astronom Urbain Le Verrier\indexp{Le Verrier, Urrbain Jean Joseph}\footnote{Urbain Jean Joseph Le Verrier (1811--1877) war ein französischer Astronom und Mathematiker. Ihm gelang 1846 die Vorausberechnung der vermutlichen Bahn des bis dahin unentdeckten Planeten Neptun aus den Bahnstörungen des Uranus. Der Neptun wurde dann an der Berliner Sternwarte durch den Astronomen Galle mit dem 22-Zentimeter-Fraunhofer-Refraktor auch an der von Le Verrier vorhergesagten Position gefunden. Le Verrier gilt im Übrigen auch als Erfinder der Wetterkarte.}, dessen genaue Berechnungen die Entdeckung des Neptuns ermöglicht hatten, konnte diese Diskrepanz nicht erklären.
+Er schlug vor, sicherlich durch den Erfolg beim Neptun ermutigt, nach einem inneren Planeten zu suchen.
+Dieser erhielt den Namen Vulkan\footnote{Offensichtlich ein Vorgriff auf \emph{StarTrek}.}, er blieb allerdings im Gegensatz zum Neptun unauffindbar.
+Die Lösung dieses Rätsels gelang erst Einstein\indexp{Einstein, Albert}\footnote{Albert Einstein (1879--1955) war einer der bedeutendsten Physiker der Weltgeschichte. Seine Forschungen zu Raum und Zeit,  sowie zum Wesen der Gravitation haben unser modernes Weltbild maßgeblich geprägt und seit Newton die wohl größte Revolution in der Physik eingeleitet.} mit seiner Arbeit zur \anf{Erklärung der Perihelbewegung des Merkur aus der allgemeinen Relativitätstheorie} \cite{Einstein1915}.
+Wir können hier leider nicht die Theorie darstellen.
+Deshalb verweisen wir auf die entsprechenden Lehrbücher \cite{Stephani1991, Moore2013}, können aber angeben, dass auf Basis der Allgemeinen Relativitätstheorie die Bewegung eines Körpers in einem ZKF durch folgende Bewegungsgleichung beschrieben werden kann: 
+\begin{align}
+\begin{split}
+	\ddot{r} &=  -\frac{\mu_\text{G}}{r^2} + \lk 1- \frac{3\mu_\text{G}}{c^2 r} \rk \frac{L^2}{r^3} = -\frac{\mu_\text{G}}{r^2} + \frac{L^2}{r^3} - \frac{3\mu_\text{G} L^2}{c^2 r^4} \\
+	&= -\frac{\mu_\text{G}}{r^2} + \frac{L^2}{r^3} - \frac{\d}{\d r} \Delta U_\text{rel}(r) 
+\end{split} \label{eq:hm_einstein_01} 
+\end{align}
+mit $ \Delta U_\text{rel}(r) = -\mu_\text{G} L^2/(c^2 r^3) $. 
+Die Bewegungsgleichung \eqref{eq:hm_einstein_01} wird in \probref{hm_perihel_kappa3} gelöst.
+Hier wollen wir in der Näherung nahezu kreisförmiger Bahnen die Größe der Perihelverschiebung durch den relativistischen Effekt abschätzen.
+Wir benutzen die Beziehung \eqref{eq:hm_upsilon_P0}, die unter der Annahme kleiner Störungen hergeleitet wurde. 
+Wir berechnen $b(a)$, $b'(a)$ für den relativistischen Fall, nutzen $L_{\mercury} \approx \mu_{\text{G}} a_{\mercury}$ aus \eqref{eq:hm_drehimpuls_von_ae} und erhalten für $\gamma$ aus \eqref{eq:hm_upsilon_P0}
+\begin{align*}
+\gamma &= \sqrt{\frac{1+\frac{3 \kappa_3}{a^2 \mu_\text{G}}} {1-\frac{3 \kappa_3}{a^2 \mu_\text{G}}}} \,, 
+\end{align*}
+woraus wir erhalten:
+\begin{subequations}
+\begin{align}
+\Delta \upsilon_{\text{P}_0},\text{rel} = 2\pi \lk \frac{1}{\gamma} -1 \rk \approx -6 \pi \frac{\kappa_3}{a^2 \mu_\text{G}} \,~~\text{und} \\
+\Delta \dot{\upsilon}_{{\text{P}_0},\text{rel}} = \frac{6 \pi}{c^2} \frac{\mu_{\text{G}}}{a} \frac{1}{T_{\,\mercury}} \approx 41.3''/\text{Jh.} \, 
+\end{align} \label{eq:hm_rel_perihel_val}
+\end{subequations} 
+Die störungstheoretische Rechnung (siehe auch \probref{hm_perihel_kappa3}) ergibt unter Berücksichtigung der Elliptizität einen kleinen Korrekturfaktor $(1-e^2)$:
+\begin{equation}
+\Delta \dot{\upsilon}_{{\text{P}_0},\text{rel}} = \frac{6 \pi}{c^2} \frac{\mu_{\text{G}}}{a(1-e^2)} \frac{1}{T_{\,\mercury}} \approx 43''/\text{Jh.} \label{eq:hm_rel_perihel_val2}
+\end{equation}
+Da wir für die Berechnung sowohl von \eqref{eq:hm_rel_perihel_val} als auch \eqref{eq:hm_mercury_per_shift2} kleine Störungen und damit eine mögliche Linearisierung der Bewegungsgleichung vorausgesetzt haben, können wir die Verschiebungen aus den Rechnungen \eqref{eq:hm_mercury_per_shift2} und \eqref{eq:hm_rel_perihel_val2} addieren.
+Die Summe ergibt ca. $573''/$Jh., was sehr gut mit den experimentellen Befunden übereinstimmt.
+Einstein\indexp{Einstein, Albert} bekam, nachdem er diese Berechnungen 1915 durchgeführt hatte, wie er selber angab, \anf{Herzrasen} und war \anf{einige Tage außer sich vor Freude}.
+Irgendwie kann man dies auch 100 Jahre später noch gut nachfühlen.
+
+\begin{figure}
+\includegraphics[width=\textwidth]{RelativisticPotential.pdf}%
+\caption[Potential unter Berücksichtigung der relativistischen Korrektur.]{Darstellung des Potentials um einen Stern unter Berücksichtigung der relativistischen Korrektur, wobei $U_\text{eff,K}\!=\!-\mu_\text{G}/r + L^2/(2r^2)$ und $U_\text{eff,rel}\!=\!U_\text{eff,K}-\mu_\text{G}L^2/(c^2r^3)$. Die relativistische Korrektur ist im Bild stark überhöht dargestellt.}%
+\label{abb:hm_relativistic_merkur}%
+\end{figure} 
+Wir wollen jetzt noch eine anschauliche Erklärung der relativistischen Perihelverschiebung geben.
+Wir betrachten dazu \figref{hm_relativistic_merkur}, in der wir das effektive Potential ohne und mit stark überhöhter relativistische Korrektur dargestellt haben.
+Im nicht-relativistischen Fall ergibt das effektive Potential eine Senke, in der bei einer Energie $H\!<\!0$ der Körper zwischen $r_\text{min}\!=\!r_{\text{P}_0}$ und $r_\text{max}$ seine Bahn hat.
+Durch das relativistische Potential -- welches man sich als ein Ergebnis der Raumkrümmung um die Zentralmasse herum vorstellen kann -- wird aber das effektive Potential bei kleinen $r$ (man beachte die $r^{-4}$-Abhängigkeit) so beeinflusst, dass der umlaufende Körper bei gleicher Energie dem Zentralkörper näherkommt.
+Da dort die Bahngeschwindigkeit am größten ist, wird der Planet in gleicher Zeit einen etwas größeren Abschnitt der Bahn zurücklegen.
+Folglich hat er, wenn er zu seinem definierten Ausgangspunkt (\zb dem Perihel) zurückkommt, einen Winkel $>\! 2\pi$ überstrichen.
+
+In \probref{hm_perihel_kappa3} berechnen wir die Bahn für Potentiale mit beliebigem $\kappa_3$-Term.
+Aus der Rechnung erhält man neben der schon abgeschätzten Perihelverschiebung auch die zeitliche Entwicklung des Bahnradius als Funktion der wahren Anomalie $r(\upsilon(t))$.
+Dieser zeigt durch das Störpotential bedingt Oszillationen, wie wir sie bei der Betrachtung der Stabilität von Planetenbahnen bereits abgeschätzt haben. Für interessierte Leser sei auf eine schöne einfache linearisierte Berechnung der Merkurpräzessions für den relativistischen Fall in Ref. \cite{Hall2022} verwiesen, die ebenfalls für ein nichtrelativistisches $\kappa_3/r^3$ Störpotential verwendet werden kann.
+
+\subsection{Kometen}\index{Kometen}\label{kap:kometen}
+Kometen oder Schweifsterne sind faszinierende Himmelskörper.\footnote{Eine sehr lesenswerte und ausgesprochen ansprechend gestaltete Übersichten zu Kometen findet sich in \cite{Stump1988}.} Vermutlich sind sie nahezu unveränderte Restmaterie aus der Entstehungszeit unseres Sonnensystems.
+Die meisten Kometen werden aus ihren ursprünglichen Bahnen durch Gravitationskräfte und Kollisionen untereinander abgelenkt und auf langgestreckte Ellipsenbahnen geschickt.
+Ein Komet besitzt einen Kern aus Staub und Eiskörnern, der bei ausreichender Sonneneinstrahlung eine Gashülle (Koma) und einen Schweif ausbildet.
+Die Länge des Schweifs kann mehrere hundert Millionen Kilometer erreichen.
+Berühmte Kometen sind \zb der große Komet von 1680, der am Tageshimmel zu sehen war, der Komet Donati von 1858, der als schönster Komet aller Zeiten gilt, und natürlich der berühmte Halleysche Komet.
+Einigen Menschen ist es sogar vergönnt, den Halleyschen Kometen\index{Halleyscher Komet}\index{Komet!Halleyscher} in ihrem Leben zweimal zu sehen.
+Seine Berühmtheit erlangte er dadurch, dass seine Wiederkehr nach der Beobachtung im Jahr 1682 von Halley für 1758 vorhergesagt wurde.
+Halley erlebte sie selbst nicht mehr.
+Aber das von ihm vorhergesagte Wiedererscheinen des Kometen wurde am 25.12.1758 von dem sächsischen Amateurastronomen(!) Palitzsch\footnote{Johann Georg Palitzsch (1723--1788) war ein sächsischer Landwirt, Astronom und Naturwissenschaftler. Manche Literatur beschreibt ihn als \anf{Bauernastronom}, da er seine Beobachtungen auf seinem Landgut nahe bei Dresden machte.} tatsächlich beobachtet.
+Dies war ein unglaublich großer und deutlich sichtbarer Erfolg der Newtonschen Gravitationstheorie\indexp{Newton, Sir Isaac}, der in etwa mit der Beobachtung der Lichtablenkung von 1919 zur Bestätigung der Allgemeinen Relativitätstheorie verglichen werden kann.
+Wir wollen uns im Folgenden auf wiederkehrende Kometen mit elliptischen Bahnen konzentrieren.
+Die Berechnung elliptischer Kometenbahnen ist im Prinzip der für Planeten ähnlich.
+Bei Kometen wird zur Bahnberechnung neben der Exzentrizität $e$ die \gls{periheldistanz} $q$ und der Periheldurchgang $t_0$ anstelle des Bahnradius und der mittleren Anomalie (Tabelle \ref{tab:hm_parameter_kometen}) angegeben.
+Allerdings sind die Exzentrizitäten bei Kometen sehr groß ($e\!\approx\! 1$), was zu numerischen Schwierigkeiten bei der Lösung der Kepler-Gleichung führt und die Benutzung der Mittelpunktsgleichung oder der einfachen Reihenentwicklungen nicht mehr erlaubt.
+Wir werden deshalb zur Berechnung der exzentrischen Anomalie ein modifiziertes Verfahren benutzen (siehe \mscre \mlhmref{KometenZeit.m} und \mlhmref{KometenObsHor.m}).
+Das Prinzip besteht darin, die Ellipsenbahn durch eine parabelähnliche Bahn zu approximieren.
+Wir  können dies hier nur skizzieren und verweisen für mehr Details auf die ausgezeichnete Darstellung in \cite{Montenbruck1999}.
+Für $e\!>\!0.9$ und eine mittlere Anomalie nahe am Perihel ($M\!<\!0.1\degree$) definiert man für diese Parabel-Approximation aus der exzentrischen Anomalie die sogenannten Stumpffschen\footnote{Karl Johann Nikolaus Stumpff (1895--1970) war ein deutscher Astronom, der in Berlin, Graz und Göttingen vor allem auf dem Gebiet der mathematischen Himmelsmechanik forschte.} Funktionen\index{Stumpffsche Funktionen}\index{Funktionen!Stumpffsche}\cite{Walter2018}.
+\begin{align}
+c_1(E) &= \frac{\sin E}{E} = \sum_{n=1}^{\infty} (-1)^{n+1} \frac{E^{2(n-1)}}{(2n-1)!} \,, \label{eq:hm_Stumpff_fkt} \\
+c_2(E) &= \frac{1-\cos E}{E^2} = \sum_{n=1}^{\infty} (-1)^{n+1} \frac{E^{2(n-1)}}{(2n)!} \,,\nonumber \\
+c_3(E) &= \frac{E-\sin E}{E^3} = \sum_{n=1}^{\infty} (-1)^{n+1} \frac{E^{2(n-1)}}{(2n+1)!} \,. \nonumber
+\end{align}
+Man substituiert $E$ in der Kepler-Gleichung durch $c_3(E)$ und erhält mit \eqref{eq:hm_mittlere_anomalie}
+\begin{equation*}
+(1-e) E + e\,c_3(E)\, E^3 = \sqrt{\mu_\text{G} \lk \frac{1-e}{q} \rk^3} (t-t_0)  = M(t)  \,,
+\end{equation*}
+woraus mit der Hilfsgröße 
+\begin{equation*}
+Q(e) = \sqrt{\frac{3\,e\, c_3(E)}{1-e}} E
+\end{equation*}
+aus der Kepler-Gleichung eine modifizierte Barker-Gleichung\index{Gleichung!Barker-} (siehe auch \probref{hm_bwglg_hyp_parab}) wird:
+\begin{equation}
+Q+\frac{Q^3}{3} = \sqrt{6\,e \, c_3(E)} \sqrt{\frac{\mu_\text{G}}{2q^3}}\,(t-t_0)\,.
+\label{eq:hm_Barker_glg}
+\end{equation}
+Diese wird nun iterativ nach $E$ mit einem Anfangswert $E_0\!=\!0$ \bzw $c_3(0)\!=\!\frac{1}{6}$ gelöst.
+Die so bestimmten exzentrischen Anomalien $E_n$ ($n$ wird bestimmt durch die Genauigkeit, die man erreichen will) werden dann zur Berechnung der Stumpffschen Funktionen\index{Funktion!Stumpffsche} $c_1(E_n), c_2(E_n), c_3(E_n)$ benutzt, wobei die Reihenformeln \eqref{eq:hm_Stumpff_fkt} sehr schnell konvergieren, was die gesamte Bahnberechnung damit schnell und relativ genau macht \cite{Montenbruck1999}.
+Die Bahnkoordinaten ergeben sich zu
+\begin{align}
+x &= r\cos\upsilon = q \lk 1 - \frac{2\,c_2(E)}{6e\,c_3(E)} \,Q^2 \rk \,, \label{eq:hm_bahn_koord_komet} \\
+y &= r\sin\upsilon = 2q \lk \frac{1+e}{2e} - \frac{1}{6\, c_3(E)}\, c_1(E) \, Q\rk \,, \nonumber \\
+r &= q \lk 1+ \frac{2\,c_2(E)}{6\,c_3(E)}\,Q^2\rk \,.\nonumber
+\end{align}
+Die weitere Rechnung entspricht den Berechnungsschritten, wie wir sie bei den Planeten kennengelernt haben.
+\figref{hm_kometenbahnen1} zeigt die Berechnungen für vier verschiedene Kometen.
+Man beachte die starken Bahnneigungen zur Ekliptik und die parabelartigen Verläufe für Kometen mit großen Exzentrizitäten.
+Man erkennt auch sehr schön die Besonderheit des Halleyschen Kometen mit seiner für Kometen relativ kurzen Periode von $75.3$ Jahren und seiner retrograden\index{Bahn!retrograde} Bahn, die bis zu Neptun und Pluto reicht.
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{Komet1.pdf}%
+\caption[Kometenbahnen im Vergleich.]{Bahnen verschiedener Kometen im Vergleich. \fa Projektion der Bahnen auf die Ekliptik. \fb 3D-Darstellung der Bahnen in Perihelnähe (Sie \mscr~\mlhmref{KometenBahnen.m}).}%
+\label{abb:hm_kometenbahnen1}%
+\end{figure}
+
+Wir möchten an dieser Stelle aber noch auf einen Punkt hinweisen, der bei Berechnungen genaue Zeiten und Koordinaten für eine Beobachtung wichtig ist.
+Bisher haben wir bei unseren Rechnungen die Lichtlaufzeit \index{Lichtlaufzeit} von den Planeten oder Kometen zum Beobachtungsort nicht berücksichtigt.
+Die so berechneten Koordinaten heißen deshalb auch astrometrische \index{Koordinaten!astrometrische} Koordinaten und entsprechen Beobachtungskoordinaten für eine angenommene Lichtgeschwindigkeit $c\rightarrow\infty$.
+Bei fernen Kometen und auch Planeten benötigt das Licht aber für die Distanzen zu uns eine endliche Zeit $t_\text{L}\!\approx\!\Delta_0/c$.
+Während dieser Zeit bewegt sich der Himmelskörper weiter.
+Der beobachtete Ort $\vec{r}_\text{B}$ liegt daher etwas \anf{hinter} dem Ort $\vec{r}_\text{HK}$, an dem sich der Himmelskörper zur Beobachtungszeit $t$ tatsächlich befindet, d.\,h. es gilt
+\begin{equation}
+\vec{r}_\text{B} = \vec{r}_\text{\astrosun}(t) + \lek \vec{r}_\text{HK}(t) - \dot{\vec{r}}_\text{HK}(t)\,t_\text{L}\rek \approx \vec{r}_\text{\astrosun}(t) + \lek \vec{r}_\text{HK}(t) - \dot{\vec{r}}_\text{HK}(t)\, \frac{\Delta_0}{c}\rek \,.
+\label{eq:hm_scheinbare_koord_B}
+\end{equation} 
+
+Hierin sind $\vec{r}_\text{B}$ die beobachteten (scheinbaren) Koordinaten\index{Koordinaten!scheinbare}, $\vec{r}_\text{\astrosun}$ die geozentrischen Koordinaten der Sonne und $\vec{r}_\text{HK}$ die berechneten heliozentrischen (astrometrischen) Koordinaten des Himmelskörpers.
+$\Delta_0$ ist die geometrische \gls{entfernunghimmelskoerper} und $\dot{\vec{r}}_\text{HK}$ die Bahngeschwindigkeit.
+In \probref{hm_lichtlaufzeit} werden dazu einige Abschätzungen angestellt, in \mlhmref{KometenBahnen.m} wird die im Allgemeinen kleine Korrektur bei der Berechnung der Beobachtungsdaten von Kometenbahnen berücksichtigt.
+Bei nahen und relativ langsamen Objekten sind diese Korrekturen im Allgemeinen zu vernachlässigen. 
+Da die Kometen auf ihrer Bahn viele Störungen erfahren -- manchmal bleiben sie sogar unauffindbar --, unterscheiden sich die Bahnparameter von Periode zu Periode, wie man am Beispiel des  Halleyschen Kometen sehen kann, der seit einigen Jahrhunderten vermessen wird (\textbf{Übungen} \ref{prob:hm_kometen_asteroiden} und \ref{prob:hm_verweildauer_komet_erdbahn}). 
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{SL9.pdf}%
+\caption[Shoemaker-Levy D/1993 F2.]{Shoemaker-Levy D/1993 F2 (Beispiel \ref{bsp:hm_shoemaker_levy}, \mlhmref{KometenSL9.m}). Man beachte, dass die rechte Abbildung in der $z$-Koordinate stark gestreckt ist!}%
+\label{abb:hm_shoemaker_levy_komet}%
+\end{figure}
+
+Ein besonders beeindruckendes Beispiel einer Bahnveränderung war der Komet Shoemaker-Levy.
+Seine Bruchstücke tauchten wie bereits erwähnt im Juli 1994 in den Planeten Jupiter ein.
+Wir haben bereits in \kapitel{stoerungsrechnung} die heliozentrischen Koordinaten dieses Kometen über numerische Integration bis zu seinem Zusammenprall mit Jupiter berechnet.
+Wir vergleichen dieses Ergebnis mit der durch mittlere Bahnelemente gegebenen Keplerbahn.
+Man erkennt in \figref{hm_shoemaker_levy_komet} sehr gut, dass die ungestörte Kometenbahn durch die Nähe zum Jupiter bereits 6 Monate vor dem Zusammenstoß massiv beeinflusst wird.
+Man kann also bereits zu diesem Zeitpunkt nicht mehr von einer ungestörten Keplerbahn sprechen.\\
+Im Juli 2020 hatten die Menschen auf der Nordhalbkugel der Erde das Glück, den Kometen Neowise beobachten zu können.
+Er bildete einen eindrucksvollen Schweif aus (\figref{hm_komet_neowise1}) und war mehrere Tage sehr gut nach Sonnenuntergang und vor Sonnenaufgang sichtbar.
+Aus den in Tabelle \ref{tab:hm_parameter_kometen} angegebenen Werten können wir mit dem \mscr \mlhmref{KometenObsHor.m} dessen Bahn berechnen und auch erkennen, dass wir mit unserem Beobachtungsdatum großes Glück hatten, da der Komet nur wenige Tage so gut sowohl am Abend- als auch am Morgenhimmel zu sehen war.
+\begin{figure}%
+\centering
+\includegraphics[width=0.75\textwidth]{KometNeowise.JPG} \\%
+\caption[Beobachtung des Kometen Neowise von der Ostalb.]{Beobachtung des Kometen Neowise von der Ostalb aus ($48.8\degree$N, $10.2\degree$ O). Aufgenommen von Sylvia und Michael Kaschke am 12.07.2020, 22:30 MESZ.}%
+\label{abb:hm_komet_neowise1}%
+\end{figure}
+\begin{figure}%
+\centering\includegraphics[width=\textwidth]{Neowise03.pdf}%
+\caption{Berechnete Bahn des Kometen Neowise für den Monat Juli 2020.}%
+\label{abb:hm_komet_neowise2}%
+\end{figure}

@@ -1,0 +1,105 @@
+\input{headerAB}
+
+\thispagestyle{plain}%\mp
+\restoregeometry 
+\begin{textblock}{3}(0,0)
+\includegraphics{BuchtitelseiteWB5.pdf}
+\end{textblock}
+\leavevmode
+\newpage 
+\thispagestyle{empty}
+\quad 
+\newpage
+\pagestyle{fancy}
+
+\author{Michael Kaschke, Michael Kempe   \\
+und Michael Totzeck }
+\title{Fingerübungen der Physik\\ \\
+Band V \\ \\ Optik \\ \\ Workbook\\}
+
+\subtitle{Ein Lehr- und Übungsbuch mit im Studium selten behandelten Kapiteln der Physik und ausführlich numerisch behandelten Problemen in \matlab- und \py- Programmen. \\
+\smallskip
+Unter Mitwirkung von Holger Cartarius.}
+\smallskip
+\maketitle
+
+\begin{dedication}
+\;\;\;To be completed.\\
+\medskip
+\textsc{Michael Kaschke, Michael Kempe und  Michael Totzeck}\\ 
+\medskip
+\medskip
+\end{dedication}
+\frontmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%>
+
+%\include{vorwort5}
+
+\clearpage
+\pdfbookmark[1]{Inhaltsverzeichnis}{toc}
+\tableofcontents
+\setcounter{tocdepth}{3}
+
+\mainmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%>
+
+
+%\newpage 
+%\setcounter{tocdepth}{4}
+%\pdfbookmark[0]{Inhaltsverzeichnis}{toc}
+%\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\newcounter{fmpg}\setcounter{fmpg}{\arabic{page}}
+
+%% Ab hier die Zusammenfassung von Band I bis Band IV
+
+%\phantomsection
+%\addcontentsline{toc}{part}{Zusammenfassung Inhalt Band I - Band IV}
+%\thispagestyle{empty}
+  %\begin{flushright}
+    %\LARGE
+    %\textbf{Inhalt von Band I - Band IV \\}
+  %\end{flushright}
+  %\vspace*{\fill}
+%\newpage
+
+%\input{bew/bew_zusammenfassung}
+%\input{kontmech/kontmech_zusammenfassung}
+%\input{hm/hm_zusammenfassung} 
+%\input{adyn/adyn_zusammenfassung}
+%\input{aero/aero_zusammenfassung}
+%\input{spo/spo_zusammenfassung}
+%\input{edyn/edyn_zusammenfassung}
+%\input{edyn/srt_zusammenfassung}
+
+%% Ende Zusammenfassung
+
+\setcounter{chapter}{8}
+\newpage 
+\phantomsection
+\addcontentsline{toc}{part}{Band V - Optik}
+\thispagestyle{empty}
+  \begin{flushright}
+    \LARGE
+    \textbf{Band V \\ \bigskip Optik\\}
+  \end{flushright}
+  \vspace*{\fill}
+
+%% Achtung diese Zeile auch in optxxx/optxxAB aktivieren 
+\addtocontents{toc}{\protect\setcounter{tocdepth}{3}}% alles zeigen bei WorkBook
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\include{optbasAB}
+
+\include{optgerAB}
+
+\include{optatmAB}
+
+\include{solmanUeb5WB}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{footer} 

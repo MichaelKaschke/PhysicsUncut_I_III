@@ -1,0 +1,118 @@
+%\input{header.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter*{Einige Bemerkungen zur computergestützten Physik} \label{chap:compphys}
+
+\def\chapname{compphys}
+\bibliographystyle{spphys}
+
+\subsection*{Warum ist computergestützte Physik im Studium notwendig?}
+
+Computergestützte Physik\index{Physik!computergestützte}, auch oft aus dem Englischen kommend \textit{Computational Physics}\index{Physics!computational} (CP) genannt, ist ein Teilgebiet der Physik, das sich mit der numerischen Berechnung \bzw Computersimulation physikalischer Probleme und Prozesse befasst. Es wird bisweilen auch Numerische Physik\index{Physik!numerische} oder Physikinformatik\index{Physikinformatik} genannt.
+Dieses Gebiet nahm nicht zuletzt durch die enorme Entwicklung der Informationstechnologie in den letzten Jahrzehnten einen enormen Aufschwung. Heute sind wissenschaftliche Fortschritte in vielen Gebieten der Physik, aber auch zahlreicher anderer Wissenschaften ohne Computermethoden undenkbar. Insbesondere ist wissenschaftlicher Fortschritt bei der Untersuchung komplexer physikalischer Systeme, \zb von Systemen mit riesiger Anzahl von Einzelelementen und Freiheitsgraden oder von hochgradig nichtlinear verkoppelten Systemen ohne den Einsatz von Informationstechnologie undenkbar. Dazu werden heute Hochleistungsrechner vor allem zur Berechnung, Modellierung und Simulation solcher komplexer Systeme und zur Verarbeitung riesiger Messdatenmengen eingesetzt. Computergestützte Physik wird inzwischen in der Forschung in nahezu allen Teilgebieten der Physik eingesetzt, als Beispiele seien genannt: \\
+
+%\begin{table*}
+\begin{tabular}{@{}ll}
+  \textbf{Teilgebiet} & \textbf{Beispiel} \\ \\
+Astrophysik und Kosmologie & Simulation der Entstehung des Universums \\
+Strömungsmechanik & Simulationen des Luftwiderstandes \\
+Festkörperphysik & Berechnung von Phasenübergängen \\
+Meteorologie und Klimatologie \ \;& Wetter- und Klimasimulationen \\
+Biophysik & Simulation von Proteinfaltungen \\ \\
+\end{tabular} 
+%\caption{Anwendungsbereiche computergestützter Physik}
+%\end{table*}
+
+Anwendungen finden sich aber nicht nur in der Physik, sondern in allen Bereichen der Natur- und Technikwissenschaften; darüber hinaus aber auch in den Gesellschaftswissenschaften.\\
+Daneben kommen Simulationen ebenfalls seit einigen Jahrzehnten selbstverständlich in der Lehre zum Einsatz, um numerische Experimente auszuführen. Selbst für den Schulunterricht gibt es zahlreiche Angebote, wobei die Sammlung interaktiver Simulationen PhET (\url{https://phet.colorado.edu}) der University of Colorado sicher die prominenteste ist. Typischerweise übernehmen die Ersteller solcher Sammlungen jedoch die Arbeit des Modellierens -- die Simulation ist schon \anf{fertig} und es werden durch die Nutzer \anf{nur noch} Parameter verändert. Der Einsatz von CP in der Lehre bedeutet jedoch gerade auch den Schritt der Modell- und Programmentwicklung zu durchlaufen und sollte selbstverständlich sein, um Simulationen verstehen zu können.\\
+Es ist daher unerlässlich, dass die heute Studierenden im Rahmen ihres Fachstudiums (der Physik oder auch des Lehramtes für Physik) numerische \bzw generell Daten- und Computermethoden kennenlernen und praktische Erfahrungen damit sammeln \cite{Krieger2022}, um so auf die modernen Problemlösungsansätze und -methoden entsprechend vorbereitet zu werden. Im angelsächsischen Raum ist diese Ausprägung in Studium und Lehre unseres Erachtens deutlich weiter fortgeschritten, was auch anhand der umfangreichen Literatur ersichtlich ist. Wir verweisen hier besonders auf die Referenzen \cite{Landau2008, Landau2007, Landau2015, Burke2017, Behringer2017, Atherton2023}. So argumentierte bereits 2008 R. Landau\footnote{Rubin H. Landau ist ein US-amerikanischer Physiker, der sich vor allem für die Einführung der CP in der Lehre verdient gemacht hat.}\cite{Landau2008}, dass Computermethoden neben Theorie und Experiment einen dritten \anf{Pfad} der physikalischen Erkenntnis darstellen und dass computergestützte Physik als eine Synthese von Physik, angewandter Mathematik und Informatik zu verstehen sei. 
+
+%Dies ist in der nachfolgenden Graphik (nach \cite{Landau2008}) schematisch dargestellt. \\
+%
+%\begin{figure}[H]
+%\includegraphics[width=\textwidth]{CompPhys01.pdf}
+%\caption*{Computational Physics (CP). a) CP als Synthese von Physik, angewandter Mathematik und Computerwissenschaften (Informatik). b) Computersimulation als ein weiterer Erkenntnispfad. (nach \cite{Landau2008}). }
+%%\label{abb:compphys01}
+%\end{figure}
+
+\subsection*{Wie sollte computergestützte Physik im Studium eingeführt werden und welche Vorteile ergeben sich daraus?}
+
+Wir unterstützen entlang der Idee von R. Landau \cite{Landau2008}
+%(\figref{compphys01}a) 
+die Auffassung, dass es aufgrund des häufigen Computereinsatzes und der vielfach bereits vorhandenen und zum Teil ausgeprägten Erfahrungen in Software und Programmierung heute nicht mehr sinnvoll ist, ausschließlich eigenständige Computermethoden-Kurse oder Computational-Physics-Seminare anzubieten, da dies möglicherweise zu unnötigen Barrieren zwischen Theoretikern, Experimentalphysikern und CP-Anhängern führt. Wir sprechen uns vielmehr dafür aus, dass man die Computermethoden sowohl in die Lehrveranstaltungen für experimentelle und theoretische Physik als auch in die Praktika integriert. Die Computermethoden sind heute so integriert bei der Theorieentwicklung, dem Design und der Auswertung von Experimenten sowie  der Visualisierung einsetzbar, dass es wenig sinnvoll ist, das Erlernen dieser Methoden von dem eigentlichen Fachgebiet zu trennen.\footnote{Es sei betont, dass dieser Ansatz der Einbindung von Computermethoden in die Lehre nicht nur für die Physik gilt, sondern im weitesten Sinne für alle Natur- und Technikwissenschaften.} In diesem Sinne wurden auch die Kapitel dieses Buch geschrieben und die einzelnen Übungen ausgewählt. Darüber hinaus gibt es weitere Gründe für den integrierten Ansatz (\cite{Krieger2022, Hasbun2018}):
+\begin{itemize}
+	\item Das Erlernen von Programmiersprachen gestaltet sich am einfachsten durch \textit{learning-by-doing} anhand physikalischer Fragestellungen, sehr gut auch bei kleinen Projekten in Teams. Ziel muss es sein, schnell zu Ergebnissen im Physikverständnis zu kommen, ohne dass viel Lehr- und Lernzeit in das Erlernen einer Computersprache investiert werden muss. Wissenschaftliche Software-Pakete, wie sie für \matlab, GNU Octave, Python \ua bereitstehen, bieten dazu ideale Voraussetzungen.
+        \item Das \anf{Experimentieren} mit Parametern am Computer erlaubt einen spielerischen Zugang zu komplexeren, realitätsnäheren physikalischen Problemen oder auch aktuellen Aufgabenstellungen der physikalischen Forschung. Außerdem wird durch den \textit{What-if}-Ansatz beim "`Experimentieren"' mit Parametern die Neugierde und die heuristische Erfahrung der Lösung von Problemen und Fragestellungen entwickelt.
+	\item Typischerweise werden in Kursvorlesungen und Seminaren des Curriculums physikalische Probleme behandelt, für die geschlossene, analytische Lösungen der zu Grunde liegenden Gleichungen und Modelle existieren. Das gilt aber nur für verhältnismäßig wenige idealisierte Systeme (\zb Wasserstoffatom, harmonisches Pendel usw.). Für viele realitätsnähere Probleme lassen sich zwar in der Regel Modelle auf Basis der grundlegenden Gleichungen aufstellen, deren Lösungen lassen sich aber häufig nicht mehr direkt in einer geschlossenen Formel berechnen. Hier kommen häufig Näherungsmethoden zum Einsatz, deren Güte und Geltungsbereich durch die Computerberechnungen oftmals nicht nur plausibilisiert, sondern auch quantifiziert und visualisiert werden kann.
+	\item Auch für die numerische Berechnung und Simulation gilt: Grundlage des Verständnisses muss immer ein Modell sein, das die Wirklichkeit im Rahmen gewisser Näherungen beschreibt. Je näher das Modell an der Realität, desto besser die Beschreibung derselben und die Vorhersagekraft des Modells für Experimente und Veränderungen im System. Der Computer dient der näherungsweisen \anf{Realisierung} des modellierten Systems und der Berechnung physikalischer Größen sowie der Simulation von Auswirkungen der Änderungen von Modellparametern. Damit ist auch eine schrittweise und nachvollziehbare Verbesserung des Modells und immer weitere Annäherung an die Realität möglich. Durch die einfache Nachvollziehbarkeit von Parameter- und Modelländerungen wird die Kompetenzentwicklung zur Abstraktion und Modellbildung wesentlich unterstützt. Die Abfolge von Problembeschreibung, Problemstrukturierung und Problemlösung kann in relativ schnellen Schritten und mit geringem Aufwand durchlaufen werden und erlaubt daher zügigen und signifikanten Erkenntnisgewinn.
+
+\end{itemize}
+
+\subsection*{Mathematische Grundlagen der computergestützten Physik}
+
+Für eine zielführende Anwendung von Methoden der computergestützten Physik ist eine gute Beherrschung der Grundlagen der Mathematik unbedingt erforderlich. Die numerischen Berechnungen und Computersimulationen physikalischer Systeme setzen folgende grundlegenden mathematischen Kenntnisse voraus:
+\begin{itemize}
+	\item Berechnung von Integralen (auch mehrdimensionalen)
+	\item Lineare Algebra (Matrixinvertierung, Determinantenberechnung, Eigenwerte)
+	\item Lineare und nichtlineare Gleichungssysteme
+	\item Lösung von von gewöhnlichen und partiellen Differentialgleichungen 
+	\item Vektoranalysis, Nabla-Kalkül
+	\item Theorie komplexer Funktionen
+	\item Tensorrechnung
+	\item Fourier-Analyse und vollständige Funktionensysteme
+	\item Monte-Carlo-Simulation, Random-Walk-Methoden
+	\item Interpolation und Approximation
+	\item Finite-Differenzen-Methoden
+\end{itemize}
+
+Wir werden die einzelnen Themen im Sinne eines Repetitoriums immer kurz zusammenfassen, aber damit auch nur begrenzt darstellen. Das kann kein Ersatz für eine tiefe Einarbeitung und Erwerb einer soliden Beherrschung der physikalischen Theorie und ihrer Methoden sein. Wir werden an den Stellen daher auch immer auf entsprechende einführende und weiterführende Lehr- und Übungsbücher verweisen.
+
+Für viele der genannten mathematischen Methoden und Verfahren werden wir auch in\matlab{} hinterlegte Routinen und Bibliotheken und auch frei verfügbare entwickelte Softwarepakete nutzen. Man mag argumentieren, dass Studenten beim Nutzen der \anf{fertigen} Softwarepakete die mathematischen Methoden und Algorithmen nicht mehr wirklich begreifen und daher richtig analytisch nachvollziehen können. Wir halten entgegen, dass dafür Visualisierung, Anwendbarkeit, Kombinationsfähigkeit und natürlich Geschwindigkeit der Ergebnisgewinnung zunehmen. Wir sagen aber auch klar, dass das grundlegende mathematische Verständnis für die genannten Methoden vorhanden sein muss. Erst dann kommt die von Landau genannte Synthese \cite{Landau2008} voll zum Tragen. Auch haben wir deshalb in unserem Buch der Modellierung und analytischen Beschreibung und Behandlung der Probleme großen Raum eingeräumt. Diese stellen wir der numerischen Berechnung stets voran, und es finden sich auch einige Übungen, in denen die Numerik lediglich der Visualisierung der analytischen Modellbildungen und Rechnungen dient.
+
+\subsection*{Welches Softwarepaket?}
+
+Das ist immer auch eine Glaubensfrage. Unsere Entscheidung fiel, wie der Untertitel des Buches schon sagt, auf \matlab. Prinzipiell spricht aber nichts dagegen, auf andere Softwarepakete zurückzugreifen. Eine kleine Übersicht sei hier angegeben:\\
+
+\textbf{\matlab}\\
+\matlab{} ist in weiten Teilen der Industrie und der Forschung die Standardsoftware. Sie wird kommerziell vom US-amerikanischen Unternehmen MathWorks vertrieben und ist hervorragend zur Lösung vieler mathematischer, physikalischer und technischer Probleme und zur grafischen Darstellung der Ergebnisse geeignet. \matlab{} war ursprünglich vor allem für numerische Berechnungen mithilfe von Matrizen ausgelegt, woraus sich auch der Name ableitet: \textit{MATrix LABoratory.} Diese Stärke hat es auch heute immer noch, wenn es um die Berechnung großer Datenmengen und Felder geht. Programmiert wird unter \matlab{} in einer proprietären Programmiersprache, die auf dem jeweiligen Computer interpretiert wird. Kleinere Programme können als sogenannte Skripte oder Funktionen zu geschlossenen Einheiten verpackt werden, was das Erstellen von anwendungsorientierten \anf{Werkzeugkisten} (Toolboxen) erlaubt. Viele solcher bisweilen sehr leistungsfähigen Toolboxen sind auch kommerziell erhältlich. Wir werden in diesem Buch nur von einigen wenigen Toolboxen Gebrauch machen.
+Die akademische Bindung ist durch relativ preisgünstige Studentenversionen bis heute erhalten geblieben und ist auch ein Grund für den großen Erfolg und die weite Verbreitung der Software. Ferner gibt es eine sehr gute Plattform \matlab{} Central \url{https://de.mathworks.com/matlabcentral/}, die einen offenen Austausch für die Community der \matlab-Benutzer bietet und viele Programmpakete zum Download bereithält.\\
+Alle Skripte dieses Buches sind in \matlab{} programmiert. Gute Einführungen besonders für Physiker und Ingenieure in die Programmierung mit \matlab{} finden sich in 
+\cite{Schweizer2016, Pietruszka2020, Hasbun2018, Attaway2013, Landau2007}.\\
+
+\textbf{GNU Octave}\\
+GNU Octave\index{GNU Octave} \url{https://octave.org/} ist vermutlich die beste Alternative zu \matlab. Octave läuft auf Linux, Windows, und Mac. Für viele Projekte ist ein \matlab-Code auch unter GNU Octave ohne große Modifikationen lauffähig. GNU Octave versucht, so weit es geht, Kompatibilität zu \matlab{} herzustellen, unterscheidet sich aber etwas bei Ein- und Ausgabefunktionen. Die Funktionskompatibilität von GNU Octave zur Basisversion von \matlab{} (ohne Toolboxen) ist weitgehend gegeben. Fast vollständige Kompatibilität zu \matlab{} lässt sich durch das Zusatzpaket octave-forge erreichen.
+Der Source Code von GNU Octave kann von der GNU Website heruntergeladen werden. \\
+
+\textbf{Python mit NumPy, SciPy und Matplotlib}\\
+Python\index{Python} \url{https://www.python.org/} ist eine universelle, üblicherweise interpretierte Programmiersprache. Mit ihr lässt sich ähnlich wie mit \matlab{} gut lesbarer, teils auch recht knapper Code erzeugen.
+Die Sprache ist mittlerweile in vielen Ländern Teil des Curriculums an Schulen und Hochschulen. Python unterstützt die objektorientierte und die funktionale Programmierung, und kann auch wie \matlab{} als Skriptsprache genutzt werden.
+NumPy und SciPy sind die zu Python gehörigen Hauptpakete für das wissenschaftliche Rechnen (wie der Name schon andeutet). NumPy erlaubt wie \matlab{} eine einfache Handhabung von Vektoren, Matrizen oder generell großen mehrdimensionalen Arrays. Darüber hinaus bietet NumPy auch implementierte Funktionen für numerische Berechnungen an.
+Die Handhabung ist damit vergleichbar zu \matlab, die Integration von NumPy in Python ermöglicht die Verwendung und Kombination mit vielen weiteren Paketen aus dem umfangreichen Python-Umfeld. Weitere \matlab-ähnliche Funktionen bietet die Python-Bibliothek SciPy. SciPy Stack ist eine auf Python aufbauende Plattform für Software zur Anwendung in der Mathematik, Natur- und Ingenieurswissenschaften. Auch der Funktionsumfang der Matplotlib-Bibliothek zur einfachen Erstellung von Abbildungen in Python ist den Möglichkeiten von \matlab{} sehr ähnlich. 
+Die Sprache und die Pakete sind für Linux, Windows, und Mac OS X verfügbar. Sehr empfehlenswert für Physiker und Ingenieure sind die Einführungen in die Programmierung mit Python in \cite{Natt2020, Landau2015, Landau2007}.\\
+ 
+\textbf{Scilab}\\
+Scilab\index{Scilab} \url{https://www.scilab.org/} ist ein weiteres umfangreiches, leistungsfähiges und freies Softwarepaket für Anwendungen aus der numerischen Mathematik, das in Frankreich als Alternative zu \matlab{} entwickelt wurde.
+Funktionalität und Syntax von Scilab sind weitgehend mit \matlab{} identisch, und es gibt Konverter von \matlab{} nach Scilab. Scilab wird \ua für technische und wissenschaftliche Anwendungen in Lehre, Forschung und Industrie eingesetzt. Scilab ist vermutlich die beste Alternative neben GNU Octave.\\
+
+\textbf{Sage}\\
+Sage\index{Sage} \bzw SageMath\index{SageMath} \url{https://www.sagemath.org/} ist eine freie Software-Alternative zu \matlab{} zur Lösung mathematischer Probleme. Sage ist für Linux, Mac OS und Windows verfügbar. Sage steht als Abkürzung für \textit{Software for Algebra and Geometry Experimentation}. Sage vereint die Stärken vieler häufig hochspezialisierter Computer\-algebra\-systeme und numerischer Bibliotheken, die mit Sage ausgeliefert werden, indem es einheitliche Schnittstellen zu diesen zur Verfügung stellt. Es ist auf der Basis von Python-Bibliotheken für das wissenschaftliche Rechnen entwickelt worden und die Computersprache ist Python sehr ähnlich.\\
+
+
+\subsection*{Ein Wunsch}
+
+Es ist wohl deutlich geworden, dass wir uns sehr für das synergetische Dreieck aus (theoretischer, analytischer und experimenteller) Physik, angewandter Mathematik und Computermethoden stark machen. Erst in ihrem Zusammenspiel und der richtigen Balance kommen die einzelnen Elemente voll zur Wirkung, wobei die Physik und das physikalische Modell immer führend sein müssen.
+Dann aber ist es keine Frage mehr, ob man computergestützte Physik im Curriculum des Physikstudiums braucht, sondern nur noch, wie man sie einführt. Wir wünschen uns, dass wir in Deutschland in Studium und Lehre zu dem Stand aufschließen, den der angelsächsische Raum unseres Erachtens seit einigen Jahren \cite{Behringer2017} bereits hat. Wir hoffen mit dem Buch auch einen kleinen Beitrag dazu leisten zu können.
+
+% ugly hack: no entry in toc
+\newcommand\ignorethree[3]{}
+\let\tmpcmd\addcontentsline
+\let\addcontentsline\ignorethree
+\bibliography{referenzen}
+\let\addcontentsline\tmpcmd
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\input{footer.tex}
+
+

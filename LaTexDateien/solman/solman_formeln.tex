@@ -1,0 +1,169 @@
+
+\chapter{Physikalische Formelsammlung}\label{kap:solman_formulae}
+
+\section {Klassische Mechanik}
+
+Lagrange-Gleichungen erster Art: 
+\begin{align*}
+    m_\text{i}\,\ddot{x}_\text{i} = F_\text{i} + \sum\limits_{a=1}^{r}\lambda_\text{a}\,\nabla_\text{i}\,f_\text{a}, 
+\end{align*}
+\vspace{-0.5cm}
+\begin{align*}
+    f_\text{a}\lk t, x_1, ..., x_\text{N}\rk = 0
+\end{align*}
+Lagrange-Gleichungen zweiter Art:
+\begin{align*}
+    \frac{d}{dt}\,\frac{\d T}{\d q_\text{j}}=Q_\text{j}, ~~~~ \frac{d}{dt}\,\frac{\d L}{\d \dot{q}_\text{j}}-\frac{\d L}{\d q_\text{j}} = 0, ~~~~ L=T-U
+\end{align*}
+Hamilton'sche kanonische Gleichungen:
+\begin{align*}
+    \frac{\d H}{\d p_\text{i}} = \dot{q}_\text{i}, ~~~~ \frac{\d H}{\d q_\text{i}} = -\dot{p}_\text{i}, ~~~~ H = \sum\limits_{i}^{}\dot{q}_\text{i}\,\frac{\d L}{\d \dot{q}_\text{i}} - L
+\end{align*}
+
+
+\section{Thermodynamik}
+
+Eine wichtige thermodynamische Potenziale:
+\begin{align*}
+    U\lk S,V\rk &   && \text{innere Energie}\\
+    F\lk T,V\rk &= U\lk S,V\rk -TS&& \text{freie Energie}\\
+    H\lk S,P\rk &= U\lk S,V\rk+PV && \text{Enthalpie}\\
+    G\lk T,P\rk &=  F\lk T,V\rk + PV && \text{freie Enthaltpie}\\
+                &= U\lk S,V\rk -TS +PV\\
+\end{align*}
+Vollständige Differenziale davon:
+\begin{align*}
+    \D  U\lk S,V\rk &= T\,\D S-P\, \D V \\
+    \D  F\lk T,V\rk &= -S\,\D T-P\, \D V \\
+    \D  H\lk S,P\rk &= T\,\D S-V\, \D P \\
+    \D  G\lk T,P\rk &= -S\,\D T-V\, \D P \\
+\end{align*}
+Daraus abgeleitete Maxwell-Relationen:
+\begin{align*}
+    \lk \frac{\d T}{\d V}\rk_\text{S} &= - \lk \frac{\d P}{\d S}\rk_\text{V} \\
+    \lk \frac{\d S}{\d V}\rk_\text{T} &= \lk \frac{\d P}{\d T}\rk_\text{V} \\
+    \lk \frac{\d T}{\d P}\rk_\text{S} &= \lk \frac{\d V}{\d S}\rk_\text{P} \\
+    \lk \frac{\d S}{\d P}\rk_\text{T} &= - \lk \frac{\d V}{\d T}\rk_\text{P} \\
+\end{align*}
+
+
+\section{Elektrodynamik}
+
+Maxwell-Gleichungen (Gauß'sches System):
+\begin{align*}
+    \divv D &= 4\pi\,\rho_\text{f}, ~~~~ D \equiv E +4\pi P \\
+    \divv B &= 0 \\
+    \rot E &= -\frac{1}{c}\,\frac{\d}{\d t}\,B \\
+    \rot H &= \frac{4\pi}{c}\,j_\text{f} + \frac{1}{c}\,\frac{\d}{\d t}\,D, ~~~~ H \equiv B -4\pi M
+\end{align*}
+Potenziale:
+\begin{align*}
+    E = -\nabla\phi - \frac{1}{c}\,\frac{\d}{\d t}\, A, ~~~~ B = \nabla\times A
+\end{align*}
+Lineare Medien:
+\begin{align*}
+    P = \chi_\text{e}\,E, ~~~~ D = \lk 1+4\pi\,\chi_\text{e}\rk\,E \equiv\,\in E, \\
+    M = \chi_\text{m}\,H, ~~~~ B=\lk 1+4\pi\,\chi_\text{m}\rk\,H \equiv\,\mu E
+\end{align*}
+Vakuum:
+\begin{align*}
+    D \rightarrow E, ~~~~ H \rightarrow B, ~~~~ \rho_\text{f} \rightarrow \rho, ~~~~j_\text{f} \rightarrow j
+\end{align*}
+Maxwell-Gleichungen (SI-System):
+\begin{align*}
+    \divv D^{\lek SI\rek} &= {\rho_\text{f}}^{\lek SI\rek}, ~~~~ D^{\lek SI\rek}\equiv \,\in_0\,E^{\lek SI\rek}+P^{\lek SI\rek} \\
+    \divv B^{\lek SI\rek} &= 0 \\
+    \rot E^{\lek SI\rek} &= -\frac{\d}{\d t}\,B^{\lek SI\rek} \\
+    \rot H^{\lek SI\rek} &= {j_\text{f}}^{\lek SI\rek} +\frac{\d}{\d t}\,D^{\lek SI\rek}, ~~~~ H^{\lek SI\rek} \equiv \frac{1}{\mu_0}\,B^{\lek SI\rek}-M^{\lek SI\rek}\\
+    \mu_0 &= 4\pi\cdot 10^{-7}\SI{}{\newton\per\square\ampere}, ~~~~ \in_0 \, \equiv \frac{1}{c^2\,\mu_0}
+\end{align*}
+Potentiale:
+\begin{align*}
+    E^{\lek SI\rek} = -\nabla\phi^{\lek SI\rek}-\frac{\d}{\d t}\,A^{\lek SI\rek}, ~~~~ B^{\lek SI\rek} = \nabla\times A^{\lek SI\rek}
+\end{align*}
+Lineare Medien:
+\begin{align*}
+    P^{\lek SI\rek} &= {\chi_\text{e}}^{\lek SI\rek}\,\in_0\,E^{\lek SI\rek}, ~~~~ D^{\lek SI\rek} = \lk 1+{\chi\text{e}}^{\lek SI\rek}\rk\,\in_0\,E \equiv\,\in^{\lek SI\rek}\,E^{\lek SI\rek}, \\
+    M^{\lek SI\rek} &= {\chi\text{m}}^{\lek SI\rek}\,H^{\lek SI\rek}, ~~~~ B^{\lek SI\rek} = \lk 1+{\chi\text{m}}^{\lek SI\rek}\rk\,\mu_0\,H^{\lek SI\rek} \equiv\,\mu^{\lek SI\rek}\,H^{\lek SI\rek}
+\end{align*}
+Umrechnung Gauß'sches und SI-System:
+\begin{align*}
+    E &= \sqrt{4\pi\in_0}\,E^{\lek SI\rek}, ~~~~ B = \sqrt{\frac{4\pi}{\mu_0}}\,B^{\lek SI\rek}, \\
+    \phi &= \sqrt{4\pi\in_0}\,\phi^{\lek SI\rek}, ~~~~ A = \sqrt{\frac{4\pi}{\mu_0}}\,A^{\lek SI\rek}, \\
+    \rho &= \frac{1}{\sqrt{4\pi\in_0}}\,\rho^{\lek SI\rek}, ~~~~ j = \frac{1}{\sqrt{4\pi\in_0}}\,j^{\lek SI\rek}\\
+\end{align*}
+Kontinuitätsgleichung:
+\begin{align*}
+    \nabla\,j + \frac{\d}{\d t\,\rho} = 0
+\end{align*}
+Lorentz-Kraft auf Punktlandung $q = \frac{q^{\lek SI\rek}}{\sqrt{4\pi\in_0}}$:
+\begin{align*}
+    F = q\lk E+ \frac{1}{c}\,v\times B\rk = q^{\lek SI\rek}\,\lk E^{\lek SI\rek}+v\times B^{\lek SI\rek}\rk
+\end{align*}
+
+
+\section{Quantenmechanik}
+
+Korrespondenzregeln im Ortsraum:
+\begin{align*}
+    x \mapsto \hat{x} = x\cdot, ~~~~ p \mapsto \hat{p} = \frac{\hbar}{i}\,\nabla_\text{x}
+\end{align*}
+Zeitabhängige Schrödinger-Gleichung:
+\begin{align*}
+    i\,\hbar\,\frac{\D}{\D t}\,|\psi\lk t\rk\rangle = \hat{H}|\psi\lk t\rk\rangle
+\end{align*}
+Formale Lösung für konservative Systeme:
+\begin{align*}
+    |\psi\lk t\rk\rangle = \hat{U}\lk t\rk |\psi\lk t\rk\rangle, ~~~~ \hat{U}\lk t\rk = e^{-\frac{it\hat{H}}{\hbar}}
+\end{align*}
+Stationäre Schrödinger-Gleichung für konservative Systeme:
+\begin{align*}
+    \hat{H}|\psi\rangle = E|\psi\rangle, ~~~~ |\psi\lk t\rk\rangle = e^{-\frac{iEt}{\hbar}}|\psi\rangle 
+\end{align*}
+Hamilton-Operator im Ortsraum für Teilchen ohne Spin:
+\begin{align*}
+    \hat{H} = \frac{1}{2m}\,\lk\hat{p} - \frac{q}{c}\,A\lk t,\hat{x}\rk\rk^2 + V\lk\hat{x}\rk
+\end{align*}
+Entwicklung nach Eigenvektoren einer Observablen:
+\begin{align*}
+    \hat{A}|a_\text{n}\rangle = a_\text{n}|a_\text{n}\rangle, ~~~~ \langle a_\text{m}|a_\text{n}\rangle = \delta_\text{mn} \rightarrow |\psi\rangle= \sum\limits_n \langle a_\text{n}|\psi\rangle|a_\text{n}\rangle
+\end{align*}
+Erwartungswert einer Observablen in einem Zustand:
+\begin{align*}
+    \langle\hat{A}\rangle_\psi = \langle\psi|\hat{A}|\psi\rangle, ~~~~ \langle\psi|\psi\rangle = 1
+\end{align*}
+Unbestimmtheitsrelation für zwei Observablen:
+\begin{align*}
+    \langle\lk\Delta\hat{A}\rk^2\rangle_\psi \langle\lk\Delta\hat{B}\rk^2\rangle_\psi \geq 
+		-\frac{1}{4}\langle\lek\hat{A},\hat{B}\rek\rangle^2_\psi, ~~~~ \Delta\hat{A} = \hat{A}-\langle \hat{A}\rangle_\psi
+\end{align*}
+Übergang vom Schrödinger- zum Heisenberg-Bild:
+\begin{align*}
+    |\psi_\text{H}\rangle = \hat{U}^{-1}\lk t\rk|\psi\lk t\rk\rangle, ~~~~ \hat{A}_\text{H}\lk t\rk = \hat{U}^{-1}\lk t\rk\,\hat{A}\,\hat{U}\lk t\rk
+\end{align*}
+Heisenberg-Gleichung für Observablen:
+\begin{align*}
+    i\hbar\,\frac{\D \hat{A}_\text{H}}{\D t} = \lek \hat{A}_\text{H},\hat{H}_\text{H}\rek
+\end{align*}
+Harmonischer Oszillator:
+\begin{align*}
+    \hat{H} = \hbar\omega\,\lk \hat{a}^\dagger\hat{a}+\frac{1}{2}\rk, ~~~~ \lek \hat{a},\hat{a}^\dagger\rek = 1, ~~~~ E_\text{n} =\hbar\omega\,\lk n+\frac{1}{2}\rk
+\end{align*}
+Hermitesche Drehimpulsoperatoren:
+\begin{align*}
+    \lek \hat{J}_\text{i},\hat{J}_\text{j}\rek = i\,\hbar\,\epsilon_\text{ijk}\,\hat{J}_\text{k}, ~~~~ \lek\hat{J}^2,\hat{J}_\text{i}\rek = 0
+\end{align*}
+Eigenzustände des Drehimpuls:
+\begin{align*}
+    \hat{J^2|jm\rangle} = \hbar^2\,j\,\lk j+1\rk|jm\rangle, ~~~~ \hat{J}_3|jm\rangle = \hbar m|jm\rangle
+\end{align*}
+Energien des Wasserstoffatoms:
+\begin{align*}
+    E_\text{n} = -\frac{Z^2}{n^2}\,Ry, ~~~~Ry = \frac{m_\text{e}\,c^2}{2}\,\alpha^2 \approx \SI{13.606}{\eV}
+\end{align*}
+Änderung der Energie und des Zustandvektors in erster Ordnung Störungstheorie:
+\begin{align*}
+    E^{\lk 1\rk} &= \langle\psi_\text{n}^{\lk 0\rk}|\hat{H}^{\lk 1\rk}|\psi_\text{n}^{\lk 0\rk}\rangle, \\
+    |\psi_\text{n}^{\lk 1\rk}\rangle &= \sum\limits_{k\neq n}\,\frac{\langle\psi_\text{k}^{\lk 0\rk}|\hat{H}^{\lk 1\rk}|\psi_\text{n}^{\lk 0\rk}\rangle}{E_\text{n}^{\lk 0\rk}-E_\text{k}^{\lk 0\rk}}\,|\psi_\text{k}^{\lk 0\rk}\rangle
+\end{align*}
+

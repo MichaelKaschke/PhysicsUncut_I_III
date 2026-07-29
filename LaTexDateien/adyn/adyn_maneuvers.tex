@@ -1,0 +1,756 @@
+\section{Manöver im Weltraum}\label{kap:adyn_maneuvers}
+
+Nachdem wir uns mit den verschiedenen Satellitenbahnen beschäftigt haben, wollen wir nun betrachten, wie man durch Bahnmanöver die Bahnen verändern \bzw überhaupt in bestimmte Umlaufbahnen gelangen kann. \\
+Wir wollen uns zunächst auf Manöver konzentrieren, in denen die Schubphase relativ kurz ist, \dh die Zeit in der der Schub wirkt, so klein ist, dass die Wirkungen aller anderen Kräfte im Vergleich zum Schub in dieser Zeit vernachlässigt werden können. Dann kann man ohne weiteres so rechnen, als ob dieses \anf{impulsives Schubmanöver} im schwerelosen Raum stattfände. Die erreichten Geschwindigkeitsänderungen am Ende der Schubphase werden vektoriell zu der Anfangsgeschwindigkeit addiert. Flugphasen ohne Schub werden durch Keplerbahnen (\bzw bei Mehrkörpersystemen durch gestörte Keplerbahnen) beschrieben. \\
+Für Raketenantriebe mit kleinem kontinuierlichen Schub oder auch für die Aufstiegsphase einer Rakete von der Oberfläche eines Planeten müssen die Bahnen durch Integration der Bewegungsgleichungen unter Berücksichtigung aller über die Schubphase hinweg wirkenden Kräfte berechnet werden. Wir werden das im Detail in \kap{adyn_kont_maneuver} und für die Aufstiegsphase in \kap{adyn_launch} untersuchen.\\
+
+Man könnte zunächst annehmen, dass es keine Rolle spielt, wo die Rakete gezündet wird. Dem ist aber nicht so, da man berücksichtigen muss, dass der Treibstoff, der während des Manövers "`verbrannt"' wird, vor dem Manöver ebenfalls kinetische Energie hatte. Wenn man also den größtmöglichen beschleunigenden Effekt auf ein Raumschiff haben will, startet man das Manöver am Punkt der Bahn, wo die Geschwindigkeit am größten ist, \dh im Perigäum (oder allgemeiner an der Periapsis) der Bahn. Das ist der sogenannte \gls{OberthEffekt}\index{Oberth-Effekt|textbf}. Einfach gesprochen besagt dieser, dass ein Raumschiff bei einem Impulsmanöver etwas Energie zusätzlich zur chemischen Energie des Treibstoffs \anf{stehlen} kann und zwar von der ursprünglichen kinetischen Energie, die der Treibstoff vor dem Zünden auf Grund der Bewegung der Rakete hatte. Siehe dazu \probref{adyn_rocket_analogy}.\\
+
+Wir wollen uns zunächst die möglichen Bahnmanöver ganz allgemein betrachten, bevor wir auf einige typische und in der Raumfahrt häufig verwendete Manöver genauer eingehen. Dabei betrachten wir vor allem sogenannte impulsive Manöver, bei denen der Schub nur relativ kurze Zeit wirkt, wollen uns aber auch die eher selten verwendeten Manöver mit Triebwerken, die einen kontinuierlichen Schub erzeugen, anschauen. Wir behandeln auch Bahnmanöver, die \textit{Rendezvous} zwischen künstlichen Himmelskörpern im Weltall ermöglichen. Am Ende dieses Kapitels zeigen wir noch, wie einzelne Manöver sich bei einem interplanetaren Raumflug zusammenfügen.
+
+\subsection{Manöver mit impulsiven Schubphasen}\label{kap:adyn_impuls_maneuver}
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{Bahnmanoever.pdf} 
+	\caption[Wirkung der Geschwindigkeitsänderung auf Satellitenbahnen.]{Wirkung der Geschwindigkeitsänderung auf Satellitenbahnen. \fa Änderung der Exzentrizität. \fb Änderung der (Richtung) der Apsidenlinie. \fc Änderung der Inklination. \fd Vektorielle Addition der Geschwindigkeiten beim impulsiven Manöver. Der Winkel $\alpha$ liegt wie $\Delta \vec{v}_\text{p}$ in der ursprünglichen Bahnebene, der Winkel $\beta$ ebenso wie $\Delta \vec{v}_\text{s}$ senkrecht zur ursprünglichen Bahnebene.}
+	\label{abb:adyn_manenvers_overview}
+\end{figure}
+
+Für impulsive Schubphasen kann die Wirkung der Geschwindigkeitsänderung je nach vektorieller Addition nach folgenden Gesichtspunkten unterteilt werden (\figref{adyn_manenvers_overview}).
+\begin{enumerate}
+    \item [1)] Koplanare Transfers, \dh die Bahnebene bleibt erhalten, wobei es entweder zu einer 
+\begin{itemize}
+        \item  Änderung der Exzentrizität bis hin zum Übergang in eine andere Bahnform oder
+        \item  einer Änderung der Apsidenlinie kommt, oder alternativ zu einer
+\end{itemize}
+    \item [2)] Änderung der Inklination der Bahn führt.
+\end{enumerate}
+Wir wollen uns zunächst koplanare Transfers/Manöver anschauen.
+
+\subsubsection{Hohmann-Transfer}\label{kap:adyn_hohmann_transfer}
+
+Als erstes Beispiel für ein impulsives koplanares Manöver betrachten wir den Hohmann\indexp{Hohmann, Walter}\footnote{Walter Hohmann (1880--1945) war ein städtischer Baurat in Essen und beschäftigte sich nebenberuflich mit Himmelsmechanik und Raumfahrt. Den nach ihm benannten Transfer zwischen zwei Satellitenbahnen beschrieb er bereits 1925 in seinem Buch "`Die Erreichbarkeit der Himmelskörper"'.}-Transfer. Der Hohmann-Transfers besteht darin, einen Satelliten aus einer niedrigeren (kreisförmigen) Umlaufbahn durch zwei Schubmanöver mit $\Delta v_1$  und $\Delta v_2$ auf eine Kreisbahn mit größerem Radius zu "`heben"' (\figref{adyn_hohmann_transfer}a).
+Wir wollen als Beispiel berechnen, wie man einen Satelliten von einer Kreisbahn mit $h_1$ auf eine Kreisbahn der Höhe $h_2$ bringen kann. \\
+Dann muss der Satellit vor \bzw nach den Manövern die Geschwindigkeiten 
+\begin{align}
+    v_1 = \sqrt{\frac{G\,m_\text{E}}{r_1}}= \sqrt{\frac{G\,m_\text{E}}{R_\text{E}+h_1}} ~~\text{\bzw}~~ 
+		v_2 = \sqrt{\frac{G\,m_\text{E}}{r_2}}= \sqrt{\frac{G\,m_\text{E}}{R_\text{E}+h_2}} \label{eq:adyn_hohmann01}
+\end{align}
+haben.
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{HohmannTransfer.pdf} 
+	\caption[Hohmann-Transfer Prinzip und Geschwindigkeitsänderung.]{\fa Hohmann-Transfer Prinzip und \fb Geschwindigkeitsänderung bei Hohmann-Transfer als Funktion der Radiusänderung.}
+	\label{abb:adyn_hohmann_transfer}
+\end{figure}
+Durch das erste Bahnmanöver mit $\Delta v_1$ kommt der Satellit aus einer Kreisbahn auf eine Transferellipse (Hohmann-Ellipse, \figref{adyn_hohmann_transfer}a), deren große Halbachse durch 
+\begin{align}
+    a_\text{H} = \frac{1}{2}\,\lk r_1+r_2 \rk \label{eq:adyn_hohmann02}
+\end{align}
+gegeben ist. Nach der \gls{visvivaadyn} \eqref{eq:hm_vis-viva} \bzw \eqref{eq:adyn_orbit03} ergeben sich dann für diese Ellipse folgende Perigäums- und Apogäumsgeschwindigkeiten:
+\begin{subequations}
+\begin{align}
+    v_\text{P} &= \sqrt{G\,m_\text{E}}\,\sqrt{\frac{2}{r_1}-\frac{1}{\frac{1}{2}\,\lk r_1+r_2\rk}} = \sqrt{\frac{G\,m_\text{E}}{a_\text{H}}\,\frac{r_2}{r_1}} \,,\label{eq:adyn_hohmann03a}\\
+    v_\text{A} &= \sqrt{G\,m_\text{E}}\,\sqrt{\frac{2}{r_2}-\frac{1}{\frac{1}{2}\,\lk r_1+r_2\rk}} = \sqrt{\frac{G\,m_\text{E}}{a_\text{H}}\,\frac{r_1}{r_2}}\,.\label{eq:adyn_hohmann03b}
+\end{align}
+\end{subequations}
+Im Apogäum\index{Apogäum} der Transferellipse muss eine zweite Schubphase mit $\Delta v_2$ erfolgen, die aus der Ellipsenbahn wieder eine Kreisbahn mit der Geschwindigkeit $v_2$ nach \eqref{eq:adyn_hohmann01} macht, \dh wir haben insgesamt eine Geschwindigkeitsänderung von 
+\begin{align}
+    \Delta v = \Delta v_1+ \Delta v_2 = \lk v_\text{P}-v_1\rk +\lk v_2-v_\text{A}\rk\,.\label{eq:adyn_hohmann04}
+\end{align}
+In \figref{adyn_hohmann_transfer}b ist der Antriebsbedarf $\Delta v$ als Funktion des Radienverhältnisses $r_2/r_1$ dargestellt. Man erkennt, dass für bestimmte Radienverhältnisse der gesamte Geschwindigkeitsbedarf $\Delta v$ größer als die \gls{vescape} werden kann (\probref{adyn_manoevers1}).
+%BEISPIEL 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{Hohmann-Transfer für kleine Bahnänderungen}  
+Wir wollen jetzt noch eine Näherung für den Geschwindigkeitsbedarf beim Hohmann-Transfer für kleine Bahnänderungen $\Delta r$ herleiten.
+Wir erhalten für kleine Bahnänderungen
+	\[\frac{\Delta r}{r_1} = \frac{r_2-r_1}{r_1} \approx \frac{\Delta r}{r}~~\rightarrow~~r_2 \approx \Delta r+ r_1\,.
+\]
+Unter Verwendung von $a_\text{H} = r_1 +\Delta r / 2$ folgt damit:
+\begin{align}
+\begin{split}
+    v_2 &= \sqrt{\frac{G\,m_\text{E}\,r_1}{r_2\,r_1}} = v_1\,\sqrt{\frac{r_1}{r_2}} \approx v_1 \,\sqrt{\frac{r_1}{r_1+\Delta r}} \approx v_1\,\lk 1-\frac{1}{2}\,\frac{\Delta r}{r}\rk\,,\\ 
+    v_\text{P}&= v_1\,\lk 1+\frac{1}{4}\,\frac{\Delta r}{r}\rk\;, ~~~v_\text{A} = v_1\,\lk 1-\frac{3}{4}\,\frac{\Delta r}{r}\rk\,, 
+\end{split} \label{eq:adyn_hohmann05}
+\end{align}
+woraus folgt:
+\begin{align}
+    \Delta v &= \killA{v_1} + \frac{v_1}{4}\,\frac{\Delta r}{r}-\killA{v_1} + \killA{v_1} - \frac{v_1}{2}\,\frac{\Delta r}{r}-\killA{v_1} + \frac{3}{4}\,v_1\,\frac{\Delta r}{r} \ = \frac{1}{2}\,v_1\,\frac{\Delta r}{r} \,. \label{eq:adyn_hohmann06}
+\end{align} 
+\end{example} \label{bsp:adyn_hohmann_klein}
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Hohmann-, Oberth- und Edelbaum-Transfers nach Unendlich}\label{kap:adyn_oberth_edelbaum}
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{TransfersInfin01.pdf} 
+	\caption[Hohmann-, Oberth- und Edelbaum-Transfers nach Unendlich.]{\fa Hohmann-, \fb Oberth- und \fc Edelbaum-Transfers nach Unendlich ($\infty$).}
+	\label{abb:adyn_Oberth_transfer1}
+\end{figure}
+
+In vorherigen \kap{adyn_hohmann_transfer} hatten wir den Hohmann-Transfer von Satelliten von einer kreisförmigen Ausgangsbahn mit Radius $r_1$ auf eine elliptische Bahn mit der großen Halbachse $a_\text{H}$ und anschließend auf eine Kreisbahn mit $r_2$ untersucht, wobei $a_\text{H} = \frac{1}{2}\,\lk r_1+r_2\rk$ war. \\
+Man kann sich jetzt die Frage stellen, wie groß die notwendige Geschwindigkeitsänderung sein muss, damit der Satellit aus der Umlaufbahn $r_1$ nach $r_2=\infty$ kommt, also den Gravitationsbereich der Erde (\bzw des jeweiligen Zentralkörpers) verlässt. Wie groß ist seine Flugzeit in einem solchen Fall, bis der Satellit \zb einen Abstand $200\,r_1,\,500\,r_1,\,1000\,r_1$ von der Erde erreicht (siehe auch \probref{adyn_manoevers2})?\\
+Man kann sich auch überlegen, dass es neben diesem sogenannten direkten Transfer auf die Endgeschwindigkeit $v_\infty$ (im Prinzip ein entarteter Hohmann-Transfer auf eine Hyperbel) zwei mögliche weitere Transfers mit insgesamt zwei \bzw drei impulsiven Schubmanövern geben kann. Diese werden als Oberth-\indexp{Oberth, Hermann Julius} \bzw Edelbaum\indexp{Edelbaum, Theodore}\footnote{Theodore N. Edelbaum war ein US-amerikanischer Astrodynamiker und Raumfahrtspezialist.}-Transfers oder auch Zwei- \bzw Drei-Impuls-Transfers bezeichnet (\figref{adyn_Oberth_transfer1}).\\
+Wir berechnen die notwendigen $\Delta v$ für die 3 Fälle, die entsprechende Flugzeit und den Treibstoffverbrauch und folgen dabei der Darstellung in \cite{Blanco2021}. Bei der Lösung benutzen wir:
+\begin{enumerate}
+    \item Die Energiegleichung (Notation entsprechend \kap{hm_bewegungsgl}):
+    \begin{align}
+        H = \frac{1}{2}\,v^2 -\frac{G\,m_\text{E}}{r}\,. \label{eq:adyn_escape01}
+    \end{align}
+		\item Die asymptotische Geschwindigkeit $v_\infty$ im Unendlichen ergibt sich dann:
+    \begin{align}
+        \frac{1}{2}\,v_\infty{}^2 &= \frac{1}{2}\,v_\text{Start} - \frac{G\,m_\text{E}}{r_\text{Start}}~~~\rightarrow ~~~ v_\text{Start} = \sqrt{\frac{2\,G\,m_\text{E}}{r_\text{Start}} + v_\infty{}^2} \,. \label{eq:adyn_escape02} 
+    \end{align}
+    Hierin sind $v_\text{Start},\,r_\text{Start}$ die Geschwindigkeit \bzw der Radius nach dem Starten des Manövers. Man beachte, dass $v_\text{Start}$ für $v_\infty > 0$ verschieden von der für die Erde definierten Fluchtgeschwindigkeit $v_\text{F} = \sqrt{2\,G\,m_\text{E} / R_\text{E}}$ ist.
+		\item Die Definition des Drehimpulses für eine Kreisbahn \bzw Ellipsenbahn (A\,Apogäum\,,\,P Perigäum)\index{Apogäum}\index{Perigäum} lautet:
+    \begin{align}
+    \begin{split}
+        L &= r_1\,v_1~~~~ \text{Kreisbahn}\,,~~~\text{\bzw}~~~ L = r_\text{A}\,v_\text{A} = r_\text{P}\,v_\text{P}~~~~ \text{Ellipse} \,,\\
+				&\text{mit} ~~ r_\text{P},\,r_\text{A} ~~~\text{Abstand zum Perigäum \bzw Apogäum}\,.
+    \end{split}\label{eq:adyn_escape03} 
+    \end{align}
+    \item Für die Geschwindigkeit beim Apo- \bzw Perigäum kann man aus der Drehimpulserhaltung leicht ableiten:
+    \begin{align}
+        v_\text{A} &= \sqrt{\frac{G\,m_\text{E}}{r_\text{A}}} \,\sqrt{\frac{2}{1+r_\text{A}/r_\text{P}} }\, ~~~ \text{\bzw}~~~
+        v_\text{P} = \sqrt{\frac{G\,m_\text{E}}{r_\text{P}}} \,\sqrt{\frac{2}{1+r_\text{P}/r_\text{A}} }\,. \label{eq:adyn_escape04}
+    \end{align}
+\end{enumerate}		
+		Wir schauen uns nun die einzelnen Transfers an, wobei wir den Radius der Ausgangsbahn jetzt mit $r_0$ bezeichnen wollen.
+\begin{itemize} 
+		\item \underline{Fall A:} Direkter Transfer aus einer Kreisbahn mit Radius $r_1$ (Hohmann-Transfer nach $\infty$) \\
+    Aus \eqref{eq:adyn_escape02} erhalten wir
+    \begin{align}
+		\begin{split}
+        v_\text{Start} &= v_1 +\Delta v_\text{A} = \sqrt{\frac{2\,G\,m_\text{E}}{r_1} + v_\infty{}^2}\qquad\text{und mit} \qquad v_1 = \sqrt{\frac{G\,m_\text{E}}{r_1}}   \,,\\
+         \rightarrow ~~~~ \Delta v_\text{A} &= v_1\,\lk \sqrt{2+\frac{v_\infty{}^2}{v_1{}^2}}-1\rk = v_1\,\lk \sqrt{2+\frac{v_\infty{}^2\,r_1}{G\,m_\text{E}}}-1\rk \,.
+		\end{split} \label{eq:adyn_escape06}
+    \end{align}
+    \item \underline{Fall B:} Zwei-Impuls-Transfer (Oberth-Transfer)\\
+		Die physikalischen Grundlagen des Oberth-Effektes\index{Oberth-Effekt} und damit des Oberth-Transfers sind ausführlich in \probref{adyn_rocket_analogy} behandelt und sollen hier als bekannt voraus gesetzt werden.
+    \begin{itemize}
+        \item Für den ersten Impuls, bei dem es zu einer Abbremsung aus der initialen Kreisbahn mit $r_1$ auf eine kleinere Ellipsenbahn mit Perigäumsabstand $r_\text{-}$ kommt, finden wir am Punkt $A$ (Apogäum)
+        \begin{align}
+            \Delta v_{\text{B},1} &= v_\text{A} -v_1 = \sqrt{\frac{G\,M}{r_1}}\,\lk \sqrt{\frac{2}{1+\frac{r_1}{r_\text{-}}}}\rk-v_1 = -v_1\,\lk 1-\sqrt{\frac{2}{1+\frac{r_1}{r_\text{-}}}}\rk \label{eq:adyn_escape07}\,.
+        \end{align}
+        \item Beim Perigäum $P$, wo $r=r_\text{-}$ ist und der zweite Impuls erfolgt, finden wir
+        \begin{align}
+            \Delta v_{\text{B},2} &= v_\text{Start} - v_\text{P} = \sqrt{\frac{2\,G\,m_\text{E}}{r_\text{-}} + v_\infty{}^2} - \sqrt{\frac{G\,m_\text{E}}{r_\text{-}}}\,\sqrt{\frac{2}{1+r_\text{-} / r_1}}\nonumber \\
+            &= \sqrt{\frac{G\,m_\text{E}}{r_1}}\,\lk \sqrt{2+\frac{v_\infty{}^2\,r_\text{-}}{G\,m_\text{E}}} - \sqrt{\frac{2}{1+r_\text{-} / r_1}}\rk \,. \label{eq:adyn_escape08}
+        \end{align}
+        \item Der gesamte notwendige Antriebsbedarf ist dann
+        \begin{align}
+            \Delta v_\text{B} = |\Delta v_\text{B,1}| + \Delta v_\text{B,2} = v_1\,\lk 1+\sqrt{\frac{v_\infty{}^2}{v_1{}^2} + \frac{2r_1}{r_\text{-}}} - \sqrt{2+\frac{2r_1}{r_\text{-}}}\rk \label{eq:adyn_escape09}\,.
+        \end{align}
+    \end{itemize}
+    \item \underline{Fall C:} Drei-Impuls-Transfer (Edelbaum-Transfer)
+    \begin{itemize}
+        \item Im ersten Schritt geht das Raumschiff auf eine größere elliptische Bahn mit einer großen Halbachse $r_\text{+}$:
+        \begin{align}
+            \Delta v_\text{C,1} = v_1\,\lk \sqrt{\frac{2}{1+\frac{r_1}{r_\text{+}}}} -1\rk\,. \label{eq:adyn_escape10} 
+        \end{align}
+        \item Im zweiten Schritt wird es wieder auf eine deutlich kleinere Bahn mit Radius $r_\text{Ed2}$ gebracht (durch Abbremsen):
+        \begin{align}
+            \Delta v_\text{C,2} = -\sqrt{\frac{G\,m_\text{E}}{r_\text{+}}}\,\lk \sqrt{\frac{2}{1+r_\text{+} / r_1}} - \sqrt{\frac{2}{1+r_\text{+} / r_\text{-}}}\rk \,. \label{eq:adyn_escape11} 
+        \end{align}
+        \item Im dritten Schritt wird das Raumschiff wieder beschleunigt:
+        \begin{align}
+            \Delta v_\text{C,3} = \sqrt{\frac{G\,m_\text{E}}{r_\text{-}}}\,\lk \sqrt{2+\frac{v_\infty{}^2\,r_\text{-}}{G\,m_\text{E}}} - \sqrt{\frac{2}{1+r_\text{-}/ r_\text{+}}}\rk\,.\label{eq:adyn_escape12} 
+        \end{align}
+        \item Die gesamte Geschwindigkeitsänderung ist:
+        \begin{align}
+            \Delta v_\text{C} &= \Delta v_\text{C,1} + |\Delta v_\text{C,2}| + \Delta v_\text{C,3} \nonumber \\
+            &= v_1\,\lk \sqrt{\frac{v_\infty{}^2}{v_1{}^2} + \frac{2r_1}{r_\text{-}}} + \sqrt{2 + \frac{2r_1}{r_\text{+}}} - \sqrt{\frac{2r_1}{r_\text{-}}+\frac{2r_1}{r_\text{+}}}- 1\rk\,.\label{eq:adyn_escape13} 
+        \end{align}
+    \end{itemize}
+\end{itemize}
+Man kann nun vergleichen, wie sich die $\Delta v$ für die verschiedenen Fälle verhalten  (\figref{adyn_Oberth_transfer2}) und erkennt, dass für größere $v_\infty$ das Edelbaum-Manöver einen geringeren Antriebsbedarf (und damit geringeren Treibstoffbedarf) hat als der Oberth- und auch der direkte Transfer. 
+Aus \eqref{eq:adyn_escape13} erhält man durch Invertierung auch eine Beziehung für $v_\infty\,\lk v_1,r_1,r_\text{-},r_\text{+}\rk$ bei gegebenen Treibstoffvorrat $\Delta v$:
+\begin{align}
+    v_\infty = v_1\,\sqrt{ \lek 1+\frac{\Delta v}{v_1} + \sqrt{\frac{2r_1}{r_\text{-}} + \frac{2r_1}{r_\text{+}}} - \sqrt{2+\frac{2r_1}{r_\text{+}}} \rek^2 - \frac{2\,r_1}{r_\text{-}} }\,.\label{eq:adyn_escape14} 
+\end{align}
+Für $r_\text{+} = r_1$ ergibt sich die Beziehung für den Oberth-Transfer, für $r_\text{-} = r_\text{+} = r_1$ die für den direkten Transfer.
+%BEISPIEL 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{Flugbahnen und Flugzeiten für die Hohmann-Oberth-Edelbaum-Transfers}  
+Zum Schluss adressieren wir die Frage, welches das Flugmanöver (Hohmann-, Oberth- oder Edelbaum-Transfer) mit dem geringsten Treibstoffverbrauch \bzw mit der kürzesten Flugzeit ist.
+Die Energie des Systems Raumschiff und ausgeströmtes Gas nach dem jeweiligen i-ten Schubimpuls ist:
+\begin{align}
+	E_\text{g} &= T_\text{g, i} + \Delta E_\text{chem} = -\frac{1}{2}\, m_\text{i} v_1{}^2 + \frac{1}{2}\, \lk m_\text{i} - m_\text{f} \rk v_\text{G}{}^2 \nonumber \\
+	           &= -\frac{1}{2}\, m_\text{i} v_1{}^2 + \frac{1}{2}\,  m_\text{i}\,v_\text{G}{}^2 \lk 1 - \e^{\lk - \Delta v / v_\text{G} \rk} \rk \,. \label{eq:adyn_oberth31}
+\end{align}
+Hierin ist wie bisher $m_\text{i}$ die Gesamtmasse des Raumschiffs inklusive Treibstoff vor dem Schubmanöver, $m_\text{f}$ die Masse danach, $v_\text{G}$ die Ausströmgeschwindigkeit des Treibstoffgases und $\Delta E_\text{chem} $ die während des Schubs umgesetzte chemische Energie des Treibstoffs. Wenn man $v_\text{G} = \kappa\,v_1$ setzt, dann kann man die Änderung der kinetischen Energie des Raumschiffs pro impulsivem Schubmanöver relativ einfach berechnen.\\ %Dies werden wir in \probref{adyn_manoevers1} tun. \\
+Für die Berechnung der Flugzeiten muss man beachten, dass sich die Gesamtzeit aus Segmenten einer hyperbolischen Bahn und Segmenten von elliptischen Bahnen (genauer halben Ellipsen) zusammensetzt. Die Berechnung der Halbellipsen-Zeiten (\zb von $r_\text{out}$ bis $r_\text{in}$) ist nach dem 3. Keplerschen Gesetz:
+\begin{align}
+	t_\text{ell} = \frac{1}{2}\,2\pi \sqrt{\frac{a^3}{G\,m_\text{E}}} = \frac{\pi}{2} \sqrt{\frac{\lk r_\text{A} + r_\text{P} \rk^3}{2\,G\,m_\text{E}}} \,. \label{eq:adyn_oberth32}
+\end{align}
+Die Berechnung des hyperbolischen Abschnitts ist etwas komplexer. Wir starten dazu von der Gleichung für den Radialanteil der Geschwindigkeit (vgl. \eqref{eq:hm_allg_ZK_2}):
+\begin{align}
+	v_r{}^2 = \lk \frac{\D r}{\D t}\rk^2 = v_\infty{}^2 + 2 \,\frac{G\,m_\text{E}}{r} - \frac{L^2}{r^2}  \,. \label{eq:adyn_oberth33}
+\end{align}
+Wir wissen, dass am Perigäum gilt:
+\begin{align}
+   \frac{\D r}{\D t} &= 0 ~~~\rightarrow~~~ L^2 = v_\infty{}^2\,r_\text{P}{}^2 + 2 \,G\,m_\text{E}\,r_\text{P} ~~~\text{und erhalten somit} \nonumber \\
+	 \frac{\D r}{\D t} &= \sqrt{ v_\infty{}^2 + 2 \,\frac{G\,m_\text{E}}{r} - \frac{v_\infty{}^2\,r_\text{P}{}^2 + 2 \,G\,m_\text{E}\,r_\text{P}}{r^2}} \,.  \label{eq:adyn_oberth34}
+\end{align}
+Diese DGL 1. Ordnung kann man numerisch mit den üblichen Verfahren in \matlab{}\, integrieren, alternativ kann man die inverse Funktion $t(r)$ durch Integration von
+\begin{align}
+	 \frac{\D t}{\D r} = \frac{r}{\sqrt{ v_\infty{}^2 \lk {r^2 -r_\text{P}{}^2}\rk + 2 \,G\,m_\text{E} \lk {r -r_\text{P}}\rk }} \label{eq:adyn_oberth35}
+\end{align}
+berechnen. Mit Hilfe einer Integraltafel \cite{Gradshteyn1980} findet man:
+\begin{align}
+\begin{split}
+	 t_\text{hyp}(r, r_\text{P}) &= \frac{G\,m_\text{E}}{v_\infty{}^3} \lek \sqrt{\lk 1+ \frac{r\,v_\infty{}^2}{G\,m_\text{E}}\rk^2 - \lk 1 + \frac{r_\text{P}\,v_\infty{}^2}{G\,m_\text{E}}\rk^2 }\rek + \ldots \\
+	      &~~~ + \frac{G\,m_\text{E}}{v_\infty{}^3} \ln{\lek \frac{G\,m_\text{E} + v_\infty{}^2\,r}{v_\infty\, \sqrt{ v_\infty{}^2 \lk {r^2 -r_\text{P}{}^2}\rk + 2 \,G\,m_\text{E} \lk {r -r_\text{P}}\rk }}\rek}\\
+				&= \frac{T_0}{2\pi} \frac{v_1{}^3}{v_\infty{}^3} \lek \sqrt{\lk 1 + \frac{r\,v_\infty{}^2}{r_1\,v_1{}^2} \rk^2 - \lk 1 + \frac{r_\text{P}\,v_\infty{}^2}{r_1\,v_1{}^2} \rk^2 } -
+				    \cosh^{-1} {\lk \frac{1 + \frac{r\,v_\infty{}^2}{r_1\,v_1{}^2}}{1 + \frac{r_\text{P}\,v_\infty{}^2}{r_1\,v_1{}^2} } \rk} \rek \,.
+\end{split} \label{eq:adyn_oberth36}
+\end{align}
+\label{bsp:adyn_transfers_times}
+Für die weitere Diskussion verweisen wir auf \probref{adyn_manoevers3}.\\
+
+\end{example}
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{TransfersInfin02.pdf} 
+	\caption[Geschwindigkeitsbedarf und Flugzeiten beim Transfer nach $\infty$.]{\fa Geschwindigkeitsbedarf für verschiedene zu erzielende Endgeschwindigkeiten beim Hohmann-, Oberth- \bzw Edelbaum-Transfer nach $\infty$. Man sieht, dass ab einer bestimmten zu erreichenden Endgeschwindigkeit das Geschwindigkeitsbudget für den Oberth- und Edelbaum-Transfer kleiner ist als das für den direkten Hohmann-Transfer. \fb Flugzeiten bis zu $r=200\,r_1$ beim Hohmann-, Oberth- \bzw Edelbaum-Transfer. Als variabler Parameter wurde der äußere Radius $r_{+}$ genommen, der innere Radius wurde als fix mit $r_{-}=0.05\,r_1$ gesetzt und der Schubparameter wurde mit $\Delta v/v1 = 1.1$ angenommen. Man erkennt, dass es für $r_{+}\approx 2.5\,r_1$ ein absolutes Minimum der Flugzeit für den Edelbaum-Transfer gibt. Danach führt die längere Flugzeit auf der Halbellipse von $r_{+}$ nach $r_{-}$ zu insgesamt längeren Flugzeiten. (Nach \cite{Blanco2021}, siehe auch \probref{adyn_manoevers2}.)} \label{abb:adyn_Oberth_transfer2}
+\end{figure}
+Das Ergebnis der zeitlichen Entwicklung der verschiedenen Transfers ist in \probref{adyn_manoevers2} explizit durchgerechnet und das Ergebnis im Vergleich der verschiedenen Transfers in \figref{adyn_Oberth_transfer2} zu sehen. 
+
+\subsection{Interplanetare Raumflüge zu den Nachbarplaneten der Erde}\label{kap:adyn_flight_venus_mars}
+
+Wir wollen in diesem Kapitel Raumflüge zu Mars und Venus untersuchen und zunächst stark vereinfachende Annahmen treffen, um Grundprinzipien bei der Planung einer solchen Mission zu verdeutlichen. Insbesondere sollen
+\begin{enumerate}
+    \item [1.] alle Bewegungen (Planeten, Raumsonde) koplanar in der Ekliptik stattfinden,
+		\item [2.] die Planetenbahnen als kreisförmig angenommen werden und
+		\item [3.] der Flug zum Nachbarplaneten über eine Hohmann-Ellipse erfolgen.
+\end{enumerate}
+Zunächst betrachten wir den Flug zur Venus, für welchen gilt:
+\begin{align}
+\begin{split}
+    \upsilon_\text{E}  &= \upsilon_\text{E}\lk t_0\rk + n_\text{E}\,\lk t-t_0\rk = \upsilon_\text{E,0} + n_\text{E}\,t\,,\\
+    \upsilon_\text{V}  &= \upsilon_\text{V}\lk t_0\rk + n_\text{V}\,\lk t-t_0\rk = \upsilon_\text{V,0} + n_\text{V}\,t\,.
+\end{split} \label{eq:adyn_PlFlights01}
+\end{align} 
+Hierin sind $n_\text{E},\,n_\text{V},\,n_\text{M}$ die mittleren Bewegungen\index{Bewegung!mittlere} der Planeten Erde, Venus \bzw für später auch Mars (siehe Tabelle \ref{tab:hm_bahnparameter}), die sich nach \eqref{eq:adyn_Bahnpara05} berechnet. Die Differenz der wahren Anomalien $\psi = \upsilon_\text{V} -\upsilon_\text{E}$ wird als Phasenwinkel zwischen Venus und Erde bezeichnet. Dessen zeitliche Entwicklung lautet:
+\begin{align}
+    \psi = \psi_0 + \lk n_\text{V} - n_\text{E}\rk\,t ~~~~ \text{mit} ~~~~ \psi_0 = \upsilon_\text{V,0} - \upsilon_\text{E,0}\,. \label{eq:adyn_PlFlights02}
+\end{align}
+Aus \eqref{eq:adyn_PlFlights02} folgt die bereits in der \probref{hm_sideric_period_mars} hergeleitete synodische Periode\index{Periode!Synodische} eines Planeten (hier der Venus). Diese synodische Periode ergibt sich als die Zeit, die verstreicht, bis der Phasenwinkel zwischen den beiden betrachteten Himmelskörpern wieder den gleichen Wert hat.
+\begin{align}
+    \psi_0 +2k\pi &= \psi_0 +\lk n_\text{V} - n_\text{E}\rk\,T_\text{syn}\nonumber\\
+    \rightarrow ~~~~ T_\text{syn,V} &= \frac{2\pi}{n_\text{V}-n_\text{E}} = \frac{2\pi}{2\pi\,\lk \frac{1}{T_\text{P,V}} - \frac{1}{T_\text{P,E}}\rk} = \frac{T_\text{P,E} T_\text{P,V}}{T_\text{P,E} - T_\text{P,V}}\label{eq:adyn_PlFlights03}\,.
+\end{align}
+Analog gilt für den Mars:
+\begin{align}
+    T_\text{syn,M} = \frac{2\pi}{n_\text{E}-n_\text{M}} = \frac{T_\text{P,M} T_\text{P,E}}{T_\text{P,M} - T_\text{P,E}}\label{eq:adyn_PlFlights04}\,.
+\end{align}
+Da der Transfer über eine Hohmann-Ellipse mit der großen Halbachse $a_\text{H}$ erfolgen soll (vgl. auch \kap{adyn_hohmann_transfer}), findet man mit \figref{adyn_flight_venus_mars}b,c und dem sog. \gls{gravparadyn}\index{Gravitationsparameter}~$\mu_\text{S}=G\,m_\text{S}$ leicht den finalen Phasenwinkel $\psi_\text{f}$:
+\begin{align}
+\begin{split}
+  a_\text{H} &= \frac{1}{2}\,\lk r_\text{E} + r_\text{M}\rk\,,\,~~t_\text{H} = \frac{1}{2} \frac{2\pi}{n_\text{H}} = \pi\,\sqrt{\frac{a_\text{H}{}^3}{\mu_\text{S}}}\,~~\text{und}~~ \pi = \psi_0 + n_\text{M}\,t_\text{H}\;, ~~~\\
+ \psi_\text{f} &= \psi_0 + t_\text{H}\,\lk n_\text{M}-n_\text{E}\rk = \pi -n_\text{E}\,t_\text{H}\;.
+\end{split}\label{eq:adyn_PlFlights05}
+\end{align}
+Damit liegen die Phasenwinkel zwischen Erde und Mars bei Start und Ankunft fest. Als Werte ergeben sich $t_\text{H} \approx 259\,\text{d}$, $\psi_0 \approx 44.3\degree$ und $\psi_\text{f} \approx -75.1\degree$. \\
+Ein negativer Phasenwinkel $\psi_\text{f}$ bedeutet, dass der Mars \anf{hinter} der Erde liegt (\figref{adyn_flight_venus_mars}c), also $\upsilon_\text{f, M} < \upsilon_\text{f, E}$.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{InterplanetarerTransfer.pdf} 
+	\caption[Raumflüge zu Venus und Mars.]{Raumflüge zu Venus und Mars. \fa Raumflug zur Venus (maßstäblich, Reisezeit 158 Tage). \fb Raumflug zum Mars (maßstäblich, Reisezeit 115 Tage).  \fc Raumflug von der Erde zum Mars (nicht maßstäblich). Beziehung der Phasenwinkel $\psi_0, \psi_\text{f}$ beim Hinflug von der Erde zum Mars. \fd Raumflug vom Mars zur Erde (nicht maßstäblich). Beziehung der Phasenwinkel $\psi_0{}^\text{(R)}, \psi_0, \psi_\text{f}$ beim Rückflug vom Mars zur Erde.}
+	\label{abb:adyn_flight_venus_mars}
+\end{figure}
+
+Für die Rückkehr zur Erde geht man eine \anf{umgekehrte} Hohmann-Ellipse aus, was nichts anderes bedeutet als:
+\begin{align}
+    \psi_0{}^\text{(R)} = -\psi_\text{f}\,.\label{eq:adyn_PlFlights06R}
+\end{align}
+Die Raumsonde muss aber eine gewisse Zeit $t_\text{W}$ auf dem Mars warten, bis die Konstellation nach \eqref{eq:adyn_PlFlights06R} eintritt (\figref{adyn_flight_venus_mars}b). Wegen
+\begin{align}
+    0 = 2\psi_\text{f} + \lk n_\text{M} - n_\text{E} \rk \,t_\text{W} \label{eq:adyn_PlFlights06R1}
+\end{align}
+und der Forderung, dass $t_\text{W}>0$ ist, muss man gegebenenfalls einen Betrag von $2k\pi$ mit $k=0, \pm 1, \pm 2\ldots $ zu \eqref{eq:adyn_PlFlights06R1} addieren, woraus folgt:
+\begin{align}
+    t_\text{M, W} = \frac{2\psi_\text{f} + 2\,\pi\,N}{n_\text{E}-n_\text{M}} \,.\label{eq:adyn_PlFlights06M}
+\end{align}
+Wir erhalten $t_\text{W} \approx 454\,\text{d}$, was bedeutet, dass eine Reise zum Mars über Hohmann-Bahnen im Minimum:\
+$t_\text{M, ges} = t_\text{H} + t_\text{W} +  t_\text{H} \approx 259\,\text{d} + 454\,\text{d} + 259\,\text{d} = 972\,\text{d}$\
+dauern wird. Entsprechend erhält man für die Venus:
+\begin{align}
+    t_\text{V, W} = \frac{2\psi_\text{f} - 2\,\pi\,N}{n_\text{V}-n_\text{E}} \,,\label{eq:adyn_PlFlights06V}
+\end{align}
+mit $N=0$ die Werte $t_\text{V, ges} = t_\text{H} + t_\text{V, W} +  t_\text{H} \approx 146\,\text{d} + 117\,\text{d} + 146\,\text{d} = 409\,\text{d}$\,.\\
+
+Wir wollen nun auch Flüge untersuchen und berechnen, die nicht über Hohmann-Ellipsen ablaufen und bei denen die Positionsvektoren der Zielplaneten auch nicht mehr in der Ekliptikebene liegen müssen. Ferner soll eine bestimmte Flugzeit vorgegeben sein. Es sind dann der vom Hohmann-Transfer verschiedene Antriebsbedarf $\Delta \vec{v}$ und die Parameter der Transferbahn zu bestimmen. Dies führt auf das im nächsten Kapitel behandelte Lambert-Problem.
+
+\subsection{Lambert-Problem (Lambert-Transfer)}\label{kap:adyn_lambert_transfer}\index{Lambert-Transfer}\index{Lambert-Problem|textbf}
+
+Das Lambert\indexp{Lambert, Johann Heinrich}\footnote{Johann Heinrich Lambert (1728 -- 1777) war ein hugenottischer Schweizer Mathematiker und Physiker, der sich auch mit Kartographie und Astronomie beschäftigte. Neben dem Lambert-Problem der Himmelsmechanik ist auch das Lambert-Beersche Gesetz der Lichtabsorption nach ihm benannt.}\index{Lambert-Problem}-Problem lautet wie folgt:\\
+
+Zur Zeit $t_1$ und $t_2$ seien zwei Positionsvektoren $\vec{r}(t_1) =\vec{r}_1$ und $\vec{r}(t_2) =\vec{r}_2$ eines Körpers gegeben, der sich im Gravitationsfeld eines Zentralkörpers befindet. Die Positionsvektoren werden dabei vom Zentralkörper (Ursprung des Koordinatensystems) aus gemessen.\\
+Man finde die Lösung $\vec{r}\lk t\rk$ und damit insbesondere auch die Geschwindigkeiten $\vec{v}(\vec{r}_1)$ und $\vec{v}(\vec{r}_2)$, welche der Differentialgleichung
+\begin{align*}
+    \ddot{\vec{r}} = -G\,m_\text{ZK}\,\frac{\vec{r}}{|\vec{r}|^2} = \mu\,\frac{\vec{r}}{|\vec{r}|^2} 
+\end{align*}
+genügen. Hierbei ist $m_\text{ZK}$ die Masse des Zentralkörpers, um den die Bewegung erfolgt.\\
+Das Lambert-Problem ist streng genommen kein reines Problem der Astrodynamik, sondern wurde bereits im 18. Jahrhundert von Lambert für die Himmelsmechanik aufgestellt und von Lagrange\indexp{Lagrange, Joseph-Louis} gelöst. Übertragen auf die Astrodynamik kann man auch formulieren: Gesucht ist die Raumkurve $\vec{r}\lk t\rk$ zwischen zwei Positionen im Raum $\vec{r}_1$ und $\vec{r}_2$, die in einer Zeit $t_\text{F}^* = t_2-t_1$, der sogenannten \gls{ToF} (ToF), durchflogen wird, wobei nur das Schwerefeld eines Zentralkörpers wirkt. Die gesuchte Kurve muss daher ein Kegelschnitt sein, wobei wir uns hier auf elliptische Bahnen beschränken wollen. Da man folglich das Lambert-Problem auch als Bestimmung eines Transfer-Orbits zwischen zwei vorgegebenen Punkten verstehen kann, behandeln wir dieses Thema auch hier im Kapitel über Weltraummanöver. Das Lambert-Problem ist eines der wichtigsten Probleme der Astrodynamik. Fragestellungen, wie die Planung von Bahnen für Rendezvous von Raumschiffen im Weltall, dass Abfangen von ballistischen Flugkörpern oder Asteroiden oder auch die Konzeption interplanetarer Flüge gehen auf die Lösung des Lambert-Problems zurück. \\
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{LambertProblem01Geometrie.pdf} 
+	\caption[Lambert-Problem.]{\fa Geometrie des Lambert-Problems. Beispiel für ein Abfangen eines Asteroiden durch eine Raumsonde. \fb Anwendung des Lambert-Problems beim interplanetaren Flug zum Mars. Die Transferellipse zum Mars (Startzeitpunkt $t_1$ muss die Marsbahn zum Zeitpunkt $t_2$ auch genau dann schneiden/berühren, wenn der Mars sich an der entsprechenden Stelle befindet.}
+	\label{abb:adyn_lambert_basic}
+\end{figure}
+
+In \figref{adyn_lambert_basic}a haben wir als Beispiel das Problem des "`Abfangens"' eines Asteroiden und in \figref{adyn_lambert_basic}b eine Planung eines Raumflugs zum Mars schematisch dargestellt, die wir in \probref{adyn_manoevers5} und  \probref{adyn_manoevers6} genauer behandeln wollen. Es gibt verschiedene Ansätze zur Lösung des Lambert-Problems und noch heute erscheinen regelmäßig Originalarbeiten zu dem Thema. Im Wesentlichen geht es dabei um die (numerische) Optimierung der Lösungsverfahren und spezielle Probleme. Eine gute Übersicht über den aktuellen Stand findet sich für den interessierten Leser in \cite{Izzo2015} und \cite{sangra2021}, wobei die letztere Referenz auch explizit auf die \matlab-Modellierung eingeht.\\
+Warum ist das Lambert-Problem so besonders? Gegeben sind beim Lambert-Problem wie oben ausgeführt, zwei Ortsvektoren $\vec{r}(t_1)$ und $\vec{r}(t_2)$ und die ToF. Gesucht sind die Bahnparameter und die Geschwindigkeiten $\dot{\vec{r}}(t_1)$ und $\dot{\vec{r}}(t_2)$ für die Kurve zwischen $\vec{r}(t_1)$ und $\vec{r}(t_2)$. Das ist ein sogenanntes \emph{Randwertproblem}\index{Randwertproblem|textbf}, welches wesentlich schwieriger zu lösen ist als die bisher behandelten Anfangswertprobleme, bei denen alle Informationen zur Integration der Bewegungsgleichungen zum Anfangszeitpunkt bekannt waren. Im Gegensatz zu Anfangswertproblemen\index{Anfangswertproblem} haben Randwertprobleme nicht immer eine eindeutige Lösung. Die ausführliche Behandlung von Randwertproblemen geht über den Umfang dieses Buches hinaus, wir empfehlen zur Vertiefung die Referenzen \cite{Arens2008, Fischer2014}.\footnote{Dem Lambert-Randwertproblem sind wir schon bei der Bestimmung der Bahnparameter aus zwei Ortsvektoren in \kap{adyn_orbits_determination_xwinkel} begegnet. Wir hatten dort lediglich die numerische Methodik angegeben, ohne auf das Randwertproblem einzugehen.} Für das Lambert-Problem gibt es eine Reihe von Lösungsmethoden \cite{Izzo2015, sangra2021}, wir zeigen hier eine physikalisch sehr anschauliche, die auf \cite{Gatland2022} zurückgeht. In \probref{adyn_manoevers4} werden wir eine andere Lösungsmethode verwenden und auch auf weitere Lösungsmethoden verweisen. Wir führen mit Hilfe von \figref{adyn_lambert_basic} die folgenden Bezeichnungen ein:
+\begin{align*}
+    \gamma ~~~~~~~~ &\text{Winkel zwischen $\vec{r}_1$ und $\vec{r}_2$}\,,\\
+    \chi   ~~~~~~~~ &\pi-\frac{\gamma}{2} \,,\\
+    \eta   ~~~~~~~~ &\text{Winkel zwischen der Winkelhalbierenden von}~ \vec{r}_1 ~\text{und} ~\vec{r}_2~\text{und Apsidenlinie}~~ \overline{\mathrm{PA}}.
+\end{align*}
+Die Flugzeit $t_\text{F}^* = t_2-t_1$ ist als Bedingung vorgegeben, man muss also die Bahnparameter der Ellipse suchen. Wir wählen dazu den Parameter $p$ (\textit{semi-latus rectum}) und die Exzentrizität~$e$, könnten aber auch anstelle $p$ die große Halbachse $a$ nehmen, wie wir es in \probref{adyn_manoevers4} tun werden. Mit den Längen der Ortsvektoren $r_{1,2}=\left|\vec{r}_{1,2}\right|$ schreiben wir mit Gleichung~\eqref{eq:hm_bahnglg}: 
+\begin{align}
+\begin{split}
+    p &= r_1\,\lk 1+e\,\cos\lk\theta_1\rk\rk\, = r_1\,\lk 1+ e\cos\lk\chi-\eta\rk\rk\, \\
+    &= r_1 \lk1+e\,\cos\chi\,\cos\eta + e\,\sin\chi\,\sin\eta\rk\,,
+\end{split} \label{eq:adyn_lambert01}
+\end{align}
+\bzw
+\begin{align}
+\begin{split}
+    p &= r_2\,\lk 1+e\,\cos\lk 2\pi - |\lk \chi+\eta\rk|\rk\rk \,\\
+    &= r_2\,\lk 1+ e\,\cos\chi\,\cos\eta - e\,\sin\chi\,\sin\eta\rk\,. 
+\end{split} \label{eq:adyn_lambert02}
+\end{align}
+Wir addieren \bzw subtrahieren $p/r_1$ und $p/r_2$ und erhalten nach kleiner Umformung
+\begin{align}
+    A &= \frac{\lek p/r_1 + p/r_2 -2\rek}{2\cos\chi} = e\,\cos\eta ~~~\text{\bzw}~~~
+     B = \frac{\lek  p/r_1 - p/r_2 \rek}{2\sin\chi}  = e\,\sin\eta \,. \label{eq:adyn_lambert03}
+\end{align}
+Aus den beiden Gleichungen gewinnt man die Exzentrizität $e$ und den Winkel $\eta$:
+\begin{align}
+    e = \sqrt{A^2+B^2} ~~~\text{\bzw}~~~\eta = \upsilon_0 = \arctan \lk \frac{B}{A} \rk \,.\label{eq:adyn_lambert05}
+\end{align}
+Gegeben sind $r_1,r_2,\gamma$ und $\chi$. Für $p$, das wir ja bestimmen wollen, kann ein Startwert $p^{(0)}$ angenommen werden, so dass dann mit \eqref{eq:adyn_lambert03} und \eqref{eq:adyn_lambert05} auch $e^{(0)}$ und $\eta^{(0)}$ bekannt sind und damit auch $\upsilon_1^{(0)} = \chi-\eta^{(0)}$ als Winkel (wahre Anomalie)\index{Anomalie!wahre} von $\vec{r}_1$ zur Periapsis und die entsprechende wahre Anomalie $\upsilon_2^{(0)} = 2\pi -\lk\chi+\eta^{(0)}\rk$. \\
+Damit können wir nun für den angenommenen Startwert $p^{(0)}$ die Zeiten $t_{1,2}^{(0)}$ berechnen, indem wir die Beziehung \eqref{eq:hm_1-ecosEdE} für $t(E)$ ($E$ ist die exzentrische Anomalie) aus dem \kap{hm_abl_kepler} integrieren und dabei $a^{(0)} =p^{(0)}/\lk 1-\lk e^{(0)}\rk^2\rk$ benutzen. Wir erhalten: 
+\begin{align}
+    \sqrt{\frac{\mu}{p^3}}\,t_{1,2}^{(0)} = \frac{E_{1,2}^{(0)}-e^{(0)}\,\sin E_{1,2}^{(0)}}{\lk 1-\lk e^{(0)}\rk ^2\rk^{\frac{3}{2}}}\,. \label{eq:adyn_lambert06}
+\end{align}
+Wir können die exzentrische Anomalie\index{Anomalie!exzentrische} $E_{1,2}^{(0)}$ über \eqref{eq:hm_nu(t)_alternativ} aus 
+\begin{align}
+    \tan\lk\frac{E_{1,2}^{(0)}}{2}\rk = \sqrt{\frac{1-e^{(0)}}{1+e^{(0)}}}\,\tan\lk\frac{\upsilon_{1,2}}{2}\rk \label{eq:adyn_lambert07}
+\end{align}
+berechnen und vergleichen nun die mit dem Startwert berechnete Flugzeit $t_\text{F}^{(0)} = t_2^{(0)}-t_1^{(0)}$, die im Allgemeinen noch nicht mit der ToF $t_\text{F}^*=t_1-t_2$ übereinstimmen wird. Ohne Beschränkung der Allgemeinheit wollen wir annehmen, dass $t_\text{F}^{(0)}>t_\text{F}^*$ ist.\\
+Die weitere iterative Bestimmung des tatsächlichen Bahnparameters erfolgt, indem man einen zweiten Iterationsstartwert $p^{(1)}$ und wählt und zwar so, dass für das über \eqref{eq:adyn_lambert06} berechnete $t_\text{F}^{(1)}= t_2^{(1)}-t_1^{(1)}$ gilt: $t_\text{F}^{(1)} < t_\text{F}^*$.\footnote{Falls $t^{(0)}<t_\text{F}^*$ war, entsprechend umgekehrt!} Nun interpoliert man ein $p^{(2)}$ nach
+\begin{align}
+    p^{(2)} = \frac{t_\text{F}^*-t_\text{F}^{(1)}}{t_\text{F}^{(0)}-t_\text{F}^{(1)}}\,\lk p^{(0)}-p^{(1)}\rk + p^{(1)}  \label{eq:adyn_lambert09}
+\end{align}
+und berechnet $t_\text{F}^{(2)}$. Diese Interpolation wird so lange fortgesetzt bis $t_\text{F}^{(n)} \approx t_\text{F}^*$ ist. Die Lösung für einen ähnlichen Fall wie in  \figref{adyn_lambert_basic}a dargestellt haben wir für zwei exemplarische Parametersätze im \mscr~ \mladynref{LambertProblem01.m} durchgerechnet (\figref{adyn_lambert_bsp}). \\
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{LambertProblem01Loesung.pdf} 
+	\caption[Lösung des Lambert-Problems.]{Lösung des Lambert-Problems für das Beispiel des Abfangens einer interkontinentalen ballistischen Rakete durch eine Raumsonde im Schwerefeld der Erde. \fa Parameter: $r_1 = \SI{6800}{\kilo\metre},\, r_2 = \SI{6400}{\kilo\metre},\, \gamma=75\degree,\ t_\text{F}^*=3000s = \SI{50}{\minute}$. Es ergibt sich die grüne Ellipse mit Parametern $p = \SI{2831}{\kilo\metre},\, \e=0.7195,\, \eta = -1.7\degree$. \fb Mit gleichen Anfangsvektoren aber unterschiedlichem eingeschlossenen Winkel $\gamma=285\degree=360\degree- 75\degree$  ergibt sich die längere orangefarbene Ellipse mit einer Flugzeit $t_\text{F}^*=6000s = \SI{100}{\minute}$ und Ellipsenparametern von: $p = \SI{7589}{\kilo\metre},\, \e=0.1988,\, \eta = -16.7\degree$. (\mscr~ \mladynref{LambertProblem01.m} nach \cite{Gatland2022}.)
+	}
+	\label{abb:adyn_lambert_bsp}
+\end{figure}
+Wir haben in der gezeigten Rechnung eine eindeutige Lösung erhalten. Das ist bei Randwertaufgaben jedoch keinesfalls immer der Fall, wie wir in \probref{adyn_manoevers4} zeigen werden. Bei ungünstig gewähltem Startwert $p^{(0)}$ kann es sein, dass die Itration nicht konvergiert. Es empfiehlt sich daher, sich mit einer numerischen Vorwärtsrechnung eine Tabelle von $p^{(i)}$ und den zugehörigen $t_\text{F}^{(i)}$ zu beschaffen. 
+
+Für die Bahnberechnung in der Astrodynamik braucht man häufig auch die Geschwindigkeiten bei den jeweiligen normalen Anomalien, insbesondere bei $\upsilon_1$ und $\upsilon_2$. Diese berechnen sich nach \cite{Gatland2022}:
+\begin{align}
+    \vec{v}_\text{tr} = \sqrt{\frac{\mu}{p}}\,\lek e\,\sin\upsilon\,\vec{e}_\text{r} + \lk 1 + e \,\cos\upsilon \rk \,\vec{e}_\upsilon \rek \,,\label{eq:adyn_lambert08}
+\end{align}
+worin $\vec{e}_r$ \bzw $\vec{e}_\upsilon$ Einheitsvektoren sind. In \probref{adyn_manoevers4} werden wir noch eine andere Berechnung für die Geschwindigkeiten zeigen.\\ 
+Für das Lambert-Problem gibt es wie erwähnt zahlreiche Anwendungen. Beispielsweise ist die Berechnung der Bahn eines Transportraumschiffs zur ISS nach dem \gls{Brennschluss} des Triebwerks der Startrakete ein Lambert-Problem, ebenso wie die Planung und Berechnung eines optimalen Startzeitpunkts (Start-Fensters) zum Mars \bzw zur Venus (\probref{adyn_manoevers5}).
+In \probref{adyn_manoevers6} behandeln wir das Abfangen einer interkontinentalen ballistischen Rakete.
+
+\subsection{Manöver mit kontinuierlichem Schub}\label{kap:adyn_kont_maneuver}
+
+Wir wollen uns nun Manöver mit kontinuierlichem Schub anschauen, wie sie \zb durch Plasma- oder Ionenstrahltriebwerke oder allgemein elektrische Antriebe realisiert werden können. Diese Triebwerke sind wieder verstärkt in das Interesse der Raumfahrt gerückt, beispielsweise bei der Raumsonde BepiColombo im Jahr 2018 \cite{Althaus2007, Krueger2018, Messerschmid2017}.\\
+Im Gegensatz zu einem chemischen Antrieb auf Basis von Verbrennung von Treibstoff, steht beim elektrischen Antrieb quasi kontinuierlich und über Solarpanele auch nahezu unbegrenzt  Energie zur Verfügung, allerdings ist die Leistung (Energie pro Zeit) begrenzt. Ein Vorteil der elektrischen Antriebe ist aber, dass die Ausstoßgeschwindigkeit der Teilchen (beschleunigte Ionen) mit bis zu $v_1= \SI{50}{\km\per\second}$ deutlich über den Werten von chemischen Triebwerken ($v_\text{G}\approx 3 \ldots 5\,\SI{}{\km\per\second}$) liegt. Damit ist pro $\SI{}{\kg}$ Treibstoffmasse auch ein etwa $10$ mal größerer Schub verbunden. Dennoch gibt es zwei Nachteile, 
+\begin{itemize}
+    \item zum einen funktionieren Ionenstrahltriebwerke nicht unter Atmosphärenbedingungen, was ihren Einsatz auf höhere Orbits und interplanetare Flüge begrenzt und
+    \item wegen der begrenzten elektrischen Leistung sind zum anderen nur sehr kleine Schübe im Bereich von $\SI{1e-3}{\newton}$ bis etwa $\SI{0.5}{\newton}$ möglich. 
+\end{itemize}
+Damit sind auch die Einsatzbereiche der Triebwerke vorgezeichnet.\\
+Wir wollen uns als ein Beispiel den Flug von einer nahen Erdumlaufbahn (\zb LEO) zu einem geostationären Orbit (GEO) mit einem Ionentriebwerk durch sogenanntes Aufspiralen im Vergleich zum Hohmann-Transfer (\kap{adyn_hohmann_transfer}) anschauen.
+In der Bewegungsgleichung für kontinuierliche Schübe soll die sich über die Manöverzeitdauer verändernde Gravitationskraft $\vec{F}_\text{G}$ berücksichtigt werden. Alle anderen wirkenden Kräfte sollen weiterhin vernachlässigt werden. Wir haben also für das Raumschiff (Masse $m_\text{R}$) mit kontinuierlichem Triebwerk folgende Bewegungsgleichung:
+\begin{align}
+    \ddot{\vec{r}} = \dot{\vec{v}} = \frac{\vec{F}_\text{S}\lk t\rk}{m_\text{R}(t)} +\frac{\vec{F}_\text{G}\lk\vec{r}\rk}{m_\text{R}(t)}\,.\label{eq:adyn_ionentr_01}
+\end{align}
+Im Allgemeinen wird man diese Gleichung nur numerisch lösen können (\probref{adyn_manoevers7}), wir können aber mit zwei Annahmen eine gute analytische Näherung herleiten.
+Es gilt zum einen, dass $|\vec{F}_\text{S}| \ll |\vec{F}_\text{G}|$ und zum anderen soll der Schub immer tangential zur Bahn, also parallel zur Geschwindigkeit erfolgen, also:
+\begin{align}
+    \vec{F}_\text{S}\,\vec{v}_\text{R} = F_\text{S}\,v_\text{R}\,. \label{eq:adyn_ionentr_02}
+\end{align}
+Das bedeutet auch, dass die Bahn während des gesamten Manövers als kreisähnlich betrachtet werden kann, das Aufspiralen wird also mit sehr kleinen Höhenänderungen pro Zeit (\bzw Umlauf) verbunden sein. Man muss dann natürlich bei der Rechnung aufpassen, dass die Bedingungen für die gemachten Näherungsannahmen noch erfüllt sind. Wir benutzen die  Gleichung für die Gesamtenergie \eqref{eq:hm_vis-viva} und die \gls{visvivaadyn} \eqref{eq:hm_vis-viva}, die wir etwas umformen und beide nach der Zeit ableiten:
+\begin{align}
+\begin{split}
+    \frac{\D }{\D t}\,H = \frac{\D }{\D t} \lk -\frac{\mu_\text{E}}{2a}\rk &= \frac{\D}{\D t}\lk\frac{1}{2}\,v^2 - \frac{m_\text{E}\,G}{r} \rk %= \frac{\D}{\D t} \lk\frac{1}{2}\,\vec{v}^2-\frac{\mu_\text{E}}{r}\rk 
+		= \frac{\D}{\D t}\lk \frac{1}{2}\,\vec{v}^2 + U\lk r\rk \rk\\
+    &=\vec{v}\,\frac{\D \vec{v}}{\D t} + \frac{\d U\lk r\rk}{\d \vec{r}}\,\frac{\D \vec{r}}{\D t}= \vec{v}\,\lk\frac{\D \vec{v}}{\D t} - \vec{g}\lk r \rk \rk \,.
+\end{split} \label{eq:adyn_ionentr_03}
+\end{align}
+Hier haben wir die spezifische (auf die Masse bezogene) potentielle Energie 
+\begin{align}
+    U\lk r\rk = \frac{1}{m_\text{r}}\,\int\limits_r^\infty F_\text{G}\lk r\rk\, \D r  \label{eq:adyn_ionentr_04}
+\end{align}
+und die Gravitationsbeschleunigung 
+\begin{align}
+    \vec{g} = \frac{\vec{F}_\text{G}}{m_\text{r}} = - \frac{\d}{\d \vec{r}}\,U\lk r\rk = -\vec{\nabla}\,U\lk r\rk \label{eq:adyn_ionentr_05}
+\end{align}
+benutzt. 
+%Gleichung \eqref{eq:adyn_ionentr_03} ist aber nach \eqref{eq:hm_bewgl1} gleich der zeitlichen Ableitung der Gesamtenergie, also:
+%\begin{align}
+    %\frac{\D }{\D t} = \lk -\frac{\mu_\text{E}}{2a}\rk = \frac{\D }{\D t}\,H\,. \label{eq:adyn_ionentr_06}
+%\end{align}
+Damit können wir \eqref{eq:adyn_ionentr_03} mit \eqref{eq:adyn_ionentr_01} schreiben:
+\begin{align}
+    \frac{\D}{\D t}\, H = \vec{v}\,\lk \frac{\vec{F}_\text{S}}{m_\text{R}} + \vec{g} - \vec{g} \rk = \vec{v}\,\frac{\vec{F}_\text{S}}{m_\text{R}} ~~~~ \rightarrow ~~~~ \frac{1}{v}\,\frac{\D}{\D t}\,H = \frac{F_\text{S}}{m_\text{R}}\,.\label{eq:adyn_ionentr_07}
+\end{align}
+Das ist unsere Bewegungsgleichung. Die bereits gemachte Annahme für kleine Schübe führt zu kreisähnlichen Bahnen, die wir durch
+\begin{align}
+    v = \left|r \dot{\varphi} \vec{e}_\varphi \right| = \sqrt{\frac{G\,m_\text{E}}{r}} = \sqrt{\frac{\mu_\text{E}}{r}}~~~~ \text{und} ~~~~ H =-\frac{G\,m_\text{E}}{2r}= -\frac{\mu_\text{E}}{2r} \label{eq:adyn_ionentr_08}
+\end{align}
+ausdrücken (siehe auch \kap{hm_abl_kepler}). \\
+Damit erhalten wir:
+\begin{align*}
+    \frac{1}{2}\,\sqrt{\frac{\mu_\text{E}}{r^3}}\,\frac{\D r}{\D t} = \frac{F_\text{S}}{m_\text{R}}
+\end{align*}
+und durch Integration
+\begin{align}
+\begin{split}
+    \frac{\sqrt{\mu_\text{E}}}{2}\,\int\nolimits_{r_1\approx R_\text{E}+h}^{r_2} r^{-\frac{3}{2}}\,\D r = &-\sqrt{\mu_\text{E}}\,\lk \frac{1}{\sqrt{r_2}} - \frac{1}{\sqrt{r_1}}\rk = \int\nolimits_{t=0}^{t_\text{end}}\,\frac{F_\text{S}}{m_\text{R}}\,\D t = \Delta v_\text{kont}\\
+    \rightarrow ~~~~ &\Delta v_\text{kont} = \sqrt{\frac{\mu_\text{E}}{r_1}}\,\lk 1-\sqrt{\frac{r_1}{r_2}}\rk = v_1-v_2 \,.
+\end{split} \, \label{eq:adyn_ionentr_09}
+\end{align}
+Beim kontinuierlichen Schub ist also der Geschwindigkeitsbedarf durch die Differenz der Umlaufgeschwindigkeiten in der Anfangs- und Endbahn gegeben. \\
+Vergleichen wir das mit dem Hohmann-Transfer \eqref{eq:adyn_hohmann04}
+\begin{align}
+    \Delta v_\text{Hohmann}=  v_\text{P}-v_\text{A} +v_2-v_1 = v_\text{P}-v_\text{A} -\Delta v_\text{kont}\,, \label{eq:adyn_ionentr_10}
+\end{align}
+so sehen wir, dass beim kontinuierlichen Schub ein höherer Energiebetrag notwendig ist (\figref{adyn_Ionenantrieb01}a). \\
+Wir wollen noch die Flugzeit unter der Annahme konstanten Schubs und konstanter Massenverlustrate $\dot{m}_\text{R}$ (das sind im wesentlichen die ausgestoßenen Ionen) berechnen. Aus \eqref{eq:adyn_ionentr_07} folgt dann mit $m\lk t\rk = m_0 - \dot{m}_\text{r}\lk t-t_0\rk$:
+\begin{align*}
+    \int\limits_{t_0}^t\frac{F_\text{S}}{m\lk t \rk} \,\D t = \frac{F_\text{S}}{m_0}\,\int\limits_{t_0}^t \, \frac{\D t'}{1-\frac{\dot{m}_\text{R}}{m_0}\,\lk t'-t_0 \rk} = \frac{F_\text{S}}{\dot{m}_\text{R}} \,\ln \,\lek 1-\frac{\dot{m}_\text{R}}{m_0}\,\lk t-t_0\rk\rek
+\end{align*}
+\begin{align*}
+    \rightarrow ~~~~ \frac{r}{r_1} = \lek 1 + \sqrt{\frac{r_1}{\mu_\text{E}}}\,\frac{F_\text{S}}{\dot{m}_\text{R}}\,\lk \ln \lek 1-\frac{\dot{m}_\text{R}}{m_0}\,\lk t-t_0\rk\rek\rk\rek \;. 
+\end{align*}
+Wir haben die Zeiten für den Flug zum GEO mit kontinuierlichem Antrieb in \figref{adyn_Ionenantrieb02} dargestellt und mit denen für einen äquivalenten Hohmann-Transfer verglichen.
+Man erkennt, dass bei kontinuierlichen (elektrischen) Triebwerken mit deutlich längeren Flugzeiten zu rechnen ist. Deswegen kommt es bei Raketenantrieben immer zu einer Kombination von chemischen Triebwerken (schon für den Start von der Erde notwendig) und elektrischen Triebwerken. Wir wollen nochmals explizit darauf hinweisen, dass die Näherungsannahmen, die wir weiter oben gemacht haben, nicht mehr für die gesamte Flugzeit erfüllt sind. Das kann man auch am starken Anstieg der Kurve $r(t)$ am Ende der Flugzeit sehen. Eine detaillierte numerische Rechnung ist Gegenstand von \probref{adyn_manoevers7}. In \probref{adyn_manoevers8} wollen wir dann auch den Flug mit einem kontinuierlichen Antrieb zum Mars aus einer Parkbahn um den Mond heraus betrachten und die Gleichung \eqref{eq:adyn_ionentr_01} numerisch lösen. Es sei darauf hingewiesen, dass auch der Strahlungsdruck (siehe \kap{adyn_strahlungsdruck}) besonders im interplanetaren Raum zum kontinuierlichen Antrieb benutzt werden. Dazu werden Raumschiffe mit sogenannte Sonnensegeln ausgestattet. In \cite{Bailer2021} wird die japanische Mission IKAROS behandelt, die mit einem solchen Antrieb im interplanetaren Raum unterwegs ist. 
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{Ionenantrieb01.pdf} 
+	\caption[Ionenantrieb im Vergleich zu Hohmann-Transfer.]{Ionenantrieb im Vergleich zu einem Hohmann-Transfer. \fa Geschwindigkeitsbedarf für Transfer von $r_1$ nach $r_2$. \fb Bahnform. Parameter: $r_1= \SI{1000}{\km} + R_\text{E}$, $r_2 = \SI{35786}{\km} + R_\text{E}$, Schub $F_\text{S}= \SI{0.5}{\newton}$, Anfangsmasse $m_0= \SI{10000}{\kg}$, Massenausstoß $\dot{m}_\text{R} = \SI{3e-3}{\kg\per\second}$. }
+	\label{abb:adyn_Ionenantrieb01}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{Ionenantrieb02.pdf} 
+	\caption[Abstand zur Erde und Flugzeit bei Flug zu geostationärem Orbit.]{Abstand zur Erde und Flugzeit bei einem Flug zu einem geostationären Orbit mit Ionenantrieb im Vergleich zu einem Hohmann-Transfer.}
+	\label{abb:adyn_Ionenantrieb02}
+\end{figure}
+
+
+\subsection{Gravity-Assist-Manöver}\label{kap:adyn_gravity_assist}
+
+Wir wollen nun die ebenfalls sehr wichtigen \glslink{GA}{\textit{Gravity-Assist-Manöver (GA-Manöver)}}\index{Gravity-Assist-Manöver} behandeln, denen wir bereits unter dem Namen Swing-By\index{Swing-By-Manöver}\footnote{Wir benutzen die Begriffe GA-Manöver und Swing-By-Manöver synonym. Häufig wird auch die Schreibweise Swingby oder Flyby verwendet.} im Kapitel 1 von Band I und auch im Kapitel Himmelsmechanik begegnet sind. 
+Warum ist das Gravity-Assist-Manöver für die Raumfahrt insbesondere zu den weiter entfernten Planeten so bedeutsam? Der Hohmann-Transfer erfordert bei entfernt liegenden Planeten sehr große Geschwindigkeitsbudgets und führt auch zu sehr langen Flugzeiten. So bräuchte man nach \eqref{eq:adyn_hohmann04} für einen Hohmann-Transfer zum Jupiter bereits ein $\Delta v \approx \SI{14}{\km\per\second}$, was zumindest bei der derzeitigen Raketentechnologie zu völlig unakzeptablen, \dh verschwindenden, Nutzlasten führen würde.\\ 
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{GravityAssistManoever01.pdf} 
+	\caption[Verschiedene Swing-By-Manöver im heliozentrischen \KOS .]{Swing-By-Manöver im heliozentrischen Koordinatensystem. \fa Bahn der Sonde liegt "`hinter"' dem Planeten, die Ablenkung erfolgt entgegen dem Uhrzeigersinn ($\vartheta' >0$). \fb Bahn der Sonde liegt "`vor"' dem Planeten, die Ablenkung erfolgt im Uhrzeigersinn ($\vartheta' < 0$).}
+	\label{abb:adyn_swingby00}
+\end{figure}
+
+Erst mit den Swing-By-Manövern wurden solche interplanetaren Raumflüge wirklich möglich. Erwähnenswert ist, dass die Entdeckung des Swing-By 1961 von dem Mathematik-Studenten Michael Minovitch\footnote{Michael Minovitch (geb. 1935) ist ein US-amerikanischer Mathematiker, der als erster gezeigt hat, dass die Bahnen von Raumsonden beim Vorbeiflug an Planeten durch ein Swing-By-Manöver Geschwindigkeit hinzugewinnen können.}\indexp{Minovitch, Michael Andrew} während seines studentischen Praktikums am \textit{\gls{jpladyn}~(JPL)}\index{Jet Propulsion Lab (JPL)} in Pasadena (Kalifornien) gemacht wurde. Innerhalb der NASA und der ESA wird auch Giuseppe Colombo\footnote{Giuseppe Colombo (1920--1984) war ein italienischer Ingenieur und Mathematiker, der auf den Gebieten der theoretischer Mechanik, insbesondere der Schwingungs- und Himmelsmechanik und der Astrodynamik tätig war. Neben seinen Beiträgen zum Swing-By ist auch seine Konzeptentwicklung des Space Tethers (Weltraumfahrstuhl, siehe auch Übung im Kapitel 1, Band I)\indexp{Colombo, Giuseppe} erwähnenswert.} als konzeptioneller Kopf und genialer Weiterentwickler von Swing-By-Manövern genannt.\\
+Wie kann eine Raumsonde durch ein GA-Manöver an einem Planeten an Geschwindigkeit gewinnen? Wir hatten im Kapitel Streuprobleme (Band I, Kapitel  1.3.5) gesehen, dass es sich bei Swing-By-Manövern um ein elastisches Streuproblem im Gravitationsfeld des Planeten handelt. Die Bewegung einer Sonde um den sogenannten Gravity-Assist-Planeten erfolgt auf einer Hyperbelbahn und natürlich bleibt bei diesem elastischen Streuprozess die Gesamtenergie des Systems erhalten. Es findet aber eine Energieübertragung $\Delta T$ zwischen Planet und Raumsonde statt, die im heliozentrischen \KOS\ zu einer Geschwindigkeitsänderung der Sonde führt. Das GA-Manöver ist im reinen Zweikörperproblem nicht erklärbar, denn es muss die heliozentrische Geschwindigkeit des Planeten für die Erklärung des Energie- \bzw Geschwindigkeitsübertrags berücksichtigt werden.\footnote{In der Referenz \cite{Walter2018} wird eine schöne Analogie für den Swing-By gegeben. Nach dieser kann eine Raumsonde mit einem Roller-Skater verglichen werden. Der Roller-Skater hängt sich für eine kurze Zeit an einem vorbeifahrenden Bus (den Planeten), lässt diesen dann nach einiger Zeit wieder los und hat damit Geschwindigkeit gewonnen. Das Festhalten entspricht der Gravitationskraft zwischen Planet und Raumsonde.} Man behandelt deshalb das Problem des Swing-By in einer Abfolge von Schritten, zunächst im heliozentrischen, dann im planetaren und zum Schluss wieder im heliozentrischen System, in dem dann ja auch der Geschwindigkeitsgewinn beobachtet wird.\\
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{SwingByHeliozPlanetoz.pdf} 
+	\caption[Swing-By-Manöver im heliozentrischen und planetaren \KOS .]{Swing-By-Manöver im heliozentrischen \fa und im planetaren \KOS\ \fb im Bereich der Einflusssphäre (SOI). Wir haben hierbei auch für die weiteren Darstellungen folgende Konventionen gewählt: Größen im heliozentrischen \KOS\ sind ungestrichen (\zb $\vec{v}_1,\, \gamma_1$) und in der Farbe lila dargestellt, während Größen im planetaren \KOS\ dagegen gestrichen (\zb $\vec{v}_1{}',\,\beta_1{}'$) und in den Farben blau oder orange angegeben sind. Systemunabhängige Größen sind ungestrichen (\zb $r_\text{per},\, R_\text{SOI}$) und in der Farbe schwarz dargestellt. Die Inlets zeigen \fc die Geschwindigkeitsverhältnisse am Eintrittspunkt in die SOI des Planeten \bzw \fd die Gesamtänderung des heliozentrischen Geschwindigkeitsvektors der Raumsonde.}
+	\label{abb:adyn_swingby01}
+\end{figure}
+
+Wir wollen uns die mathematische Behandlung des Swing-By-Manövers etwas vereinfachen, indem wir annehmen, dass alle Bewegungen in der Ebene der Ekliptik stattfinden. 
+Bei der Streuung am Planeten wird die Raumsonde um einen zunächst noch nicht bekannten Winkel $\vartheta'$ abgelenkt. Dabei kann der Winkel sowohl negativ (Richtungsänderung entgegen dem Uhrzeigersinn) als auch positiv (Richtungsänderung im Uhrzeigersinn) sein, siehe \figref{adyn_swingby00}, je nachdem, ob sich die Sonde "`vor"' oder "`hinter"' dem Planeten (von der Sonne aus betrachtet) an diesem vorbei bewegt. Gleiches gilt für die Geschwindigkeitsänderung.\\ 
+\figref{adyn_swingby01}a zeigt das Gravity-Assist-Manöver im heliozentrischen \KOS\ und \figref{adyn_swingby01}b im \KOS\ des Gravity-Assist-Planeten, welches wegen der großen Masse $m_\text{P} \gg m_\text{R}$ zugleich das Schwerpunktsystem ist. Mit den Bezeichnungen aus den Abbildungen finden wir für die Situation am Punkt $\text{P}_1$ vor dem Swing-By-Manöver, \dh vor der Streuung (\figref{adyn_swingby01}c):
+\begin{subequations}
+    \begin{align}
+        \vec{v}_1{}' &= \vec{v}_1 - \vec{v}_\text{P}\,, \label{eq:adyn_swingby01a} \\
+        {v_1{}'}^2 &= v_1{}^2 + v_\text{P}{}^2 - 2\,v_1\,v_\text{P}\,\cos\gamma_1\,.\label{eq:adyn_swingby01b} 
+    \end{align} \label{eq:adyn_swingby01} 
+\end{subequations}
+Hierbei haben wir unterstellt, dass wir in der sogenannten \gls{SOI} (englisch \textit{Sphere of Influence} (SOI))\index{Einflusssphäre}\index{Sphere of Influence (SOI)} des Gravity-Assist-Planeten (in \figref{adyn_swingby01}b als gestrichelter Kreis gezeichnet) nur die Gravitationskraft des Gravity-Assist-Planeten berücksichtigen müssen\footnote{Die Berechnung der Größe der \gls{SOI} (SOI) ist nicht ganz einfach, häufig finden sich in der Literatur auch nicht ganz korrekte Definitionen und Berechnungen für die SOI. Wir geben die Werte für die Radien der SOI der einzelnen Planeten am Ende dieses Kapitels in Tabelle \ref{tab:adyn_results_swingby} an und empfehlen \probref{adyn_SOI}, in der wir die korrekte Beziehung herleiten.}.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{FlyByVorHinterPlanet.pdf} 
+	\caption[Vektordiagramm der Geschwindigkeiten beim Swing-By-Manöver.]{Vektordiagramm der Geschwindigkeiten beim Swing-By-Manöver. Die Darstellung ist eine Kombination der beiden Teilzeichnungen \figref{adyn_swingby01}c,d für die jeweiligen Fälle des GA-Manövers "`vor"' \bzw "`hinter"' dem Planeten.}
+	\label{abb:adyn_swingby01a}
+\end{figure}
+
+Wegen Energieerhaltung beim elastischen Stoß gilt
+\begin{align}
+    v_1{}' = v_2{}' = v_\infty{} \,, \label{eq:adyn_swingby02} 
+\end{align}
+worin wir die asymptotische Geschwindigkeit in der Streuhyperbel mit $ v_\infty{}$ bezeichnet haben. Außerhalb der SOI wird der Einfluss der Gravitation des Planeten gegenüber der Gravitation der Sonne vernachlässigt, so dass am Punkt $\text{P}_2$ (\vgl \figref{adyn_swingby00}b) für die Geschwindigkeit $\vec{v}_2$ dann im heliozentrischen System wieder gilt:
+\begin{subequations}
+    \begin{align}
+        \vec{v}_2 &= \vec{v}_2{}' + \vec{v}_\text{P} \,, \label{eq:adyn_swingby03a} \\
+        v_2{}^2 &= {v_\infty{}}^2 + v_\text{P}{}^2 - 2\,v_\infty{}\,v_\text{P}\,\cos(180\degree - \beta_2{}') = {v_\infty{}}^2 + v_\text{P}{}^2 + 2\,v_\infty{}\,v_\text{P}\,\cos\beta_2{}'\,. \label{eq:adyn_swingby03b} 
+    \end{align} \label{eq:adyn_swingby03} 
+\end{subequations}
+Man erkennt schon an den Gleichungen \eqref{eq:adyn_swingby01b} und \eqref{eq:adyn_swingby03b}, dass ein Geschwindigkeitsgewinn $\Delta v = v_2-v_1$ mit der Geschwindigkeit der Bewegung des Gravity-Assist-Planeten $v_\text{P}$ zusammenhängt. Dies ist in \figref{adyn_swingby01a} für die beiden Fälle $\vartheta' >0$ und $\vartheta' <0$ verdeutlicht.\\
+Wir wollen nun diesen Geschwindigkeitsgewinn nach folgendem Schema berechnen:
+\begin{enumerate}[1.]
+	\item \textit{Berechnung der Anflugbedingungen im heliozentrischen System}\\ 
+
+	Die als bekannt angenommenen Anflugbedingungen sind die heliozentrische Geschwindigkeit der Raumsonde $\vec{v}_1$, die Bahngeschwindigkeit $\vec{v}_\text{P}$ des Planeten, dessen Masse $m_\text{P}$ und der kleinste Abstand $r_\text{per}$ (periplanetarer Abstand), den die Raumsonde im Vorbeiflug am Planeten erreichen kann. Letzterer entspricht dem Perizentrumsabstand\index{Perizentrum} der Streuhyperbel. Darüber hinaus seien noch die Vektoren $\vec{r}_\text{R}$ und $\vec{r}_\text{P}$ bekannt.
+	Aus den Vektorwerten $\vec{v}_1$ und $\vec{v}_\text{P}$ berechnen sich die Beträge $v_1,\,v_\text{P}$ und der Winkel $\gamma_1{}$.\\
+	
+	\item \textit{Übergang ins planetare System und Berechnung des Streuwinkels}\\ 
+	
+	Über Gleichung \eqref{eq:adyn_swingby01} berechnet man $v_1{}'=v_\infty{}$ und $\gamma_1{}$. 
+	Nun muss der Streuwinkel~$\vartheta'$ bestimmt werden. % für den nach \figref{adyn_swingby01} die Beziehung $\vartheta' = 180\degree-2\varphi'$ gilt. 
+	Hier können  die Ergebnisse aus der Behandlung der Rutherford-Streuung\index{Streuung,!Rutherford-} im Kapitel Streuprobleme (Band I, Kapitel  1.3.5) benutzt werden, da wegen $m_\text{P} \gg m_\text{R}$ das planetare System auch gleichzeitig das Schwerpunktsystem für die Streuung der Raumsonde am Planeten ist. Den Streuwinkel für das Zentralkraftfeld hatte wir dort mit Formel (1.80) wie folgt berechnet:
+	\begin{align}
+		\sin^2\lk \frac{\vartheta'}{2} \rk & \:=\: \frac{1}{1 + 4 E^2 b^2/\alpha^2}\,, \label{eq:adyn_StreuungVglBew}
+	\end{align}
+	worin $E$ die Energie des einfallenden Streuteilchens, $\alpha$ die Stärke des Zentralkraftfeldes (dort war es ein Coulomb-Feld) und $b$ der Streuparameter waren. Nun müssen die äquivalenten Größen für das Swing-By-Manövers im Gravitationsfeld berechnet werden.
+	Da hier mit auf die Masse der Raumsonde bezogenen Größen gerechnet wird, ergibt sich mit der Masse $m_\text{P}$ des Gravity-Assist-Planeten für die Energie $H$ \bzw $\alpha$ :
+	\begin{align}
+	\begin{split}
+ 		H &= \frac{v_\infty{}^2}{2} ~~~~ (\text{für} ~~~~ r\to \infty \,~~~ \text{vgl.}~\eqref{eq:hm_bewgl1})\,, \\ 
+		\alpha &= G\,m_\text{P}=\mu_\text{P}\,. 
+	\end{split} \label{eq:adyn_swingby09a}
+	\end{align}
+Der Streuparameter $b$, der sich durch die Geschwindigkeit $\vec{v}_1$ und damit auch den Winkel $\gamma_1$ aus der Flugsteuerung am Punkt $\text{P}_0$ aus der Erdumlaufbahn bestimmt, hängt mit dem Drehimpuls über 
+\begin{align}
+    L_\infty &= b\,v_\infty  \label{eq:adyn_swingby09b} 
+\end{align}
+zusammen. Man ersetzt den Drehimpuls $L_\infty$ durch den Drehimpuls $L_{r_\text{per}} = r_\text{per}\,v_\text{max}{}'$ am Perizentrumsabstand der Bahn (Es gilt Drehimpulserhaltung!) und benutzt dabei den vis-viva-Satz\index{vis-viva-Satz} \eqref{eq:hm_vis-viva}:
+\begin{align}
+\begin{split}
+    L_\infty &= b\,v_\infty{} = r_\text{per}\,v_\text{max}{}'~~~\rightarrow~~~ b= r_\text{per}\,\frac{v_\text{max}{}'}{v_\infty{}} \\
+		\rightarrow~~\frac{v_\infty{}^2}{2} &= \frac{v_\text{max}{}'^2}{2} - \frac{\mu_\text{P}}{r_\text{per}} \\
+		\rightarrow~~v_\text{max}{}' &= v_\infty{}\,\sqrt{1+\frac{\tilde{v}_\text{F}{}^2}{v_\infty{}^2}}\,.
+	\end{split} \label{eq:adyn_swingby10}
+\end{align}
+Die \gls{vescape} vom Perizentrum (Punkt des minimalen Abstandes der Sondenbahn zum Planeten) $\tilde{v}_\text{F}$ wurde hier als
+ \begin{align}
+    \tilde{v}_\text{F} &= \sqrt{\frac{2\mu_\text{P}}{r_\text{per}}}\, \label{eq:adyn_swingby09c} 
+\end{align}
+definiert und ist durch die Masse des Planeten $m_\text{P}$ und den periplanetaren Abstand $r_\text{per}$ vollständig bestimmt. Setzt man noch \eqref{eq:adyn_swingby09a}, $b$ aus \eqref{eq:adyn_swingby10} und $\tilde{v}_\text{F}$ aus \eqref {eq:adyn_swingby09c} in \eqref{eq:adyn_StreuungVglBew} ein, erhält man für den Streuwinkel die relativ einfache Beziehung
+	\begin{align}
+		\sin\lk \frac{\left|\vartheta'\right|}{2} \rk & \:=\: \frac{1}{1 + 2\,\lk v_\infty{}^2/\tilde{v}_\text{F}{}^2\rk}\,. \label{eq:adyn_Streuung13b}
+	\end{align}
+
+In \eqref{eq:adyn_Streuung13b} ist Betrag des Streuwinkels $\vartheta'$ enthalten, was bedeutet, dass dieser positiv oder negativ sein.\footnote{In \probref{adyn_swingby04} werden wir genauer untersuchen, unter welchen Bedingungen $\vartheta' > 0$ \bzw $\vartheta' < 0$ wird. Ebenso betrachten wir dort den Fall, dass die Bahnebene der Raumsonde und die Planetenebene nicht mehr übereinstimmen und die Bahnebene auch nicht mehr der Ekliptik\index{Ekliptik} entspricht.} Wir arbeiten mit $\vartheta' > 0$ weiter und erhalten aus \eqref{eq:adyn_Streuung13b} und \figref{adyn_swingby01a} sofort die Geschwindigkeitsdifferenz $\Delta v'$:
+	\begin{align}
+		\sin\lk \frac{\left|\vartheta'\right|}{2} \rk & \:=\: \frac{\left|\Delta \vec{v}'\right|/2}{\left|\vec{v}_1{}'\right|} = \frac{\Delta v'}{v_\infty{}} = \frac{1}{1 + 2\,\lk v_\infty{}^2/\tilde{v}_\text{F}{}^2\rk} \,. \label{eq:adyn_Streuung13c} 
+	\end{align}
+
+	\item \textit{Übergang zurück ins heliozentrische System und Berechnung des Geschwindigkeitsvektors der Raumsonde beim Verlassen der Einflusssphäre des Planeten}\\ 
+
+Man kann sich zunächst leicht überlegen, dass der Betrag der Geschwindigkeitsänderung $\Delta \vec{v}'$ in beiden Koordinatensystemen gleich groß ist.
+Für den Vektor der Geschwindigkeit $\vec{v}_2{}'$ gilt im planetaren System (\vgl \figref{adyn_swingby01}a und \figref{adyn_swingby01a}):
+	\begin{align}
+		\vec{v}_2{}'& \:=\: \mathbb{R}_z(-\vartheta')\,\,\vec{v}_1{}' = \begin{pmatrix} \cos \vartheta' & -\sin \vartheta'\\ \sin \vartheta' & \cos \vartheta' \end{pmatrix}\,\, \vec{v}_1{}'
+		\,. \label{eq:adyn_swingby_result01}
+	\end{align}
+Im heliozentrischen System ergibt sich mit \eqref{eq:adyn_swingby01a} und \eqref{eq:adyn_swingby03a} für den Vektor der Geschwindigkeit $\vec{v}_2{}$:
+	\begin{align}
+		\vec{v}_2{}& \:=\: \mathbb{R}_z(-\vartheta')\,\lk \vec{v}_1{} - \vec{v}_\text{P} \rk + \vec{v}_\text{P} \,. \label{eq:adyn_swingby_result01a}
+	\end{align}
+Auf Grund des Oberth-Effektes\index{Oberth-Effekt} kann man noch ein zusätzliches $\Delta v_\text{ext}$ zu $\vec{v}_2 - \vec{v}_1$ erzielen, wenn beim Durchlaufen des minimalen Perizentrumsabstands ein Burn erfolgt. Wir wollen das im Detail in \probref{adyn_swingby02} untersuchen. Eine Simulation des Swing-By komplett im heliozentrischen \KOS\ findet sich in \probref{adyn_swingby03}. 
+\end{enumerate}
+
+Wir wollen Gleichungen \eqref{eq:adyn_swingby_result01} und \eqref{eq:adyn_swingby_result01a} auswerten. Man erkennt, dass die Ausgangswerte eines Swing-By-Manövers nur von dem Verhältnis $v_\infty{}^2/\tilde{v}_\text{F}{}^2$ abhängen, je kleiner dieses Verhältnis ist, um so größer wird $\Delta v$ und $\vartheta'$ und umgekehrt. Man erkennt ferner, dass
+\begin{itemize}
+    \item $\Delta v$ sowohl größer als auch kleiner als Null sein kann, also zu einer Beschleunigung oder zu einem Abbremsen der Raumsonde führt, je nach $\gamma_1$ \bzw $\vartheta_1'$, \dh Vorbeiflug \anf{vor} oder \anf{hinter} dem Planeten,
+    \item je kleiner $r_\text{per}$ ist, \dh je dichter am Planeten des Gravity-Assist-Manöver erfolgt, desto größer auch $|\Delta v|$ und $|\vartheta'|$ sind, und   
+    \item offensichtlich je größer $m_\text{P}$ und $v_\text{P}$ sind, desto größer auch $|\Delta v|$ und $|\vartheta'|$ sind.
+\end{itemize}
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{SwingByJupiter.pdf} 
+	\caption[Swing-By-Manöver am Jupiter.]{Swing-By-Manöver am Jupiter.  \fa Streuwinkel $\vartheta'$  \fb Geschwindigkeitsgewinn $\vec{v}_2 - \vec{v}_1$ für verschiedene periplanetare Abstände $r_\text{per}$ als Funktion des Winkels $\gamma_1$.}
+	\label{abb:adyn_swingby02}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{SwingByPlaneten.pdf} 
+	\caption[Swing-By-Manöver Ergebnisse bei den Planeten unseres Sonnensystems.]{Swing-By-Manöver Ergebnisse bei den Planeten unseres Sonnensystems  als Funktion des periplanetaren Abstands $r_\text{per}$ normiert auf den Radius der SOI $R_\text{SOI}$, \fa innere Planeten \fb äußere Planeten. Für die inneren Planeten wurde ein Eingangswinkel $\gamma_1 = 20\degree$ gewählt, für die äußeren Planeten $\gamma_1 = 60\degree$. In beiden Fällen wurde $v_1= \SI{12.7}{\km\per\second}$ gesetzt. Alle anderen Werte siehe Tabelle \ref{tab:adyn_results_swingby}.}
+	\label{abb:adyn_swingby02a}
+\end{figure}
+
+Da beim Swing-By $m_\text{P}$ (\bzw $\mu_\text{P}$) und $v_\text{P}$ festliegen, bleiben als freie Parameter nur $r_\text{per}$ und $\beta_1'$ (\bzw $\gamma_1$) übrig. Den Parameter $r_\text{per}$ können wir aus der Hyperbelgleichung berechnen:
+\begin{align}
+    r_\text{per} = a\lk 1- e\rk = \frac{\mu_\text{P}}{v_\infty{}^2}\,\lk e-1\rk \,, \label{eq:adyn_swingby16}
+\end{align}
+mit $e = 1/\cos\varphi'$. Der maximale Energieübertrag erfolgt, wenn $\beta_2{}'=0$ ist, \dh die Vektoren $\vec{v}_2{}'$ und $\vec{v}_\text{P}$ parallel sind. Dann ist $\varphi'=90\degree-\beta_1{}'/2$ und somit $\cos\varphi'= \sin(\beta_1{}'/2)$ und wir erhalten für den optimalen Minimalabstand zum Perizentrum, bei dem der Energieübertrag maximal wird: 
+\begin{align}
+    r_\text{P, opt} = \frac{\mu_\text{P}}{v_\infty{}^2}\,\lek \frac{1}{\sin\lk\beta_1{}'/2\rk}-1\rek > R_\text{P} \,.\label{eq:adyn_swingby17}
+\end{align}
+Dieser Abstand muss logischerweise immer größer als der physische Planetenradius $R_\text{P}$ sein, kann also durch geschickte Wahl von $v_1$ und $\gamma_1$ (und damit $v_1{}'$ und $\beta_1{}'$) entsprechend gewählt werden.\\
+In \figref{adyn_swingby02a} haben wir $\Delta v = v_2-v_1$  und $\vartheta' = \Delta \gamma = \gamma_2 -\gamma_1$ als Funktion des Parameters $r_\text{per}$ über $\gamma_1$ dargestellt. \figref{adyn_swingby02} zeigt die gleichen Größen für die verschiedenen Planeten unseres Sonnensystems für einen vorgegebenen Wert von $v_1$ und $\gamma_1$ als Funktion des auf den Radius der SOI $R_\text{SOI}$ normierten Perizentrumsabstands $r_\text{per}$. Dabei haben wir für die Planeten jeweils den Bereich von $r_\text{per} = R_\text{P} + 500\,\mathrm{km}$ (inklusive Sicherheitsabstand von der Oberfläche!) bis zu $0.1\,R_\text{SOI}$, \dh 10\% des Radius der jeweiligen SOI ausgewählt. Man erkennt, dass es signifikante Energieüberträge vor allem bei den massereichen Planeten Jupiter und Saturn gibt, aber auch durch mögliche "`nahe"' Vorbeiflüge bei Venus und Erde (Tabelle \ref{tab:adyn_results_swingby}).\\ 
+
+\begin{table}%tab 
+\caption{Swing-By-Manöver Daten für die Planeten unseres Sonnensystems.}
+\smallskip
+\begin{tabular}{L{0.8cm}R{1.35cm}R{1.65cm}R{1.25cm}R{1.25cm}R{1.25cm}R{1.25cm}R{1.65cm}R{1.25cm}}
+\svhline\noalign{\smallskip}
+Planet				& $v_\text{P}$                     & $m_\text{P}$     & $a_\text{P}$     & $R_\text{SOI}$  & $R_\text{P}$ & $v_{1,\text{max}{}'}$        & $\Delta H_\text{max}$& $\vartheta_\text{max}{}'$\\ 
+\noalign{\smallskip}\noalign{\smallskip}              
+& $\SI{}{\kilo\metre\per\second}$  & $\SI{}{\kg}$     & $10^6\,\SI{}{\km}$ & $10^6\,\SI{}{\km}$& $\SI{}{\km}$ & $\SI{}{\km\per\second}$   & $\SI{}{\joule\per\kg}$  &$\degree$\\ 
+\noalign{\smallskip}\noalign{\smallskip}              
+\noalign{\smallskip}\svhline\noalign{\smallskip} 
+Merkur				& 47.9          & $\SI{3.28e23}{}$ &  57.9        & 0.11          & 2439         & 2.99                 & $\SI{1.43e8}{}$ & 6.1\\
+Venus 				& 35.0          & $\SI{4.87e24}{}$ & 108.2        & 0.62          & 6051         & 7.33                 & $\SI{2.57e8}{}$ & 28.9\\
+Erde 	  			& 29.8          & $\SI{5.97e24}{}$ & 149.6        & 0.93          & 6378         & 7.90                 & $\SI{2.35e8}{}$ & 32.4\\
+Mars   				& 24.1          & $\SI{6.42e23}{}$ & 228.0        & 0.58          & 3394         & 3.55                 & $\SI{0.86e8}{}$ & 8.3\\
+Jupiter 			& 13.1          & $\SI{1.90e27}{}$ & 778.4        &48.20          &71400         &42.1                  & $\SI{5.50e8}{}$ & 132.9\\
+Saturn  			&  9.6          & $\SI{5.69e26}{}$ & 1425.5       &54.8           &60000         &25.2                  & $\SI{2.43e8}{}$ & 105.6\\
+Uranus 				&  6.8          & $\SI{8.68e25}{}$ & 2870.4       &51.7           &26650         &15.0                  & $\SI{1.02e8}{}$ & 71.4\\
+Neptun 				&  5.4          & $\SI{1.03e26}{}$ & 4501.1       &86.7           &24780         &16.7                  & $\SI{0.91e8}{}$ & 78.2\\
+\svhline\noalign{\smallskip}
+\end{tabular} \\
+\label{tab:adyn_results_swingby}
+\end{table}%tab 
+
+Wie erwähnt wird das Gravity-Assist-Manöver bei vielen interplanetaren Raumflügen angewendet. 
+Dabei benutzt man für die Missionsplanung die sogenannte \textit{Patched-Conic-} Näherung\index{Patched-Conic-Näherung}. Bei dieser Näherung wird die Trajektorie der Raumsonde in verschiedene Abschnitte unterteilt, indem jedem Himmelskörper (Sonne, Mond, Planeten) seine eigene Einflusssphäre (SOI) zugeordnet wird. Wenn die Sonde innerhalb der SOI des jeweiligen Himmelskörpers ist, wird nur dessen Gravitationskraft berücksichtigt, außerhalb bei interplanetaren Flügen dann \ia nur die der Sonne. Dieses Vorgehen reduziert das $N$-Körper-Problem auf ein Zweikörperproblem, für das wir die bekannten parabolischen, elliptischen \bzw hyperbolischen Lösungen kennen.\footnote{Man überlege sich, unter welchen Bedingungen die Methode nicht zum Erfolg führt. Hinweis: Lagrange-Punkte (Band I, Kapitel 1.2.3.6.} 
+Als Beispiel sei ein Erde-Mars-Transfer betrachtet (\vgl \probref{adyn_manoevers5}). Hier folgt die Raumsonde zunächst einer hyperbolischen Bahn, um den Anziehungsbereich der Erde zu verlassen, dann folgt sie \ia einer Kepler-Ellipse um die Sonne, um schließlich in die Einflusssphäre des Mars zu treten. Durch das Zusammenfügen der einzelnen Kegelschnittbahnen erhält man in guter Näherung die tatsächliche Bahn, daher auch der Name der Näherung (Englisch \textit{ to patch }- zusammenfügen).\\
+Selbstverständlich kann man bei den Missionsplanungen zu äußeren Planeten mit dieser Methode Gravity-Assist-Manöver einbauen. In der Literatur (\ua \cite{Minovitch2010, Walter2018, Messerschmid2017}) finden sich dazu zahlreiche Beispiele. Wir wollen die zum Zeitpunkt des Verfassens dieses Buches im Jahre 2023 gestartete ESA-Mission JUICE (\textit{\underline{Ju}piter \underline{I}cy \underline{M}oon \underline{E}xploration}) etwas genauer betrachten und beziehen uns dabei auf \cite{Althaus2023}.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{MissionJUICE.pdf} 
+	\caption[Interplanetare Flugplanung der ESA-Mission JUICE.]{Interplanetare Flugplanung der ESA-Mission JUICE. Nach \cite{Althaus2023}.}
+	\label{abb:adyn_PSP01}
+\end{figure}
+
+Die beeindruckende Reise dieser Raumsonde zu den Jupiter-Monden mit dem geplanten Eintritt in die Jupiterumlaufbahn im Jahr 2031 erfordert insgesamt vier Planeten-Vorbeiflüge (\gls{GA}), dreimal an der Erde (EGA, \gls{EGA}) und einmal an der Venus (VGA, \gls{VGA}). Das erste EGA am 20.08.2024 führte zu einer Abbremsung und damit zu einer engen Bahn um die Venus, von wo aus sie dann wieder beschleunigt wird und beim geplanten VGA am 31.08.2025 ein $\Delta v = \SI{3.8}{\km\per\second}$ erhalten wird ($r_\text{min} = \SI{5100}{\km} + R_\text{v}$). Der erneute Erdvorbeiflug am 28.09.2026 wird die Geschwindigkeit nochmals um $\Delta v = \SI{3.5}{\km\per\second}$ ($r_\text{min}= \SI{8600}{\km} + R_\text{E}$) erhöhen.\footnote{In \probref{adyn_PSP01} vergleichen wir die in den Vorbeiflügen an Erde und Venus erreichten Geschwindigkeitszuwächse von JUICE mit den maximal erreichbaren $\Delta v$ bei Venus und Erde (Tabelle \ref{tab:adyn_results_swingby}) und den Rechnungen in \probref{adyn_swingby01}.} 
+%Die Sonde hat nun ausreichend Energie, um auf einer weiten elliptischen Bahn um die Sonne den Rand des Asteroidengürtels zu erreichen, bevor sie 
+Beim letzten EGA am 17.01.2029 wird sie noch ein $\Delta v = \SI{3.5}{\km\per\second}$ ($r_\text{min} = \SI{4600}{\,\km} + R_\text{E}$) bekommen, das sie endlich auf eine elliptische Bahn zum Jupiter (\figref{adyn_PSP01}) bringt. 
+
+\subsection{Interplanetarer Raumflug zur Sonne}\label{kap:adyn_interplanetary_flights}
+
+Wir hatten bereits in \figref{adyn_swingby00} gesehen, dass der Geschwindigkeitsgewinn $\Delta v$ bei einem Swing-By-Manöver sowohl positiv als auch negativ sein kann. Wir wollen nun den Fall betrachten, bei dem man ein negatives $\Delta v$ braucht, um \zb eine Sonde so abzubremsen, dass sie auf eine sehr enge Umlaufbahn um die Sonne gelangen kann. Ein solche Mission ist die NASA-\textit{Parker}\footnote{Eugene Newman Parker (1927--2022) war ein US-amerikanischer Astrophysiker, der vor allem den Sonnenwind, die Magnetfelder von Erde und Sonne und deren komplexe Wechselwirkungen untersuchte. Er prägte auch als erster den Begriff \gls{Sonnenwind}\index{Sonnenwind} (\textit{solar wind}).}\indexp{Parker, Eugene Newman} \textit{Solar Probe}-Mission (PSP), die am 12.08.2018 gestartet wurde und zum Ziel hat, einen Minimalabstand zur Sonne von $r_\text{S}= \SI{0.05}{AE}$ zu erreichen. Was ist dabei eigentlich die Schwierigkeit? Man könnte meinen, dass eine Sonde einmal von der Erde in Richtung Sonne auf den Weg gebracht, von dieser so angezogen wird, dass die Sonde früher oder später in den Einfangbereich der Sonne gelangt und dann dort quasi von dieser in sich hineingezogen wird. Dem widersprechen aber die Gesetze der Himmelsmechanik, insbesondere die Drehimpuls- und Energieerhaltung. 
+Um wirklich eine Sonde direkt zur Sonne zu senden, müsste man ja durch Raketenenergie den Drehimpuls auf annähernd Null bringen, was bedeutet, dass man beim Start auf einer Erdbahn ein Antriebsbudget von etwa $\Delta v = - v_\text{E} = - \sqrt{2\mu_\text{S}/1\au} = -\SI{29.8}{\kilo\metre\per\second}$ haben muss. Die Sonne ist damit der am "`schwierigsten"' zu erreichende Platz in unserem Sonnensystem. 
+Wir wollen den Antriebsbedarf etwas genauer abschätzen, den man bräuchte, wenn man eine sonnennahe Bahn mit Minimalabstand $r_\text{min}$ durch einen Flug direkt aus einer Erdumlaufbahn erreichen wollte. Wir nehmen der Einfachheit halber einen Hohmann-Transfer mit $a_\text{H} = \frac{1}{2}\,\lk 1 \au + r_\text{min}\rk$ und $v_1 = v_\text{E} = \SI{29.8}{\km\per\second}$ an. Dann ergibt sich mit dem vis-viva-Satz\index{vis-viva-Satz} ein Geschwindigkeitsbedarf von 
+\begin{align}
+    \Delta v &\approx v_\text{P} -v_\text{E} = \sqrt{\mu_\text{S}\,\lk \frac{2}{0.05\au} - \frac{1}{a_\text{H}}\rk} - v_\text{E}
+		= \sqrt{\frac{\mu_\text{S}}{1\au}}\,\sqrt{\lk \frac{2}{0.05\au} - \frac{2}{1.05\au}\rk} - v_\text{E} \nonumber  \\
+		&= v_\text{E}\,\lk \sqrt{2\,\lk 1-\frac{1}{1.05}\rk} -1\rk \approx -\SI{20.6}{\km\per\second}\,.\label{eq:adyn_abschaetzung}
+\end{align}
+Mit der Ariane 5 schafft man es, eine Sonde mit einer Masse von $\SI{6}{\tonne}$ mit einer Geschwindigkeit von \ca $\SI{12.7}{\km\per\second}$ auf die Reise zu schicken (gemessen im \KOS\ der Erde, also vergleichbar mit dem $\Delta v$ aus \eqref{eq:adyn_abschaetzung}). Wir sehen also, dass es beim Stand der heutigen Raketentechnik nicht möglich wäre, eine Sonde direkt zur Sonne zu schicken, die einen Minimalabstand von $0.05\,\au$ erreicht.\footnote{Zum Vergleich: Die große Halbachse der Merkurbahn beträgt $\SI{0.3871}{AE}$, also das etwa 8-fache.}
+Wir wollen nun die Planung der PSP-Mission genauer betrachten. Die PSP soll die äußersten Atmosphärenschichten der Sonne und deren \gls{Korona}\index{Korona!der Sonne} erforschen und am 24.12.2024 den sonnennächsten Punkt der gesamten Mission mit $a_\text{P}= \SI{0.046}{}\,\au = \SI{6.8e6}{\kilo\metre}$ (Perihel ihres solaren Orbits) erreichen. Das ist nur das 18-fache des Erde-Mond-Abstands. Näher an die Sonne ist bisher noch keine Sonde gekommen. Die PSP nutzt bei ihrer Annäherung an die Sonne verschiedene Gravity-Assists aus, um ihre Bahnenergie zu reduzieren. Wir wollen uns das Prinzip etwas genauer anschauen und treffen als Vereinfachung die Annahme, dass alle Bewegungen in der Ekliptik erfolgen.\\
+Wenn eine Sonde von der Erde mit einem $\Delta \vec{v}_\text{R}$ gestartet wird, dann folgt diese einem elliptischen Orbit, der die SOI der Erde (oder auch der Venus) zu einem bestimmten Zeitpunkt wieder "`kreuzen"' wird, siehe \figref{adyn_swingby04}. An diesem Kreuzungspunkt $\mathrm{P}_1$ soll nun ein Gravity-Assist-Manöver stattfinden.\footnote{Es gibt ja einen weiteren Kreuzungspunkt $\mathrm{P}_1'$, an dem ein Manöver stattfinden kann. Zur Unterscheidung bezeichnen wir das Manöver bei $\mathrm{P}_1$ als Planeten-annähernd und bei $\mathrm{P}_1'$ als Planeten-entfernend. Im weiteren wollen wir uns auf das erstere beschränken.} 
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{OrbitCrossing.pdf} 
+	\caption[Gravity-Assist-Manöver - Orbital Crossing.]{Gravity-Assist-Manöver - Eine elliptische Bahn einer Sonde (lila) kreuzt die Einflusssphäre eines Planeten, hier der Erde (blau gezeichnet). Die Momentangeschwindigkeit der Sonde und auch die radiale und tangentiale Komponente sind als lila Vektoren dargestellt.}
+	\label{abb:adyn_swingby04}
+\end{figure}
+
+Zur Berechnung brauchen wir den Vektor der Geschwindigkeit der Sonde an diesem Punkt~$\mathrm{P}_1$ im heliozentrischen Koordinatensystem. Dieser Vektor ist eine Funktion der Parameter der momentanen Bahn der Sonde und wir können ihn in einen radialen und einen zur SOI tangentialen Anteil zerlegen:
+\begin{align}
+	  \vec{v}_1 =\vec{v}_\text{R} = v_\text{r}\,\vec{e}_\text{r} + v_\text{t}\,\vec{e}_\text{t}\,.\label{eq:adyn_PSP01}
+\end{align}
+Dies hat den Vorteil, dass am Punkt $\mathrm{P}_1$ die Tangentialkomponente parallel zum Vektor der Planetengeschwindigkeit ist. Zur Vereinfachung nehmen wir an, dass die Sonde am Punkt~$\mathrm{P}_1$ zwar in die Einflusssphäre des Gravity-Assist-Planeten gelangt, aber immer noch einen Abstand zur Sonne von etwa dem Bahnradius (1\,AE für die Erde \bzw 0.723\,AE für die Venus) haben soll.\\
+Wir nutzen die Erhaltungssätze und schreiben mit $\mu_\text{S} = G\,m_\text{S}$ und den Parametern $a,\,e$ der Bahnellipse: 
+\begin{align}
+\begin{split}
+	  \text{Drehimpulserhaltung, vgl. \eqref{eq:hm_drehimpuls_von_ae}} ~~~~L^2 &= r^2\, v_\text{t}{}^2 = \mu_\text{S}\,a\,\lk 1-e^2 \rk \,, \\
+		\text{Energieerhaltung, vgl. \eqref{eq:hm_bewgl1}}~~~~H &= \frac{1}{2} \left| \vec{v}_\text{R} \right|^2 - \frac{\mu_\text{S}}{r} = - \frac{\mu_\text{S}}{2\,a}\,.
+\end{split}  \label{eq:adyn_PSP02}
+\end{align}
+Aus der Ellipsengleichung \eqref{eq:hm_bahnglg}
+\begin{align}
+r(\upsilon) = \frac{a(1-e^2)}{1+e\,\cos\lk\upsilon-\upsilon_\text{P}\rk} \label{eq:adyn_PSP03}
+\end{align}
+mit $a = \lk r_\text{P} + r_\text{A} \rk /2$ und Perihel- \bzw Aphelabstand\index{Aphel}\index{Perihel} von $r_\text{P} = a\,(1-e)$ \bzw $r_\text{A} = a\,(1+e)$ erhalten wir für das Verhältnis von großer Halbachse $a$ der Sondenbahn und dem Radius der SOI, den wir vereinfacht schreiben als $R_0 = R_\text{SOI} = 1\,\au$ (\bzw $R_0 = 0.723\,\au$ für die Venus):
+\begin{align}
+	\frac{a}{R_0} = \frac{1}{2-\left|\vec{v}_\text{R} \right|^2 / v_0{}^2}\,, \label{eq:adyn_PSP04}
+\end{align}
+worin $v_0 = \sqrt{\mu_\text{S}/ R_0}$ ist. Aus \eqref{eq:adyn_PSP04} erhalten wir $\left|\vec{v}_\text{R} \right| = v_\text{R}$. Ferner folgt aus der Drehimpulserhaltung aus \eqref{eq:adyn_PSP02} für die Tangential- und Radialkomponente $v_\text{t}$ \bzw $v_\text{r}$
+\begin{subequations}
+\begin{align}
+	v_\text{t} &= v_0\, \sqrt{\frac{a}{R_0}\,\lk 1-e^2 \rk} \,, \label{eq:adyn_PSP05a} \\
+	v_\text{r} &= \sqrt{\left|\vec{v}_\text{R} \right|^2 - v_\text{t}{}^2} \,. \label{eq:adyn_PSP05b}
+\end{align} 
+\end{subequations} \label{eq:adyn_PSP05}
+
+Damit können wir nun die für die Berechnung des Streuwinkels aus \eqref{eq:adyn_Streuung13b} noch fehlende Größe $v_\infty{}$ über \eqref{eq:adyn_swingby01a} berechnen: 
+\begin{align}
+	v_\infty{}  = \sqrt{v_\text{r}{}^2 - \lk v_\text{t} - v_0 \rk^2} \,. \label{eq:adyn_PSP06}
+\end{align} 
+Wir setzen nun für die initiale Bahn (Index a) der PSP die Werte $r_\text{P} = 0.207\,\au,\,~r_\text{A} = 1.013\,\au$ ein und erhalten: 
+\begin{align*}
+  v_\text{t} &= \SI{24.1}{\km\per\second}\,,~~~v_\text{r} = \SI{20.4}{\km\per\second}\,,~~~v_0 = \SI{35.02}{\km\per\second}\,~~
+	\rightarrow v_\infty{}  = \SI{23.4}{\km\per\second}\,.
+\end{align*}
+Für die Venus erhalten wir mit $\mu_\text{V} = G\,m_\text{V}$ für $\tilde{v}_\text{F}$ aus \eqref{eq:adyn_swingby09c}:
+\begin{align}
+    \tilde{v}_\text{F} &= \sqrt{\frac{2 \mu_\text{V}}{R_\text{V} + \SI{500}{km}}} = \SI{9.95}{\km\per\second}\,, \label{eq:adyn_PSP07} 
+\end{align}
+woraus sich bei einem Sicherheitsabstand des Swing-By-Manövers von 500 km von der Venusoberfläche ein maximaler Streuwinkel von $\vartheta'_\text{a} = 9.73\degree$ ergibt. 
+
+\begin{table} [ht] %tab 
+\caption{Die einzelnen Orbits der NASA Mission Parker Solar Probe I um die Sonne.}
+\smallskip
+\begin{tabular}{C{0.8cm}R{1.5cm}R{1.5cm}R{1.5cm}C{1.5cm}R{1.75cm}R{1.75cm}}
+\svhline\noalign{\smallskip}
+Orbit &  $r_\text{P} \, (\au)$  & $r_\text{A} \, (\au)$ & $\beta_1'\, (\degree)$ &   $ e $    &  $ T_\text{Bahn}$ \, (Tage) & $v_\text{P}\,(\SI{}{\km\per\second})$\\
+\noalign{\smallskip}\svhline\noalign{\smallskip} 
+\noalign{\smallskip}\noalign{\smallskip}              
+  a    &   0.207     &   1.013    &   61.94     &  0.661   &    174.0     &   84.35 \\
+  b    &   0.166     &   0.938    &   55.58     &  0.699   &    149.8     &   95.29 \\
+  c    &   0.130     &   0.874    &   48.43     &  0.741   &    129.9     &  108.99 \\
+  d    &   0.095     &   0.817    &   39.42     &  0.792   &    112.5     &  129.34 \\
+  e    &   0.074     &   0.783    &   31.99     &  0.827   &    102.5     &  147.99 \\
+  f    &   0.062     &   0.761    &   25.77     &  0.849   &     96.4     &  162.65 \\
+  g    &   0.053     &   0.745    &   19.74     &  0.867   &     92.1     &  176.77 \\
+  h    &   0.046     &   0.731    &   11.99     &  0.882   &     88.5     &  190.47 \\
+\svhline\noalign{\smallskip}
+\end{tabular} \\
+\label{tab:adyn_PSP01}
+\end{table}%tab 
+
+Dieser Streuwinkel ist deutlich kleiner als der notwendige Streuwinkel von $\Delta \vartheta' = \beta_{1,\text{a}}{}' - \beta_{1,\text{h}}{}' \approx 50\degree$, den man bräuchte, wenn man durch ein Swing-By-Manöver direkt von der Anfangsbahn mit $r_\text{P,a} = 0.207\,\au,\,~r_\text{A,a} = 1.013\,\au$ auf die vorgesehene finale Bahn mit $r_\text{P,h} = 0.046\,\au,\,~r_\text{A,h} = 0.731\,\au$ gelangen möchte. Dazu bräuchte man (siehe Tabellen \ref{tab:adyn_PSP01} und \ref{tab:adyn_PSP02}) also mindestens 6 Gravity-Assist-Manöver an der Venus. Die tatsächliche Mission nutzte insgesamt 7 solcher Swing-By-Manöver, deren Abfolge mit den einzelnen Streuwinkeln, den kumulierten Streuwinkeln und den realisierten Perizentrumsabständen $R_\text{V,real}$ der jeweiligen Swing-By-Manöver in Tab. \ref{tab:adyn_PSP02} und \figref{adyn_swingby05} dargestellt sind. Eine vertiefte Betrachtung zu der Missionsplanung der PSP, in der auch ein elegantes graphisches Tool zur Bestimmung der Bahnen, die sogenannte \textit{Velocity-Space-Map},  vorgestellt wird, findet sich in \cite{Longcope2020}.
+
+\begin{table} [ht] %tab 
+\caption{Die einzelnen Swing-By-Manöver der NASA Mission Parker Solar Probe I an der Venus.}
+\smallskip
+\begin{tabular} {C{1.75cm}R{1.75cm}R{1.75cm}R{1.75cm}}
+\svhline\noalign{\smallskip}
+GA-Manöver &  $\vartheta' \,(\degree)$  &  $\sum\vartheta'\, (\degree)$  & $R_\text{V,real}/R_\text{V}$\\
+\noalign{\smallskip}\svhline\noalign{\smallskip} 
+\noalign{\smallskip}\noalign{\smallskip}              
+   1\,:\;(a $\,\rightarrow\,$ b)  &    6.501    &      6.501        &   1.67  \\
+   2\,:\;(b $\,\rightarrow\,$ c)  &    7.157    &     13.658        &   1.49  \\
+   3\,:\;(c $\,\rightarrow\,$ d)  &    9.113    &     22.771        &   1.15  \\
+   4\,:\;(d $\,\rightarrow\,$ e)  &    7.389    &     30.160        &   1.43  \\
+   5\,:\;(e $\,\rightarrow\,$ f)  &    6.229    &     36.389        &   1.70  \\
+   6\,:\;(f $\,\rightarrow\,$ g)  &    5.948    &     42.337        &   1.79  \\
+   7\,:\;(g $\,\rightarrow\,$ h)  &    7.628    &     49.965        &   1.37  \\
+\svhline\noalign{\smallskip}
+\end{tabular} \\
+\label{tab:adyn_PSP02}
+\end{table}%tab 
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{BahnParkerSolarProbe.pdf} 
+	\caption[Die NASA Mission Parker Solar Probe.]{Die NASA Mission Parker Solar Probe. Dargestellt ist die Bahn der PSP vom Start bis zum 30.1.2024. Die Rauten geben die Punkte der Venus-Swing-By-Manöver an. Die Daten der PSP-Bahn stammen vom JPL \cite{JPL2020}, können aber natürlich genau so wie die Planetenbahnen von Venus und Erde mit den Methoden aus dem \kap{hm_bahnen_hk_ss} aus der Himmelsmechanik berechnet werden. Sehr gut zu erkennen ist, wie mit jedem Swing-By-Manöver die Sonde sukzessive auf eine engere Bahn um die Sonne gelangt. Siehe auch \probref{adyn_PSP01} und \mscr~ \mladynref{ParkerSolarProbe.m}.}
+	\label{abb:adyn_swingby05}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

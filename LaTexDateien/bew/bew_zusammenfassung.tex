@@ -1,0 +1,123 @@
+\begingroup
+\let\cleardoublepage\relax
+\chapter{Physik der Bewegung von Körpern (Zusammenfassung)}\label{chap:bew}
+\def\chapname{bew}
+
+\begin{minipage}{0.5\textwidth}
+\includegraphics[width=\textwidth]{Pendeluhr.jpg}
+%\includegraphics[width=\textwidth]{Platzhalter.pdf}
+\end{minipage}
+\medskip
+\begin{minipage}{0.5\textwidth}
+\begin{flushright}
+\small
+\emph{Nichts ist älter in der Natur\\
+als die Bewegung.\\}
+\medskip
+Galileo Galilei (1564--1642)\\
+in seinen Discorsi \\
+\medskip
+\medskip
+\emph{Zustand ist ein albernes Wort;\\
+weil nichts steht und\\
+alles beweglich ist.\\}
+\medskip
+Johann Wolfgang von Goethe (1749--1832)
+\normalsize
+\end{flushright}
+\end{minipage}
+
+\section*{Zusammenfassung des Inhaltes von Kapitel 1 aus Band I -- Mechanik}\label{kap:bew_zusammenfassung}
+
+Die abgebildete alte Pendeluhr ist ein schönes Beispiel eines physikalischen Pendels\index{Pendel!physikalisches}.\\
+Viele Physiker haben sich über Jahrhunderte hinweg mit der Theorie des Pendels und verschiedener Pendelformen beschäftigt.
+Das Pendel hat in der Geschichte der Menschheit über lange Zeit hinweg eine wesentliche Rolle bei der Zeitmessung gespielt.
+Später sollte der harmonische Oszillator\index{Oszillator!harmonischer} als Modell eines Pendels sogar bei der Entwicklung der Quantenmechanik bedeutend werden.
+Auch Philosophen und Künstler wurden vielfach von den Schwingungen des Pendels inspiriert. In den Übungen und Beispielen dieses Kapitels werden deshalb auch eine Reihe von Pendeln betrachtet, an denen sich eine große Bandbreite der physikalischen Methoden anwenden und vertiefen lässt, insbesondere auch das Arbeiten mit Erhaltungssätzen\index{Erhaltungssatz} und das Lösen von gewöhnlichen Differentialgleichungen\index{Differentialgleichung!gewöhnliche}.\\
+Ebenso eignen sich mechanische Spielzeuge, wie der Kreisel\index{Kreisel}, um verschiedene grundlegende Begrifflichkeiten der Mechanik nach Newton\indexp{Newton, Sir Isaac}\footnote{Sir Isaac Newton (1643--1727) war einer der bedeutendsten Naturforscher aller Zeiten. Er formulierte die Gravitations- und Bewegungsgesetze und entwickelte fast gleichzeitig mit dem deutschen Universalgelehrten Leibniz (1646--1716) die Infinitesimalrechnung. Newtons \emph{Principia} werden als eines der wichtigsten wissenschaftlichen Werke angesehen.} (Newtonsche Mechanik)\index{Newtonsche Mechanik} einzuführen und an einer Vielfalt physikalischer Phänomene didaktisch eindrucksvoll zu erklären und zu visualisieren. 
+Selbst große Physiker wie Einstein\footnote{Albert Einstein\indexp{Einstein, Albert} (1879--1955) war einer der bedeutendsten Physiker der Geschichte.
+Seine Forschungen zu Raum und Zeit sowie zum Wesen der Gravitation\index{Gravitation} haben unser modernes Weltbild maßgeblich geprägt.} haben sich nicht nur in ihrer Kindheit mit diesen Spielzeugen beschäftigt.
+Sommerfeld\footnote{Arnold Sommerfeld\indexp{Sommerfeld, Arnold} (1868--1951) war ein bedeutender deutscher theoretischer Physiker, der sowohl als Forscher, als auch als akademischer Lehrer hoch anerkannt war.
+Besondere Verdienste erwarb er sich durch die Anwendung fortschrittlicher mathematischer Methoden auf physikalische und technische Probleme.} schrieb mit seinem Lehrer Felix Klein\indexp{Klein, Felix Christian}\footnote{Felix Christian Klein (1849--1925) war ein deutscher Mathematiker, der im 19.~Jahrhundert bedeutende Fortschritte vor allem in der Geometrie erzielte. Klein beschäftigte sich mit der Funktionentheorie und engagierte sich sehr für die Mathematikdidaktik.} das noch heute als Standard betrachtete Werk über die Theorie des Kreisels\footnote{F. Klein und A. Sommerfeld, \textit{Über die Theorie des Kreisels}, Teubner Leipzig (1910).} und bemerkte: \anf{Der Kreisel ist vor allen anderen mechanischen Vorrichtungen dafür geeignet, den Sinn für wirkliche Mechanik zu wecken.} Deshalb wird auch verschiedenen Kreiselthemen in den Übungen und Beispielen des Kapitels entsprechender Raum gegeben.\\
+Neben der Newtonschen Mechanik wird auch der mächtige Apparat des Lagrange\footnote{Joseph-Louis de Lagrange\indexp{Lagrange, Joseph-Louis} (1736--1813) war ein italienischer Mathematiker und Astronom,
+der 1788 in seinem berühmten Lehrbuch \emph{Mécanique analytique} die analytische Mechanik begründete.
+In diesem Werk setzt er bewusst seine abstrakte analytische Methodik gegen Newtons geometrische Methode.
+Lagrange betonte, dass \anf{in seinem gesamten Werk keine Bilder zu finden sein werden, nur algebraische Operationen}.
+Wir finden, dass sowohl Modellbilder und Analytik ihren Platz und ihre Berechtigung haben.}--Formalismus\index{Lagrange-Gleichungen} behandelt und vor allem vorteilhaft zur Lösung komplexer Probleme eingesetzt. Dabei werden \ua Effekte und Phänomene der Reibung, der Resonanz und der nichtlinearen Kopplung berücksichtigt, die eine Vielfalt bisweilen überraschender Effekte bis hin zum chaotischen Verhalten eines Systems ergeben.\\
+Hinter der Behandlung von Pendeln, Kreiseln und zahlreichen anderen angewandten Themen steht in diesem Kapitel auch das Ziel, die formale mathematische Beschreibung der Physik, insbesondere der Newtonschen Mechanik, zu visualisieren.
+Hier kommt an vielen Stellen ganz bewusst \matlab{} zum Einsatz. Auf Basis einer guten Modellbildung werden nach (nicht immer möglichen) analytischen und Näherungslösungen verschiedene numerische Methoden in \matlab{} benutzt, um den mathematischen Formalismen und Modellen anschauliche Bilder zuzuordnen. In durchgearbeiteten Beispiele und Übungen wird neben dem Verständnis der Newtonschen Mechanik auch ein tieferes Verständnis des Lagrange-Formalismus erzeugt.\\
+Da in diesem wie auch anderen Kapiteln der Buchreihe den \anf{Fingerübungen} genügend Platz eingeräumt werden soll, werden in diesem Grundlagenkapitel der Mechanik nicht ihre gesamten theoretischen Grundlagen im Detail nachvollzogen und behandelt, sondern, auch im Interesse einer einheitlichen Notation, eine kurze Zusammenfassung (Repetitorium) der wesentlichen Grundlagen der Mechanik gegeben, bevor intensiv in Übungen und Beispielen die Anwendung der Grundlagen im Vordergrund steht.\\
+Im \textbf{Kap. 1.2} wird zunächst ganz klassisch die Newtonsche Mechanik von Massepunkten eingeführt, die dann auf Nicht-Inertialsysteme\index{Inertialsystem}\index{Nicht-Inertialsystem} und Massepunktsysteme\index{Massepunktsystem} erweitert wird, bevor der Lagrange-Formalismus mit den Lagrange-Gleichungen 1. und 2.Art eingeführt wird.\\
+Zahlreiche Beispiele vertiefen in \textbf{Kap. 1.3} das Verständnis behandelten Grundlagen der Mechanik. Die Mechanik wird im \textbf{Kap. 1.4} auf das Konzept des starren Körpers erweitert, wobei wiederum zunächst der Anschaulichkeit und Begriffsbildung wegen mit der Newtonschen Mechanik begonnen wird, bevor dann auch der Lagrange-Formalismus auf den starren Körper, insbesondere von Kreiselsystemen, angewendet wird.\\
+In zahlreichen, zum Teil selten im Physik-Curriculum behandelten, Beispielen und Anwendungen wird das Methodenwissen in \textbf{Kap. 1.5} vertieft, bevor in \textbf{Kap. 1.6} die \anf{Fingerübungen} in mehr als 70 Übungen verschiedener Schwierigkeitsgrade mit jeweils online verfügbaren Lösungsbeispielen beschrieben werden.\\
+
+\newpage
+\section*{Inhaltsverzeichnis von Kapitel 1 aus Band I \,-\,Mechanik}
+%
+%\contentsline {chapter}{\numberline  {1}Physik der Bewegung von K\"orpern}{}{chapter.1}%
+%\contentsline {section}{\numberline {1.1}Motivation}{}{section.1.1}%
+%\contentsline {section}{\numberline {1.2}Mechanik von Massepunkten}{}{section.1.2}%
+%\contentsline {subsection}{\numberline {1.2.1}Grundlagen der Newtonschen Mechanik}{}{subsection.1.2.1}%
+%\contentsline {subsection}{\numberline {1.2.2}Transformation des Bezugssystems, Scheinkr\"afte}{\textcolor{white}{}}{subsection.1.2.2}%
+%\contentsline {subsection}{\numberline {1.2.3}Mechanik von Massepunktsystemen}{}{subsection.1.2.3}%
+%\contentsline {subsection}{\numberline {1.2.4}Lagrange-Formalismus}{}{subsection.1.2.4}%
+%\contentsline {section}{\numberline {1.3}Beispiele und Anwendungen zu Massepunkten und Massepunktsystemen}{}{section.1.3}%
+%\contentsline {subsection}{\numberline {1.3.1}Einschub: Gew\"ohnliche Differentialgleichungen}{}{subsection.1.3.1}%
+%\contentsline {subsection}{\numberline {1.3.2}Zentrifugalkraft und Coriolis-Kraft auf der Erde}{}{subsection.1.3.2}%
+%\contentsline {subsection}{\numberline {1.3.3}Oszillatoren und Pendel}{}{subsection.1.3.3}%
+%\contentsline {subsection}{\numberline {1.3.4}Nichtlinearit\"at und Chaos}{}{subsection.1.3.4}%
+%\contentsline {subsection}{\numberline {1.3.5}Vermischtes zur Mechanik von Massepunkten und Massepunktsystemen}{}{subsection.1.3.5}%
+%\contentsline {section}{\numberline {1.4}Mechanik starrer K\"orper}{}{section.1.4}%
+%\contentsline {subsection}{\numberline {1.4.1}Grundlagen der Kinematik}{}{subsection.1.4.1}%
+%\contentsline {subsection}{\numberline {1.4.2}Bewegungsgleichung des starren K\"orpers}{}{subsection.1.4.2}%
+%\contentsline {subsection}{\numberline {1.4.3}Kreisel}{}{subsection.1.4.3}%
+%\contentsline {subsection}{\numberline {1.4.4}Lagrange-Formalismus f\"ur einen Kreisel}{}{subsection.1.4.4}%
+%\contentsline {subsection}{\numberline {1.4.5}Dynamik des schweren symmetrischen Kreisels}{}{subsection.1.4.5}%
+%\contentsline {section}{\numberline {1.5}Beispiele und Anwendungen zur Mechanik des starren K\"orpers}{}{section.1.5}%
+%\contentsline {subsection}{\numberline {1.5.1}Das physikalische Pendel und die Pendeluhr}{}{subsection.1.5.1}%
+%\contentsline {subsection}{\numberline {1.5.2}Parametrische Oszillatoren -- Verbessertes Schaukelmodell}{}{subsection.1.5.2}%
+%\contentsline {subsection}{\numberline {1.5.3}Fallende starre K\"orper und die rutschende Leiter}{}{subsection.1.5.3}%
+%\contentsline {subsection}{\numberline {1.5.4}Physikalische Kreisel-Spielzeuge und verwandte Themen}{}{subsection.1.5.4}%
+%\contentsline {subsection}{\numberline {1.5.5}Der nordsuchende Kreiselkompass}{}{subsection.1.5.5}%
+%\contentsline {subsection}{\numberline {1.5.6}Pr\"azession der Erde}{}{subsection.1.5.6}%
+%\contentsline {subsection}{\numberline {1.5.7}Trebuchet}{}{subsection.1.5.7}%
+%\contentsline {section}{\numberline {1.6}\"Ubungen zu -- Physik der Bewegung von K\"orpern }{}{section.1.6}%
+\medskip
+
+\begin{table}[]
+\normalsize
+%\small
+%\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llll}
+\textbf{1} &          &       & \textbf{Physik der Bewegung von Körpern}     \\
+  & 1.1 &       & \quad         Motivation \\
+  & 1.2 &       & \quad         Mechanik von Massepunkten   \\
+  &     & 1.2.1 & \quad\quad    Grundlagen der Newtonschen Mechanik \\
+  &     & 1.2.2 & \quad\quad    Transformation des Bezugssystems, Scheinkräfte \\
+  &     & 1.2.3 & \quad\quad    Mechanik von Massepunktsystemen\\      
+  &     & 1.2.4 & \quad\quad    Lagrange-Formalismus\\      
+  & 1.3 &       & \quad         Beispiele und Anwendungen zu Massepunkten und Massepunktsystemen\\
+  &     & 1.3.1 & \quad\quad    Einschub: Gewöhnliche Differentialgleichungen\\
+  &     & 1.3.2 & \quad\quad    Zentrifugalkraft und Coriolis-Kraft auf der Erde\\
+  &     & 1.3.3 & \quad\quad    Oszillatoren und Pendel\\
+  &     & 1.3.4 & \quad\quad    Nichtlinearität und Chaos\\
+  &     & 1.3.5 & \quad\quad    Vermischtes zur Mechanik von Massepunkten und Massepunktsystemen\\
+  & 1.4 &       & \quad         Mechanik starrer Körper\\      
+  &     & 1.4.1 & \quad\quad    Grundlagen der Kinematik\\
+  &     & 1.4.2 & \quad\quad    Bewegungsgleichung des starren Körpers \\
+  &     & 1.4.3 & \quad\quad    Kreisel\\
+  &     & 1.4.4 & \quad\quad    Lagrange-Formalismus für einen Kreisel\\
+  &     & 1.4.5 & \quad\quad    Dynamik des schweren symmetrischen Kreisels\\
+  & 1.5 &       & \quad         Beispiele und Anwendungen zur Mechanik des starren Körpers \\      
+  &     & 1.5.1 & \quad\quad    Das physikalische Pendel und die Pendeluhr \\
+  &     & 1.5.2 & \quad\quad    Parametrische Oszillatoren -- Die Schaukel\\
+  &     & 1.5.3 & \quad\quad    Fallende starre Körper und die rutschende Leiter\\
+  &     & 1.5.4 & \quad\quad    Physikalische Kreisel-Spielzeuge und verwandte Themen\\
+  &     & 1.5.5 & \quad\quad    Der nordsuchende Kreiselkompass\\
+  &     & 1.5.6 & \quad\quad    Präzession der Erde\\
+  &     & 1.5.7 & \quad\quad    Trebuchet\\
+  & 1.6 &       & \quad         Übungen zum Kapitel Physik Bewegung von Körpern \\      
+\end{tabular}%
+%}
+\end{table}
+\endgroup

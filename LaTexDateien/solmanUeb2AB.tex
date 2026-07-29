@@ -1,0 +1,180 @@
+%\input{headerAB.tex}
+
+% für funktionierende Hyperlinks zwei neue Environments mit eigenen Countern, up. 2024-01-29
+\newcounter{partsectionU}
+\newcounter{partsectionL}
+\newcounter{partsectionA}
+
+\newenvironment{PartU}[1]
+ {%
+  \cleardoublepage
+  \phantomsection
+  \setcounter{section}{\value{partsectionU}}%
+  \renewcommand{\thesection}{\"U\arabic{section}}%
+  \renewcommand{\theHsection}{SU\arabic{section}}%
+  \addcontentsline{toc}{part}{#1}%
+  \thispagestyle{empty}
+  \begin{flushright}
+    \LARGE
+    \textbf{
+  Übungen\\ \bigskip  Band II\\ \bigskip Himmelsmechanik - Astrodynamik\\}
+  \end{flushright}
+  \vspace*{\fill}
+  \clearpage
+ }
+ {%
+  \setcounter{partsectionU}{\value{section}}%
+  \cleardoublepage
+}
+
+\newenvironment{PartL}[1]
+ {%
+  \cleardoublepage
+  \phantomsection
+  \setcounter{section}{\value{partsectionL}}%
+  \renewcommand{\thesection}{L\arabic{section}}%
+  \renewcommand{\theHsection}{SL\arabic{section}}%
+  \addcontentsline{toc}{part}{#1}%
+  \thispagestyle{empty}
+  \begin{flushright}
+    \LARGE
+    \textbf{Lösungsvorschläge \\ \bigskip Band II \\ \bigskip Himmelsmechanik - Astrodynamik\\}
+  \end{flushright}
+  \vspace*{\fill}
+  \clearpage
+ }
+ {%
+  \setcounter{partsectionL}{\value{section}}%
+ \cleardoublepage
+}
+
+\newenvironment{PartA}[1]
+ {%
+  \cleardoublepage
+  \phantomsection
+  \setcounter{section}{\value{partsectionA}}%
+  \renewcommand{\thesection}{A\arabic{section}}%
+  \renewcommand{\theHsection}{SA\arabic{section}}%
+  \addcontentsline{toc}{part}{#1}%
+  \thispagestyle{empty}
+  \begin{flushright}
+    \LARGE
+    \textbf{Appendix \\ \bigskip Band II \\ \bigskip Himmelsmechanik - Astrodynamik\\}
+  \end{flushright}
+  \vspace*{\fill}
+  \clearpage
+ }
+ {%
+  \setcounter{partsectionA}{\value{section}}%
+ \cleardoublepage
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\addtocontents{toc}{\protect\setcounter{tocdepth}{3}}% alles zeigen
+
+\bibliographystyle{spphys}
+
+\makeatletter
+\@addtoreset{chapter}{part}
+\makeatother
+\renewcommand{\thechapter}{Ü\,\arabic{chapter}}
+\setcounter{page}{0}
+
+\begin{PartU}{Übungen - Band II Himmelsmechanik - Astrodynamik}
+\setcounter{chapter}{3}
+\setcounter{section}{2}
+\setcounter{subsection}{0}
+\setcounter{figure}{0}
+\setcounter{equation}{0}
+\setcounter{prob}{0}
+\counterwithin{table}{section}
+\setcounter{table}{0}
+\newpage
+\quad 
+\thispagestyle{empty}
+\newpage
+\input{hm/hm_uebungenAB}
+\newpage 
+\thispagestyle{empty}
+\quad 
+\newpage
+\setcounter{chapter}{4}
+\setcounter{figure}{0}
+\setcounter{equation}{0}
+\setcounter{prob}{0}
+\counterwithin{table}{section}
+\setcounter{table}{0}
+\newpage
+\input{adyn/adyn_uebungenAB} 
+\end{PartU}
+
+\renewcommand{\thechapter}{L\,\arabic{chapter}}
+
+\begin{PartL}{Lösungsvorschläge - Band II Himmelsmechanik - Astrodynamik}
+\newpage 
+\thispagestyle{empty}
+\quad 
+\newpage
+\setcounter{chapter}{3}
+\setcounter{section}{2}
+\setcounter{subsection}{0}
+\setcounter{figure}{0}
+\setcounter{equation}{0}
+\setcounter{prob}{0}
+\counterwithin{table}{section}
+\setcounter{table}{0}
+\input{hm/hm_lsguebungen}
+\newpage
+\input{hm/hm_matlabskripts}
+\clearpage
+\setcounter{chapter}{4}
+\setcounter{section}{3}
+\setcounter{subsection}{0}
+\setcounter{figure}{0}
+\setcounter{equation}{0}
+\setcounter{prob}{0}
+\counterwithin{table}{section}
+\setcounter{table}{0}
+\input{adyn/adyn_lsguebungen} 
+\input{adyn/adyn_matlabskripts}
+\newpage
+\thispagestyle{empty}
+\quad 
+\newpage
+\newpage
+\end{PartL}
+
+\renewcommand{\thechapter}{A\,\arabic{chapter}}
+
+\begin{PartA}{Appendix}
+
+\setcounter{chapter}{2}
+\setcounter{section}{2}
+\setcounter{subsection}{0}
+\setcounter{equation}{0}
+\counterwithin{table}{section}
+\setcounter{table}{0}
+\newpage
+\thispagestyle{empty}
+\quad 
+\newpage
+\input{hm/hm_formelsammlung}
+\input{adyn/adyn_formelsammlung}
+\newpage
+\addcontentsline{toc}{chapter}{Quellenangaben}
+
+\begingroup
+\let\cleardoublepage\relax
+\bibliography{referenzen}
+\endgroup
+\newpage
+\thispagestyle{empty}
+\quad 
+\newpage
+
+\end{PartA}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\cdot
+%\input{footer.tex}

@@ -1,0 +1,1721 @@
+
+\section{Mechanik von Massepunkten}\label{kap:bew_newton_massepunkt}
+
+In diesem ersten Unterkapitel wollen wir zur Wiederholung die Newtonsche Mechanik\indexp{Newton, Sir Isaac} von Massepunkten\footnote{Häufig wird synonym auch der Begriff Punktmasse verwendet.} zusammenfassen.
+Formulieren wir mit der Mechanik eines Massepunktes ein erstes vereinfachtes Bild eines sich bewegenden Körpers,
+stellt sich heraus, dass schon die Frage danach, was ein Massepunkt ist,
+gar nicht so einfach zu beantworten ist.
+Wir benutzen den Begriff Massepunkt als ein Modell für einen physikalischen Körper bei Problemen, bei denen es ausreicht, die Bewegung des Körpers durch die Angabe seines Schwerpunktes, seiner Geschwindigkeit und eventuell anderer noch zu definierender physikalischer Größen zu beschreiben, ohne die Ausdehnung des Körpers zu betrachten. 
+Der betrachtete Körper muss dabei nicht klein oder massearm sein. 
+In der Himmelsmechanik (Kapitel 3 im Band II dieser Reihe) werden wir
+sogar Planeten und Sonnen als Massepunkte beschreiben.
+
+\subsection{Grundlagen der Newtonschen Mechanik} \label{kap:bew_newton_basics}
+
+Die Bewegung eines Massepunktes ist charakterisiert durch die folgenden Vektoren: 
+\begin{itemize}
+	\item seinen Ort $\vec{r}(t)$,
+	\item seine Geschwindigkeit $\vec{v}(t) = \dot{\vec{r}}(t)$,
+	\item seine Beschleunigung  $\vec{a}(t) = \dot{\vec{v}}(t) = \ddot{\vec{r}}(t) $,
+\end{itemize}
+wobei der Punkt über der physikalischen Größe für die Ableitung nach der Zeit $t$ steht.
+Eine der Aufgabenstellungen der Mechanik ist es, aus bekannter Beschleunigung $\vec{a}(t)$ den Ort $\vec{r}(t)$ (des Massepunktes) als Funktion der Zeit zu bestimmen.
+Das läuft auf eine zweimalige 
+Integration von $\vec{a}(t)$ nach der Zeit hinaus.
+Bei jeder der beiden Integrationen tritt eine Integrationskonstante auf, die direkt oder indirekt von den Anfangsbedingungen Ort
+$\vec{r}(t_0)$ und Geschwindigkeit $\vec{v}(t_0)$ zu einem Zeitpunkt $t_0$ abhängt.
+Dann ist der Ort als Funktion der Zeit gegeben durch
+\begin{align}
+	\vec{r}(t) = \vec{r}(t_0) + \vec{v}(t_0) \:t 
+	+ \int\limits_{t_0}^{t}\int\limits_{t_0}^{t'}\vec{a}(t'') \, \D t'' \, \D t' . \label{eq:bew_IntegralBGL}
+\end{align}
+
+Zur Lösung spezieller Probleme muss man \eqref{eq:bew_IntegralBGL} in jeweils angepassten Koordinatensystemen darstellen und lösen, da je nach Geometrie des Problems die Lösung der jeweiligen Probleme dadurch sehr viel einfacher werden kann.
+Wir verwenden dabei nur \glslink{ons}{orthonormale Koordinatensysteme}.\index{Koordinatensystem!orthonormales|textbf}
+Das sind Koordinatensysteme (KOS), die durch drei räumliche orthogonale und normierte Einheitsvektoren $\vec{e}_1,\,\vec{e}_2,\,\vec{e}_3$ charakterisiert sind. 
+Wir ordnen die Einheitsvektoren so, dass sie ein Rechtssystem bilden. Dann gilt:
+Dann gelten
+\begin{align}
+		\vec{e}_i \cdot \vec{e}_j = \delta_{ij} \text{~~ und ~~} (\vec{e}_i \times \vec{e}_j) \cdot \vec{e}_k =  \epsilon_{ijk}\,.   \label{eq:bew_Rechtssystem}
+\end{align}
+Hierbei haben wir das \textit{Kronecker-Symbol}\footnote{Leopold Kronecker (1823--1891) war ein deutscher Mathematiker, der vor allem auf dem Gebiet der Analysis und Funktionentheorie arbeitete.}\index{Kronecker-Symbol|textbf}\indexp{Kronecker, Leopold} $\delta_{ij}$ benutzt, welches definiert als:
+\begin{align}
+    \delta_{ij} = \left\{\begin{array}{rcl}1 & \text{wenn}\, i = j\,,\\0 &\text{wenn}\,  i\neq j\,. \end{array}\right. \label{eq:bew_kronecker}
+\end{align}
+Ebenso wurde das \textit{Levi-Civita-Symbol}\footnote{Tullio Levi-Civita (1873--1941) war ein italienischer Mathematiker und Physiker, der auf dem Gebiet der Analysis und der theoretischen Mechanik arbeitete.}\indexp{Levi-Civita, Tulli}\index{Levi-Civita-Symbol|textbf} $\epsilon_{ijk}$ (auch Permutationssymbol genannt) verwendet, welches in der Vektor- und Tensorrechnung sehr breit und vorteilhaft angewendet wird:
+\begin{align}
+    \epsilon_{ijk} = \left\{ \begin{array}{rcl}+1 & \text{wenn $i,j,k$ gerade Permutation von 1,2,3}\,,\\ -1 &\text{wenn $i,j,k$ ungerade Permutation von 1,2,3}\,,\\ 0 & \text{sonst}\,. \end{array}\right. \label{eq:bew_levicivita}
+\end{align}
+Das bekannteste orthonormierte \KOS ist das kartesische Koordinatensystem,\index{Koordinatensystem!kartesisches|textbf} für das wir schreiben können: 
+\begin{align}
+		\vec{e}_1 = \veceX,\, \vec{e}_2 = \veceY,\, \vec{e}_3 = \veceZ \,. \label{eq:bew_kartes_rechtssystem}
+\end{align}
+Wir werden im Folgenden für das kartesische Koordinatensystem abhängig vom Anwendungsfall sowohl die Notierung $\vec{e}_1,\vec{e}_2,\vec{e}_3$ als auch die Notierung $\veceX,\veceY,\veceZ$ verwenden.\\
+Der Ortsvektor $\vec{r}(t)$ wird in der Koeffizientendarstellung durch die Einheitsvektoren und ihre Koeffizienten $c_1$, $c_2$ und $c_3$ \bzw im kartesischen KOS auch durch $x,\,y,\,z$ wie folgt ausgedrückt:
+\begin{align}
+		\vec{r}(t) &= c_1\,\vec{e}_1 +  c_2\,\vec{e}_2 +  c_3\,\vec{e}_3 = x\, \veceX + y\, \veceY + z\, \veceZ \,.
+\end{align}
+Man spricht deshalb oft auch von der $x$-$y$-Ebene, meint aber genauer gesprochen die durch die Vektoren $\veceX,\,\veceY$ aufgespannte Ebene.
+Wir geben für das kartesische KOS die Koeffizientendarstellung des Ortsvektors, seine zeitlichen Ableitungen, das Volumenelement für die Volumenintegration und den Vektordifferentialoperator $\gradv$, die wir an einigen Stellen benutzen werden, explizit an:
+\begin{subequations}
+\begin{align}
+	\vec{r}(t) &= x \,\veceX + y \,\veceY + z \,\veceZ ~, \\
+	\vec{v}(t) &= \dot{x} \,\veceX + \dot{y} \,\veceY + \dot{z}\,\veceZ ~, \\
+	\vec{a}(t) &= \ddot{x} \,\veceX + \ddot{y}\, \veceY + \ddot{z}\, \veceZ ~,  \\
+	\D V & = \D x\, \D y\, \D z ~,\\
+	\gradv \,\varphi &= \veceX\, \frac{\partial}{\partial x} \varphi + \veceY \,\frac{\partial}{\partial y} \varphi + \veceZ \,\frac{\partial}{\partial z} \varphi
+	               = \lk\frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z}\rk \,\varphi\,. 
+\end{align} \label{eq:bew_KartesKOS}
+\end{subequations}
+
+Hier ist der Gradient $\gradv \varphi$ die Ableitung einer skalaren Feldfunktion $\varphi(x,y,z)$ nach ihren Raumkoordinaten $x, y, z$ und heißt Gradient\index{Gradient}. Er ist einer der Differentialoperatoren, die zu den den wichtigsten und sehr häufig benutzten mathematischen Werkzeugen des Physikers gehören. 
+Auch wir werden diese häufig benutzen und setzen diese als bekannt voraus\footnote{Falls sie nicht geläufig sind, empfehlen wir entsprechende Lehrbücher und Nachschlagewerke \cite{Otto2019, Jaenich2001, Fischer2018, Felder2016, Riley2006, Andrews2003, Schmutzer2005, Bartelmann2015}.}, werden aber dennoch im \kap{kontmech_VektorAnalysis} diese noch einmal wiederholen. 
+Für das physikalische Verständnis kann man sich an dieser Stelle merken, dass der Gradient\index{Gradient} $\vec{grad}$ Größe und Richtung des stärksten Anstiegs an einem Punkt $\vec{r}$ in einem skalaren Feld $\varphi(\vec{r})$ beschreibt.\\
+In \probref{bew_KOS_Formel} berechnen wir auch für andere orthonormale Koordinatensysteme\index{Koordinatensystem!orthonormales} (Zylinderkoordinaten, Kugel- oder sphärische Koordinaten) die äquivalenten Beziehungen zu \eqref{eq:bew_KartesKOS}.\index{Zylinderkoordinaten|textbf}\index{Kugelkoordinaten}\index{Koordinaten!sphärische}
+
+%Für das physikalische Verständnis kann man sich an dieser Stelle merken, dass der Gradient\index{Gradient} $\vec{grad}$ Größe und Richtung des stärksten Anstiegs an einem Punkt $\vec{r}$ in einem skalaren Feld $U(\vec{r})$ beschreibt, die Divergenz\index{Divergenz} $\mathrm{div}$ den \anf{Fluss} einer Vektorgröße und die Rotation\index{Rotation!Differentialoperator} $\vec{rot}$ die Verwirbelung eines Vektorfeldes (siehe \kap{kontmech_vectoranalysis}).
+
+\subsubsection{Newtonsche Axiome und Newtonsche Bewegungsgleichungen}\index{Newtonsche Axiome} \label{kap:bew_newton_axioms}
+
+Bisher haben wir noch keine Aussage über die Natur bzw. Ursache der Beschleunigung des Massepunktes \bzw eines Körpers\footnote{Wir benutzen die Begriffe Körper und Massepunkt synonym, wobei wir zunächst von der realen Form des Körpers absehen und diesen deshalb als Massepunkt betrachten.} gemacht.
+Es hat viele Jahrhunderte lang gedauert
+(eigentlich bis Galilei und Newton),
+bevor der Begriff der Kraft in der Physik in seiner heutigen Bedeutung eingeführt und definiert war
+und man den Zusammenhang zwischen Bewegung und Kraft formulieren konnte.%
+\footnote{Zur Geschichte der Begriffe Kraft und Energie seien \cite{Hawking2004,Simonyi2004} empfohlen.}
+Darauf aufbauend formulierte Newton die Grundlagen der Bewegung \glslink{bewglg} von Körpern in Axiomen, die wir hier zusammenfassen wollen.
+Axiome sind Aussagen einer Theorie, die im Rahmen der Theorie selbst nicht hergeleitet werden können.
+Die Axiome werden aber durch Verifikation der Voraussagen der Theorie mit Experimenten gerechtfertigt.\footnote{Vielfach wurden in der Geschichte der Physik Axiome in einer bestimmten Theorie im Rahmen einer dann später entwickelten fundamentaleren Theorie hergeleitet, deren Axiome aber wiederum durch Experimente gerechtfertigt werden müssen.
+So folgt die Newtonsche Mechanik als Grenzfall aus der allgemeinen Relativitätstheorie.} 
+
+\subparagraph{\textbf{Erstes Newtonsches Axiom -- Trägheitsprinzip }}\index{Trägheitsprinzip} 
+
+Ein kräftefreier Körper ist ein Körper, auf den keine äußeren Kräfte wirken.
+Ein solcher Körper bewegt sich geradlinig gleichförmig (oder ist in Ruhe) bezüglich eines 
+Koordinatensystems, das von drei räumlichen Dimensionen und der Zeit aufgespannt wird.
+Ein solches KOS nennt man \gls{inertsys}.\index{Inertialsystem}
+
+\subparagraph{\textbf{Zweites Newtonsches Axiom -- Aktionsprinzip oder Bewegungsgesetz }}\index{Aktionsprinzip} \index{Bewegungsgesetz!Newtonsches} 
+
+Wir definieren zunächst den \glslink{impuls}{\emph{Impuls}} eines Körpers der Masse $m$ 
+\begin{align}
+	\vec{p} = m \vec{v}\,. \label{eq:bew_Def_Impuls}
+\end{align}
+Der Proportionalitätsfaktor zwischen Impuls und Geschwindigkeit in \eqref{eq:bew_Def_Impuls} ist die Masse~$m$.\footnote{Streng genommen ist der Proportionalitätsfaktor $m$ in \eqref{eq:bew_Def_Impuls} die träge Masse, was in etwa als der Widerstand, den ein Körper der Kraft entgegensetzt, verstanden werden kann.
+Aufgrund der Gleichheit von schwerer und träger Masse schreiben wir nur $m$ für die Masse.
+Die Gleichheit folgt direkt aus der allgemeinen Relativitätstheorie, in der Newtonschen Mechanik ist es ein gesicherter experimenteller Befund.} In einem Inertialsystem ist die zeitliche Änderung des Impulses gleich der angreifenden Kraft. 
+Das zweite Newtonsche Axiom lautet dann
+\begin{align}
+	\vec{F} = \dot{\vec{p}} = \frac{\mathrm{d}}{\mathrm{d}t}(m \vec{v}) = m\vec a\,,  \label{eq:bew_NewtonBGL}
+\end{align}
+wobei das letzte Gleichheitszeichen nur für den Fall einer konstanten Masse gilt.
+Es sei explizit vermerkt, dass das Trägheitsprinzip als Spezialfall für $\vec{F}=0$ aus dem Aktionsprinzip in Inertialsystemen folgt.
+Man kann daher das erste Axiom auch als eine Definition von Inertialsystemen verstehen.
+
+\subparagraph{\textbf{Drittes Newtonsches Axiom -- Reaktionsprinzip }}\index{Reaktionsprinzip} 
+
+Wenn eine Kraft $\vec{F}$ von einem Körper $B$ auf einen Körper $A$ wirkt, dann wirkt eine entgegengesetzt gerichtete, betragsmäßig gleich große Kraft $-\vec{F}$ von Körper $A$ auf Körper~$B$.
+
+\subparagraph{\textbf{Superpositionsprinzip }}\index{Superpositionsprinzip} 
+
+Wirken mehrere Kräfte $\vec{F}_i$ auf einen Körper, so ist die gesamte Kraft $\vec{F}_\text{g}$ die vektorielle Summe
+\begin{align}
+	\vec{F}_\text{g} =  \sum\limits_{i}\vec{F}_i\,.  \label{eq:bew_Superpos}
+\end{align}
+
+Manchmal wird dies auch unzutreffend als viertes Axiom bezeichnet.
+Newton hielt das Superpositionsprinzip allerdings für selbstverständlich und führte es nicht explizit auf.
+
+\subparagraph{\textbf{Beispiele für Kräfte}} 
+
+\begin{enumerate}
+ \item \emph{Gravitationskraft}\index{Gravitationskraft}\index{Gravitation}\index{Kraft!Gravitations-} \\
+	Für die Kraft zwischen zwei Massen $m, M $  gilt das aus der Erfahrung abgeleitete Newtonsche Gravitationsgesetz\index{Gravitationsgesetz} (siehe \kap{bew_ZKP_NZKF}):
+	\begin{equation}
+		\vec{F}_\text{G} = -\frac{G \, M \ m}{r^3} \, \vec{r} = - \frac{\kappa \, m}{r^3} \, \vec{r}\,,\label{eq:bew_Gravitationskraft}
+	\end{equation}
+mit $\vec{r}=\vec{r}_\text{m}-\vec{r}_\text{M}$ und $G = \SI{6.673e-11}{\meter\cubed\per\kg\per\second\squared}$ als Gravitationskonstante.\\
+ \item \emph{Gewichtskraft}\index{Gewichtskraft} \index{Schwerkraft} \\
+	Wir wissen ebenfalls aus der Erfahrung, dass auf Körper auf der Erdoberfläche (als Folge der Gravitation) die nahezu konstante Schwerkraft mit der Erdbeschleunigung $\vec{g}$ wirkt.
+        Aus der Gleichheit von träger und schwerer Masse folgt dann mit dem zweiten Newtonschen Axiom: 
+	\begin{equation}
+		\vec{F}_\text{G} = m \, \vec{g}\,.
+	\end{equation}  \label{eq:bew_Schwerkraft}
+ \item \emph{Reibungskräfte\footnote{Reibungskräfte werden oft auch \emph{dissipative} Kräfte genannt. Wir werden den Begriff dissipative Kraft in \kap{bew_basics_of_systems}
+ allgemeiner definieren.}}\index{Kraft!Reibungs-} \\
+ Reibungskräfte wirken der Bewegung eines Körpers entgegen und sind daher seiner Geschwindigkeit entgegengerichtet.
+ Näherungsweise kann man die folgenden analytischen Zusammenhänge verwenden:
+	\begin{itemize}
+		\item Gleitreibung \bzw Rollreibung zwischen Körper und Unterlage\index{Reibung!Gleit-}\index{Reibung!Roll-}
+		\begin{align} 
+			\vec{F_\text{R}} = -\mu_G \, F_{\text{N}} \frac{\vec{v}}{\left|\vec{v}\right|} ~ \text{bzw.} -\mu_R \, F_{\text{N}} \frac{\vec{v}}{\left|\vec{v}\right|}\,, \label{eq:bew_GleitReibung}
+		\end{align}
+		worin $F_{\text{N}}$ der Betrag der \emph{Normalkraft}\index{Normalkraft} ist, die vom Körper senkrecht auf seine Unterlage \bzw seinen Auflagepunkt wirkt und $\mu_G$ bzw. $\mu_R$ dimensionslose materialabhängige Reibungskoeffizienten sind.\\
+ \item Stokes\footnote{Sir George Gabriel Stokes\indexp{Stokes, Sir George Gabriel} (1819--1903) war ein irischer Mathematiker und Physiker. Er arbeitete auf dem Gebiet der mathematischen und experimentellen Physik und beschäftigte sich hauptsächlich mit der Hydrodynamik, der Elektrodynamik und der Akustik.}-Reibung\index{Reibung!Stokes-}\index{Stokes-Reibung|textbf}, die bei relativ langsamen Bewegungen in Flüssigkeiten und Gasen wirkt (oft auch viskose Reibung genannt):
+		\begin{align}
+			\vec{F_\text{RS}} = -\eta_\text{S}\, v \,\frac{\vec{v}}{\left|\vec{v}\right|} = -\eta_\text{S} \, \vec{v}\,, \label{eq:bew_StokesReibung}
+		\end{align}
+		worin $\eta_\text{S}$ ein der Viskosität\index{Viskosität} (siehe  \autoref{chap:kontmech}) proportionaler Koeffizient der Dimension $\SI{}{\kg\per\second}$  ist.
+		\item Newtonsche Reibung\index{Reibung!Newtonsche}, die bei schnellen Bewegungen in Flüssigkeiten und Gasen wirkt:
+		\begin{align}
+			\vec{F_\text{RN}} = -\eta_\text{N} \,\left|\vec{v}\right| \,\vec{v} = -\eta_\text{N} \, v^2 \,\frac{\vec{v}}{\left|\vec{v}\right|}\,,\label{eq:bew_NewtonReibung}
+		\end{align}
+   	worin $\eta_\text{N}$ ein Form des bewegten Körpers und Dichte des Mediums (siehe  \autoref{chap:kontmech}) proportionaler Koeffizient der Dimension $\SI{}{\kg\per\metre}$ ist.
+
+	\end{itemize}
+ \item \emph{Federkraft}\index{Kraft!Feder-}\\
+ Für eine Feder mit der Federkonstanten $k$ gilt in guter Näherung für die Komponente $F_x$ der rücktreibenden Kraft (ohne Reibung) als Funktion der Auslenkung $x$ das Hookesche\footnote{Robert Hooke\indexp{Hooke, Robert} (1635--1703) war ein englischer Naturforscher und Architekt, der hauptsächlich durch das nach ihm benannte Elastizitätsgesetz bekannt ist. Zwischen Newton und Hooke bestand eine tiefe Abneigung. Newton lehnte jegliche Anerkennung von Hookes Beiträgen ab, obwohl er einige für seine mathematische Formulierung der Bewegungs- und Gravitationsgesetze benutzte.} Gesetz:
+		\begin{align}
+			F_x = -k x\,. \label{eq:bew_HookeGesetz}
+		\end{align}
+ \item \emph{Coulomb-Kraft}\index{Coulomb-Kraft}\index{Kraft!Coulomb-}\\
+Die Kraft zwischen zwei elektrischen Ladungen $q_1$ und $q_2$ heißt Coulomb-Kraft.\footnote{Charles Augustin de Coulomb\indexp{Coulomb, Charles Augustin@de Coulomb, Charles Augustin} (1736--1806) war ein französischer Physiker und gilt als Begründer der Elektro- und Magnetostatik.} Diese werden wir im Band IV (Elektrodynamik)dieser Buchreihe %\ref{chap:edyn} 
+im Detail behandeln.
+Sie hat eine sehr ähnliche Form wie das Gravitationsgesetz \eqref{eq:bew_Gravitationskraft}:
+		\begin{align}
+  		\vec{F_\text{C}} = \frac{1}{4 \pi \epsilon_0} \frac{q_1 \, q_2}{r^2} \, \vec{e}_r =  \frac{1}{4 \pi \epsilon_0} \frac{q_1 \, q_2}{r^3} \, \vec{r}\,,\label{eq:bew_Coulombkraft}
+		\end{align}
+		worin $\epsilon_0$ die sogenannte Dielektrizitätskonstante ist. Gravitations- und Coulomb-Kraft gehören zu den Zentralkräften\index{Zentralkraft}, für die allgemein 
+ \begin{align}
+    \vec{F_\text{ZK}} =f(r,t) \, \vec{e}_r \sim f(r,t) \, \vec{r}\,, \label{eq:bew_Def_ZKF}
+ \end{align}
+gilt, worin $f(r,t)$ ein Skalar ist.\\
+ \item \emph{Lorentz-Kraft}\index{Lorentz-Kraft}\index{Kraft!Lorentz-}\\
+Auf eine Ladung $q$ in einem allgemeinen elektromagnetischen Feld wirkt die Lorentz\-kraft\footnote{Hendrik Antoon Lorentz\indexp{Lorentz, Hendrik Antoon} (1853--1928) war ein niederländischer theoretischer Physiker, der mit seinen Untersuchungen zur Elektrodynamik bewegter Körper wesentliche Grundlagen für die Einsteinsche spezielle Relativitätstheorie legte, was Einstein\indexp{Einstein, Albert} stets anerkannt hat.
+Neben der Lorentz-Kraft ist auch die Lorentz-Transformation nach ihm benannt.}, die wir ebenfalls im Kapitel der Elektrodynamik %\ref{chap:edyn} 
+im Detail behandeln wollen:
+		\begin{align}
+			\vec{F_\text{L}}(\vec{r},\dot{\vec{r}},t) = q \,\vec{E}(\vec{r},t) + q \,\dot{\vec{r}} \times \vec{B}(\vec{r},t)\,. \label{eq:bew_Lorentzkraft}
+		\end{align}
+Hierin ist $\vec{E}$ das elektrische Feld und $\vec{B}$ das Feld der magnetischen Induktion.
+Die Lorentz-Kraft ist ein wichtiges Beispiel für eine geschwindigkeitsabhängige Kraft.
+\end{enumerate}
+
+\subparagraph{\textbf{Kraftfeld}}\index{Kraftfeld}
+
+Es ist oft sinnvoll, Kräfte begrifflich von den Körpern zu trennen, auf die sie wirken.
+Dann kann man ein Kraftfeld $\vec{F}(\vec{r}, \dot{\vec{r}}, t )$ an jedem Punkt $\vec{r}$ definieren, ganz gleich ob sich dort ein Massepunkt befindet oder nicht.
+Das ist der Charakter eines Feldes.
+Das Feld kann zusätzlich von der Zeit und der Geschwindigkeit des Körpers abhängen, wie wir am Beispiel der Lorentz-Kraft \eqref{eq:bew_Lorentzkraft} sehen.
+
+\subsubsection{Drehmoment\index{Drehmoment|textbf} und Drehimpuls\index{Drehimpuls|textbf} von Massepunkten}
+
+Wirkt eine Kraft $\vec{F}$ auf einen Massepunkt $m$ am Ort $\vec{r}$, so kann man das Drehmoment bezüglich des Koordinatenursprungs definieren:
+		\begin{align}
+			\vec{M} = \vec{r} \times \vec{F}\,.\label{eq:bew_Drehmoment}
+		\end{align}
+Das Drehmoment steht senkrecht auf der Ebene, die von den Vektoren $\vec{r}$ und $\vec{F}$ aufgespannt wird, und verschwindet, wenn $\vec{r}$ und $\vec{F}$ parallel oder antiparallel ausgerichtet sind.
+Entsprechend wird der  Drehimpuls definiert als
+		\begin{align}
+			\vec{L} = \vec{r} \times \vec{p}  = m \vec{r} \times \vec{v}\,.\label{eq:bew_Drehimpuls}
+		\end{align}
+Dieser steht senkrecht auf der Ebene, die durch $\vec{r}$ und $\vec{v}$ definiert wird.
+Der Drehimpuls verschwindet, wenn der Körper sich auf den Ursprung zu- oder von ihm wegbewegt.
+Wir bilden noch die Zeitableitung des Drehimpulses 
+		\begin{align}
+			\frac{\D \vec{L}}{\D t} &= \dot{\vec{r}} \times \vec{p} + \vec{r} \times \dot{\vec{p}} = \vec{r} \times \vec{F} = \vec{M}\,. \label{eq:bew_Drehimpuls_Ableitung}
+		\end{align}
+Man erkennt, dass der Drehimpuls dann erhalten bleibt, wenn kein (äußeres) Drehmoment auf den Körper wirkt.
+Dies ist der wichtige Drehimpulserhaltungssatz\index{Drehimpulserhaltungssatz|textbf},
+den wir in den nachfolgenden Kapiteln vielfach verwenden werden,
+besonders in der Mechanik der starren Körper
+(\kap{bew_starrer_koerper}) und der Himmelsmechanik (Band II). 
+
+\begin{figure}
+\begin{minipage}{\textwidth}
+\leftfigure{\includegraphics[width=0.5\textwidth]{Def_Drehimpuls.pdf}}
+\hspace{\fill}
+\rightfigure{\includegraphics[width=0.5\textwidth]{Def_Arbeit.pdf}}
+\leftcaption[Zur Definition des Drehimpulses eines Massepunktes.]{Zur Definition des Drehimpulses eines Massepunktes.
+Im Bild wurde die Ebene, die durch die Vektoren $\vec{r}$ und $\dot{\vec{r}}$ aufgespannt wird, als $x$-$y$-Ebene gewählt, der Drehimpuls zeigt dann in $z$-Richtung (Rechte-Hand-Regel).}\label{abb:bew_Def_Drehimppuls}
+\rightcaption[Zur Definition der Arbeit entlang eines Weges.]{Zur Definition der Arbeit entlang eines Weges $S$.}\label{abb:bew_Def_Arbeit}
+\end{minipage}
+\end{figure}
+
+\subsubsection{Arbeit, Leistung und Energie}\label{kap:bew_arbeit_und_energie}
+
+\subparagraph{\textbf{Arbeit}}\index{Arbeit}
+
+Wir starten von der Newtonschen Bewegungsgleichung \eqref{eq:bew_NewtonBGL} und nehmen $m = \con$ an, woraus die allgemein übliche Bewegungsgleichung 
+\begin{align}
+	m \ddot{\vec{r}} = \vec{F}(\vec{r},\dot{\vec{r}},t) \label{eq:bew_NewtonBGL2}
+\end{align}
+folgt.
+Aus der Erfahrung ist bekannt, dass \anf{Arbeit} nötig ist, um einen Körper gegen eine Kraft zu bewegen: 
+\begin{align}
+	\delta W = - \vec{F} \: \mathrm{d}\vec{r} \label{eq:bew_Arbeit_infinitesimal}\,.
+\end{align}
+Hier ist $\delta W$ die Arbeit, die geleistet werden muss um einen Massepunkt in einem Kraftfeld $\vec{F}$ von $\vec{r}$ nach $\vec{r} + \mathrm{d}\vec{r}$ zu bewegen. 
+Für eine Bewegung entgegen der Kraft ist $ \vec{F} \cdot \D\vec{r} < 0$ und daher $\delta W > 0$, \dh es muss Arbeit aufgewendet werden, im umgekehrten Fall \anf{leistet} das Kraftfeld Arbeit.
+Die gesamte geleistete Arbeit für eine Bewegung vom Ort $\vec{r_1}$ zum Ort $\vec{r_2}$ entlang eines Weges $S$ ist dann
+\begin{align}
+	W = \int\limits_{S} \delta W \mathrm{d}\vec{r} = -\int\limits_{S} \vec{F}(\vec{r},\dot{\vec{r}},t) \: \mathrm{d}\vec{r}\,.\label{eq:bew_Arbeit_total}
+\end{align}
+Das Integral in \eqref{eq:bew_Arbeit_total} ist ein Kurvenintegral und kann über eine Parametrisierung von $\vec{r}$ entlang des Weges berechnet werden, wie in \figref{bew_Def_Arbeit} dargestellt.
+Dies bedeutet letztlich nichts anderes, als dass die Arbeit im Allgemeinen vom Weg abhängt, und dass die größte Arbeit wegen des Skalarproduktes in Richtung des Kraftfeldes verrichtet wird.
+Kann man aber die infinitesimale Arbeit $\delta W = - \vec{F} \: \mathrm{d}\vec{r}$ als totales Differential $\mathrm{d} W $ schreiben, so gilt
+\begin{align*}
+	\gradv W = - \vec{F}(\vec{r})\,.
+\end{align*}
+Sowohl die Arbeit als auch die Kraft dürfen dann nur vom Ort abhängen.
+Eine solche Kraft nennt man \glslink{konservkr}{konservativ} und die entsprechende Arbeit auch potentielle Energie\index{Energie!potentielle} oder \glslink{potential}{\pot} $U$ des Kraftfeldes $\vec{F}(\vec{r})$. Man schreibt dann:
+\begin{align}
+	\vec{F}(\vec{r}) = -\gradv U(\vec{r}) \,.\label{eq:bew_konservative_Kraft}
+\end{align}
+In \probref{bew_konserv_Kraft} werden neben der Beziehung
+\eqref{eq:bew_konservative_Kraft} auch einige andere Eigenschaften
+des konservativen Kraftfeldes hergeleitet.
+
+\subparagraph{\textbf{Leistung}}\index{Leistung}
+
+Im Weiteren gehen wir von einem zeitunabhängigen Kraftfeld aus.
+In diesem wird die geleistete Arbeit pro Zeiteinheit als Leistung definiert und kann wie folgt geschrieben werden:
+\begin{align}
+	P = \frac{\mathrm{d} W}{\mathrm{d}t} = - \dot{\vec{r}} \:\vec{F} = - \vec{v} \: \vec{F}\,. \label{eq:bew_Def_Leistung}
+\end{align}
+
+\subparagraph{\textbf{Energie und Energieerhaltung}}\index{Energie}\index{Energieerhaltung}
+
+Die kinetische Energie wird definiert als
+\begin{align}
+	T = \frac{m}{2} \: \dot{\vec{r}}^2\,. \label{eq:bew_Def_kinEnergie}
+\end{align}
+Die Zeitableitung von \eqref{eq:bew_Def_kinEnergie} ergibt
+	\[\frac{\mathrm{d} T}{\mathrm{d}t} = m \ddot {\vec{r}}\:\dot{\vec{r}} = \vec{F}\:\dot{\vec{r}} = - P\,.
+\]
+Integration über $t$ ergibt
+	\[W_{2,1} = \int\limits_{t_1}^{t_2} \mathrm{d}t P(t)  = - \int\limits_{t_1}^{t_2} \mathrm{d}t \frac{\mathrm{d} T}{\mathrm{d}t} = T_1 -T_2\,.
+\]
+Die geleistete Arbeit entspricht also der Änderung der kinetischen Energie.
+In einem konservativen Kraftfeld hängt die Arbeit nicht vom Weg ab, sondern nur von der potentiellen Energie $U$ am Anfangs- und Endpunkt, es gilt also
+	\[T_1 + U_1 = T_2 + U_2\,.
+\]
+In einem konservativen Kraftfeld ist daher die Gesamtenergie konstant: 
+\begin{align}
+E = T + U = \frac{m}{2} \:\dot{\vec{r}}^2 + U(\vec{r}) = \con\,. \label{eq:bew_EnergieSatz}
+\end{align}
+Gleichung \eqref{eq:bew_EnergieSatz} ist der Energieerhaltungssatz der Mechanik für konservative Kräfte.
+
+\subsection{Transformation des Bezugssystems, Scheinkräfte}\index{Scheinkraft|textbf}\index{Trägheitskraft|textbf}\index{Kraft!Schein-}\label{kap:bew_trafo_bezugssystem}
+
+Physikalische Vorgänge laufen unabhängig von der Wahl des KOS ab. Wir wollen Koordinatensysteme jeweils mit einem $\vec{\Sigma}$ bezeichnen.
+Die Auswahl eines Bezugs- \bzw Koordinatensystems erfolgt dabei \ia so, dass sich das physikalische Problem durch möglichst einfache Gleichungen beschreiben lässt.
+
+Aus dem ersten Axiom folgt die Existenz von Inertialsystemen\index{Inertialsystem}, in denen kräftefreie Körper entweder ruhen oder sich mit konstanter Geschwindigkeit $\vec{v}$ bewegen.
+Wir wollen nun alle denkbaren Inertialsysteme der Newtonschen Mechanik finden und auch klären, wann durch den Wechsel eines Bezugssystems kein Inertialsystem mehr vorliegt.
+Dabei benutzen wir der Einfachheit halber kartesische Koordinaten zu einem beliebigen Zeitpunkt $t$.
+Dann kann die Umrechnung von einem Ausgangsbezugssystem $\vec{\Sigma}$ in ein anderes Bezugssystem $\vec{\Sigma}'$, in welchem wir die Koordinaten mit gestrichenen Größen ($\vec{r}', \vec{v}'$ usw.) beschreiben, durch eine Kombination von Translationen und Rotationen beschrieben werden. 
+
+\subsubsection{Galilei-Transformation}\index{Transformation!Galilei-} \label{kap:bew_Galilei_Trafo}
+
+Wir betrachten zunächst Translationen\index{Translation} (\figref{bew_Galilei_Trafo}) und nehmen an, dass zum Zeitpunkt $t\!=\!0$ die Bezugssysteme $\vec{\Sigma}$ und $\vec{\Sigma}'$ identisch sind und keine Kräfte wirken. 
+Im Inertialsystem $\vec{\Sigma}$ gilt dann $m \ddot{\vec{r}}\! = \!0$. 
+Das transformierte Bezugssystem $\vec{\Sigma}'$ geht aus dem ursprünglichen Bezugssystem $\vec{\Sigma}$ durch eine Verschiebung $\vec{R}(t)$ hervor. 
+Damit $\vec{\Sigma}'$ auch ein Inertialsystem ist, \dh der Massepunkt auch bezüglich dieses Bezugssystems ruht oder sich mit konstanter Geschwindigkeit bewegt, muss gelten $m \ddot{\vec{r}}'\! =\! 0$. 
+Nach \figref{bew_Galilei_Trafo} ist aber $\vec{r} \!= \!\vec{r}' + \vec{R}(t) $, woraus folgt: $m \ddot{\vec{r}}' \!= \!m \ddot{\vec{r}} - m \ddot{\vec{R}}$. 
+Dies ist nur dann gleich Null, wenn $\ddot{\vec{R}}\!=\!0$ ist, woraus folgt: $\dot{\vec{R}}\!=\!\vec{V} \!=\! \vec{const} $ und damit $\vec{R}\! = \!\vec{V} \:t$. 
+Hierbei ist $\vec{V}$ die Relativgeschwindigkeit der Translation der beiden Bezugssysteme. 
+
+\begin{figure}
+\includegraphics[width=\textwidth]{Galilei_Trafo.pdf}%
+\caption[Verschiebungen zwischen Koordinatensystemen.]{Verschiebungen zwischen Koordinatensystemen. Für die Galilei-Transformation gilt $\dot{\vec{R}}\!=\!\vec{V} \!=\! \text{const} $.}
+\label{abb:bew_Galilei_Trafo}
+\end{figure}
+
+Für die Zeit gilt in der Newtonschen Mechanik $t' = t$, sodass wir zusammenfassend formulieren können, dass man durch Translation genau dann wieder ein Inertialsystem erhält, wenn sich das Bezugssystem $\vec{\Sigma}'$ mit konstanter Relativgeschwindigkeit $\vec{V}$ zum Inertialsystem $\vec{\Sigma}$  bewegt.
+Es gelten dann die \emph{Galilei-Transformationen}: 
+\begin{align}
+	\vec{r}' = \phantom'\vec{r} - \vec{V}\:t \quad \text{und} \quad t' = \phantom't\,. \label{eq:Bew_Galilei_Trafo}
+\end{align}
+
+Das zweite Newtonsche Axiom bleibt unter Galilei-Transformationen unverändert, die Newtonschen Bewegungsgleichungen
+ändern ihre Form beim Übergang zwischen Inertialsystemen nicht.\footnote{Selbstverständlich dürfen Inertialsysteme auch um eine beliebige Achse gegeneinander rotiert oder um einen konstanten Vektor verschoben sein. Auch darf der Zeitnullpunkt anders gewählt werden. Diese allgemeine Form der Galilei-Transformation benötigen wir hier jedoch nicht und wir beschränken uns daher auf die einfache Form aus Gleichung \eqref{eq:Bew_Galilei_Trafo}.}\\
+Galilei-Transformationen sind die allgemeinsten Transformationen
+zwischen Inertialsystemen der Newtonschen Mechanik.%
+\footnote{In der relativistischen Physik lässt man die Bedingung $t' = t$
+fallen und kommt dann zu anderen Transformationen zwischen den Inertialsystemen, den sogenannten Lorentz-Transformationen.}
+Wir stellen nun noch die Frage, wie die Bewegungsgleichungen in den beiden Systemen aussehen, wenn im System $\vec{\Sigma}$ eine Kraft $\vec{F} = m \ddot{\vec{r}}$ auf den Massepunkt wirkt und das System $\vec{\Sigma}'$ sich beliebig, \zb auch beschleunigt gegenüber $\vec{\Sigma}$ bewegt.
+Durch Einsetzen in die Galilei-Transformation erhält man $m \ddot{\vec{r}}' \!= \!m \ddot{\vec{r}}$, das zweite Axiom behält also seine Form, wenn wir einfach $\vec{F} = \vec{F}'$ setzen. 
+Wir müssen aber $\vec{F}'(\vec{r}',\dot{\vec{r}}')$ durch die transformierten Größen $\vec{r}',\dot{\vec{r}}'$ ausdrücken, da die Kraft \ia von diesen Größen abhängt. 
+Wir benutzen wieder $\vec{r}(t) \!= \!\vec{r}'(t) + \vec{R}(t)$, wobei diesmal $\vec{R}(t)$ beliebig zeitabhängig ist und erhalten
+\begin{align}
+	\vec{F}' \;=\; m \:\ddot{\vec{r}}' \;= \; m\: \ddot{\vec{r}} - m \ddot{\vec{R}}\;= \; \vec{F} - m \:\ddot{\vec{R}}\,.\label{eq:Bew_Galilei_Trafo_2}
+\end{align}
+Gleichung \eqref{eq:Bew_Galilei_Trafo_2} besagt, dass wir die Newtonsche Bewegungsgleichung auch in $\vec{\Sigma}'$ verwenden können, wenn wir zur Kraft $\vec{F}$ eine Scheinkraft\index{Scheinkraft}\index{Kraft!Schein}
+$\vec{F}_\text{S} = - m \ddot{\vec{R}}$ addieren.
+Scheinkräfte sind im System $\vec{\Sigma}'$ sehr wohl real spür- und messbar und ergeben sich anders als die im \kap{bew_newton_axioms} beschriebenen Kräfte nur aus der Wahl eines entsprechend bewegten Bezugssystems.\footnote{Der Begriff Scheinkraft kommt daher, dass eine solche eben für einen Beobachter im Inertialsystem nicht auftritt und für diesen somit "`scheinbar"' nicht existiert.} Wir werden im folgenden Kapitel sehen, dass auch rotierende Systeme\index{Rotation} keine Inertialsysteme mehr sind und daher in diesen ebenfalls Scheinkräfte auftreten.
+
+
+\subsubsection{Rotierende Systeme}\index{Bezugssystem!rotierendes} \index{Rotation} \label{kap:bew_rotating_systems}
+
+\subparagraph{\textbf{Mathematische Beschreibung von Drehungen kartesischer KOS}}\index{Energie}\index{Drehung}\index{Koordinatensystem!kartesisches} \index{Drehmatrix}\index{Rotationsmatrix}
+
+Nachdem wir zeitunabhängige und zeitabhängige Translationen von Koordinatensystemen betrachtet haben, wenden wir uns der Rotation (kartesischer) Koordinatensysteme zu, wobei wir als erstes die zeitunabhängige, \dh feste (Ver)Drehung zwischen zwei Koordinatensystemen betrachten wollen.
+Dabei werden wir die elegante mathematische Beschreibung durch \emph{Drehmatrizen} (häufig auch Rotationsmatrizen genannt) kennen lernen.
+Diese lassen sich herleiten, indem man ein neues gestrichenes Koordinatensystem $\vec{\Sigma}'$ aus einem (ungestrichenen) Koordinatensystem $\vec{\Sigma}$ durch Drehung um jeweils einen Winkel $\varphi$ um eine der $\vec{e}_i$-Achsen betrachtet.
+
+\begin{figure}
+\includegraphics[width=\textwidth]{Drehmatrix.pdf}%
+\caption[Zur Herleitung von Drehmatrizen.]{Zur Herleitung von Drehmatrizen. Dargestellt ist eine Drehung um die $\vec{e}_3$-Achse. Der Vektor $\vec{A}$ wird davon nicht berührt, allerdings hängt seine Koeffizientendarstellung vom gewählten Koordinatensystem ab.}
+\label{abb:bew_Drehmatrix}
+\end{figure}
+
+Aus \figref{bew_Drehmatrix} kann man ablesen, dass sich die $\vec{\Sigma}$-Basisvektoren zu den $\vec{\Sigma}'$-Basisvektoren folgendermaßen verhalten:\footnote{Wir bezeichnen hier die Basisvektoren allgemein mit $\vec{e}_1, \vec{e}_2, \vec{e}_3$, wobei für ein kartesisches \KOS $\vec{e}_1 = \veceX, \vec{e}_2 = \veceY, \vec{e}_3 = \veceZ$ gilt.}
+\begin{align}
+	\vec{e}_i{}' &= (\vec{e}_i{}' \cdot \vec{e}_1)\, \vec{e}_1 + (\vec{e}_i{}' \cdot \vec{e}_2)\, \vec{e}_2 = \vec{e}_i{}' = a_{i1}\,\vec{e}_1 + a_{i2}\,\vec{e}_2 \,, \label{eq:bew_Drehmatrix1_2D} 
+\end{align}
+\bzw verallgemeinert für den dreidimensionalen Fall
+\begin{align}
+\begin{split}
+	\vec{e}_i'{} &= (\vec{e}_i{}'\cdot \vec{e}_1)\, \vec{e}_1 + (\vec{e}_i{}'\cdot \vec{e}_2)\, \vec{e}_2 + (\vec{e}_i{}'\cdot \vec{e}_3)\,\vec{e}_3\,,\\
+	\vec{e}_i{}'&= a_{i1}\,\vec{e}_1 + a_{i2}\,\vec{e}_2  + a_{i3}\, \vec{e}_3\,.  
+\end{split} \label{eq:bew_Drehmatrix1}
+\end{align}
+Die $a_{ij} = \vec{e}_i{}'\cdot \vec{e}_j$ heißen Richtungskosinus\index{Richtungskosinus}.
+Für den Fall in \figref{bew_Drehmatrix} ergibt sich beispielsweise $\vec{e}_1{}' \cdot \vec{e}_1 = \cos \varphi\,$ und $\,\vec{e}_1{}' \cdot \vec{e}_2 = \cos {(\pi/2 - \varphi)} =
++ \sin{\varphi}\,$. Allgemein kann man die Transformation des Vektors $\vec{A}$ schreiben als:
+\begin{align}
+	\vec{A}' = \phantom'\mathbb{R} \: \vec{A} = \begin{pmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{pmatrix}\, \vec{A}\,.
+\end{align}
+Die Drehung um die $z$-Achse ($\vec{e}_3$) um einen positiven Winkel $\varphi$ (siehe \figref{bew_Drehmatrix}, Drehung entgegengesetzt zum Uhrzeigersinn) ist dann beispielsweise durch die Drehmatrix $\mathbb{R}_z(\varphi)$ beschrieben:
+	\[\mathbb{R}_z(\varphi) \: = \;\begin{pmatrix} +\cos\varphi & +\sin\varphi & 0 \\ -\sin\varphi & +\cos\varphi & 0 \\ 0 & 0 & 1 \end{pmatrix}\,.
+\]
+Wir werden diese Drehmatrizen ausgiebig nutzen, insbesondere in der Himmelsmechanik und in der Mechanik starrer Körper.
+
+\subparagraph{\textbf{Dynamik in rotierenden Koordinatensystemen}}\index{Energie}
+
+Wir wollen nun zeitabhängige Drehungen betrachten und zwei KOS $\vec{\Sigma}$ und $\vec{\Sigma}'$ gegeneinander rotieren lassen. 
+Diese sollen für $t = 0$ überein stimmen und für alle weiteren Zeiten $t$ ihren gleichen Koordinatenursprung behalten. 
+Das System $\vec{\Sigma}$ sei dabei ein Inertialsystem und durch die Basis-Einheitsvektoren $\vec{e}_i$ mit $i=1\ldots3$ gegeben,
+das rotierende System $\vec{\Sigma}'$ entsprechend durch die Vektoren $\vec{e}_i{}'$. 
+Dabei nehmen wir an, dass nur das System $\vec{\Sigma}'$ von der Zeit abhängt.
+Wir betrachten nun einen Vektor, der im rotierenden System $\vec{\Sigma}'$ (\figref{bew_Rot_KOS}) durch $\vec{A}'(t)$  beschrieben wird und dessen zeitliche Veränderung gegeben sei durch:
+%\footnote{An dieser Stelle sei unterschieden zwischen dem Vektor an sich (der physikalischen Größe) $\vec{\mathcal{A}}$ und seiner Beschreibung $\vec{A}$ bzw. $\vec{A'}$ im jeweiligen Koordinatensystem. Eine physikalische Größe, z.B. $\vec{\mathcal{A}}$, muss natürlich immer gleich sein, unabhängig in welchem System man sich befindet. Im Folgenden werden wir diese Unterscheidung weglassen und einfach  $\vec{A}$ bzw. $\vec{A'}$ schreiben.}
+\begin{align*}
+	\frac{\D \vec{A'}}{\D t} = \frac{\D A_1'}{\D t} \:\vecpex + \frac{\D A_2'}{\D t} \:\vecpey + \frac{\D A_3'}{\D t} \:\vecpez\,.
+\end{align*}
+Wollen wir die zeitliche Entwicklung im Inertialsystem berechnen, müssen wir noch berücksichtigen, dass die Einheitsvektoren $\vec{e}_i$ von der Zeit abhängen und wir deshalb ihre zeitliche Ableitung berechnen müssen, also:
+\begin{align*}
+	\frac{\D \vec{A}}{\D t} = \frac{\D \vec{A'}}{\D t} + A_1' \: \dvecepx + A_2' \: \dvecepy + A_3' \: \dvecepz\,.
+\end{align*}
+
+\begin{figure}
+\includegraphics[width=\textwidth]{Rot_KOS.pdf}%
+\caption[Rotierende Bezugssysteme.]{Rotierende Bezugssysteme. In beiden Bildern haben wir vereinfachend angenommen, dass die Nullpunkte von $\vec{\Sigma}$ und $\vec{\Sigma} '$ übereinstimmen. Im rechten Bild nehmen wir zudem an, dass die Drehachse $\vec{n}$ sowohl mit der $z$-Achse als auch der $z'$-Achse übereinstimmt und fest im Raum steht. $\vec{A}$ ist ein beliebiger Vektor.}%
+\label{abb:bew_Rot_KOS}
+\end{figure}
+
+Wir müssen als nächstes die ${\dot{\vec{e}}_i}{}'$ bestimmen, \dh herausfinden, wie sich die Einheitsvektoren ${\vec{e}_i}{}'$ aus Sicht von $\vec{\Sigma}$ ändern.
+Wir beschreiben dazu die Rotation von $\vec{\Sigma}'$ um eine Drehachse $\vec{n}$ mit dem Vektor der Winkelgeschwindigkeit $\vec{\omega}$ (\figref{bew_Rot_KOS}). 
+Sowohl $\vec{n}$ als auch $\vec{\omega}$ können \ia zeitabhängig sein.
+Unter Benutzung der Orthogonalitätsrelationen der Einheitsvektoren ${\vec{e}_i}{}'$ findet man (in (\probref{bew_Rot_System}) im Detail ausgeführt) folgende Beziehung:
+\begin{align}
+	 A_1' \, \dvecepx + A_2' \,\dvecepy + A_3 \, \dvecepz \:&=\: \vec{\omega}' \times \vec{A}' \quad \rightarrow\ \quad 
+	\frac{\mathrm{d} \vec{A}}{\D t}\: =\: \frac{\D \vec{A'}}{\D t} + \:\vec{\omega}' \times \vec{A}'\,. \label{eq:bew_Rot_System1}
+\end{align}
+Wir verweisen auf  \figref{bew_Rot_KOS}, in der wir den speziellen Fall dargestellt haben, bei welchem die Drehachse mit den $z$-\, und der $z'$-Achsen der beiden Koordinatensysteme zusammenfällt. 
+Wir können \eqref{eq:bew_Rot_System1} als allgemeine Transformation der Zeitableitung zwischen den beiden gegeneinander rotierenden Systemen formulieren:
+\begin{align}
+  % better no \mathclap here
+	\underbrace{\lk \frac{\mathrm{d} \vec{A}} {\mathrm{d} t} \rk}_{\text{Ableitung in } \:\Sigma}\:
+	&=\; \underbrace{\lk \frac{\mathrm{d} \vec{A}'} {\mathrm{d} t} \rk}_{\text{Ableitung in}\: \Sigma '} 
+	+ \:~~\underbrace{\vec{\omega}' \times \vec{A}'}_{\text{Zusatzterm}} 
+	~~=~~ \underbrace{\left\{\frac{\mathrm{d}}{\mathrm{d} t} + \vec{\omega}' \times \right\}}_{\text{Operator}} \vec{A}'~. \label{eq:bew_Rot_System2}
+\end{align}
+Wir weisen darauf hin, dass $\vec{\omega}'$ der Rotationsvektor ist, wie er im gestrichenen Inertialsystem $\vec{\Sigma}'$ vorliegt.
+In diesem ist die Orientierung der Drehachse im Allgemeinen verschieden von der in $\vec{\Sigma}$, wie wir in \kap{bew_Coriolis-Kraft}  und den Übungen zeigen werden.\footnote{Ein Beispiel ist der Vektor der Rotationsgeschwindigkeit der Erde, der an den Polen senkrecht auf der Erdoberfläche steht, am Äquator dagegen parallel zur Erdoberfläche.} 
+Um die Transformation für die zweite Zeitableitung zu erhalten, wenden wir auf \eqref{eq:bew_Rot_System2} den Operator $\left\{\D / \D t  + \vec{\omega}' \times \right\}$ noch einmal an und erhalten (\probref{bew_Rot_System})
+\begin{align}
+	\frac{\mathrm{d^2} {\vec{A}}}{\mathrm{d} t^2} &= \frac{\mathrm{d^2} \vec{A'}}{\mathrm{d} t^2} + \:\dot{\vec{\omega}}' \times \vec{A}' + \: 2 \vec{\omega '}\times \dot{\vec{A}}'  + \:\vec{\omega'}\times( \vec{\omega '} \times \vec{A'})\,. \label{eq:bew_Rot_System3}
+\end{align}
+Wir können nun für den beliebigen Vektor $\vec{A}$ den Ortsvektor $\vec{r}$ einsetzen und erhalten
+\begin{align}
+	\ddot{\vec{r}} &= \ddot{\vec{r}}' + \: \dot{\vec{\omega}}' \times \vec{r'} +  \: 2 \vec{\omega}' \times \dot{\vec{r}}'  + \:\vec{\omega '}\times( \vec{\omega '} \times \vec{r'})\,. \label{eq:bew_Rot_System4}
+\end{align}
+Multipliziert man \eqref{eq:bew_Rot_System4} mit $m$ und fasst die Kraft $m \ddot{\vec{r}}$ im Inertialsystem $\vec{\Sigma}$ als eine externe Kraft $\vec{F}^\text{(ext)}$ auf (\zb als eine der weiter oben genannten Kräfte wie Gravitations- oder Coulomb-Kraft), dann kann man wegen $\vec{F}^\text{(ext)} = \vec{F'}^\text{(ext)}$ die Bewegungsgleichung folgendermaßen schreiben:
+\begin{align}
+	\ddot{\vec{r}}' &= \frac{\vec{F}^\text{(ext)}}{m} - \: \dot{\vec{\omega}}' \times \vec{r}' - \: 2 \vec{\omega '}\times \dot{\vec{r}}'  - \:\vec{\omega}' \times( \vec{\omega}' \times \vec{r}')\,. \label{eq:bew_Rot_System5}
+\end{align}
+Gleichung \eqref{eq:bew_Rot_System5} ist die Erweiterung des zweiten Newtonschen Axioms auf rotierende KOS, bei denen die Ursprungskoordinaten zusammenfallen (\figref{bew_Rot_KOS}).
+Wir wollen diese Beschränkung jetzt fallen lassen und auch eine Verschiebung $\vec{R}(t)$ des KOS zulassen.
+Uns interessiert nun das Transformationsverhalten des Vektors  $\vec{r}'(t) = \vec{r}(t) - \vec{R}(t)$.
+Dabei ist $\vec{r}$ der Ort des betrachteten Massepunktes relativ zum Nullpunkt in $\vec{\Sigma}$ und $\vec{r}'(t)$ derselbe Vektor vom Nullpunkt in $\vec{\Sigma} '$ aus gesehen.
+Aus der zweiten Zeitableitung von $\vec{r}(t)$ nach der Bildungsvorschrift \eqref{eq:bew_Rot_System1} und \eqref{eq:bew_Rot_System3} folgt dann die Erweiterung des zweiten Newtonschen Axioms auf rotierende und linear beschleunigte Bezugssysteme:
+\begin{align}
+		 m \ddot{\vec{r}}' &= \vec{F}^\text{(ext)} - m \,\ddot{\vec{R}}' - m\, \dot{\vec{\omega}}' \times \lk \vec{r}' - \vec{R}' \rk - 2 m\, \vec{\omega}' \times \lk \dot{\vec{r}}' - \dot{\vec{R}}' \rk - m\, \vec{\omega}' \times \lek \vec{\omega}' \times \lk \vec{r}' - \vec{R'} \rk \rek\,, \\
+		 m \ddot{\vec{r}}' &= \vec{F}^\text{(ext)} + \vec{F'}_\text{bT} + \vec{F'}_\text{bR} +\vec{F'}_\text{Cor} + \vec{F'}_\text{Z}\,.\label{eq:bew_Rot_System6}
+\end{align}
+Formel \eqref{eq:bew_Rot_System6} ist die Bewegungsgleichung für einen Massepunkt am Ort $\vec{r}'$ in einem mit $\vec{\omega}'$ rotierenden Bezugssystem $\vec{\Sigma}'$, auf den äußere Kräfte $\vec{F}^\text{(ext)}$ und Scheinkräfte wirken.
+Der Verbindungsvektor $\vec{R}'$ zeigt dabei vom Ursprung des rotierenden Bezugssystems $\vec{\Sigma} '$ zum Drehzentrum.
+Gleichung \eqref{eq:bew_Rot_System6} geht für $\vec{\omega}' = 0$ und $\ddot{\vec{R}}' = 0$ in die Form für Inertialsysteme über.
+Umgekehrt wird auch ein kräftefreier Körper $(\vec{F}^\text{(ext)} = 0)$ aus der Sicht eines Beobachters in einem allgemein beschleunigten und rotierenden Bezugssystem durch Scheinkräfte beschleunigt, bleibt also nicht in Ruhe oder gleichförmiger Bewegung.
+Alle Scheinkräfte sind proportional zur (trägen) Masse und in rotierenden Systemen (mit Ausnahme von $\vec{F'}_\text{bl}$) zu $\vec{\omega}'$ \bzw $\dot{\vec{\omega}}'$.
+Im Einzelnen sind das nach \eqref{eq:bew_Rot_System6}:
+\begin{enumerate}
+	\item Scheinkraft durch beschleunigte Translation von $\vec{\Sigma} '$ gegenüber $\vec{\Sigma}$ (vgl. \eqref{eq:Bew_Galilei_Trafo_2}):
+\begin{align} 
+		\vec{F'}_\text{bT} = - m \ddot{\vec{R}}'\,. \label{eq:bew_beschl_Kraft}
+\end{align}
+	\item Euler-Kraft\index{Euler-Kraft}\index{Kraft!Euler-}\footnote{Leonhard Euler\indexp{Euler, Leonhard} (1707--1783) war einer der bedeutendsten Mathematiker des 18.\ Jahrhunderts. Der in der Schweiz geborene Euler, der vor allem in Berlin und St.~Petersburg forschte, war aber auch in der Physik und Astronomie tätig und machte zahlreiche Entdeckungen in diesen Bereichen. In der Mathematik sind vor allem seine Beiträge zur Infinitesimalrechnung und der Graphentheorie zu nennen. In der Physik waren \ua seine Arbeiten in der Mechanik und Strömungsdynamik wegweisend. Obwohl er bereits 1771 erblindete, war er weiterhin einer der brillantesten und produktivsten Mathematiker aller Zeiten. Eulers Arbeiten inspirierten viele Generationen von Mathematikern nachhaltig.} -- Scheinkraft durch beschleunigte Rotation von $\vec{\Sigma} '$ gegenüber $\vec{\Sigma}$:
+\begin{align} 
+		\vec{F'}_\text{bR} = - m \dot{\vec{\omega}}' \times \lk \vec{r'} -\vec{R}' \rk\,. \label{eq:bew_beschl_Rotation}
+\end{align}
+	\item Coriolis-Kraft\index{Kraft!Coriolis-}\footnote{Gaspard Gustave de Coriolis\indexp{Coriolis, Gaspard Gustave@de Coriolis, Gaspard Gustave} (1792--1843) war ein französischer Mathematiker und Physiker, der die später nach ihm benannte Coriolis-Kraft als Scheinkraft eines in einem rotierenden System bewegten Körpers untersuchte. Außerdem veröffentlichte Coriolis Arbeiten zur Wirtschaftsmathematik. Verschiedentlich wird auch Euler als Entdecker der Coriolis-Kraft genannt \cite{Grimsehl1977}.}:
+\begin{align} 
+		\vec{F'}_\text{Cor} = - 2 m \vec{\omega}' \times \lk \dot{\vec{r}}' - \dot{\vec{R}}' \rk\,. \label{eq:bew_Coriolis_Kraft}
+\end{align}
+	\item Zentrifugalkraft\index{Kraft!Zentrifugal-}:
+\begin{align} 
+		\vec{F'}_\text{Z} = - m \vec{\omega}' \times \lek \vec{\omega}' \times \lk \vec{r}' - \vec{R}' \rk \rek\,.\label{eq:bew_Zentrifugal_Kraft}
+\end{align}
+\end{enumerate} 
+Wir fassen die Erkenntnisse zur Bewegung in linear beschleunigten und rotierenden Bezugssystemen zusammen:\\
+Das zweite Newtonsche Axiom gilt in seiner in \eqref{eq:bew_NewtonBGL} definierten Form \emph{nur} in Inertialsystemen.
+Es kann aber auch in Nichtinertialsystemen formuliert werden (Gleichungen \eqref{eq:bew_Rot_System5} und \eqref{eq:Bew_Galilei_Trafo_2}), wobei dann zusätzliche Terme zu berücksichtigen sind.
+Diese zusätzlichen Terme sind die sogenannten Scheinkräfte oder Trägheitskräfte\index{Scheinkraft}\index{Trägheitskraft}, zu denen in rotierenden Bezugssystemen insbesondere die Zentrifugal- und die Coriolis-Kraft gehören.
+Scheinkräfte sind für einen Beobachter im mitbewegten Koordinatensystem reale Kräfte, die allein durch die Transformation in das Nichtinertialsystem auftreten und ihren physikalischen Ursprung in der Trägheitskraft $m \ddot{\vec{r}}$ haben.
+Das Auftreten von Scheinkräften ist damit immer auch ein Indiz dafür, dass das Bezugssystem kein Inertialsystem ist. \\
+
+%BEISPIEL 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{Scheinkräfte}\\
+\smallskip
+An dieser Stelle wollen wir vor einem häufigen Fehler warnen.
+Die Zentrifugalkraft $\vec{F'_\text{Z}}$ \eqref{eq:bew_Zentrifugal_Kraft} ist nicht die nach dem dritten Axiom auftretende Gegenkraft zur Radialkraft\index{Kraft!Radial-} $\vec{F}_r$ (oft auch Zentripetalkraft\index{Kraft!Zentripetal-} genannt), die einen Körper auf eine Kreisbahn oder allgemein zur Rotation zwingt.
+Das erkennt man schon daran, dass die beiden Kräfte in unterschiedlichen Bezugssystemen definiert sind und dass sie an demselben Körper angreifen und nicht wie im dritten Axiom gefordert an zwei verschiedenen Körpern.
+Wir wollen das an zwei Beispielen verdeutlichen:
+\begin{itemize}
+	\item \emph{Sitz auf einem Kettenkarusell}
+	\begin{itemize}
+		\item Im System $\vec{\Sigma}$: Radialkraft auf Karussellsitz (externe Kraft) und Spannung in Aufhängungskette (Gegenkraft)
+		\item Im System $\vec{\Sigma}'$: Zentrifugalkraft auf Sitz (Scheinkraft)
+	\end{itemize}
+	\item \emph{Satellit in der Erdumlaufbahn}
+	\begin{itemize}
+		\item Im System $\vec{\Sigma}$: Gravitationskraft von Erde auf Satellit (externe Kraft) und Gravitationskraft von Satellit auf Erde (Gegenkraft)
+		\item Im System $\vec{\Sigma}'$: Zentrifugalkraft (Scheinkraft)
+	\end{itemize}
+\end{itemize}
+Die Scheinkräfte haben keine Gegenkräfte, die dem dritten Axiom genügen.
+Für die Bedingung der Ruhe bzw. gleichförmigen Bewegung im Bezugssystem $\vec{\Sigma} '$ kann aber sehr wohl eine Scheinkraft nach dem zweiten Newtonschen Axiom gleich einer extern wirkenden Kraft sein.
+\label{bsp:Scheinkraefte}
+\end{example}
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Wir haben das Thema der Bewegungsgleichungen in den Nichtinertialsystemen etwas ausführlicher behandelt, da es in unseren Übungen eine große Rolle spielen wird. 
+Häufig findet man eine unsaubere Beschreibung von solchen rotierenden Systemen durch nicht korrekte Berücksichtigung des jeweiligen Bezugssystems. Wir wollen daher in \kapitel{bew_anwendungen_I} und in den Übungen die Scheinkräfte Zentrifugalkraft und Coriolis-Kraft am Beispiel der rotierenden Erde intensiv diskutieren. Zuvor aber betrachten wir noch die Mechanik von mehreren Massepunkten.
+
+\subsection{Mechanik von Massepunktsystemen}\label{kap:bew_system_massepunkt}
+
+\subsubsection{Schwerpunkt, Gesamtgrößen und Erhaltungssätze}\index{Schwerpunkt} \index{Erhaltungssätze} \label{kap:bew_basics_of_systems}
+
+Wir erweitern das Konzept des Massepunktes auf Systeme, die aus vielen Teilchen bestehen.
+Die Kräfte, die auf jedes dieser Teilchen wirken, können zerlegt werden in
+\begin{itemize}
+	\item \emph{innere Kräfte}\index{Kraft!innere}, die paarweise zwischen den Massepunkten wirken.
+          Die Kraft, die $m_i$ auf $m_{\kern -1ptj}$ ausübt, ist $\vec{F}_{\kern-2ndji}$\footnote{Hier bezeichnen $i,j$ Teilchen und keine räumlichen Komponenten wie in \kapitel{bew_trafo_bezugssystem}.}. Nach dem dritten Axiom wirkt aber auch $\vec{F}_{\kern-1ndi\kern-1ptj}$ von $m_{\kern -1ptj}$ auf $m_i$. 
+	\item \emph{äußere Kräfte}\index{Kraft!äußere}, die von außerhalb des betrachteten Systems auf die Massepunkte wirken.
+          Auf den Massepunkt $m_i$ wirkt eine Kraft (\bzw Beschleunigung) $\vec{F}^\text{(ext)}_{i}$.
+          Wirken keine äußeren Kräfte auf das System, so nennt man das System \emph{isoliert}\index{System!isoliertes}.
+\end{itemize}
+Wir definieren nun: 
+\begin{align}
+	&\text{Gesamtmasse} &M &= m_\text{ges} = \sum\nolimits_{i} m_i\,, \\
+        &\text{\gls{com}}&\vec{R}_S &= (1/M)\,\sum\nolimits_{i} m_i \vec{r}_i\,,\\
+	&\text{Äußere Gesamtkraft}&\vec{F}^\text{\,(ext)} &= \sum\nolimits_{i} \vec{F}^\text{\,(ext)}_i\,, \\ 
+	&\text{Gesamtimpuls}&\vec{p} &= \sum\nolimits_{i} \vec{p}_i = \sum\nolimits_{i} m_i \dot{\vec{r}}_i\,, \\ 
+	&\text{Äußeres Gesamtdrehmoment}&\vec{M}_\text{D}^\text{\,(ext)} &= \sum\nolimits_{i} \vec{M}_{\text{D}\,i}^\text{\,(ext)} = \sum\nolimits_{i} \vec{r}_i \times \vec{F}^\text{\,(ext)}_i\,, \\ 
+	&\text{Gesamtdrehimpuls} &\vec{L} &= \sum\nolimits_{i} \vec{L}_i = \sum\nolimits_{i} m_i \vec{r}_i \times \dot{\vec{r}}_i\,. \label{eq:bew_Gesamtgroessen}
+\end{align}
+Offensichtlich sind diese Beziehungen vom Bezugssystem abhängig.
+Unter Benutzung des dritten Axioms für die Kräfte $\vec{F}_{ij}$ zwischen den Teilchen kann man zeigen, dass folgender Schwerpunktsatz gilt:
+\begin{align}
+	M \ddot{\vec{R}}_S &= \vec{F}^\text{\,(ext)}\,.\label{eq:bew_Schwerpunkt_Satz}
+\end{align}
+Der Schwerpunkt bewegt sich also wie ein einzelner Massepunkt mit der Gesamtmasse $M$ unter dem Einfluss aller \anf{externen} Kräfte.
+Oder allgemeiner:
+\begin{align}
+	\dot{\vec{p}} &= \vec{F}^\text{\,(ext)}\,,\label{eq:bew_Schwerpunkt_Satz2} 
+\end{align}
+woraus man für $\vec{F}^\text{\,(ext)} = 0$ den \emph{Gesamtimpulserhaltungssatz}\index{Impulserhaltungssatz} erhält:
+\begin{align}
+	\vec{F}^\text{\,(ext)} = 0 \quad \Leftrightarrow \quad \vec{p} = \con\,.\label{eq:bew_Ges_Impulserhaltung} 
+\end{align}
+Der Gesamtimpuls ist also genau dann erhalten, wenn die äußere Gesamtkraft verschwindet, wobei die einzelnen Kräfte $\vec{F}^\text{(ext)}_{i}$ und $\vec{F}_{ij}$ nicht verschwinden müssen.
+Ebenso sind die einzelnen Impulse $\vec{p}_i$ \ia nicht erhalten. 
+
+Analog findet man für die zeitliche Ableitung des Gesamtdrehimpulses ${\vec{L}}$ für den Fall, dass die inneren Kräfte auf die einzelnen Teilchen Zentralkräfte sind und das äußere Drehmoment verschwindet (\probref{bew_VielteilchenI}), den \emph{Gesamtdrehimpulserhaltungssatz}\index{Drehimpulserhaltungssatz}:
+\begin{align}
+	\vec{M}_\text{D}^\text{\,(ext)} = 0 \quad \Leftrightarrow \quad \vec{L} = \con\,.\label{eq:bew_Ges_Drehimpulserhaltung} 
+\end{align}
+
+Definiert man weiter: \index{Kraft!dissipative}
+\begin{align}
+	&\text{Kinetische Energie des Systems} &T&= \frac{1}{2}\sum\nolimits_{i} m_i\dot{\vec{r}}_i \cdot \dot{\vec{r}}_i\,, \\
+	&\text{Konservativer Anteil der externen Kräfte} &\vec{F}^\text{\,(kons)}_i&= - \frac{\partial U}{\partial \vec{r}_i}\,, \\
+        &\text{\glslink{disskr}{Dissipativer Anteil der externen Kräfte}} &\vec{F}^\text{\,(diss)}_i&= \vec{F}^\text{\,(ext)}_i - \vec{F}^\text{\,(kons)}_i = \vec{F}^\text{\,(ext)}_i + \frac{\partial U}{\partial \vec{r}_i}\,, \\
+	&\text{Gesamtenergie des Systems} &E&= T + U\,, \label{eq:bew_Ges_Energie}
+\end{align}
+so erhält man den \emph{Energieerhaltungssatz}\index{Energieerhaltungssatz} für das konservative System\index{System!konservatives}, im Fall eines nicht-konservativen Systems erhält man den Energieverlust:
+\begin{align}
+	\text{Konservatives System:} \quad & \forall i\,\vec{F}^\text{\,(diss)}_i = 0 \quad \Longleftrightarrow \quad E = T + U = \con\,, \nonumber \\
+	\text{Nicht-konservatives System:} \quad & \frac{\mathrm{d}}{\mathrm{d} t} E = \frac{\mathrm{d}}{\mathrm{d} t} \lk T + U \rk  = \sum\nolimits_{i} \vec{F}^\text{\,(diss)}_i \cdot \dot{\vec{r}}_i\,. \label{eq:bew_Ges_Energieerhaltung} 
+\end{align}\
+
+Da die kinetische Energie eine Funktion der Geschwindigkeit des Massepunktes ist, hängt sie von dem Bezugssystems ab.
+Allgemein gilt, dass die kinetische Energie in einem beliebigen Bezugssystem die Summe der kinetischen Energie der im Schwerpunkt konzentrierten Gesamtmasse und der kinetischen Energie der Massepunkte im Schwerpunktsystem ist.
+Als \gls{comsys} (im Englischen auch oft als \textit{Center-of-Mass System CoMS} geschrieben)\index{Schwerpunktsystem}\index{Center-of-mass System (CoS)}  wird ein Bezugssystem definiert, in dem der Koordinatenursprung in den Schwerpunkt des physikalischen Systems gelegt wird.
+Das Schwerpunktsystem ist sehr vorteilhaft zur Beschreibung vieler dynamische Vorgänge wie \zb von Stoß- und Streuprozessen.
+Aus der Definition des Schwerpunktsystems folgt direkt, dass in ihm der Gesamtimpuls der beteiligten Massen zu jeder Zeit, vor wie nach einem Stoß- oder Reaktionsvorgang, gleich Null ist.
+Mit den genannten Erhaltungssätzen\index{Erhaltungssätze} lassen sich viele Probleme sehr elegant lösen.
+Wir geben zunächst noch eine kurze Einführung in den einfachsten, aber zugleich sehr wichtigen Spezialfall der Vielteilchensysteme, in das \emph{Zweikörperproblem} (ZKP)\index{Zweikörperproblem}.
+Wir werden das ZKP speziell für Zentralkraftfelder ausgiebig in der Himmelsmechanik (Band II, Kapitel 3) und der Astrodynamik (Band II, Kapitel 4) behandeln. 
+Im Folgenden werden wir uns deswegen nur auf die wesentlichen Punkte konzentrieren und ansonsten
+auf die entsprechenden Kapitel verweisen.\\
+Im weiteren Verlauf dieses Kapitels werden wir uns besonders auf Zweikörperprobleme, bei denen ein oder mehrere Teilchen zumindest zeitweise ungebunden sind konzentrieren.
+Solche Prozesse werden \ia als Streu- oder Stoßprozesse bezeichnet.
+
+\subsubsection{Zweikörperproblem -- effektives Einkörperproblem}\index{Zweikörperproblem} \index{Einkörperproblem!effektives} \label{kap:bew_ZKP_EEKP}
+
+Das Zweikörperproblem kann in vielen Fällen vereinfacht und auf ein sogenanntes \emph{effektives} Einkörperproblem zurückgeführt werden.
+Dies gilt besonders für die Bewegung in einem Zentralkraftfeld $\vec{F}(\vec{r}) = F(r) \vec{r}/r = -\gradv U(r)$.
+Führt man nämlich anstelle der Massen $m_1$ und $m_2$ die \emph{reduzierte} oder auch als \emph{effektive} Masse bezeichnete \index{Masse!reduzierte} 
+\begin{align}
+	m_\text{eff} = \frac{m_1 m_2}{m_1 + m_2}  \label{eq:bew_red_Masse}
+\end{align}
+ein, dann vereinfachen sich die Bewegungsgleichungen für die beiden Massepunkte zu einer Bewegungsgleichung für einen einzelnen Massepunkt mit der reduzierten Masse in einem äußeren \potz{} $U(r)$:
+\begin{align}
+	m_\text{eff} \ddot{\vec{r}} = -\gradv U(r)\,. \label{eq:bew_eff_EKP}
+\end{align}
+Sind die beiden Massen ($m_i = m$) identisch, ist $m_\text{eff}  = m/2$ und der Schwerpunkt liegt in der Mitte zwischen den Massen.
+Auch der Fall $m_2=m \ll  m_1=M$, bei dem sich in guter Näherung die Masse $m$ um eine quasi ruhende Masse $M$ bewegt, ist in der Himmelsmechanik genau wie in vielen anderen Bereichen der Physik von Bedeutung.
+
+\subsubsection{Zweikörperproblem im Zentralkraftfeld $U(r)$}  \label{kap:bew_ZKP_NZKF}
+
+Dieser wichtige Spezialfall wird ausführlich in der Himmelsmechanik (Band II, Kapitel 3) diskutiert. 
+Dort wollen wir auch die Lösung der Bewegungsgleichungen des sogenannten Kepler-Problems\index{Keplerproblem}\indexp{Kepler, Johannes}\footnote{Johannes Kepler (1571 -- 1630 ) war ein deutscher Astronom und Physiker. Er entdeckte die Gesetzmäßigkeiten, nach denen sich Planeten um die Sonne bewegen. Seine Formulierung der drei Planetengesetze machten aus dem mittelalterlichen Weltbild ein dynamisches System, in dem die Sonne durch ihre Fernwirkung die Planeten aktiv beeinflusst.} behandeln, womit wir Planetenbahnen und Bahnen anderer Himmelskörper beschreiben können.
+Hierbei wird das zentrale Kraftfeld mit dem \pot{} $U(r) = -\kappa / r$ modelliert.
+Wir werden aber schon hier in diesem Abschnitt einige allgemeine Aussagen zum Zweikörperproblem im Zentralkraftfeld herleiten; vor allem für ungebundene Zustände, die von entscheidender Bedeutung für viele Bereiche der Physik sind.
+Im Kapitel Streuprozesse (\ref{kap:bew_stoss}) werden wir diese dann bereits sehr vorteilhaft anwenden können.
+In \figref{bew_ZKF_Beispiele} sind verschiedene in der Physik häufig vorkommende Zentralkraft\potsuf{}e charakterisiert. Darunter sind die Newtonsche
+Gravitation, die Coulomb-Kraft gleichnamiger Ladungen, die Kernkraft
+(aus dem Yukawa\footnote{Hideki Yukawa (1907--1981) war der erste japanische Physiker, der 1949 den Nobelpreis für seine Vorhersage der Existenz der Mesonen erhielt. Die Mesonen bilden die Grundlage der Theorie der starken Kernkräfte.}-Potential) und eine quadratische Federkraft. 
+
+\begin{figure}
+\includegraphics[width=\textwidth]{ZKF_Beispiele.pdf}
+\caption[Beispiele für \pot{}e verschiedener Zentralkraftfelder.] {Beispiele für \pot{}e verschiedener Zentralkraftfelder: Newtonsche Gravitation, Coulomb-Kraft (sich abstoßende Ladungen), Kernkraft (aus Yukawa\indexp{Yukawa, Hideki}-\pot) und Federkraft. Ebenfalls gezeigt ist das effektive \pot{} $U_\text{eff}$ \eqref{eq:bew_Eff_Potential} für die Gravitation unter Berücksichtigung des Drehimpulses. Für die anderen \pot{}e (Ausnahme: Coulomb-Potential bei sich abstoßenden Ladungen) gibt es ebenfalls effektive \pot{}e und damit die Möglichkeit gebundener Zustände.}
+\label{abb:bew_ZKF_Beispiele}
+\end{figure}
+
+
+\subparagraph{\textbf{Drehimpuls und Energieerhaltung, effektives \pot}}
+
+Wir können uns das Lösen der Bewegungsgleichung \eqref{eq:bew_eff_EKP} vereinfachen, indem wir die Erhaltungssätze ausnutzen. 
+Daher wollen wir als erstes Erhaltungsgrößen identifizieren%
+\footnote{Häufig, besonders auch in der Himmelsmechanik,
+werden Erhaltungsgrößen auch Bewegungsintegrale genannt,
+da das Identifizieren einer Erhaltungsgröße einer einmaligen
+Integration der Bewegungsgleichung entspricht.}.
+
+Der Drehimpulserhaltungssatz \eqref{eq:bew_Ges_Drehimpulserhaltung} kann für das allgemeine Zentralkraft\potsuf{} in ebenen Polarkoordinaten geschrieben werden als 
+\begin{align}
+  \left|\vec{L}\right| = m_\text{eff}\: \left|\vec{r} \times \dot{\vec{r}} \right| = L = \text{const} =   m_\text{eff}\: r^2 \dot{\varphi}\,. \label{eq:bew_Drehimp_polar}
+\end{align}
+Der Energieerhaltungssatz \eqref{eq:bew_Ges_Energieerhaltung} in diesen Koordinaten lautet:
+\begin{align}
+  E &= T + U = \text{const} = \frac{1}{2}  m_\text{eff}\: \dot{\vec{r}}^2 + U(r) =  \frac{1}{2}  m_\text{eff}\: \dot{r}^2 + \frac{L^2}{2  m_\text{eff}\: r^2} + U(r)\,, \label{eq:bew_Energie_polar}
+\end{align}
+womit wir durch
+\begin{align}
+	U_\text{eff}(r) &= U(r) + \frac{L^2}{2  m_\text{eff}\: r^2} \label{eq:bew_Eff_Potential}
+\end{align}
+das sogenannte \emph{effektive \pot}\index{Potential!effektives} definieren, in welchem sich (mathematisch gesehen) die effektive Masse $m_\text{eff}$ bewegt.
+Mit diesen beiden Erhaltungssätzen wollen wir das Zweikörperproblem im Zentralkraftfeld lösen.
+
+\subparagraph{\textbf{Bahnkurven im Newtonschen Zentralkraftfeld  $U(r)= -\kappa/r$}}
+
+Oft ist man gar nicht an der zeitlichen Entwicklung der Bewegung, sondern nur an der räumlichen Form der Bahn interessiert.
+Man kann daran \zb erkennen, ob die Bahn geschlossen, gebunden ($r$ bleibt endlich) oder ungebunden ($r$ divergiert) ist.
+Wiederum unter Verwendung ebener Polarkoordinaten lässt sich die Bahnkurve mit \eqref{eq:bew_Energie_polar} über
+\begin{align}
+	\frac{\mathrm{d}r}{\mathrm{d}\varphi} = \frac{\mathrm{d}r}{\mathrm{d}t} \frac{\mathrm{d}t}{\mathrm{d}\varphi} = \frac{\dot{r}}{\dot{\varphi}} = \frac{\sqrt{2 \lk E - U_\text{eff}(r) \rk/ m_\text{eff}\:}}{L/\lk m_\text{eff} r^2 \rk}
+\end{align}
+aus dem \pot{} $U_\text{eff}(r)$ berechnen.
+Hierbei ergibt sich der Zähler aus dem Energieerhaltungssatz, der Nenner aus dem Drehimpulserhaltungssatz.
+Wir haben also aus den beiden Erhaltungssätzen
+eine Differentialgleichung für die Bahnform erhalten,
+die man bei bekanntem effektiven \potz{} lösen kann,
+wodurch man die Bahnkurve
+\begin{align}
+\varphi(r) - \varphi_0 &=  L \int\limits_{r_0}^{r} \frac{\D r'}{r'^2 \sqrt{2  m_\text{eff}\: \lk  E - U_\text{eff}(r') \rk}} 
+= L \int\limits_{r_0}^{r} \frac{\D r'}{r'^2 \sqrt{2  m_\text{eff}\: \lk E + \kappa/r' - L^2/(2  m_\text{eff}\,r'^2) \rk}}~, \label{eq:bew_Bahn_implizit1}
+\end{align}
+\bzw mit $r'=1/q'$
+\begin{align}
+\varphi(q) - \varphi_0 &= - L \int\limits_{q_0}^{q} \frac{\D q'}{\sqrt{2  m_\text{eff}\, E + 2  m_\text{eff}\,\kappa  q' - L^2\,  +-q'^2}} \label{eq:bew_Bahn_implizit2}
+\end{align}
+erhält.
+Die in \eqref{eq:bew_Bahn_implizit1} und \eqref{eq:bew_Bahn_implizit2} auftretende Energie $E$ und der konstante Drehimpuls $L$ bilden zusammen mit den Anfangsbedingungen die Integrationskonstanten und legen damit die Form der Bahnkurve eindeutig fest. 
+Die Bahn ist also durch das effektive \potz{} und die physikalischen Erhaltungsgrößen Energie $E$ und Drehimpuls $L$ bestimmt, welche man in zwei konstante, wie wir sehen werden geometrische Parameter überführen kann.
+Diese sind die (numerische) \glslink{exzentr}{\emph{Exzentrizität}} $\epsilon$ und der \emph{\gls{bahnpar}} $p$: 
+\begin{align}
+                \epsilon &= \sqrt{\frac{2 L^2 E}{ m_\text{eff}\: \kappa^2} + 1} ~~ ( \geq 0)\text{ und} \label{eq:bew_Bahn_Exzentrizitaet} 
+\end{align}
+\begin{align}
+		p &= \frac{ L^2}{ m_\text{eff}\: \kappa}\,. 	\label{eq:bew_Bahn_Parameter} 
+\end{align}
+Mit diesen Parametern kann man \eqref{eq:bew_Bahn_implizit2} integrieren (siehe \cite{Gradshteyn1980}) und erhält die allgemeine Bahnkurve im Newtonschen Gravitations\potsuf{} 
+\begin{align}
+	  r(\varphi) = \frac{p}{1+\epsilon \cos{(\varphi - \varphi_0)}}\,. \label{eq:bew_Bahn_explizit}
+\end{align}
+
+Man kann nun abhängig vom Parameter $\epsilon$ drei Fälle unterscheiden:
+\begin{itemize}
+	\item \emph{Ellipsenbahnen für} $\epsilon < 1$
+
+Für $\epsilon < 1$ ergibt \eqref{eq:bew_Bahn_explizit} eine Ellipsenbahn (\figref{bew_Ellipse_Hyperbel}a).
+Dies kann man zeigen, indem man mit den geometrischen Parametern der Ellipse $a$ (große Halbachse) und $b=a \sqrt{1-\epsilon^2} $ (kleine Halbachse) und dem Bahnparameter $p= a (1-\epsilon^2)$ die Erfüllung der Ellipsengleichung zeigt.
+Der Fall $\epsilon=0$ entspricht dem Spezialfall der Kreisbahn.
+
+\begin{figure}
+\includegraphics[width=\textwidth]{Ellipse_Hyperbel.pdf}
+\caption[Geometrie von Ellipse und Hyperbel.] {Geometrie von \fa Ellipse und \fb Hyperbel.}
+\label{abb:bew_Ellipse_Hyperbel}
+\end{figure}
+
+Im Newtonschen Gravitations\potsuf{} \eqref{eq:bew_Gravitationskraft} ist $\kappa > 0$, woraus wegen \eqref{eq:bew_Bahn_Exzentrizitaet} für $\epsilon < 1$ sofort $E <0$ folgt.
+Bahnen können im $1/r$-\pot{} also nur dann gebunden sein, wenn $E < 0$ gilt.
+Man sieht das auch an \eqref{eq:bew_Bahn_explizit}, wo wegen $\epsilon < 1$ der Nenner $ 1+ \epsilon\cos{\varphi}$ stets positiv und $r$ damit endlich ist.\\
+
+\item \emph{Hyperbelbahnen für} $\epsilon > 1$
+
+Der Fall $\epsilon > 1$ führt wegen \eqref{eq:bew_Bahn_Exzentrizitaet} zwingend auf $E > 0$.
+Gleichung \eqref{eq:bew_Bahn_explizit} beschreibt dann einen der beiden Äste einer Hyperbel (\figref{bew_Ellipse_Hyperbel}b).
+Der Abstand $r$ wird unendlich, wenn $\:1 + \epsilon \cos{(\varphi -\varphi_0)}$ gegen Null strebt.
+Die Bahn ist dann eingeschränkt auf
+\begin{align}
+	\left| \varphi \right| \: &\leq \varphi_\infty = \arccos \lk -\frac{1}{\epsilon} \rk \leq \frac{\pi}{2} \; , \nonumber \\
+	r_\text{min} &= \frac{p}{1+\epsilon} \leq r \: \leq \infty\;.\label{eq:bew_hyp_asymptote}
+\end{align}
+Diese Art der Bewegung mit einem eingeschränkten Winkelbereich für $\varphi$ nennt man \emph{Streuung}\index{Streuung} (\figref{bew_Streuwinkel}).
+Der Massepunkt kommt aus dem Unendlichen, wechselwirkt im \pot{} und läuft anschließend unter einem \emph{Streuwinkel}\index{Streuwinkel} wieder ins Unendliche.
+Wir werden im nächsten Kapitel diese Streuprozesse genauer untersuchen.
+Wir weisen hier explizit darauf hin, dass Hyperbelbahnen nicht nur durch anziehende \pot{}kräfte wie die Newtonsche Gravitation entstehen können, sondern auch durch abstoßende \pot{}e wie sie durch gleichartige Ladungen hervorgerufen werden.
+Man erkennt aus \eqref{eq:bew_Bahn_Exzentrizitaet}, dass die Exzentrizität $\epsilon$ der Bahn unabhängig vom Vorzeichen von $\kappa$ ist, der Bahnparameter $p$ wird bei $\kappa < 0$ jedoch negativ.
+Da für den Abstand immer $r \geq 0$ gilt, muss der Nenner von \eqref{eq:bew_Bahn_explizit} insgesamt negativ werden, was nur für $\epsilon > 1$ und damit $ E > 0$ erfüllt werden kann.
+Für abstoßende Zentralkraft\potsuf{}e existieren damit keine gebundenen Bahnen. \\
+
+\item \emph{Parabelbahnen für} $\epsilon = 1$
+
+Für $\epsilon = 1$ folgt aus \eqref{eq:bew_Bahn_explizit} der Spezialfall einer Parabelbahn.
+Wir wollen diese hier nicht weiter behandeln, da man \zb in der Himmelsmechanik in der Regel Ellipsenbahnen bei gebundenen und Hyperbelbahnen bei ungebundenen Himmelskörpern beobachtet. 
+\end{itemize}
+Wir haben hier nur einen kurzen Abriss der Physik der Bewegung im Zentralkraftfeld gegeben, der uns aber erlaubt, eine Reihe von Problemen und Übungen zu lösen (siehe \zb \probref{bew_SwingBy}).
+Im Kapitel Himmelsmechanik (Band II, Kapitel 3) werden wir
+die Bewegungen auch in ihrer Zeitabhängigkeit berechnen
+und zudem Abweichungen von diesen einfachen Bahnen detailliert
+untersuchen.
+Wir werden dort auch eine leicht andere (\zt durch historische Konventionen bedingte) Notation verwenden und mit sogenannten spezifischen, \dh auf die Masse des bewegten Körpers bezogenen Größen rechnen.
+
+\subsubsection{Stoß- und Streuprozesse}\index{Stoß} \index{Streuung|textbf} \label{kap:bew_stoss}
+
+\subparagraph{\textbf{Bezugssystem bei Streuung}} \index{Schwerpunktsystem}
+
+Wir wollen uns nun den Stoß- und Streuprozessen\footnote{Stoß und Streuung werden häufig synonym gebraucht.
+Unter Streuung verstehen wir die Änderung der Bewegung eines Teilchens/Körpers durch Wechselwirkung mit einem anderen Teilchen/Körper.
+Stoß bezeichnet hingegen den speziellen Fall, dass sich die beiden Teilchen/Körper bei dieser Wechselwirkung berühren, was natürlich bei Stößen von Massepunkten nur ein theoretisches Konzept (wie der Massepunkt selbst), bei ausgedehnten Körpern aber sehr wohl von Bedeutung ist.} zweier Massepunkte zuwenden.
+Wir haben gesehen, dass bei der Streuung die einfallenden Teilchen um den sogenannten Streuwinkel\index{Streuwinkel} $\vartheta$ abgelenkt werden.
+Wir werden jetzt zeigen, dass sich $\vartheta$ aus dem Wechselwirkungs\potsuf{} \index{Potential!Wechselwirkungspotential} berechnen lässt.
+Daher lassen sich aus der experimentellen Bestimmung von Streuwinkeln und des damit zusammenhängenden (noch zu definierenden)  Wirkungsquerschnitts Rückschlüsse über die Art und Größe der Wechselwirkung ziehen.
+Bei der Behandlung der Streuprozesse wollen wir zwei Bezugssysteme verwenden:
+
+\begin{enumerate}
+	\item das Laborsystem $\vec{\Sigma}_\text{L}$, in dem das Experiment beobachtet und beschrieben wird und die Koordinaten ungestrichen (\zb $x$) gekennzeichnet sind, und 
+	\item das Schwerpunktsystem $\vec{\Sigma}_\text{S}$, in welchem der Schwerpunkt des Systems im Ursprung ruht und die Koordinaten gestrichen (\zb $x'$) sind. 
+\end{enumerate}
+
+\subparagraph{\textbf{Elastische Streuung zwischen zwei Teilchen}}\index{Streuung!elastische}
+
+\begin{figure}
+\includegraphics[width=\textwidth]{Streuwinkel.pdf}
+\caption[Streuwinkel im Schwerpunktsystem und im Laborsystem.] {\fa Streuwinkel $\vartheta'$ im Schwerpunktsystem $\vec{\Sigma}_\text{S}$ für zwei gleiche Massen $m_1 = m_2$. Dargestellt sind auch die Asymptoten ins Unendliche und der asymptotische Abstand $b$, der Stoßparameter genannt wird. \fb Beziehung zwischen den Streuwinkeln $\vartheta'$ in $\vec{\Sigma}_\text{S}$ und $\vartheta_1$ des bewegten Teilchens $m_2$ im Laborsystem $\vec{\Sigma}_\text{L}$. Die Masse $m_2$ ruht vor dem Stoß in $\vec{\Sigma}_\text{L}$. \fc Beziehung zwischen dem Streuwinkel $\vartheta'$ für die bewegte Masse $m_1$ in $\vec{\Sigma}_\text{S}$ und dem Winkel $\vartheta_2$ des anfangs ruhenden Teilchens $m_2$ im Laborsystem $\vec{\Sigma}_\text{L}$ (nach \cite{Bartelmann2015}).}
+\label{abb:bew_Streuwinkel}
+\end{figure}
+
+Wir wollen uns auf elastische Wechselwirkungen beschränken, die noch dazu im Unendlichen verschwinden.
+Dabei bleibt die mechanische Energie, \dh die Summe aus kinetischer und potenzieller Energie, erhalten.
+Neben dem Energieerhaltungssatz gilt auch der Impulserhaltungssatz, wobei wir annehmen, dass sich die Massen der wechselwirkenden Teilchen nicht ändern.
+Wir betrachten  die Massen $m_1$ und $m_2$ mit den Geschwindigkeiten $\vec{v}_1$ und $\vec{v}_2$ vor dem Stoß und $\vec{u}_1$ und $\vec{u}_2$ nach dem Stoß.
+Dann gelten im Unendlichen (wo das \pot{} verschwindet) 
+\begin{align}
+	\text{Impulserhaltung:} \qquad &m_1 \,\vec{v}_1 + m_2\, \vec{v}_2 = m_1 \,\vec{u}_1 + m_2 \,\vec{u}_2   \label{eq:bew_Streuung1} \\ 
+	\text{und Energieerhaltung:} \qquad &\frac{m_1}{2}\, \vec{v}_1^2 + \frac{m_2}{2} \, \vec{v}_2^2 = \frac{m_1}{2} \,\vec{u}_1^2 +\frac{m_2}{2}\, \vec{u}_2^2\,. \label{eq:bew_Streuung2}
+\end{align}
+Die entsprechenden Erhaltungssätze lauten im Schwerpunktsystem folglich
+\begin{align}
+	m_1 \,\vec{v'}_1 + m_2 \,\vec{v'}_2 &= m_1\,\vec{u'}_1 + m_2 \,\vec{u'}_2 = 0 \qquad \text{und} \label{eq:bew_Streuung1a} \\ 
+	\frac{m_1}{2} \,\vec{v'}_1^2 + \frac{m_2}{2} \,\vec{v'}_2^2 &= \frac{m_1}{2} \,\vec{u'}_1^2 +\frac{m_2}{2} \,\vec{u'}_2^2\,. \label{eq:bew_Streuung2a}
+\end{align}
+Damit ergibt sich der Streuwinkel $\vartheta'$ als Winkel zwischen einfallender Bahn und auslaufender Bahn im Schwerpunktsystem (siehe \figref{bew_Streuwinkel}) wegen $m_1 \,\vec{v'}_1 = - m_2 \,\vec{v'}_2$ sofort zu
+\begin{align}
+	\cos\vartheta' = \frac{\vec{v'}_1 \cdot \vec{u'}_1}{\left|\vec{v'}_1\right| \left|\vec{u'}_1\right|} = \frac{\vec{v'}_2 \cdot \vec{u'}_2}{\left|\vec{v'}_2\right| \left|\vec{u'}_2\right|}\,. \label{eq:bew_Streuung3}
+\end{align} 
+Da der Gesamtimpuls in $\vec{\Sigma}_\text{S}$ verschwindet, ist der Streuwinkel  $\vartheta'$ für beide Teilchen gleich groß.
+Wir sind aber mehr an dem Streuwinkel $\vartheta$ im Laborsystem $\vec{\Sigma}_\text{L}$ interessiert, da nur dieser direkt gemessen werden kann. Er hängt vom Wechselwirkungs\potsuf{} zwischen den Teilchen ab.
+Die Frage ist also, wie man $\vartheta'$ und $\vartheta$ ineinander umrechnen kann.
+Wir wollen hier den Spezialfall betrachten, dass eine Masse (\zb $m_2$) vor dem Stoß bzw. der Streuung im Laborsystem ruht, also $v_2$ = 0.
+Dann ist die Bewegung des Schwerpunktes im Laborsystem gegeben durch
+\begin{align}
+	\dot{\vec{e}}_x(t) = \frac{m_1 \,\vec{v}_1(t)}{m_1 + m_2} = \frac{m_1}{M} \,\vec{v}_1\,.\label{eq:bew_Streuung4}
+\end{align}
+Diese Gleichung besagt nichts anderes, als dass der Geschwindigkeitsvektor $\vec{v}_1$ des einfallenden Teilchens logischerweise parallel zum Geschwindigkeitsvektor des Schwerpunktes liegt.
+Beim Übergang in das Schwerpunktsystem gelten folgende Beziehungen: 
+\begin{align}
+		\vec{v}_1' = \vec{v}_1 - \dot{\vec{e}}_x(t) &= \vec{v}_1 - \frac{m_1}{M}\,\vec{v}_1 = \frac{m_2}{M}\,\vec{v}_1\,,\nonumber \\
+                \text{und}\qquad\vec{u}_1' = \vec{u}_1 - \dot{\vec{e}}_x(t) &= \vec{u}_1 - \frac{m_1 }{M}\,\vec{v}_1\,.\label{eq:bew_Streuung5}
+\end{align}
+Wenn man diese Vektorbeziehung %\eqref{eq:bew_Streuung5}
+graphisch in der von $\dot{\vec{X}}$ und $\vec{v}_1'$ aufgespannten Ebene darstellt (\figref{bew_Streuwinkel}b), sieht man, dass 
+\begin{align}
+        u_1 ~ \sin\vartheta_1 &= u_1' ~ \sin\vartheta'\text{\qquad und}\nonumber \\
+	u_1 ~ \cos\vartheta_1 &= u_1' ~ \cos\vartheta' + \dot{\vec{X}} = u_1' ~ \cos\vartheta' + \frac{m_1}{M} v_1 \label{eq:bew_Streuung6}
+\end{align}
+gelten und daraus sofort
+\begin{align}
+	\tan\vartheta_1  &= \frac{\sin\vartheta_1}{\cos\vartheta_1} = \frac{\sin\vartheta'}{\cos\vartheta' + \frac{m_1}{m_2}} \label{eq:bew_Streuung7}
+\end{align}
+folgt.
+Nach ähnlicher geometrischer Betrachtung (\figref{bew_Streuwinkel}c) ergibt sich für den Streuwinkel $\vartheta_2$ des ursprünglich ruhenden Teilchens 
+\begin{align}
+	\vartheta_2   &= \frac{\pi -\vartheta'}{2}\,. \label{eq:bew_Streuung8}
+\end{align}
+Dies sind wichtige Zwischenergebnisse (\figref{bew_StreuwinkelUmrechnung}),
+die insbesondere zeigen, dass die Streuwinkel in beiden Systemen gleich groß sind,
+wenn die ruhende Masse als sehr viel größer als die bewegte angenommen wird ($m_2 \gg m_1$).
+Wir geben jetzt noch die Beziehung für den Energieübertrag beim elastischen Stoß an.
+Im System $\vec{\Sigma}_\text{S}$ gilt logischerweise $\vec{u}_i'^2 = \vec{v}_i'^2$.
+Im System $\vec{\Sigma}_\text{L}$ kommt es aber zu einem Energieübertrag zwischen den beiden Teilchen.
+Wir können diesen Energieübertrag für den Fall $\vec{v}_2 = 0$
+ausgehend von \eqref{eq:bew_Streuung2} und \eqref{eq:bew_Streuung2a}
+sowie unter Verwendung von \eqref{eq:bew_Streuung4} und \eqref{eq:bew_Streuung6}
+wie folgt angeben (\probref{bew_SwingBy}):
+\begin{align}
+	\frac{\Delta T}{T_1^{\text{\,(init)}}} = \frac{{T_1^{\text{\,(final)}}} - T_1^{\text{\,(init)}}} {T_1^{\text{\,(init)}}} &= 2\: \frac{m_1}{M} \lk 1 - \frac{m_1}{M} \rk  \lk \cos\vartheta' -1 \rk\,, \label{eq:bew_Streuung9}
+\end{align}
+wobei $\cos\vartheta'$ über die Beziehung \eqref{eq:bew_Streuung7} mithilfe des gemessenen Streuwinkels $\vartheta$ im Laborsystem ausgedrückt werden kann und $T^{\text{\,(init)}}$  \bzw $T^{\text{\,(final)}}$ für die kinetische Energie im Ausgangszustand (init) \bzw Endzustand (final) der Streuung stehen.
+Die Abhängigkeit des Energieübertrags vom Streuwinkel ist in \figref{bew_EnergieUebertrag} dargestellt.
+Eine schöne Anwendung erfährt dies in der Raumfahrt: Beim sogenannten Swing-By-Manöver wird eine Raumsonde im Vorbeiflug an einem Planeten in dessen Gravitationsfeld gestreut.
+Bei diesem Manöver ist zwar im Schwerpunktsystem (von Sonde und Planet) die Geschwindigkeit der Raumsonde nach dem Vorbeiflug genauso groß wie vorher, jedoch nicht im Bezugssystem der Sonne, wodurch Raumsonden relativ zur Sonne beschleunigt werden und so, wie \zb die  Voyager-Missionen, ins äußere Sonnensystem vordringen können.
+Wir werden das ausführlich in der Astrodynamik (Band II, Kapitel 4) untersuchen, wollen hier aber schon auf \probref{bew_SwingBy} verweisen. 
+Für eine umfassende Betrachtung des Streuproblems fehlt noch die Berechnung des Streuwinkels als Funktion des \pot{}s.
+Diese wollen wir jetzt angehen.
+
+\begin{figure}
+\includegraphics[width=\textwidth]{StreuwinkelUmrechnung.pdf}
+\caption[Umrechnung von Streuwinkeln.]{Umrechnung des Streuwinkels $\vartheta'$ aus dem Schwerpunktsystem in den Streuwinkel $\vartheta_1$ im Laborsystem als Funktion verschiedener Massenverhältnisse $m_1/m_2$. Die Masse $m_2$ wird vor dem Stoß als ruhend angenommen. Vergleiche Gl. \eqref{eq:bew_Streuung7}.}
+\label{abb:bew_StreuwinkelUmrechnung}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=\textwidth]{EnergieUebertrag.pdf}
+\caption[Energieübertrag beim elastischen Stoß.]{Energieübertrag beim elastischen Stoß als Funktion verschiedener Massenverhältnisse $m_1/m_2$ als Funktion der Streuwinkels $\vartheta$ \bzw $\vartheta'$. Die Masse $m_2$ wird vor dem Stoß als ruhend angenommen. Vergleiche Gl. \eqref{eq:bew_Streuung9}.}
+\label{abb:bew_EnergieUebertrag}
+\end{figure}
+
+\subparagraph{\textbf{Streuwinkel und Wirkungsquerschnitte bei Streuung im Zentralkraftfeld}}
+
+Bisher haben wir für die \pot{}e nur angenommen, dass sie im Unendlichen verschwinden und haben daraus ein paar grundsätzliche Eigenschaften der Streuung hergeleitet.
+Wir wollen nun bestimmte Formen des Wechselwirkungs\potsuf{}s sowie der Energie und des (Dreh-)Impulses des einfallenden Teilchens annehmen.
+Als Messgröße bei der Streuung ermittelt man im Allgemeinen, wie viele Teilchen eines einfallenden Stromes von Teilchen durch ein Streuzentrum unter einem bestimmten Streuwinkel abgelenkt \bzw gestreut werden.
+Wir nehmen wieder an, dass das Teilchen aus dem Unendlichen kommt und in das Wechselwirkungs\potsuf{} $U$ des Teilchens mit Masse $m_2$ gelangt.
+Wir wollen ferner für das \pot{} ein Zentralkraft\potsuf{} annehmen, das also nur vom relativen Abstand der beiden Teilchen abhängt.
+Wir können das System dann durch das äquivalente Einteilchenproblem (siehe \kap{bew_ZKP_EEKP}) mit der effektiven Masse $m_\text{eff}$ im Schwerpunktsystem $\vec{\Sigma}_\text{S}$ beschreiben.
+Dann gilt für die Erhaltungsgröße Energie 
+\begin{align}
+	E = \frac{m_\text{eff}}{2}\: v_\infty^2\,, \label{eq:bew_Streuung10}
+\end{align}
+mit $v_\infty$ als Relativgeschwindigkeit im Unendlichen.
+Für den ebenfalls konstanten Betrag des Drehimpulses gilt
+\begin{align}
+	L = b\:m_\text{eff}\:v_\infty \,, \label{eq:bew_Streuung11}
+\end{align}
+wobei $b' = b$ wieder der bereits eingeführte Stoßparameter\index{Stoßparameter} (\figref{bew_Streuwinkel}) ist, der in den beiden Systemen übereinstimmt.
+Wegen \eqref{eq:bew_Streuung8} ist $E > 0$ und die Teilchenbahn eine Hyperbel.
+Der Streuwinkel $\vartheta'$ kann nach \eqref{eq:bew_Bahn_implizit1} mit $ r \rightarrow \infty $ berechnet werden zu
+\begin{align}
+	\vartheta' = \pi - \Delta \varphi = \pi - 2 b \int\limits_{r_\text{min}}^\infty \frac{\D r'}{r'^2 \sqrt{1-\frac{b^2}{r'^2}-\frac{U(r')}{E}}}\,. \label{eq:bew_Streuung12}
+\end{align}
+Hierbei haben wir die Ausdrücke für die Energie \eqref{eq:bew_Streuung10} und den Drehimpuls \eqref{eq:bew_Streuung11} benutzt.
+Wenn man also das Wechselwirkungs\potsuf{} $U(r)$ und die Energie $E$ eines einfallenden Streuteilchens kennt, hängt der Streuwinkel nur noch vom Stoßparameter $b$ ab.
+Andererseits kann man Rückschlüsse über das \pot{} erlangen, indem man $\vartheta$ als Funktion von $b$ misst.
+Genau das war die Idee des berühmten Streuexperimentes von Rutherford.\footnote{Sir Ernest Rutherford\indexp{Rutherford, Sir Ernest} (1871--1937) war ein britisch-neuseeländischer Physiker. Als einer der bedeutendsten Experimentalphysiker erhielt er 1908 den Nobelpreis für Chemie (sic!) und sein wichtigster Beitrag zur Atomphysik ist das nach ihm benannte Atommodell, welches er 1911 aus seinen Streuversuchen von $\alpha$-Teilchen an Goldfolie herleitete.}
+In diesem Experiment war das Wechselwirkungs\potsuf{} ein \gls{coulpot}
+$U(r) = -\alpha/r$ und man erhält durch Einsetzen von
+$\Delta \varphi_\infty = 2 \arccos(-1/\epsilon)$ und $\epsilon$ aus
+\eqref{eq:bew_Bahn_Parameter} in \eqref{eq:bew_Streuung12}
+sowie Ausdrücken des Drehimpulses mithilfe des Stoßparameters $b$
+vermöge \eqref{eq:bew_Streuung11} die Abhängigkeit des Streuwinkels von der Energie und dem Streuparameter:
+\begin{align}
+	\sin^2\lk \frac{\vartheta'}{2} \rk & \:=\: \frac{1}{1 + \frac{4 E^2 b^2}{\alpha^2}}\,. \label{eq:bew_Streuung13}
+\end{align}
+Oft wird auch der Streuparameter als Funktion des Streuwinkels angegeben:
+\begin{align}
+	b^2 & \:=\: \lk \frac{1}{\sin^2\lk \frac{\vartheta'}{2} \rk } -1 \rk \frac{\alpha^2}{4 E^2}\,. \label{eq:bew_Streuung13a}
+\end{align}
+\begin{figure}
+\includegraphics[width=\textwidth]{Wirkungsquerschnitt.pdf}
+\caption[Geometrie der Streuung im Zentralkraftfeld und Wirkungsquerschnitt.]{Geometrie einer Streuung im Zentralkraftfeld und Wirkungsquerschnitt.}
+\label{abb:bew_Wirkungsquerschnitt}
+\end{figure}
+
+Wir betrachten nun einen homogenen, konstanten Teilchenstrahl mit Teilchenstromdichte $I = N/(\Delta t \Delta A)$ in einem Zeitintervall $\Delta t$ und pro Fläche $\Delta A$ (\figref{bew_Wirkungsquerschnitt}). 
+Als Messgröße im Streuexperiment wird die am Detektor pro Zeitintervall $\Delta t$ gemessene Anzahl von Streuteilchen $n(\vartheta')$ definiert.
+Diese ist proportional zum Teilchenstrom $I$ und auch zur Detektorfläche $\D\Omega$%
+\footnote{Diese kann auch als Raumwinkelelement aufgefasst werden.}.
+Der entsprechende Proportionalitätsfaktor wird als differentieller Wirkungsquerschnitt\index{Wirkungsquerschnitt!differentieller} bezeichnet und folgendermaßen geschrieben:
+\begin{align}
+	\frac{\D \sigma'}{\D \Omega}  \:=\: \frac{n(\vartheta')}{I \Delta t \D \Omega}\,. \label{eq:bew_Streuung14}
+\end{align}
+Der totale Wirkungsquerschnitt\index{Wirkungsquerschnitt!totaler} ergibt sich dann als komplettes Raumwinkelintegral (bei Annahme einer Zylindersymmetrie) zu
+\begin{align}
+	\sigma' \:= \int \frac{\D \sigma'}{\D \Omega} \D \Omega = 2 \pi \int\nolimits_{0}^{\pi} \sin\vartheta' \D \vartheta' \frac{\D \sigma'}{\D \Omega}\,. \label{eq:bew_Streuung15}
+\end{align}
+Der totale Wirkungsquerschnitt ist quasi die \textit{effektive} Fläche, an welcher der einfallende Teilchenstrom gestreut wird.
+Man kann sowohl den differentiellen als auch den totalen Wirkungsquerschnitt in Beziehung zum Stoßparameter $b$ setzen.
+Wir betrachten wieder \figref{bew_Wirkungsquerschnitt} und speziell den Kreisring mit der Fläche $2 \pi b \D b$ des einfallenden Teilchenstromes (im Stoßparameterbereich $\left[b, b +\D b\right]$), der in den Raumwinkelbereich $\left[\vartheta', \vartheta' +\D \vartheta'\right]$ gestreut wird.
+Wegen Teilchenerhaltung gilt\footnote{Man mache sich klar, dass die Absolutbeträge notwendig sind, da $\D b$ und $\D \vartheta'$ unterschiedliche Vor\-zei\-chen haben können.}
+	\[I \lk 2 \pi b \left|\D b\right| \rk = I \lk 2 \pi \sin \vartheta' \frac{\D \sigma}{\D \Omega} \left| \D \vartheta' \right| \rk\,.
+\]
+Der differentielle Wirkungsquerschnitt hängt demnach mit dem Stoßparameter und dem Streuwinkel $\vartheta'$ wie folgt zusammen, wobei $b(\vartheta')$ für ein bestimmtes \pot{} aus \eqref{eq:bew_Streuung12} berechnet werden kann:
+\begin{align}
+	\frac{\D \sigma'}{\D \Omega}  =  \frac{b(\vartheta')}{\sin\vartheta'} \left| \frac{\D b(\vartheta')}{\D\vartheta'} \right| = \frac{1}{2 \sin\vartheta'} \left| \frac{\D b^2(\vartheta')}{\D\vartheta'} \right|\,. \label{eq:bew_Streuung16}
+\end{align}
+Die Messungen von Streuexperimenten liegen aber als Größen des Laborsystems $\vec{\Sigma}_\text{L}$ vor,
+in denen das Streuzentrum ($m_2$) und der Detektor zumeist fest sind.
+Daher
+unterscheiden sich die differentiellen Streuquerschnitte in beiden Systemen und müssen mit der Beziehung \eqref{eq:bew_Streuung7} für die Streuwinkel umgerechnet werden.
+Man erhält dann 
+\begin{align}
+	\frac{\D \sigma}{\D \Omega} = \frac{\D \sigma'}{\D \Omega} \left| \frac{\D \cos\vartheta'}{\D \cos\vartheta} \right| \,, \label{eq:bew_Streuung17}
+\end{align}
+worin die ungestrichenen Größen wie gehabt die Größen im Laborsystem darstellen.
+Wir wollen zum Abschluss im folgenden Beispiel noch die Wirkungsquerschnitte für das Coulomb-Potential  berechnen, die der Form nach natürlich auch denen des Newtonschen Gravitations\potsuf{}s entsprechen.
+
+%BEISPIEL 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{Wirkungsquerschnitte für Streuung in Zentralkraftfeldern (Coulomb-Potential)}
+Mit $U(r) = -\alpha/r$ kann man zunächst $b^2(\vartheta')$ nach \eqref{eq:bew_Streuung13} berechnen und davon die Ableitung bilden:
+	\[ \left| \frac{\D b^2(\vartheta')}{\D\vartheta'} \right| = \frac{\alpha^2}{4 E^2} \frac{\cos\frac{\vartheta'}{2}}{\sin^3\frac{\vartheta'}{2}} = \frac{\alpha^2}{8 E^2} \frac{\sin\vartheta'}{\sin^4\frac{\vartheta'}{2}}\,.
+\] 
+Hierin ist $E$ die Energie des Teilchens.
+Daraus folgt der differentielle Rutherford-Wirkungsquerschnitt\index{Wirkungsquerschnitt!Rutherford-} im Schwerpunktsystem
+\begin{align}
+	\frac{\D \sigma'}{\D \Omega}  = \lk \frac{\alpha}{4 E} \rk^2 \frac{1}{\sin^4\lk\vartheta'/2\rk} \,. 	\label{eq:bew_Streuung18}
+\end{align}
+Dies ist die  berühmte Streuformel von Rutherford\index{Streuformel!Rutherford-}. Der totale Wirkungsquerschnitt für das $U(r) = \alpha/r$-\pot{} ergibt sich durch Integration über $\vartheta'$ zu
+\begin{align}
+	\sigma' = 2 \pi \lk \frac{\alpha}{4 E} \rk^2 \int\limits_0^\pi \frac{\D \vartheta' \,\sin\vartheta'}{\sin^4\lk\vartheta'/2\rk} = \infty \,. 	\label{eq:bew_Streuung19}
+\end{align}
+und ist unendlich groß, was schnell klar wird, da das \pot{} auch in beliebig großer Entfernung noch Teilchen streut.
+Dies erkennt man auch daran, dass der differentielle Wirkungsquerschnitt für $\vartheta'=0$ divergiert.
+In der Realität gibt es natürlich keine punktförmigen Streuzentren.
+Entweder haben die Zentren eine Ausdehnung oder sie werden wie beim Atom teilweise abgeschirmt.
+\label{bsp:SigmaCoulomb}
+\end{example}
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsubsection{$N$-Körper-Systeme}\index{Mehrkörperproblem} \index{Streuung} \label{kap:bew_n_body}
+
+Im Kapitel Himmelsmechanik (Band II, Kapitel 3) werden wir
+viele Fälle kennenlernen, die nicht mehr als Zweikörperproblem
+modelliert werden können.
+Das Mehrkörper- oder $N$-Körperproblem ist für $N>2$ nicht in analytischer Form lösbar, man kann es aber mit störungstheoretischen Ansätzen angehen.
+Dabei betrachtet man das Problem zunächst als Zweikörpersystem und bezieht dann die Einflüsse der weiteren Körper \bzw Massen als Störungen mit ein.
+Ist das Zweikörperproblem beispielsweise das Sonne-Erde-System, so lassen sich die Einflüsse der anderen Planeten auf die Erdbahn auf diese Weise abschätzen.
+Allerdings ist dieser Ansatz nur dann erfolgversprechend,
+wenn die Störungen gering sind.
+In anderen Fällen muss man auf numerische Verfahren zurückgreifen (siehe \zb \cite{Dehnen2011}).
+Wir werden in der Himmelsmechanik sowohl störungstheoretische als auch numerische Methoden für die Berechnung der Planetenbewegung anwenden. 
+Zusätzlich wollen wir uns hier kurz mit einem Spezialfall
+des Dreikörperproblems beschäftigen,
+welcher trotz seiner begrenzenden Annahmen von großer Bedeutung für
+das Verständnis der Mechanik des Sonnensystems und ähnlicher Probleme ist.
+
+\subsubsection{Das eingeschränkte Drei-Körper-System}\index{Dreikörperproblem} \index{Dreikörperproblem!reduziertes} \index{Dreikörperproblem!eingeschränktes}\label{kap:bew_3_body}
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{Geometrie3KP.pdf}%
+\caption[Geometrie des reduzierten Dreikörperproblems.]{Geometrie des reduzierten Dreikörperproblems.}%
+\label{abb:bew_3KoerperP01}%
+\end{figure}
+
+Wir betrachten in \figref{bew_3KoerperP01} die Geometrie des sogenannten eingeschränkten  Dreikörperproblems.
+Es soll gelten $m_3 \ll m_1,m_2$.
+Die Masse $m_1$ könnte \zb die Sonnenmasse $m_{\astrosun}$ und die Masse $m_2$ gleich der Erdmasse $m_{\earth}$ sein.
+Die kleine Masse $m_3$ wäre dann \zb ein Satellit oder ein Asteroid.
+Wir definieren zur Vereinfachung
+		\begin{align}
+				p = \frac{m_1}{m_1+m_2}<1 \qquad \text{und} \qquad 1-p= \frac{m_2}{m_1+m_2}<1 \,. \label{eq:bew_red3KP01}
+		\end{align}
+Damit haben im mitrotierenden Schwerpunktsystem $\vec{\Sigma}'$ die Massen $m_1$ und $m_2$ die Koordinaten\footnote{Der Einfachheit halber lassen wir in \kap{bew_3_body} 
+%und Kap. \label{kap:gezeiten}
+ die Striche an den Koordinatengrößen im mitbewegten \KOS{} weg, da wir ausschließlich in diesen System bleiben.}:
+		\begin{align}
+				\vec{r}_1 = 
+				\begin{pmatrix}
+				(p-1)d  \\
+				0 \\
+				0 
+				\end{pmatrix}
+~~~~				\text{und} \quad
+				r_2 = 
+				\begin{pmatrix}
+				p\,d  \\
+				0 \\
+				0 
+				\end{pmatrix}
+				\,.
+				\label{eq:bew_red3KP02}
+		\end{align}
+Die Umlaufzeit \bzw Rotationsfrequenz von $m_1$ und $m_2$ ergibt sich zu
+		\begin{align}
+				T^2 = \frac{4 \pi^2 d^3}{G(m_1+m_2)} \quad \text{\bzw}\quad \vec{\omega}=\frac{2 \pi}{T} = 
+				\begin{pmatrix}
+				0  \\
+				0 \\
+				\sqrt{\frac{G(m_1+m_2)}{d^3}}
+				\end{pmatrix}
+				\,.
+				\label{eq:bew_red3KP03}
+		\end{align}
+Aus \figref{bew_3KoerperP01} lesen wir ferner ab:
+        \begin{align}
+		\begin{split}
+				\left| \vec{r}_1 - \vec{r}_3 \right| = d_1 &= \sqrt{(x_3-(p-1)d)^2+{y_3}^2} \,,  \\
+				\left| \vec{r}_2 - \vec{r}_3 \right| = d_2 &= \sqrt{(x_3-p\,d)^2+{y_3}^2}  \,.
+		\end{split}
+		\label{eq:bew_red3KP04}
+        \end{align}
+Da wir uns in einem mit $\vec{\omega} = \omega\kern1pt\vec{e}_3$ mitrotierenden Koordinatensystem befinden, müssen wir die Scheinkräfte Zentrifugalkraft und Coriolis-Kraft berücksichtigen.\\
+Für $\ddot{\vec{r}}_3$ gilt dann
+\begin{align}
+                \ddot{\vec{r}}_3 &= -2\:\vec{\omega}\times\dot{\vec{r}}_3-\vec{\omega}\times(\vec{\omega}\times\vec{r}_3)-\frac{\gradv U(\vec{r}_3)}{m_3}\,, \label{eq:bew_red3KP05}
+\end{align}
+wobei 
+	\[U(\vec{r}_3) = -\frac{G\,m_1 m_3}{d_1}-\frac{G\,m_2 m_3}{d_2} 
+	\]
+ist.
+Führt man die Vektormultiplikationen  in \eqref{eq:bew_red3KP05} aus, so erhält man mit dem wie folgt definierten effektiven \pot{} 
+		\begin{align}
+		\begin{split}
+				\frac{U_\text{eff}}{m_3} &= \frac{U(\vec{r}_3)}{m_3}-\frac{\omega^2}{2}({x_3}^2+{y_3}^2) \\
+				&= -\frac{G\,m_1}{d_1(x_3,y_3)}-\frac{G\,m_2}{d_2(x_3,y_3)}-\frac{G\,(m_1+m_2)}{2d^3}\,({x_3}^2+{y_3}^2)\,,
+		\end{split}	
+		\label{eq:bew_red3KP06}
+		\end{align}
+die Bewegungsgleichungen
+\begin{align}
+		\begin{split}
+				\ddot{x}_3-2\omega\dot{y}_3 &= -\frac{1}{m_3}\frac{\d U_\text{eff}}{\d x_3} \,, \\
+				\ddot{y}_3+2\omega\dot{x}_3 &= -\frac{1}{m_3}\frac{\d U_\text{eff}}{\d y_3} \,.
+		\end{split}	
+		\label{eq:bew_red3KP07}
+		\end{align}
+Diese kann man mit den bekannten numerischen Methoden lösen.
+Wir wollen aber zunächst die Bereiche $(x_3,y_3)$ bestimmen, in denen überhaupt eine Lösung existieren kann, oder m.a.W. in denen sich die Masse $m_3$ befinden kann. \\
+Multipliziert man die erste Gleichung von \eqref{eq:bew_red3KP07} mit $\dot{x}_3$ und die zweite mit $\dot{y}_3$ und addiert beide, erhalten wir die folgende Differentialgleichung:
+\begin{align}
+	 \frac{\D}{\D t}\underbrace{\lk\frac{1}{2}({\dot{x}_3}{}^2+{\dot{y}_3}{}^2)+\frac{1}{m_3} U_\text{eff}\rk}_{-\frac{1}{2}\mathcal{C}}= 0\,.
+\end{align}
+%Dazu bilden wir:
+%\begin{center}
+%\begin{tabular}{C{4.5cm}|C{0.5cm}} 
+ %$\ddot{x}_3\dot{x}_3-2\omega\dot{y}_3\dot{x}_3 = -\frac{1}{m_3} \frac{\d U_\text{eff}}{\d x_3}\dot{x}_3$ &  \\ 
+ %\rule{0pt}{15pt}$\ddot{y}_3\dot{y}_3+2\omega\dot{x}_3\dot{y}_3 = -\frac{1}{m_3} \frac{\d U_\text{eff}}{\d y_3}\dot{y}_3$ & $+$ \\ 
+ %\rule{0pt}{0pt} & \\
+ %\hline
+ %\rule{0pt}{0pt} & \\
+ %$\frac{\D}{\D t}\underbrace{\lk\frac{1}{2}({\dot{x}_3}^2+{\dot{y}_3}^2)+\frac{1}{m_3} U_\text{eff}\rk}_{-\frac{1}{2}\mathcal{C}}= 0$ &  
+%\label{eq:bew_red3KP08}
+%\end{tabular}
+%\end{center}
+Die Größe 
+		\begin{align}
+				\mathcal{C} = -\lk {\dot{x}_3}{}^2+{\dot{y}_3}{}^2 \rk - \frac{2U_\text{eff}}{m_3} = \omega^2 \lk {x_3}^2+{y_3}^2 \rk-\frac{2U}{m_3}-\lk{{\dot{x}_3}{}}^2+{\dot{y}_3{}}^2\rk \label{eq:bew_red3KP09}
+		\end{align}
+ist also eine Erhaltungsgröße und wird \emph{Jacobi}\footnote{Carl Gustav Jacob Jacobi (1804--1851) war einer deutscher Mathematiker, der zu den produktivsten und vielseitigsten Mathematikern zählt. Besonders seine Theorie der elliptischen Funktionen, aber auch seine Arbeiten zur Differentialgeometrie waren für die mathematischen Physik wegbereitend.
+Die Hamilton-Jacobi-Theorie der klassischen Mechanik war eine wichtige Vorstufe für den späteren Übergang zur Quantenmechanik.}\indexp{Jacobi, Carl Gustav Jacob}\index{Jacobi-Konstante}\emph{-Konstante} genannt. Diese Konstante ist die einzige Erhaltungsgröße für das reduzierte Dreikörperproblem und definiert den möglichen Bereich der Bewegung der Masse $m_3$ eindeutig. \\
+Offensichtlich gilt in \eqref{eq:bew_red3KP09} immer ${\dot{x}_3{}}^2+{\dot{y}_3{}}^2 \geq 0$.
+Damit muss $\mathcal{C}+2U_\text{eff}/m_3 \leq 0$ sein, was die sogenannte \textit{Hill-Kurve} \index{Hill-Kurve} als die Menge aller Punkte $ \lk x_3,y_3 \rk $ festlegt, für die $U_\text{eff}\,(x_3,y_3) \leq - m_3\,C/2$ ist.
+\figref{bew_3KoerperP02} zeigt diesen Bereich (siehe auch \probref{bew_HillLagrangePkt} und \mscr{} \mlbewref{LagrangePunkte.m}).
+Besonders interessant sind in diesem Bereich die Punkte $\lk x_3^{(\text{L})},y_3^{(\text{L})}\rk $, an denen die Masse $m_3$ relativ zu den Massen $m_1$ und $m_2$ (im mitbewegten Koordinatensystem) in Ruhe ist.
+Diese Punkte werden \textit{Lagrange-Punkte}%
+\footnote{Diese Lagrange-Punkte spielen in der Raumfahrt
+eine große Rolle.}\index{Lagrange-Punkte}
+genannt und sind definiert durch $\gradv U_\text{eff}= 0$,
+da dann aus den Bewegungsgleichungen \eqref{eq:bew_red3KP07}
+für $\dot{x}_3= \dot{y}_3= 0$ folgt:
+    \begin{align}
+        \begin{split}
+            0 &= \omega^2x_3^{(\text{L})}-\frac{G\,m_1(x_3^{(\text{L})}-x_1)}{{d_1}^3} -\frac{G\,m_2(x_3^{(\text{L})}-x_2)}{{d_2}^3} \,, \\
+            0 &= \omega^2 y_3^{(\text{L})}-\frac{G\,m_1 y_3^{(\text{L})}}{{d_1}^3}-\frac{G\,m_2y_3^{(\text{L})}}{{d_2}^3} \,.
+        \end{split}
+        \label{eq:bew_red3KP10}
+    \end{align}
+Aus diesen beiden Gleichungen bestimmt man dann die Werte $\lk x_3^{(\text{L})},y_3^{(\text{L})} \rk$, zunächst für $y_3^{(\text{L})}= 0$.\footnote{Man beachte, dass die Größen $d_1, d_2$ von $x_3, y_3$ abhängen.} Man erhält die Lagrange-Punkte $L_1, L_2$ und $L_3$. \\
+Für die Berechnung eines weiteren Paares von Lagrange-Punkten $L_4, L_5$ für $y_3^{(\text{L})}\neq 0$ multipliziert man die zweite Gleichung in \eqref{eq:bew_red3KP10} mit $x_3^{(\text{L})}/y_3^{(\text{L})}$, subtrahiert diese von der ersten Gleichung und erhält zunächst
+		\begin{align*}
+				\frac{G\,m_1x_1}{{d_1}^3}+\frac{G\,m_2y_1}{{d_2}^3} = 0 \,,
+		\end{align*}
+und daraus
+		\begin{align*}
+				d_1^{(\text{L})} = d_2^{(\text{L})} = d \,.
+		\end{align*}
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{LagrangePt.pdf}%
+\caption[Hill-Kurve und Lagrange-Punkte des reduzierten Dreikörperproblems.]{Hill-Kurve und Lagrange-Punkte des reduzierten Dreikörperproblems. \fa Massenverhältnis 40:1, \fb Massenverhältnis Sonne-Jupiter.}%
+\label{abb:bew_3KoerperP02}%
+\end{figure}
+
+Die Lagrange-Punkte $L_4, L_5$ bilden also mit den Massen $m_1$ und $m_2$ jeweils gleichseitige Dreiecke. In \probref{bew_HillLagrangePkt} berechnen wir die Lagrange-Punkte $L_1$ bis $L_5$ und untersuchen deren Stabilität. Das Ergebnis der Berechnung ist in \figref{bew_3KoerperP02} eingezeichnet.
+
+\subsubsection{Gezeiten} \label{kap:bew_gezeiten}
+
+Gezeitenkräfte sind im Sprachgebrauch häufig mit dem Phänomen von Ebbe und Flut auf den Ozeanen der Erde verknüpft.
+Sie sind aber viel fundamentaler und treten überall dort auf, wo die räumliche Ausdehnung der Körper in einem gravitativen System nicht mehr zu vernachlässigen ist oder anders gesprochen die Inhomogenität des Gravitationsfeldes zum Tragen kommt.
+Im Umkehrschluss treten Gezeitenkräfte bei idealisierten Systemen von Punktmassen nicht auf.
+Wir wollen hier im Abschnitt über Massepunkte einen Überblick über das Thema und eine grundsätzliche Einführung geben.
+In der Himmelsmechanik werden wir uns dann
+genauer mit einigen Phänomenen der Gezeiten beschäftigen, insbesondere
+mit dem Erde-Mond-System, den Gezeiten der Ozeane und auch der dabei auftretenden
+Gezeitenreibung. Hier wollen wir nur das Grundprinzip der Gezeiten erläutern.\\
+Wir betrachten die Geometrie zum Gezeitenproblem in \figref{bew_3KoerperPGezeiten}. In unserer Betrachtung eines Zweikörperproblems mit Gezeiten wollen wir dabei einen Körper als kugelförmig ansehen (Masse $m_1$, Radius $R$) und den anderen als punktförmig (Masse $m_2$).
+Wenn wir die Dynamik des ausgedehnten Körpers durch eine im Schwerpunkt konzentrierte Masse $m_1$ beschreiben, können wir weiterhin die Bewegungsgleichungen des ZKP verwenden.%
+\footnote{Allerdings gilt dies nur dann, wenn die Gezeitenkräfte im Vergleich zu den inneren Kräften des ausgedehnten Körpers vernachlässigt werden können. Das ist vielfach nicht der Fall, aber bei der Betrachtung der Gezeitenwirkung auf die Ozeane in Form von Ebbe und Flut gegeben.}  Die Punktmasse $m_2$ hat das \pot{}
+		\begin{align}
+				U\!\lk\vec{r}\rk = - \frac{G\,m_2}{|\vec{r}-\vec{r}_2|} \,. \label{eq:bew_Gezeiten01}
+		\end{align}
+Damit wirkt auf eine kleine Testmasse $m$ am Ort $\vec{r}$ die Kraft
+		\begin{align*}
+				\vec{F}\!\lk\vec{r}\rk = -m\,\gradv\,U\lk\vec{r}\rk \,.
+		\end{align*}
+Damit ist klar, dass zwei gleiche Testmassen $m$, die sich an unterschiedlichen Positionen auf dem ausgedehnten Körper $m_1$ befinden, unterschiedlich großen Kräften von der Masse $m_2$ unterliegen. \\
+Wir wollen zur Berechnung dieser Kräfte dazu die Kraft $\vec{F}\!\lk\vec{r}\rk$ um den Schwerpunkt der Masse $m_1$ entwickeln und schreiben
+		\begin{align}
+				\vec{F}\!\lk\vec{r}\rk = \vec{F}\!\lk\vec{r}_1+\delta\,\vec{r}\rk =\vec{F}\!\lk\vec{r}_1\rk+\lk\delta\vec{r}\,\cdot\,\gradv\rk \vec{F}\!\lk\vec{r_1}\rk+ \cdots \,. \label{eq:bew_Gezeiten02}
+		\end{align}
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{GeometrieGezeiten.pdf}%
+\caption[Geometrie des Gezeitenproblems.]{Geometrie des Gezeitenproblems.}%
+\label{abb:bew_3KoerperPGezeiten}%
+\end{figure}
+
+Für das Erde-Mond-System kann man in guter Näherung $r_1=0,\,r_2=r_{12}=r_\text{EM}$ annehmen, für das Erde-Sonne-System in sehr guter Näherung $r_2 =0,\,r_1=r_{12}= r_\text{ES}$. Da die weiteren Betrachtungen auch \zb für Doppelsternsysteme anwendbar sein sollen, bei denen $m_1 \approx m_2$ gelten kann, schreiben wir allgemeiner
+
+	\begin{align*}
+			\vec{F}\!\lk\vec{r}\rk = -m\,\gradv\, U\lk\vec{r}\rk = -m\lk \frac{\d}{\d x}U\lk\vec{r}\rk, \frac{\d}{\d y}U\lk\vec{r}\rk, \frac{\d}{\d z}U\lk\vec{r}\rk\rk \,,
+	\end{align*}
+den Vektor $\vec{r}_1 = x\,\vec{e}_x+y\,\vec{e}_y+z\,\vec{e}_z$ , sowie das Skalarprodukt von $\delta\vec{r}$ und $\gradv$ als
+	\begin{align*}
+			\delta\vec{r}\cdot \gradv &= \D x\,\frac{\d}{\d x}+ \D y\,\frac{\d}{\d y}+\D z\,\frac{\d}{\d z} = \sum\limits_{i}^3 \D x_i\,\frac{\d}{\d x_i} = \D x_i\,\frac{\d}{\d x_i}\,.
+	\end{align*}
+Dann kann man die Gezeitenkraft \eqref{eq:bew_Gezeiten02} schreiben als
+        \begin{align}
+				\Delta \vec{F}_\text{Gez} &= \vec{F}\!\lk\vec{r}_1+\delta\,\vec{r}\rk-\vec{F}\!\lk\vec{r}_1\rk = \delta \vec{r}\cdot\gradv\vec{F}(\vec{r}_1) = -m \sum\limits_{i}^3 \sum\limits_{j}^3 \D x_j \, \frac{\d^2 U(\vec{r})}{\d x_i\,\d x_j }\,\vec{e}_i \nonumber \\
+				&= -m\, \sum\limits_{i}^3 \sum\limits_{j}^3 \D x_j\,H_{ij} \,\vec{e}_i = -m\, \D x_j\,H_{ij} \,\vec{e}_i \,, \label{eq:bew_Gezeiten03}
+\end{align}
+wobei wir im letzten Schritt mit $\mathbb{H} \equiv H_{ij}$  ist die sogenannte Hesse-Matrix\footnote{Otto Hesse\indexp{Hesse, Otto} (1811--1874) war ein deutscher Mathematiker, der vor allem auf dem Gebiet der analytischen Geometrie arbeitete.} eingeführt und die Einsteinsche Summenkonvention benutzt haben. \\
+Die vollständige Hesse-Matrix in kartesischen Koordinaten ausgeschrieben lautet 
+\begin{align}
+	H_{ij} = \frac{\d^2 U}{\d x_i \d x_j} = 
+\begin{pmatrix}
+\frac{\d^2\, U}{\d\,x^2} & \frac{\d^2\, U}{\d x\,\d y}  & \frac{\d^2\, U}{\d x\,\d z} \\
+\frac{\d^2\, U}{\d y\,\d x} & \frac{\d^2\, U}{\d\,y^2} & \frac{\d^2\, U}{\d y\,\d z} \\
+\frac{\d^2\, U}{\d z\,\d x} & \frac{\d^2\, U}{\d z\,\d y} & \frac{\d^2\, U}{\d\,z^2}
+\end{pmatrix} \,.
+\label{eq:bew_Gezeiten04}
+\end{align}
+Gleichung \eqref{eq:bew_Gezeiten03} gilt ganz allgemein
+für ein beliebiges \pot{}, \zb auch für eines mit mehreren Gravitationszentren,
+und ist auch gut für die numerische Auswertung geeignet.
+Man beachte aber, dass \eqref{eq:bew_Gezeiten03} eine Taylorentwicklung ist, weswegen für alle $i,j$ jeweils $\D x_j \ll \left| x_j - x_i \right| ~$ gelten muss. 
+Wir wollen im Folgenden den einfachen Fall annehmen, dass die Testmasse auf der Verbindungsachse der beiden Massen $m_1$ und $m_2$ liegt.
+Gleichung \eqref{eq:bew_Gezeiten03} sieht dann für die Masse $m'$ mit $\vec{r}' = \vec{r}_2-\vec{r}_1$ und $\delta\,\vec{r}\| \vec{r}'$ (wir betrachten ja nur die axiale Richtung) folgendermaßen aus:
+		\begin{align}
+				\Delta F_\text{Gez} = \Delta \vec{F}_\text{Gez}\cdot\vec{e}_z = \lk \frac{G\,m\,m_2}{\lk r_{12} \pm R_1\rk^2}\frac{\vec{r}}{|\vec{r}|} - \frac{G\,m\,m_2}{r_{12}{}^2}\frac{\vec{r}}{|\vec{r}|} \rk\cdot \vec{e}_z \,. \label{eq:bew_Gezeiten05}
+		\end{align}
+Da für den Radius des Körpers mit der Masse $m_1$ aber $R \ll r_{12}$ gilt, können wir \eqref{eq:bew_Gezeiten05} entwickeln und erhalten
+        \begin{align}
+                \frac{1}{\lk r_{12} \pm R\rk^2}&\approx \frac{1}{r_{12}{}^2}\lk 1 \mp \frac{2R}{d}\rk \text{\quad und} \nonumber \\
+                \Delta F_\text{Gez} &\approx \mp\frac{2G\,m\,m_2\,R}{r_{12}{}^3}\,.\label{eq:bew_Gezeiten06}
+        \end{align}
+Das Zeichen $+$ ist dabei für einen Probekörper $m'$ zu verwenden,
+der auf der Seite des ausgedehnten Körpers liegt,
+welche dem Ort der Masse $m_2$ zugewandt ist,
+das Zeichen $-$ entsprechend für einen Probekörper $m''$ auf der diesem Ort abgewandten Seite des Körpers $m_1$.
+Interessant ist der starke Abfall der Gezeitenkraft mit der dritten Potenz
+des Abstandes zwischen den Massen $m_1$ und $m_2$.
+Mit \eqref{eq:bew_Gezeiten06} kann man sofort das Verhältnis der Gezeitenkräfte von Sonne und Mond auf einen Körper auf der Erdoberfläche berechnen:
+		\begin{align*}
+				\frac{\Delta {F_\text{Gez}}_\text{M}}{\Delta{F_\text{Gez}}_\text{S}} = \frac{m_\text{M}}{{a_{\text{EM}}}^3}\frac{{a_\text{ES}}^3}{m_\text{\text{S}}} \approx 2.18 \,.
+		\end{align*}
+Hier haben wir die Werte für die Mondmasse $m_\text{M} = \SI{7.346e22}{\kilogram}$, die Sonnenmasse $m_\text{S} = \SI{1.989e30}{\kilogram}$, den mittleren Abstand von Erde und Mond $a_\text{EM}= \SI{384.4e06}{\metre}$ und die sogenannte astronomische Einheit\index{Astronomische Einheit}\index{Astronomische Einheit} $a_\text{\earth} = a_\text{\text{ES}} = \SI{149.6e09}{\metre}$ benutzt.
+Die Gezeitenwirkung des Mondes auf die Erde ist also etwa doppelt so groß wie die der Sonne auf die Erde.
+In \probref{bew_gezeiten01} wollen wir die Verformung eines Rings unter dem Einfluss von Gezeitenkräften berechnen. Den Ring beschreiben wir als Anordnung von 36 Testmassen, die im Schwerefeld einer großen Masse frei fallen.\\
+
+\subsection{Lagrange-Formalismus}\index{Lagrange-Gleichung} \label{kap:bew_lagrange_formalism}
+
+Bisher haben wir die Mechanik auf Basis der Newtonschen Axiome und der daraus folgenden Bewegungsgleichungen behandelt. Wir wollen jetzt den \emph{Lagrange-Formalismus}\index{Lagrange-Formalismus|textbf} kennen lernen, der 1788 von Lagrange\indexp{Lagrange, Joseph-Louis} eingeführt wurde und bei dem ein mechanisches System durch eine einzige skalare Funktion, die Lagrange-Funktion, beschrieben wird. Der Formalismus ist völlig äquivalent zur Newtonschen Mechanik und ist darüber hinaus auch direkt auf beliebige Koordinatensysteme und beschleunigte Bezugssysteme anwendbar, ohne dass man eine zusätzliche Betrachtung der Scheinkräfte machen muss. Der Lagrange-Formalismus erlaubt damit die Wahl geeigneter generalisierter Koordinaten und vereinfacht dadurch die Behandlung vieler physikalische Probleme. Ebenso lassen sich im Gegensatz zur Newtonschen Mechanik Zwangsbedingungen relativ einfach berücksichtigen.
+
+\subsubsection{Zwangsbedingungen}\index{Zwangsbedingungen} \label{kap:bew_zwangsbedingungen}
+
+Die bisher gezeigten Anwendungen der Newtonschen Bewegungsgleichungen behandelten Fälle, in denen sich ein Körper/Massepunkt frei, \dh nur unter dem Einfluss externer Kräfte bewegen konnte.
+Häufig liegt aber Einschränkungen der Bewegungsfreiheit vor.
+Eine solche nennt man dann eine \emph{\gls{zwangsbed}}.\footnote{Das kennen wir als Menschen ja auch sehr gut.} Zwangsbedingungen können für ein $N$-Teilchen-System in der Form
+\begin{align}
+	f_r(t, \vec{r_1},\vec{r_2},\ldots,\vec{r_N}) = 0 ~~, r = 1\ldots Z_B\,,\text{ wobei }Z_B \leq 3N  \label{eq:bew_holonome_ZB}
+\end{align}
+geschrieben werden, wodurch dann $ F = 3N -Z_B $ \emph{Freiheitsgrade}\index{Freiheitsgrad} der Bewegung verbleiben.
+Als Beispiel sei die Bewegung auf einer schiefen Ebene genannt.
+Da sich der Massepunkt entlang der Geraden $z = x \tan{\alpha}$ bewegen muss, lautet die Zwangsbedingung 
+	\[f_1(0,x,y,z) = z - x \tan{\alpha} = 0
+\]
+und das System hat zwei verbleibende Freiheitsgrade $(x, y)$. Man kann nun unterscheiden in
+\begin{itemize}
+	\item \emph{holonom-skleronome} Zwangsbedingungen\index{Zwangsbedingung!holonom-skleronome}, die nicht explizit von der Zeit abhängen, also $\partial f_r/\partial t = 0$,
+	\item \emph{holonom-rheonome} Zwangsbedingungen\index{Zwangsbedingung!holonom-rheonome}, die explizit von der Zeit abhängen, also $\partial f_r/\partial t \neq 0$,
+	\item \emph{nicht-holonome} Zwangsbedingungen\index{Zwangsbedingung!nicht-holonome}, die sich nicht in der Form \eqref{eq:bew_holonome_ZB} schreiben lassen und daher die Anzahl der freien Koordinaten nicht reduzieren, wie 
+	\begin{itemize}
+		\item Zwangsbedingungen, die in der Form von Ungleichungen vorliegen, also 
+			\[\tilde{f}(t, \vec{c}_1\cdot \D\vec{r_1},\vec{r_2},\ldots,\vec{r_N}) \leq 0
+		\] 
+		\item oder Zwangsbedingungen, die in nicht-integrierbarer differentieller Form 
+			\[\delta \tilde{f} = \vec{c}_{k1}\cdot \D\vec{r_1} + \vec{c}_{k2}\cdot \D\vec{r_2} + \cdots + \vec{c}_{kN}\cdot  \D\vec{r_N} + \vec{c}_{kt} \D t = 0 \quad \text{mit}\quad k = 1 \ldots Z
+		\]vorliegen.
+                $\delta \tilde{f}$ ist dabei kein totales Differential.
+	\end{itemize}
+\end{itemize}
+Wir werden in den \anf{Fingerübungen} Probleme mit verschiedenen Zwangsbedingungen untersuchen, dem Leser wird als Einstieg \probref{bew_Zwangsbedingungen} empfohlen.
+
+%BEISPIEL 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{Beispiele für Zwangsbedingungen}
+\begin{enumerate} [a)]
+	\item holonom-skleronome Zwangsbedingung (\zb schiefe Ebene):
+		\[f_1(t, x, y, z) = z- x \tan{\alpha} = 0
+	\]
+		\item holonom-rheonome Zwangsbedingung (\zb Pendelaufhängung an einer Decke, der Aufhängepunkt schwingt horizontal mit $\omega_\text{P}$)
+		\[f_1(z, \varphi) = z + l \cos{\varphi} = 0 \quad\text{und}\quad \\
+		  f_2(t, x, \varphi) = x - A \cos{\lk \omega_\text{P} t \rk} - l \sin{\varphi} = 0
+	\]
+	\item nicht-holonome Zwangsbedingung als Ungleichung (\zb beliebige Bewegung eines Massepunktes im Innenraum eines Kegels)
+		\[ \tilde{f}_1(\rho, \varphi, z) = \rho - z \tan{\alpha} \leq 0\,,\quad 0 \leq \varphi \leq 2\pi
+	\]
+	\item nicht-holonome Zwangsbedingung als nicht-integrierbare differentielle Gleichung (\zb rollende Kugel mit der $x$-$y$-Ebene als Auflagefläche)
+		\[ \D x - \omega_2 R \D t = 0\,, \quad\D y - \omega_1 R \D t = 0   \quad\text{und} \quad\vec{\omega} = (\omega_1, \omega_2, \omega_3)  
+	\]
+\end{enumerate}
+\begin{center}
+\includegraphics[width=\columnwidth]{ZwangsbedingungenBsp.pdf}% 
+\captionof{figure}{Beispiele für Zwangsbedingungen (siehe Beispiel \ref{bsp:bew_ZB}).} \label{abb:bew_ZwangBedBsp}
+\end{center}
+\label{bsp:bew_ZB}
+\end{example}
+%Ende BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Lagrange-Gleichungen erster Art}\index{Lagrange-Gleichung!Erster Art} \label{kap:bew_Lagrange_I}
+
+Wenn die $Z_B$ holonomen Zwangsbedingungen zu jedem Zeitpunkt $t$ in einem System erfüllt sein sollen, muss man die Newtonsche Bewegungsgleichung durch eine \emph{\gls{zwangskr}}\index{Zwangskräfte} erweitern, denn offensichtlich kann nur eine solche Kraft, die \zb von einer Unterlage oder einem Faden vermittelt wird, die Zwangsbedingung erfüllen.
+Diese Kraft ist anders als die eingeprägte äußere Kraft \ia zunächst unbekannt.
+Wir betrachten vorerst einen einzelnen Massepunkt und können dann die holonomen Zwangsbedingungen geometrisch als Flächen interpretieren, auf denen sich der Massepunkt bewegen soll.
+Dann muss die Zwangskraft senkrecht auf dieser Fläche stehen, was allgemein $\vec{Z} \propto \gradv f$ bedeutet.
+Wir können deshalb die Bewegungsgleichung um den Proportionalitätsfaktor $\lambda$ erweitern, den wir \emph{\gls{lagrmult}} nennen.
+Die Zwangskräfte sind dann
+\begin{align}
+	\vec{Z}_k &= \sum\limits_{r=1}^{Z_B}\lambda_r \gradv_k f_r \quad\text{\bzw in Komponenten} ~~\nonumber \\
+	Z_k &= \sum\limits_{r=1}^{Z_B}\lambda_r \frac{\partial {f_r}}{\partial {x_k}}\,. \label{eq:bew_Zwangskraefte}
+\end{align}
+Die Bewegungsgleichungen, jetzt wieder erweitert auf $N$ Teilchen \bzw $3N$ Koordinaten, lauten dann
+\begin{subequations}
+\begin{align}
+	m_k \ddot{\vec{r}}_k &= \vec{F}_k + \sum\limits_{r=1}^{Z_B}\lambda_r \gradv_k f_r \qquad k = 1 \ldots N ~~~~\text{\bzw} \\
+	m_i \ddot{x}_i &= F_i + \sum\limits_{r=1}^{Z_B}\lambda_r \frac{\partial {f_r}}{\partial {x_i}}\qquad  i = 1 \ldots 3N\,. 
+\end{align} \label{eq:bew_Lagrange_I}
+\end{subequations}
+
+Die Gleichungen \eqref{eq:bew_Lagrange_I} heißen Lagrange-Gleichungen erster Art und stellen ein System von $3N$ Bewegungsgleichungen dar, in welchem die $Z_B$ Zwangsbedingungen über die Lagrange-Multiplikatoren $\lambda_r$ implizit enthalten sind.
+Wir wollen noch kurz ohne Beweis erwähnen, dass bei Vorliegen holonomer Zwangsbedingungen folgende Beziehung für die Energie gilt \cite{Kuypers2012, Bartelmann2015}:
+\begin{align}
+	\frac{\D}{\D t} E = 	\frac{\D}{\D t} (T+U) = - \sum\limits_{k=1}^{Z_B}\lambda_r \frac{\partial f_r}{\partial t}\,.\label{eq:bew_Lagrange_IE}
+\end{align}
+Für skleronome Zwangsbedingungen ($\partial f_r / \partial t = 0$) bleibt also die Energie des Systems konstant, die Zwangskräfte leisten in diesem Fall keine Arbeit.\\
+Die Frage ist nun, wie man die Lagrange-Gleichungen erster Art löst. Für holonome Zwangsbedingungen gibt es folgende \textit{Lösungsstrategie}, deren konkrete Umsetzung wir in den Beispielen \ref{bsp:bew_PerleDraht} und \ref{bsp:bew_Rollenpendel} zeigen: \\ \\
+\smallskip
+\fbox{\parbox{0.95\textwidth}{
+\smallskip
+\textbf{\textit{Allgemeine Lösungsstrategie für Lagrange-Gleichungen erster Art mit holonomen Zwangsbedingungen über die Methode der Lagrange-Multiplikatoren}}
+\begin{enumerate}
+    \item Man stellt die Bewegungsgleichungen
+      \eqref{eq:bew_Lagrange_I} und die Zwangsbedingungen
+      $f_r(x_i,t)=0$ für die $3N$ Koordinaten $x_i$
+      der $N$ Massepunkte auf.
+    \item Man berechnet aus den Zwangsbedingungen die ersten und zweiten Ableitungen
+      von $f_r(x_i,t)=0$:
+      \begin{align}
+         \dot{f}_r &= \sum\limits_{i=1}^{3N} \lambda_r \frac{\partial {f_r}}{\partial {x_i}} \dot{x}_i  + \frac{\partial {f_r}}{\partial t} \nonumber \\
+        \ddot{f}_r &= \sum\limits_{i=1}^{3N} \lambda_r \frac{\partial {f_r}}{\partial {x_i}} \ddot{x}_i - a_r(t,x, \dot{x}) = 0\,.  \label{eq:bew_Lagrange_Ia}
+      \end{align}
+      Der Term $a_r(t,x, \dot{x})$ enthält alle Ableitungen
+      von $f_r$ nach $t, x_i$ und $\dot{x}_i$, hängt aber nicht
+      von den zweiten Ableitungen $\ddot{x}_i$ ab.
+    \item Man setzt für die $\ddot{x}_i$
+      in \eqref{eq:bew_Lagrange_Ia} die Bewegungsgleichungen \eqref{eq:bew_Lagrange_I} ein
+      und erhält ein lineares inhomogenes Gleichungssystem
+      für die $Z_B$ Lagrange-Multiplikatoren $\lambda_r$,
+      welche in der impliziten Form 
+      \begin{align}
+          \lambda_r = \lambda_r(t, x, \dot{x})\,,\quad r = 1 \ldots Z_B \label{eq:bew_Lagrange_Ib}
+      \end{align}
+      berechnet werden können.
+    \item Man setzt die impliziten Lagrange-Multiplikatore Lösungen \eqref{eq:bew_Lagrange_Ib} in die
+      Bewegungsgleichungen \eqref{eq:bew_Lagrange_I} ein
+      und erhält schließlich ein $3N$-dimensionales
+      Differentialgleichungssystem zweiter Ordnung
+      \begin{align}
+	m_i \ddot{x}_i &= F_i + \sum\limits_{r=1}^{Z_B}\lambda_r(t, x, \dot{x}) \frac{\partial f_r}{\partial x_i}\,, \label{eq:bew_Lagrange_Ic}
+      \end{align}
+      das mit den üblichen Methoden zur Lösung von
+      Differentialgleichungen (DGL)\index{Differentialgleichung}
+      gelöst werden kann. 
+    \item Mit den Lösungen kann man dann auch
+      die Lagrange-Multiplikatoren und damit über
+      \eqref{eq:bew_Zwangskraefte} die Zwangskräfte berechnen,
+      falls man diese explizit braucht.
+      Zu beachten ist noch, dass alle Anfangsbedingungen
+      den Zwangsbedingungen genügen müssen.\footnotemark
+    \item Für nicht-holonome Zwangsbedingungen gibt es kein allgemein gültiges Vorgehen. Wenn die nicht-holonomen Zwangsbedingungen in differentieller Form vorliegen, kann man die dargestellte Methode in leicht abgewandelter Form ebenfalls verwenden. 
+		\item Wir werden die Methode der Lagrange-Multiplikatoren \zb in
+ \probref{bew_unwucht}, \probref{bew_Trebuchet} \ua anwenden.
+\end{enumerate}
+}} 
+
+\subsubsection{Verallgemeinerte Koordinaten}\label{kap:bew_general_coordinates}
+
+In den (holonomen) Zwangsbedingungen \eqref{eq:bew_holonome_ZB} und den Lagrange-Gleichungen erster Art \eqref{eq:bew_Lagrange_I} haben wir zunächst noch kartesische \bzw orthonormale Koordinaten (\zb Kugelkoordinaten) angenommen.
+Deswegen mussten wir $3 N$ Komponentengleichungen lösen und dabei $Z_B$ Zwangsbedingungen berücksichtigen.
+Wir können uns die Aufgabe vereinfachen, indem wir zu sogenannten \emph{verallgemeinerten} oder \emph{generalisierten}\glslink{genkoord}{} Koordinaten \glslink{genkoord} übergehen.
+Diese Koordinaten $q_j$ werden als unabhängige Parameter entsprechend der Anzahl der \emph{Freiheitsgrade}\index{Freiheitsgrad} $F$ definiert und sind dann nicht mehr per Definition weiter durch Zwangsbedingungen eingeschränkt, da diese ja durch die entsprechende Auswahl der $q_j$ bereits berücksichtigt worden sind.
+Für holonome Zwangsbedingungen existiert dann folgende Beziehung:
+\begin{align}
+	x_i=x_i(t, q_j) \qquad i = 1\ldots 3N \quad j = 1 \ldots F\,. \label{eq:general_coordinates}
+\end{align}
+Diese verallgemeinerten Koordinaten können die Behandlung vieler Probleme der Mechanik (und auch anderer Themengebiete) deutlich vereinfachen, insbesondere dann, wenn man nicht an den Zwangskräften interessiert ist. 
+
+\subsubsection{Lagrange-Gleichungen zweiter Art}\index{Lagrange-Gleichung!Zweiter Art} \label{kap:bew_Lagrange_II}
+
+Wir beginnen mit \eqref{eq:general_coordinates}.
+Die Zwangsbedingungen sind entsprechend der Bedingung
+\begin{align}
+	\frac{\partial{f_r}}{\partial{q_j}} = \sum\limits_{i}^{3N} \frac{\partial{f_r}}{\partial{x_i}} \frac{\partial{x_i}}{\partial{q_j}} \stackrel{!}{=} 0 \label{kap:bew_Zwangsbedingung_II}
+\end{align}
+berücksichtigt, denn wenn die Zwangsbedingungen von den $q_j$ abhingen, stünde das im Widerspruch zur Definition der verallgemeinerten Koordinaten.
+Multipliziert man die Lagrange-Gleichung erster Art mit ${\partial{x_i}}/{\partial{q_j}}$ erhält man:
+\begin{align}
+	\sum\limits_{i}^{3 N} m_i \ddot{x}_i \frac{\partial{x_i}}{\partial{q_j}} &= \sum\limits_{i}^{3 N} F_i \frac{\partial{x_i}}{\partial{q_j}} + \sum\limits_{r=1}^{Z_B}\lambda_r \sum\limits_{i}^{3N} \frac{\partial {f_r}}{\partial {x_i}} \frac{\partial {x_i}}{\partial {q_j}}\,. \label{eq:bew_Lagrange_II_a}
+\end{align}
+Der erste Term 
+\begin{align}
+	Q_j &= \sum\limits_{i}^{3N} F_i \frac{\partial {x_i}}{\partial {q_j}} \label{eq:bew_Lagrange_II_b}
+\end{align}
+ist offensichtlich eine Kraft und wird verallgemeinerte oder \emph{generalisierte Kraft}\index{Kraft!generalisierte}\index{Kraft!verallgemeinerte} genannt, während der zweite Term aufgrund der Bedingungen für die verallgemeinerten Koordinaten verschwindet.
+Durch geeignete Umformung wie Vertauschung der partiellen Ableitungen und Einführung \emph{generalisierter Geschwindigkeiten} $\dot{q}_j$ und der kinetischen Energie $T$
+\begin{align}
+	\dot{q}_j &= \frac{\D}{\D t} q_j\,, \quad T= \frac{1}{2} \sum\limits_{i}^{3N} m_i \dot{x}_i^2 \label{eq:bew_Lagrange_II_c}
+\end{align}
+erhält man nach einfachen Rechnungen (siehe \cite{Greiner2004, Bartelmann2015, Kuypers2012}) die \emph{Lagrange-Gleichungen zweiter Art}:
+\begin{align}
+	\frac{\D}{\D t} \frac{\partial T}{\partial \dot{q}_j} - \frac{\partial T}{\partial q_j} = Q_j \qquad j = 1 \ldots F\,. \label{eq:bew_Lagrange_II_d}
+\end{align}
+Die $Q_j$ sind zunächst noch beliebige Kräfte, sie können konservativ oder auch dissipativ sein.
+Deshalb zerlegen wir diese in
+	\[Q_j = Q_j^\text{(kons)} + Q_j^\text{(diss)}\,.
+\]
+Wir nehmen zunächst nur konservative Kräfte an und können dann schreiben:
+	\[Q_j = Q_j^\text{(kons)} = \sum\limits_{i}^{3N} F_i \frac{\partial {x_i}}{\partial {q_j}} = -  \frac{\partial {U(t,x)}}{\partial {q_j}}\,,
+\]
+woraus schließlich mit der \emph{\gls{lagrfkt}} $\mathcal{L} = T -U $\index{Lagrange-Funktion|textbf} die Lagrange-Gleichungen zweiter Art für konservative Kräfte folgen:
+\begin{align}
+	\mathcal{L} &= T - U = T(t, q_j, \dot{q}_j) - U(t, q_j) \nonumber \\
+		\frac{\D}{\D t} \frac{\partial \mathcal{L}}{\partial \dot{q}_j} - \frac{\partial \mathcal{L}}{\partial q_j} &=  \left\{\frac{\D}{\D t} \frac{\partial }{\partial \dot{q}_j} - \frac{\partial}{\partial q_j} \right\} \mathcal{L} = 0 \qquad j = 1 \ldots F\,. \label{eq:bew_LagrangeGl_II}
+\end{align}
+Die Lagrange-Gleichungen sind $F$ Differentialgleichungen zweiter Ordnung für die $q_j(t)$.
+Die allgemeine Lösung hat demnach demnach $2F$ Parameter \bzw Anfangsbedingungen.\\
+Während die Newtonschen Bewegungsgleichungen für kartesische Koordinaten formuliert wurden und relativ kompliziert auf andere Koordinatensysteme zu transformieren sind, ist der Lagrange-Formalismus koordinatenunabhängig.
+Die generalisierten Koordinaten sind frei wählbar, solange sie den Zwangsbedingungen genügen.
+Man kann also mit den Lagrange-Gleichungen zweiter Art die Bewegungsgleichungen direkt in nicht-kartesischen Koordinaten aufstellen, die Lagrange-Gleichungen zweiter Art sind \emph{forminvariant}\glslink{forminvar}.
+Forminvarianz bedeutet, dass die Lagrange-Gleichungen zweiter Art beim Übergang von Koordinaten $q_j$ zu neuen Koordinaten $Q_j(t, q)$ in ihrer Form erhalten bleiben:
+\begin{align*}
+	q_j \rightarrow Q_j(t, q) \quad&\text{und} \quad \mathcal{L}(q_j, \dot{q}_j, t) \rightarrow \mathcal{L'}(Q_j, \dot{Q}_j, t) \\
+				\frac{\D}{\D t} \frac{\partial \mathcal{L}}{\partial \dot{q}_j} - \frac{\partial \mathcal{L}}{\partial q_j} &= 0 \rightarrow  \frac{\D}{\D t} \frac{\partial \mathcal{L'}}{\partial \dot{Q}_j} - \frac{\partial \mathcal{L'}}{\partial Q_j}  = 0 \qquad j = 1 \ldots F\,.
+\end{align*}
+Diese Eigenschaft ist äußerst vorteilhaft, wenn man Probleme in nicht-kartesischen Koordinatensystemen oder in Nicht-Inertialsystemen behandeln will (\probref{bew_LagrangeII_a}).
+
+Wir führen jetzt noch den \emph{kanonischen} oder \emph{generalisierten Impuls}\index{Impuls!kanonischer} ein:
+\begin{align}
+	p_j = \frac{\partial \mathcal{L}}{\partial \dot{q}_j}\,.\label{eq:bew_Lagrange_II_f}
+\end{align}
+Wenn die Lagrange-Funktion\index{Lagrange-Funktion} $\mathcal{L}$ nicht von $q_j$ abhängt, dann ist der zugehörige kanonische Impuls $p_j$ eine Erhaltungsgröße und die zugehörige Koordinate ist eine \emph{zyklische} Koordinate\glslink{zykkoord}.
+Es ist bei Problemen oft vorteilhaft, gezielt nach zyklischen Koordinaten zu suchen, da die Erhaltungsgröße $p_j = \text{const}$ einer ersten Integration der Bewegungsgleichung entspricht.
+So führt die zyklische Koordinate $q_j$, die dem Drehwinkel um eine feste Achse entspricht, auf die Erhaltung des Drehimpulses, \vgl dazu auch \kap{bew_ZKP_NZKF}.\\
+Bevor wir auf Lösungsstrategien für die Lagrange-Gleichungen zweiter Art eingehen, wollen wir noch eine Betrachtung zur Energieerhaltung machen.
+Wir definieren zunächst die \emph{Hamilton\indexp{Hamilton, Sir William Rowan}\footnote{Sir William Rowan Hamilton (1805--1865) war ein irischer Mathematiker und Physiker und Royal Astronomer für Irland. 1835 gelang ihm eine Formulierung der Mechanik, die heute seinen Namen trägt und die fast 100 Jahre später wegweisend für den Übergang zur Quantenmechanik war. Im Rahmen dieses Buches können wir auf diese leider nicht eingehen. Wir verweisen auf die Literatur (\zb \cite{Simonyi2004, Greiner2004, Bartelmann2015, Kuypers2012}).}-Funktion}\index{Hamilton-Funktion}
+\begin{align}
+	\mathcal{H} = \sum\limits_{i} \dot{q}_i \frac{\partial \mathcal{L}}{\partial \dot{q}_i} -  \mathcal{L} =  \sum\limits_{i} p_i \dot{q}_i - \mathcal{L}\,. \label{eq:bew_Hamilton_Fkt}
+\end{align}
+Wie man leicht nachrechnen kann, ist für konservative Systeme,
+geschwindigkeitsunabhängige \pot{}e und skleronome Zwangsbedingungen
+die Hamilton-Funktion gleich der Gesamtenergie $E$ des Systems,
+weswegen für die Gesamtenergie eines Systems oft auch das Symbol
+$H$ verwendet wird.%
+\footnote{Wir werden auch in der Himmelsmechanik (Band II, Kapitel 3) der allgemeinen (historischen) Konvention folgend für die Gesamtenergie $H$ benutzen.}
+Wir wollen nun auch für Lagrange-Gleichungen zweiter Art eine \textit{Lösungsstrategie} aufzeigen.
+Diese gilt für holonome Zwangsbedingungen und konservative Kraftfelder.
+In den Beispielen \ref{bsp:bew_PerleDraht} und \ref{bsp:bew_Rollenpendel} zeigen wir das Vorgehen wiederum konkret.\\
+~
+
+\fbox{\parbox{0.95\textwidth}{
+\medskip
+\textbf{\textit{Lösungsstrategie für Lagrange-Gleichungen zweiter Art}}
+\begin{enumerate}
+	\item Man überlegt sich die aus den $Z_B$ holonomen Zwangsbedingungen verbleibenden $F = 3 N - Z_B $ Freiheitsgrade des Systems und ordnet jedem Freiheitsgrad eine generalisierte Koordinate $q_j$ zu.
+          Die explizite Form der Zwangsbedingungen $f_r(x_i,t)=0$ muss nicht unbedingt bekannt sein.
+	\item Man überprüft, dass die $q_j$ nicht durch Zwangsbedingungen eingeschränkt sind.
+          Zwischen den kartesischen Koordinaten $x_i$ und den $q_j$ besteht folgender Zusammenhang:
+		\[x_i =  x_i(t, q_1,q_2,\ldots, q_{F})\,.
+	\]
+	\item Man schreibt die Lagrange-Funktion $\mathcal{L} = T - U$ auf.
+	\item Man sucht nach zyklischen Koordinaten.
+          Die damit verbundenen Impulse $p_j$ sind Erhaltungsgrößen und damit erste Integrale der Bewegungsgleichungen.
+	\item Für die nichtzyklischen Koordinaten stelle man mit den Lagrange-Gleichungen zweiter Art \eqref{eq:bew_LagrangeGl_II} die Bewegungsgleichungen auf, die wiederum mit den üblichen Methoden (analytisch \bzw numerisch) zur Lösung von Differentialgleichungen gelöst werden können (siehe \kap{bew_einschub_DGL}). 
+\end{enumerate}
+}}
+\medskip
+
+\subsubsection{Lagrange-Gleichungen zweiter Art mit Reibung und externen Kräften}\label{kap:bew_Lagrange_II_R}
+
+
+\subparagraph{Generalisierte externe Kräfte}
+
+Bisher hatten wir bei der Herleitung der Lagrange-Gleichungen zweiter Art ausschließlich konservative Kräfte betrachtet und konnten damit die Kräfte allein durch die potentielle Energie $U$ beschreiben. Um auch nicht-konservative Kräfte im Lagrange-Formalismus berücksichtigen zu können, werden die Kräfte in die jeweilige Richtung der generalisierten Koordinaten \glq{}projiziert\grq. Diese Kräfte hatten wir schon als generalisierte Kräfte \eqref{eq:bew_Lagrange_II_b} eingeführt:
+\begin{align}
+	  Q_j &= \sum\limits_{i}^{3N} F_i \frac{\partial {x_i}}{\partial {q_j}}\,. \label{eq:bew_gen_Kraft_neu}
+\end{align}
+
+
+\subparagraph{Dissipationsfunktion}
+
+Die dissipativen Kräfte (also Kräfte, die dem System Energie entziehen) können ebenfalls als generalisierte Kraft im Lagrange-Formalismus berücksichtigt werden. Alternativ kann man eine \emph{Dissipationsfunktion} $U_\text{R}$ einführen. Wir starten dazu von den generalisierten Reibungskräften\index{Reibungskräfte!generalisierte} $F_{\text{R}j}$, die sich gemäß \eqref{eq:bew_Lagrange_II_b} \bzw \eqref{eq:bew_gen_Kraft_neu} über 
+\begin{align}
+	F_{\text{R}j} = \sum\limits_{k=1}^{N} \vec{F}_{\text{R}k} \cdot \frac{\partial \vec{r}_k}{\partial q_j} \label{eq:bew_gen_Reibungskraft}
+\end{align}
+aus den kartesischen Reibungskräften berechnen lassen. 
+Wir hatten in \kap{bew_newton_axioms} gesehen, dass in der Mechanik vielfach die Reibungskraft proportional zur Geschwindigkeit ist, sodass $\vec{F}_{\text{R}k} = - \beta_k(v_k) \vec{v}_k/v_k$ gilt.
+Für solche Kräfte kann ein \emph{Dissipations\potsuf{}}\index{Dissipationspotential}\index{Potential!Dissipationspotential} (auch Dissipationsfunktion\index{Dissipationsfunktion} genannt) definiert werden:
+\begin{align}
+	U_\text{R} &= \sum\limits_{k=1}^{N} \int\limits_{0}^{v_k} \beta_k(v_k') \:\D v_k' ~~~~\rightarrow~~~ F_{\text{R}j} = - \frac{\partial U_\text{R}}{\partial \dot{q}_j}\,.\label{eq:bew_Dissipationspotential}
+\end{align}
+Die negativen partiellen Ableitungen der Dissipationsfunktion nach den generalisierten Geschwindigkeiten müssen natürlich wieder die generalisierten Kräfte der dissipativen Kräfte ergeben.
+
+Verallgemeinert berechnet sich das Dissipationspotential für die verschiedenen Reibungsarten nach:
+\begin{itemize}
+    \item \textit{Gleitreibung}: $U_{\text{R}_1} = \mu\,F_\text{N}\,|\vec{v}_\text{rel}|^1$,\,mit $\mu$ als Gleitreibungskoeffizient, $F_\text{N}$ ist die Normalkraft,
+    \item \textit{Stokes-Reibung}\index{Stokes-Reibung}\index{Reibung!Stokes-}: $U_{\text{R}_2} = \frac{1}{2}\,\eta\,|\vec{v}_\text{rel}|^2$,\,mit $\eta$ als Dämpfungskonstante,
+    \item \textit{Newton-Reibung} (\zb Luftwiderstand): $U_{\text{R}_3} = \frac{1}{3}\,c_w\,|\vec{v}_\text{rel}|^3$,\, mit $c_w$ als Luftwiderstandsbeiwert.
+\end{itemize}
+
+Damit lauten bei Vorliegen externer (nicht-konservativer) Kräfte und eines Dissipations\potsuf{}s die Lagrange-Gleichungen zweiter Art:
+\begin{align}
+			&\frac{\D}{\D t} \frac{\partial \mathcal{L}}{\partial \dot{q}_j} &- \frac{\partial \mathcal{L}}{\partial q_j} + \frac{\partial U_\text{R}}{\partial \dot{q}_j} = Q_\text{j} ~~~~j= 1, \ldots, F\\
+    &\text{Hierin sind für ein System mit}~~ F ~~\text{Freiheitsgeraden:} \notag \\
+    q_j~~~&\text{die generalisierte Koordinaten,} \notag\\
+		\dot{q}_j~~~&\text{die generalisierte Geschwindigkeiten,}\notag \\
+    U_\text{R}~~~&\text{die Dissipationsfunktion und }\notag \\
+		Q_j~~~&\text{die generalisierte Kräfte}.\notag
+\end{align} \label{eq:bew_LagrangeGl_II_Reibung}
+
+\subsubsection{Anwendung des Lagrange-Formalismus auf Schwingungen}\index{Schwingung} \label{kap:bew_schwingung}
+
+Schwingungen sind Bewegungen um eine Gleichgewichtslage herum.
+Sie sind extrem wichtig in der Physik und besonders die harmonischen Schwingungen waren von grundlegender Bedeutung in der Weiterentwicklung der klassischen Mechanik hin zur Quantenmechanik.  Da sich fast alle Kräfte lokal linearisieren lassen, spielen harmonische Schwingungen beispielsweise in der Akustik, der Festkörper- und Quantenphysik und auch der Spektroskopie eine große Rolle. 
+Wir wollen uns zunächst auf Schwingungen mit einem Freiheitsgrad beschränken.
+Der Lagrange-Formalismus lässt sich hierbei vorteilhaft anwenden.
+Wir werden diesen dann auch auf mehrere Freiheitsgrade und Systeme von mehreren schwingenden Massepunkten erweitern.
+In diesem Zusammenhang werden wir annehmen, dass alle Teilchen nur unter der Wirkung rein konservativer Kräfte liegen.\\
+Dabei gehen wir direkt zu einer generalisierten Koordinate $q$ über und untersuchen nun die spezielle Situation, dass der Ort $q$ des Teilchens nur wenig von einer stabilen Gleichgewichtslage $q_0$ abweicht.
+\emph{Gleichgewicht}\index{Gleichgewicht} in der Position $q_0$ bedeutet, dass dort die Summe aller auf den Massepunkt wirkenden (generalisierten) Kräfte gleich Null ist.
+\emph{Stabilität}\index{Stabilität} bedeutet, dass für kleine Auslenkungen $q-q_0$ und geringe Impulse rücktreibende Kräfte wirken, die ein unbegrenztes Anwachsen der Auslenkung verhindern.
+\begin{align*}
+	F = -\frac{\partial U}{\partial x} 
+\end{align*}
+Das \pot{} kann im Allgemeinen eine beliebige Gestalt annehmen.
+In vielen Fällen besitzt das \pot{} jedoch ein lokales Minimum bei $q_0$ (dem Ort der Gleichgewichtslage).
+Wir entwickeln daher das \potz{} um das Minimum bei $q_0$ und erhalten:
+\begin{align}
+	U = U(q_0) + \frac{\d U}{\d q}\bigg|_{q_0}\cdot(q-q_0) + \frac{1}{2} \frac{\d^2 U}{\d q^2}\bigg|_{q_0}\cdot(q-q_0)^2 + \sum\limits_{k=3}^\infty \frac{1}{k!} \frac{\d^k U}{\d q^k}\bigg|_{q_0}\cdot(q-q_0)^k \label{eq:bew_Schwingung_a}
+\end{align}
+Als konstanter Wert des \potz{}s ist der erste Term irrelevant,
+Der zweite Term ist Null, da das \potz{} um sein Minimum entwickelt wurde.
+In vielen Anwendungen spielt bei kleinen Auslenkungen nur der quadratische Term in $q$ eine Rolle,  alle weiteren Terme werden ignoriert.
+Dies führt auf das \pot{} einer \emph{harmonischen} Schwingung\index{Schwingung!harmonische}.
+Bei größeren Auslenkungen muss das \potz{} mit weiteren Termen der Entwicklung \eqref{eq:bew_Schwingung_a} berücksichtigt werden, was auf \emph{anharmonische	}\index{Schwingung!harmonische} Schwingungen führt.\\
+Für die Aufstellung der Lagrange-Funktion benötigen wir noch die kinetische Energie, die definiert ist als
+\begin{align*}
+T &= \frac{1}{2}m \sum\limits_{i}^{3}{\dot{x}_i{}}^2 = \frac{1}{2} m \sum\limits_{i}^{3}\ \lk \sum\limits_{j}^{F} \frac{\partial x_i}{\partial q_j} \dot{q} \rk ^2 \,.
+\end{align*}
+Für eindimensionale Bewegungen mit nur einer generalisierten Koordinate heißt das:
+\begin{align*}
+	T &= \frac{1}{2}m \dot{x}^2 = \frac{1}{2} m \,  \dot{q}^2 \lk \frac{\partial x}{\partial q}\rk^2 =\: \frac{1}{2} m \,\dot{q}^2 \,h(q) \,.
+\end{align*}
+Den Ausdruck $h(q) = \lk\frac{\partial x}{\partial q}\rk ^2$ kann man ebenfalls um $q_0$ entwickeln und erhält
+\begin{align}
+	 T(q,\dot{q}) = \frac{m \dot{q}^2}{2} \lek h(q_0) + \sum\limits_{k=1}^\infty \frac{1}{k!} \frac{\d^k h(q)}{\d q^k}\bigg|_{q_0}\,(q-q_0)^k  \rek \,. \label{eq:bew_Schwingung_b}
+\end{align}
+Da der Vorfaktor bereits von zweiter Ordnung in $\dot{q}$ ist, muss bei geringen Auslenkungen in der Reihenentwicklung von $h(q)$ nur der konstante Beitrag berücksichtigt werden, vorausgesetzt $\dot{q}$ und $q$ sind von der gleichen Größenordnung, was bei kleinen Schwingungsamplituden der Fall ist.
+Im diesem Grenzfall lautet die Lagrange-Funktion
+\begin{align}
+\mathcal{L} = T(q,\dot{q}) - U(q) = \frac{\tilde{m}}{2}\dot{q}^2 - \frac{1}{2} \frac{\partial^2 U}{\partial q^2}\bigg|_{q_0}\, q^2 \,,\label{eq:bew_Schwingung_c}
+\end{align}
+wobei wir $\tilde{m} = h(q_0) m$ benutzt haben.
+Das ist die Schwingungsgleichung für eine harmonische Schwingung wie beim Federpendel, was unmittelbar einsichtig ist, wenn man $x=q$ setzt. \\
+
+Für anharmonische Schwingungen\index{Schwingung!anharmonische} ergibt sich die Lagrange-Funktion aus der Mitnahme weiterer Terme von \eqref{eq:bew_Schwingung_a} und \eqref{eq:bew_Schwingung_b}.
+Wenn wir ein symmetrisches \pot{} um $q_0$ annehmen, gilt in der nächsten Näherung:
+\begin{align}
+	\mathcal{L} = T - U & = \frac{m}{2}\dot{q}^2 \lek h(q_0) + (q-q_0) \frac{\d h(q)}{\d q}\bigg|_{q_0} + \frac{1}{2} \,(q-q_0)^2 \frac{\d^2 h(q)}{\d q^2}\bigg|_{q_0} \rek \nonumber \\
+	          & \quad - \frac{1}{2} (q-q_0)^2 \lek \frac{\d^2 U}{\d q^2}\bigg|_{q_0}  -  \frac{1}{12} \frac{\d^4 U}{\d q^4}\bigg|_{q_0}\, (q-q_0)^2 \rek \,. \label{eq:bew_Schwingung_d}
+\end{align}
+Die aus \eqref{eq:bew_Schwingung_c} über die Lagrange-Gleichungen abgeleitete Schwingungsgleichung\footnote{Dies ist eine lineare Differentialgleichung mit konstanten Koeffizienten, weswegen man auch den Näherungsübergang zu \eqref{eq:bew_Schwingung_c} auch als Linearisierung\index{Linearisierung} bezeichnet.} für die generalisierte Koordinate im Grenzfall geringer Schwingungen lautet
+\begin{align}
+	  \ddot{q} + \omega_0^2 \,q \:=\: 0 \,. \label{eq:bew_Schwingung01a}
+\end{align}
+Für beliebig starke Schwingungen gilt allgemein:
+\begin{align}
+	  m \frac{\D}{\D t}\lk h(q) \,\dot{q} \rk - \frac{m \dot{q}^2}{2} \frac{\d h}{\d q} + \frac{\d U}{\d q} = 0 \,, \label{eq:bew_Schwingung01b}
+\end{align}
+worin $ h(q)$ eine Funktion allein von $q$ ist, die sich gemäß \eqref{eq:bew_Schwingung_b} berechnen lässt.
+
+\subparagraph{\textbf{Schwingungen und Dissipation}} 
+
+In vielen Anwendungen treten bei Schwingungen dissipative Kräfte auf, die zu einer Dämpfung der Schwingung führen.
+Wir wollen den Einfluss einer solchen Dämpfung im Folgenden mit berücksichtigen und dabei zunächst annehmen, dass die generalisierte dissipative Kraft linear in $\dot{q}_j$ ist, was \zb für die Stokes-Reibung \eqref{eq:bew_StokesReibung} gilt.
+Wir könnten im Lagrange-Formalismus starten und das generalisierte \pot{} der Reibung berechnen.
+Der Einfachheit halber gehen wir aber direkt von den Bewegungsgleichungen \eqref{eq:bew_Schwingung01a} \bzw \eqref{eq:bew_Schwingung01b} aus und addieren eine in $\dot{q}_j$ lineare Reibungskraft:
+\begin{align}
+	\ddot{q} + \beta \dot{q} + \omega_0^2 \,q \:=\: 0 \,.\label{eq:bew_Schwingung02}
+\end{align}
+Dieser lineare Fall ist in vielen Fällen eine gute Beschreibung der Realität. 
+Bei \eqref{eq:bew_Schwingung02} handelt es sich ebenfalls um eine gewöhnliche lineare homogene DGL zweiter Ordnung.
+Für derartige Probleme kann man den von Euler gefundenen Exponentialansatz mit komplexen Zahlen 
+\begin{align}
+	Q(t) = \mathrm{e}^{\mathrm{i} \omega t} \label{eq:bew_Schwingung03}
+\end{align}
+verwenden und die allgemeine Lösung rasch erhalten: 
+\begin{align}
+  \lk -\omega^2 + \mathrm{i} \beta \omega + \omega_0^2 \rk \mathrm{e}^{\mathrm{i} \omega t}\,. \label{eq:bew_Schwingung04}
+\end{align}
+Die Bewegungsgleichung kann nur erfüllt werden, wenn der Term in der Klammer verschwindet.
+Reibungsterme, die quadratisch in $\dot{q}_j$ sind, machen die mathematische Behandlung wesentlich anspruchsvoller, da die Bewegungsgleichung dann nicht mehr linear ist.
+In der Regel werden wir diese dann numerisch lösen müssen.
+
+
+\subsubsection{Vergleichende Darstellung der Lösung der Bewegungsgleichung nach den Lagrange-Gleichungen erster und zweiter Art} \label{kap:bew_Lagrange_GlIV}
+
+Wir wollen im Folgenden zwei instruktive Beispiele zur Anwendung der Lagrange-Gleichungen erster und zweiter Art zeigen.
+Die Beispiele folgen den in den Kapiteln \ref{kap:bew_Lagrange_I} und \ref{kap:bew_Lagrange_II} gezeigten Lösungsstrategien und dienen als guter Einstieg in die Übungen.
+
+\begin{figure}
+\includegraphics[width=\columnwidth]{RollenPendel.pdf}% 
+\caption[Beispiele zum Lagrange-Formalismus.] {Beispiele zum Lagrange-Formalismus. \fa Rotierende Scheibe mit gleitender Perle auf Draht und \fb Rollenpendel.}
+\label{abb:bew_Rollenpendel}
+\end{figure}
+
+\subparagraph{\textbf{Rotierende Scheibe mit gleitender Perle auf Draht}} 
+
+Als erstes Beispiel wollen wir anhand eines Standardbeispiels aus vielen Lehrbüchern den Vergleich der beiden Methoden darstellen.
+Wir haben hier ein Problem eines einzelnen Massepunktes unter Zwangskräften und Scheinkräften, da ein Nicht-Inertialsystem vorliegt (siehe \figref{bew_Rollenpendel}a). 
+
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{Zwangsbedingungen - Beispiel rotierende Scheibe mit gleitender Perle auf Draht}
+\smallskip
+\begin{itemize}
+	\item \emph{Lösung mittels der Lagrange-Gleichungen erster Art}\\
+	Wir betrachten nur die $x$-$y$-Ebene und verwenden Polarkoordinaten (Zylinderkoordinaten mit $z=0$).
+        Dann gibt es nur eine Zwangsbedingung und nur einen Lagrange-Multiplikator $\lambda$:
+			\[ f_1(\varphi) = \varphi - \omega t = 0 \]
+Die Lagrange-Gleichung erster Art lautet dann
+	\[m \ddot{\vec{r}} = \lambda \: \gradv f\,.
+\]
+Mit den Beziehungen für die Beschleunigung und den Gradienten für Zylinderkoordinaten können wir schreiben
+\begin{align}
+		m \lk \ddot{\varrho} - \varrho \dot{\varphi}^2 \rk \vec{e}_\varrho + m \lk \varrho \ddot{\varphi} + 2 \dot{\varrho} \dot{\varphi} \rk \vec{e}_\varphi = \lambda \frac{\partial f}{\partial\varrho} \vec{e}_\varrho + \lambda\frac{1}{\varrho}\frac{\partial f}{\partial\varphi} \vec{e}_\varphi\,. \label{eq:bew_PerleDraht_1}
+\end{align}
+Da $\partial f/\partial\varrho = 0$, $\partial f/\partial\varphi = 1$ und $\ddot{f} = \ddot{\varphi} = 0$, folgen wegen der notwendigen Gleichheit der Koeffizienten vor den Einheitsvektoren in \eqref{eq:bew_PerleDraht_1}
+\begin{align}
+\lambda &= 2 m \varrho \dot{\varrho} \dot{\varphi}\,, \nonumber \\
+m \lk \ddot{\varrho} - \varrho \dot{\varphi}^2 \rk &= 0 \quad \text{und} \quad m \varrho \ddot{\varphi} = 0\,.\label{eq:bew_PerleDraht_2}
+\end{align}
+Daraus ergibt sich wegen $\dot{f} = \dot{\varphi} - \omega = 0$ die Bewegungsgleichung für $\varrho$
+	\[\ddot{\varrho} - \omega^2 \varrho = 0\,,
+\]
+deren Lösung 
+\begin{align}
+        \varrho (t) = A \mathrm{e}^{+\omega t} + B \mathrm{e}^{-\omega t} \label{eq:bew_PerleDraht_3}
+\end{align}
+lautet, wobei sich $A$ und $B$ aus den Anfangsbedingungen ergeben.
+Die Perle wird sich für $A \neq 0$ also mit der Zeit zu immer größeren Radien bewegen.
+Die Zwangskraft 
+	\[\vec{Z} = \lambda \:\vec{\nabla} f = 2\: m \:\dot{\varrho}\: \omega \: \vec{e}_\varphi
+\]
+leistet wegen \eqref{eq:bew_Lagrange_IE} eine Arbeit von
+	\[\frac{\partial T}{\partial t} = - \lambda \frac{\partial f}{\partial t} = 2\: m \varrho \dot{\varrho} \omega^2 
+\]
+am System.\\
+	\item \emph{Lösung mittels der Lagrange-Gleichungen zweiter Art}\\
+	Die Lagrange-Funktion hat wegen der Zwangsbedingung nur die generalisierte Koordinate $\varrho$ und lautet in Zylinderkoordinaten mit $z=0$
+\begin{align}
+		\mathcal{L} = T = \frac{m}{2} \lk \dot{\varrho}^2 + \varrho^2 \dot{\varphi}^2 \rk\,.\label{eq:bew_PerleDraht_4}
+\end{align}
+Die Lagrange-Gleichungen ergeben natürlich wieder \eqref{eq:bew_PerleDraht_2}.
+Man sieht, wie einfach und elegant der Formalismus mit der Lagrange-Gleichung zweiter Art ist.
+In \probref{bew_LagrangeII_b} werden wir das Problem noch etwas ausführlicher untersuchen und auch auf Fälle mit Reibung und veränderlicher Drehzahl der Scheibe erweitern.
+Auch sei hier darauf hingewiesen, dass die Energie des Systems nicht erhalten ist, denn die Zwangsbedingung ist ja skleronom, mithin leistet die Zwangskraft keine Arbeit.
+\end{itemize}
+\label{bsp:bew_PerleDraht}
+\end{example}
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subparagraph{\textbf{Rollenpendel}} 
+
+Als zweites Beispiel wollen wir anhand eines weiteren Standardbeispiels aus den Lehrbüchern wiederum den Vergleich der beiden Methoden darstellen.
+Das Rollenpendel (\figref{bew_Rollenpendel}b) besteht aus zwei gekoppelten Massepunkten.
+Die Masse $m_1$ kann sich nur auf einer Schiene entlang der $x$-Achse (reibungsfrei) bewegen.
+Die Masse $m_2$ ist starr über einen masselosen Stab mit der Masse $m_1$ verbunden und kann sich nur in der $x$-$z$-Ebene bewegen.
+Es liegt hier also ein Problem eines Systems von zwei Massepunkten mit Zwangskräften (im Inertialsystem) vor. 
+
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{\textbf{Beispiel für Zwangsbedingungen - Das Rollenpendel}}
+\smallskip
+\begin{itemize}
+	\item \emph{Lösung mittels der Lagrange-Gleichungen erster Art}\\ 
+	Hier gehen wir einen leicht veränderten Weg, indem wir zur Herleitung der Bewegungsgleichungen die Lagrange-Funktion benutzen.
+        Wir haben vier Koordinaten (in der $x$-$z$-Ebene) und zwei Zwangsbedingungen.
+        Als Koordinaten für $m_1$ wählen wir $x_1, z_1$ und für $m_2$ sinnvollerweise die Polarkoordinaten $r, \varphi$.
+        Dann gelten folgende Zwangsbedingungen und Beziehungen mit $l$ als fester Pendellänge: 
+		\[ f_1(x_1, z_1; r, \varphi) = z_1 = 0  \quad\text{und}\quad \frac{\partial f_1}{\partial z_1} = 1 \; , \]
+		\[ f_2(x_1, z_1; r, \varphi) = r - l = 0 \quad\text{und}\quad \frac{\partial f_2}{\partial r} = 1 \; . \]
+	Alle anderen Ableitungen von $f_r$ verschwinden.
+        Wir bilden jetzt die Lagrange-Funktion $\mathcal{L}'(x_1,z_1,\dot{x}_1, \dot{z}_1,r, \varphi, \dot{r}, \dot{\varphi})$ und bestimmen aus dieser die Bewegungsgleichungen. 
+		\[\mathcal{L}'= \frac{m_1}{2}\lk \dot{x}_1^2 +\dot{z}_1^2 \rk + \frac{m_2}{2}\lk \dot{x}_2^2 +\dot{z}_2^2 \rk - m_1 \:g\: z_1 \:- \:m_2 \:g \:z_2
+	\]
+	Die Lagrange-Funktion enthält noch keine Zwangsbedingungen.
+        Wir brauchen noch die $x_2$ und $z_2$ als Funktionen von $r$ und $\varphi$.
+        Man liest aus der \figref{bew_Rollenpendel}b mit $M = m_1 + m_2$ ab:
+		\begin{align*}
+		  x_2 &= x_1 + r \sin\varphi  ~~\rightarrow~~\dot{x}_2 = \dot{x}_1 + \dot{r} \sin\varphi + r \dot{\varphi} \cos\varphi \\
+		  z_2 &= z_1 - r \cos\varphi  ~~\rightarrow~~\dot{z}_2 = \dot{z}_1 - \dot{r} \cos\varphi + r \dot{\varphi} \sin\varphi \\
+			\rightarrow \mathcal{L}' &= \frac{M}{2} \lek \dot{x}_1^2 + \dot{z}_1^2 \rek  \\
+						 &+ \frac{m_2}{2} \lek \dot{r}^2 + \dot{\varphi}^2 r^2 + 2 \dot{r} \lk \dot{x}_1 \sin\varphi - \dot{z}_1 \cos\varphi \rk + 2 r\dot{\varphi} \lk \dot{x}_1 \cos\varphi + \dot{z}_1 \sin\varphi \rk \rek \\
+						 &- m_1 \:g\: z_1 - m_2 \:g \lk z_1 - r\cos\varphi \rk\,.
+		\end{align*}
+		Auf dem üblichen Weg über die Lagrange-Gleichungen zweiter Art
+                bestimmt man die Bewegungsgleichungen, in die man
+                erst jetzt die Zwangsbedingungen und die Lagrange-Multiplikatoren einsetzt,
+                von denen nur für $z_1 (\lambda_1)$ und $r (\lambda_2)$
+                die Parameter $\lambda_i$
+                von 0 verschieden sind.
+                Es ergeben sich dann vier Bewegungsgleichungen.
+                Die Gleichungen für $\ddot{x}_1$ und $\ddot{\varphi}$ enthalten logischerweise keine Zwangskräfte:
+		\begin{align}
+			&M \ddot{x}_1 + m_2 \: l \lk \ddot{\varphi} \cos\varphi \: - \dot{\varphi}^2 \sin\varphi \rk = 0\,, \label{eq:bew_RollPendel_1} \\
+			&m_2 \: l \lk l\: \ddot{\varphi} +  \ddot{x}_1 \cos\varphi + g \sin\varphi \rk = 0\,. \label{eq:bew_RollPendel_2}
+		\end{align}
+Diese sind im Prinzip nach $x_1(t)$ und $\varphi(t)$ -- wenn auch nur numerisch -- auflösbar, wobei $x_1(t)$ eine zyklische Koordinate ist und für $\varphi(t)$ zur Berechnung der Energieerhaltungssatz benutzt werden kann, da ja holonome Zwangsbedingungen vorliegen.
+Die beiden anderen Bewegungsgleichungen lauten
+		\begin{align}
+                  &m_2 \: l \lk \ddot{\varphi} \sin\varphi + \dot{\varphi}^2 \cos\varphi \rk + M \: g = \lambda_1 = Z_\text{Schiene}\text{ und}\label{eq:bew_RollPendel_3} \\
+                  &m_2 \lk \ddot{x}_1 \sin\varphi - l \: \dot{\varphi}^2 - g \cos\varphi \rk = \lambda_2 = -Z_\text{Stange}\,. \label{eq:bew_RollPendel_4}
+		\end{align}
+Die beiden Zwangskräfte sind aus den Lösungen für $x_1(t)$ und $\varphi(t)$ auch mit der Erweiterung für Reibungskräfte berechenbar (\probref{bew_LagrangeII_b}).
+Man kann noch, indem man \eqref{eq:bew_RollPendel_2} in \eqref{eq:bew_RollPendel_3} einsetzt, einen Zusammenhang zwischen der Auflagekraft auf der Schiene und der Zugkraft in der Stange herstellen,
+	\[ Z_\text{Schiene} = m_1 \: g + Z_\text{Stange} \cos\varphi\,,
+\]
+was sofort einsichtig ist.
+Wir werden gleich sehen, dass die Lagrange-Gleichungen zweiter Art viel einfacher zu handhaben sind.
+Der Vollständigkeit halber sei noch darauf hingewiesen, dass man natürlich die Bewegungsgleichungen \eqref{eq:bew_RollPendel_1}--\eqref{eq:bew_RollPendel_4} auch ohne die Lagrange-Funktion $\mathcal{L}'$ aufstellen kann.
+Entsprechend \kap{bew_Lagrange_I} bildet man zunächst die partiellen Ableitungen $\partial f_r/ \partial x_i$ sowie die zeitlichen Ableitungen der Zwangsbedingungen $\dot{f}_r$ und $\ddot{f}_r$ und berechnet die Lagrange-Multiplikatoren $\lambda_r(t, x_i, \dot{x}_i)$, die man in die Bewegungsgleichungen einsetzt.
+Dem Leser ist dieses Vorgehen als Übung empfohlen.
+	\item \emph{Lösung mittels der Lagrange-Gleichungen zweiter Art}\\
+	Mit den Zwangsbedingungen $f_1(x_i, z_i) = z_1 = 0$ und $f_2(x_i, z_i) = (x_1 -x_2)^2 + z_2^2 - l^2 = 0 $ und den Beziehungen $ x_2 = x_1 + l\sin\varphi $ \bzw $ z_2 = l\cos\varphi$ schreiben wir die Lagrange-Funktion $\mathcal{L}$ in den generalisierten Koordinaten $q_1 = x_1$ und $q_2 = \varphi$ ($x$-$z$-Ebene) auf:
+\begin{align*}
+	T & = \frac{m_1}{2} \dot{x}_1^2  + \frac{m_2}{2} \lek \dot{x}_2^2 + \dot{z}_2^2 \rek \\
+			& = \frac{M}{2} \dot{x}_1^2 + \frac{m_2}{2} \lk \dot{\varphi}^2 l^2 + 2 l\:\dot{x}_1 \dot{\varphi} \cos\varphi \rk \quad\text{und} \quad U = - m_2 \: g \: l \: \cos\varphi 
+\end{align*}
+\begin{align}
+		\mathcal{L} &= T - U = \frac{M}{2} \dot{x}_1^2 + \frac{m_2}{2} \lk \dot{\varphi}^2 l^2 + 2 l \: \dot{x}_1 \dot{\varphi} \cos\varphi \rk + m_2 \: g \: l \cos\varphi \,.
+\label{eq:bew_RollPendel_4a}
+\end{align}
+In $\mathcal{L}$ sind im Gegensatz zu $\mathcal{L}'$ beim Vorgehen nach der Lagrange-Gleichung erster Art die Zwangsbedingungen durch die entsprechende Verwendung der generalisierten Koordinaten bereits berücksichtigt.
+Die Struktur von $\mathcal{L}$ zeigt bereits, dass es sich um ein verkoppeltes, und wie wir gleich noch deutlicher sehen werden, nichtlineares Problem handelt.
+Wir suchen nach einer zyklischen Koordinate und finden wegen
+\begin{align}
+	\frac{\D}{\D t}\frac{\partial \mathcal{L}}{\partial \dot{x}_1} = \frac{\D}{\D t} \underbrace{\lek  M \dot{x}_1 + m_2 l \: \dot{\varphi} \cos\varphi \rek}_{P_\text{x}} = 0 \label{eq:bew_RollPendel_5}
+\end{align}
+$x_1$ als zyklische Koordinate, womit wir auch $P_\text{x}$ als den Gesamtimpuls bezüglich der $x$-Achse definieren können.
+Damit haben wir auch ein erstes Bewegungsintegral gewonnen:
+\begin{align}
+	\dot{x}_1 = \frac{P_\text{x}}{M} - \frac{m_2}{M} l \: \dot{\varphi} \cos\varphi\,. \label{eq:bew_RollPendel_6}
+\end{align}
+Die zweite Lagrange-Gleichung bezüglich $\varphi$ ergibt:
+\begin{align}
+	l\:\ddot{\varphi} + g \sin\varphi + \ddot{x}_1 \cos\varphi = 0\,. \label{eq:bew_RollPendel_7}
+\end{align}
+Wir leiten \eqref{eq:bew_RollPendel_6} nach der Zeit ab, setzen das Ergebnis in \eqref{eq:bew_RollPendel_7} ein und erhalten schließlich:
+\begin{align}
+	\ddot{\varphi} \lk  1 - \frac{m_2}{M} \rk + \dot{\varphi}^2 \frac{m_2}{M} \sin\varphi \: \cos\varphi + \frac{g}{l} \sin\varphi = 0\,. \label{eq:bew_RollPendel_8}
+\end{align}
+Dies ist eine nichtlineare Differentialgleichung zweiter Ordnung, die nicht analytisch gelöst werden kann.
+Für $M \gg m_2$ und kleine $\varphi$ geht \eqref{eq:bew_RollPendel_8} in die bekannte Schwingungsgleichung für das im Punkt $x_1, z_1$ aufgehängte mathematische Pendel über.
+Wir geben der Vollständigkeit halber auch die durch Integration von \eqref{eq:bew_RollPendel_6} gewonnene Lösung für $x_1(t)$ an:
+\begin{align}
+	{x}_1(t) = {x}_1(0) + \frac{P_\text{x}}{M} \:t - \frac{m_2}{M}\: l \: \lk \sin\varphi(t) - \sin\varphi(0) \rk\,. \label{eq:bew_RollPendel_9}
+\end{align}
+In \probref{bew_LagrangeII_b} werden wir die Differentialgleichung \eqref{eq:bew_RollPendel_8} numerisch lösen und dabei auch die Reibung berücksichtigen.
+Wir werden sehen, dass das Rollpendel nicht chaotisch\index{Chaos} ist, obwohl eine nichtlineare Kopplung vorliegt, weil die Anzahl der Freiheitsgrade gleich der Anzahl der Erhaltungsgrößen ($P_\text{x}, E$) ist.
+\end{itemize}
+\label{bsp:bew_Rollenpendel}
+\end{example}
+
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subparagraph{\textbf{Zusammenfassung}} 
+
+Die Bedeutung des Lagrange-Formalismus kann nicht hoch genug bewertet werden. 
+Insbesondere die Lagrange-Gleichungen zweiter Art sind wegen ihrer Einfachheit und Forminvarianz oft am besten zur Lösung komplexer mechanischer Probleme mit Zwangsbedingungen geeignet.
+Über die zyklischen Koordinaten sind die Erhaltungsgrößen des Systems außerdem sehr schnell zu ermitteln.
+Wir wollen aber nicht unerwähnt lassen, dass in der Praxis bei Systemen mit sehr vielen Freiheitsgraden die zahlreichen Ableitungen in Gleichung \eqref{eq:bew_LagrangeGl_II} einen beträchtlichen Aufwand bedeuten können.
+Hier findet dann das Prinzip der virtuellen Leistung, auch Prinzip von Jourdain\footnote{Philip Edward Bertrand Jourdain\indexp{Jourdain, Philip Edward Bertrand} (1879--1919) war ein englischer Mathematiker, der als Experte für Newtons Werke galt.},
+Anwendung, auf welches wir hier aus Platzgründen nicht eingehen können.
+Wir verweisen den interessierten Leser auf die Literatur (\zb \cite{Samin2013, Pfeiffer2014}).
+Für den Physiker sind die Lagrange-Gleichungen zweiter Art vor allem deswegen interessant, weil sie ihm den direktesten Zugang zu den Bewegungsgleichungen liefern, ohne dass er die Zwangskräfte berechnen muss.
+In den Ingenieurswissenschaften ist man wiederum häufig an den Kräften und Drehmomenten (auch hervorgerufen durch Zwangskräfte) interessiert. 
+Hier verwendet man dann direkt die Newtonschen Bewegungsgleichungen oder besser die Lagrange-Gleichungen erster Art, die für Zwangsbedingungen in differentieller Form gelten.
+Über die Lagrange-Multiplikatoren ist dann eine direkte Bestimmung der Zwangskräfte möglich.
+Alternativ kann man das Prinzip\index{Prinzip!von d'Alembert} von d'Alembert\footnote{Jean-Baptiste le Rond d'Alembert\indexp{Alembert, Jean-Baptiste le Rond@d'Alembert, Jean-Baptiste le Rond} (1717--1783) war ein französischer Mathematiker, Physiker und Philosoph.
+Er war auch einer der Herausgeber der \emph{Encyclopédie}.} anwenden, welches in der historischen Entwicklung der Mechanik eine wichtige Rolle gespielt hat \cite{Simonyi2004}, das wir aber hier ausgespart haben.
+Als eigenständiges Axiom besagt es, dass die Zwangskräfte bei virtuellen Verschiebungen keine Arbeit leisten.
+Dieses Prinzip ist besonders vorteilhaft bei der Untersuchung von statischen Gleichgewichtslagen.
+Da wir uns aber hier auf Bewegungen konzentrieren wollen, verweisen wir zur Anwendung des d'Alembert-Prinzips auf die umfangreiche Literatur (\zb \cite{Kuypers2012, Reineker2006, BergmannSchaefer1998, Hibbeler2005}). \\
+
+
+
+

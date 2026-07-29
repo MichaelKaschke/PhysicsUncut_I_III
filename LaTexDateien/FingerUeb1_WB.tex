@@ -1,0 +1,101 @@
+\input{headerAB}
+
+\thispagestyle{plain}%\mp
+\restoregeometry 
+\begin{textblock}{3}(0,0)
+\includegraphics{BuchtitelseiteWB1.pdf}
+\end{textblock}
+\leavevmode
+\newpage 
+\thispagestyle{empty}
+\quad 
+\newpage
+\pagestyle{fancy}
+
+\author{Michael Kaschke und Holger Cartarius\\ \\
+unter Mitwirkung von Ulrich Potthoff }
+\title{Fingerübungen der Physik\\ \\
+Band I \\ \\ Mechanik \\ \\ Workbook\\}
+
+\subtitle{Ein Übungsbuch zu im Studium selten behandelten Kapiteln der Physik mit ausführlich dargestellten Problemen und \matlab-Programmen.}
+\smallskip
+\maketitle
+
+\begin{dedication}
+\;\;\;Für alle Studenten und Studentinnen, die uns mit ihren neugierigen Fragen immer wieder
+zeigen, dass es in der Physik auch in den kleinsten Nischen ganz viel zu entdecken gibt und \\
+für alle, die Freude an der Schönheit und der großartigen Vielfalt der Physik gefunden haben oder vielleicht auch mit Hilfe dieses Buches für sich entdecken mögen.\\
+\textsc{Michael Kaschke und Holger Cartarius}\\ 
+\medskip
+\medskip
+\medskip
+Für meine Eltern Ursula und Josef Kaschke, die immer Wert auf gute Bildung legten,\\%und mich in der Wahl meines Berufes stets bestärkten,\\ 
+und meine  Frau Sylvia, die mir mit unendlicher Geduld und tatkräftiger Unterstützung bei diesem Buch zur Seite stand.\\
+\textsc{Michael Kaschke}\\
+\medskip
+\medskip
+\medskip
+Für meine Eltern Hildegard und Rainer Cartarius, die mich jederzeit auf meinem Weg durch das Studium und die Anfänge in der Wissenschaft unterstützten.\\
+\textsc{Holger Cartarius}
+\end{dedication}
+
+\frontmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%>
+
+\clearpage
+\include{vorwort1} 
+\begingroup
+\let\cleardoublepage\relax
+\include{compphys}
+\endgroup
+
+\pdfbookmark[1]{Inhaltsverzeichnis}{toc}
+\tableofcontents
+
+\mainmatter
+
+\newpage
+\phantomsection
+\addcontentsline{toc}{part}{Band I - Mechanik}
+\thispagestyle{empty}
+  \begin{flushright}
+    \LARGE
+    \textbf{Band I - Mechanik }
+  \end{flushright}
+  \vspace*{\fill}
+
+%% Achtung diese Zeile auch in bewB aktivieren 
+\addtocontents{toc}{\protect\setcounter{tocdepth}{3}}% alles zeigen bei WorkBook
+%%
+\include{bewAB}
+%\newpage 
+%\thispagestyle{empty}
+%\quad 
+%\newpage
+\include{kontmechAB}
+
+\clearpage
+\newpage
+\fancyhf{}
+\pagestyle{fancy}
+\fancyhead[LE,RO]{\thepage}
+
+\include{solmanUeb1WB}   
+
+\newpage
+\thispagestyle{empty}
+\quad 
+
+\newpage 
+\thispagestyle{empty}
+%\thispagestyle{plain}%\mp
+\restoregeometry 
+\begin{textblock}{3}(0,0)
+\includegraphics{BuchrueckseiteWB1.pdf}
+\end{textblock}
+%\leavevmode
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{footer} 
+
+

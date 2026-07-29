@@ -1,0 +1,59 @@
+\input{headerAB}
+
+\thispagestyle{plain}%\mp
+\restoregeometry 
+\begin{textblock}{3}(0,0)
+\includegraphics{BuchtitelseiteAB2.pdf}
+\end{textblock}
+\leavevmode
+\newpage 
+\thispagestyle{empty}
+\quad 
+\newpage
+\pagestyle{fancy}
+
+\author{Michael Kaschke und Holger Cartarius \\ \\
+unter Mitwirkung von Ulrich Potthoff}
+\title{Fingerübungen der Physik\\ \\
+Band II \\ \\ Himmelsmechanik - Astrodynamik \\ \\ Arbeitsbuch mit Übungen und Lösungsbeispielen}
+
+\subtitle{Ein Übungsbuch zu im Studium selten behandelten Kapiteln der Physik mit ausführlich dargestellten Problemen und \matlab-Programmen.}
+\smallskip
+\maketitle
+
+\frontmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%>
+
+\clearpage
+
+\pdfbookmark[1]{Inhaltsverzeichnis}{toc}
+\tableofcontents
+
+\mainmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%>
+
+%== pdf cut here begin == %%%%%%%%
+
+\setcounter{chapter}{2}
+%% Achtung diese Zeile auch in hmAB aktivieren 
+\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}% nichts zeigen bei ArbeitsbuchBook
+%%
+\include{hmAB}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}% nichts zeigen bei ArbeitsbuchBook
+\include{adynAB}
+
+%== pdf cut here end == %%%%%%%%
+
+% Hier eigentliches pdf-Arbeitsbuch
+
+\clearpage
+\newpage
+\fancyhf{}
+\pagestyle{fancy}
+\fancyhead[LE,RO]{\thepage}
+
+\include{solmanUeb2AB}   
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{footer} 
+

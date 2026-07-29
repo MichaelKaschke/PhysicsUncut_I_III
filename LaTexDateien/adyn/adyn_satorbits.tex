@@ -1,0 +1,416 @@
+\section{Umlaufbahnen von künstlichen Himmelskörpern}\label{kap:adyn_orbits}
+
+Im vorherigen Kapitel hatten wir die Geschwindigkeitsänderung eines Raumflugkörpers unter Wirkung eines Schubs betrachtet. Wenn dieser Schub nur für kurze Zeit wirkt, können während dieser Phase dann alle anderen wirkenden Kräfte und auch die Positionsänderung des Raumschiffs \bzw der Rakete unberücksichtigt bleiben und man muss nur die Geschwindigkeitsänderung $\Delta v$ betrachten. Wirkt der Schub hingegen über eine längere Zeit, dann muss man die Bewegungsgleichung \eqref{eq:adyn_rockets01} unter Berücksichtigung aller wirkenden Kräfte entsprechend integrieren (wie zum Beispiel in der Rechnung zu \figref{adyn_rockets02}). 
+Im Folgenden nehmen wir die Wechselwirkungszeit des Schubs zunächst als sehr kurz an, in \kap{adyn_kont_maneuver} werden wir auch Phasen betrachten, in denen der Schub über eine längere Zeit wirkt.\\
+In den Flugphasen ohne Schub bewegt sich das Raumschiff im Gravitationsfeld der Himmelskörper nach den Gesetzen der Himmelsmechanik, im einfachsten Fall auf Kepler-Bahnen des Zweikörpersystems Himmelskörper-künstlicher Satellit. Wir wollen daher zunächst den Fall von Satellitenbahnen um die Erde betrachten und stellen dafür noch einmal die im Kapitel der Himmelsmechanik (Kap. \ref{chap:hm}) hergeleiteten wichtigsten Beziehungen für das Zweikörperproblem, angepasst für (geschlossene) Satellitenbahnen um die Erde, zusammen.
+
+\subsection{Grundlegende Beziehungen aus der Himmelsmechanik für Satellitenbahnen um die Erde}\label{kap:adyn_recap_hm}
+
+Für künstliche Satelliten der Masse $m$ um die Erde gilt: 
+\begin{align}
+    m \ll m_\text{E} ~~~~ \rightarrow ~~~~ \mu_\text{G} = G\,m_\text{E}\,.  \label{eq:adyn_orbit01}
+\end{align}
+Aus den im \kap{hm_abl_kepler} hergeleiteten Beziehungen für die Ellipsenbahn folgt dann mit dem Drehimpuls $L$ für die Bahnparameter $p, a, e ~\text{und}~ T_\text{P}$ und den Koordinaten $r, v$:
+\begin{subequations}
+\begin{align}
+    r &= \frac{p}{1+\e \cos\upsilon} ~~~\text{mit}\\
+    p &=\frac{L^2}{G\,m_\text{E}}\,,~~~ e = \sqrt{1-\frac{L^2}{a\,m_\text{E}}}~~~\text{und}~~~ a= \sqrt[3]{\frac{G\,m_\text{E}\,T_\text{P}{}^2}{4\pi^2}}\,.
+		\label{eq:adyn_orbit01a} 
+\end{align}
+\end{subequations}
+Für das \gls{perigee}\index{Perigäum|textbf} \bzw das \gls{apogee}\index{Apogäum|textbf} gilt dann: 
+\begin{align}
+    r_\text{min} &= r_\text{per} = \frac{p}{1+e} ~~~ \text{und}~~~  r_\text{max} = r_\text{apo} = \frac{p}{1-e} \,. \label{eq:adyn_orbit01b} 
+\end{align}
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{Orbits01.pdf} 
+	\caption[Bahnparameter und Koordinatensystem einer Satellitenbahn um die Erde.]{Bahnparameter und Koordinatensystem einer Satellitenbahn um die Erde. Die Winkel $\Omega,\, \theta_0,\, \alpha_\text{S}$ werden jeweils vom Frühlingspunkt\index{Frühlingspunkt} aus gemessen.}
+	\label{abb:adyn_orbits01}
+\end{figure}
+
+Die \gls{visvivaadyn} \eqref{eq:hm_vis-viva} lautet
+\begin{align}
+    v^2 = G\,m_\text{E} \lk \frac{2}{r} -\frac{1}{a}\rk \,, \label{eq:adyn_orbit03}
+\end{align}
+woraus sich die Geschwindigkeiten am Perigäum \bzw Apogäum ergeben:
+\begin{subequations}
+\begin{align}
+    v_\text{max} &= v (r_\text{min}) = v_\text{per} = \sqrt{\frac{G\,m_\text{E}}{a}}\,\sqrt{\frac{1+\e}{1-\e}} ~~~ \text{\bzw} \\
+		v_\text{min} &= v (r_\text{max}) = v_\text{apo} = \sqrt{\frac{G\,m_\text{E}}{a}}\,\sqrt{\frac{1-\e}{1+\e}}\,.
+\end{align} \label{eq:adyn_orbit04}
+\end{subequations}
+
+Die Bahnparameter $\Omega,\omega,i$ (\figref{adyn_orbits01}) entsprechen den Bahnparametern, wie sie für Planeten und andere natürliche Himmelskörper in \kap{hm_bewegungsgl} hergeleitet (\figref{hm_bahnelemente}) wurden. \\
+Entsprechend kann man die Bewegung eines künstlichen Satelliten außerhalb der Schubphasen durch die in \kap{hm_bahnen_hk_ss} hergeleiteten Gaußschen
+%\footnote{Johann Carl Friedrich Gauß (auch oft Gauss) (1777 -- 1855) war ein deutscher Mathematiker, Astronom, Geodät und Physiker. Wegen seiner überragenden wissenschaftlichen Leistungen galt er bereits zu seinen Lebzeiten als \textit{Princeps mathematicorum - Fürst der Mathematiker}. Seine Arbeiten erstreckten sich von vielen Feldern der Mathematik und Physik auch auf angewandte Gebiete, zum Beispiel der Landesvermessung und der elektromagnetischen Telegrafie.}\indexp{Gauß, Johann Carl Friedrich} 
+ Vektoren\footnote{In \kap{hm_bahnen_hk_ss} hatten wir der historischen Konvention folgend die Gaußschen Vektoren mit $\vec{P}\vec{Q}\vec{R}$  bezeichnet. Um Verwechslungen mit dem Radiusvektor $\vec{R}$ zu vermeiden, schreiben wir ab hier $\vec{R}=\vec{W}$.}  \eqref{eq:hm_gauss_ansatz},\eqref{eq:hm_gauss_vektoren} $\vec{P}\vec{Q}\vec{W}$ beschreiben:
+\begin{align}
+\begin{split}
+    \vec{r}_\text{S} &= 
+    \begin{pmatrix}
+        x_\text{S} \\
+        y_\text{S} \\
+        z_\text{S}
+    \end{pmatrix}
+    = \mathbb{U}\,r\,    
+		\begin{pmatrix}
+        \cos\upsilon \\
+        \sin\upsilon \\
+        0
+    \end{pmatrix}
+		= 
+    \lk \vec{P}\vec{Q}\vec{W}\rk\,\,r\,
+    \begin{pmatrix}
+        \cos\upsilon \\
+        \sin\upsilon \\
+        0
+    \end{pmatrix} \\
+    &= \mathbb{R}_z\lk -\Omega\rk\,\mathbb{R}_x\lk -i\rk\,\mathbb{R}_z\lk -\omega\rk\,\,r\,
+    \begin{pmatrix}
+        \cos\upsilon \\
+        \sin\upsilon \\
+        0
+    \end{pmatrix} \,,
+\end{split} \label{eq:adyn_orbit05}
+\end{align}\\
+wobei sich die wahre Anomalie\index{Anomalie!wahre} $\upsilon$ aus der Kepler-Gleichung \eqref{eq:hm_keplerglg} über die exzentrische Anomalie $E$\index{Anomalie!exzentrische} berechnen lässt.
+Wie man aus \figref{adyn_orbits01} sieht, ist die Satellitenbahnebene ein Großkreis, der eindeutig durch die Bahnneigung (Inklination) $i$ und den aufsteigenden Knoten festgelegt ist. Dieser Großkreis schneidet somit die Äquatorebene unter dem Winkel~$i$. Die maximale (minimale) geographische Breite, unter der der Satellit beobachtet werden kann, ist dann durch $+\,i$ \bzw $-\,i$ gegeben, wie man ebenfalls aus \figref{adyn_orbits01} sieht.
+
+\subsection{Bestimmung der Bodenspuren künstlicher Satelliten} \label{kap:adyn_orbits_groundtracks}
+
+Wir nehmen zunächst an, dass uns die Bahnparameter des Satelliten bekannt sind, wir also seine geozentrische Bahn berechnen können, so wie wir das für Planeten als natürliche Satelliten der Sonne im \kap{hm_bahnen_hk_ss} ausführlich beschrieben haben. Wir wollen jetzt aber auch die Projektion dieser Bahn auf die Erdoberfläche berechnen. Dazu brauchen wir zu jeder Zeit den geographischen Ort, über dem der Satellit senkrecht steht. Die jeweilige geographische Breite $\varphi_\text{B}$ des Ortes B (eigentlich die geozentrische Breite), über welchem der Satellit im Zenit steht, ist durch die Deklination des Satelliten $\delta_\text{S}(t)$ gegeben, die sich wiederum aus \eqref{eq:adyn_orbit05} berechnen lässt. Die entsprechende geographische Länge $\lambda_\text{B}$ hängt, wie im \kap{hm_zeitdefinition}, \figref{hm_Sternzeit_Stundenwinkel} gezeigt, von der Rektaszension $\alpha_\text{S}\lk t\rk$ des Satelliten ab (vgl. \eqref{eq:hm_std_winkel_tau}), woraus sich mit \eqref{eq:hm_UT_3} die folgende Beziehung ergibt \cite{Montenbruck2012}:
+\begin{align}
+    \lambda_\text{B}\lk t\rk = \alpha_\text{S}\lk t\rk -\theta_0 = \alpha_\text{S}\lk t\rk + 280.4606\degree + 360.9856473\degree d \,. \label{eq:adyn_orbit06}
+\end{align}
+Hierin ist $\theta_0$ die (mittlere) Greenwich Sternzeit (GMST) und $d$ ist die seit dem $1.1.2000$ verstrichene Zeit in (Julianischen) Tagen, die sich einfach aus $d = \mathrm{MJD} - 51544.5$ berechnen lässt. Sinnvollerweise benutzt man das (modifizierte) Julianische Datum MJD ebenfalls zur Berechnung von $\alpha_\text{S}(t)$ und $\delta_\text{S}(t)$ (\vgl \kap{hm_zeitdefinition}). Als Ergebnis der über die Beziehung \eqref{eq:adyn_orbit06} berücksichtigten Erdrotation relativ zur Bewegung des Satelliten ist der Pfad des Satelliten auf der Erdoberfläche kein einfacher Großkreis mehr, sondern hat \zb für einen sogenannten \gls{LEO}\index{Low Earth Orbit, LEO} die in \figref{adyn_orbits02} dargestellte Form. Offensichtlich sind die Bodenspuren für aufeinanderfolgende Orbits wegen der Erdrotation jeweils westlich verschoben.
+Für einen Satelliten mit einer annähernd kreisförmigen Bahn und einer Umlaufzeit von $T_\text{p}$ in Minuten verschiebt sich die geographische Länge eines Beobachtungspunktes auf dem Äquator um 
+\begin{align*}
+    \Delta \lambda_\text{B,Äq} = -\dot{\theta}_0\,T_\text{p} = -0.2507\degree\,T_\text{p}
+\end{align*}
+pro Umlauf (\figref{adyn_orbits02}). \\
+Für andere Satellitenbahnen, wie \zb geostationäre Bahnen (\gls{GEO}, GEO)\index{Orbit!geostationärer, GEO} oder hoch elliptische Bahnen (\gls{HEO}, HEO)\index{Orbit!highly elliptical, HEO} ergeben sich deutlich andere Bodenspuren (siehe \figref{adyn_orbits03} und \probref{adyn_orbits2}).
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{Orbits02.pdf} 
+	\caption[Bodenspur eines LEO-Satelliten.]{Bodenspur eines LEO-Satelliten. $a = \SI{8000}{\km},\; e = 0.0,\; i = 55\degree$.}
+	\label{abb:adyn_orbits02}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width=0.9\textwidth]{Orbits03a.pdf} 
+	\caption[Bodenspuren von verschiedenen Satelliten.]{Bodenspuren von verschiedenen Satelliten. GEO-artiger Satellit:\, $a = \SI{25000}{\km},\, e = 0.73,\, i = 8\degree,\, \Omega =45\degree$,\,\, HEO (Typ Molnija-Satelliten):\, $a = \SI{26555}{\km},\, e = 0.72,\, i = 63.4\degree,\, \Omega =120\degree,\,\omega =270\degree$,\,\, Polar-Satellit:\, $a = \SI{7330}{\km},\, e = 0.0,\, i = 93\degree,\, \Omega =130\degree,\,\omega =0\degree$. Siehe auch \mscr~ \mladynref{SatPositionen01.m}.}
+	\label{abb:adyn_orbits03}
+\end{figure}
+
+\subsection{Topographische Beziehungen für die Beobachtungen künstlicher Satelliten} \label{kap:adyn_orbits_topo}
+
+Will man die Beobachtungsdaten eines in der Erdumlaufbahn befindlichen Satelliten für eine bestimmte Bodenstation aus den Bahnparametern berechnen, so muss man, wie bereits im Kapitel Himmelsmechanik (\kap{hm_koordinatensysteme}) gezeigt, in ein topozentrisches Koordinatensystem wechseln, da ein Beobachter auf der Erdoberfläche einen Satelliten aus der Horizont\-ebene (\figref{adyn_satobserv01}) beobachten wird. Die Bodenspuren (englisch \textit{Ground-Tracks}) aus dem vorherigen Kapitel geben eine gewisse Indikation, aber man erhält daraus keine Aussage über die Höhe des Satelliten, die Sichtbarkeitsdauer und auch die Beobachtungsrichtung. Um diese Größen zu berechnen, gehen wir in ein lokales tangentiales Koordinatensystem, welches ein spezielles topozentrisches \KOS\ darstellt (\figref{adyn_satobserv01}, \vgl auch \kap{hm_koordinatensysteme}). Wir wollen nun die Position des Satelliten in diesem Koordinatensystem ausdrücken. \\
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{SatObserver01.pdf} 
+	\caption[Horizontkoordinatensystem.]{Horizontkoordinatensystem und beobachtbarer Anteil der Umlaufbahn eines Satelliten.}
+	\label{abb:adyn_satobserv01}
+\end{figure}
+
+Wir starten mit den Koordinaten des Satelliten $\vec{r}$ im geozentrisch-äquatorialen Koordinatensystem und schreiben diese als $\vec{r}_\text{S}$ in ein erdfestes geozentrisch-äquatorialen System  um, in dem wir die Rotation der Erde durch den Stundenwinkel von Greenwich $\theta$ berücksichtigen (vgl. \kap{hm_koordinatensysteme}, Gleichung \eqref{eq:hm_LMST}, \figref{hm_Sternzeit_Stundenwinkel}):
+\begin{align}
+\begin{split}
+    \vec{r}_\text{S} &= \mathbb{R}_\text{z}\!\lk\theta\rk\,\vec{r}\, ~~~~
+\text{mit} ~~~~ \mathbb{R}_\text{z}\lk\theta\rk = 
+    \begin{pmatrix}
+         \cos\theta & ~~\sin\theta & ~~0 \\
+        -\sin\theta & ~~\cos\theta & ~~0 \\
+        0             & ~~0            &~~ 1
+    \end{pmatrix} \\
+		\text{und}~~~~\theta &= 280.4606\degree + 360.9856473\degree \cdot \lk \mathrm{MJD} - 51544.5\rk \,,
+\end{split} \label{eq:adyn_statobserv01} 
+\end{align}
+worin MJD das modifizierte Julianischem Datum (Kap. \ref{kap:hm_zeitdefinition}) des Beobachtungszeitpunkts ist. Die Koordinaten des Beobachters sind gegeben durch:
+\begin{align}
+    \vec{r}_\text{B} = R_\text{E}
+    \begin{pmatrix}
+		                     \cos \varphi_\text{B} \, \cos \lambda_\text{B} \\
+		                     \cos \varphi_\text{B} \, \sin \lambda_\text{B} \\
+		                     \sin \varphi_\text{B}
+    \end{pmatrix} \,, \label{eq:adyn_statobserv02}
+\end{align} 
+wobei wir für die geographische Breite \bzw Länge verkürzend $\varphi=\varphi_\text{B}$ \bzw $\lambda= \lambda_\text{B}$ schreiben.\footnote{Wie bereits erwähnt, setzen wir die geographische Breite hier gleich der geozentrischen Breite, \dh wir vernachlässigen die Abplattung der Erde.} Der topozentrische, fest mit der Erde verbundene Koordinatenvektor $\vec{R}_\text{S}$ ist in äquatorialen Koordinaten dann durch 
+\begin{align}
+\begin{split}
+    \vec{R}_\text{S} &= \vec{r}_\text{S} - \vec{r}_\text{B}\,
+\end{split} \label{eq:adyn_statobserv03} 
+\end{align}
+bestimmt.\\
+Die Einheitsvektoren des topozentrischen \KOS\ lauten:
+\begin{align}
+\begin{split}
+    \vec{e}_\text{O} &= 
+    \begin{pmatrix}
+        -\sin\lambda_\text{B}\\
+        +\cos\lambda_\text{B}\\
+        0
+    \end{pmatrix} ~~~ \text{(Ost-Richtung)}\,,~~~
+    \vec{e}_\text{N} = 
+    \begin{pmatrix}
+        -\sin\varphi_\text{B}\cos\lambda_\text{B}\\
+        -\sin\varphi_\text{B}\sin\lambda_\text{B}\\
+        \cos\varphi_\text{B}
+    \end{pmatrix} ~~~ \text{(Nord-Richtung)}\,,\\
+    \vec{e}_\text{Z} &= 
+    \begin{pmatrix}
+        \cos\varphi_\text{B}\cos\lambda_\text{B}\\
+        \cos\varphi_\text{B}\sin\lambda_\text{B}\\
+        \sin\varphi_\text{B}
+    \end{pmatrix} ~~~ \text{(Zenit-Richtung)}\,.
+\end{split} \label{eq:adyn_statobserv04} 
+\end{align}
+Für die Umrechnung von erdfesten äquatorialen in topozentrische Koordinaten verwendet man die Transformationsmatrix $\mathbb{U}$, die durch die drei Einheitsvektoren nach \eqref{eq:adyn_statobserv04}  definiert wird:
+\begin{align}
+    \mathbb{U}= 
+		\begin{pmatrix}
+        \vec{e}_\text{O}{}^\text{T} \\
+        \vec{e}_\text{N}{}^\text{T} \\
+        \vec{e}_\text{Z}{}^\text{T} 
+    \end{pmatrix} =
+    \begin{pmatrix}
+        -\sin\lambda_\text{B} &~~ +\cos\lambda_\text{B} &~~ 0 \\
+        -\sin\varphi_\text{B}\,\cos\lambda_\text{B} &~~ -\sin\varphi_\text{B}\,\sin\lambda_\text{B}&~~\cos\varphi_\text{B}\\
+        +\cos\varphi_\text{B}\,\cos\lambda_\text{B} &~~ +\cos\varphi_\text{B}\,\sin\lambda_\text{B}&~~ \sin\varphi_\text{B}
+    \end{pmatrix} \,. \label{eq:adyn_statobserv05} 
+\end{align}
+Wir erhalten damit leicht den Beobachtungsvektor zum Satelliten $\vec{R}$ in kartesischen topozentrischen Koordinaten:% (Distanz $R$, Azimut $\mathcal{A}$ und Höhe $h$)
+\begin{align}
+    \vec{R} = 
+    \begin{pmatrix}
+        R_\text{O} \\
+        R_\text{N}\\
+        R_\text{Z}
+    \end{pmatrix}
+    &= \mathbb{U}\,\vec{R}_\text{S} =
+    \mathbb{U}\,\lek \lk \mathbb{R}_\text{z}\lk \theta\rk \,\vec{r} \rk - \vec{r}_\text{B} \rek \,.
+\end{align} \label{eq:adyn_statobserv06}
+Die Beobachtungsdaten Azimut $\mathcal{A}$ und Höhe $h$ sind dann leicht zu bestimmen:
+\begin{align}
+    \mathcal{A} &= \arctan\lk \frac{R_\text{O}}{R_\text{N}}\rk ~~~\text{und}~~~
+    h = \arctan\lk \frac{R_\text{Z}}{\sqrt{R_\text{O}{}^2 + R_\text{N}{}^2}}\rk \,.\label{eq:adyn_statobserv07}
+\end{align}
+Wie aus \figref{adyn_satobserv01} ableitbar, beschreibt $\mathcal{A}$ den Winkel zwischen der Bodenspur des Satelliten und der Nordrichtung und $h$ den Winkel zwischen der Richtung von Beobachter zum Satelliten und der Horizontebene. In \probref{adyn_orbits3} werden wir die Beobachtungsdaten für einen polaren Satelliten und die ISS berechnen. %Übung7
+
+\subsection{Bestimmung der Bahn künstlicher Satelliten vom Boden aus} \label{kap:adyn_orbits_determination}
+
+\subsubsection{Bestimmung der Bahn künstlicher Satelliten aus Orts- und Geschwindigkeitsmessungen vom Boden} \label{kap:adyn_orbits_determination_rv}
+
+Wir nehmen an, dass zu einem Zeitpunkt $t$ die geozentrischen Orts- \bzw Geschwindigkeitsvektoren ($\vec{r}, \vec{v}=\dot{\vec{r}}$) des Satelliten gegeben sind.\\
+Der spezifische Drehimpuls $\vec{L} = \vec{r} \times \dot{\vec{r}} = \begin{pmatrix}
+    y\,\dot{z} - z\,\dot{y}\\
+    z\,\dot{x} - x\,\dot{z}\\
+    x\,\dot{y} - y\,\dot{x}
+\end{pmatrix}$ ist mit dem Gauß-Vektor\index{Gauß-Vektor|textbf} $\vec{W}$ wie folgt verknüpft:
+\begin{align}
+    \begin{pmatrix}
+        \sin i \,\sin\Omega\\
+        \sin i \,\cos\Omega\\
+        \cos i
+    \end{pmatrix}
+    = 
+    \begin{pmatrix}
+        +L_x/L\\
+        -L_y/L\\
+        +L_z/L
+    \end{pmatrix}
+    = 
+    \begin{pmatrix}
+        +W_x\\
+        -W_y\\
+        +W_z
+    \end{pmatrix} \,. \label{eq:adyn_Bahnpara01}
+\end{align}
+Daraus erhält man sofort
+\begin{align}
+    i = \arctan\lk\frac{\sqrt{W_x{}^2+W_y{}^2}}{W_z}\rk \label{eq:adyn_Bahnpara02}
+\end{align}
+und 
+\begin{align}
+    \Omega = \arctan\lk\frac{W_x}{-W_y}\rk \label{eq:adyn_Bahnpara03}\,.
+\end{align}
+Der Drehimpuls ist nach \eqref{eq:hm_kegelschnitt} \bzw  \eqref{eq:adyn_orbit01a} mit dem Parameter $p$ über 
+\begin{align}
+    p = \frac{L^2}{G\,m_\text{E}} \label{eq:adyn_Bahnpara04}
+\end{align}
+verknüpft. Der \textit{vis-viva-Satz}\index{vis-viva-Satz} \eqref{eq:hm_vis-viva} \bzw \eqref{eq:adyn_orbit03} ergibt aus den Messwerten sofort die große Halbachse $a$ und die mittlere Bewegung\index{Bewegung!mittlere} $n$ über:
+\begin{align}
+    a = \lk \frac{2}{r} - \frac{v^2}{G\,m_\text{E}} \rk^{-1}~~~\text{\bzw}~~~ n = \sqrt{\frac{G\,m_\text{E}}{a^3}} \,, \label{eq:adyn_Bahnpara05}
+\end{align}
+und damit erhalten wir auch die Exzentrizität $e$: 
+\begin{align}
+    e = \sqrt{1-\frac{p}{a}} \,.\label{eq:adyn_Bahnpara07}
+\end{align}
+Über die exzentrische Anomalie 
+\begin{align}
+    E\lk t\rk = \arctan\lk\frac{\vec{r}\cdot\vec{v}/(a^2\,n)}{1-r/a}\rk \label{eq:adyn_Bahnpara08}
+\end{align}
+und die Kepler-Gleichung erhält man die mittlere Anomalie zum Zeitpunkt $t$:
+\begin{align}
+    M\lk t\rk =E\lk t \rk - e\,\sin E\lk t\rk \label{eq:adyn_Bahnpara09}\,.
+\end{align}
+Etwas aufwendiger ist die Berechnung des Arguments des Perigäums. \\
+Man muss zunächst die Länge $u$ berechnen,
+\begin{align}
+    u = \arctan\lk\frac{z/\sin i }{x\,\cos\Omega +y\,\sin\Omega}\rk\,. \label{eq:adyn_Bahnpara10}
+\end{align}
+Die mittlere Anomalie $\upsilon$ kann dann aus der exzentrischen Anomalie $E$ \eqref{eq:adyn_Bahnpara08} über 
+\begin{align}
+    \upsilon = \arctan\lk \frac{\sqrt{1-e^2}\,\sin E}{\cos E-e}\rk \label{eq:adyn_Bahnpara11}
+\end{align}
+berechnet werden. Schließlich erhält man über 
+\begin{align}
+   \omega = u-\upsilon  \label{eq:adyn_Bahnpara12}
+\end{align}
+das letzte noch fehlende Bahnelement.
+Wir verweisen auf eine Anwendung der gerade beschriebenen Vorgehensweise in \probref{adyn_orbits1}. %Übung5
+
+\subsubsection{Bestimmung Bahnparameter bei kreisförmigen und äquatorialen Bahnen}  \label{kap:adyn_orbits_determination_singulaer}
+
+Die Bestimmung der Bahn (Ort, Geschwindigkeit) eines Satelliten aus den Bahnelementen stellt keine besondere Schwierigkeit dar, selbst wenn die Exzentrizität und die Inklination ungefähr Null sind, \dh $e\approx 0$ und $i\approx 0$.\\
+Das inverse Problem, die Bahnparameter aus Einzelbeobachtungen von Satelliten mit nahezu kreisförmigen Bahnen oder Bahnen in der Äquatorebene zu bestimmen, ist nicht so trivial. Das Argument des Perigäums $\omega$ ist für kreisförmige Bahnen unbestimmt und kleine Änderungen der Beobachtungsdaten oder numerische Fehler führen zu großen Änderungen des Wertes für $\omega$. Analoges gilt für die Inklination $i$ bei geostationären Bahnen. Daher hat man für solche Fälle einen alternativen Satz von Bahnparametern konstruiert: 
+\begin{align}
+\begin{split}
+     a&= a\,,~~~~\lambda=\Omega+\omega+M\,,\\
+		 h&= e\,\sin\lk\Omega+\omega\rk\,,~~~~\eta  = \tan\frac{i}{2}\,\sin\Omega\,,\\
+	  ~k&= e\,\cos\lk\Omega+\omega\rk\,,~~~\kappa = \tan\frac{i}{2}\,\cos\Omega\,. 
+\end{split} \label{eq:adyn_bahnbest_01}
+\end{align}
+Hierin sind $M$ die mittlere Anomalie, die durch die Umlaufzeit bestimmt ist, und $\lambda$ die mittlere Länge des Satelliten, die auch als ungefähre Rektaszension des Satelliten auf der kreisförmigen Bahn interpretiert werden kann.\\
+Man definiert nun ein neues $(\vec{f},\,\vec{g})$-Koordinatensystem, das aus den Gauß-Vektoren\index{Gauß-Vektor} $\vec{P}$,\,$\vec{Q}$ durch Drehung um den Winkel $\Omega+\omega$ hervorgeht:
+\begin{subequations}
+\begin{align}
+    \vec{f} &= \cos\lk\omega+\Omega\rk\,\vec{P} - \sin\lk \omega+\Omega\rk\,\vec{Q} = \frac{1}{1+\eta^2+\kappa^2}
+    \begin{pmatrix}
+        1-\eta^2+\kappa^2\\
+        2\eta\kappa\\
+        -2\eta
+    \end{pmatrix}\,,\label{eq:adyn_bahnbest_02a}\\
+    \vec{g} &= \sin\lk\omega+\Omega\rk\,\vec{P} +\cos\lk \omega+\Omega\rk\,\vec{Q} = \frac{1}{1+\eta^2+\kappa^2}
+    \begin{pmatrix}
+        2\eta\kappa\\
+        1+\eta^2-\kappa^2\\
+        2\kappa
+    \end{pmatrix}\,. \label{eq:adyn_bahnbest_02b}
+\end{align}
+\end{subequations}
+Der Ortsvektor der Bahn ist in diesem \KOS\ dann gegeben durch 
+\begin{subequations}
+\begin{align}
+    \vec{r} &= X\,\vec{f} +Y\,\vec{g}\label{eq:adyn_bahnbest_03a}\,,\\
+    X &= a\lek \lk 1-h^2\,\beta\rk\,\cos\lk \Lambda\rk + h\,k\,\beta\,\sin\lk \Lambda\rk-k\rek \label{eq:adyn_bahnbest_03b}\,, \\
+    Y &= a\lek\lk 1-k^2\,\beta\rk\,\sin\lk \Lambda\rk + h\,k\,\beta\,\cos\lk \Lambda\rk -h\rek \label{eq:adyn_bahnbest_03c}
+\end{align}
+\end{subequations}
+mit
+\begin{align}
+    \beta = \frac{1}{1+\sqrt{1-h^2-k^2}}\label{eq:adyn_bahnbest_04}
+\end{align}
+und der exzentrischen Länge
+\begin{align}
+    \Lambda = E+\omega+\Omega\,.\label{eq:adyn_bahnbest_05}
+\end{align}
+Analog ergibt sich für den Geschwindigkeitsvektor
+\begin{subequations}
+\begin{align}
+    \dot{\vec{r}} &= \dot{X}\,\vec{f} +\dot{Y}\,\vec{g}\,, \label{eq:adyn_bahnbest_06a}\\
+    \dot{X} &= \frac{a^2\,n}{r}\,\lk h\,k\,\beta\,\cos\lk \Lambda\rk -\lk 1-h^2\,\beta\rk\,\sin\lk \Lambda\rk\rk\,, \label{eq:adyn_bahnbest_06b} \\
+    \dot{Y} &= \frac{a^2\,n}{r}\,\lk -h\,k\,\beta\,\sin\lk \Lambda\rk -\lk 1-k^2\,\beta\rk\,\cos\lk \Lambda\rk\rk\,. \label{eq:adyn_bahnbest_06c}
+\end{align}
+\end{subequations}
+Die exzentrische Länge $\Lambda$ ersetzt die exzentrische Anomalie $E$ und bestimmt sich aus:
+\begin{align}
+    \Lambda-k\,\sin\lk \Lambda\rk +h\,\cos\lk \Lambda\rk = \lambda = M+\omega+\Omega\,,\label{eq:adyn_bahnbest_07}
+\end{align}
+während sich der Betrag des Abstandsvektor $r$ durch 
+\begin{align}
+    r = a\,\lk 1-k\,\cos\lk \Lambda\rk -h\,\sin\lk \Lambda\rk\rk \label{eq:adyn_bahnbest_08}
+\end{align}
+ausdrücken lässt. \\
+Wir halten nochmals fest, dass als Messwerte die kartesischen Koordinaten
+\begin{equation*}
+  \vec{r}\,=\, \begin{pmatrix}
+    x\\y\\z
+  \end{pmatrix} \qquad \text{und Geschwindigkeiten} \qquad
+  \dot{\vec{r}}\,=\,\begin{pmatrix}
+    \dot{x}\\\dot{y}\\\dot{z}
+  \end{pmatrix}
+\end{equation*}
+vorliegen und wir daraus die normierten Drehimpulse
+\begin{equation*}
+  \vec{W}= \begin{pmatrix}
+    W_x\\W_y\\W_z
+  \end{pmatrix} = \begin{pmatrix}
+    L_x/L\\L_y/L\\L_z/L
+  \end{pmatrix}
+\end{equation*}
+ermitteln können.
+Der weitere Gang der Berechnung ist dann:
+\begin{enumerate}
+    %1
+    \item Wir bestimmen die Parameter $\eta$ und $\kappa$ aus den Messwerten über 
+    \begin{align*}
+        \vec{W} =\frac{\vec{L}}{|\vec{L}|}=\frac{\vec{r}\times \dot{\vec{r}}}{|\vec{r}\times \dot{\vec{r}}|}
+    \end{align*}
+    und erhalten
+    \begin{align}
+        \eta = \frac{W_x}{1+W_z} ~~~\text{\bzw}~~~ \kappa=\frac{-W_y}{1+W_z}\,.\label{eq:adyn_bahnbest_09}
+    \end{align}
+    %2
+    \item Wir können ebenfalls über den Laplace-Vektor (\vgl Herleitung in \eqref{eq:hm_laplace_int})
+    \begin{align}
+        \vec{A} =\dot{\vec{r}}\times\lk \vec{r}\times\dot{\vec{r}}\rk -G\,m_\text{E}\,\frac{\vec{r}}{r} \label{eq:adyn_bahnbest_10}
+    \end{align}
+    die Parameter $k$ und $h$ bestimmen und erhalten
+    \begin{align}
+        k = \frac{\vec{A}\cdot\vec{f}}{G\,m_\text{E}} ~~~\text{\bzw}~~~ h = \frac{\vec{A}\cdot\vec{g}}{G\,m_\text{E}}\,. \label{eq:adyn_bahnbest_11}
+    \end{align}
+    %3
+    \item Damit sind die Koordinaten $X,Y$ im ($\vec{f},\,\vec{g}$)-\KOS\ berechenbar
+    \begin{align}
+        X = \vec{r}\cdot\vec{f}\,,~~~\text{\bzw}~~~Y=\vec{r}\cdot\vec{g}\,.\label{eq:adyn_bahnbest_12}
+    \end{align}
+    %4
+    \item Wir setzen die $X,Y$ in \eqref{eq:adyn_bahnbest_03b} \bzw \eqref{eq:adyn_bahnbest_03c} ein und können den Kosinus und Sinus der exzentrischen Länge $\Lambda$ bestimmen:
+    \begin{subequations}
+    \begin{align}
+        \cos\lk \Lambda\rk &= k+\frac{\lk 1-k^2\,\beta\rk\,X - h\,k\,\beta\,Y}{a\,\sqrt{1-h^2-k^2}} \,,\label{eq:adyn_bahnbest_13a} \\
+        \sin\lk \Lambda\rk &= h+\frac{\lk 1-h^2\,\beta\rk\,Y - h\,k\,\beta\,X}{a\,\sqrt{1-h^2-k^2}}\,. \label{eq:adyn_bahnbest_13b}
+    \end{align}
+    \end{subequations}
+    %5
+    \item Daraus folgt sofort $\Lambda$ und über \eqref{eq:adyn_bahnbest_07} die mittlere Länge $\lambda$.
+    %6
+    \item Will man die klassischen Bahnparameter für kreisförmige Bahnen bestimmen, so benutzt man \eqref{eq:adyn_bahnbest_01}, \zb
+    \begin{subequations}
+    \begin{align}
+        \Omega &= \arctan\lk\frac{\eta}{\kappa}\rk\,, \\
+        \Omega +\omega &= \arctan\lk\frac{h}{k}\rk\,, \\
+        \omega&= \arctan\lk\frac{h}{k}\rk-\arctan\lk \frac{\eta}{\kappa}\rk \,, \\
+        e &= \sqrt{h^2+k^2}\,,\\
+        i &= 2\sqrt{\eta^2+\kappa^2}\,,\\
+        a &= \lk \frac{2}{r} - \frac{v^2}{G\,m_\text{E}}\rk
+    \end{align}
+    \end{subequations}
+    mit
+    \begin{align*}
+        r = \sqrt{x^2+y^2+z^2} \,,  ~~~\text{\bzw}~~~ v^2 = \dot{x}^2 +\dot{y}^2 + \dot{z}^2\,.
+    \end{align*}
+\end{enumerate}
+In \probref{adyn_orbits1} wollen wir auch diese Bahnbestimmung am Beispiel der ISS umsetzen und das Ergebnis der Bahnberechnung dann mit tatsächlich beobachteten Werten vergleichen. 
+
+\subsubsection{Bestimmung der Bahn künstlicher Satelliten aus Orts- und Winkelmessungen vom Boden aus} \label{kap:adyn_orbits_determination_xwinkel}
+
+Im vorherigen Kapitel haben wir dargestellt, wie man Bahnparameter aus einer Beobachtung von geozentrischen Orts- und Geschwindigkeitsvektoren des Satelliten zum gleichen Zeitpunkt erhält. 
+Im Allgemeinen hat man von der Erde aus aber meist nur die Möglichkeit, Ortsvektoren oder gar nur Winkel zum Satelliten zu messen. Da es um die Bestimmung von sechs Bahnparametern geht, braucht man also mindestens sechs unabhängige Messwerte, um die Bahn eindeutig zu bestimmen.\\
+Wir wollen zwei Fälle betrachten, zum einen die Messung von zwei Ortsvektoren $\vec{r}_1$ und $\vec{r}_2$ zu zwei verschiedenen Zeiten $t_1$ und $t_2$ und zum anderen die Messung von drei Winkelsätzen (bestehend aus jeweils zwei Winkeln) zu drei Zeiten $t_1<t_2<t_3$. \\
+Dies ist ein sogenanntes Randwertproblem\index{Randwertproblem}, dem wir in etwas anderer Formulierung als Lambert-Problem\index{Lambert-Problem} in \kap{adyn_lambert_transfer} wieder begegnen werden und dort auch etwas ausführlicher behandeln wollen. Hier wollen wir eine numerisch-geometrische Lösungsmethode für dieses Problem angeben, die 
+auf Gauß\indexp{Gauß, Johann Carl Friedrich} zurückgeht und in vielen Lehrbüchern behandelt wird.\\
+Für den Fall, das zwei Ortsvektoren gegeben sind, erfolgt die Bestimmung nach einer Methode, die in \cite{Montenbruck2012} im Detail beschrieben ist (siehe auch \probref{adyn_orbits_zusatz2}). Das Problem mit drei Winkelsätzen kann auf das Problem mit zwei Ortsvektoren zurückgeführt werden, indem man aus den Winkelsätzen die geozentrischen Entfernungen berechnet. Wir verweisen auch hier auf die Literatur \cite{Montenbruck2012, Walter2018, Escobal1965, Bucerius1950}.
+In \kap{adyn_lambert_transfer} werden wir bei der Diskussion des Lambert-Problems\index{Lambert-Problem} zeigen, wie mittels eines numerischen Iterationsverfahrens die Bahnbestimmung aus zwei bekannten Ortsvektoren auf eine andere Art und Weise erfolgen kann.
+

@@ -1,0 +1,696 @@
+
+\section{Gezeiten}\index{Gezeiten}\label{kap:hm_gezeiten}
+
+Wir sind den Begriffen Gezeiten und Gezeitenkräfte bereits in Kapitel 1 (Band I) begegnet.
+Obwohl im allgemeinen Sprachgebrauch der Begriff Gezeiten fast ausschließlich mit dem Phänomen von Ebbe und Flut der Ozeane verknüpft wird, sind Gezeitenkräfte viel fundamentaler und treten überall dort auf, wo die räumliche Ausdehnung der Körper in einem gravitativen System nicht mehr zu vernachlässigen ist.
+Im Umkehrschluss treten Gezeitenkräfte bei idealisierten Systemen von Punktmassen nicht auf.
+Wir werden deshalb jetzt das Massepunktmodell verlassen und die Ausdehnung und geometrische Form von Himmelskörpern berücksichtigen.
+%
+\subsection{Übergang von Punktmassen zu ausgedehnten Körpern} \label{kap:hm_gezeite_Recap}
+
+Im Band I hatten wir uns mit den theoretischen Grundlagen der Gezeiten beschäftigt.
+Wir hatten gelernt, dass es immer dann zu Gezeitenkräften kommt, wenn die Inhomogenität des Gravitationsfeldes zu unterschiedlichen Kraftwirkungen auf einen Körper führt.
+Gezeitenkräfte haben %im Gegensatz zur Newtonschen Gravitationskraft mit ihrer $1/r^2$-Abhängigkeit 
+eine $1/r^3$ Abhängigkeit und treten nur dann für einen ausgedehnten Körper der Masse $m$ auf, wenn sich dieser in einem inhomogenen Gravitationsfeld befindet/bewegt.
+In einem homogenen Gravitationsfeld würde der Körper ohne Einfluss weiterer Kräfte an jedem Ort dieselbe Beschleunigung spüren. Reale Gravitationsfelder sind aber niemals homogen.
+\footnote{Da die Quelle des Gravitationsfeldes ausschließlich positive Massen sind, kann es anders als in der Elektrodynamik \bzw Elektrostatik keine homogenen Felder geben. Da ein Massepunkt per Definition keine Ausdehnung hat, gibt es für diesen auch keine Gezeitenkräfte.}
+Wir haben das anhand einer Testanordnung aus $36$ gleichen (kleinen) Massen demonstriert, die sich zum Zeitpunkt $t_0$ im Schwerefeld einer großen Masse $M$ befinden und anfänglich einen kreisförmigen Ring bilden.
+Die Gezeitenkräfte, die auf diese Testanordnung wirken, ergeben sich als Differenz zur mittleren Schwerkraft, die auf die Masse im Zentrum des Rings wirkt, und bewirken mit der Zeit eine ellipsen- \bzw birnenförmige Verformung des Rings (\figref{hm_gezeiten01}).\\
+
+Man kann Gezeitenwirkungen an einer Vielzahl von Phänomenen und Systemen in der Himmelsmechanik beobachten.
+Als Beispiele seien genannt %\cite{Gomer2020, Hebelacker1998}
+\begin{itemize}
+    \item die Präzession der Erdachse (\vgl Kap. 1.5.6 (Band I)),
+    \item das Auseinanderbrechen von Kometen (\vgl Beispiel Shoemaker-Levy, in \kap{kometen} behandelt),
+    \item die Beeinflussung planetarer Ringe,
+    \item der Vulkanismus auf Kleinkörpern, die sich um massive Zentralkörper bewegen und
+    \item die Rückwirkung von (großen) Exoplaneten auf deren Sonnen.
+\end{itemize}
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{Gezeitenkraefte.pdf}
+\caption[Gezeitenwirkung auf einen Ring.]{Gezeitenwirkung auf einen Ring aus 36 Massepunkten. Parameter: $r_0 = 20 R, R = 2, M\,G = 1.$}
+\label{abb:hm_gezeiten01}
+\end{figure}
+
+Das Auseinanderbrechen von Himmelskörpern kann man durch die \emph{Roche-Grenze}
+\footnote{Édouard Albert Roche (1820 -- 1883) war ein französischer Astronom und Mathematiker, der vor allem mit seinen theoretischen Arbeiten wichtige Beiträge zur Himmelsmechanik lieferte. 1850 berechnete er die nach ihm benannte kritische Distanz $r_\text{R}$, bei der ein Satellit unter der Wirkung von Gezeitenkräften zerrissen wird.}\index{Roche-Grenze}\index{Roche-Limit|textbf}\indexp{Roche, Édouard Albert} (englisch \textit{Roche-Limit}) beschreiben.
+Die Roche-Grenze ist die Entfernung eines Himmelskörpers der Dichte $\varrho_\text{S}$ von seinem Zentralkörper der Dichte $\varrho_\text{Z}$ und des Radius $R_\text{Z}$, unterhalb derer der Himmelskörper aufgrund der Gezeitenkräfte zerrissen wird.
+Dabei wird angenommen, dass der Körper nur von den eigenen Gravitationskräften zusammengehalten wird.
+%Die Roche-Grenze ist damit die kleinste Umlaufbahn, in der der Himmelskörper den Zentralkörper noch stabil umlaufen kann, ohne zerrissen zu werden.
+Die Roche-Grenze ist gegeben durch
+    \begin{align}
+        r_\text{R} = \alpha\,R_\text{Z}\,\lk \frac{\varrho_\text{Z}}{\varrho_\text{S}}\rk^{\frac{1}{3}}\,, \label{eq:hm_rochelimit01}
+    \end{align}
+worin $\alpha$ ein materialabhängiger dimensionsloser Parameter zwischen $0$ und $1$ ist \cite{Bartelmann2015}.
+Wir leiten die Beziehung \eqref{eq:hm_rochelimit01} in \probref{hm_rochelimit} her und schätzen auch für verschiedene Himmelskörper ihre Größe ab.
+
+\subsection{Gezeiten im Erde-Mond-(Sonne)-System} \label{kap:hm_gezeiten_EM}
+
+Man findet immer wieder etwas verwirrende oder zumindest unklare Darstellungen zu den Gezeiten des Erde-Mond-Systems (siehe dazu auch die Kommentare in Ref. \cite{Sawicki1999}).
+Diese resultieren zumeist aus der unsauberen Betrachtung der verwendeten Koordinatensysteme \bzw der Eigenrotation der Erde im Verhältnis zur wahren \bzw scheinbaren Bewegung der Himmelskörper Mond und Sonne.
+Wir wollen daher im Folgenden auf diese Themen besonderen Wert legen. \\
+Als erstes wollen wir noch einmal den Ursprung der Gezeitenkräfte beleuchten.
+Im Kapitel Gezeiten des Bandes I hatten wir diese auf einen ausgedehnten Körper wirkenden Kräfte aus dem Gravitationspotential eines als Massepunkt angenommenen (da weit entfernten) Himmelskörpers hergeleitet.
+Wir hatten in dieser Betrachtung im Inertialsystem offen gelassen, wie sich das System bei relativer Bewegung der die Gezeiten erzeugenden Himmelskörper zeitlich verhält. Das wollen jetzt nachholen.
+
+\subparagraph{\textbf{\anf{Freier Fall} der Erde im Kraftfeld von Mond \bzw Sonne}}
+
+Wir nutzen zunächst zur physikalischen Beschreibung ein geozentrisches Koordinatensystem (\figref{hm_gezeiten02}), das aber \emph{nicht} mit der Erde mitrotiert und dessen Ursprung sich auf einem Kreis (\probref{hm_gezeiten01}) um den Schwerpunkt des Himmelskörper-Erde-Systems (der Himmelskörper ist entweder die Sonne oder der Mond) bewegt.
+Da das gewählte KOS kein Inertialsystem ist, müssen alle Punkte der Erde in diesem System eine Scheinkraft $\vec{F}_\text{T}$ (Trägheitskraft, siehe Kapitel 1.2.2 im Band I) erfahren, die für alle Punkte des (starren) Körpers gleich groß ist.
+Diese Kraft ist aber nichts anderes als die Schwerkraft, mit der die Erde im gewählten KOS "`frei fällt"'.
+Im Schwerpunkt des Erde-Himmelskörper-System (das ist der Ursprung des KOS) würde diese Trägheitskraft genau der Gravitationskraft entsprechen, ein mitbewegter Beobachter würde sich an dieser Stelle schwerelos fühlen.
+Für alle Punkte der Erde wirkt daher als Gesamtkraft im gewählten KOS (\figref{hm_gezeiten02})
+\begin{align}
+    \vec{F}_\text{ges} = \vec{F}_\text{T} + \vec{F}_\text{G} = \vec{F}_\text{Gez} \,. \label{eq:hm_gezeiten11}
+\end{align}
+Aus Sicht eines Beobachters im nichtrotierenden geozentrischen KOS ist diese Gesamtkraft aus Gravitations- und Trägheitskraft also genau die Gezeitenkraft.
+Wir können diese wie folgt aus \figref{hm_gezeiten02} herleiten:
+\begin{align}
+\begin{split}
+    \vec{F}_\text{Gez} &= \frac{G\,M\,m}{r^3}\,\vec{r} - \frac{G\,M\,m}{r'{}^3}\,\vec{r}_\text{HK}~~
+    \text{mit} ~~\vec{r}' = \vec{r} + \vec{R} = \vec{r} + R_\text{E}\frac{\vec{R}}{\left|\vec{R}\right|} \; , \\
+		 \vec{r}'{}^2 &= \lk \vec{R} + \vec{r}\rk^2 = R^2 + r^2 + 2\,\lk \vec{R}\cdot\vec{r}\rk= \vec{r}'{}^2 = r^2\,\lk 1+\underbrace{\frac{R^2}{r^2}}_{\substack{\approx 0}} + \frac{2\,\vec{R}\cdot\vec{r}}{r^2}\rk \;.
+\end{split} \label{eq:hm_gezeiten12}
+\end{align}
+In der Näherung $R/r \ll 1$ können wir $1/r'{}^3$ entwickeln:
+\begin{align*}
+    \frac{1}{ r'{}^3} = \lk  \vec{r}'{}^2\rk^{-\frac{3}{2}} \approx \lek r^2\lk 1+2\,\frac{\lk \vec{R}\cdot\vec{r}\rk}{r^2}\rk\rek^{-\frac{3}{2}} \approx \frac{1}{r^3}\,\lk 1-\frac{3}{\killA{2}}\,\killA{2}\frac{\lk \vec{R}\cdot\vec{r}\rk}{r^2}\rk \,.
+\end{align*}
+Damit ergibt sich: 
+\begin{align}
+     \vec{F}_\text{Gez} &\approx -\frac{G\,m\,M}{r^3}\,\lek \lk \vec{r} + \vec{R}\rk\,\lk 1-3\,\frac{\lk\vec{R}\cdot\vec{r}\rk}{r^2} \rk - \vec{r}\rek \approx -\frac{G\,m\,M}{r^3}\,\lk \vec{R} - \frac{3\,\lk \vec{R}\cdot\vec{r}\rk}{r^2} \lk \vec{r} + \vec{R}\rk \rk \,. \label{eq:hm_gezeiten13}
+\end{align}
+Wir sehen an \eqref{eq:hm_gezeiten13} zwei Dinge.
+Zum einem heben sich die Hauptbeträge der Gravitationskraft und der Trägheitskraft, die proportional zu $\vec{r}/r^3$ sind, auf. Das ist ja genau für den freien Fall im Schwerpunkt zu erwarten.
+Zum anderen wird nochmals deutlich, dass nur durch das inhomogene Gravitationsfeld ($\vec{F}(\vec{r}') \neq \vec{F}(\vec{r})$) überhaupt eine Gezeitenkraft auftreten kann. 
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{Gezeiten02.pdf}%
+\caption[Zur Berechnung der Gezeitenkräfte auf der Erdoberfläche.]{Zur Berechnung der Gezeitenkräfte auf der Erdoberfläche (nicht maßstäbliche Zeichnung). Beim Erde-Mond-System würde der gemeinsame Schwerpunkt leicht verschoben in Richtung Mond, aber noch innerhalb der Erde liegen. Die Bahnebenen von Erde und Mond werden vereinfacht als identisch mit der Äquatorebene angenommen. B ist der Punkt eines Beobachters an einem beliebigen Punkt des Äquators.}
+\label{abb:hm_gezeiten02}%
+\end{figure}
+
+\subsection{Gezeitentheorie nach Newton}\indexp{Newton, Sir Isaac}\index{Gezeitentheorie nach Newton}\label{kap:hm_gezeiten:Newton}
+
+\subparagraph{\textbf{Gleichgewichtsannahme in der Betrachtung einer nichtrotierenden Erde}}
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{Gezeiten03S.pdf}%
+\caption[Vektorielle Darstellung der Gezeitenkräfte auf der Erdoberfläche.]{Vektorielle Darstellung der Gezeitenkräfte auf der Erdoberfläche. In jedem Punkt der Erdoberfläche wird die Vektorsumme aus Gravitations- und Trägheitskraft gebildet. Letztere ist überall gleich groß (nicht maßstäbliche Zeichnung). Im Mittelpunkt der Erde heben sich die Kräfte auf. Beim Erde-Mond-System würde der gemeinsame Schwerpunkt leicht verschoben in Richtung Mond, aber noch innerhalb der Erde liegen, an diesem würde ebenfalls die Gezeitenkraft verschwinden.}
+\label{abb:hm_gezeiten03}%
+\end{figure}
+
+Wir betrachten nun, aus Sicht eines Beobachters auf der Erde, die vertikalen und horizontalen Komponenten\footnote{Aus Sicht eines Beobachters im Inertialsystem sind das die radialen \bzw tangentialen Komponenten.} der Gezeitenkraft \bzw der Gezeitenbeschleunigung\footnote{An Gleichung \eqref{eq:hm_gezeiten13} kann man erkennen, dass $F_\text{Gez} \approx \lk \vec{R}\cdot\vec{r}\rk r^{-5}$ ist, was auf ein Quadrupolpotential\index{Quadrupol} für die Gezeitenkraft hinweist.\index{Multipolentwicklung} Wir werden uns mit der Multipolentwicklung von Feldern und anderen physikalischen Größen in \kap{hm_potentialtheorie}, sowie in der Astrodynamik (Kap. \ref{chap:adyn}) und in der Elektrodynamik (Band IV) beschäftigen. Hier genügt zu wissen, dass eine Quadrupolgröße dadurch gekennzeichnet ist, dass ihr Potential eine $r^{-5}$-Abhängigkeit hat und in zwei zueinander orthogonalen Richtungen auf Grund des Skalarproduktes $\lk \vec{R}\cdot\vec{r}\rk$ unterschiedliche funktionale Abhängigkeit von einem Parameter wie \zb dem Winkel zwischen $\vec{R}$ und $\vec{r}$ zeigt.} (\figref{hm_gezeiten03}). Diese können mit dem Winkel $\theta$ und $\left|\vec{R}\right| = R_\text{E}$ und $g_0= G\,M/r^2$ wie folgt geschrieben werden:
+\begin{align}
+    g_\text{Gez,H} &= \frac{F_\text{Gez,H}}{m} = -3\,\frac{G\,\killA{m}\,M}{\killA{m}\,r^3}\,R_\text{E}\,\cos\theta\,\sin\theta 
+		                =-\frac{3}{2}\,g_0\,\frac{R_\text{E}}{r}\,\sin 2\theta \,. \label{eq:hm_gezeiten14}
+\end{align}
+Analog folgt für die vertikale Komponente aus \eqref{eq:hm_gezeiten13}
+\begin{align}
+    g_\text{Gez,V} &= +g_0\,\frac{R_\text{E}}{r}\lk 3\cos^2\theta-1\rk = \frac{3}{2}\,g_0\,\frac{R_\text{E}}{r}\lk \cos2\theta+\frac{1}{3}\rk \,. \label{eq:hm_gezeiten15}
+\end{align}
+Der letzte Term gibt einen konstanten, vom Winkel $\theta$ unabhängigen Beitrag $\lk \frac{1}{2}\,g_0\,\frac{R_\text{E}}{r}\rk$ zur Erdbeschleunigung $g_0$ und ist für die weitere Betrachtung irrelevant.
+Wir können also näherungsweise schreiben:
+\begin{align}
+    g_\text{gez,V} \approx \frac{3}{2}\,g_0\,\frac{R_\text{E}}{r}\,\cos 2\theta \,. \label{eq:hm_gezeiten15a}
+\end{align}
+
+Die Erdbeschleunigung $g_\text{E}$ ist durch $g_\text{E} = G\,m_\text{E}/R_\text{E}{}^2$ gegeben, daher können wir für das maximale Verhältnis der Gezeitenbeschleunigung zur Erdbeschleunigung schreiben:
+\begin{align}
+\begin{split}
+    \text{Mond:} ~~~~ \left|\frac{g_\text{Gez,M}}{g_\text{E}}\right| 
+		 &= \frac{3}{2}\,\frac{m_\text{M}}{m_\text{E}}\,\frac{R_\text{E}{}^3}{r_\text{EM}{}^3} = \frac{3}{2}\,\xi_\text{M}\, R_\text{E} \approx \SI{8.4e-8}{} \,,\\
+    \text{Sonne:} ~~~~\left|\frac{g_\text{Gez,S}}{g_\text{E}}\right| 
+		 &= \frac{3}{2}\,\frac{m_\text{S}}{m_\text{E}}\,\frac{R_\text{E}{}^3}{r_\text{ES}{}^3} = \frac{3}{2}\,\xi_\text{S}\, R_\text{E}\approx  \SI{3.9e-8}{} \,.
+\end{split} \label{eq:hm_gezeiten16}
+\end{align}
+Hierin ist 
+\begin{align}
+	  \xi_\text{M} = \frac{m_\text{M}}{m_\text{E}}\,\frac{R_\text{E}{}^3}{r_\text{EM}{}^3} = \frac{m_\text{M}}{m_\text{E}}\,\frac{R_\text{E}{}^3}{a_\text{EM}{}^3} \approx \SI{5.62e-8}{} \label{eq:hm_xi_gezeiten}
+\end{align}
+ein Maß für die Gezeitenstärke des Mondes und analog $\xi_\text{S}$ für die Sonne, wobei wir für $r_\text{EM}$ den Abstand der Mittelpunkte von Erde und Mond $a_\text{EM}$ gesetzt haben.  Die Gezeitenkräfte betragen also nur weniger als das $10^{-7}$-fache der Erdbeschleunigung, können aber dennoch durch ihre Horizontalkomponenten eine große Wirkung auf die Ozeane ausüben.%
+\footnote{Man liest immer wieder, dass die Tiden durch \anf{Anheben} des Wassers, \dh die Vertikalkomponente entstehen. Das ist nach \eqref{eq:hm_gezeiten16} wohl kaum möglich!}
+Das erkannte auch schon Newton.
+Er nahm für die nicht rotierende Erde an, dass die Gezeitenkräfte wegen der relativ langsamen Bewegung der die Gezeiten erzeugenden Himmelskörper eine stationäre Form der Wasseroberfläche der Ozeane ausbilden können. Für eine im Gleichgewichtsfall ausgeformte Wasserhülle muss die Oberfläche so sein, dass durch die Oberflächenverformung die Horizontalkomponente der Gezeitenkraft kompensiert wird. Eine entsprechende Rechnung (siehe \kap{hm_potentialtheorie}) zeigt, dass die so geformte Wasserhülle ein Ellipsoid der Form 
+\begin{align} 
+    R_\text{W}\lk \theta \rk = R_\text{E}\,\lk 1 - \frac{2}{3}\,\varepsilon\, \mathcal{P}_2 \lk \cos \theta \rk \rk = R_\text{E}\,\lk 1 - \frac{2}{3}\,\varepsilon \ \lk \frac{3}{2} \cos^2 \theta - \frac{1}{2} \rk \rk \, \label{eq:hm_gezeiten17a}
+\end{align}
+ergibt, worin $R_\text{E}$ der mittlere Erdradius ist, der näherungsweise gleich dem Radius der ungestörten Wasserhülle der weltumspannenden Ozeane $R_\text{W,0}$ gesetzt wird $(R_\text{E} \approx R_\text{W,0})$.  $\mathcal{P}_2 \lk \cos \theta \rk$ ist das Legendre-Polynom 2.\,Ordnung (siehe \kap{hm_potentialtheorie} und die \onlineZ) und $\varepsilon$ die Elliptizität (Abplattung) des Ellipsoids. Diese ist definiert über
+\begin{align}
+	\varepsilon = \frac{R_\text{A} - R_\text{P}}{R_\text{E}} \,, \label{eq:hm_gezreibung03}
+\end{align}
+worin $R_\text{A},\, R_\text{P}$ die  Radien der Erde am Äquator \bzw am Pol (Richtung Symmetrieachse) bedeuten, wie man leicht überprüfen kann. 
+Häufig wird die Abhängigkeit des Radius von $\theta$ auch näherungsweise in der Form 
+\begin{align} 
+    R_\text{W}\lk \theta\rk \approx R_\text{E}\,\lk 1 + \frac{h}{R_\text{E}}\,\cos 2\theta \rk  \label{eq:hm_gezeiten17}
+\end{align}
+geschrieben, worin $h$ die Anhebung der Wasserhülle durch die Gezeitenkräfte ist. 
+Wir bestimmen aus \eqref{eq:hm_gezeiten17} den Neigungswinkel $\gamma$ der Wasseroberfläche als Funktion des Winkels $\theta$ relativ zur Lotlinie.\footnote{Hier nehmen wir implizit an, dass die Dichte des Ozeanwassers verschwindend gering ist und es bleibt zunächst auch unberücksichtigt, dass sich der feste Erdkörper ebenfalls durch die Gezeiten verformt.} Wir erhalten:
+\begin{align}
+  \gamma &\approx \tan \gamma = \frac{g_\text{Gez,H}}{g_\text{E}} = -\frac{2h}{R_\text{E}}\,\sin 2\theta ~~\rightarrow ~~ \varepsilon = -\frac{2\,h}{R_\text{E}} = -\frac{g_\text{Gez,H}}{g_\text{E}}\,. \label{eq:hm_gezeiten_epsilon}
+\end{align}
+Offensichtlich ist $\varepsilon < 0$ was mit der Definition eines prolaten Ellipsoiden übereinstimmt. Die Wasserhöhen durch die Gezeitenkräfte von Mond und Sonne sind dann:
+\begin{align}
+\begin{split}
+    \Delta h_\text{M} &= 2h_\text{M} = \frac{3}{2}\,\xi_\text{M}\,R_{E} \approx \SI{0.54}{\metre} ~~\text{bzw.} ~~\Delta h_\text{S} = 2h_\text{S} = \frac{3}{2}\,\xi_\text{S}\,R_{E}{} \approx \SI{0.24}{\metre} \,.
+\end{split} \label{eq:hm_gezeiten18}
+\end{align}
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{Gezeiten05.pdf}%
+\caption[Gezeitenellipsoid.]{Gezeitenellipsoid. Stark überhöhte Darstellung, mit $h \approx 0.1 R_\text{E}$. Für die realen Gezeiten der Ozean auf der Erde ist $h < \SI{1e-7}{}R_\text{E}$.}
+\label{abb:hm_gezeiten05}%
+\end{figure}
+
+\figref{hm_gezeiten05} zeigt das sich ausbildende Ellipsoid nach Gleichung \eqref{eq:hm_gezeiten17}.
+Eine genaue Rechnung zeigt, dass bei einer Annahme der Form der Wasserhülle nach \eqref{eq:hm_gezeiten17} das Volumen der Wasserhülle nicht exakt konstant ist, was der Annahme einer inkompressiblen Flüssigkeit widerspricht. Da $\Delta h \ll R_\text{E}$ ist die Näherung für unsere Rechnungen aber sehr gut zu verwenden. Wir verweisen auch auf die \textbf{Übungen} \ref{prob:hm_gezeiten01} und \ref{prob:hm_gezeiten04}.
+
+\subparagraph{\textbf{Berücksichtigung der Eigenrotation der Erde}}
+
+Bisher haben wir nur die Bewegung von Erde und Mond um den gemeinsamen Schwerpunkt in unseren Betrachtungen berücksichtigt.%
+\footnote{Im Folgenden beziehen wir uns, wenn nicht anders erwähnt, nur noch auf den Mond. Alle Überlegungen gelten aber prinzipiell genauso für die Sonne.}
+Danach wäre der Hochwasser-Berg nach Newtons Annahme der instantanen Ausbildung des Gezeitenellipsoids immer auf der Linie Schwerpunkt-Mondmittelpunkt fixiert (\probref{hm_gezeiten01}).
+Es würde sich daher nur zweimal alle 27.32 Tage Hochwasser und Niedrigwasser ergeben, nämlich jeweils beim oberen und unteren Meridiandurchgang des Mondes%
+\footnote{Man überlege sich, warum wir die synodische Umlaufzeit des Mondes $(T_\text{synod} = 27.32\,\mathrm{d})$ verwenden müssen!}.
+Berücksichtigen wir jetzt die Erdrotation, wandert die Erdoberfläche sozusagen ständig unter den Hochwasser-Bergen und Niedrigwasser-Tälern in östlicher Richtung davon, oder bewegt sich anders gesprochen der Hochwasser-Berg in westlicher Richtung um die Erde.\\
+Für die mathematische Beschreibung wechseln wir nun in ein echtes mitrotierendes geozentrisches Koordinatensystem.
+Der Winkel $\theta$ wird dann zeitabhängig und \ia eine Funktion $\theta(\alpha\lk t\rk, \delta\lk t\rk)$, worin $\alpha$ und $\delta$ die Rektaszension \bzw die Deklination des Mondes sind.
+Wir wollen zunächst der Einfachheit halber eine Deklination des Mondes von $\delta = 0 $ annehmen, \dh der Mond steht über dem Äquator im Zenit.
+Auch an \eqref{eq:hm_gezeiten14} erkennt man, dass es wegen der $\sin 2\theta$--Abhängigkeit zwei Hochwasser-Tiden pro Tag geben muss.
+Beim Mond muss man die Eigenbewegung berücksichtigen, die immerhin $360\degree / 27.32\,\mathrm{d} = 13.177\degree/ \mathrm{d}$ beträgt.
+Im Mittel (Kreisbahn des Mondes angenommen) ist deshalb der Mondtag um $\SI{50}{\min}\,\SI{24}{\second}$ länger als der Sonnentag, weswegen der mittlere zeitliche Abstand zwischen zwei Hochwasser ca. $\SI{12}{\hour}\,\SI{25}{\min}$ beträgt.
+Man kann auch sagen, dass ein Pegelstab eines Beobachters quasi in $\SI{24}{\hour}\,\SI{50}{\min}$ einmal durch die annähernd stationäre Wasserhülle \anf{pflügt} (\probref{hm_gezeiten03}).
+In \figref{hm_gezeiten04} haben wir die Wirkung der Horizontalkomponenten auf die Ozeanhülle der Erde noch einmal schematisch dargestellt.\\
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{Gezeiten04.pdf}%
+\caption[Gezeiten des Mondes auf der Erde.]{Gezeitenwirkung des Mondes auf der Erde. Ohne Erddrehung würde sich nur zweimal alle 27.32 Tage Hochwasser und Niedrigwasser ergeben, nämlich jeweils beim oberen und unteren Meridiandurchgang des Mondes. Mit Erddrehung ergibt sich nach der Newtonschen Gleichgewichtstheorie pro Tag für einen Beobachter auf einen Breitenkreis $\varphi$ zwei Hochwasser und zwei Niedrigwasser, letztere werden durch einen Niedrigwasser-Ring um die Polachse herum gebildet. Man erkennt auch, dass die aufeinanderfolgenden Hochwasserstände für die Beobachter $\mathrm{B}_1$ und $\mathrm{B}_2$ \ia unterschiedlich groß sind.}
+\label{abb:hm_gezeiten04}%
+\end{figure}
+
+Die Newtonsche Gezeitentheorie liefert trotz ihrer Einfachheit schon viele grundlegende richtige Ergebnisse.
+Insbesondere lassen sich die Phänomene von Spring- und Nipptiden durch unterschiedliche Stellungen von Erde, Mond und Sonne zueinander erklären, ebenso wie die sogenannten astronomisch bedingten "`Ungleichheiten"', die durch Exzentrizitäten und Neigungen der Bahnen von Erde und Mond erklärt werden können. (\probref{hm_gezeiten03}).
+Die absolut berechneten Höhen $\SI{54}{\centi\metre}$ für Mondtide \bzw $\SI{24}{\centi\metre}$ für maximale Sonnentide gelten aber bestenfalls im freien Ozean, fern von Küsten und selbst da nur eingeschränkt.
+
+Nicht erklärbar ist durch die Newtonsche Theorie auch, dass die tatsächlich beobachteten Hochwasser-Zeiten nicht, wie nach der Theorie zu erwarten, mit den Kulminationszeiten des Mondes übereinstimmen. Wir müssen also die Theorie verbessern, was wir in \kap{hm_gezeiten_Laplace} beschreiben wollen. 
+Zunächst werden wir aber mit der Potentialtheorie eine breit anwendbare Methode kennenlernen, mit der wir auch noch einmal die Ergebnisse der Newtonschen Gezeitentheorie elegant herleiten wollen und die wir anschließend im \kap{hm_gezeitenreibung} sehr vorteilhaft anwenden können.
+
+\newpage
+\subsection{Grundlagen der Potentialtheorie der Gravitation} \label{kap:hm_potentialtheorie}
+
+\subsubsection{Gravitationspotential einer beliebigen Masseverteilung} \label{kap:hm_pot_general_distrib}
+
+Wir wollen zunächst die grundlegende Beziehung für die Berechnung eines Gravitationspotentials einer beliebigen Massenverteilung herleiten. Im Kapitel Physik der Bewegung (Band I) hatten wir dargestellt, wie die Gravitationskraft zwischen zwei Massepunkten aus dem Gravitationspotential berechnet werden kann.
+Wir betrachten dazu eine beliebige Anzahl von Massepunkten $m_i \lk i=1\ldots N\rk$. Wir stellen uns vor, dass man nach und nach alle Massen aus dem Unendlichen in eine Anordnung bringt, nach der die Massen $m_i$ jeweils an den Orten $\vec{r}_i$ liegen. Dabei wird durch die Gravitationskraft Arbeit verrichtet werden, die da erstere konservativ ist als Differenz eines Potentials geschrieben werden kann:
+    \begin{align*}
+        W_i = m_i\,\bigintsss\limits_\infty^{\vec{r}_i}\vec{\nabla}U \cdot \D\vec{s}_i = m_i\lek U\lk \vec{r}_i\rk - \underbrace{U\lk\infty\rk}_{=0}\rek\,.
+    \end{align*}
+Als gravitative Selbstenergie $U_\text{S}$ aller Massen $m_i$ kann die Summe der Arbeiten $W_i$ verstanden werden. Bei der Doppelsummenbildung muss man einen Faktor $\frac{1}{2}$ anwenden, damit bei der Summe über $i$ und $j$ die einzelnen Arbeiten nicht doppelt gezählt werden.\footnote{Beispiel für 3 Massen: Wir bringen zunächst die Masse $m_1$ an die Position $\vec{r}_1$, dann $m_2$ an die Position $\vec{r}_2$, schließlich $m_3$ an die Position $\vec{r}_3$. Da aber die Reihenfolge egal ist, addieren wir die Arbeiten $W_\text{A} = W_1(\vec{r}_1)+W_2(\vec{r}_1,\vec{r}_2)+W_3(\vec{r}_1,\vec{r}_2,\vec{r}_3) \text{und} W_\text{B} = W_1(\vec{r}_1)+W_3(\vec{r}_1,\vec{r}_3)+W_2(\vec{r}_1,\vec{r}_3,\vec{r}_2)$ und halbieren $W_\text{A}+W_\text{B}$.}
+    \begin{align*}
+        E_\text{S} &= -\frac{1}{2}\,G\,\sum_{\substack{i,j=1\\i\neq j}}^N\,\frac{m_i\,m_j}{|\vec{r}_i-\vec{r}_j|} = \frac{1}{2}\sum_{i=1}^N W_i = \frac{1}{2}\sum_{i=1}^N m_i\,U_i \\ 
+     & \text{mit}~~~ U_i\lk \vec{r}_j\rk = -G\sum_{\substack{j=1 \\ i\neq j}}^N \frac{m_j}{|\vec{r}_i-\vec{r}_j|}\,. 
+    \end{align*}
+    Von der Summe für $U_i\lk \vec{r}_j\rk$ kommt man leicht zum Integral für eine kontinuierliche Massenverteilung\footnote{Im strengen Sinne erfolgt die Berechnung über die Methode der \textit{Greenschen Funktionen}, die wir in der Potentialtheorie für elektrische Felder in der Elektrodynamik (Band IV) kennen lernen werden. Siehe auch \cite{Otto2019, Fischer2018} und \cite{Riley2006, Felder2016}}:
+    \begin{align}
+      U\lk \vec{r}\rk = -G\bigintsss\frac{\varrho\lk\vec{r}'\rk}{|\vec{r}'-\vec{r}|}\,d^3\,\vec{r}' \; . \label{eq:hm_pot_theo01}
+    \end{align}
+    Dies ist der allgemeine Ausdruck für ein Gravitationspotential
+    $U\lk \vec{r}\rk$, das durch eine kontinuierliche Massenverteilung
+    $\varrho\lk \vec{r}\rk$ hervorgerufen wird
+    (\figref{hm_pot_general_distrib}).
+
+    \begin{figure}[H]
+	\includegraphics[width=\textwidth]{KOSGravPotential_allg.pdf} 
+	\caption[Gravitationspotential für kontinuierliche Massenverteilungen.]{Zur Herleitung des Gravitationspotentials für kontinuierliche Massenverteilungen.}
+	\label{abb:hm_pot_general_distrib}
+\end{figure}
+
+\subsubsection{Gravitationspotential einer rotationssymmetrischen Masseverteilung} \label{kap:hm_pot_rotsymm_distrib}
+
+Oft haben wir Massenverteilungen vorliegen, die achsen- \bzw rotationssymmetrisch sind (\figref{hm_pot_rotsymm_distrib}). Die Idee ist nun, mit einer Behandlung des physikalischen Problems in sphärischen Koordinaten eine angepasste und damit einfachere und elegantere Darstellung zu finden.\\
+Wir schreiben \eqref{eq:hm_pot_theo01} in sphärischen Koordinaten, die wir hier mit $r,\,\phi,\,\theta$ bezeichnen wollen. Über die Symmetrie-Koordinate $\phi$  kann integriert werden:
+    \begin{align}
+      U\lk r,\theta\rk = -2\pi\,G\,\bigintsss\limits_0^\infty\bigintsss\limits_0^\pi
+      \langle \frac{r'^2\,\sin\theta'\,\varrho\lk r',\theta'\rk}
+      {|\vec{r}-\vec{r}'|}\rangle  \,\D r'\, \D\theta' \,,
+      \label{eq:hm_pot_theo02} 
+    \end{align}
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{KOSGravPotential_axial.pdf} 
+	\caption[Gravitationspotential für rotationssymmetrische Massenverteilungen.]{Zur Herleitung des Gravitationspotentials für rotationssymmetrische Massenverteilungen.}
+	\label{abb:hm_pot_rotsymm_distrib}
+\end{figure}
+
+wobei
+    \begin{align}
+      \langle \frac{1}{|\vec{r}-\vec{r}'|} \rangle
+      = \frac{1}{2\pi}\int\limits_0^{2\pi}\frac{\D\phi'}{|\vec{r}-\vec{r}'|}
+      \,\D\phi'\label{eq:hm_pot_theo03} \,,
+    \end{align}
+eine Mittelung (Integral) über die Symmetrie-Koordinate $\phi'$ ist. Wir haben ja bereits mehrfach den Term 
+    \begin{align*}
+        \frac{1}{|\vec{r}-\vec{r}'|} = \lk r^2-2\vec{r}\,\vec{r}' + r'^2\rk^{-\frac{1}{2}} \,,
+    \end{align*}
+für $|\vec{r}|>|\vec{r}'|$ entwickelt (\zb \eqref{eq:hm_gezeiten12}) und schreiben jetzt das darin auftretende Skalarprodukt $\vec{r}\,\vec{r}'$ als:
+    \begin{align}
+    \begin{split}
+        \vec{r}\,\vec{r}' &= r\,r'\,Q\lk \theta,\theta',\phi'\rk \,, \\
+        Q\lk \theta,\theta',\phi'\rk &= \sin\theta\,\sin\theta'\,\cos\phi' + \cos\theta\,\cos\theta' \; ,
+    \end{split} \label{eq:hm_pot_theo04}
+    \end{align}
+woraus folgt:
+    \begin{align}
+         \frac{1}{|\vec{r}-\vec{r}'|} = &\frac{1}{r} \lek 1 + \frac{r'}{r}\,Q + \frac{1}{2}\,\lk \frac{r'}{r} \rk^2 \lk 3Q^2 - 1 \rk + \mathcal{O} \lk \frac{r'}{r}\rk^3 \rek \,. \label{eq:hm_pot_theo05}
+    \end{align}
+Wir können jetzt das Integral \eqref{eq:hm_pot_theo03} gliedweise in \eqref{eq:hm_pot_theo05} ausführen und erhalten bis zur zweiten Ordnung in $Q$:
+\begin{align*}
+  \langle 1 \rangle &= \frac{1}{2\pi}\int\limits_0^{2\pi}\D\phi' = 1\,,\qquad
+	\langle Q \rangle = \cos\theta\,\cos\theta' \,,\\
+  \langle Q^2 \rangle &= \frac{1}{2}\,\sin\theta\,\sin^2\theta' + \cos^2\theta\,\cos^2\theta' \\
+	                    &= \frac{1}{3} +\frac{2}{3}\,\lk \frac{3}{2}\,\cos^2\theta-\frac{1}{2}\rk\lk \frac{3}{2}\,\cos^2\theta'-\frac{1}{2}\rk\,.
+    \end{align*}
+Damit erhalten wir:
+    \begin{align}
+        \frac{1}{|\vec{r}-\vec{r}'|} = \frac{1}{r} \bigg[ 1 &+ \frac{r'}{r} \cos\theta\,\cos\theta' \nonumber \\
+				       &+ \lk \frac{r'}{r} \rk^2\,\frac{1}{2}\,\lk 3\cos^2\theta-1\rk\,\frac{1}{2}\,\lk 3\cos^2\theta'-1\rk + \mathcal{O} \lk \frac{r'}{r}\rk^3  \bigg] \,. \label{eq:hm_pot_theo06}
+    \end{align}
+Mit Hilfe der \emph{Legendre-Polynome}\footnote{Adrien-Marie Legendre (1752--1833) war ein französischer Mathematiker, der besonders für seine Arbeiten zu den nach ihm benannten Legendre-Polynomen und den elliptischen Integralen bekannt ist.}\indexp{Legendre, Adrien-Marie }\index{Polynome!Legendre-} $\PL n$ (siehe \cite{Riley2006, Felder2016} und die als Anhang \onlineZ), kann man die Beziehung \eqref{eq:hm_pot_theo03} elegant schreiben als:
+    \begin{align}
+        U\lk r,\theta\rk &= \sum_{n=0}^\infty\Phi_n\lk r\rk\,\PL n\lk \cos\theta\rk\,, \label{eq:hm_pot_theo07}
+	  \end{align}
+    worin die $\PL n$ durch die \gls{legendrePol} 
+    \begin{align}
+		\begin{split}
+        \PL n\lk \cos\theta\rk =
+				\begin{cases}
+            1 & n=0 \\
+            \cos\theta & n=1 \\
+            \frac{1}{2}\,\lk 3\cos^2\theta-1\rk & n=2 \\
+            \frac{1}{2}\,\lk 5\cos^3\theta-\cos\theta\rk & n=3 \\
+            \ldots & n \geq 4       
+				\end{cases}
+		\end{split} \label{eq:hm_pot_theo07a}
+    \end{align}
+gegeben sind und die $\Phi_n\lk r\rk$ durch
+    \begin{align}
+        \Phi_n\lk r\rk = &-\frac{2\pi\,G}{\lk n+\frac{1}{2}\rk\,r^{n+1}}\,\int\limits_0^r r'^{n+2}\,\varrho_n\lk r'\rk\, \D r' - \frac{2\pi\,G\,r^n}{n+\frac{1}{2}}\,\int\limits_r^\infty r'^{1-n}\,\varrho_n\lk r'\rk \,\D r' \,. \label{eq:hm_pot_theo08}
+    \end{align} 
+Dabei haben wir folgende Entwicklungen benutzt:
+    \begin{align*}
+      \text{für}~r>r':~~  \frac{1}{|\vec{r}-\vec{r}'|} &= \frac{1}{r} \sum\limits_{n=0}^\infty \lk \frac{r'}{r}\rk^n \PL n(\cos\theta)\, \PL n(\cos\theta')\,~~\text{\bzw} \\
+      \text{für}~r<r':~~  \frac{1}{|\vec{r}-\vec{r}'|} &= \frac{1}{r'} \sum\limits_{n=0}^\infty \lk \frac{r}{r'}\rk^n \PL n(\cos\theta)\, \PL n(\cos\theta')\,.
+		\end{align*}
+Die Beziehung \eqref{eq:hm_pot_theo08} können wir auch schreiben als:
+		\begin{align*}
+        \Phi_n\lk r\rk = \,&T_{1n}\lk r\rk + T_{2n}\lk r\rk \,. 
+    \end{align*}
+Dabei haben wir mit 
+    \begin{align}
+        \varrho\lk r',\theta'\rk = \sum_{n=0}^\infty \varrho_n\lk r'\rk\,\PL n\lk \cos\theta'\rk \label{eq:hm_pot_theo09}
+    \end{align}
+eine Entwicklung der Dichtefunktion nach \gls{legendrePol} verwendet, was immer möglich ist, da die $\PL n$ ein vollständiges Orthonormalsystem bilden \cite{Riley2006, Felder2016}. Mit \eqref{eq:hm_pot_theo07} bis \eqref{eq:hm_pot_theo09} haben wir also folgendes erreicht:
+    \begin{enumerate}
+        \item [1.] Wir haben die Variablen $\theta$ und $r$ (\bzw $\theta'$ und $r'$) jeweils separiert. 
+        \item [2.] Wir haben eine Reihenentwicklung mit Ordnungen von ${r'}/{r}$ \bzw ${r}/{r'}$ errhalten.
+        \item [3.] Wir konnten den Radialanteil $\Phi_n(r)$ in zwei Anteile $T_{1n}$ und $T_{2n}$ separieren, wobei die Anteile $T_{2n}$ nur relevant sind, wenn man das Potential innerhalb der Massenverteilung berechnen will.
+		\end{enumerate}
+Wir werden im Folgenden an zwei Spezialfällen verdeutlichen, wie man mit den Beziehungen \eqref{eq:hm_pot_theo07} und \eqref{eq:hm_pot_theo08} das Potential $U(\vec{r})$ berechnet. 
+
+\subsubsection{Gravitationspotential für zwei Spezialfälle} \label{kap:hm_pot_special cases}
+
+\subparagraph{\textbf{Homogene Kugel mit Dichte $\hat{\varrho}_0$ und Radius $R$ }}
+
+Es gilt, da keine Winkelabhängigkeit vorliegt:
+\begin{align*}
+  \varrho_0\lk r'\rk
+  &= \begin{cases}
+    \hat{\varrho}_0 & r'\leq R \\
+    0 & r'> R
+  \end{cases} ~~\text{und}~~\varrho_n\lk r'\rk = 0 ~~~~ \forall\, n \geq 1\,.
+\end{align*}
+Dann folgt für $r>R$:
+\begin{align*}
+  T_{10} &= -\frac{4\pi\,G}{r}\,\int\limits_0^R \hat{\varrho}_0\,{r'}^2\,\D'r = \frac{4\pi\,G}{r}\,\frac{1}{3}\,\hat{\varrho_0}\,R^3 = -\frac{M\,G}{r}\,,\quad
+  T_{20} &= 0 \,, \\
+  \rightarrow ~~~~ U\lk r\rk &= -\frac{M\,G}{r} \,,
+\end{align*}
+was wir natürlich schon wussten. Das Gravitationspotential einer Kugel ist außerhalb der Kugel gleich dem eines Massepunktes, der die gleiche Masse $M$ wie die Kugel hat und in deren Zentrum liegt. Für $r \leq R$ (innerhalb der Kugel) gilt:
+\begin{align}
+  T_{10} &= -\frac{4\pi\,G\,\hat{\varrho}_0}{r}\,\frac{1}{3}\,r^3 \,,~\quad 
+  T_{20} = -4\pi\,G\,\hat{\varrho}_0\,\lk \frac{R^2}{2}-\frac{r^2}{2} \rk \,,\nonumber \\
+  U&= -\frac{4\pi\,G\,\hat{\varrho}_0\,R^3}{3R}\,\lk \frac{3}{2}-\frac{3r^2}{2R^2} + \frac{r^2}{R^2}\rk = -\frac{M\,G}{R}\,\lk \frac{3R^2-r^2}{2R^2}\rk \,. \label{eq:hm_pot_theo10}
+\end{align}
+% 
+\subparagraph{\textbf{Homogener Rotationsellipsoid}}
+
+				Der Rotationsellipsoid hat die Dichteverteilung
+				\begin{align*}
+						\varrho\lk \theta'\rk = \hat{\varrho}_0\,\lk 1-\frac{2}{3}\,\varepsilon\,\PL 2\lk \cos\theta'\rk\rk \, ~~\text{und}~~ \varepsilon = \frac{R_\text{A}-R_\text{P}}{R_0}\,.
+				\end{align*}
+				Hierin ist $\PL 2\lk \cos\theta'\rk = \frac{1}{2}\,\lk 3\cos\theta'-1\rk$ und $R_0$, $R_\text{A}$, $R_\text{P}$ sind der mittlere, der äquatoriale und der Polradius des Ellipsoids, sowie $\varepsilon$ seine Elliptizität.\footnote{Teilweise wird in der Himmelsmechanik die Elliptizität über die Abplattung leicht anders definiert: $f=\frac{R_\text{A}-R_\text{P}}{R_\text{A}}$. Für kleine $\varepsilon$ \bzw $f$ stimmen aber die Werte annähernd überein.}
+								Für die Elliptizität gilt : 
+				\begin{itemize}
+				\item $\varepsilon > 0$  bedeutet $R_\text{A} > R_\text{P}$, also ein oblater Ellipsoid mit $R_\text{P} = R_0\lk 1-\frac{2}{3}\,\varepsilon\rk$, $R_\text{A} = R_0\,\lk 1+\frac{1}{3}\,\varepsilon\rk$ \\
+				\item $\varepsilon < 0$  bedeutet $R_\text{A} < R_\text{P}$, also ein prolater Ellipsoid mit $R_\text{P} = R_0\lk 1+\frac{2}{3}\,|\varepsilon|\rk$, $R_\text{A} = R_0\,\lk 1+\frac{1}{3}\,\varepsilon\rk$
+				\end{itemize} 
+				Das Potential nach \eqref{eq:hm_pot_theo07} und \eqref{eq:hm_pot_theo08} erhält man bis zur ersten Ordnung in $\varepsilon$ für $|\varepsilon| \ll 1$ nach etwas längerer, aber einfacher Rechnung (\probref{hm_gezeiten07}):
+				\begin{align}
+						U\lk r,\theta\rk = -\frac{G\,M}{r} + \frac{2}{5}\,\varepsilon\,\frac{G\,M\,{R_0}^2}{r^3}\,\PL 2\lk \cos\theta\rk + \mathcal{O}\lk \varepsilon^2\rk \,.\label{eq:hm_pot_theo11}
+				\end{align}
+				Mit $J_0 = \frac{2}{5}\,M\,{R_0}^2$ (Trägheitsmoment einer homogenen Kugel mit Radius $R_0$) kann man für das Potential die einfach merkbare Formel schreiben:
+				\begin{align}
+						U\lk r,\theta\rk = -\frac{G\,M}{r} + \varepsilon\,J_0\,\frac{G}{r^3}\,\PL 2\lk \cos\theta\rk \,.\label{eq:hm_pot_theo12}
+				\end{align}
+Wir werden bei der Behandlung der Gezeitenreibung (\kap{hm_gezeitenreibung}) die Potentialberechnung für Rotationsellipsoide mehrfach verwenden.
+
+
+\subsection{Grundidee der Gezeitentheorie nach Laplace} \label{kap:hm_gezeiten_Laplace}
+
+Wir wollen jetzt die Grundidee der dynamischen Theorie beleuchten, die eine wesentliche Verbesserung der Newtonschen Theorie darstellt.
+Sie wurde originär von Laplace\indexp{Laplace, Pierre-Simon (Marquis) de} entwickelt und besteht darin, die Tiden als stationäre erzwungene Schwingungen eines schwingungsfähigen Systems der Ozeanbecken anzunehmen. \\
+Das einfachste Modell dazu geht auf Airy zurück.%
+\indexp{Airy, George Biddell}\footnote{Sir George Biddell Airy (1801 -- 1892) war ein englischer Mathematiker, Physiker und Astronom, der wichtige Beiträge zur Himmelsmechanik und besonders auch zur Optik lieferte.}
+Er nahm für ein Gedankenexperiment an, dass sich die Gezeiten wie Wassermassen in einem breiten Kanal großer Wassertiefe entlang des Erdäquators bewegen und periodisch angeregt werden.
+In einem solchen Kanal würde das Wasser also ständig hin- und zurücklaufen, es werden sich stehende Oberflächen-Wellen (siehe Physik des Kontinuums, Band I) ausbilden. 
+Diese stehenden Wellen haben wegen der großen Wassertiefe $h_\text{T}$ eine Wellenlänge $\lambda$, die etwa dem halben Erdumfang entspricht.
+Die sich um den Äquator bewegende Welle hat  eine elliptische Form.
+% ist nicht 2.65 gemeint?
+Man kann das auch so formulieren, dass sich die beiden Hochwasser-Berge in \figref{hm_gezeiten05} mit dieser Welle um den Erdball bewegen.
+Wir wollen nun auf Basis dieses vereinfachten Bildes zeigen, dass damit die beobachtete zeitliche Verschiebung des Hochwasser vom Kulminationspunkt des Mondes erklärt werden kann.
+Wir erinnern uns, dass die Periode der vom Mond erzeugten Gezeiten durch
+\begin{align*}
+    \frac{2\pi}{\omega_\text{Gez}} = T_\text{Gez} = &\,\SI{12}{\hour}\,\SI{25}{\minute} \,
+\end{align*}
+gegeben ist. Die Periode einer Oberflächenwelle bei einer Wassertiefe $h_\text{T}$ und einer Wellenlänge $\lambda$ von etwa dem halben Erdumfang $(\approx \pi\,R_\text{E})$ ist gegeben durch (siehe Kapitel2 im Band I)
+\begin{align*}
+    \frac{2\pi}{\omega_\text{Welle}} = T_\text{Welle} = \frac{\lambda}{c_\text{Welle}} \approx \frac{\pi\, R_\text{E}}{\sqrt{g\,h_\text{T}}} \approx \,\SI{30}{\hour}\,,
+\end{align*}
+worin $c_\text{Welle} = \sqrt{g\,h_\text{T}}$ die Ausbreitungsgeschwindigkeit der Wellen ist.
+Wir wissen aus dem Kapitel über Oszillatoren im Kap. 1.3.2 (Band I), dass bei erzwungenen Schwingungen diese mit der Frequenz der Erregerschwingung schwingen, die Amplitude und Phasenlage aber von der Dämpfung und dem Verhältnis von Erregerfrequenz (hier $\omega_\text{Gez}$) zur Eigenfrequenz (hier $\omega_\text{Welle}$) abhängen.
+Da die beiden zeitlich um $\SI{12}{\hour}\,\SI{25}{\min}$ versetzten Gezeiten-Erregerschwingungen annähernd die gleiche Amplitude und Frequenz haben und die Eigenfrequenz und die Dämpfung für die beiden stehenden Wasserwellen auch als gleich angenommen werden kann, wird auch die Überlagerung eine feste Phasenbeziehung zu der die Gezeiten erzeugenden Funktion haben.
+Ebenso wissen wir aus der Behandlung von Pendelbewegungen, dass die Phase der erzwungenen Schwingung bei geringer Dämpfung gegeben ist durch
+\begin{enumerate}
+    \item [a)] $\Delta\varphi = 0$, falls Erzeugerfrequenz kleiner als Eigenfrequenz, \dh in unserem Fall \bzw \\
+    $T_\text{Gez} > T_\text{Welle}$
+    \item [b)] $\Delta\varphi=\pi$, falls Erzeugerfrequenz größer als Eigenfrequenz, \dh in unserem Fall $T_\text{Gez} < T_\text{Welle}$
+\end{enumerate}
+Für unser einfaches Modell gilt offensichtlich Fall b.
+Somit erklärt dieses einfache Bild eine beobachtete Phasenverschiebung zwischen Kulmination und Hochwasser-Zeitpunkt.
+Bedingt durch die Reibung wird die Phasenlage aber von $\pi$ abweichen.\footnote{Natürlich gibt es auch Gezeitenwirkungen (\zb Deformationen) im Erdkörper selbst.
+Die Eigenfrequenz ist aber viel größer als $\omega_\text{Gez}$, ebenso ist die Dämpfung viel stärker, weswegen die beobachtete Verzerrung der Gesteinshülle der Erde annähernd an der Erd-Mond-Linie ausgerichtet (\ca $3\degree$) ist.} In \probref{hm_gezeiten06} wollen wir ein sehr einfaches mathematisches Modell der gerade dargestellten Grundzüge der dynamischen Theorie behandeln. \\
+In unseren Betrachtungen zur dynamischen Theorie haben wir \zt stark vereinfachende Annahmen gemacht.
+Das Schwingungssystem ist natürlich viel komplexer als ein Kanal um den Äquator, so dass der Ansatz von Airy von Henri Poincaré\indexp{Poincaré, Jules Henri}, Joseph Proudman, Arthur Doodson\indexp{Proudman, Joseph}\footnote{Joseph Proudman (1888--1975) und Arthur Thomas Doodson (1890--1968) waren britische Ozeanographen und Mathematiker, die sich mit der Theorie der Gezeiten befassten.}\indexp{Doodson, Arthur Thomas} und anderen weiterentwickelt wurde.
+Danach entstehen durch die Gezeitenkräfte stehende Wellen\index{Wellen!stehende}\index{Knoten} in den Ozeanen mit Knoten, in denen die Amplitude sehr gering ist aber die Strömungsgeschwindigkeit entsprechend groß (\figref{hm_gezeiten06}).
+Als Folge der Coriolis-Kraft\index{Coriolis-Kraft} (im Kapitel 1.2.2 (Band I)) entstehen dadurch kreisende bis elliptische Bewegungen um diese annähernd stationären Knotenpunkte.
+Solche rotierende Gezeitenwellen haben stets einen \emph{amphidromischen Punkt} (\emph{Amphidromiepunkt})\index{Amphidromiepunkte} mit Amplitude 0, um den mindestens ein "`Hochwasser-Berg"' und ein "`Niedrigwasser-Tal"' herumlaufen.
+Man kann sich das sehr schön veranschaulichen durch eine waagerecht gelagerte Fahrradfelge, die einen Schlag hat.
+Die Nabe, der Amphidromiepunkt, hat immer dieselbe (Meeres-)Höhe, aber der Felgenrand geht hoch und runter.
+Ein typisches Beispiel für eine rotierende Gezeitenwelle ist die Nordsee, in der die Wellenlänge wegen der geringeren Wassertiefe kleiner ist und es dadurch mehrere Amphidromiepunkte in relativ geringem Abstand gibt (\figref{hm_gezeiten06a}, \probref{hm_gezeiten03}).\\
+Zusammengefasst besteht nach der dynamischen Theorie das schwingungsfähige System also aus einer Reihe ozeanischer Bassins, die unterschiedlich aneinander gekoppelt sind.
+Jedes hat seine charakteristische Eigenfrequenz und Reibung (bedingt durch Wassertiefe, Uferformation, Temperatur).
+Obwohl das ganze System gut eingeschwungen ist, gibt es durch die Variationen in den erzeugenden Gezeitenkräften immer wieder Unregelmäßigkeiten, die die theoretische Berechnung der Gezeiten sehr schwierig macht.
+Deshalb sind rein theoretische Vorhersagen für Orte der Erde auf Basis der dynamischen Theorie praktisch nicht möglich, obwohl man in den letzten Jahren mit entsprechenden Großrechnern enorme Fortschritte gemacht hat \cite{Woodworth2019, Lyard2021}.
+
+\begin{figure}%
+\includegraphics[width=1.1\textwidth]{TidalMaps01.pdf}%
+\caption[Amplitude der $M_2$-Tide nach einem numerischen Modell.]{Amplitude für die $M_2$-Tide nach einem numerischen Modell \cite{Lyard2021}. Deutlich zu erkennen sind unter anderen die Amphidromiepunkte im Pazifik und im Südatlantik.}
+\label{abb:hm_gezeiten06}%
+\end{figure}
+
+\begin{figure}%
+\includegraphics[width=1.2\textwidth]{TidalMaps01a.pdf}%
+\caption[Amplitude und Phase der $M_2$-Tide für die Nordsee.]{Amplitude und Phase für die $M_2$-Tide in der Nordsee mit deutlich erkennbaren Amphidromiepunkten (experimentelle Werte). \cite{Reynaud2012}. Siehe auch \probref{hm_gezeiten03}.}
+\label{abb:hm_gezeiten06a}%
+\end{figure}
+
+Für die Seefahrt und andere Anwendungen werden mit großem Aufwand Gezeitentafeln publiziert.
+Diese beruhen auf der sogenannten harmonischen Analyse von Langzeitbeobachtungen, denen die Annahme zugrunde liegt, dass das Gezeitenverhalten eine Überlagerung von Schwingungen mit Perioden (und Vielfachen der Perioden) von Mond und Sonne darstellt.
+Diese periodischen Abhängigkeiten sind überall auf der Welt gleich.
+Nur die Einzelphasen und Einzelamplituden (und Dämpfungen) der entstehenden Schwingungen unterscheiden sich von Standort zu Standort.
+Heute kann man mit \ca 20--40 der dominanten harmonischen Komponenten (die stärksten sind die halbtägliche Mondtide $M_2$ und die halbtägliche Sonnentide $S_2$) schon sehr gute Vorhersagen machen, da ohnehin die Überlagerung durch lokale Effekte wie Wind, Luftdruck, Erwärmung, Strömungsänderungen Vorhersagen von genauer als auf einen Zentimeter wenig sinnvoll sind. Man beschränkt sich daher auf Zentimeter-Genauigkeit.\footnote{Vor dem Aufschwung der digitalen Rechentechnik wurden Gezeitenvorhersagen mit imposanten mechanischen Rechnern durchgeführt, heute natürlich auf \textit{High-Performance Computern} (HPC).
+Selbst auf dem PC kann man heute schon sinnvolle Berechnungen anstellen.}\\
+Nachdem wir die Physik der Gezeiten auf der Erde nach den beiden Grundmodellen behandelt haben, wollen wir testen, wie die Ergebnisse mit realen Messungen übereinstimmen.
+Wegen der genannten Komplexität und geographischen Besonderheiten ist nicht zu erwarten, dass brauchbare Ergebnisse aus den einfachen theoretischen Rechnungen \zb für die Nordsee oder die Atlantikküste erzielt werden können.
+Wir haben uns daher die Gezeitentafel in der Nähe des Äquators für Diego Garcia im Indischen Ozean für eine Übung herausgesucht (\probref{hm_gezeiten06}), um die Theorie zumindest ansatzweise überprüfen zu können.
+Zur Vertiefung dieses komplexen Themas empfehlen wir \ua die Referenzen \cite{Butikov2001, Butikov2014, Weyer2012, Melchior1966, Norsen2017}.
+
+\subsection{Gezeitenreibung}\label{kap:hm_gezeitenreibung}\index{Gezeitenreibung}
+
+\subparagraph{\textbf{Phänomenologische Betrachtung}}
+
+In \probref{hm_erdrotation} hatten wir untersucht, wie man aus den Beobachtungsdaten von Sonnenfinsternissen über mehrere tausend Jahre schließen  kann, dass sich die Erdrotation verlangsamt, \dh die Rotationsperiode $T_\text{P,E}$ größer wird.
+Es gilt heute als gesichert, dass die Zunahme der Tageslänge der Erde etwa $\SI{2.1}{\milli\second}/\mathrm{Jh.}$ beträgt, was einer Abnahmerate der Rotationsenergie der Erde von 
+	\[\frac{\D T_\text{Rot}}{\D t} = \frac{\D}{\D t} \lk\frac{J_\text{E}}{2}\omega^2\rk = \SI{-3.6e12}{\W}
+\]
+entspricht.
+Diese Änderung der Rotationsenergie und des damit verbundenen Drehimpulses muss durch ein Drehmoment der Größe
+	\[M_\text{D} = \frac{\D}{\D t} \lk {J_\text{E}}\,\omega_\text{E} \rk = \SI{-5.2e16}{\N\metre}\,
+\]
+hervorgerufen werden \cite{Brosche1989}.
+Die ersten Betrachtungen zur Gezeitenreibung gehen auf Halley\indexp{Halley, Edmund} zurück.
+Immanuel Kant erkannte 1754 als erster die bremsende Wirkung der Meeresgezeiten, jedoch ohne den Zusammenhang zum Mond zu sehen.\indexp{Kant, Immanuel}\footnote{Immanuel Kant (1724 -- 1804) war ein deutscher Philosoph und Professor für Logik an der Universität Königsberg.
+Er zählt zu den bedeutendsten Philosophen der Geschichte. Mit seiner "`Kritik der reinen Vernunft"' markierte er den Beginn der modernen Philosophie.} Die erste qualitativ richtige Beschreibung lieferte 1848 Robert Mayer%
+\indexp{Mayer, Julius Robert von}\footnote{Julius Robert von Mayer (1814 -- 1878) war ein deutscher Arzt und Naturforscher. Er formulierte als einer der ersten Wissenschaftler den Ersten Hauptsatz der Thermodynamik.}, während 
+George Howard Darwin%
+\footnote{Sir George Howard Darwin (1845 -- 1912) war ein britischer Astronom und Mathematiker. Er war ein Sohn des berühmten Naturforschers Charles Darwin und ist bekannt für seine Abspaltungstheorie, nach der der Mond einst Teil der Erde gewesen sein soll.} die Anerkennung für die erste vollständige analytische Beschreibung des Problems gebührt.\indexp{Darwin, Sir George Howard}\\
+Wir werden zunächst eine einfache phänomenologische Beschreibung für die Gezeitenreibung geben. Daraus werden wir ein Modell entwickeln, auf dessen Basis wir eine mathematisch-analytische Beschreibung angehen. %, die durchaus mit dem uns zur Verfügung stehenden mathematisch-physikalischen Instrumentarium möglich ist.
+Wir werden dabei der Einfachheit halber die Gezeitenwirkung der Sonne vernachlässigen und nur die Wechselwirkung mit dem Mond in Betracht ziehen.\\
+Wir hatten bisher nur über die Wirkung der Gezeitenkräfte auf die Ozeanhülle gesprochen.
+Aber natürlich wirken diese auch auf den festen Erdkörper, der eine gewisse Elastizität hat.
+Daher wird der Erdkörper ebenfalls mit phasenverschobenen Oszillationen (seismischen Wellen) auf die Anregung durch die Gezeitenkräfte antworten, wobei im Gegensatz zu den Ozeanwellen die Eigenfrequenz und die Dämpfung der seismischen Wellen deutlich größer sind.
+In \kap{hm_gezeiten_Laplace} und \probref{hm_gezeiten05} hatten wir gesehen, dass die Überlagerung dieser Wellen, abhängig von deren Eigenfrequenz und Dämpfung zur Ausbildung einer stehenden Welle führt, deren Maximum um einen Winkel $\delta$ phasenverschoben zur Erdmittelpunkt-Mond-Linie ist.
+Dabei kommt es im Fall der Erde zu einem vorauseilenden Gezeitenberg ($\delta >0 \approx 3\degree$) (\figref{hm_gezeiten07}).
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{GezeitenFestOzean.pdf}%
+\caption[Gezeitenausbildung im Ozean und im Erdkörper.]{Gezeitenausbildung im Ozean und im Erdkörper.}
+\label{abb:hm_gezeiten07}%
+\end{figure}
+
+Diese von Null verschiedene Phasenlage von Gezeitenberg und Erde-Mond-Linie ist entscheidend für das Auftreten von Gezeitenreibung.
+Ein vorauseilender Gezeitenberg beschleunigt dabei den Mond und verringert die Erdrotation.
+Das kann man sich leicht an \figref{hm_gezeiten08}a klar machen.
+Versteht man den Gezeitenberg als Hantel mit Massen an den Punkten A und B, so wird der Mond durch diese in Richtung Hantelkopf A gezogen, also beschleunigt, mithin $\dot{\omega}_\text{M} > 0$.
+Da der Effekt im Perigäum \glslink{periapsis} (Erdnähe) am größten ist wird sich auch die Exzentrizität der Bahn vergrößern und folglich $\dot{\omega}_\text{E} < 0$ sein. 
+Entsprechend umgekehrt sind die Verhältnisse bei einem nachlaufenden Gezeitenberg wie in \figref{hm_gezeiten08}b gezeigt.
+Hier wird der Mond ebenfalls in Richtung Hantelkopf A gezogen, mithin verzögert, folglich ist $\dot{\omega}_\text{M} < 0$ und $\dot{\omega}_\text{E} > 0$. Dabei gilt aber, dass der  die der Gesamtdrehimpuls des Erde-Mond-Systems bleibt erhalten bleibt.
+Es ist auch sofort einsichtig, dass es für $\delta=0$ keine Beschleunigung oder Verzögerung geben kann, da das Drehmoment auf Grund der Symmetrie verschwindet.
+Entscheidend für das Auftreten der Gezeitenreibung ist also ein zeitlicher Versatz des Maximums der Gezeitenellipse zum Meridiandurchgang des Mondes.
+Im Fall der Erde führt wie bereits erwähnt dieser Versatz von \ca $3 \degree$  zu einer experimentell, \zb durch Laserentfernungsmessungen, nachgewiesenen Zunahme des Mondbahnradius von
+\begin{equation*}
+  \D a_\text{EM}/\D t \approx \SI{4.4}{\cm}/\text{Jahr}\; ,
+\end{equation*}
+wie wir auch gleich (und auf anderem Weg in \probref{hm_gezeiten06}) nachrechnen wollen.
+Für das Gesamtsystem ist aber keineswegs mechanische Energieerhaltung gegeben, nur ein kleiner Teil (ca. $3\%$) wird von der Mondbahn aufgenommen, der Rest muss in der Erde dissipiert werden.
+Wie genau das passiert, ist immer noch ein aktueller Forschungsgegenstand in der Geophysik. 
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{GezeitenDelay.pdf}%
+\caption[Prinzip der Gezeitenreibung.]{Prinzip der Gezeitenreibung. \fa vorlaufender Gezeitenberg, \fb
+  nachlaufender Gezeitenberg.}
+\label{abb:hm_gezeiten08}%
+\end{figure}
+
+\subparagraph{\textbf{Mathematische Beschreibung}}
+
+Wir wollen nun die mathematische Beschreibung angehen.
+Das Drehmoment, das vom Mond auf das Gezeitenellipsoid der Erde wirkt, hat als Pendant ein vom Betrag her gleich großes aber mit entgegengesetztem Vorzeichen versehenes Drehmoment, das vom Gezeitenellipsoid auf den Mond wirkt.
+Dies ist eine direkte Folge der Gesamtdrehimpulserhaltung im Erde-Mond-System. 
+Aus dem Winkelversatz $\delta$ berechnet sich ein zeitlicher Versatz $\Delta t =\SI{12}{\minute}$.
+%\begin{align}
+	%\delta = 360\degree\,\frac{\Delta t}{\SI{24}{\hour}} = 3\degree\,. \label{eq:hm_gezreibung01}
+%\end{align}
+Für unsere Rechnungen treffen wir noch einige weitere vereinfachende Annahmen:
+\begin{itemize}
+   \item Wir vernachlässigen, dass der Schwerpunkt des Erde-Mond-Systems um ca. $\SI{4900}{\km}$ vom Erdmittelpunkt verschoben ist und nehmen den Erdmittelpunkt als Zentrum der Mondumlaufbahn.
+   \item Der Mond bewegt sich auf einer Kreisbahn mit Radius $a_\text{EM}$ um die Erde.
+   \item Der Umlauf des Mondes erfolge in der Äquatorebene der Erde und nach dem 3. Keplerschen Gesetz mit der Umlauffrequenz
+    \begin{align}
+        \omega_\text{M} = \sqrt{\frac{G\,\lk m_\text{E} + m_\text{M}\rk}{a_\text{EM}{}^3}} \,. \label{eq:hm_gezreibung02}
+    \end{align}
+   \item Für die gewählte Anordnung kann die mit Ozeanen bedeckte Erde ohne Gezeiten als Kugel (Radius $R_\text{E}$) angenommen werden.
+   \item Die Erde rotiert mit $\omega_\text{E} =2\pi/T_\text{P,\,E}$.
+\end{itemize}
+Wir wollen die Wechselwirkung des Gezeitenellipsoids mit dem Mond über das Gravitationspotential der Erde (inklusive des Potentials des Gezeitenellipsoids) beschreiben.
+In \kap{hm_pot_special cases} \bzw \probref{hm_gezeiten07} hatten wir das Gravitationspotential eines homogenen Rotationsellipsoids berechnet (Gl. \eqref{eq:hm_pot_theo12}). Das können wir hier verwenden und schreiben bei bekannter Elliptizität $\varepsilon$ das Potential dieses durch die Geitenwirkung des Mondes geformten Rotationsellipsoiden folgendermaßen: 
+\begin{align}
+    U\lk r,\theta\rk = -\frac{G\,M}{r} + \frac{2}{5}\,\varepsilon\,\frac{G\,M\,R^2}{r^3}\,\mathcal{P}_2 \lk\theta\rk  + \mathcal{O}\lk \varepsilon^2\rk \,. \label{eq:hm_gezreibung03a}
+\end{align}
+Auf die Erde angewandt, bei der die Achse des Rotationsellipsoids um $\delta$ gegen die Erde-Mond-Linie verdreht ist, muss man $\theta$ durch $\theta - \delta$ ersetzen und erhält:
+\begin{align}
+    U\lk r,\theta,\delta\rk = -\frac{G\,m_\text{E}}{r} + \frac{2}{5}\,\hat{\varepsilon} \,\frac{G\,m_\text{E}\,R_\text{E}{}^2}{r^3}\,\lk \frac{3}{2}\cos^2\lk \theta-\delta\rk-\frac{1}{2}\rk \;, \label{eq:hm_gezreibung04}
+\end{align}
+wobei wir hier mit $\hat{\varepsilon}$ eine allgemeinere Elliptizität eingeführt haben, die die gesamte elliptische Verformung der Erde durch die Gezeitenkräfte des Mondes unter Berücksichtigung einer teilelastischen Erde beschreibt. 
+Für einen festen Körper mit einer effektiven Festigkeit\footnote{Die effektive Festigkeit ist eine dimensionslose Größe, die sich für einen homogenen Körper aus den Materialeigenschaften berechnen lässt und für die Erde $\approx 3.35$ beträgt \cite{Fitzpatrick2022}.} $\tilde{\mu}$ findet man \cite{Fitzpatrick2022}:
+\begin{align}
+\begin{split}
+    \hat{\varepsilon}  &= - \frac{15}{4}\,\frac{1}{1+\tilde{\mu}}\, \frac{R_{E}{}^3}{r^3}\,\frac{m_\text{M}}{m_\text{E}} = - \frac{15}{4}\,k\, \frac{R_{E}{}^3}{r^3}\,\frac{m_\text{M}}{m_\text{E}}\,.
+\end{split} \label{eq:hm_gezreibung04a}
+\end{align}
+Für einen idealen Ozean (mit Dichte 0) hatten wir mit \eqref{eq:hm_gezeiten_epsilon})
+\begin{align}
+    \hat{\varepsilon}  = -\varepsilon = - \frac{3}{2}\, \frac{R_{E}{}^3}{r^3}\,\frac{m_\text{M}}{m_\text{E}} \label{eq:hm_gezreibung04b}
+\end{align}
+hergeleitet. Hier haben wir über die sogenannte effektive Festigkeit des Planeten $\tilde{\mu}$ etwas vereinfachend die die sogenannte Love\index{Love-Zahl}\footnote{Augustus Edward Hough Love (1863 -- 1940) war ein britischer Mathematiker und Physiker, der besonders auf der Elastizitätstheorie arbeitete.}\indexp{Love, Augustus Edward Hough}-Zahl $k$ berücksichtigt. Sie ist ebenfalls ein dimensionsloser Parameter und ein Maß für die Festigkeit eines Körpers in Reaktion auf eine Gezeitenkraft und hängt von Faktoren wie der Viskosität\index{Love-Zahl}\index{Viskosität} (siehe Kapitel 2 Band I) und der Reibung ab. Sie ist ein Ausdruck dafür, dass sich der Gezeitenberg  nicht bis zu seiner theoretisch maximal möglichen Höhe ausbilden wird. Die beiden Gleichungen \eqref{eq:hm_gezreibung04a} und \eqref{eq:hm_gezreibung04b} zeigen im Vergleich, dass die Gezeitenwirkung auf einer teileastischen Erde das $\frac{5}{2} k$-fache der Wirkung auf einen (idealen, masselosen) die Erde umspannenden Ozean betragen. Wir rechnen im Folgenden für die Erde  mit einer Love-Zahl $k$ im Bereich von 0.2.
+
+Dann ist das Gravitationspotential des herausgebildeten Rotationsellipsoids der teilelastischen Erde (wir rechnen im weiteren nur mit diesen Werten), das auf den Mond wirkt, gegeben durch:
+\begin{align}
+    U\lk r,\theta,\delta\rk &= -\frac{G\,m_\text{E}}{r}-\frac{2}{5}\,\frac{15}{4}\,k\,\frac{G\,m_\text{M} \,R_{E}{}^5}{r^6}\,\mathcal{P}_2 \lk\cos(\theta - \delta) \rk \nonumber \\
+														&= -\frac{G\,m_\text{E}}{r}-\frac{3}{2}\,k\,\frac{G\,m_\text{M} \,R_{E}{}^5}{r^6}\, \lk \frac{3}{2}\cos^2\lk\theta-\delta\rk - \frac{1}{2}\rk \,.  \label{eq:hm_gezreibung05}
+\end{align}
+Durch dieses Potential, oder besser gesagt die daraus folgende Kraft, wird ein Drehmoment auf den Mond ausgeübt, was sich in sphärischen Koordinaten berechnet zu:
+\begin{align}
+\begin{split}
+    \vec{M}_\text{D} &= \vec{r} \times \vec{F}  = - m_\text{M}\,  \vec{r} \times \vec{\nabla}{U} = - m_\text{M}\,\frac{1 \,\d U}{r \,\d \theta} \,r \,\,\vec{e}_r \times \vec{e}_\theta \\
+										 &= - m_\text{M}\,\frac{\d U}{\d \theta} \vec{e}_\phi\, |_{\theta=0,r=a_\text{EM}} \,. \label{eq:hm_gezreibung06}
+\end{split}
+\end{align}
+Für den Betrag des Drehmoments erhalten wir: 
+\begin{align}
+    \left|\vec{M}_\text{D}\right|  & \approx \frac{9}{2}\,k\,\delta \,\frac{G\,m_\text{M}{}^2}{R_\text{E}}\,\lk \frac{R_\text{E}}{a_\text{EM}}\rk^6\,, \label{eq:hm_gezreibung07} 
+\end{align}
+wobei wir kleine Winkel angenommen haben ($\sin\delta\approx \delta, \cos\delta\approx 1$). \\
+Wie bereits erwähnt, gibt es nur für $\delta\neq 0$ ein Drehmoment.
+Wir finden nun die eingangs gemachte Überlegung, wie das Drehmoment wirkt, bestätigt, ein $\delta > 0$ bewirkt eine Beschleunigung des Mondes (und damit eine Verlangsamung der Erdrotation), für $\delta<0$ umgekehrt (siehe auch \probref{hm_gezeiten06}).\\
+Wir wollen jetzt noch die Größenordnungen der Effekte der Gezeitenreibung abschätzen.
+Wir wissen, dass das Drehmoment eine Änderung des Drehimpulses bewirkt.
+Da (wie angenommen) die Bewegung in einer Ebene stattfindet, kann sich nur der Betrag des Drehimpulses ändern.
+Wir schreiben für die Änderung des Betrages des Erddrehimpulses:
+\begin{align}
+    \frac{\D}{\D t} L_\text{E} &= \frac{\D}{\D t} (J_\text{E}\,\omega_\text{E}) = - \left|\vec{M}_\text{D}\right|  \,, \nonumber \\ 
+		\rightarrow~~\dot{\omega}_\text{E} &= - \frac{\left|\vec{M}_\text{D}\right|}{J_\text{E}} = - \frac{45}{4}\,\frac{G\,m_\text{M}{}^2}{m_\text{E}}\,\frac{R_\text{E}{}^3}{a_\text{EM}{}^6}\,k\,\delta\,.
+		\label{eq:hm_gezreibung07a}
+\end{align}
+Mit dem 3. Keplerschen Gesetz \eqref{eq:hm_gezreibung02} finden wir schließlich:
+\begin{align}
+    \frac{\dot{\omega}_\text{E}}{\omega_\text{E}} &= - \frac{45}{4}\,k\,\delta\,\frac{\omega_\text{M}{}^2}{\omega_\text{E}}\,\frac{m_\text{M}{}^2}{m_\text{E}{}^2}\,\frac{R_\text{E}{}^3}{a_\text{EM}{}^3}\approx \SI{-8e-18}{\per\second}\,.
+		\label{eq:hm_gezreibung08}
+\end{align}
+Mit dieser Abnahmerate der Rotationsgeschwindigkeit erhalten wir eine Verlängerung der Rotationsdauer der Erde um
+\begin{equation*}
+  \Delta T_\text{P,E}=-\frac{\dot{\omega}_\text{E}}{\omega_\text{E}}\,T_\text{PE}\,\,100\, \mathrm{a} \approx \SI{2.17e-03}{\second} \approx \SI{2.2}{\milli\second}
+\end{equation*}
+pro Jahrhundert.
+Die Zeit bis zur synchronen Rotation der Erde beträgt dann $\Delta T_\text{synch} = \omega_\text{E}/\dot{\omega}_\text{E} \approx \SI{4e+09}{}$ Jahre.\\
+Die Drehimpulserhaltung im Erde-Mond-System kann formuliert werden als:
+\begin{align}
+	L_\text{ges} &=\frac{2}{5}\,m_\text{E}\,R_\text{E}^2\,\omega_\text{E} + m_\text{M}\,a_\text{EM}^2\,\omega_\text{M} = \mathrm{const} \,. \label{eq:hm_gezreibung09}
+\end{align}
+Ableitung von \eqref{eq:hm_gezreibung09} nach der Zeit und Benutzung von \eqref{eq:hm_gezreibung02} ergibt die Bahnvergrößerungsrate des Mondes zu:
+\begin{align}
+    \frac{\dot{a}_\text{EM}}{a_\text{EM}} &= -\frac{4}{5}\,\frac{m_\text{E}\, R_\text{E}{}^2}{m_\text{M}\, a_\text{EM}{}^2} \,\frac{\dot{\omega}_\text{E}}{\omega_\text{M}} = C_a  \approx \SI{+3.9e-18}{\per\second} \,, \label{eq:hm_gezreibung10}
+\end{align}
+was gleichbedeutend mit einer Vergrößerung des Radius der Mondbahn von $ \Delta a_\text{EM} \approx \SI{+4.7}{\metre}$ pro Jahrhundert ist.
+Aus der Ableitung von \eqref{eq:hm_gezreibung02} nach der Zeit erhält man die Abnahmerate der Umlauffrequenz des Mondes zu $ \dot{\omega}_\text{M}/\omega_\text{M} = -\frac{3}{2}\,C_a \approx \SI{-5.82e-18}{\per\second}$, was wiederum einer Verlängerung des synodischen Mondmonats um $\SI{+43}{\milli\second}$ pro Jahrhundert entspricht.\\
+Zum Schluss wollen wir noch die Energiedissipation ausrechnen.
+Sie ist gleich der vom Drehmoment \eqref{eq:hm_gezreibung07} geleisteten Arbeit pro Zeit:
+\begin{align}
+   P = \left|\vec{M}_\text{D}\right|\,(\omega_\text{M} - \omega_\text{E}) \approx \SI{-3.90e+12}{\W} \,. \label{eq:hm_gezreibung11}
+\end{align}
+Die Leistung ist negativ, da $\omega_\text{M} < \omega_\text{E}$ ist.
+Sie muss also dissipiert werden.
+Die Verlustleistung führt zu einer Erwärmung der Ozeane und der Erdkruste.
+Bei starker Gezeitenreibung, wie sie in anderen Planeten-Mond-Systemen auftritt, kann die Gezeitenerwärmung zur Verflüssigung und vulkanischen Effekten führen.
+Um ein Gefühl für die Größenordnung auf der Erde zu bekommen, geben wir zum Vergleich die gesamte in Deutschland installierte Leistung aller Kraftwerke im Jahre 2022 an: $P_\text{el} = \SI{-2.38e+11}{\W}$ \cite{BNA2022}. Wenn der Zustand der synchronen Rotation erreicht ist, \dh $\omega_\text{M} = \omega_\text{E}$ ist, gibt es auch keine Energiedissipation mehr. 
+Alle Berechnungen finden sich im Detail im \mscr{} \mlhmref{Gezeitenreibung01.m}.\\
+
+\subparagraph{\textbf{Lösung der Bewegungsgleichungen}}
+
+Wir wollen jetzt noch kurz beschreiben, wie man das Erde-Mond-System inklusive Gezeitenreibung in seiner zeitlichen Entwicklung numerisch berechnen kann.
+Das ist aber nicht ganz so einfach.\footnote{Siehe auch dazu \cite{Schebesta1994}.} Bisher hatten wir die Verdrehung $\delta$ der Gezeitenhülle als konstant angenommen und daraus das Drehmoment berechnet.
+In der Zeitentwicklung wird sich aber $\delta$ verringern bis bei $\delta = 0$ der stabile Endzustand, die gebundene Rotation, erreicht ist.
+Das bedeutet, dass das in den Bewegungsgleichungen auftretende Drehmoment von den über lange Zeiträume sich relativ zueinander verändernden Positionen der Himmelskörper abhängig ist.
+Um die Bewegungsgleichungen für Erde und Mond zu erhalten, bilden wir den Gradienten aus dem Potential \eqref{eq:hm_gezreibung05}, das wir als 
+	\[U = U_\text{G} + U_\text{Ell}	\,\]
+schreiben. Wir benutzen die Koordinatensysteme nach \figref{hm_gezeiten09}.
+Der Gradient $\vec{\nabla}_{\vec{r}_\text{E}} U_\text{G}$ erzeugt die Monopolkraft, die auf den Mond wirkt:
+\begin{align}
+    \vec{F}_\text{G}' \lk \vec{r}_\text{M}'\rk = -G\,m_\text{E}\,m_\text{M}\,\frac{\vec{r}_\text{E}'-\vec{r}_\text{M}'}{|\vec{r}_\text{E}' - \vec{r}_\text{M}'|^3}\,.  \label{eq:hm_gezreibung12}
+\end{align}
+
+Bei der Lösung der Bewegungsgleichungen müssen wir die Bewegung der beiden Himmelskörper um den gemeinsamen Schwerpunkt berücksichtigen.
+Die mit einem Strich gekennzeichneten Koordinaten sollen  sich auf das Koordinatensystem $\vec{\Sigma}'$ beziehen, dessen Ursprung im gemeinsamen Schwerpunkt der beiden Massen $m_\text{E}$ und $m_\text{M}$ liegt.\footnote{Wir können die nachfolgenden Überlegungen auch auf ein beliebiges Zweikörperproblem (Satellit-Zentralkörper) anwenden, es gilt dann einfach für die Indizes E = 1 und M = 2.} Aus dem Potentialanteil der Ellipsoidhülle $U_\text{Ell}$ berechnet man ebenfalls durch Gradientenbildung die Gezeitenkraft $\vec{F}_\text{Gez}$ die auf den Mond wirkt.
+Dabei müssen wir beachten, dass die Gezeitenkraft bezüglich des Koordinatensystems $\vec{\Sigma}$ definiert ist, das seinen Ursprung im Massenmittelpunkt der Erde hat (\figref{hm_gezeiten09}).
+Für die Bewegungsgleichungen können wir aber eine einfache Transformation von $\vec{\Sigma}$ und $\vec{\Sigma}'$ über die Translation
+\begin{align}
+	\vec{r}_\text{M} = \vec{r}_\text{M}' - \vec{r}_\text{E}'  \label{eq:hm_gezreibung12a}
+\end{align}
+erreichen.
+Wir erhalten für die Gezeitenkraft im KOS $\vec{\Sigma}$:\\ 
+\begin{align}
+\vec{F}_\text{Gez}\lk \vec{r}_\text{M}\rk &= m_\text{M}\,\lk -\vec{\nabla}_{\vec{r}_\text{E}}\,U_\text{Ell}\lk \vec{r}_\text{M}\rk\rk \nonumber \\
+&= \frac{3}{10}\,k\,G\,m_\text{M}{}^2\,\frac{R_\text{E}^5}{r_\text{M}^*{}^5}\,\lek \frac{6\,\lk \vec{r}_\text{M}^*\cdot \vec{r}_\text{M}\rk}{r_\text{M}{}^5}\vec{r}_\text{M}^* - \lk \frac{15\,\lk \vec{r}_\text{M}^*\cdot\vec{r}_\text{M}\rk^2}{r_\text{M}{}^7} + \frac{3{r_\text{M}^*}^2}{r_\text{M}{}^5}\rk\,\vec{r}_\text{M}\rek \,. \label{eq:hm_gezreibung13}
+\end{align}
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{KOSGezeitenreibung.pdf}%
+\caption[Koordinatensysteme der Bewegungsgleichungen der Gezeitenreibung.]{Mitrotierendes Koordinatensysteme $\vec{\Sigma}$ für numerische Lösung der Bewegungsgleichungen der Gezeitenreibung zu einer Zeit $t$. Der virtuelle Mond steht im Zenit über dem Hochwasser-Berg $\vec{r}_\text{M}^*$, $\vec{r}_\text{M}(t-\tau)$ ist der Ort, an dem ein mitrotierender Beobachter den Mond zur Zeit $t-\tau$ im Zenit gesehen hat. Inzwischen, zur Zeit $t$, befindet sich der Mond aber am Ort $\vec{r}_\text{M}$.}
+\label{abb:hm_gezeiten09}%
+\end{figure}
+
+Hier haben wir nun einen neuen Vektor eingeführt: $\vec{r}_\text{M}^*$. Dies ist der Vektor zum Mond, als dieser kulminierte (\figref{hm_gezeiten09}) oder m.a.W. der Ort des Mondes zu einem Zeitpunkt, als dieser die Gezeitendeformation hervorrief.
+Dieser Ort ist aber aufgrund der zeitverzögerten Antwort der Erde auf die Gezeitenkraft nicht mit dem gegenwärtigen Ort des Mondes $\vec{r}_\text{M}$ identisch.
+Diese Zeitverzögerung hatten wir mit dem Winkel $\delta \propto \Delta t $ %\eqref{eq:hm_gezreibung01} 
+beschrieben.
+Während dieser Zeit $\Delta t $ dreht sich die Erde mit $\omega_\text{E}$ um ihre Achse und der Mond mit $\omega_\text{M}$ um die Erde.
+Der Zenitalpunkt Z bewegt sich für einen Beobachter auf dem  Planeten - im mitrotierenden Koordinatensystem - mit der Winkelgeschwindigkeit $\omega_\text{M} - \omega_\text{E}$.
+Wir können $\vec{r}_\text{M}^*$ auch als die Position eines virtuellen Mondes bezeichnen, der einen instantanen Gezeitenberg erzeugen würde.
+Der Winkel $\delta$ ist über das Skalarprodukt
+\begin{align*}
+    \vec{r}_\text{M}\cdot\vec{r}_\text{M}^* = |\vec{r}_\text{M}|\,|\vec{r}_\text{M}^*|\,\cos\delta\,.
+\end{align*}
+mit den beiden Vektoren $\vec{r}_\text{M}$ und $\vec{r}_\text{M}^*$  verknüpft, die beide im mitrotierenden KOS $\vec{\Sigma}$ definiert sind.
+
+Auf den Schwerpunkt des Mondes wirkt die Summe der Kräfte $\vec{F}_\text{G}'$ und $\vec{F}_\text{Gez}'$, die Newtonschen Bewegungsgleichungen lauten:
+\begin{align}
+    m_\text{M}\,\ddot{\vec{r}}_\text{M}' = \vec{F}_\text{G}' + \vec{F}_\text{Gez}'\,. \label{eq:hm_gezreibung14}
+\end{align}
+Entsprechend gilt für den Schwerpunkt der Erde nach dem 3. Newtonschen Axiom:
+\begin{align}
+    m_\text{E}\,\ddot{\vec{r}}_\text{E}' = -\vec{F}_\text{G}' - \vec{F}_\text{Gez}'\,. \label{eq:hm_gezreibung15}
+\end{align}
+Wir hatten gesehen, dass die Gezeitenkraft als (rücktreibendes Moment) auf die Gezeitenhülle der Erde wirkt.
+Die daraus folgende Drehimpulsänderung wird beschrieben durch:
+\begin{align}
+    \frac{\D \vec{L}}{\D t} = C\,\dot{\omega}\,\vec{e}_z = -\lk \vec{r}_\text{M} \times \vec{F}_\text{Gez}\rk  
+		= \lk r_{\text{M}\,y} \,F_{\text{Gez}\, x}- r_{\text{M}\, x}\,F_{\text{Gez}\, y} 	\rk \,\vec{e}_z  \,. \label{eq:hm_gezreibung16}
+\end{align}
+Hier haben wir von der Annahme Gebrauch gemacht, dass alle Bewegungen in der $x$-$y$-Ebene stattfinden sollen.%
+\footnote{Tatsächlich sind durch die Rotationsabplattung der Planeten (\vgl Übung 1.17 in Band I) die meisten Monde und Kleinkörper in unserem Sonnensystem in unmittelbarer Nähe der Äquatorebene anzutreffen.}
+Mit \eqref{eq:hm_gezreibung10} bis \eqref{eq:hm_gezreibung12} haben wir nun ein Differentialgleichungssystem vorliegen, das uns erlaubt, die zeitliche Entwicklung des Erde-Mond-Systems unter Berücksichtigung der Gezeitenreibung zu beschreiben.
+Um auch wirklich die Reibung der Gezeiten zu beschreiben, ergänzen wir die Differentialgleichungen durch einen Reibungsterm proportional zur Geschwindigkeit.
+Mit \eqref{eq:hm_gezreibung12a} erhalten wir:
+\begin{align}
+\begin{split}
+    \ddot{r}_{\text{M}\, x}' &= \frac{1}{m_\text{M}}\,\lk   F_{\text{G}\, y}' + F_{\text{Gez}\, x}' - \beta\,|\vec{r}_\text{M}'|\,\dot{r}_{\text{M}\, x}'\rk \,, \\
+    \ddot{r}_{\text{M}\, y}' &= \frac{1}{m_\text{M}}\,\lk   F_{\text{G}\, y}' + F_{\text{Gez}\, y}' - \beta\,|\vec{r}_\text{M}'|\,\dot{r}_{\text{M}\, y}'\rk \,, \\
+    \ddot{r}_{\text{E}\, x}' &= \frac{1}{m_\text{E}}\,\lk - F_{\text{G}\, x}' - F_{\text{Gez}\, x}' - \beta\,|\vec{r}_\text{E}'|\,\dot{r}_{\text{E}\, x}'\rk \,, \\
+    \ddot{r}_{\text{E}\, y}' &= \frac{1}{m_\text{E}}\,\lk - F_{\text{G}\, y}' - F_{\text{Gez}\, y}' - \beta\,|\vec{r}_\text{E}'|\,\dot{r}_{\text{E}\, y}'\rk \,, \\
+    \dot{\omega}_\text{E} &= \frac{1}{C}\,\lek \lk r_{\text{M}\,y}'-r_{\text{E}\, y}'\rk\,F_{\text{Gez}\, x} - \lk r_{\text{M}\,x}' - r_{\text{E}\,x}'\rk\,F_{\text{Gez}\, y}\rek \,.
+\end{split} \label{eq:hm_gezreibung17}
+\end{align}
+In den $\vec{F}_\text{Gez}$ \bzw $\vec{F}_\text{Gez}'$  finden wir die Koordinate $\vec{r}_\text{M}^*(t)$.
+Die Frage ist, wie man sich diese Koordinate für die numerischen Rechnungen beschafft.
+Aus Abbildung \figref{hm_gezeiten09} erkennt man, dass für annähernd kreisförmige Bahnen gilt:
+\begin{align}
+    \vec{r}_\text{M}^*(t) = \mathbb{R}_z(\omega_\text{E}\,\tau)\, \vec{r}_\text{M}(t-\tau) \,, \label{eq:hm_gezreibung18}
+\end{align}
+worin $\mathbb{R}_z$ die Rotationsmatrix um die $z$-Achse ist.
+Im numerischen Programm muss man also eine Routine haben, die alle Orte speichert, an denen der Mond war.
+Die numerische Integration von \eqref{eq:hm_gezreibung17} selbst erfolgt aber im raumfesten Schwerpunktsystem $\vec{\Sigma}'$ über die Vektoren $\vec{r}_\text{M}'$ und $\vec{r}_\text{E}'$.
+Mit der Transformation \eqref{eq:hm_gezreibung12a} und \eqref{eq:hm_gezreibung17} können wir uns alle Orte $\vec{r}_\text{M}^*(t)$ berechnen und abspeichern, die wir zur numerischen Lösung von 
+\eqref{eq:hm_gezreibung17} brauchen.
+%Wir geben Hinweise zur relativ komplexen numerische Berechnung in \probref{hm_gezeiten08} an.\\
+
+Mit der Berechnung von Sonnenfinsternissen und der Gezeiten, insbesondere der Gezeitenreibung haben wir so etwas wie die \anf{höhere Schule der Himmelsmechanik} absolviert.
+In \figref{hm_gezeiten10} geben wir noch einmal einen graphischen Überblick über die wesentlichen Effekt der Mechanik auf unsere Erde.
+Es wichtig bei diesen die jeweiligen wirkenden Kräfte und Koordinatensysteme auseinander zu halten, siehe dazu auch \probref{hm_gezeiten09}.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{VergleichEffekte.pdf} 
+	\caption[Vergleich verschiedener Effekte der Himmelsmechanik auf unsere Erde.]{Vergleich verschiedener Effekte der Himmelsmechanik auf unsere Erde. \fa Rotationsabplattung der Erde durch Zentrifugalkraft \fb Präzession der Erdachse durch Drehmoment von Mond und Sonne auf die "`Äquatorwülste"' der Rotationsabplattung \fc Gezeitenformation nach der Gleichgewichtstheorie \fd Gezeitenreibung durch Drehmoment des Mondes auf die verdrehte "`Gezeitenhülle"'.}
+	\label{abb:hm_gezeiten10}
+\end{figure}
+

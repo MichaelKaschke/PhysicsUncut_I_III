@@ -1,0 +1,282 @@
+\begin{minipage}{0.5\textwidth}
+\includegraphics[width=\textwidth]{KontmechMotiv.pdf}
+\end{minipage}
+\medskip
+\begin{minipage}{0.5\textwidth}
+\begin{flushright}
+\small
+\emph{Schimpflich ist es, nicht zu gehen, \\
+sondern sich treiben zu lassen und mitten \\
+im Wirbel der Dinge verblüfft zu fragen:\\
+ Wie bin ich bloß hierher gekommen?\\}
+\medskip
+Seneca d.J. (1--65 n.Chr.)\\
+\medskip
+\medskip
+\medskip
+\medskip
+\small
+\emph{Alles in der Welt geht in der Wellenlinie.\\
+Jede Landstraße und so weiter. \\
+Wehe dem, der überall das Lineal anlegt!\\}
+\medskip
+Wilhelm Raabe (1831--1910)\\
+%\emph{Die Welle beugt sich jedem Winde gern.\\}
+%\medskip
+%Johann Wolfgang von Goethe (1749--1832)\\
+\medskip
+\medskip
+\normalsize
+\end{flushright}
+\end{minipage}
+
+\section{Motivation}\label{kap:kontmech_motivation}
+
+Die Kontinuumsmechanik und insbesondere die Hydro- und Aerodynamik (oft zusammen gefasst als Fluiddynamik\index{Fluiddynamik}) gehören zu den wichtigsten makroskopischen Theorien. Sie haben zahlreiche Anwendungen in vielen natur- und ingenieurwissenschaftlichen Disziplinen. Als Beispiele seien die Kosmologie, die Meteorologie, die Luft- und Raumfahrt, sowie Umweltwissenschaften, wie die Klimatologie und Ozeanographie genannt. Die Fluiddynamik wird trotz dieser breiten Anwendungsbereiche von Physikern und Ingenieuren häufig unterschätzt und findet sich vielfach auch nicht entsprechend im Physikcurriculum wieder \cite{Lohse2023}. Dabei hat sich gerade bei den (numerischen) Methoden in den letzten 25 Jahren viel getan. Heute sind Dank der verfügbaren Rechenleistungen Berechnungen und Simulationen möglich, die vor Jahren noch bestenfalls in einem Hochleistungsrechenzentrum realisiert werden konnten. 
+
+Aus diesen Gründen haben wir das Kapitel Physik des Kontinuums mit in den Band I der \textit{Physikalischen Fingerübungen} aufgenommen und werden dazu die Ansätze der Mechanik ein weiteres Mal erweitern.
+In \kap{bew_starrer_koerper} hatten wir bereits den starren Körper eingeführt, der die Mechanik von Massepunkten um eine endliche Ausdehnung von Körpern erweitert hat. Der Körper hat jedoch seine Form behalten und die Bewegung konnte auf sechs Freiheitsgrade beschränkt werden.
+Kann sich jedoch die Form eines Körpers verändern, gehen wir zur Kontinuumsmechanik über, die auch diese Möglichkeit abdeckt.
+Insbesondere Gase und Flüssigkeiten, wir werden diese unter dem Begriff Fluide\index{Fluide} zusammenfassen, sind beliebig verformbar. Wollen wir ihre Bewegungen oder Strömungen beschreiben, müssen wir auf Theorie des Kontinuums, in diesem Fall die Kontinuumsmechanik, zurückgreifen.
+
+Eine Kontinuumstheorie\index{Kontinuumstheorie} gibt eine Beschreibung von Vielteilchensystemen durch gegebenenfalls zu definierende makroskopische physikalische Größen wie Dichte, Flüsse, Geschwindigkeiten usw. Sie stellt insofern ein gemittelte Charakterisierung des Vielteilchensystems dar. Wir sind ja aber auch gar nicht an der mikroskopischen Dynamik des aus \ca $\SI{1e23}{}$ oder mehr Teilchen bestehenden Systems interessiert, denn die Beobachtung des Systems findet ja auf Längenskalen im sub-mm bis km-Bereich und auf Zeitskalen im sub-ms bis Stundenbereich statt, während die Dynamik der Einzelteilchen in Skalenbereichen von $\SI{}{\nano\metre}$ \bzw $\SI{e-14}{\second}$ abläuft. Die Grundannahme einer Kontinuumstheorie besteht darin, dass man die langsamen und schnellen Prozesse voneinander separieren kann. So können wir für die Raumkoordinaten einen Volumenbereich definieren (das Volumenelement oder Flüssigkeitselement),\index{Volumenelement}\index{Flüssigkeitselement} über den die mikroskopischen Strukturen hinreichend ausgemittelt sind, im makroskopischen Beobachtungsbereich aber noch eine Variation von physikalischen Größen über die Raumkoordinaten beobachtet werden kann. Analoges gilt für die Zeitskala. 
+Für Zeiten, die deutlich größer sind als die Stoßzeiten (Zeit zwischen zwei Stößen von Teilchen des Systems) können die auf eine Volumenelement wirkenden Kräfte durch makroskopische Größen wie \zb Druck beschrieben werden. 
+Das Volumenelement ist dann auf dieser makroskopischen Zeitskala lokal in einem mechanischen und auch thermischen Gleichgewichtszustand, so dass die Dynamik durch Differentialgleichungen mit nach Zeit und Raum getrennten Ableitungen beschrieben werden kann. Diese zeitliche und räumliche Entwicklung von Dichten $\varrho(\vec{r},t)$ und Geschwindigkeitsprofilen $\vec{v}(\vec{r},t)$ und anderen Größen von Volumenelementen (Flüssigkeitselementen) unter der Wirkung von makroskopisch beschriebenen internen Kräften (\zb Druck) und externen Kräften (\zb der Schwerkraft) ist Gegenstand der im folgenden behandelten Mechanik der Kontinua.\\
+
+Wir hatten bisher im Kapitel 1 im Wesentlichen die Bewegung und Dynamik von Massepunkten, Systemen von Massepunkten und Festkörpern untersucht. Mathematisch führte die Berechnung der zeitlichen Entwicklung der Raumkoordinaten und Geschwindigkeiten auf die Lösung von \textit{gewöhnlichen Differentialgleichungen} (GDGL) oder Systemen derselben. Im Fall des Kontinuums führen die Betrachtungen wegen der Veränderlichkeit der relativen Koordinaten von Massepunkten des Kontinuums zueinander und wegen der zeitlichen Veränderung der das Fluid kennzeichnenden physikalischen Größen auf Differentialgleichungen, die sowohl Ableitungen nach der Zeit als auch nach den Raumkoordinaten beinhalten, die man als \textit{partielle Differentialgleichungen} (PDGL) bezeichnet. Wir werden sehen, dass diese wesentlich komplexer und schwieriger zu lösen sind und verweisen auf die zahlreichen Lehrbücher und Nachschlagewerke zu diesem Thema \zb \cite{Otto2019, Jaenich2001, Fischer2018, Andrews2003, Felder2016, Riley2006, Schmutzer2005, Bartelmann2015}. Wir setzen \iF gute Grundkenntnisse, insbesondere der zugrundeliegenden Methoden der Vektoranalysis voraus und haben daher als Repetitorium die wesentlichen Formeln und Sätze noch einmal in einem Einschub (\kap{kontmech_vectoranalysis}) zusammengefasst. Der mit dem Thema gut vertraute Leser kann dieses Kapitel gern überspringen.\\
+
+Wir wollen noch einmal darauf hinweisen, dass wie im vorherigen Kapitel 1 es auch hier nicht das Ziel ist, eine umfassende Darstellung der Kontinuumsmechanik zu geben, sondern ein kurzes Repetitorium für die darauf folgenden Anwendungen und "`Fingerübungen"' zu liefern.
+In einem so umfassenden und komplexen Gebiet wie der Kontinuumsmechanik ist die hierzu notwendige Straffung besonders ausgeprägt. Wir verweisen deshalb zur Vertiefung auf die umfangreiche Literatur \cite{Bartelmann2015,Altenbach1994,Altenbach2018,Heintze2016,Rannacher2017,Garvin2023}.
+
+\newpage
+\section{Einschub: Repetitorium Vektoranalysis}\label{kap:kontmech_vectoranalysis}
+
+\subsection {Grundbegriffe Vektorrechnung} \label{kap:kontmech_Vektorrechnung}
+
+In der Kontinuumsmechanik haben wir es mit verschiedenen physikalischen Größen zu tun, die eine räumliche (und gegebenenfalls auch zeitliche) Abhängigkeit haben. Insbesondere gibt es
+
+\begin{itemize}
+  %\item  skalare Funktion (eine räumliche Variable, Skalarfunktion) $\varphi(x)$ \\
+  \item Skalarfelder $\varphi(\vec{r})$ als Funktion räumlicher Vektoren $\vec{r}$,
+  %\item Raumkurve $\vec{A}(x)$ (eine räumliche Variable, Vektorfunktion) \\
+  \item Vektorfelder $\vec{A}(\vec{r})$ als Funktion räumlicher Vektoren $\vec{r}$.
+\end{itemize}
+\smallskip
+
+Die Ableitung eines Vektors nach einem Parameter (wie \zb der Zeit) haben wir
+bereits in Kapitel 1 kennengelernt und ausgiebig angewendet, \zb bei der
+Berechnung von Geschwindigkeiten und Beschleunigungen. Dies sind alles
+Raumkurven, also Vektoren, die nur von einem Parameter abhängen wie z.B.
+$\vec{r}(t)$. Die Ableitung wirkt auf alle Komponenten
+\begin{equation}
+  \dot{\vec{r}}(t) = \begin{pmatrix} \dot{x}(t) \\ \dot{y}(t) \\  \dot{z}(t) \end{pmatrix} \quad,\quad \ddot{\vec{r}}(t) = \begin{pmatrix} \ddot{x}(t) \\
+    \ddot{y}(t) \\  \ddot{z}(t) \end{pmatrix} \,.
+  \label{eq:kontmech_vecbasics01}
+\end{equation}
+Linienintgerale entlang eines Vektors $\vec{A}$ kann man durch Parametrisierung des Vektors entlang einer Kurve $\mathrm{K}$ berechnen:
+\begin{equation}
+    \int_\mathrm{K} \vec{A}(\vec{r}) \cdot \D\vec{r} = \bigintsss_{t_\text{Anfang}}^{t_\text{Ende}} \vec{A}(\vec{r}(t)) \cdot \frac{\D\vec{r}}{\D t} \, \D t = \bigintsss_{t_\text{Anfang}}^{t_\text{Ende}} \vec{A}(\vec{r}(t)) \cdot \begin{pmatrix} \dot{x}(t) \\ \dot{y}(t) \\  \dot{z}(t) \end{pmatrix} \, \D t 
+   \,.  \label{eq:kontmech_vecbasics02}
+  \end{equation}
+Ein Kurvenintegral hatten wir als Integral der Arbeit \eqref{eq:bew_Arbeit_total} bereits in Kapitel 1 kennengelernt.
+
+Die \textit{Vektoranalysis}\index{Vektoranalysis} ist die Verallgemeinerung der Differential- und Integralrechnung auf Vektorfelder und Skalarfelder und führt damit die Infinitesimalrechnung (Analysis) mit der Vektorrechnung zusammen. 
+Wir fassen noch einmal die wichtigsten Rechenregeln für das Kreuzprodukt in der Vektorrechnung zusammen, da wir diese in der Vektoranalysis beim sogenannten Nabla-Kalkül\index{Nabla-Kalkül|textbf} vielfach verwenden werden:
+\begin{subequations}
+\begin{align}
+    \vec{A}\cdot\lk \vec{B} \times \vec{C} \rk &= \vec{B} \cdot \lk \vec{C} \times \vec{A} \rk = \vec{C} \cdot \lk \vec{A} \times \vec{B} \rk \\
+    \vec{A} \times \lk \vec{B} \times \vec{C} \rk &= \lk \vec{A} \cdot \vec{C} \rk \cdot \vec{B} - \lk \vec{A} \cdot \vec{B} \rk \cdot \vec{C} \\
+    \lk \vec{A} \times \vec{B} \rk \cdot \lk \vec{C} \times \vec{D} \rk &= \lk \vec{A} \cdot \vec{C} \rk \cdot \lk \vec{B} \cdot \vec{D} \rk - \lk \vec{A} \cdot \vec{D} \rk \cdot \lk \vec{B}\cdot \vec{C} \rk \\
+    \lk \vec{A} \times \vec{B} \rk^2 &= \vec{A}^2 \, \vec{B}^2 - \lk \vec{A} \cdot \vec{B}\rk^2 
+\end{align} \label{eq:kontmech_vecbasics04}
+\end{subequations}
+
+Diese Beziehungen gelten unabhängig vom Koordinatensystem und lassen sich sehr einfach in kartesischen Koordinaten beweisen und auch für andere Koordinatensysteme aufschreiben, was als Übung empfohlen wird (\probref{kontmech_ueb_vectoranalysis}).\\
+Das \textit{Kronecker-Symbol}\footnote{Leopold Kronecker (1823--1891) war ein deutscher Mathematiker, der vor allem auf dem Gebiet der Analysis und Funktionentheorie arbeitete.}\index{Kronecker-Symbol}\indexp{Kronecker, Leopold} $\delta_{ij}$ ist definiert als:
+\begin{align}
+    \delta_{ij} = \left\{\begin{array}{rcl}1 & \text{wenn}\, i = j\,,\\0 &\text{wenn}\,  i\neq j\,. \end{array}\right. \label{eq:kontmech_kronecker}
+\end{align}
+Das \textit{Levi-Civita-Symbol}\footnote{Tullio Levi-Civita (1873--1941) war ein italienischer Mathematiker und Physiker, der auf dem Gebiet der Analysis und der theoretischen Mechanik arbeitete.}\indexp{Levi-Civita, Tulli}\index{Levi-Civita-Symbol} $\epsilon_{ijk}$ (auch Permutationssymbol genannt) ist in der Vektor- und Tensorrechnung sehr vorteilhaft anwendbar und definiert als:
+\begin{align}
+    \epsilon_{ijk} = \left\{ \begin{array}{rcl}+1 & \text{wenn $i,j,k$ gerade Permutation von 1,2,3}\,,\\ -1 &\text{wenn $i,j,k$ ungerade Permutation von 1,2,3}\,,\\ 0 & \text{sonst}\,. \end{array}\right. \label{eq:kontmech_levicivita}
+\end{align}
+Es gelten folgende Beziehung zwischen $\epsilon_{ijk}$ und $\delta_{ij}$:
+\begin{align}
+    \epsilon_{ijk}\,\epsilon_{lmk} = \delta_{il}\,\delta_{jm} - \delta_{im}\,\delta_{jl}, ~~~~~~ \epsilon_{ijk}\,\epsilon_{ljk} = 2\,\delta_{il}\,.\label{eq:kontmech_levicivita2}
+\end{align}
+Nach der {\textit{Einsteinsche Summenkonvention} wird über doppelt auftretende Indizes in Produkten summiert. Dadurch wird der Schreibaufwand verringert, aber auch bestehende Zusammenhänge und Symmetrien treten klarer hervor. Die Skalar- \bzw Kreuzprodukte von Vektoren schreibt man \zb als: 
+\begin{align}
+    \vec{A}\cdot\vec{B} &= \sum\limits_{i=1}^{3}\,a_{i}\,b_{i} \equiv a_{i}\,b_{i} \quad \text{\bzw} \quad
+\lk  \vec{A}\times \vec{B} \rk_{i} = \sum\limits_{j=1}^{3} \sum\limits_{k=1}^{3}\, \epsilon_{ijk}\,a_{j}\,b_{k} \equiv \epsilon_{ijk}\,a_{j}\,b_{k} \,. \label{eq:kontmech_dot_cross_einstein}
+\end{align}
+
+\subsection {Vektoranalysis mit dem Nabla-Kalkül} \label{kap:kontmech_VektorAnalysis}
+Wir können zunächst die ersten Ableitungen von skalaren Feldern $\varphi\lk \vec{r} \rk$ \bzw Vektorfeldern $\vec{A}\lk \vec{r} \rk$ (in kartesischen Koordinaten) definieren.
+Wir bedienen uns dabei des sogenannten \textit{Nabla-Kalküls}\index{Nabla-Kalkül} mit dem symbolischen Operator $\nablav$:
+\begin{align}
+\begin{split}
+    \nablav\, &= \begin{pmatrix} \frac{\d}{\d x} \\ \frac{\d}{\d y}  \\ \frac{\d}{\d z} \end{pmatrix} = \vec{e}_x\, \d x + \vec{e}_y\, \d y + \vec{e}_z\, \d z  = \vec{e}_i\, \d_i \,.
+\end{split} \label{eq:kontmech_nabladef}
+\end{align}
+Dieser Differentialoperator kann im Prinzip wie ein Vektor benutzt werden. Allerdings wirkt der Operator immer auf alles, was "`rechts"' von ihm steht, auch wenn Skalar- oder Feldfunktionen nicht in einer Klammer zusammengefasst sind. Die Funktionen, auf die der Operator wirkt und die entsprechend differenziert/abgeleitet werden sollen, werden dabei zur besseren Kennzeichnung häufig durch einen Pfeil über der Funktion hervorgehoben.
+Wir beginnen mit dem Gradienten:
+\begin{align}
+\begin{split}
+\gradv \,\varphi &= \vec{\nabla}\,\varphi = \begin{pmatrix} \frac{\d \varphi}{\d x} \\ \frac{\d \varphi}{\d y}  \\ \frac{\d \varphi}{\d z}  \end{pmatrix}~~~~ \text{bzw.} ~~~~ \lk \vec{\nabla}\,\varphi \rk_i = \frac{\d \varphi}{\d x_i} = \d_i \, \varphi\,.
+\end{split} \label{eq:kontmech_gradient}
+\end{align}
+Für die \textit{Divergenz} eines Vektorfeldes $\vec{A}(\vec{r})$, die physikalisch angibt, wie sehr die Vektoren $\vec{A}(\vec{r})$ in einer kleinen Umgebung von $\vec{r}\,,$ auseinander streben gilt:
+\begin{align}
+\begin{split}
+\divv \,\vec{A} &= \vec{\nabla}\cdot\vec{A} = \begin{pmatrix} \frac{\d}{\d x} \\ \frac{\d}{\d y}  \\ \frac{\d}{\d z}  \end{pmatrix} \cdot \begin{pmatrix} A_x \\ A_y \\ A_z  \end{pmatrix}^\text{T} = \frac{\d A_x}{\d x} + \frac{\d A_y}{\d y} + \frac{\d A_z}{\d z} = \frac{\d A_i}{\d x_i} = \d_i \,A_i \,.\
+\end{split} \label{eq:kontmech_divergenz}
+\end{align}
+Interpretiert man das Vektorfeld als Strömungsfeld einer physikalischen Größe, so wie wir es in der Kontinuumsmechanik in Band I getan haben, dann ist die Divergenz eine Quelldichte. Senken haben negative Divergenz. Ist die Divergenz überall gleich null, so bezeichnet man das Feld als quellenfrei.\index{Feld!quellenfreies}\\
+Als \textit{Rotation} bezeichnet man in der Vektoranalysis den Differentialoperator, der einem Vektorfeld $\vec{A}(\vec{r})$ ein neues Vektorfeld zuordnet, dass die Verwirbelung \bzw Rotation des Vektorfeldes angibt: 
+\begin{align}
+\begin{split}
+\rotv \,\vec{A} & = \nablav \times \vec{A} = \begin{vmatrix} 
+		                                                                  \vec{e}_x & \vec{e}_x& \vec{e}_x \\
+		                                                                  \frac{\d}{\d x} & \frac{\d}{\d y} &\frac{\d}{\d z}\\
+																																			A_x & A_y &A_z \end{vmatrix} \\ & =
+																		\begin{pmatrix} \frac{\d A_z}{\d y} - \frac{\d A_y}{\d z} \\ 
+											              \frac{\d A_x}{\d z} - \frac{\d A_z}{\d x} \\  
+																		\frac{\d A_y}{\d x} - \frac{\d A_x}{\d y} \end{pmatrix} = 
+																		\begin{bmatrix} 0 & -\frac{\d}{\d x} & \frac{\d }{\d y} \\ 
+											              \frac{\d}{\d z} & 0 & -\frac{\d }{\d y} \\ 
+																		-\frac{\d}{\d y} & \frac{\d }{\d x} & 0 \end{bmatrix}\,\begin{pmatrix} A_x \\ A_y \\ A_z  \end{pmatrix} \\ 
+																		\text{bzw.} ~~~~ \lk \rotv\,\vec{A} \rk_i &= \epsilon_{ijk}\,\frac{\d A_k}{\d x_j}\, = \epsilon_{ijk}\,\d_j\,A_k\,. 
+\end{split} \label{eq:kontmech_rotation}
+\end{align} 
+In der Fluidmechanik ist die Rotation der Geschwindigkeit des Fluids die sogenannte Verwirbelung, da diese den Grad der Rotation des Fluids um einen gewissen Punkt angibt. Wir werden noch anderen Wirbelfeldern begegnen, \zb in der Elektrodynamik. Ist die Rotation eines Vektorfelds Null, so ist dieses wirbelfrei\index{Feld!wirbelfreies}. In \probref{kontmech_diffoperators} berechnen wir die drei Differentialoperatoren für verschiedene Skalar- und Vektorfelder.\\
+Da der Nabla-Operator ein linearer Operator ist, lassen sich folgende Beziehungen leicht nachrechnen:
+\begin{align}
+\begin{split}
+   \nablav (\varphi + \psi) &= \nablav \varphi + \nablav \psi \,, \\
+   \nablav \cdot  (\vec{A} + \vec{B}) &= \nablav \cdot \vec{A} + \nablav \cdot  \vec{B} \,, \\
+   \nablav \times (\vec{A} + \vec{B}) &= \nablav \times \vec{A} + \nablav \times \vec{B}\,.
+\end{split} \label{eq:kontmech_nablaop01}
+\end{align}
+Etwas aufpassen muss man bei Produkten, man rechnet dann wie folgt (Produktregel):
+\begin{subequations}
+\begin{align}
+   \gradv (\varphi\,\psi) &= \nablav (\varphi\,\psi) = \psi \nablav \varphi + \varphi \nablav \psi\,, \\
+   \divv (\varphi\,\vec{A}) &= \nablav \cdot (\varphi\,\vec{A}) = \nablav \cdot (\stackrel{\downarrow}{\varphi}\,\vec{A}) + \nablav \cdot (\varphi\,\stackrel{\downarrow}{\vec{A}}) = (\nablav \varphi) \cdot \vec{A} + \varphi\,(\nablav \cdot \vec{A}) \nonumber \\ 
+	&= \gradv \varphi \cdot \vec{A} + \varphi \,\divv \vec{A}\,,\\ 
+  \divv (\vec{A}\,\times\,\vec{B}) &= \nablav \cdot (\vec{A}\,\times\,\vec{B}) = \nablav \cdot (\stackrel{\downarrow}{\vec{A}}\,\times\,\vec{B}) + \nablav \cdot (\vec{A}\,\times\,\stackrel{\downarrow}{\vec{B}}) \nonumber \\  
+	&= \vec{B}\cdot (\nablav \times \vec{A}) - \vec{A}\cdot (\nablav \times \vec{B}) = \vec{B}\cdot \rotv \vec{A} - \vec{A} \cdot \rotv \vec{B}\,, \\
+	\rotv (\vec{A}\,\times\,\vec{B}) &= \nablav \times (\vec{A}\,\times\,\vec{B}) = \nablav \times (\stackrel{\downarrow}{\vec{A}}\,\times\,\vec{B}) + \nablav \times (\vec{A}\,\times\,\stackrel{\downarrow}{\vec{B}}) \nonumber \\
+	&= (\vec{B}\cdot \nablav) \stackrel{\downarrow}{\vec{A}}\! - \!\vec{B}\,(\nablav \cdot \stackrel{\downarrow}{\vec{A}}) \!
+		+\!\vec{A}\,(\nablav \cdot \stackrel{\downarrow}{\vec{B}}) \!-\! (\vec{A}\cdot \nablav) \stackrel{\downarrow}{\vec{B}} \nonumber \\
+	&= (\vec{B}\cdot \gradv)\,\vec{A}\! -\! \vec{B}\, \divv \vec{A} \!-\! (\vec{A}\cdot \gradv)\,\vec{B}\! - \!\vec{A} \,\divv \vec{B}\,. 
+\end{align} \label{eq:kontmech_nablaop02}
+\end{subequations} 
+
+In der letzten Gleichung bedürfen die Summanden der Form $(\vec{B}\cdot\nablav)\,\vec{A}$ \bzw $(\vec{A}\cdot\nablav)\,\vec{B}$, die durch Vertauschen der Vektoren $\vec{B}$ \bzw $\vec{A}$ und $\nablav$ entstanden sind (unter Berücksichtigung, dass $\nablav$ auf \vec{A} \bzw $\vec{B}$ wirkt), einer Erläuterung.\footnote{Achtung: Zwischen der Klammer und dem Vektor $\vec{A}$ steht kein Skalarprodukt-Punkt.} Wir schreiben zunächst formal in kartesischen Koordinaten:
+\begin{align}
+\begin{split}
+   \nablav \vec{A} &= \begin{pmatrix} \frac{\d}{\d x} \\ \frac{\d}{\d y}  \\ \frac{\d}{\d z}  \end{pmatrix} \,
+	                    ( A_x \, A_y \, A_z  ) \;=\;
+											\begin{pmatrix} \frac{\d A_x}{\d x}&\frac{\d A_y}{\d x}&\frac{\d A_z}{\d x} \\ 
+			            			              \frac{\d A_x}{\d y}&\frac{\d A_y}{\d y}&\frac{\d A_z}{\d y} \\
+							   											\frac{\d A_z}{\d x}&\frac{\d A_y}{\d z}&\frac{\d A_z}{\d z} \end{pmatrix}\, = \,\frac{\d A_{j}}{\d x_i} \,, 
+\end{split} \label{eq:kontmech_nablaop03}
+\end{align}
+was den Charakter einer Matrix hat. Multipliziert man diese mit dem Vektor $\D \vec{r} = \vec{e}_i \,\D x_i =  \vec{e}_x \,\D x + \vec{e}_y \,\D y + \vec{e}_z \,\D z$, so erhält man wieder einen Vektor: $\D \vec{r} \cdot \nablav \vec{A} = (\D \vec{r} \cdot \nablav)\,\vec{A}$.
+
+Diese Schreibweise lässt die folgende Interpretation zu. Die Änderung eines vektoriellen 
+Feldes ergibt sich als skalares Produkt $(\D \vec{r} \cdot \nablav)\,\vec{A}$ aus der Änderung des Ortsvektors und einem nur vom Ort, aber nicht von der Richtung abhängigen \\
+Faktor $\cdot \nablav$, der sogenannten lokalen Dyade\index{Dyade}\footnote{Eine Dyade ist ein spezielles Produkt zweier Vektoren und damit eine Matrix (oder genauer ein Tensor zweiter Stufe) \cite{Otto2019, Fischer2018}.}. Wir bezeichnen $\nablav \vec{A}$ auch als \textit{Vektorgradient}\index{Vektorgradient}.\\
+Wir können nun noch die zweiten Ableitungen von skalaren Feldern $\varphi\lk \vec{r}\rk$ und Vektorfeldern $\vec{A}\lk \vec{r} \rk$ bilden:
+\begin{subequations}
+\begin{align}
+    \divv \gradv \,\varphi &= \nablav \cdot \nablav \varphi = \Delta \,\varphi\,,\\
+    \gradv\,\divv\,\vec{A} &= \nablav \nablav \,\cdot \vec{A} = \nablav^2 \cdot\, \vec{A}\,,\\
+    \rotv \rotv\,\vec{A} &= \nablav \times \lk \nablav \times \vec{A}\rk = \nablav\,\lk \nablav \cdot \vec{A}\rk - \Delta\,\vec{A} = \gradv \divv \vec{A} - \Delta\,\vec{A}\,.
+\end{align} \label{eq:kontmech_nablaop04}
+\end{subequations}
+
+Hierin ist $\Delta = \divv \cdot \gradv $ der sehr wichtige \textit{Laplace\footnote{Pierre-Simon (Marquis) de Laplace (1749--1827) war ein französischer Mathematiker, Physiker und Astronom. Sein Hauptwerk ist die \emph{Traité de Mécanique Céleste} (Abhandlung über die Himmelsmechanik). Er beschäftigte sich auch mit Wahrscheinlichkeitstheorie und der Lösung von Differentialgleichungen.}-Operator}\index{Laplace-Operator}\indexp{Laplace, Pierre-Simon (Marquis) de}, der uns noch des öfteren begegnen wird. Die Gleichung 
+\begin{align}
+\nablav \cdot \nablav \varphi &= \Delta \,\varphi = 0\, \label{eq:kontmech_laplace_eq}
+\end{align}
+heißt Laplace-Gleichung\index{Laplace-Gleichung} und ist die Grundgleichung der Potentialtheorie\index{Potentialtheorie}, mit der wir uns ebenfalls ausführlich in der Elektrodynamik beschäftigen werden. Bereits in Band III hatten wir diese Gleichung in der Aerodynamik bei der Behandlung der Potentialströmungen benutzt.
+Ebenso finden wir in $\nablav^2$ wiederum eine Dyade der Form:
+\begin{align}
+    \nablav^2 = \begin{pmatrix} \frac{\d^2 }{\d x^2}   &\frac{\d^2 }{\d x \d y}&\frac{\d^2 }{\d x \d z} \\ 
+			            			        \frac{\d^2 }{\d x \d y}&\frac{\d^2 }{\d y^2}   &\frac{\d^2 }{\d y \d z} \\
+							   								\frac{\d^2 }{\d x \d z}&\frac{\d^2 }{\d y \d z}&\frac{\d^2 }{\d z^2} \end{pmatrix}\, = \,\frac{\d^2 }{\d x_i \d x_j} \,.  \label{eq:kontmech_nablaop05}
+\end{align}  
+
+Weiterhin gelten folgende wichtige Identitäten:
+\begin{align}
+    \divv \cdot \rotv\,\vec{A} &= \nablav \cdot \lk \nablav \times \,\vec{A}\rk = 0 \,,  \label{eq:kontmech_nablaop06}
+\end{align} 
+was bedeutet, dass jedes Rotorfeld quellenfrei ist. Ebenso gilt: 
+\begin{align}
+    \rotv \gradv \,\varphi &= \vec{\nabla}\times\lk \vec{\nabla}\,\varphi \rk = 0 \,.  \label{eq:kontmech_nablaop07}
+\end{align}
+Das kennen wir bereits aus Band I vom Beispiel des Gravitationsfeldes, wo wir gesehen hatten, dass jedes Gradientenfeld wirbelfrei ist.
+
+\subsection{Integralsätze} \label{kap:kontmech_Integralsaetze}
+
+Genau wie man es aus der (eindimensionalen) Integralrechnung kennt, kann man auch in der Vektoranalysis verschiedene Integralsätze herleiten, die statt der Integration einer Ableitung (\zb $\divv$ oder $\rotv$) eines Vektorfeldes über ein Gebiet (Volumen oder Fläche) nur das Vektorfeld selbst auf der Berandung (Fläche oder Kurve) betrachten.\\
+In \figref{kontmech_Integralsaetze}\,b sei $\mathcal{V}$ ein Volumen, das von der Oberfläche $\mathcal{F} = \d \mathcal{V}$ umrandet wird. Der Vektor für das Flächenelement $\D \vec{f}$ ist dabei stets vom Volumen $\mathcal{V}$ aus gesehen nach außen gerichtet.
+
+\figref{kontmech_Integralsaetze}\,a zeigt die Verhältnisse bei einer Fläche $\mathcal{F}$, die von der Randkurve $\mathcal{K}  = \d \mathcal{F}$ berandet wird.
+Der Vektor $\D \vec{f}$ ist dabei auf den Betrachter gerichtet, wenn die Kurve $\mathcal{K}$ gegen den Uhrzeigersinn durchlaufen wird.\\
+Physikalisch betrachtet, stellen die Integralsätze die gleichen Beziehungen im Volumen- \bzw Flächenelement her, wie sie die Differentialoperatoren lokal (\dh an einem Punkt) festlegen. Es wird dabei über ein bestimmtes Volumen \bzw eine bestimmte Fläche integriert, wodurch Quellen ($\divv \vec{A} \neq 0$) und Wirbel ($\rotv \vec{A} \neq 0$) zu Flüssen \bzw Strömen werden. Wir verweisen auf die Literatur \zb \cite{Otto2019, Fischer2018} und \cite{Schmutzer2005, Bartelmann2015}, sowie die entsprechenden Kapitel zur Kontinuumsmechanik Band II \bzw zur Aerodynamik in Band III.
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{IntegralsaetzeEdyn.pdf}
+  \caption[Orientierte Flächen für die Integralsätze.]{Orientierte Flächen für die Integralsätze. a) Stokes-Integralsatz. Das Oberflächenelement $d\vec{f}$ kann geschrieben werden als: $\D \vec{f} = \vec{n}\, \D f$, worin $ \vec{n}$ der Normalenvektor auf die Fläche $\mathcal{F}$ ist. b) Gauß-Integralsatz. Auch hier ergibt sich das Oberflächenelement durch  $\D \vec{f} = \vec{n}\, \D f$. Wir bezeichnen hier den Volumenbereich mit $\mathcal{V}$, Flächen \bzw Oberflächen mit $\mathcal{F}$ und Konturen/Linien mit $\mathcal{K}$, das Symbol $\d$ bedeutet in diesem Kontext Berandung, $\d \mathcal{F}$ ist also die Berandung von $\mathcal{F}$ und somit eine Kontur $\mathcal{K}$.}
+  \label{abb:kontmech_Integralsaetze}
+\end{figure}
+
+
+\subsubsection{Integralsatz von Stokes} \label{kap:kontmech_Integralsatz_Stokes}
+
+Als erstes geben wir ohne Beweis (wir verweisen auf die Literatur \zb \cite{Otto2019, Fischer2018} und \cite{Schmutzer2005, Bartelmann2015}) den Integralsatz von Stokes an, der auch als Rotationssatz bekannt ist:
+\begin{align}
+    \int\displaylimits_{\mathcal{F}} \rotv \,\vec{A} \:\D\vec{f} &= \oint\displaylimits_{\mathcal{K} = \d \mathcal{F}} \vec{A}\cdot \D \vec{r} \quad~~\text{\bzw}\quad~~
+    \int\displaylimits_{\mathcal{F}} \epsilon_{ijk}\,\d_{j} A_k \:\D f_{i} = \oint\displaylimits_{\mathcal{K} = \d \mathcal{F}} A_k \: \D x_{k} \,. \label{eq:kontmech_Integralsatz_Stokes}
+\end{align}
+Er besagt, dass ein Flächenintegral über die Rotation eines Vektorfeldes in ein geschlossenes Kurvenintegral über die Tangentialkomponente des Vektorfeldes umgewandelt werden kann. Dies ist hilfreich, da das Kurvenintegral das Vektorfeld allein enthält und keine Ableitung desselben und in der Regel einfacher zu berechnen ist als ein Flächenintegral.
+Der Integralsatz von Stokes\index{Integralsatz von Stokes}\indexp{Stokes, Sir George Gabriel} findet in der Elektrodynamik breite Anwendung.
+
+\subsubsection{Integralsatz von Gauß} \label{kap:kontmech_Integralsatz_Gauss}
+
+Der Integralsatz von Gauß\index{Integralsatz von Gauß}\indexp{Gauß, Johann Carl Friedrich} lässt sich über den Integralsatz von Stokes herleiten. Auch hier verweisen wir auf die Literatur \zb \cite{Otto2019, Fischer2018, Schmutzer2005, Bartelmann2015}: \\
+
+\begin{align}
+    \int\displaylimits_{\mathcal{V}} \divv\,\vec{A}\:\D V\,&= \oint\displaylimits_{\mathcal{F} = \d \mathcal{V}} \vec{A}\cdot \D \vec{f}\, \quad~~\text{\bzw}\quad~~
+    \int\displaylimits_{\mathcal{V}} \d_{i}\,A_i \:\D V\,= \oint\displaylimits_{\mathcal{F} = \d \mathcal{V}} \,A_i\:\D f_{i} \,.  \label{eq:kontmech_Integralsatz_Gauss}
+\end{align}
+
+Mit den Integralsätzen kann man, ohne weiter auf spezielle Koordinaten zurückgreifen zu müssen, anschaulich erklären, warum Gradientenfelder wirbelfrei und Wirbelfelder quellenfrei sind. In \probref{kontmech_integralsaetze} berechnen wir die Integrale \eqref{eq:kontmech_Integralsatz_Stokes} und \eqref{eq:kontmech_Integralsatz_Gauss} 
+für verschiedene Vektorfelder jeweils nach beiden Seiten der Gleichungen.
+
+\subsubsection{Zerlegungssatz für Vektorfelder} \label{kap:kontmech_Zerlegungssatz}\index{Zerlegungssatz!Vektorfelder}
+
+Der Zerlegungssatz für Vektorfelder lautet: Jedes überall stetige und im Unendlichen verschwindende Vektorfeld $\vec{A}$ lässt sich eindeutig als Summe eines wirbelfreien und eines quellenfreien Feldes darstellen:
+\begin{align*}
+    \vec{A} = \vec{A}^{\lk q\rk}+ \vec{A}^{\lk w\rk} \,,
+\end{align*}
+worin $\vec{A}^{\lk q\rk}$ das Quellenfeld und $\vec{A}^{\lk w\rk}$ das Wirbelfeld bezeichnen.
+Die beiden Feldanteile lassen sich beschreiben durch:\
+\begin{align}
+    \vec{A}^{\lk q\rk}(\vec{r})&= -\gradv  \lk \frac{1}{4\pi}\int\limits_\mathcal{V} \frac{\divv \vec{A}\lk \vec{r}'\rk}{|\vec{r} - \vec{r}'|}\,\D V'\rk \label{eq:wirbelfeld01} \,, \\
+    \vec{A}^{\lk w\rk}(\vec{r})&= +\rotv \lk \frac{1}{4\pi}\int\limits_{\mathcal{F} = \d \mathcal{V}} \frac{\rotv \vec{A}\lk \vec{r}'\rk}{|\vec{r} - \vec{r}'|}\,\D f'\rk \label{eq:wirbelfeld02}
+\end{align}
+Wir verweisen auf \cite{Schmutzer2005}, wo für diese Darstellungen von $\vec{A}^{\lk q\rk}$ \bzw  $\vec{A}^{\lk w\rk}$ nach einer etwas längeren Rechnung folgende Beziehungen bewiesen werden können:
+\begin{align}
+    \rotv \vec{A}^{\lk q\rk} = 0\,,\,\divv  \vec{A}^{\lk q\rk} = \divv \vec{A} ~~~~\text{und} ~~~ \divv \vec{A}^{\lk w\rk} = 0 \,,\,\rotv \vec{A}^{\lk w\rk} = \rotv \vec{A}\,. \label{eq:wirbelfeld03}
+\end{align}
+%Das bedeutet, dass außer Quellen und Wirbel keine weitere Ursachen für eine Wirbelbildung in Frage kommen. \\
+
+Mit diesem Handwerkszeug der Vektoranalysis sind wir nun gut gerüstet, um die Beschreibung der Bewegungsvorgänge in kontinuierlichen Körpern in Angriff zu nehmen. 
+%\textbf{Green'sche Integralsätze:
+%\begin{align}
+    %\int\displaylimits_{\text{V}}\D V \lek\lk\vec{\nabla} \phi \rk\lk \nablav \chi\rk + \phi\,\Delta\chi\rek &=  \oint\displaylimits_{\d V}\D \vec{A}\,\phi\,\vec{\nabla}\chi ~~~\text{\bzw}\\
+    %\int\displaylimits_{\text{V}}\D V\,\lk\phi\,\Delta\chi-\chi\,\Delta\phi\rk &= \oint\displaylimits_{\d V} \D \vec{A}\,\lk\phi\,\vec{\nabla}a\chi-\chi\,\vec{\nabla}\phi\rk\,.
+%\end{align}

@@ -1,0 +1,123 @@
+\input{header}
+
+
+\thispagestyle{plain}%\mp
+\restoregeometry 
+\includepdf[width=\paperwidth,height=\paperheight]{BuchtitelseiteBand2.pdf}
+\leavevmode
+\thispagestyle{empty}
+\quad 
+\newpage
+\pagestyle{fancy}
+
+\author{Michael Kaschke und Holger Cartarius}
+\title{Fingerübungen der Physik \\\\
+Himmelsmechanik - Astrodynamik}
+
+\subtitle{Repetitorium und Übungsbuch mit Lösungen und \matlab-Programmen \\ \\
+Unter Mitwirkung von Ulrich Potthoff}
+\smallskip
+\maketitle
+
+\begin{dedication}
+\;\;\;Für alle Studenten und Studentinnen, die uns mit ihren neugierigen Fragen immer wieder
+zeigen, dass es in der Physik auch in den kleinsten Nischen ganz viel zu entdecken gibt und \\
+für alle, die Freude an der Schönheit und der großartigen Vielfalt der Physik gefunden haben oder vielleicht auch mit Hilfe dieses Buches für sich entdecken mögen.\\
+\textsc{Michael Kaschke und Holger Cartarius}\\ 
+\medskip
+\medskip
+\medskip
+Für meine akademischen Lehrer Bernd Wilhelmi und Fritz-Peter Schäfer, \\
+die mir halfen, die Faszination der Physik zu begreifen.\\
+\textsc{Michael Kaschke}\\
+\medskip
+\medskip
+%\medskip
+%Für meine Eltern Hildegard und Rainer Cartarius, die mich jederzeit auf meinem Weg durch das Studium und die Anfänge in der Wissenschaft unterstützten.\\
+%\textsc{Holger Cartarius}
+\end{dedication}
+
+\frontmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%>
+
+\include{vorwort2}
+
+\pdfbookmark[0]{Inhaltsverzeichnis}{toc}
+\tableofcontents
+
+\mainmatter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\newcounter{fmpg}\setcounter{fmpg}{\arabic{page}}
+%\setcounter{chapter}{2}
+
+%% Ab hier die Zusammenfassung von Band I
+
+\input{bew/bew_zusammenfassung}
+\input{kontmech/kontmech_zusammenfassung}
+
+%% Ende Zusammenfassung
+
+\include{hm}
+\include{adyn}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\backmatter
+
+%\clearpage
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+\renewcommand{\listfigurename}{} % Unterdrückt automatische Überschrift
+\thispagestyle{fancy}
+\fancyhead[LO]{\nouppercase{\normalsize Abbildungsverzeichnis}}
+\fancyhead[RE]{\nouppercase{\normalsize Abbildungsverzeichnis}}
+{\Large\bfseries\noindent Abbildungsverzeichnis\par}  % einheitliche Größe Large
+\vspace{1ex}
+\begingroup
+\setlength{\cftfigindent}{0pt}
+\setlength{\cftfignumwidth}{2.5em}
+\listoffigures
+\endgroup
+\raggedbottom \pagebreak \thispagestyle{empty}
+\clearpage
+
+%https://tex.stackexchange.com/questions/74439/table-of-contents-incorrect-page-numbering
+%\clearpage
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Übungsverzeichnis}
+\thispagestyle{fancy}
+\fancyhead[LO]{\nouppercase{\normalsize Übungsverzeichnis}}
+\fancyhead[RE]{\nouppercase{\normalsize Übungsverzeichnis}}
+\listofprob
+\raggedbottom \pagebreak \thispagestyle{empty}
+
+%\clearpage
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Stichwortverzeichnis}
+\thispagestyle{fancy}
+\fancyhead[LO]{\nouppercase{\normalsize Stichwortverzeichnis}}
+\fancyhead[RE]{\nouppercase{\normalsize Stichwortverzeichnis}}
+\printindex
+\raggedbottom \pagebreak \thispagestyle{empty}
+
+%\clearpage
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Personenverzeichnis}
+\thispagestyle{fancy}
+\fancyhead[LO]{\nouppercase{\normalsize Personenverzeichnis}}
+\fancyhead[RE]{\nouppercase{\normalsize Personenverzeichnis}}
+\printindex[personen]
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{MATLAB-Skriptverzeichnis}
+\thispagestyle{fancy}
+\fancyhead[LO]{\nouppercase{\normalsize MATLAB-Skriptverzeichnis}}
+\fancyhead[RE]{\nouppercase{\normalsize MATLAB-Skriptverzeichnis}}
+\printindex[mfiles]
+
+
+\input{footer} 

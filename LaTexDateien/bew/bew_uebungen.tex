@@ -1,0 +1,1794 @@
+%%% Anmerkung 2023-11-13 (mk.):
+%%% Links auf Lösungen komplett auskommentiert, da extra file bew_uebungenAB.tex
+%%% Einfaches Ändern durch  ersetzen \hyperref.. <--> %\hyperref.
+
+%%% Links basieren für ein mögliches e_book auf getrennter pdf-Zieldokumente auf pdf-Hypertags:
+%%%        \linklsg\\%\href{FingerUeb1_AB.pdf#prb:bew_KOS_Formel}{\textcolor{blue} {$\rightarrow$ zur \probref{bew_KOS_Formel}.}}\\
+%%% Einfaches Ändern durch  ersetzen %href{FingerUeb1_AB.pdf.. <--> \linklsg\\%\href{FingerUeb1_AB.pdf..
+%%%
+%%% oder 
+%%% für das Arbeitsbuch als geschlossenes Zieldokument auf normalen Verweisen (siehe bew_uebungenAB.tex):
+%%%        \textcolor{blue} {$\rightarrow$ zur} \probref{bew_KOS_Formel}.\\
+%%%
+
+\section{Übungen zu \autoref{chap:bew} -- Physik der Bewegung von Körpern }\label{kap:bew_uebungen}
+
+\medskip
+Die Übungen sind mit Schwierigkeitsindikatoren markiert, von einfach ($\ast$) über mittel ($\ast \ast$) bis schwierig ($\ast \ast \ast$).
+Zusatzaufgaben sind zum Teil mit ($\ast \ast \ast \;!$) markiert und eher als Erweiterung des Theorieteils zu betrachten.
+Einige wenige Übungen sind rein analytisch, die große Mehrzahl beinhaltet aber \matlab-Anwendungen. \\
+
+Lösungsbeispiele finden sich in den \onlineZ{} im Arbeitsbuch {\textcolor{blue}{FingerUeb2\_AB.pdf}} und können im e-Book über \linklsg erreicht werden.\\
+Die entsprechenden \mscre finden sich im GitHub unter \githubSN \bzw
+in den \onlineZ{} (\MKc).\\
+
+
+%%%-----------------------------------------------------------------------------------------------------------
+%%%-----------------------------------------------------------------------------------------------------------
+
+
+\subsection{Übungen zu Grundlagen der Mechanik von Massepunkten und Massepunktsystemen und zum Lagrange-Formalismus}
+
+\medskip
+
+%-----------------------------------------------------------------------------------------------------------
+
+\hypertarget{prb:bew_KOS_Formel}{}
+\begin{prob} %Übung1
+\einfach{bew_KOS_Formel}{Differentialanalysis in Koordinatensystemen}
+Leiten Sie die Formeln für die Beschleunigung in Komponentenschreibweise für die verschiedenen Koordinatensysteme her.
+
+\medskip
+\linklsg\\
+%\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_KOS_Formel}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_KOS_Formel]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\hypertarget{prb:bew_konserv_Kraft}{}
+\begin{prob} %Übung2
+\einfach{bew_konserv_Kraft}{Konservatives Kraftfeld}
+Leiten Sie die Bedingung \eqref{eq:bew_konservative_Kraft} für ein konservatives Kraftfeld her.
+Zeigen Sie außerdem, dass
+\begin{enumerate}
+	\item für ein solches Feld gilt:
+		\[\rotv \: \vec{F} = 0\,,
+	\]
+	\item eine Funktion U(\vec{r}) existiert, für die gilt:
+		\[\vec{F} = - \gradv\: U \,, \]
+	\item die Arbeit $W$ nicht vom Weg abhängt,
+	\item für einen geschlossenen Weg $S$ gilt:
+		\[\oint\limits_{S} \vec{F} \: \mathrm{d}\vec{r} = 0\,.\]
+\end{enumerate}
+\medskip
+\linklsg\\
+%\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_konserv_Kraft}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_konserv_Kraft]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+\hypertarget{prb:bew_Rot_System}{}
+\begin{prob} %Übung3
+\einfach{bew_Rot_System}{Zeitableitung in rotierenden Koordinatensystemen}
+Leiten Sie die Formeln für die Zeitableitung eines Vektors in rotierenden Bezugssystemen \eqref{eq:bew_Rot_System1} bis \eqref{eq:bew_Rot_System3} her.
+
+\medskip
+\linklsg\\
+%\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_Rot_System}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_Rot_System]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_SpaceStation}{}
+\begin{prob} %Übung4
+\einfach{bew_SpaceStation}{Moderne Raumstation}
+Sie sollen die bereits von Wernher von Braun\indexp{Braun, Wernher Magnus Maximilian Freiherr von}\footnote{Wernher Magnus Maximilian Freiherr von Braun (1912-77), deutscher und später US-amerikanischer Raketentechniker (siehe auch Band II, Kapitel 4).} angedachte rotierende Raumstation (\figref{bew_SpaceStation}) durchdenken.
+Nach seinen Ideen von 1952 sollte der Durchmesser etwa $\SI{75}{\meter}$ betragen und so rotieren, dass die Astronauten in etwa eine vergleichbare Erdgravitation spüren.
+Der Torusdurchmesser beträgt $\SI{3}{\meter}$.
+Zusätzlich gibt es senkrechte Verbindungen, um schneller auf die andere Seite der Station zu gelangen.
+Beurteilen Sie das Konzept anhand folgender Überlegungen:
+\begin{enumerate}
+	\item Welche Kräfte wirken auf den Astronauten, wenn er am Tubus der Raumstation entlang läuft?
+	\item Welchen Vorteil bringt ihm die Abkürzung durch die mittige senkrechte Verbindung?
+	\item Welcher weitere Effekt könnte dem Astronaut zu schaffen machen?
+\end{enumerate}
+
+\begin{figure}
+\includegraphics[width=0.5\textwidth]{SpaceStation.jpeg}
+\caption[Künstlerische Darstellung einer Raumstation.]{Künstlerische Darstellung einer bereits von Wernher von Braun konzipierten Raumstation.} %(Copyright NASA und \url{https://commons.wikimedia.org} und AdobeStock})
+\label{abb:bew_SpaceStation}
+\end{figure}
+\medskip
+\linklsg\\
+%\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_SpaceStation}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+
+%Von concept:Wernher von Braunartwork:Chesley Bonestell - Diese Mediendatei wurde vom Marshall Space Flight Center der US-amerikanischen National Aeronautics and Space Administration (NASA) unter der Datei-ID MSFC-75-SA-4105-2C kategorisiert., Gemeinfrei, https://commons.wikimedia.org/w/index.php?curid=14867654
+%Rotierende Raumstation, Konzept von Wernher von Braun, 1952.
+%This is a von Braun 1952 space station concept. In a 1952 series of articles written in Collier's, Dr. Wernher von Braun, then Technical Director of the Army Ordnance Guided Missiles Development Group at Redstone Arsenal, wrote of a large wheel-like space station in a 1,075-mile orbit. This station, made of flexible nylon, would be carried into space by a fully reusable three-stage launch vehicle. Once in space, the station's collapsible nylon body would be inflated much like an automobile tire. The 250-foot-wide wheel would rotate to provide artificial gravity, an important consideration at the time because little was known about the effects of prolonged zero-gravity on humans. Von Braun's wheel was slated for a number of important missions: a way station for space exploration, a meteorological observatory and a navigation aid. This concept was illustrated by artist Chesley Bonestell.
+%\hyperref[lsg:bew_SpaceStation]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+\hypertarget{prb:bew_SpaceElevator}{}
+\begin{prob} %Übung5
+\mittel{bew_SpaceElevator}{Weltraumfahrstuhl}
+Seit einigen Jahren wird \ua von der Firma Liftport \cite{Liftport2021}, \cite{Aravind2007, Swan2013,  Rauchhaupt2014} die Möglichkeit diskutiert, einen so genannten \textit{Space Elevator} (\figref{bew_LiftPort}) zu bauen.
+Dabei handelt es sich in der ursprünglichen Idee um einen Turm, heute aber meist um ein Seil aus geeignetem Material, das vom Äquator senkrecht nach oben über die geostationäre Bahn eines Satelliten hinaus läuft und dort eventuell durch eine Gegenmasse abgeschlossen wird.
+Das Seil selbst ist dann quasi ein geostationärer Satellit, der allerdings nicht mehr durch einen Massepunkt beschrieben werden kann, aber durch eine Vielzahl von infinitesimalen Massenelementen. 
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{SpaceElevator.jpeg}
+\caption[Künstlerische Darstellung eines Weltraumfahrstuhls.]{Künstlerische Darstellung eines Weltraumfahrstuhls.}% Copyright Liftport \cite{Liftport2021}, AdobeStock.}
+\label{abb:bew_LiftPort}
+\end{figure}
+\begin{enumerate}
+	\item Starten Sie von den Berechnungen zur geostationären Bahn eines Satelliten und gehen Sie dann über zum Modell des Seils.
+          Auf jedes Element der Ausdehnung $\mathrm{d}z' $ wirkt dann die Gravitations- und die Zentrifugalkraft, sowie die Spannungskräfte nach oben und unten, die das Seil zusammenhalten.
+          Diese Kräfte heben sich dabei auf. 
+	Entwickeln Sie eine Integralgleichung für die Kräftebilanz des gesamten Seiles. 
+	Wie lang muss das Seil werden?
+        Welche Spannung muss es aushalten \bzw wie dick wird es?
+	Betrachten Sie dazu folgende Fälle:
+	\begin{itemize}[a) ]
+		\item Nehmen Sie an, dass das Seil pro Längeneinheit $\mathrm{d}z'$ eine konstante Masse und Querschnitt hat.
+		\item Nehmen Sie an, dass das Seil einen variablen Querschnitt hat, aber die innere Seilspannung konstant bleibt.
+	\end{itemize}
+	 % wobei es auch Projekte mit variablen Querschnitt, aber dann konstanter innerer Seilspannung gibt. 
+\item Vergleichen Sie die beiden Fälle hinsichtlich ihrer Machbarkeit und beziehen dabei konkrete Materialeigenschaften mit ein.
+  Würden Sie in die Firma investieren?
+\item Verbessert sich die Realisierbarkeit durch das Anbringen einer Gegenmasse?
+\item Angenommen der Space Elevator funktioniert, welchen Nutzen hätte man?
+  Stellen Sie eine energetische Betrachtung an.
+\item Was ist Ihre Meinung zu den nun verfolgten Projekten Mars \bzw Lunar Space Elevator Infrastructure LSEI \cite{Liftport2021}?
+  Sind diese mit den heutigen Materialien machbar? 
+\end{enumerate}
+\medskip
+\linklsg\\
+%\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_SpaceElevator}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_SpaceElevator]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_SkyDiver}{}
+\begin{prob} %Übung6
+\einfach{bew_SkyDiver}{Skydiver}
+Berechnen Sie den \text{Skydive} von Baumgartner nach \kap{bew_parachute} mit \matlab{}.  
+%Die numerische Berechnung folgt ansonsten dem \mscr \mlbewref{Skydiver.m}.
+
+\medskip
+\linklsg\\
+%\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_SkyDiver}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_SkyDiver]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_Quizfrage}{}
+\begin{prob} %Übung7
+\einfach{bew_Quizfrage}{Quizfrage}
+Sie schießen eine Kananonkugel senkrecht nach oben, einmal im Vakuum und einmal in normaler Luft. In welchem Fall haben Sie mehr Zeit, vor der zurückkommenden Kanonenkugel davon zu laufen? 
+Nehmen Sie einmal Stokes- und einmal Newton-Reibung an (Idee zur Übung gefunden in \cite{Mungan2021}).
+
+\medskip
+\linklsg\\
+%\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_Quizfrage}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_Quizfrage]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_VielteilchenI}{}
+\begin{prob} %Übung8
+\einfach{bew_VielteilchenI}{Vielteilchensysteme}
+Zeigen Sie die Bedingungen für die Gültigkeit der Impuls- \eqref{eq:bew_Ges_Impulserhaltung}\: \bzw Drehimpulserhaltung \eqref{eq:bew_Ges_Drehimpulserhaltung} in einem Vielteilchensystem.
+
+\medskip
+\linklsg\\
+%\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_VielteilchenI}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_VielteilchenI]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_SwingBy}{}
+\begin{prob} %Übung9
+\mittel{bew_SwingBy}{Swing-By-Manöver in der Raumfahrt}
+Betrachtet wird ein Swing-By-Manöver in der Raumfahrt.
+\begin{enumerate}
+	\item Leiten Sie zunächst die Beziehung für den Energieübertrag \eqref{eq:bew_Streuung9} beim elastischen Stoß für $\vec{v}_2 = 0$ her.
+	\item Wenden Sie das Ergebnis auf das sogenannte Swing-By-Manöver der Raumfahrt an.
+\end{enumerate}
+
+\medskip
+\linklsg\\
+%\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_SwingBy}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_SwingBy]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_Billardspiel01}{}
+\begin{prob} %Übung10
+\mittel{bew_Billardspiel}{Billardspiel}
+Wir betrachten eine typische Situation beim Billard.
+Eine Kugel 1 wird mit einer Geschwindigkeit $\vec{v}_1$ auf die ruhende Kugel 2 gestoßen.
+Wir sehen von Rollbewegung und Reibung ab.
+
+\begin{enumerate}
+\item Berechnen Sie zunächst den differentiellen Wirkungsquerschnitt bei der idealen Reflexion an einer Kugeloberfläche im Schwerpunktsystem.
+  Berechnen Sie auch den totalen Wirkungsquerschnitt.
+\item Berechnen Sie dann den allgemeinen Fall des Stoßes zwischen zwei Kugeln ($m_1 \neq m_2$ und $R_1 \neq R_2$) und dann den Spezialfall identischer Kugeln.
+  Berechnen Sie wieder den differentiellen Wirkungsquerschnitt, diesmal aber im Laborsystem. 
+Betrachten Sie dabei zunächst den allgemeinen Fall ($m_1 \neq m_2$ und $R_1 \neq R_2$) und dann den Spezialfall identischer Kugeln.
+\item Berechnen Sie den Stoßparameter $b$ (\figref{bew_Billardspiel01}), den Sie brauchen, wenn die gestoßene Kugel unter einem Winkel von $60 \degree$ wegrollen soll.
+  Wohin rollt die Kugel 1?
+  Welche Energie wird übertragen?
+\end{enumerate} 
+
+\begin{figure}
+\includegraphics[width=\textwidth]{Billardspiel01.pdf}
+\caption[Stoß zwischen zwei Billardkugeln.]{Stoß zwischen zwei Billardkugeln.} 
+\label{abb:bew_Billardspiel01}
+\end{figure}
+
+Für den interessierten Leser empfehlen wir \probref{bew_Billard3K}, indem wir das Problem des Stoßes auf drei Billardkugeln (eine bewegte und zwei anfänglich ruhende) erweitern.
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_Billardspiel}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_Billardspiel]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_HillLagrangePkt}{}
+\begin{prob} %Übung11
+\mittel{bew_HillLagrangePkt}{Hill-Kurve und Lagrange-Punkte}
+Berechnen Sie die Hill-Kurven und die Lagrange-Punkte für das reduzierte Dreikörper\-problem für den hypothetischen Fall, dass die Masse des Zentralkörpers nur 20-mal so groß ist wie die des Planeten, sowie für das Sonne-Jupiter-System und das Sonne-Erde-System.
+
+\medskip
+\linklsg\\
+%\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_HillLagrangePkt}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_HillLagrangePkt]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+\hypertarget{prb:bew_gezeiten01}{}
+\begin{prob} %Übung12
+\mittel{bew_gezeiten01}{Gezeitenkräfte}
+Berechnen Sie die Verformung eines Masserings unter dem Einfluss von Gezeitenkräften. Den Ring beschreiben Sie am besten als Anordnung von 36 Testmassen, die im Schwerefeld einer großen Masse frei fallen.
+
+\medskip
+\linklsg\\%\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_gezeiten01}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_gezeiten01]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_Zwangsbedingungen}{}
+\begin{prob} %Übung13
+\einfach{bew_Zwangsbedingungen}{Zwangsbedingungen}
+Schreiben Sie die Zwangsbedingungen für folgende Probleme auf und ordnen Sie diese den verschiedenen Kategorien zu.
+\begin{enumerate}
+	\item Perle auf 2D-Spirale 
+	\item Perle auf eingängiger Helix 
+	\item Sphärisches Pendel 
+	\item Doppelpendel
+	\item Pendel mit vertikal schwingender Aufhängung 
+	\item Pendel mit horizontal schwingender Aufhängung 
+	\item Stehendes Pendel mit vertikal schwingendem Boden 
+	\item Jo-Jo 
+\end{enumerate}
+\medskip
+\linklsg\\%\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_Zwangsbedingungen}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_Zwangsbedingungen]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_LagrangeII_a}{}
+\begin{prob} %Übung14
+\einfach{bew_LagrangeII_a}{Lagrange-Gleichung zweiter Art in Kugelkoordinaten} 
+\begin{enumerate}
+	\item Schreiben Sie die Lagrange-Gleichungen \bzw Bewegungsgleichungen für ein freies Teilchen in Kugelkoordinaten auf.
+	\item Geben Sie nun als Zwangsbedingung vor, dass sich das Teilchen auf der Innenfläche eines kegelförmigen Trichters mit dem Öffnungswinkel $\vartheta_0$ bewegen soll.
+          Wie lauten die Bewegungsgleichungen dann?
+          Was folgt für $\vartheta_0=90\degree$?
+	\end{enumerate}
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_LagrangeII_a}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_LagrangeII_a]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------
+\newpage
+\hypertarget{prb:bew_LagrangeII_b}{}
+\begin{prob} %Übung15
+\einfach{bew_LagrangeII_b}{Lagrange-Gleichung erster Art und zweiter Art mit Reibung} 
+\begin{enumerate}
+  \item Erstellen Sie \mscre für die Lösung der Bewegungsgleichungen für die in den Beispielen \ref{bsp:bew_PerleDraht} und \ref{bsp:bew_Rollenpendel} behandelten Systeme ohne Reibung.
+    Stellen Sie die Ergebnisse graphisch inklusive Simulation dar.
+  \item Schreiben Sie nun die Lagrange-Gleichungen für die Systeme unter Vorhandensein einer Reibung (Welche kann man sinnvollerweise annehmen?) auf und lösen Sie das Problem numerisch mit \matlab.
+\end{enumerate}
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_LagrangeII_b}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_LagrangeII_b]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_Parabelflug}{}
+\begin{prob} %Übung16
+\einfach{bew_Parabelflug}{Parabelflug}
+Um auf der Erde für eine bestimmte Zeit Schwerelosigkeit zu spüren, muss man sich in den freien Fall begeben. Dies kann \zb in einem Flugzeug erzeugt werden. Dazu müssen alle auf das Flugzeug wirkende Kräfte sich aufheben \bzw Null werden. Berechnen Sie die Geschwindigkeiten, Beschleunigungen und Flughöhen für einen typischen Parabelflug.
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_Parabelflug}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_Parabelflug]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%%%-----------------------------------------------------------------------------------------------------------
+%%%-----------------------------------------------------------------------------------------------------------
+
+\newpage
+\subsection{Übungen zu beschleunigten Bezugssystemen}
+
+\medskip
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_AbplattungPlaneten}{}
+\begin{prob} %Übung17
+\schwierig{bew_AbplattungPlaneten}{Abplattung der Planeten} 
+
+\begin{figure} 
+\centering
+\includegraphics[width=0.5\textwidth]{Jupiter_Abplattung.jpg}
+\caption[Abplattung von Jupiter und die Galileischen Monde Europa und Io.]{Die Aufnahme zeigt anhand konzentrischer Kreise eine deutlich wahrnehmbare Abplattung von Jupiter. Links oben die Galileischen Monde Europa und Io, Aufnahme von Ulrich Potthoff am 15.11.2022 gegen 20:30 MEZ.}\label{abb:bew_Jupiter_Abplattung}
+\end{figure}
+
+Wodurch entsteht die Form des Rotationsellipsoids der Planeten unseres Sonnensystems (\figref{bew_Jupiter_Abplattung})? Wir wollen diese unter der Annahme berechnen, dass die Planeten \zb komplett mit (ausreichend tiefem) Wasser bedeckt wären.
+
+\begin{enumerate}
+	\item Berechnen Sie die effektive Schwerebeschleunigung $\vec{g}_\text{eff}$ und $\vec{g}'$  als Funktion der geographischen Breite.
+          Was können Sie insbesondere über die Komponenten in Richtung $\vecpeX$ und $\vecpeZ$ sagen?
+          Bei welchem Breitengrad ist die Winkelabweichung zwischen $\vec{g}_\text{eff}$ und $\vec{g}'$ am größten?
+	\item Berechnen Sie die Abplattung der Erde unter verschiedenen Annahmen:
+	\begin{enumerate}[a)]
+		\item Leiten Sie die Formel für die Abplattung der Erde her, indem Sie von einem Kräftegleichgewicht an der Oberfläche ausgehen.
+                  Berechnen Sie daraus den Polradius und vergleichen Sie ihn mit dem tatsächlichen Wert.
+		\item Berechnen Sie die Abweichung des Rotationsellipsoids von der idealen Kugelform.
+                  Nehmen Sie dabei eine homogene Massenverteilung im Inneren der Erde an.
+		\item Bestimmen Sie die Abplattung der Erde, wobei Sie die Form der Erde als perfekte Kugel mit einer dünnen Schale aus positiver und negativer Masse annehmen.
+	\end{enumerate}
+\newpage
+	\item Was können Sie daraus über die Abplattung der Gasplaneten Jupiter, Saturn, Uranus und Neptun sagen?
+          Die physikalischen Parameter sind:\\ \\
+    \hspace*{0.2cm}
+    	{ \centering
+		\begin{tabular}{L{3 cm}R{1.5cm}R{1.5cm}R{1.5cm}R{1.5cm}R{1.5cm}}
+		Parameter		                       	& Jupiter & Saturn & Uranus & Neptun & Einheit \\
+		\noalign{\smallskip} \hline \noalign{\smallskip}
+		Durchmesser $D$\linebreak (am Äquator) &	142.984	&		120.536 & 51.118 & 49.528 &	km\\		
+		Masse $M$		                     	& 189.810 & 56.829 & 8.681 & 10.240 & $10^{25} \:\mathrm{kg}$\\	
+		Dichte $\varrho$		            	&1.326 &	0.687 &1.271 &1.638 & $\text{g}/\text{cm}^3 $\\	
+		\end{tabular} }
+    \hspace*{0cm}
+\end{enumerate}
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_AbplattungPlaneten}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_AbplattungPlaneten]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_Coriolis_I}{}
+\begin{prob} %Übung18
+\mittel{bew_Coriolis_I}{Coriolis-Kraft I -- \gls{ballistik}} 
+\begin{enumerate}
+	\item Finden Sie eine analytische Lösung für die Bewegungsgleichungen \eqref{eq:bew_BGL_Erdrotation_Ko} für den freien Fall und vergleichen Sie diese mit der Näherungslösung \eqref{eq:bew_BGL_Erdrotation_Lsg1}.
+        \item Finden Sie die analytische Lösung für die Bewegungsgleichungen \eqref{eq:bew_BGL_Erdrotation_Ko} für ein Projektil (die Luftreibung sei zunächst vernachlässigt), das vom Punkt $B^\prime$ mit einer Geschwindigkeit von $v'_0 = 300 \mathrm{m/s}$ (knapp unterhalb der Schallgeschwindigkeit) genau nach Süden unter einem Winkel $\alpha$ abgeschossen wird.
+          Wie muss man den Abschusswinkel wählen, damit das Projektil ein Ziel in $\SI{8}{\km}$ Entfernung auch trifft?
+	\item Berücksichtigen Sie nun die Luftreibung.
+          Betrachten wir dazu eine Kanonenkugel aus Stein ($\varrho_\text{K} \approx \SI{5}{\g\per\centi\metre\cubed}$) mit einem Durchmesser von \SI{20}{\centi\metre}.
+          Typische Geschwindigkeiten für Kanonenkugeln beim Verlassen des Mündungsrohrs lagen maximal bei $400 \mathrm{m/s}$.
+          Verwenden Sie für die Reibungskraft \eqref{eq:bew_NewtonReibung} den Ansatz $m_\text{K} \eta= \frac{1}{2} c_\text{w} \varrho_\text{L} A $, worin $\varrho_\text{L} = 1.2 \:\mathrm{kg/m^3} \:$ die Dichte der Luft ist und $A$ die Querschnittsfläche des Flugkörpers. 
+	$c_\text{w}$ ist der Widerstandsbeiwert, der für Flugkörper einen Wert zwischen 0.08 und 0.3 hat.
+        Für eine Kugel verwendet man den Wert 0.45. 
+	Lösen Sie dazu die Bewegungsgleichungen \eqref{eq:bew_BGL_Erdrotation_Ko} numerisch mit \matlab.
+        Welchen Einfluss hat die Reibung?
+        Welche Empfehlung würden Sie einem Ballistiker mitgeben?
+\end{enumerate} 
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_Coriolis_I}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_Coriolis_I]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+\hypertarget{prb:bew_Coriolis_II}{}
+\begin{prob} %Übung19
+\einfach{bew_Coriolis_II}{Coriolis-Kraft II -- Fluss- und Schienenabtrag} 
+Die sibirischen Flüsse Lena, Ob und Jenissei fließen mehr als \SI{2000}{\kilo\metre} lang fast genau nach Norden.
+          Immer wieder hört man, dass am Ostufer das Wasser durch die Coriolis-Kraft höher steht
+          und es dadurch stärker abgetragen wird als das Westufer.
+          Was meinen Sie dazu?
+          Nehmen Sie realistische Werte für die Fließgeschwindigkeit an. Wie sieht es bei Eisenbahnschienen aus?
+          Welche Seite wird stärker abgenutzt?
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_Coriolis_II}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_Coriolis_II]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_Coriolis_III}{}
+\begin{prob} %Übung20
+\einfach{bew_Coriolis_III}{Coriolis-Kraft III -- Wetterphänomene} 
+\begin{figure}
+\centering
+\includegraphics[width=0.75\textwidth]{Wetterkarte091121.pdf}
+\caption[Bodenwetterkarte des ECMWF.]{Bodenwetterkarte des European Centre for Medium-Range Weather Forecasts (ECMWF) vom 09.\,11.\,2021. Copyright ECMWF.}\label{abb:bew_DWD_Karte}
+\end{figure}
+\begin{enumerate}
+\item Erklären Sie das Zustandekommen der Windrichtungen bei den Passatwinden. 
+\item Was können Sie über die Windrichtungen in den Zyklonen \bzw Hurrikans nördlich und südlich des Äquators sagen? 
+\item Beim Blick auf die Wetterkarte vom 09.\,11.\,2021 (\figref{bew_DWD_Karte}) erkennt man es ein ausgeprägtes Azorenhoch (1030 hPa) und ein kräftiges Hoch über Osteuropa (1050 hPa), sowie ein Tief östlich von Island (980 hPa). Können Sie aus diesen Daten Aussagen zur Windrichtung/-stärke in Nordschottland und Deutschland machen? 
+\end{enumerate}
+
+%\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_Coriolis_III}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_Coriolis_III]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_Coriolis_IV}{}
+\begin{prob} %Übung21
+\einfach{bew_Coriolis_IV}{Coriolis-Kraft IV -- Karussell}
+Sie fahren mit einem Go-Kart auf einer Karussell-Scheibe von $R = \SI{50}{\meter}$ Radius, die sich mit einer Winkelgeschwindigkeit $\omega$ dreht (Umdrehungszeit \SI{180}{\second}) und auch noch in der Drehung gleichmäßig mit $\dot{\omega}$ beschleunigt wird.
+Ihr Fahrzeug startet vom Rand und kann nach einer sehr kurzen Beschleunigungsphase nach dem Start nur noch mit der einmal gewählten Geschwindigkeit $v_0 = 1 \ldots 7 \SI{}{\meter\per\second}$ die am Randpunkt A eingestellte Richtung beibehalten, bis es wieder am Rand ankommt (Lenkrad ist blockiert!).
+Dabei ist zu berücksichtigen, dass das Fahrzeug einer Reibung (Roll- und Haftreibung $\propto \mu\,m g $) mit typischen Koeffizienten (für Luftreifen auf Holz $ \mu_\text{R} = 0.15 $ und $ \mu_\text{H} = 0.3 $) unterliegt. 
+\begin{enumerate}
+	\item 
+		Berechnen Sie die wirkende Haftreibung der Reifen des sich mit $v_0$ bewegenden Go-Karts.
+                Wann kommen Sie ins Rutschen?
+	\item
+		Ihre Aufgabe ist nun, vom Startpunkt A am Rande der Karussellscheibe zum gegenüberliegenden Punkt B zu kommen.
+                Berechnen Sie die Trajektorien für verschiedene $\vec{v}_0$  und konstante $\omega_0$.
+                Um Sie zu ärgern, schaltet der Karussellbesitzer die Rotation zufällig nach einer beliebigen Zeit $t_\text{A}$ ein und zwar so, dass die Beschleunigung der Rotation nach $\SI{15}{\second}$ ihren Maximalwert von $\omega_0 = 2 \pi /T_0$ mit $T_0 = \SI{120}{\second}$ erreicht.
+                Berechnen Sie wieder die Trajektorien.
+                Gibt es eine Strategie, wie Sie es am besten nach B schaffen?
+\end{enumerate}
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_Coriolis_IV}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_Coriolis_IV]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+
+\end{prob}
+
+
+%%%-----------------------------------------------------------------------------------------------------------
+%%%-----------------------------------------------------------------------------------------------------------
+\newpage
+
+\subsection{Übungen zu Streuproblemen}
+
+\medskip
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_Rutherford}{}
+\begin{prob} %Übung22
+\mittel{bew_Rutherford}{Rutherford-Streuung}
+Berechnen Sie Trajektorien elektrisch geladener Streuteilchen an einem Atomkern, indem Sie die Bewegungsgleichungen numerisch integrieren.
+Nehmen Sie für das geladene Teilchen $\alpha$-Teilchen und Silber-Ionen an, für den Atomkern Gold.
+Normieren Sie die Raumkoordinaten auf den Bohrschen Atomradius\index{Atomradius!Bohrscher}\index{Bohrscher Atomradius} $a_\text{B}= \SI{5.291772e-11}{\metre}$ und wählen Sie bei einem Stoßparameter $b=3\,a_\text{B}$ die Energien der einfallenden Teilchens so, dass Sie im Abstand von \ca $20\,a_\text{B}$ signifikante Ablenkungen erhalten.
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_Rutherford}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_Rutherford]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_Asteroid}{}
+\begin{prob} %Übung23
+\mittel{bew_Asteroid}{Asteroiden-Auftreffwahrscheinlichkeit auf einen Planeten}
+Berechnen Sie die Auftreffwahrscheinlichkeit eines Asteroiden auf einen Planeten mit Radius $R_\text{P}$ und Masse $m_\text{P}$.
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_Asteroid}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_Asteroid]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+
+%%%-----------------------------------------------------------------------------------------------------------
+%%%-----------------------------------------------------------------------------------------------------------
+\newpage
+
+\subsection{Übungen zu Oszillatoren und Pendeln}
+
+\medskip
+
+%-----------------------------------------------------------------------------------------------------------
+
+
+\hypertarget{prb:bew_PendelGl}{}
+\begin{prob} %Übung24
+\einfach{bew_PendelGl}{Pendelgleichungen}
+Leiten Sie die Bewegungsgleichungen für das harmonische und das anharmonische Pendel aus \eqref{eq:bew_Schwingung01b} ab.
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_PendelGl}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_PendelGl]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_HO_quadrat}{}
+\begin{prob} %Übung25
+\mittel{bew_HO_quadrat}{Harmonischer Oszillator mit quadratischem Reibungsterm}
+Berechnen Sie numerisch die Bewegung des harmonischen Oszillators mit quadratischem Reibungsterm und vergleichen Sie das Ergebnis mit dem harmonischen Oszillator mit linearem Reibungsterm.
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_HO_quadrat}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_HO_quadrat]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_ExamplesHO}{}
+\begin{prob} %Übung26
+\einfach{bew_ExamplesHO}{Beispiele für harmonische Schwingungen}
+Leiten Sie die Schwingungsgleichung für folgende Fälle ab.
+Benutzen Sie dabei \figref{bew_HOex01}.
+\begin{figure}
+\includegraphics[width=\textwidth]{BeispieleHO.pdf}
+\caption[Beispiele für harmonische Schwingungen.]{Beispiele für harmonische Schwingungen. \fa Sprungbrett \fb Zylinderförmige Tonne im Wasser \fc Torsionspendel  \fd Zugseil \fe Tischtennisball im Luftstrom \ff Federschwingung mit Masse der Feder.} 
+\label{abb:bew_HOex01}
+\end{figure}
+
+\begin{enumerate}
+\item Sprungbrett aus Holz mit dem Elastizitätsmodul $Y = \SI{10e9}{\N\per\metre\tothe{2}}$, der Breite $b = 50\,\mathrm{cm}$, der Länge $L = 500\,\mathrm{cm}$ und der Dicke $h = 5\,\mathrm{cm}$.
+  Die Dichte von Holz ist $\varrho = \SI{0.8}{\g\per\cm}$. 
+Wie ändert sich die Schwingung, wenn zur Eigenmasse des Holzbalkens noch die Masse eines $\SI{100}{\kg}$ schweren Menschen am Brettende dazu kommt?
+\item Zylinderförmige Tonne mit Durchmesser $D$ und Höhe $H$ aus Holz auf dem Wasser.
+\item Torsionspendel der Länge $l$ mit einer Scheibe mit Trägheitsmoment $J$.
+\item Zugseil im Fitnessstudio.
+  Nehmen Sie an, dass die Masse des Drahtes im Angriffspunkt der Zugkraft konzentriert ist.
+\item Tischtennisball im Luftstrom eines Föns.
+\item Federschwingung mit korrigierter Gleichgewichtslage.
+\end{enumerate}
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_ExamplesHO}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_ExamplesHO]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_Molekuelpotentiale}{}
+\begin{prob} %Übung27
+\mittel{bew_Molekuelpotentiale}{Molekülpotentiale}
+In dieser Übung wollen wir die internen Schwingungen von Molekülen berechnen, \dh die Schwingungen, die aus der Bindung zwischen zwei Atomen entstehen können.
+\begin{enumerate}
+    \item Ein üblicher und realistischer Ansatz
+      für die potentielle Energie zwischen zwei Edelgas-Atomen
+      ist das Lennard-Jones%
+      \footnote{Sir John Edward Lennard-Jones%
+      \indexp{Lennard-Jones, Sir John Edward} (1894--1954)
+      war ein britischer theoretischer Physiker.
+      Er gilt als einer der Begründer der modernen, auf
+      quantenmechanischen Methoden beruhenden theoretischen Chemie.
+      Die Herleitung des Lennard-Jones-\pot s findet man u.a. in \cite{Bartelmann2015, Schmutzer2005}.}-\pot
+      \begin{align}
+          U(q) = \bigg(\frac{A}{q^{12}}-\frac{B}{q^6}\bigg) \,,\label{eq:bew_HOex_01}
+      \end{align}
+      wobei $q$ als Abstand der beiden Atome die generalisierte Koordinate ist.
+      $A$ und $B$ sind zwei Konstanten.
+      Der $q^6$-Term entspricht einer anziehend wirkenden,
+      induzierten Dipol-Dipol-Wechselwirkung,
+      während der $q^{12}$-Term einen phänomenologischen Ansatz
+      für die starke Abstoßung bei geringeren Abständen darstellt. 
+
+      Wir können die Parameter $A$ und $B$ durch
+      $A = 4 \tilde{\epsilon}_\text{A}\,{q_0}^{12}$
+      und $B = 4 \tilde{\epsilon}_\text{B}\,{q_0}^{6}$
+      ausdrücken, wobei $q_0$ die Dimension einer molekularen
+      Länge und $\tilde{\epsilon}_i$ die einer molekularen Energie hat.
+      Berechnen Sie 
+      \begin{enumerate}[a)]
+	 \item die Bindungslänge $q_\text{B}$,
+	 \item die Schwingungsfrequenz $\omega$ des Moleküls,
+	 \item den Potential- und Anziehungskraftverlauf.
+      \end{enumerate}
+    \item Bei Nicht-Edelgas-Atomen liegt für zweiatomige
+      Moleküle zwischen den Atomen das Potential
+        \begin{align}
+            U(q) = \lk \frac{A}{q^{3}}-\frac{B}{q^2} \rk \,, \label{eq:bew_HOex_02}
+        \end{align}
+	vor, wiederum mit $A = \tilde{\epsilon}{q_0}^{3}$ und $B = \tilde{\epsilon}{q_0}^{2}$.
+	Berechnen Sie auch in diesem Fall a)-c).
+
+\item (Zusatz) Verwenden Sie die erhaltenen Ergebnisse, um die Molekülschwingungen in den beiden Potentialen hinsichtlich ihrer Zeitentwicklung zu vergleichen.
+  Stellen Sie dazu auch die entsprechenden Differentialgleichungen auf.
+\item (Zusatz) Wir können diese Lösung auch verwenden, um eine quantitative Abschätzung für die Schwingungsfrequenzen zu erhalten.
+Wir wollen dies für ein Molekül, das aus zwei Helium-Atomen besteht, tun.
+Für diese kann man 
+$r_0 = \SI{2.5e-10}{\metre}$ und die Konstante
+$A = B = 4 \tilde{\epsilon} = 4\cdot\SI{2.5e-22}{\J}$ annehmen.
+Berechnen Sie für diese Angaben die Gleichgewichtslage und die Schwingungsgrundfrequenz $\omega_0$.
+Ab welcher Energie (nach der halbklassischen Betrachtungsweise) dissoziiert das Molekül?
+\end{enumerate}
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_Molekuelpotentiale}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%%\hyperref[lsg:bew_Molekuelpotentiale]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\hypertarget{prb:bew_Kopplung01}{}
+\begin{prob} %Übung28
+\mittel{bew_Kopplung01}{Zwei gekoppelte Stangenpendel}
+Lösen Sie die Bewegungsgleichung für die gekoppelten Pendel (\figref{bew_Kopplg01}) für verschiedene Fälle so weit wie möglich analytisch und entwickeln Sie anschließend eine entsprechende numerische Simulation.
+Starten Sie von der Lagrange-Funktion \eqref{eq:bew_Kopplg09} und betrachten Sie die folgenden Fälle der Reihe nach: 
+\begin{enumerate}
+		\item Kleine Auslenkungswinkel $\theta_i$, Abstand der Pendel $L$ sehr viel größer als Pendellänge $l_i$ und Aufhängung $l_\text{F}$, außerdem $l_1 = l_2 = l_\text{F}$ und $m_1 = m_2$.
+		\item Gleiche Situation wie eben, aber $l_1 \neq l_2 \neq l_\text{F}$. 
+		\item Beliebig große Auslenkungen $\theta_i$, Abstand der Pendel vergleichbar mit Pendellängen $l_i$.
+\end{enumerate}
+Nehmen Sie für  $l_1$, $l_2$, $m_1$ und $m_2$ Werte an, die Schwingungsperioden im Sekundenbereich ergeben.
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_Kopplung01}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_Kopplung01]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_CO2Molekuel}{}
+\begin{prob} %Übung29
+\mittel{bew_CO2Molekuel}{Schwingungen des  $\text{CO}_2$-Moleküls}
+Eine wichtige Anwendung für gekoppelte Oszillatoren ist die Betrachtung der Schwingungen von Molekülen, wie \zb des $\text{CO}_2$-Moleküls (\figref{bew_CO2Molekuel01}). 
+Wir bezeichnen die Masse des zentralen Kohlenstoffatoms mit $m_\text{C}$ und die der beiden Sauerstoffatome mit $m_\text{O}$.
+\begin{enumerate}
+		\item Wir wollen die Schwingungen des Moleküls vorerst nur in einer Dimension ($x$-Achse) betrachten.
+                  Berechnen Sie die Schwingungsfrequenzen und charakterisieren Sie die Schwingungen.
+                  Warum gibt es keine drei Eigenmoden, obwohl es doch drei \anf{Beteiligte} gibt?
+		\item Lassen Sie nun eine Deformationsschwingung in Richtung der $y$-Achse zu.
+                  Nehmen Sie dabei die Position des Sauerstoffatoms in Richtung $x$-Achse als konstant an.
+                  Was können Sie über die Schwingungsfrequenzen sagen?
+\end{enumerate}
+		
+\begin{figure}
+\includegraphics[width=\textwidth]{CO2Molekuel01.pdf}
+\caption[Schwingungen eines $\text{CO}_2$-Moleküls.]{Schwingungen eines $\text{CO}_2$-Moleküls.} 
+\label{abb:bew_CO2Molekuel01}
+\end{figure}
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_CO2Molekuel}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_CO2Molekuel]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_Stossdaempfer}{}
+\begin{prob} %Übung30
+\schwierig{bew_Stossdaempfer}{Stoßdämpfer, Schwingungstilgung}
+Wir wollen in dieser Übung einige realistische Beispiele von Systemen betrachten, in denen auftretende Schwingungen mit verschiedenen Methoden gedämpft werden.
+\begin{figure}
+\includegraphics[width=\textwidth]{Stossdaempfer01.pdf}
+\caption[Prinzip des Stoßdämpfers.]{Prinzip des Stoßdämpfers.} 
+\label{abb:bew_Stossdaempfer01}
+\end{figure}
+\begin{enumerate}
+	\item Als erstes wollen wir die wesentlichen Parameter eines Stoßdämpfers eines Autos berechnen. 
+		Dieses soll eine Masse von $m_\text{A} = \SI{2000}{\kilogram}$ haben, der Federweg soll maximal $\SI{5}{\cm}$ betragen (bei einer angenommenen maximalen Anfangsauslenkung von $\SI{10}{\cm}$) und die Schwingung soll nach $\SI{3}{\second}$ abgeklungen sein.
+		Dimensionieren Sie einen Stoßdämpfer, indem Sie von \figref{bew_Stossdaempfer01} ausgehen. Was können Sie zur Auslegung der amerikanischen Straßenkreuzer aus den 50er Jahren des vorigen Jahrhunderts sagen? 
+	\item Weitere Beispiele sind die Dämpfung von Labortischen oder Aufhängung von Geräten an Decken.
+    Hier wird eine der Unterdrückung der Schwingung des Systems durch Erzeugung einer geeigneten Gegenschwingung mit einem entsprechenden zweiten Schwinger erreicht. Im Englischen heißen solche Systeme sehr treffend \anf{\textit{Tuned Mass Damper}} (TMD)\index{Tuned Mass Damper}\index{Schwingungstilgung}. (\figref{bew_Tilgung02}).
+    Berechnen Sie auch für diesen Fall die Dynamik und das Frequenzbild. Nehmen Sie für die Gebäudeschwingungen Frequenzen im Bereich bis $\SI{5}{\per\second}$ an.
+	\item Das Prinzip des TMD wird in verschiedenen Formen auch bei windbelasteten Türmen und Hochhäusern angewendet (\figref{bew_Tilgung01}). 
+		Hierzu werden in die Gebäudestruktur verschiedenartige Schwingungstilger integriert, die meistens pendelnd aufgehängte, elektronisch überwachte und gedämpfte Schwingmassen sind. Dabei werden vor allem niederfrequente Schwingungen beseitigt. Berechnen Sie überschlagsmäßig die Auslegung eines solchen Tuned Mass Dampers \zb für den Berliner Fernsehturm und den Taipei 101 Tower.
+\end{enumerate}
+
+		\begin{figure}
+		\begin{minipage}{\textwidth}
+		\leftfigure{\includegraphics[width=0.5\textwidth]{Tilgung02.pdf}}%
+		\hspace{\fill}
+		\rightfigure{\includegraphics[width=0.5\textwidth]{Tilgung01.pdf}}
+		\leftcaption[Schwingungstilgung -- Tisch und Deckenaufhängung.]{Schwingungstilgung -- a) Tisch, b) Deckenaufhängung.} \label{abb:bew_Tilgung02}
+		\rightcaption[Ausführungsform der Schwingungs\-tilgung in Gebäuden.]{Ausführungsform der Schwingungs\-tilgung in Gebäuden.} \label{abb:bew_Tilgung01}
+		\end{minipage}
+		\end{figure}
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_Stossdaempfer}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_Stossdaempfer]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+\hypertarget{prb:bew_PendelUeb02}{}
+\begin{prob} %Übung31
+\einfach{bew_PendelUeb02}{Blackwood-Pendel, Ballistisches Pendel}
+Das Blackwood Pendel oder Ballistische Pendel ist eine mechanische Vorrichtung, um \zb Geschossgeschwindigkeiten zu messen. Es wurde 1742 von Benjamin Robins (1707--1751) für das Militär erfunden.
+
+\begin{figure}
+\includegraphics[width=\textwidth]{BlackwoodPendel.pdf}
+\caption[Blackwood-Pendel.]{Blackwood-Pendel. Ein relativ schwerer Holzklotz wird an einem langen Draht oder einer Stange horizontal drehbar aufgehängt. Das zu messende Geschoss wird auf den Holzklotz abgefeuert, bleibt dort stecken und lenkt ihn aus. Durch Messen der maximalen Pendelauslenkung lässt sich die Geschwindigkeit des abgefeuerten Geschosses beim Auftreffen berechnen.} 
+\label{abb:bew_BlackwoodPendel}
+\end{figure}
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_PendelUeb02}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_PendelUeb02]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_PendelUeb04}{}
+\begin{prob} %Übung32
+\einfach{bew_PendelUeb04}{Wilberforce-Pendel}
+DDas Wilberforce-Pendel\index{Pendel!Wilberforce-}\index{Wilberforce-Pendel}\footnote{Lionel Robert Wilberforce\indexp{Wilberforce, Lionel Robert} (1861--1944) war ein englischer Physiker, der 1896 das nach ihm benannte Pendel entwarf. Dieses wurde vorteilhaft zur Bestimmung von Materialparametern wie der Poissonzahl (siehe \kap{kontmech_fest}) eingesetzt.}(\figref{bew_WilberforcePendel}) ist eine Kombination aus Feder- und Torsionspendel. Es besteht aus einer Masse, die an einer langen Schraubenfeder aufgehängt ist, sodass die Schraubenfeder leicht verdrillt wird, wenn die Masse um ihre vertikale Achse gedreht wird. Setzt man dieses gekoppelte Pendel durch Ziehen in Bewegung, schwingt es zuerst auf und ab. Nach kurzer Zeit beginnt das Gewicht sich wie beim Torsionspendel um die eigene Achse zu drehen. Diese Bewegung nimmt zu, bis sich die Masse schließlich nur noch dreht, ohne zu pendeln. Danach kehrt sich der Vorgang um. Berechnen Sie die Dynamik des Wilberforce-Pendels. 
+
+\begin{figure}
+\includegraphics[width=0.5\textwidth]{WilberforcePendel.pdf}
+\caption[Wilberforce-Pendel, Geometrie und physikalische Größen.]{Wilberforce-Pendel. Geometrie und physikalische Größen für Feder (Index F) und Torsionsstange (Index T). Die Kopplung zwischen beiden wird durch eine Kopplungskonstante $\kappa$ beschrieben.} \label{abb:bew_WilberforcePendel}
+\end{figure}
+Berechnen Sie die Dynamik des Wilberforce-Pendels. 
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_PendelUeb04}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_PendelUeb04]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+
+%%%-----------------------------------------------------------------------------------------------------------
+%%%-----------------------------------------------------------------------------------------------------------
+
+\newpage
+\subsection{Übungen zu nichtlinearen und komplexen Systemen}
+\medskip
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_logisticmap}{}
+\begin{prob}%Übung33
+\mittel{bew_logisticmap}{Logistische Gleichung\index{Gleichung!logistische}\index{Logistische Gleichung} -- Populationsproblem}
+Die logistische Gleichung wurde als ein mathematisches Modell für die Entwicklung einer Population erstmalig 1837 von Verhulst\footnote{Pierre-François Verhulst (1804--1849) war ein belgischer Mathematiker.}\indexp{Verhulst, Pierre-François} eingeführt.
+Sie ist ein weiteres Beispiel für komplexes, chaotisches Verhalten eines nichtlinearen Systems.
+An diesem  System können gut allgemeine Charakteristika wie Bifurkationen\index{Bifurkationen}, das Einsetzen von Chaos oder der Ljapunow-Exponent\index{Ljapunow-Exponent} demonstriert werden.\\ 
+\begin{enumerate}
+  \item Stellen Sie die logistische Gleichung einer Population $X_{n+1}$ nach $n+1$ Jahren als Funktion der Population $X_{n}$ nach $n$ Jahren auf. 
+	Berücksichtigen  Sie zwei Einflüsse:
+\begin{itemize}
+	\item Durch Fortpflanzung vermehrt sich die Population, im Folgejahr ist sie um einen Wachstumsfaktor $\alpha_{+}$ größer.
+	\item Durch Verhungern/Jagen verringert sich die Population in Abhängigkeit von der Differenz zwischen ihrer aktuellen Größe und einer Maximalgröße $X_\text{max}$ mit der Proportionalitätskonstante $\beta$.
+          Der Faktor, um den sich die Population vermindert, hat also die Gestalt $\alpha_{-}=\beta \,(X_\text{max}-X_n)$.
+	\item Wenn man bei der Berechnung der Population im Folgejahr beide Prozesse berücksichtigt, erhält man: 
+	\begin{align}
+		X_{n+1} = \alpha_{+}\,\alpha_{-}\,X_{n} = \alpha_{+}\,X_n \: \beta \, (X_\text{max}-X_n) \,.\label{eq:bew_LogMap01}
+	\end{align}
+Um die Untersuchungen zu vereinfachen, wird die Populationsgröße $X_{n}$ als Bruchteil $x_n= X_n/X_\text{max}$ der Maximalgröße $X_\text{max}$ angegeben, man erhält die logistische Gleichung
+	\begin{align}
+		x_{n+1} = \gamma \,x_n\, \lk 1-\frac{x_n}{\kappa} \rk \,,\label{eq:bew_LogMap02}
+	\end{align}
+mit $\gamma= \alpha_{+}\, \beta \,X_\text{max}$ und $\kappa$ als der Kapazität der Populationsumgebung, die man \obda gleich eins setzen kann.
+\end{itemize}
+\item Berechnen Sie $x_n(n)$ für $\gamma = 2.75$, $\gamma = 3.25$ und $\gamma = 3.75$ und stellen Sie auch $x_{n+1}$ über $x_n$ dar.
+  Beschreiben Sie das Verhalten.
+\item Berechnen Sie das Bifurkationsdiagramm für die logistische Gleichung.
+\item Berechnen Sie den Ljapunow-Exponenten für $\gamma = 2.75$ bis $\gamma = 3.75$.
+\end{enumerate}
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_logisticmap}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_logisticmap]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\newpage
+\hypertarget{prb:bew_PendelUeb01}{}
+\begin{prob} %Übung34
+\mittel{bew_PendelUeb01}{Intrinsisch nichtlineare Oszillatoren}
+Man könnte vermuten, dass jedes schwingende System bei kleinen Auslenkungen als harmonischer Oszillator angenähert werden könnte. Das ist aber nicht der Fall. Wir wollen zeigen, dass es Fälle gibt, in denen eine Oszillation intrinsisch, \dh auch bei kleinsten Auslenkungen, nichtlinear ist.
+Betrachten Sie als Beispiele dazu den senkrechten Expander, der durch zwei Federschwinger modelliert werden kann (\figref{bew_Expander}) und den sogenannten \anf{Erdfahrstuhl}  und stellen Sie die Bewegungsgleichung für beide Systeme auf. Beim Erdfahrstuhl (\figref{bew_Erdfahrstuhl}) ist die Idee, eine schnelle Reise von Europa nach Australien durch einen Tunnel durch den Erdmittelpunkt zu realisieren (Wir \anf{ignorieren} einfach mal die Wärmeisolations- und andere \anf{kleinere} Probleme!). Wie lange dauert die Reise?\\
+
+		\begin{figure}
+		\begin{minipage}{\textwidth}
+		\leftfigure{\includegraphics[width=0.4\textwidth]{ExpanderPrinzip.pdf}}%
+		\hspace{\fill}
+		\rightfigure{\includegraphics[width=0.4\textwidth]{Erdfahrstuhl.pdf}}
+\leftcaption[Zwei gekoppelte Federn als Modell eines Expanders.]{Zwei gekoppelte Federn als Modell eines Expanders und damit eines intrinsisch nichtlinearen Oszillators.} 
+\label{abb:bew_Expander}
+\rightcaption[Erdfahrstuhl.]{\anf{Erdfahrstuhl}.} \label{abb:bew_Erdfahrstuhl}
+		\end{minipage}
+		\end{figure}
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_PendelUeb01}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_PendelUeb01]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+
+%\newpage
+\hypertarget{prb:bew_schaukelI}{}
+\begin{prob}%Übung35
+\mittel{bew_schaukelI}{Parametrische Oszillatoren}
+Ein Oszillator mit rein parametrischer Anregung lässt sich durch folgende homogene lineare Differentialgleichung beschreiben:
+\begin{align}
+		\ddot {x}+p_{1}(t){\dot {x}}+p_{2}(t) x=0 \,.	\label{eq:bew_schaukel01c}
+\end{align}
+Bei einer kombinierten Zwangs- und Parametererregung lautet die Bewegungsgleichung
+\begin{align}
+		{\ddot {x}}+p_{1}(t){\dot {x}}+p_{2}(t){x}=p_{3}(t) \,.	\label{eq:bew_schaukel01d}
+\end{align}
+Von besonderem praktischem Interesse ist der Resonanzfall, bei dem sich die Parameter $p_{2}(t)$ und $p_{3}(t)$ mit doppelter Eigenfrequenz $\omega_0$ des Oszillators verändern. 
+
+Berechnen Sie die allgemeine Lösung von \eqref{eq:bew_schaukel01c} \bzw \eqref{eq:bew_schaukel01c} numerisch und vergleichen Sie diese mit einer analytischen Näherung für den reibungsfreien ungetriebenen parametrischen Oszillator in der Nähe der Resonanz von $2\omega_0$.
+
+Ein schönes Beispiel für einen echten parametrischen Oszillator ist das berühmte Botafumeiro der Kathedrale von Santiago de Compostela (\figref{bew_Botafumeiro2}, ein $\SI{53}{\kg}$ schweres und $\SI{1.5}{\metre}$ großes Weihrauchfass, das an einem $\SI{65}{\metre}$ langen, $\SI{5}{\centi\metre}$ dicken und $\SI{90}{\kg}$ schweren Kunststoffseil hängt. Das größte Weihrauchfass der Welt wird mit Hilfe von 8 Männern quer durch die Kathedrale geschwenkt, in dem diese das Aufhängeseil periodisch um etwa $\SI{1}{\metre}$ verkürzen. Simulieren Sie das System einmal als mathematisches und einmal als physikalisches Pendel. Nehmen Sie eine Anfangsauslenkung von $0.5\degree$ an. Wie lange dauert es bis das Pendel etwa $30\degree$ Auslenkung erreicht hat?
+
+\begin{figure}
+\begin{minipage}{\textwidth}
+\leftfigure{\includegraphics[width=0.3\textwidth]{Botafumeiro.jpg}}%
+\hspace{\fill}
+\rightfigure{\includegraphics[width=0.5\textwidth]{Botafumeiro2.jpg}}
+\leftcaption[Botafumeiro der Kathedrale von Santiago de Compostela (Spanien).]{Botafumeiro der Kathedrale von Santiago de Compostela (Spanien).} 
+\label{abb:bew_Botafumeiro}
+\rightcaption[Botafumeiro als parametrisches Pendel.]{Botafumeiro als parametrisches Pendel.} \label{abb:bew_Botafumeiro2}
+\end{minipage}
+\end{figure}
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_schaukelI}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_schaukelI]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+\hypertarget{prb:bew_schaukelII}{}
+\begin{prob}%Übung36
+\mittel{bew_schaukelII}{Schaukel}
+Wir betrachten eine Schaukel nach \figref{bew_schaukel01} und benutzen die Ergebnisse aus \kap{bew_pendulum_param} und \kap{bew_pendulum_schaukel}.
+\begin{enumerate}
+                \item Leiten Sie die Lagrange-Gleichungen \eqref{eq:bew_schaukel13} \bzw \eqref{eq:bew_schaukel17} für die Schaukel aus den Lagrange-Funktionen \eqref{eq:bew_schaukel01c}, \eqref{eq:bew_schaukel11} \bzw \eqref{eq:bew_schaukel16} her.
+                  Berücksichtigen Sie dabei die rheonome Zwangsbedingung für $\psi$.\\
+                \item Berechnen Sie die Reihenentwicklung \eqref{eq:bew_schaukel18} aus \eqref{eq:bew_schaukel17a}. \\
+                \item Betrachten Sie das Problem nach \figref{bew_schaukel01}c (Schaukeln im Stehen) und vergleichen Sie das Ergebnis mit den Rechnungen in \kap{bew_pendulum_param}.
+\end{enumerate}
+Hinweise zur Lösung finden Sie in \cite{Case1990, Case1996}.
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_schaukelII}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_schaukelII]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_schaukelIII}{}
+\begin{prob}%Übung37
+\einfach{bew_schaukelIII}{Überschlag}
+Bisher haben wir die Schaukel immer als Pendel mit einem starren, masselosen Arm betrachtet.
+Damit war im Prinzip auch ein Überschlag möglich. 
+Wir wollen nun den maximalen Winkel berechnen, der für eine Schaukel denkbar ist, wenn sie am einem Seil oder einer Kette bifilar aufgehängt ist. (Idee zur Übung gefunden in \cite{Bickel2019}.)
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_schaukelIII}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_schaukelIII]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+\hypertarget{prb:bew_PendelUeb03}{}
+\begin{prob} %Übung38
+\mittel{bew_PendelUeb03}{Das invertierte Pendel}
+Das invertierte Pendel (\figref{bew_InversPendel01}) besteht aus einem Stangenpendel (die Masse der Stange sei sehr klein), das auf einer Unterlage drehbar befestigt ist.
+Die Unterlage wird durch einen Antrieb in vertikale Schwingungen versetzt.
+Abhängig von der Frequenz der Anregung führt das Pendel \zt chaotische Schwingungen aus, kann aber auch nahezu vollständig stabilisiert werden, \dh es schwingt dann mit sehr kleiner Amplitude um die Nulllage.
+Dies nennt man dynamische Stabilisierung.
+Das Prinzip hat breite Anwendungen in der Regelungstechnik.
+(Siehe dazu \ua \url{https://www.youtube.com/watch?v=wIyaCjNXUyk}.)
+Berechnen Sie die Dynamik des Pendels für verschiedene Anregungsfrequenzen und -amplituden.
+Erklären Sie den Effekt der dynamischen Stabilisierung auch durch eine Näherungsbetrachtung analytisch.%
+\footnote{Es sei darauf hingewiesen, dass der Effekt der dynamischen Stabilisierung auch mit einer horizontalen Schwingung der Unterlage funktioniert.} 
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{InversPendel01.pdf}
+\caption[Das invertierte Pendel.]{Das invertierte Pendel.} 
+\label{abb:bew_InversPendel01}
+\end{figure}
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_PendelUeb03}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_PendelUeb03]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%%%-----------------------------------------------------------------------------------------------------------
+%%%-----------------------------------------------------------------------------------------------------------
+
+\newpage
+\subsection{Übungen zu Grundlagen der Mechanik des starren Körpers}
+\medskip
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_LomegaJ}{}
+\begin{prob} %Übung39
+\einfach{bew_LomegaJ}{Wahl des KOS -- Wirkung auf den Drehimpuls}
+Betrachten Sie zur Veranschaulichung der Beziehungen zum Drehimpuls \usw zwei einfache mechanische Systeme und wählen Sie für die Betrachtung unterschiedliche KOS:
+\begin{enumerate}
+    \item Massepunkt auf Kreisbahn,
+    \item Rotierende Hantel mit zwei Massepunkten im Abstand $2\,d/\cos\vartheta$.
+\end{enumerate}
+
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_LomegaJ}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_LomegaJ]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_traegheitsmomente}{}
+\begin{prob} %Übung40
+\einfach{bew_traegheitsmomente}{Trägheitstensoren und Trägheitsmomente}
+Berechnen Sie die Haupt-Trägheitsmomente für folgende Körper (\figref{bew_traegheitsmomente_prob}).
+\begin{enumerate}
+    \item Homogener Hohlzylinder der Masse $m$ mit Radien $R_i$ und $R_a$ mit der Drehachse durch den Schwerpunkt.
+    \item Homogener Stab der Länge $l$ und Masse $m$ mit Drehachse in der Mitte und Drehachse am Ende.
+    \item Kugel und Kugelschale der Masse $m$ mit Radius $R$.
+    \item Ball des American Football als Ellipsoid mit Radius $R$ und Länge $2l$.
+    \item Rotationsellipsoid Erde (siehe auch \ref{prob:bew_AbplattungPlaneten}) mit homogener Masseverteilung und einer mittleren Dichte von $\varrho = \SI{5.52}{\g\per\cm\cubed}$.
+    \item Rotationsellipsoid Erde nach dem Schichtenmodell (Tabelle \ref{tab:bew_SchalenmodellErde}). Vergleichen Sie die beiden Trägheitsmomente miteinander und auch mit dem Trägheitsmoment bei Näherung der Erde als Kugel.
+    \item Kegel der Höhe $H$ und des Radius $R$.
+    \item Keule als Doppelkörper aus Kugel (Radius $R_\text{K}$, Dichte $\varrho_\text{K}$) und Körper als Fass der Dicke $R_\text{M}$ (mit Parabelform und Dichte $\varrho_\text{F}$) der Höhe $H$ und der Abschlussfläche $\pi\,{R_\text{F}}^2$ mit $R_\text{F}<R_\text{K}$, Drehachsen horizontal durch den Schwerpunkt des gesamten Keulenkörpers.
+    \item Pendel der Pendeluhr bestehend aus Metallscheibe ($m_\text{KS} = \SI{156}{\gram}$), Aufhängung ($m_\text{P} = \SI{16}{\gram}$) und Schieberegler ($m_\text{R} = \SI{48}{\gram}$). Maße entsprechend \figref{bew_traegheitsmomente_prob}.
+ \end{enumerate}
+\begin{table}[h]
+\begin{tabular}{ l C{1.5cm} C{1.5cm} C{1.5cm} C{1.5cm} C{1.5cm} C{1.5cm} }
+\hline
+ %\rule{0pt}{2pt} & & & & & \\
+ & Innerer Kern & Äußerer Kern & Innerer Mantel & Oberer Mantel & Kruste \\
+ %\rule{0pt}{2pt} & & & & & \\
+\hline
+ \rule{0pt}{9pt} Dicke in \SI{}{\km} & 1200 & 2200 & 2500 & 400 & 70 \\
+ \rule{0pt}{9pt} Dichte $\varrho$ in \SI{}{\g\per\cm\cubed} & 12.1 & 11.1 & 5.5 & 3.5 & 2.7 \\
+ %\rule{0pt}{2pt} & & & & & \\
+\hline
+\end{tabular} 
+\medskip
+\caption[Parameter für den Schalenaufbau der Erde.]{Parameter für den Schalenaufbau der Erde (siehe \figref{bew_traegheitsmomente_prob}).} \label{tab:bew_SchalenmodellErde}
+\end{table}
+\medskip
+\begin{figure}
+\includegraphics[width=\textwidth]{Traegheitsmomente.pdf}
+\caption{Berechnung von Trägheitsmomenten verschiedener Körper.} 
+\label{abb:bew_traegheitsmomente_prob}
+\end{figure}
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_traegheitsmomente}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_traegheitsmomente]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\newpage
+\hypertarget{prb:bew_Hantelwurf}{}
+\begin{prob} %Übung41
+\einfach{bew_Hantelwurf}{Wurf einer Hantel}
+Berechnen Sie numerisch unter Verwendung der \matlab{} \odevf-Routine die Trajektorie einer geworfenen Hantel, welche wie in \figref{bew_Hantelwurf01} modelliert werden kann.
+Nehmen Sie als Massen $m_1, m_2$ Werte zwischen $0.1$ und $\SI{0.5}{\kg}$ und eine Hantellänge von $\SI{1}{\metre}$ an.
+Untersuchen Sie verschiedene Abwurfhaltungen und vergleichen Sie das Ergebnis mit dem schrägen Wurf.
+\begin{figure}
+\includegraphics[width=\textwidth]{Hantelwurf01.pdf}
+\caption[Einfaches physikalisches Modell einer Hantel.]{Einfaches physikalisches Modell einer Hantel.} 
+\label{abb:bew_Hantelwurf01}
+\end{figure}
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_Hantelwurf}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_Hantelwurf]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+\hypertarget{prb:bew_galaxies}{}
+\begin{prob} %Übung42
+\einfach{bew_galaxies}{Kontraktion von Galaxien}
+Drehimpulse und Rotationsenergie spielen eine große Rolle in der Himmelsmechanik, der Astrodynamik und der Astrophysik. Die meisten Systeme in diesen Bereichen sind rotierende Systeme, so auch die Sterne in Galaxien, die sich auf elliptischen Bahnen um ein Zentrum bewegen. Da auf einer Galaxie in guter Näherung das einwirkende Drehmoment gleich Null ist, muss der Drehimpuls einer Galaxie\index{Galaxie} konstant sein. \\
+Wir wollen die zeitliche Entwicklung einer Galaxie betrachten. Zu Beginn kann man von einer kugelförmigen homogenen Masseverteilung ausgehen, die einen konstanten Drehimpuls $L$ hat. Wie entwickelt sich eine solche Galaxie unter Berücksichtigung von Gravitation und Rotation? Wie groß ist eine solche Galaxie in ihrem "`stationären"' Endzustand?
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_galaxies}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_galaxies]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+%\newpage
+\hypertarget{prb:bew_Automobil}{}
+\begin{prob} %Übung43
+\einfach{bew_Automobil}{Automobilbeschleunigung}
+\begin{enumerate}
+	\item Berechnen Sie die maximale Beschleunigung, die ein Auto mit Hinterradantrieb entwickeln kann.
+	\item Gibt es einen Unterschied zwischen Vorderrad- und Hinterradantrieb? Wie verhält es sich mit Allradantrieb?
+	\item Betrachten Sie die verrichtete Arbeit.
+	\item Wenn ein Auto den sogenannten \textit{Grip} verliert beginnt es zu rutschen (gleiten). Betrachten Sie den Übergang vom Rollen zum Gleiten \bzw umgekehrt vom Gleiten zum Rollen genauer. Wodurch geht ein rutschendes Rad in den Rollzustand über. Betrachten Sie dabei die Drehmomente, die durch Reibungs- und Normalkraft hervorgerufen werden. Eine vertiefte Betrachtung der Dynamik unter verschiedenen Reibungsverhältnissen ist Gegenstand von \probref{bew_rolling_sliding}.
+\end{enumerate}
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_Automobil}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_Automobil]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+%\newpage
+\hypertarget{prb:bew_EulerWinkel}{}
+\begin{prob} %Übung44
+\einfach{bew_EulerWinkel}{Euler-Winkel}
+Leiten Sie die Beziehung zwischen $\vec{\omega}$ und den Euler-Winkeln her \eqref{eq:bew_EulerWinkel}.
+Benutzen Sie vorteilhafterweise die Rotationsmatrizen $\mathbb{R}_i$.
+Zeigen Sie, dass die geometrische Ableitung zu demselben Ergebnis führt.
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_EulerWinkel}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_EulerWinkel]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+%\newpage
+\hypertarget{prb:bew_conPendel}{}
+\begin{prob} %Übung45
+\einfach{bew_conPendel}{Konisches Pendel}
+Berechnen Sie die Winkel für die verschiedenen Varianten des konischen Pendels\index{Pendel!konisches} unter denen es sich bei einer genügend großen Winkelgeschwindigkeit $\vec{\omega}$ relativ zur Vertikalen einstellt.
+\begin{figure}
+\includegraphics[width=\textwidth]{KonischesPendel01.pdf}
+\caption[Verschiedene Formen des konischen Pendels.]{Verschiedene Formen des konischen Pendels \fa Massepunkt  \fb Stange  \fc~2~Massepunkte auf einer masselosen Stange.} 
+\label{abb:bew_conPendel01}
+\end{figure}
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_conPendel}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_conPendel]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\hypertarget{prb:bew_JoJoDynamik}{}
+\begin{prob} %Übung46
+\schwierig{bew_JoJoDynamik}{Dynamik eines Jo-Jos}
+Berechnen Sie die Dynamik des bewegten physikalischen Jo-Jos. Benutzen Sie die Ergebnisse von \ref{kap:bew_apps_top}.
+Können Sie Empfehlungen für eine optimale Spielstrategie geben?
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_JoJoDynamik}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_JoJoDynamik]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%%%-----------------------------------------------------------------------------------------------------------
+%%%-----------------------------------------------------------------------------------------------------------
+\newpage
+
+\subsection{Übungen zur Mechanik der Kreisel}
+\medskip
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_freier_Kreisel}{}
+\begin{prob} %Übung47
+\einfach{bew_freier_Kreisel}{Rotation eines kräftefreien Kreisels}
+Erstellen Sie eine numerische Simulation des kräftefreien Kreisels, die für
+beliebige Startvektoren $\vec{\omega}'$ gilt.
+\begin{itemize}
+\item Zeigen Sie, dass das Quadrat \bzw der Betrag des Drehimpulses im
+  körperfesten System $\vec{\Sigma}'$ des kräftefreien Kreisels erhalten
+  bleibt. Es ist zwar bekannt, dass dies im raumfesten Inertialsystem
+  $\vec{\Sigma}$ der Fall ist. Das besagt aber nicht automatisch, dass das
+  in $\vec{\Sigma}'$ auch so ist. Verifizieren Sie dies sowohl numerisch
+  als auch analytisch.
+\item Zeigen Sie das Ergebnis der beiden Störungen aus Beispiel
+  \ref{bsp:bew_unsymm_Kreisel} in einer analytischen Rechnung.
+\end{itemize}
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_freier_Kreisel}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_freier_Kreisel]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_Polbewegung}{}
+\begin{prob} %Übung48
+\mittel{bew_Polbewegung}{Polbewegung der Erde}
+\begin{figure}
+\includegraphics[width=\textwidth]{PolbewegungErde.pdf} 
+	\caption[Polbewegung der Erde.]{Zur Polbewegung der Erde. Beim Erdrotationsellipsoid fallen Figurenachse und Drehimpulsachse nicht genau zusammen.} 
+\end{figure}\label{abb:bew_PolbewegungErdeUeb}
+Schätzen Sie die Periode und Größe der Polbewegung der Erde ab, die durch das Nichtzusammenfallen von Figuren- und Drehachse des Erdrotationsellipsoids zustande kommt (\figref{bew_PolbewegungErdeUeb}).
+Diese hat ihre Ursache darin, dass der Erdkörper etwas elastisch ist und auf jahreszeitliche oder tektonische Massenverschiebungen reagiert. Diese Polbewegung muss für genaue Koordinatensysteme der Erde und des Weltraums berücksichtigt werden.
+Hinweis: Die Abplattung der Erde beträgt etwa 1:300 (siehe \probref{bew_Coriolis_I} und \figref{bew_traegheitsmomente_prob}).
+Die tatsächlich gemessene Periode der Polbewegung ist 14 Monate (sogenannte Chandlersche\footnote{Chandler\indexp{Chandler, Seth Carlo } (1846--1913) war ein US-amerikanischer Astronom, dessen größte wissenschaftliche Leistung die Entdeckung der nach ihm benannten periodischen Polbewegung in Bezug auf ein erdfestes Koordinatensystem war.} Periode). Erklären Sie die Abweichung zu Ihrer Abschätzung.
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_Polbewegung}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_Polbewegung]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_schwerer_Kreisel}{}
+\begin{prob} %Übung49
+\einfach{bew_schwerer_Kreisel}{Rotation eines schweren symmetrischen Kreisels}
+Erstellen Sie eine numerische Simulation des schweren symmetrischen Kreisels.
+Gehen Sie dabei von den Bewegungsgleichungen aus
+\kapitel{bew_SchwererSymmKr} aus. Zeigen Sie, wie sich die Figurenachse im
+Raum bewegt.\\
+
+Ein Beispiel für einen schweren Kreisel ist der Spielzeugkreisel, dessen Präzession jedem wohl aus der Kindheit gut bekannt ist.
+Trotzdem bekommt man immer wieder die Frage gestellt, warum der Kreisel nicht umkippt, obwohl die Schwerkraft das gleiche Kippmoment ausübt, ganz gleich, ob der Kreisel rotiert oder nicht.
+Natürlich kann man dies mit der Drehimpulserhaltung (seines Betrages) beantworten. Gibt es aber auch eine andere anschauliche Erklärung über die wirkenden Kräfte?
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_schwerer_Kreisel}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_schwerer_Kreisel]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_unwucht}{}
+\begin{prob} %Übung50
+\mittel{bew_unwucht}{Auswuchten von Rädern und anderen rotierenden Körpern}\index{Unwucht}\index{Auswuchten}
+\begin{figure}
+\includegraphics[width=\textwidth]{Unwucht01.pdf}
+\caption[Statische und dynamische Unwucht von Rädern.]{Statische und dynamische Unwucht von Rädern. HTA bezeichnet eine der Hauptträgheitsachsen.} 
+\label{abb:bew_unwucht01}
+\end{figure}
+Von einer Unwucht spricht man bei einem rotierenden Körper, dessen Drehachse nicht mit einer seiner Hauptträgheitsachsen übereinstimmt. Unwuchten führen zu Vibrationen und damit erhöhtem Verschleiß. Man versucht sie durch Anbringen von Ausgleichsmassen zu beseitigen.
+Man unterscheidet zwischen statischer und dynamischer Unwucht. Eine statische Unwucht entsteht, wenn die Drehachse nicht durch den Schwerpunkt des Rotationskörpers geht. Eine dynamische Unwucht liegt vor, wenn die Rotationsachse im Schwerpunkt gegen die Hauptträgheitsachse geneigt ist.\\
+Berechnen Sie die Auflagekräfte in den Lagern, die bei einer dynamischen Unwucht wirken, sowie die Größe und Position der Ausgleichsmassen zum Auswuchten.
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_unwucht}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_unwucht]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_scheibe}{}
+\begin{prob} %Übung51
+\schwierig{bew_scheibe}{Rollende Kreisscheibe und Reifen}
+Leiten Sie die Bewegungsgleichungen \eqref{eq:bew_ZBrollendeScheibe3} für eine rollende Kreisscheibe und einen rollenden Reifen aus der Lagrange-Funktion mittels der Methode der Lagrange-Multiplikatoren ab.
+Vergleichen Sie die numerischen Lösungen für Scheibe und Reifen.
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_scheibe}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_scheibe]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_scheibeR}{}
+\begin{prob} %Übung52
+\schwierig{bew_scheibeR}{Rollende Kreisscheibe mit Reibung}
+Erweitern Sie die Bewegungsgleichungen \eqref{eq:bew_ZBrollendeScheibe3} für die rollende Kreisscheibe um einen Reibungsterm.
+Was sind mögliche Ansätze für den Reibungsterm? Diskutieren Sie das numerische Ergebnis.
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_scheibeR}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_scheibeR]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+\hypertarget{prb:bew_doubleconecomp}{}
+\begin{prob} %Übung53
+\schwierig{bew_doubleconecomp}{Der Doppelkegel -- Vergleich der Näherungsmethoden}
+\begin{figure}
+  \includegraphics[width=\textwidth]{Doppelkegel0809.pdf}
+	  \caption[Herleitung der Lagrange-Gleichung für den Doppelkegel.]{Herleitung der Lagrange-Gleichung für den Doppelkegel im KOS $\vec{\Sigma}$. \fa Rollpunkt unter Schwerpunkt \fb Draufsicht \fc Ansicht von hinten d) Rollbedingung e) Rollpunkt unter einem festen Winkel $\theta$ (Anstiegswinkel der Schienen).} \label{abb:bew_doublecone08}
+\end{figure}
+
+Vergleichen Sie die Behandlung des aufwärts rollenden Doppelkegels mit der in \kapitel{bew_doublecone} dargestellten (korrekten) Methode,
+\begin{enumerate} 
+\item wenn der Rollpunkt unter der Symmetrieachse angenommen wird (\figref{bew_doublecone08}a) und die LGL-Funktion direkt im KOS $\vec{\Sigma}$,
+\item wenn der Rollpunkt nach $x_\text{A}$ versetzt ist (\figref{bew_doublecone08}b) und die LGL-Funktion direkt im KOS $\vec{\Sigma}$ berechnet wird.
+\end{enumerate}
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_doubleconecomp}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_doubleconecomp]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\newpage
+\hypertarget{prb:bew_TrainTrack}{}
+\begin{prob} %Übung54
+\schwierig{bew_TrainTrack}{Stabilität starrer Radachsen auf Schienen}
+\begin{enumerate}
+	\item Berechnen Sie die sogenannte Klingel-Formel aus kinematisch-geometrischen Über\-legungen für allgemeine Radprofile. Benutzen Sie dabei das Konzept der unterschiedlichen Rollradien.
+	\item Betrachten Sie nun den Fall, der eintritt, wenn ein Schiene-Rad-System durch einen Lenkfehler gestört wird (\figref{bew_TrainTrack02}).
+Berücksichtigen Sie dabei die Reibung und zeigen Sie, dass mit diesem konischen Räder-Konstruktionsprinzip auch für solche Störungen (über laterale Störungen hinaus) dem Schienenfahrzeug Stabilität verliehen werden kann.
+(Siehe auch \cite{Shayak2017}.)
+
+\end{enumerate}
+\begin{figure}
+\centering
+  \includegraphics[width=\textwidth]{WaggonAchseTopView.pdf}
+  \caption[Steuerungsstörungen auf eine Radachse auf einer Doppelschiene.]{Laterale Störungen auf eine Radachse auf einer Doppelschiene (Modellansicht von oben).} \label{abb:bew_TrainTrack02}
+\end{figure}
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_TrainTrack}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_TrainTrack]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%%%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_gyrotwister}{}
+\begin{prob} %Übung55
+\mittel{bew_gyrotwister}{Gyrotwister als Trainingsgerät}
+Berechnen Sie die Kräfte und die Muskelarbeit, die Sie bei einem Gyrotwister
+aufbringen müssen, und vergleichen Sie das Ergebnis mit dem beim Heben einer Hantelmasse von
+$\SI{3}{\kg}$. Den Kreisel des Gyrotwisters können Sie als eine Vollkugel
+der Masse $m = \SI{250}{\gram}$ und des Radius $R= \SI{2{,}5}{\centi\metre}$
+ansehen. Die Drehzahl soll bei $\SI{12 000}{\per\minute}$ liegen. Der Kreisel
+bewegt sich dabei schnell entlang der Nut, sodass das Verhältnis der
+Winkelgeschwindigkeiten $\vec{\omega}'_1:\vec{\omega}'_3$ den Wert $1:5$
+hat.
+Mit welchem Gerät erzielen Sie einen besseren Trainingseffekt? 
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_gyrotwister}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_gyrotwister]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%%%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_gyroskope}{}
+\begin{prob} %Übung56
+\einfach{bew_gyroskope}{Gyroskope}
+Wir hatten das Gyroskop (Kreiselinstrument) in \kap{bew_gyro} in Form eines schnell rotierenden, symmetrischen Kreisels kennen gelernt, der sich in einem beweglichen Lager dreht, \zb einer kardanische Aufhängung. 
+Das erste Gyroskop (\figref{bew_GyroBohnenberger}) wurde 1810 von J.G.F. Bohnenberger\indexp{Bohnenberger, Johann Gottlieb Friedrich} an der Universität Tübingen erfunden \cite{Wagner2005}. Es bildet den Ursprung aller späteren Kreiselgeräte für die beiden Anwendungsgebiete Navigation und Stabilisierung. Die Phasen der technologischen Entwicklung der Kreiselinstrumente kann grob unterteilt werden in:
+
+\begin{enumerate}
+\item Wissenschaftliche Vorphase, als didaktische Hilfsmittel für Astronomievorlesungen, inkl. kardanische Aufhängung (bis \ca 1800)
+\item Gyroskope für wissenschaftliche Experimente und Lehre (19. Jahrhundert)
+\item Erste technische Anwendungen mechanischer Gyroskope (ca. 1900--1940)
+\item Elektromechanische Gyroskope und Inertialplattformen (ca. 1940--1975)
+\item Elektronische und digitale Gyroskopsysteme (ab ca. 1975)
+\item Gyroskope auf MEMS\footnote{MEMS: Mikro-Elektro-Mechanisches System} Basis für den Massenmarkt, wie Smartphones, Automobile u.a (ab ca. 2000)
+\end{enumerate}
+
+\begin{figure}
+\includegraphics[width=\textwidth]{GyroDevelopment.pdf}
+\caption[Original-Gyroskop und Beispiele Weiterentwicklungen.]{Original-Gyroskop und Beispiele für Weiterentwicklungen. \fa Originalzeichnung von Bohnenberger \cite{Wagner2010} \fb Künstlicher Horizont\cite{Wagner2010}. \fc Kreiselkompass \fd 6-Achsen IMU (\textit{Inertial Measurement Unit}) des Fraunhofer ISIT \fe High-Performance 6-Achsen Inertialsensor von BOSCH.} 
+\label{abb:bew_GyroDevelopment}
+\end{figure}
+
+Beschreiben Sie die physikalischen Wirkungsprinzipien der einzelnen Kreiselgeräte und betrachten Sie insbesondere die Messgrößen und Freiheitsgrade beim jeweiligen Kreiselgerät:
+ \begin{itemize}
+	\item Wendezeiger
+	\item Kreiselkompass
+	\item künstlicher Horizont
+	\item Schiffsstabilisator
+	\item Inertialplattform (Inertiales Navigationssystem (engl. \textit{Inertial Navigation System INS})
+ \end{itemize}
+Unterscheiden Sie dabei zwischen Sensor und Anzeige/Berechnung, sowie zwischen Navigation und Stabilisierung.\\
+Was sagen Sie zu der Aussage, dass für eine Stabilisierung im Raum (3 Achsen) auch 3 Gyroskope notwendig sind?  Die Idee zur Übung entstand auf Basis von Gesprächen mit  J.F. Wagner und seinen Arbeiten \cite{Wagner2014, Wagner2010}. Sehr sehenswert ist die umfangreiche Kreiselsammlung der Universität Stuttgart. (\url{https://digibus.ub.uni-stuttgart.de/viewer/kreiselsammlung/})\\
+
+\medskip
+\href{PhysikUncut_Lsg.pdf#lsg:bew_gyroskope}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_gyroskope]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_gedaempfterKreiselkompass}{}
+\begin{prob} %Übung57
+\mittel{bew_gedaempfterKreiselkompass}{Gedämpfter Kreiselkompass}
+Das \mscr{} \mlbewref{KreiselKomp.m}\, löst die
+Differentialgleichung \eqref{eq:bew_KreiselkompassGedaempft} des
+flüssig\-keits\-gedämpften Kreiselkompasses. Überzeugen Sie sich, dass er sich nach
+einiger Zeit in Nord-Süd-Richtung ausrichtet ($\beta = 0$ oder $\beta = \pi$,
+\vgl \kapitel{bew_gyro}) und er in dieser Lage zur Ruhe kommt.
+Wie hängt die Zeit bis zum Erreichen einer stabilen Nord-Süd-Richtung von der
+anfänglichen Missweisung ab?
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_gedaempfterKreiselkompass}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_gedaempfterKreiselkompass]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%%%-----------------------------------------------------------------------------------------------------------
+
+\newpage
+\hypertarget{prb:bew_KreiselkompassLaengenkreis}{}
+\begin{prob} %Übung58
+\schwierig{bew_KreiselkompassLaengenkreis}{Kreiselkompass bei Bewegung auf einem Längenkreis}
+Die Bewegungen eines Kreiselkompass entlang eines Längenkreises verursachen den sogenannten Fahrtfehler, der Kreisel zeigt nicht mehr genau nach Norden.
+Zeigen Sie, dass durch die Bewegung eines Schiffes oder eines Flugzeugs
+mit einer konstanten Winkelgeschwindigkeit $\dot{\vartheta} = \Omega_L$ entlang
+eines Längekreises im körperfesten System des Kreisels die Winkelgeschwindigkeit
+\begin{equation*}
+  \vec{\omega}_L'''' = \begin{pmatrix} \sin\beta \\ \cos\alpha \,\cos\beta \\
+    -\sin\alpha \, \cos\beta \end{pmatrix}\, \Omega_L
+\end{equation*}
+zur Gesamt-Winkelgeschwindigkeit aus Gleichung \eqref{eq:bew_WinkelgeschKreiselkompass}
+hinzugefügt werden muss. Gewinnen Sie daraus eine neue Bewegungsgleichung
+für $\beta$ und zeigen Sie, dass dies zu einer Missweisung im dem Sinn führt,
+dass die Ruhelagen von $\beta$ nicht mehr bei den Winkeln $\beta = 0$ und
+$\beta = \pi$, also nicht mehr entlang der Nord-Süd-Richtung liegen. Wie lässt sich diese Missweisung korrigieren/einstellen?\\
+Warum kommen Kreiselkompasse in Flugzeugen nicht zum Einsatz? Welche Anforderungen gibt es hinsichtlich Ihres Einsatzes in beschleunigten Fahrzeugen bzw. Fahrzeugen mit Störbeschleunigungen?
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_KreiselkompassLaengenkreis}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_KreiselkompassLaengenkreis]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%%%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_DrehmomentPraezErde}{}
+\begin{prob} %Übung59
+\schwierig{bew_DrehmomentPraezErde}{Erdpräzession}
+Zeigen Sie, dass das Drehmoment bei der Erdpräzession durch Gezeitenkräfte von Sonne und Mond hervorgerufen werden, und leiten Sie \eqref{eq:bew_ErdPraezess01} her. 
+Da sich die relative Position von Mond/Sonne und Erde ständig ändert, gehen Sie von einem mittleren Drehmoment aus. Warum kann man das annehmen?
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_DrehmomentPraezErde}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_DrehmomentPraezErde]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%%%%%%%-----------------------------------------------------------------------------------------------------
+%%%%%%%-----------------------------------------------------------------------------------------------------
+
+\newpage
+\subsection{Übungen zu den Lagrange-Gleichungen für komplexe Systeme}
+
+\medskip
+
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_laundromat}{}
+\begin{prob} %Übung60
+\schwierig{bew_laundromat}{Physik in der Waschmaschine}
+\begin{figure}
+  \includegraphics[width=\textwidth]{WaschmaschinePrinzip.pdf}
+  \caption[Physikalisches Modell einer Trommelwaschmaschine.]{Physikalisches Modell einer Trommelwaschmaschine.} \label{abb:bew_laundromat01}
+\end{figure}
+Das Anlauf- und Auslaufverhalten einer Trommelwaschmaschine (\figref{bew_laundromat01}) ist eine schöne Anwendung der Lagrange-Methode für einen festen Körper. Interessanterweise führt die Methode für eine mit Federn aufgehängte Trommel der Masse $M$ und des Radius $R$, die mit einem exzentrischen Gewicht der Masse $m$ beladen ist, auf Bewegungsgleichungen, die denen für ein Doppelpendel ähneln und damit auch chaotisches Verhalten der Lösungen ergeben können. 
+Man berechne das Anlauf- und Auslaufverhalten, sowie das stationäre Verhalten der Trommelvibrationen einer solchen Waschmaschine. Gegeben seien ferner die Rotationsfequenz $\Omega$, die Federkonstante $k$ und die Anlaufzeit $T$. Man berücksichtige die Reibung mit einem linearen Term. 
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_laundromat}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_laundromat]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+\hypertarget{prb:bew_achterbahn}{}
+\begin{prob} %Übung61
+\mittel {bew_achterbahn}{Physik auf der Achterbahn I}
+Wir wollen uns etwas grundsätzlicher mit der Physik auf einer Achterbahn beschäftigen und besonders auch Züge in Loop-Achterbahnen betrachten (\figref{bew_Achterbahn01}\,b). Dabei wollen wir zunächst mit einem einzelnen Wagen auf einer beliebigen Kurve starten (den wir als Massepunkt mit dem Lagrange-Formalismus 1. Art behandeln wollen) und dann auch die Physik für einen Zug auf einer beliebigen Kurve und insbesondere in einer Loop untersuchen. Uns interessiert auch speziell die Frage, wo man am besten im Achterbahnzug sitzen sollte. Das hängt natürlich davon ab, ob man den größten oder geringsten Nervenkitzel spüren möchte. Im Einzelnen sollen ausgehend von \ref{kap:rollercoaster} untersucht werden:
+\begin{enumerate}
+	\item Bewegungsgleichung und Kräfte eines Massepunktes auf einer beliebigen Kurve,
+	\item Bewegungsgleichung und Kräfte eines Massepunktes in einer Loop unter Berück\-sichtigung von Reibung,
+	\item Bewegungsgleichung und Kräfte auf die einzelnen Wagen in einem Zug, der eine beliebige Kurve (\zb eine Loop) durchfährt.
+\end{enumerate}
+
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_achterbahn}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_achterbahn]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_achterbahn_diskret}{}
+\begin{prob} %Übung62
+\schwierig{bew_achterbahn_diskret}{Physik auf der Achterbahn II}
+Berechnen Sie die Kräfte, die auf einen Wagen eines Zuges auf einer beliebigen
+Kurve $z=h(x)$ wirken, wenn dieser eine bestimmte Anfangsenergie $E_0$ hat.
+Betrachten Sie die einzelnen Wagen als Massepunkte, die durch eine
+(harte) Feder gekoppelt sind. Lösen Sie die erhaltenen Bewegungsgleichungen
+numerisch. Bestimmen Sie die Normalkräfte, die durch die Schienen oder
+die Aufhängung auf die Wagen ausgeübt werden.
+\medskip
+
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_achterbahn_diskret}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_achterbahn_diskret]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_loop2loop}{}
+\begin{prob} %Übung63
+\schwierig{bew_loop2loop}{Physik auf der Achterbahn III}
+Überlegung zu auftretenden Beschleunigungen bei der Einfahrt: 
+Berechnen Sie die Dynamik eines Looping für einen gleitenden Massepunkt \bzw eine rollende Kugel als Modell für einen einzelnen Wagen nach \figref{bew_loop2loop}. Berücksichtigen Sie dabei auch die Reibung und berechnen Sie die notwendige Anfangshöhe $H_0$.
+Wie kann man den auftretenden \textit{Ruck} (Englisch \emph{jerk}) minimieren?
+\medskip
+
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_loop2loop}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_loop2loop]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+\hypertarget{prb:bew_achterbahn_vergleich}{}
+\begin{prob} %Übung64
+\schwierig{bew_achterbahn_vergleich}{Physik auf der Achterbahn IV}
+Vergleichen Sie nun eine Kette aus diskreten Wagen aus
+\probref{bew_achterbahn_diskret} mit dem im \kap{rollercoaster} behandelten Modell eines in der Länge starren Zuges.
+Stellen Sie dazu die Bewegungsgleichungen in parametrisierter Form auf, so wie sie für
+einen Kreislooping benötigt werden.\\
+Lösen Sie diese Bewegungsgleichungen
+numerisch und vergleichen Sie die Ergebnisse mit dem Modell eines starren Zugs aus Kapitel \ref{kap:rollercoaster}.
+\medskip
+
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_achterbahn_vergleich}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_achterbahn_vergleich]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%%%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_Trebuchet}{}
+\begin{prob} %Übung65
+\schwierig{bew_Trebuchet}{\textit{Floating Arm Trebuchet} I}
+Eine Variante der in \kap{bew_trebuchet} behandelten Wurfmaschine ist das so genannte \textit{Floating Arm Trebuchet}, bei dem die große Gegenmasse entlang einer Führung vertikal nach unten gleitet und über ein Gelenk mit dem Balken verbunden ist (\figref{bew_FloatArmTreb01}). 
+Der Balken (Länge $ B + b $) ist an der Achse einer Rolle befestigt, die sich auf einer horizontalen Schiene bewegen kann.
+
+\begin{figure}
+\includegraphics[width=\textwidth]{FloatArmTreb01.pdf}
+\caption[Floating Arm Trebuchet.]{\textit{Floating Arm Trebuchet}. Geometrie und physikalische Größen.} 
+\label{abb:bew_FloatArmTreb01}
+\end{figure}
+
+\newpage
+Berechnen Sie die Dynamik dieses Trebuchet und seine Reichweite unter folgenden Annahmen:
+\begin{enumerate}
+\item Die Masse der Rolle soll vernachlässigt werden. 
+Ebenso soll wieder ein Graben für das Wurfgeschoss angenommen werden, sodass es keine Zwangsbedingungen gibt. 
+Nehmen Sie die Parameter aus der Tabelle in \kapitel{bew_trebuchet} (Fall A).
+\item In einem zweiten Schritt sollen nun die Zwangsbedingungen berücksichtigt werden, \dh die Schleuder liegt zunächst auf dem Boden auf und wird über diesen geschleift.
+\end{enumerate} 
+Vergleichen Sie die beiden Ergebnisse miteinander und auch Ihre Rechnungen für die zweite Teilaufgabe mit den Ergebnissen aus \kapitel{bew_trebuchet}.
+
+\smallskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_Trebuchet}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_Trebuchet]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\hypertarget{prb:bew_Trebuchet_II}{}
+\begin{prob} %Übung66
+\schwierig{bew_Trebuchet_II}{\textit{Floating Arm Trebuchet} II}
+Eine etwas andere, aber sehr ähnliche Konstruktion und Modellierung des \textit{Floating Arm Trebuchet} (\figref{bew_FloatArmTreb01}) ist in \cite{Constans2017} beschrieben und in \figref{bew_FloatArmTreb01_Zusatz} gezeigt. In \probref{bew_Trebuchet} hatten wir das Trebuchet mit zwei verallgemeinerten Koordinaten, nämlich den Winkeln $\gamma$ und $\delta$, beschrieben. Für das hier gezeigte Modell werden wir die fünf generalisierten Koordinaten $\gamma$, $\delta$, $z_\text{G}$, $x_\text{W}$ und $z_\text{W}$ verwenden müssen. Abhängig von der Phase der Bewegung können dabei verschiedene Zwangsbedingungen gleichzeitig gelten.
+\begin{figure}
+\includegraphics[width=\textwidth]{FloatArmTreb_II.pdf}
+\caption[Floating Arm Trebuchet (Verbesserte Variante).]{\textit{Floating Arm Trebuchet} II (Variante einer mittelalterliche Wurfmaschine). Geometrie und physikalische Größen. Verbessertes Modell nach \cite{Constans2017}.} 
+\label{abb:bew_FloatArmTreb01_Zusatz}
+\end{figure}
+\newpage
+Berechnen Sie die Dynamik dieses Trebuchet und seine Reichweite mit folgende Annahmen und Hinweisen:
+\begin{enumerate}
+\item Vernachlässigen Sie die Massen der Rollen. 
+Benutzen Sie ansonsten die Parameter aus Tabelle \ref{tab:bew_trebuchet_01} in \kapitel{bew_trebuchet} (Fall A).
+\item Stellen Sie die Zwangsbedingungen auf und berücksichtigen Sie, dass die Schleuder zu Beginn auf einer Rampe mit einem einstellbaren Rampenwinkel $\alpha$ von $0$ bis $20\degree$ liegt. Hinweis: Insgesamt gibt es fünf Zwangsbedingungen. Beachten Sie, dass -- je nach Phase -- drei oder vier der fünf Zwangsbedingungen gleichzeitig gelten. Die Jacobi-Matrix\index{Jacobi-Matrix} $\d \vec{f}/\d \vec{q}$ (\kap{bew_trebuchet_complete}, \eqref{eq:bew_Jacobi_function01}) kann also die Dimension $(3,5)$ oder $(4,5)$ haben.
+\end{enumerate} 
+Vergleichen Sie Ihre Berechnungen mit den Ergebnissen für das Trebuchet in \kap{bew_trebuchet_complete}.
+
+\smallskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_Trebuchet_II}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_Trebuchet_II]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_Murphy}{}
+\begin{prob} %Übung67
+\einfach{bew_Murphy}{\textit{Murphy's Law}}
+Als Übung zum Schluss noch eine nicht ganz so ernst gemeinte Übungsaufgabe:\\
+Das Gesetzes von Murphy\footnote{Edward Aloysius Murphy (1918 -- 1990) war ein US-amerikanischer Air Force-Ingenieur, der durch die Formulierung des nach ihm benannten Gesetzes weltberühmt wurde. Es geht aber wohl eigentlich auf John W. Campbell (1910 -- 1971) zurück, der es als Finagles Gesetz bezeichnet. Nach Murphy lautet es: 
+\textit{Anything that can go wrong will go wrong} (Alles, was schiefgehen kann, wird auch schiefgehen.).}\indexp{Murphy, Edward Aloysius}\index{Murphy's Law} (\textit{Murphy's Law}) wird jedem Physik-Studenten früher oder später über den Weg laufen. Ein Klassiker dafür ist, dass eine Scheibe Butterbrot, die vom Tisch fällt, (fast) immer auf der Butterseite landen wird. (Wir empfehlen mindestens 100 Selbstversuche, allerdings erst nachdem Sie gefrühstückt haben!) 
+Können Sie mit den Methoden der Mechanik starrer Körper ein theoretisches Fundament für \textit{Murphy's Law} begründen? (Idee zur Übung nach \cite{Mahajan2022}).
+
+\medskip
+\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_Murphy}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:bew_Murphy]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+%\newpage
+%\hypertarget{prb:bew_relLorentzkraft}{}
+%\begin{prob} %Übung
+%\uebung{Lagrange-Funktion für relativistisches und nicht-relativistisches Teilchen unter dem Einfluss einer Lorentz-Kraft}{bew_relLorentzkraft}
+%
+%Zeigen Sie, dass aus der Lagrange-Funktion \eqref{eq:bew_rel09} für $v \ll c$ die Bewegungsgleichung mit der bekannten Lorentz-Kraft herauskommt. \\
+%Nehmen Sie ein homogenes $\vec{E}$-Feld in $x$-Richtung an.\\
+%
+%\medskip
+%\linklsg\\%\href{FingerUeb1_AB.pdf#lsg:bew_relLorentzkraft}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%%\hyperref[lsg:bew_relLorentzkraft]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\noindent\rule[1ex]{\textwidth}{0.5pt}
+%\end{prob}
+%
+
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+
+%%%%%%%%%%%%%%%%%%%Zusatzaufgaben---------------------------------------------------------------------------
+
+\subsection{Weiterführende Zusatzaufgaben und Probleme}
+\medskip
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_Z1Foucault}{}
+\begin{prob} %Übung68 Zusatz1
+\zusatz{bew_Zusatz_Foucault}{Foucault-Problem direkt}
+Wir betrachten das Foucault-Pendel noch etwas genauer.
+
+\begin{enumerate}
+\item %a
+Stellen Sie die vollständige Lagrange-Funktion für das Foucault-Pendel auf, \dh unter Berücksichtigung von $z'$ und auch großen Auslenkungen.
+\item %b
+Lösen Sie die vollständige Bewegungsgleichung für das Foucault-Pendel numerisch.
+Wie groß sind die beiden Effekte (Berücksichtigung von $z'$ und großen Auslenkungen) auf die Rotationsdauer der Schwingungsebene?
+Können Sie dafür auch eine Abschätzung machen, ohne numerisch zu rechnen?
+\end{enumerate}
+(Idee zur Übung nach \cite{Noble1952}).
+
+\medskip
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\hypertarget{prb:bew_Z2Resonanz}{}
+\begin{prob} %Übung69 Zusatz2
+\zusatz{bew_Zusatz_Resonanz}{Resonanzkatastrophe bei Brücken}
+
+Es sind einige dramatische Fälle für starke Resonanzschwingungen bei Brücken bekannt, die zu großer Zerstörung geführt haben.
+Der bekannteste Einsturz ist der der \textit{Tacoma-Narrows-Brücke} (USA).
+Diese geriet am 7.\,11.\,1940 durch starken Wind in so starke Torsionsschwingungen, dass deren Fahrbahn nach einer Dreiviertelstunde in den Fluss stürzte.
+Ein anderes Beispiel ist die \textit{Broughton Suspension Bridge} (Großbritannien), die 1831 einstürzte, nachdem 74 britische Soldaten über sie im Gleichschritt marschierten.
+Dies wurde ebenfalls auf den Resonanzeffekt zurückgeführt.\footnote{Nach einer anderen Auffassung war wohl die Überlastung durch das Gewicht der Soldaten ursächlich, in jedem Fall ist es heute \ia untersagt und in Deutschland sogar nach §~27~(6)~StVO verboten, im Gleichschritt über eine Brücke zu marschieren.}
+Berechnen Sie für das Modell einer einfachen Holzbrücke und einer Kettenbrücke aus Metall die notwendigen Anregungen, damit es zu einer Resonanzkatastrophe kommen kann.
+
+\medskip
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+
+\hypertarget{prb:bew_Z3Brachistochrone}{}
+\begin{prob} %Übung70 Zusatz3
+\zusatz{bew_Zusatz_Brachistochrone}{Brachistochrone im inhomogenen Gravitationsfeld}
+Berechnen Sie die Brachistochrone in dem inhomogenen Gravitationsfeld der Erde.
+
+\medskip
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+\hypertarget{prb:bew_Z4Kettetau}{}
+\begin{prob} %Übung71 Zusatz4
+\zusatz{bew_Zusatz_KetteTau}{Schräger Wurf einer Kette/eines Taus}
+Berechnen Sie die Dynamik des Wurfes einer Kette (\kap{bew_chains})
+unter einem beliebigen Abwurfwinkel~$\alpha$.\\
+\medskip
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_Z5ValletPendel}{}
+\begin{prob} %Übung72 Zusatz5
+\zusatz{bew_Zusatz_ValletPendel}{Valett-Pendel}
+Berechnen Sie die Dynamik des Valett-Pendels (\url{https://onlinelibrary.wiley.com/doi/10.1002/piuz.202101605/suppinfo} in der Datei \url{piuz202101605-sup-0001-suppinfo.MP4} \cite{Ucke2021}).\\
+Die Lagrange-Funktion $\mathcal{L}$ kann man mit $T,\,U$ schreiben:
+    \begin{align*}
+        T\lk\dot{z},\dot{\varphi_1},\dot{\varphi_2}\rk &= \frac{1}{2}\,J_\text{T1}\,{\dot{\varphi}_1}^2+\frac{1}{2}\,J_\text{T2}\,{\dot{\varphi}_2}^2 +\frac{1}{2}m_\text{F}\,\dot{z}^2\,,\\
+        U\lk z,\varphi_1,\varphi_2\rk &= \frac{k_\text{F}}{2}\,z^2 + \frac{D_\text{T1}}{2}\,{\varphi_1}^2 + \frac{D_\text{T2}}{2}\,{\varphi_2}^2 + \frac{1}{2}z\,\lk \,\kappa_1\,\varphi_1 - \kappa_1\,\varphi_2\rk\,.
+    \end{align*}
+\medskip
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_Z6RollCyl}{}
+\begin{prob} %Übung73 Zusatz6
+\zusatz{bew_rolling_cylinders}{Rollende elliptische Zylinder auf einer schiefen Ebene}
+\begin{figure}
+\includegraphics[width=\textwidth]{ElliptZylinder01.pdf}
+\caption[Rollender elliptischer Zylinder auf einer schiefen Ebene.]{Rollender elliptischer Zylinder auf einer schiefen Ebene mit geeignetem Koordinatensystem. Nach \cite{Linden2021}.}
+\label{abb:bew_rollingellipticals}
+\end{figure}
+In \kapitel{bew_rolling_disc} haben wir rollende Zylinder auf der schiefen Ebene betrachtet und dort bereits einige überraschende Effekte untersucht. Noch überraschender ist das Verhalten, wenn man das Abrollen eines Zylinders betrachtet, dessen Grundfläche nicht kreisförmig, sondern elliptisch ist. Berechnen Sie die Dynamik eines solchen Zylinders auf der schiefen Ebene und beschreiben Sie das Verhalten.
+Benutzen Sie die Koordinatendefinition in \figref{bew_rollingellipticals}. (Idee und Lösungshinweise zur Übung finden Sie unter \cite{Heppler2021, Linden2021}.)
+
+\medskip
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:bew_Z6RotScheib}{}
+\begin{prob} %Übung74 Zusatz7
+\zusatz{bew_rotierende_scheiben}{Freie Rotation von Scheiben und Ketten}
+
+\begin{figure}
+\includegraphics[width=\textwidth]{FreieRotationScheibe.pdf}
+\caption[Rotierende Scheibe und Kette.]{Rotierende Scheibe und Kette.} 
+\label{abb:bew_rotating_disc}
+\end{figure}
+
+In \kapitel{bew_rolling_disc} hatten wir die freie Rotation eines Körpers betrachtet. Berechnen Sie, wie sich bei einer in \figref{bew_rotating_disc} dargestellten angetrieben Rotation die jeweils rechts im Bild dargestellte stationäre Situation (bei genügend großer Winkelgeschwindigkeit) einstellt. Geben Sie zunächst eine physikalische Erklärung über eine Energiebetrachtung und lösen Sie dann die Bewegungsgleichungen numerisch.\\
+
+\medskip
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage\hypertarget{prb:bew_Billard3K}{}
+\begin{prob} %Übung75 Zusatz9
+\zusatz{bew_Billard3K}{Zusammenstoß mehrerer Kugeln (Billardspiel)}
+
+\begin{enumerate}
+	\item \textit{\textbf{Pendelkette}}\\
+Betrachten Sie zunächst das bekannte Tischspielzeug der Pendelkette \figref{bew_pendelspielzeug}.
+Erklären Sie mit einem einfachen Modell des zentralen, elastischen Stoßes das Verhalten der Pendelkette.\\
+Berücksichtigen Sie dann die unvermeidliche Dämpfung durch die (wenn auch geringe) Inelastizität der Metallkugeln. Verwenden Sie eine Smartphone-App wie \zb Phybox (\url{https://phyphox.org}), um die Bewegung aufzunehmen und zu analysieren. Bestimmen Sie aus der Messung die Frequenz und über eine numerische Rechnung die Dämpfung aus Ihrem Modell. Was können Sie zur Dämpfung in Abhängigkeit von der angestoßenen Zahl der Kugeln sagen?\\
+		
+\item \textit{\textbf{Stoß zwischen drei Billardkugeln}}
+Wir wollen jetzt den nicht-zentralen Stoß von drei Billardkugeln betrachten, wovon eine Kugel die anstoßende ist, währen die beiden anderen ruhen. Wir wählen die Verbindungsachse der beiden ruhenden Kugeln als $x$-Achse. Wir gehen davon aus, dass wir nur eine der beiden ruhenden Kugeln treffen (Wir sind noch im Anfänger-Stadium des Billardspielens.). Uns interessiert mit welcher Geschwindigkeit, unter welchem Winkel $\alpha$ und in welchem Abstand $b$ man die ruhenden Kugeln anstoßen muss, um bestimmte Kugel-Bewegungsrichtungen nach dem Stoß zu erhalten. Die Situation ist in \figref{bew_Billard3K} gezeigt.\\
+
+		\begin{figure}
+		\centering
+		\includegraphics[width=0.9\textwidth]{Billard3Baelle.pdf}
+		\caption[Stoß zwischen drei Billardkugeln.]{Stoß zwischen drei Billardkugeln. \fa Situation vor dem Stoß. \fb Situation unmittelbar nach dem Stoß. Die Kugeln wurden zur besseren Sichtbarkeit auseinandergezogen dargestellt. Die Kugel 3 kann nur eine Bewegung in $x\,$-Richtung machen. \fc Stoß zwischen Kugel 1 und Kugel 2 mit Definition des Stoßparameters $b$ und der rückwirkenden Normalkraft $\vec{F}_\text{1R}$ von Kugel 2 auf Kugel 1 im Moment des Stoßes. \fd Das Gleiche für den Stoß zwischen Kugel 2 und Kugel 3. Der Stoßparameter $b$ ist für diesen Stoß gleich Null.}
+		\label{abb:bew_Billard3K}
+		\end{figure}
+		
+    \begin{figure}
+		\centering
+		\includegraphics[width=0.45\textwidth]{Kettenpendel.pdf}
+		\caption[Tischspielzeug Pendelkette.]{Tischspielzeug Pendelkette.} 
+		\label{abb:bew_pendelspielzeug}
+		\end{figure}
+\end{enumerate}
+
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+\hypertarget{prb:bew_rolling_sliding}{}
+\begin{prob} %Übung76 Zusatz9
+\zusatz{bew_rolling_sliding}{Dynamik des Übergangs vom Gleiten zum Rollen}
+
+Bisher haben wir bei Bewegungsabläufen auf Oberflächen immer entweder Gleiten oder reines Rollen angenommen.
+Häufig kommt es aber auch zum kombinierten Auftreten von beiden Bewegungsformen. Wir betrachten dazu \figref{bew_rolling_sliding} als einfaches Modell.
+Erstellen Sie ein Modell zur Berechnung des Übergangs vom Gleiten zum Rollen für verschiedene Reibungskoeffizienten her. Im Fall des reinen Rollens gilt der Rollreibungskoeffizient $\mu_\text{R}$, im Fall des reinen Gleitens $\mu_\text{G}$, welcher immer kleiner als der Haftreibungskoeffizient $\mu_\text{H}$ sein muss. Im Bereich des Übergangs von Gleiten zum Rollen gibt es einen geschwindigkeitsabhängigen effektiven Reibungskoeffizienten $\mu_\text{M}$, der als Quotient von Reibungskraft $F_\text{R}$ zur Normalkraft $F_\text{N}$ definiert werden kann. Dieser zeigt eine Abhängigkeit von der Zeit, genauer über die Geschwindigkeit als Funktion der Zeit. Modellieren Sie die daraus folgende Dynamik für ein Rad nach \figref{bew_rolling_sliding}, indem Sie verschiedene Annahmen für die Gleitgeschwindigkeit $v_\text{G} = v - R\omega$ machen, worin $v$ die Gesamtgeschwindigkeit und $R$ der Radius des mit $\omega$ rotierenden Rades sind. Es sei erwähnt, dass Probleme im Grenzbereich zwischen Rollen und Gleiten mit zu den anspruchsvollsten Problemen der Mechanik gehören. 
+(Idee zur Übungsaufgabe nach \cite{Cross2023}).
+
+		\begin{figure}
+		\centering
+		\includegraphics[width=\textwidth]{RollingSliding.pdf}
+		\caption[Rotierende/gleitende Kugel auf einer ebenen Fläche.]{Rotierende/gleitende Kugel auf einer ebenen Fläche. Wichtig ist für die Betrachtung von kombinierten Gleiten und Rollen die Annahme, dass die ebene Unterlage durch die Kugel leicht eingedrückt wird, offensichtlich um so mehr, je weicher die Unterlage ist. Die Geschwindigkeit des Schwerpunktes wird mit $v_\text{S}$ bezeichnet, die des Punktes P wird als Gleitgeschwindigkeit $v_\text{G}  = v_\text{S} - R\,\omega$  bezeichnet. Nach \cite{Cross2023}.} 
+		\label{abb:bew_rolling_sliding}
+		\end{figure}
+
+
+\medskip
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+\hypertarget{prb:bew_windrad}{}
+\begin{prob} %Übung77 Zusatz10
+\zusatz{bew_windrad}{Achtung Gefahr bei Windrädern!}
+
+Immer wieder wird vor Gefahren des Eisabwurfs bei Windrädern gewarnt (\figref{bew_Windradwarnung}). Man stelle sich ein Windrad mit Masthöhe $H=\SI{150}{\metre}$ und Rotorradius $R=\SI{75}{\metre}$ vor, das sich bedächtig mit 2 Umdrehungen pro Minute dreht.
+Wie weit fliegt ein Eisbrocken, der sich von der Rotorblattspitze löst? 
+(Wir danken Andreas Dorsel für diese Übungsaufgabe.)
+
+
+\begin{enumerate}
+	 \item Man betrachte zunächst den Fall ohne Luftreibung.
+	 \item Man berücksichtige de Luftreibung und berechne die Trajektorien für kugelförmige Eisbrocken der Massen $\SI{1}{\g},\, \SI{10}{\g},\,\SI{100}{\g},\,\SI{1000}{\g},\,\SI{1}{\kg},\,\SI{2}{\kg}$.
+ \end{enumerate}
+
+		\begin{figure}
+		\centering
+		\includegraphics[width=0.45\textwidth]{Windradwarnung.pdf}
+		\caption[Warnung vor Eisabwurf am Windrad.]{Warnung vor Eisabwurf am Windrad..} 
+		\label{abb:bew_Windradwarnung}
+		\end{figure}
+		
+
+\medskip
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+\hypertarget{prb:Fliehkraftregler}{}
+\begin{prob} %Übung78 Zusatz11
+\zusatz{bew_Fliehkraftregler}{Fliehkraftregler an Teleskopen}
+
+Der bereits seit mehreren Jahrhunderten bekannte Fliehkraftregler wurde von James Watt\indexp{Watt, James} in den allgemeinen Maschinenbau eingeführt. Er benutzte den Fliehkraftregler, um die Arbeitsgeschwindigkeit der von ihm verbesserten Dampfmaschine konstant zu halten. Wir fanden einen Fliehkraftregler ganz besonderer Art am Doppelteleskop der Sternwarte Greifswald (\url{https://www.sternwarte-greifswald.com}), der dazu dient, das Teleskop mit konstanter Umdrehungsgeschwindigkeit um die Stundenachse (siehe Kap. 3 im Band II) zu bewegen.\\
+Bei diesem bewegt sich eine Masse vom Turm (Höhe ca. 15 m) abwärts, die das reibungsarm gelagerte Teleskop antreibt und durch den Fliehkraftregler so geregelt wird, dass eine konstante Geschwindigkeit vorliegt. Die Masse beträgt 1 kg.\\ 
+
+Berechnen Sie die Auslegung des Reglers (mit 4 Kugeln) und die Laufdauer der Anlage in Stunden, bevor die Masse wieder nach oben gezogen werden muss.
+
+		\begin{figure}
+		\centering
+		\includegraphics[width=\textwidth]{Greifswald01.pdf}
+		\caption[Doppelteleskop mit Fliehkraftregler in der Sternwarte Greifswald.]{Doppelteleskop in der Sternwarte Greifswald (\url{https://www.sternwarte-greifswald.com}).} 
+		\label{abb:bew_Greifswald01}
+		\end{figure}
+
+\medskip
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------

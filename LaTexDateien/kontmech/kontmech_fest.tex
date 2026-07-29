@@ -1,0 +1,746 @@
+\section{Eigenschaften und Dynamik deformierbarer, fester Körper}
+\label{kap:kontmech_fest}\index{Körper!elastische}\index{Körper!deformierbare}
+
+Bisher haben wir Flüssigkeiten und Gase als Beispiele für ein Kontinuum betrachtet. Doch wir benötigen auch
+eine Beschreibung fester kontinuierlicher Körper. Diese sind vor allem
+durch ihr Verhalten bei Deformationen gekennzeichnet, das sich wesentlich von den Fluiden unterscheidet und das zur Beschreibung
+ihrer Eigenschaften herangezogen wird. Diese Eigenschaften wollen wir zunächst klären,
+bevor wir uns der Dynamik der Festkörper-Kontinua widmen können.
+
+
+\subsection{Eigenschaften deformierbarer Körper}
+\label{kap:kontmech_festEigenschaften}
+\index{deformierbare Körper!Eigenschaften}
+
+Die Eigenschaften deformierbarer fester Körper sind durch ihren (atomaren)
+Aufbau gegeben. In einer einfachen klassischen Modellvorstellung können wir davon
+ausgehen, dass alle Atomrümpfe eines Festkörpers sich so anordnen, dass
+sich insgesamt und auch lokal ein energetisches (Potential-)Minimum ergibt. 
+% im elektrostatischen Potential der Atome ein Minimum angenommen wird.
+% Das elektrostatische Potentila ist ja bis hierher noch nicht eingefüht.
+Analog können wir in einer kontinuierlichen
+Betrachtung modellieren, dass für eine bestimmte Konfiguration eines
+materiellen Punkts des Kontinuums im Raum $\vec{r}_0$ ein Minimum des Potentials angenommen
+wird. Wenn wir Deformationen betrachten, gehen wir von Abweichungen von
+dieser idealen Lage der materiellen Punkte aus.
+
+Für kleine Abweichungen $\Delta \vec{r} = \vec{r} - \vec{r}_0$ entwickeln wir
+das Potential in eine Potenzreihe um $\vec{r}_0$ (siehe auch \eqref{eq:bew_Schwingung_a} in \kap{bew_schwingung})
+\begin{equation*}
+  U(\vec{r}) = U(\vec{r}_0 + \D \vec{r}) = U(\vec{r}_0) + \nablav U(\vec{r}_0) \cdot \D \vec{r}
+  + \frac{1}{2} \sum_{j,k}^3 \frac{\partial^2 U(\vec{r}_0)}{\partial x_j \,
+    \partial x_k}\, \D x_j \, \D x_k + \dots \, ,
+\end{equation*}
+wobei oft nur die niedrigsten Ordnungen in Betracht gezogen werden müssen.
+Die erste Ordnung verschwindet, da $\vec{r}_0$ ein Minimum darstellt,
+wir erhalten also unter Benutzung der Einsteinschen Summenkonvention
+\begin{equation*}
+  U(\vec{r}) \approx \frac{1}{2} \, \frac{\partial^2 U(\vec{r}_0)}
+  {\partial x_j \, \partial x_k}\, \D x_j \, \D x_k \; .
+\end{equation*}
+Das lineare Kraftgesetz ergibt sich in diesem Fall aus:
+\begin{align}
+  F_i(\vec{r}) &= \frac{1}{\d x_i} \, U(\vec{r}) \approx \frac{1}{2} \,
+                  \frac{1}{\d x_i} \lek \frac{\partial^2 U(\vec{r}_0)} {\partial x_j \, \partial x_k}\, \stackrel{\downarrow}{\D x_j } \D x_k 
+	                     +\frac{\partial^2 U(\vec{r}_0)} {\partial x_j \, \partial x_k}\,\D x_j \stackrel{\downarrow}{\D x_k }  \rek \notag \\
+               &= \frac{1}{2} \lek \frac{\partial^2 U(\vec{r}_0)}{\partial x_j \,\partial x_k}\, \delta_{ij} \D x_k 
+							                   + \frac{\partial^2 U(\vec{r}_0)}{\partial x_j \,\partial x_k}\, \delta_{ik} \D x_j \rek = \frac{\partial^2
+  U(\vec{r}_0)} {\partial x_i \, \partial x_k}\, \Delta x_k \; . \label{eq:kontmech_kraefte_FK} 
+\end{align}
+Im Folgenden wollen wir verschiedene Möglichkeiten betrachten.
+
+\subsubsection{Kontraktionen und Elastizitätsmodul}
+\label{kap:kontmech_festKontraktionen}
+\index{Elastizitätsmodul}
+
+Als ersten Fall betrachten wir einen Festkörper, der in eine Richtung
+gedehnt wird und wollen die Kraftwirkung in genau diese Richtung wissen, siehe
+\figref{kontmech_ElastTorsion}a. Wir interessieren uns also
+für den Fall
+\begin{equation}
+  F_i = \frac{\partial^2 U(\vec{r}_0)}{\partial x_i \, \partial x_i}
+  \, \Delta x_i \;,
+  \label{eq:kontmech_Elastizitaetsmodul1}
+\end{equation}
+wobei wir von \eqref{eq:kontmech_kraefte_FK} zu \eqref{eq:kontmech_Elastizitaetsmodul1} zu kleinen Differenzgrößen $\Delta x_i $ übergegangen sind. Dieser Fall tritt auf, wenn es keine Mischterme in den Ableitungen des Potentials
+gibt. Es kann aber auch sein, dass ausschließlich $\Delta x_i \neq 0$.
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{ElastTorsion.pdf}
+  \caption[Zum Elastizitätsmodul und Torsionsmodul]{Zum Elastizitätsmodul und Torsionsmodul. \fa Darstellung einer
+    Streckung mit der Zugkraft $\vec{F}$, die zur Definition des
+    Elastizitätsmoduls eingeführt wird. Dabei ändern sich typischerweise auch
+    die Ausdehnungen des Körpers senkrecht zur Kraft. Die dazugehörigen
+    Variablen $\Delta a$ und $\Delta b$ haben negative Werte. \fb Eine Scherung
+    um den Winkel $\alpha$ führt ebenfalls zu einem Widerstand, der durch die
+    Kraft $\vec{F}$ überwunden wird und über den sich das Torsionsmodul
+    einführen lässt.}
+  \label{abb:kontmech_ElastTorsion}
+\end{figure}
+
+Mit dem Querschnitt $A$ des Elements des Körpers, das verlängert wird, seiner
+ungestörten Länge $\ell$ und der Verlängerung $\Delta \ell = \Delta x_i$
+lasst sich Gleichung \eqref{eq:kontmech_Elastizitaetsmodul1} auf die Form
+\begin{equation}
+  F_i = \left ( \frac{\ell}{A} \frac{\partial^2 U(\vec{r}_0)}{\partial x_i
+      \, \partial x_i} \right ) \, A \, \frac{\Delta \ell}{\ell}
+  \label{eq:kontmech_Elastizitaetsmodul2}
+\end{equation}
+bringen. Mit dieser Form führt man das \emph{\gls{Elastizitaetsmodul}}
+\begin{equation}
+  E = \frac{\ell}{A} \frac{\partial^2 U(\vec{r}_0)}{\partial x_i \,
+    \partial x_i}
+  \label{eq:kontmech_DefElastizitaetsmodul}
+\end{equation}
+ein und schreibt
+\begin{equation}
+  F = E \, A \, \frac{\Delta \ell}{\ell}
+  \label{eq:kontmech_Elastizitaetsmodul3}
+\end{equation}
+beziehungsweise für die \emph{Zugspannung} $\sigma = F/A$
+\begin{equation}
+  \sigma = E \, \frac{\Delta \ell}{\ell} \; .
+  \label{eq:kontmech_Elastizitaetsmodul4}
+\end{equation}
+
+Üblicherweise ändert sich jedoch nicht allein die Länge des Körpers. Es kommt
+entlang der beiden Richtungen der Fläche $A$ im Normalfall zu einer
+Kontraktion. Um die Verkürzung einer Richtung in der Fläche zur Verlängerung
+in der Richtung senkrecht dazu in Relation zu setzen (vgl.
+\figref{kontmech_ElastTorsion}a), wird die \emph{\gls{Poissonzahl}}\footnote{Siméon Denis Poisson (1781--1840 in Paris) war ein französischer Physiker und Mathematiker. Er war Schüler von Laplace und beschäftigte sich vor allem mit der Theorie der Wellen in der Akustik, der Elastizitäts- und Wärmelehre, sowie über die Potentialtheorie der Elektrostatik. Als Mathematiker arbeitete Poisson vor allem auf den Gebietender Differentialgeometrie, der Infinitesimal- und Wahrscheinlichkeitsrechnung. Mehrere mathematische Begriffe sind mit seinem Namen verbunden. Er war sehr produktiv und veröffentlichte insgesamt über 300 Arbeiten.}\indexp{Poisson, Siméon Denis}\index{Poissonzahl}
+\begin{equation}
+  \nu = -\frac{\Delta a\, /\, a}{\Delta \ell\, /\, \ell} =
+  -\frac{\Delta b\, /\, b}{\Delta \ell\, /\, \ell}
+  \label{eq:kontmech_Poissonzahl}
+\end{equation}
+eingeführt\footnote{Die Variablen $\Delta a$ und $\Delta b$, die die Stauchung
+  in den beiden Richtungen senkrecht zur Streckung beschreiben, haben hier
+  negative Werte. Die Poissonzahl ist so definiert, dass sie selbst positiv
+  ist.}.
+Typische Werte der Poissonzahl liegen für Metalle zwischen 0.2 und 0.4, für Beton bei 0.2 
+und für Faserverbundstoffe bei kleiner 0.05.
+Damit können wir nun die Deformation des gesamten Volumens betrachten. Diese
+ergibt sich z.B. für eine rechteckige Fläche zu
+\begin{equation*}
+  \Delta V = (a + \Delta a )(b + \Delta b )(\ell + \Delta \ell) - ab\ell \; ,
+\end{equation*}
+was für typischerweise kleine Änderungen in linearer Näherung zu
+\begin{equation*}
+  \Delta V = a b \Delta \ell + a \Delta b \ell + \Delta a b \ell
+\end{equation*}
+angegeben werden kann. Für das Verhältnis findet man damit
+\begin{equation*}
+  \frac{\Delta V}{V} = \frac{\Delta \ell}{\ell} + \frac{\Delta a}{a} +
+  \frac{\Delta b}{b} = \frac{\Delta \ell}{\ell} - \nu \frac{\Delta \ell}{\ell}
+  -\nu \frac{\Delta \ell}{\ell}
+  = ( 1 - 2 \nu )  \frac{\Delta \ell}{\ell} \; ,
+\end{equation*}
+was nun auch mit der angelegten Zugspannung verknüpft werden kann,
+\begin{equation*}
+  \frac{\Delta V}{V} = \frac{\sigma}{E} ( 1 - 2 \nu ) \; .
+\end{equation*}
+
+
+\subsubsection{Inelastische Körper}
+\label{kap:kontmech_festinelastisch}
+\index{deformierbare Körper!inelastische}
+
+Die bisherige Betrachtung ging davon aus, dass die Kraft allein durch die zweite
+Ableitungen des Potentials ausgedrückt werden kann, also eine lineare Zunahme
+der Kraft mit der Streckung oder Stauchung vorliegt. Dies ist der Fall
+des Hookschen Gesetzes\index{Hooksches Gesetz|textbf}\indexp{Hooke, Robert}, das wir schon aus \kap{bew_newton_axioms}
+kennen. Dies ist jedoch nicht beliebig der Fall, sondern gilt nur bis zur
+\emph{Proportionalitätsgrenze}\index{Proportionalitätsgrenze!elastische Körper}
+im jeweiligen Material. Ist diese überschritten, dehnt sich der Körper bei
+zunehmender Kraft stärker aus, als es innerhalb der Proportionalitätsgrenze
+der Fall wäre.
+
+Plastische Verformungen, die durch innere Umlagerungseffekte im Material
+ausgelöst werden, treten bei noch höheren Streckungen oder Kontraktionen auf.
+Diese sorgen dafür, dass das Material auch bei komplettem Verschwinden der
+ausdehnenden Kraft nicht in seine ursprüngliche Gestalt zurückkehrt.
+
+Jedoch können auch innerhalb des Elastizitätsbereichs zumindest kurzzeitige
+Streckungen oder Stauchungen zurück bleiben, wenn keine Kraft mehr auf den
+Körper einwirkt. 
+%Dies ist besonders bei sehr schnell einwirkenden Kräften der Fall.
+In diesem Fall erhält man eine Hystereseschleife\index{Hysterese!elastische Körper},
+siehe \figref{kontmech_HystereseschleifeKompression}. Nach der Streckung des
+Körpers bis zum Punkt A durch die Zugspannung $\sigma_\text{A}$
+und anschließender Entspannung kehrt der Körper nicht in den Ursprung zurück,
+sondern es verbleibt eine restliche Streckung, die durch den Punkt C markiert
+ist. Ein Druck bis zu $\sigma_\text{B}$ bewirkt eine Kompression bis zum
+Punkt B. Entspannt man auch hier wieder bleibt die Stauchung, die durch den
+Punkt D markiert ist, übrig.
+
+\begin{figure}
+  \includegraphics[width=\textwidth] {Spannungshysterese.pdf}
+  \caption[Hystereseschleife\index{Hystereseschleife} bei Zugspannungen]{Mechanische
+    Hystereseschleife bei der Kompression und Expansion eines elastischen
+    Körpers durch eine Zugspannung.}
+  \label{abb:kontmech_HystereseschleifeKompression}
+\end{figure}
+
+
+\subsubsection{Scherungen und Torsionsmodul}
+\label{kap:kontmech_festtorsion}
+\index{Torsionsmodul|textbf}\index{Schubmodul|textbf}\index{Scherung}
+
+Greift eine Kraft nicht senkrecht zur Fläche eine Körpers, sondern tangential
+an, so führt sie zu einer Scherung (siehe
+\figref{kontmech_ElastTorsion}b). Der Körper wird auch gegen diese
+Bewegung einen Widerstand leisten, der durch eine Tangentialkraft $F_t$
+überwunden werden muss. Diese lässt sich analog zu Gleichung
+\eqref{eq:kontmech_Elastizitaetsmodul2} durch das innere Potential des
+Festkörpers ausdrücken,
+\begin{equation}
+  F_t = \left ( \frac{1}{A} \frac{\partial^2 U(\vec{r}_0)}{\partial x_j
+      \, \partial x_j} \frac{\partial \, (\Delta x_j)}{\partial \alpha} \right )
+  \, A \, \alpha \; ,
+  \label{eq:kontmech_Torsionsmodul1}
+\end{equation}
+wobei $\alpha$ der Winkel ist, um den die Scherung erfolgt. Ähnlich
+zum Elastizitätsmoduls $E$ findet man für den Term in der Klammer
+\begin{equation}
+  G = \frac{1}{A} \frac{\partial^2 U(\vec{r}_0)}{\partial x_j
+      \, \partial x_j} \frac{\partial (\Delta x_j)}{\partial \alpha} \; ,
+  \label{eq:kontmech_Torsionsmodul2}
+\end{equation}
+der den Namen \emph{Torsionsmodul} oder \emph{\gls{Schubmodul}} erhält. Ähnlich
+der Zugspannung $\sigma$ lässt sich unter Verwendung des Torsionsmoduls
+die Scherspannung
+\begin{equation}
+  \tau = \frac{F_t}{A} = G \alpha
+  \label{eq:kontmech_Torsionsmodul3}
+\end{equation}
+bilden.
+
+Für kleine Winkel kann man die Form von $G$ der von $E$ anpassen. Gehen wir davon
+aus, dass $\alpha$ klein ist und somit $\sin \alpha \approx \alpha$ gilt, so
+erhalten wir mit $\Delta x_j = \ell\, \sin \alpha \approx \ell\, \alpha$
+\begin{equation*}
+  \frac{\partial\, \Delta x_j}{\partial \alpha} = \frac{\partial \ell \alpha}
+  {\partial \alpha} = \ell
+\end{equation*}
+und somit nimmt das Torsionsmodul die Gestalt
+\begin{equation*}
+  G = \frac{\ell}{A} \frac{\partial^2 U(\vec{r}_0)}{\partial x_j
+    \, \partial x_j} 
+\end{equation*}
+an, die rein formal nicht mehr von der von $\ell$ zu unterscheiden ist. Ganz
+analog findet man dann auch für die Tangentialkraft die zu
+\eqref{eq:kontmech_Elastizitaetsmodul2} identische Form
+\begin{equation}
+  F_t = \lk \frac{\ell}{A} \frac{\partial^2 U(\vec{r}_0)}{\partial x_j
+      \, \partial x_j} \rk \, A \, \frac{\Delta x_j}{\ell} \; .
+  \label{eq:kontmech_Torsionsmodul4}
+\end{equation}
+Dabei muss man jedoch fest im Blick behalten, in welche Richtung die Kräfte
+angreifen. In der Komponentendarstellung, die wir gewählt haben, kommt nicht
+zum Ausdruck, dass die Kraft tangential zur Fläche angreift. Diese Tatsache
+bildet jedoch den wesentlichen Unterschied zwischen Elastizitäts- und Torsionsmodul.
+
+\subsection{Dynamik deformierbarer Körper}
+\label{kap:kontmech_festDynamik}
+\index{deformierbare Körper!Dynamik}
+
+
+\subsubsection{Lagrange-Formalismus für kontinuierliche Körper}
+\label{kap:kontmech_festLagrange}%
+\index{Lagrange-Gleichung!kontinuierliche Körper}%
+%\index{schwingende Saite}
+\index{Saite!schwingende|textbf}
+
+Der Lagrange-Formalismus eignet sich gut, um dynamische Gleichungen auch für
+elastische deformierbare Körper aufzustellen. Um diesen motivieren zu können,
+beginnen wir mit dem einfachen Beispiel einer schwingenden Saite. Diese
+stellen wir uns zunächst als eine Kette von Massepunkten identischer Masse $m$ vor,
+die durch Federn der Ruhelänge $d$ und der Federrichtgröße $k_\text{F}$ miteinander
+verbunden sind, siehe Abbildung \ref{abb:kontmech_SaiteMassepunkte}. Später
+werden wir den Abstand $d$ zwischen den Massepunkten gegen Null gehen lassen,
+um den Übergang zum kontinuierlichen System zu vollziehen.
+
+\begin{figure}
+  \includegraphics[width=\textwidth] {SchwingSaiteModell.pdf}
+  \caption[Modell aus Massepunkten für eine schwingende Saite]{Eine schwingende
+    Saite wird durch $N$ Massepunkte gleicher Masse $m_i=m$, die durch Federn verbunden
+    sind, modelliert. Die Massen  $m_i$ für $i=0$ und $i=N-1$ sollen unbeweglich am
+    Rand sein.}
+    \label{abb:kontmech_SaiteMassepunkte}
+\end{figure}
+
+Entsprechend \kap{bew_Lagrange_II} müssen wir für die
+Lagrange-Gleichungen zweiter Art zunächst die kinetische Energie und das
+Potential aufstellen. Das Modell setzt voraus, dass die Koordinaten $x_i$
+fest bleiben und sich die Massepunkte nur in Richtung der $y_i$ bewegen können.
+Damit ergibt sich für die kinetische Energie
+\begin{equation*}
+  T(\{\dot{y}_i\}) = \sum_{i=1}^N T_i = \sum_{i=1}^N \frac{m}{2} \,\dot{y}_i^2 \; .
+\end{equation*}
+Für das Potential, das sich aus der angenommenen Feder zwischen den
+Massepunkten $i-1$ und $i$ ergibt, gilt mit der Annahme, dass wir die
+Abstandsänderungen in $x$-Richtung vernachlässigen können, weil diese Abstände als starr
+angenommen werden und somit nicht zur Bewegung beitragen:
+\begin{equation*}
+  U(\{y_i\}) = \sum_{n=2}^{N} \frac{k_\text{F}}{2} (y_i - y_{i-1})^2 \; .
+\end{equation*}
+Somit lässt sich die Lagrange-Funktion aufstellen zu
+\begin{equation}
+  \mathcal{L}(\{y_i\},\{\dot{y}_i\}) = T(\{\dot{y}_i\}) - U(\{y_i\})
+  = \sum_{i=1}^N \frac{m}{2} \dot{y}_i^2
+  - \sum_{i=2}^{N} \frac{k_\text{F}}{2} (y_i - y_{i-1})^2 \; .
+  \label{kontmech_SaiteLagrangePunkte}
+\end{equation}
+Mit diesem Ansatz können wir zum kontinuierlichen System übergehen. Dazu
+verwenden wir die kontinuierliche Variable $x$ anstatt des Zählindex $i$
+und schreiben für die Koordinaten
+\begin{equation*}
+  y_i \to y(x)\;, \qquad y_{i} - y_{i-1} \to \D x \, \left . \frac{\D y}{\D x} \right |_x  
+\end{equation*}
+und verwenden die (lineare) Dichte $\varrho_\mathrm{L}$ in $\SI{}{\kg\per\metre}$ statt der Masse $m$ sowie die Zugkraft\footnote{Diese entspricht hier in der eindimensionalen Betrachtung dem \gls{Elastizitaetsmodul} im mehrdimensionalen Fall.} $\Phi$ in $\SI{}{\N}$ statt der Federrichtgröße $k_\text{F}$:
+\begin{equation*}
+  m = \varrho_\text{L} d \; , \qquad k_\text{F} = \frac{\Phi}{d} \; .
+\end{equation*}
+Dies führt mit Gleichung \eqref{kontmech_SaiteLagrangePunkte} auf die
+Lagrange-Funktion
+\begin{align*}
+  \mathcal{L} &= \sum_{i=1}^N \frac{\varrho_\text{L} d}{2} \lk \frac{\partial y(x,t)}
+                {\partial t} \rk^2
+                - \sum_{i=2}^{N} \frac{\Phi}{2 d} \lk \frac{\partial y(x,t)}
+                {\partial x}
+                \rk^2 d^2 \\
+              &= \frac{\varrho d}{2} \left [
+                \sum_{i=1}^N \lk \frac{\partial y(x,t)}{\partial t} \rk^2
+                - \sum_{i=2}^{N} \frac{\Phi}{\varrho_\text{L}} \lk
+                \frac{\partial y(x,t)}{\partial x} \rk^2 \right ] \; .
+\end{align*}
+Der Grenzübergang zum kontinuierlichen System wird durch
+\begin{equation*}
+  d \sum_i \to \int \D x
+\end{equation*}
+vollzogen, was auf die kontinuierliche Lagrange-Funktion
+\begin{equation}
+   \mathcal{L} = \int \D x \; \frac{\varrho_\text{L}}{2} \left [
+    \lk \frac{\partial y(x,t)}{\partial t} \rk^2 - \frac{\Phi}{\varrho_\text{L}}
+    \lk \frac{\partial y(x,t)}{\partial x} \rk^2 \right ]
+  \label{eq:kontmech_SaiteLagrangeFunktion}
+\end{equation}
+führt.
+
+In der Lagrange-Funktion \eqref{eq:kontmech_SaiteLagrangeFunktion} tritt die
+\emph{Lagrange-Dichte}\index{Lagrange-Dichte|textbf}
+\begin{equation}
+  L \lk \frac{\partial y}{\partial t}, \frac{\partial y}{\partial x} \rk
+  = \frac{\varrho_\text{L}}{2} \left [ \lk \frac{\partial y(x,t)}{\partial t} \rk^2
+    - \frac{\Phi}{\varrho_\text{L}} \lk \frac{\partial y(x,t)}{\partial x} \rk^2
+  \right ]
+  \label{eq:kontmech_LagrangedichteSaite}
+\end{equation}
+auf, die wir heranziehen können, um die dynamischen Gleichungen zu gewinnen.
+
+In \kap{bew_Lagrange_II} wurden die Lagrange-Gleichungen zweiter
+Art aus denen erster Art durch den Übergang auf generalisierte Koordinaten
+gewonnen. Man kann zeigen, dass sich dieselben Gleichungen aus einer
+äquivalenten Forderung erhalten lassen. Die klassischen Bahnen sind nämlich diejenigen, die
+das \gls{Wirkungsfunktional}\index{Wirkungsfunktional}
+\begin{equation*}
+  S = \int \mathcal{L}(\{q_i\},\{\dot{q}_i\},t)\, \D t
+\end{equation*}
+extremal machen (siehe \cite{Schmutzer2005, Kuypers2012, Bartelmann2015}), für die also gilt
+\begin{equation*}
+  \delta S = \int \mathcal{L}(\{q_i+\delta q_i\},\{\dot{q}_i+\delta\dot{q}_i\}
+  ,t)  \D t - \int \mathcal{L}(\{q_i\},\{\dot{q}_i\},t)\, \D t = 0  \; ,
+\end{equation*}
+wobei $\delta q_i(t)$ eine Variation der klassischen Bahn ist, die nur die
+Randbedingung erfüllen muss, dass sie am Anfang und Ende der Bahn
+verschwindet, also $\delta q_i(t_\mathrm{Start})=\delta q_i(t_\mathrm{Ende})=0$.
+Dieselbe Forderung können wir an die Lagrange-Funktion\index{Lagrange-Funktion}
+\eqref{eq:kontmech_SaiteLagrangeFunktion} der schwingenden Saite stellen. Dazu
+führen wir die Variation der Auslenkung
+\begin{equation*}
+  y(x,t) = y(x,t) + \delta y(x,t)
+\end{equation*}
+ein und stellen das Wirkungsfunktional
+\begin{equation}
+  S = \int \mathcal{L}\,\D t = \int \D t \int \D x\,
+  L \lk \frac{\partial y}{\partial t}, \frac{\partial y}{\partial x} \rk
+\end{equation}
+auf. Damit berechnen wir die Variation der Wirkung
+\begin{align*}
+  \delta S &= \int \D t \int \D x\,
+             L \lk \frac{\partial y}{\partial t} + \frac{\partial \delta y}
+             {\partial t},
+             \frac{\partial y}{\partial x} + \frac{\partial \delta y}
+             {\partial x}  \rk  - \int \D t \int \D x\,
+             L \lk \frac{\partial y}{\partial t}, \frac{\partial y}
+             {\partial x} \rk \; ,\\
+  \intertext{was in linearer Näherung}
+  \delta S &= \int \D t \int \D x\, \left [
+             \frac{\partial L}{\partial \lk \frac{\partial y}{\partial t} \rk}
+             \frac{\partial \delta y}{\partial t}
+             + \frac{\partial L}{\partial \lk \frac{\partial y}{\partial x} \rk}
+             \frac{\partial \delta y}{\partial x} \right ] \\
+  \intertext{ergibt und mit partieller Integration auf}
+  \delta S &= \int \D t \int \D x\, \left [
+             -\frac{\partial}{\partial t} \frac{\partial L}
+             {\partial \lk \frac{\partial y}{\partial t} \rk}
+             - \frac{\partial}{\partial x} \frac{\partial L}
+             {\partial \lk \frac{\partial y}{\partial x} \rk} \right ] \delta y
+\end{align*}
+führt. Da die Variation $\delta y$ bis auf die Forderung nach verschwindenden Veränderungen an den Randpunkten
+beliebig ist, fordert dies auch
+\begin{equation}
+  -\frac{\partial}{\partial t} \frac{\partial L}
+  {\partial \lk \frac{\partial y}{\partial t} \rk}
+  - \frac{\partial}{\partial x} \frac{\partial L}
+  {\partial \lk \frac{\partial y}{\partial x} \rk} = 0
+\end{equation}
+und mit der Lagrange-Dichte\index{Lagrange-Dichte} der schwingenden Saite \eqref{eq:kontmech_LagrangedichteSaite}
+erhalten wir schließlich:
+\begin{equation}
+  \varrho_\text{L} \frac{\partial^2 y(x,t)}{\partial t^2}
+  - \Phi \frac{\partial^2 y(x,t)}{\partial x^2} = 0 \; .
+  \label{eq:kontmech_PDGLSaite}
+\end{equation}
+Dies ist die gesuchte dynamische Gleichung für die schwingende Saite. Dividiert man beide Seiten von \eqref{eq:kontmech_PDGLSaite} durch die als konstant angenommene Querschnittsfläche $A$, dann erhält man mit dem \gls{Elastizitaetsmodul} $E = \Phi / A$ die \emph{Wellengleichung}\index{Wellengleichung} für die schwingende Saite in der üblichen Darstellung mit der Volumendichte $\varrho$:
+\begin{equation}
+  \varrho \frac{\partial^2 y(x,t)}{\partial t^2}
+  - E \frac{\partial^2 y(x,t)}{\partial x^2} = 0 \; .
+  \label{eq:kontmech_PDGLSaite2}
+\end{equation}
+
+
+\newpage
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{Analytische Lösungen für die schwingende Saite}
+\label{bsp:kontmech_schwingendeSaite}\index{Saite!schwingende}
+\smallskip
+
+Die Wellengleichung \eqref{eq:kontmech_PDGLSaite2} hat sehr
+viele verschiedene Lösungen, die meist durch Randbedingungen eingeschränkt
+sind. Wir wollen uns hier auf zwei Lösungstypen beschränken.
+
+Zunächst betrachten wir Lösungen, die wir mit dem Produktansatz
+\begin{equation*}
+  y(t,x) = a(t)\,b(x) 
+\end{equation*}
+finden. Setzt man diesen in \eqref{eq:kontmech_PDGLSaite2} ein, können wir
+dies auf die Form
+\begin{equation*}
+  \frac{1}{a(t)} \frac{\partial^2 a(t)}{\partial t^2} = \frac{E}{\varrho}
+  \frac{1}{b(x)} \frac{\partial^2 b(x)}{\partial x^2} = C
+\end{equation*}
+bringen, wobei $C$ eine Konstante sein muss, da eine Seite nur von $t$, die
+andere nur von $y$ abhängt. Dies ermöglicht uns, die beiden separierten
+Differentialgleichungen getrennt zu lösen. So finden wir \zb sehr einfach
+die Lösungen
+\begin{align*}
+  a(t) &= \alpha_1 \mathrm{e}^{\sqrt{C}t} + \alpha_2 \mathrm{e}^{-\sqrt{C}t}
+         \; , \\
+  b(x) &= \beta_1 \mathrm{e}^{\sqrt{\frac{\varrho}{E} C}x}
+         + \beta_2 \mathrm{e}^{-\sqrt{\frac{\varrho}{E} C}x} \; .
+\end{align*}
+Interessant für das Verhalten einer schwingenden Saite sind dabei vor allem
+Lösungen, die nicht exponentiell anwachsen. Diese erhalten wir für ein negatives
+$C$ und wir setzen nun
+\begin{equation*}
+  \sqrt{C} = \im \omega \; , \qquad \sqrt{\frac{\varrho}{E} C} = \im k
+  \; ,
+\end{equation*}
+womit wir 
+\begin{align*}
+  a(t) &= \alpha_1 \mathrm{e}^{\im \omega t} + \alpha_2
+         \mathrm{e}^{-\im \omega t} \; , \\
+  b(x) &= \beta_1 \mathrm{e}^{\im k x} + \beta_2 \mathrm{e}^{-\im k x} 
+\end{align*}
+beziehungsweise
+\begin{equation*}
+  y(t,x) = \left \{ \alpha_1 \mathrm{e}^{\im \omega t} + \alpha_2
+    \mathrm{e}^{-\im \omega t} \right \} \left \{ \beta_1 \mathrm{e}^{\im k x}
+    + \beta_2 \mathrm{e}^{-\im k x}  \right \}
+\end{equation*}
+erhalten. Dies sind stehende Wellen, bei denen periodische räumliche Strukturen
+unabhängig vom Zeitverlauf bestehen. Der Zeitverlauf ändert allein die Größe
+Auslenkungen, nicht aber ihre Position entlang der Saite. Leichter sichtbar wird das für den Spezialfall $\alpha_1 = \alpha_2
+= \alpha/2$, $\beta_1 = \beta_2 = \beta/2$, was auf die Lösung
+\begin{equation*}
+  y(t,x) = \alpha \beta \cos(\omega t) \cos(k x) 
+\end{equation*}
+führt. Graphische Darstellungen finden sich in Beispiel
+\ref{bsp:kontmech_finiteDiffSaite}, in dem wir dieses System numerisch mit der
+Methode der finiten Differenzen lösen werden.
+
+Einen zweiten Typ von Lösungen, den wir betrachten wollen, sind fortlaufende
+Wellen, die eine nahezu beliebige funktionale Form haben dürfen. Der
+Ansatz
+\begin{equation*}
+  y(t,x) = f(\omega t \pm kx)
+\end{equation*}
+mit $k$ als Wellenzahl und $\omega$ als Kreisfrequenz löst ganz allgemein, wie man durch Einsetzen erkennt,
+\begin{equation*}
+  \varrho \omega^2 f''(\omega t \pm kx) = E k^2 f''(\omega t \pm kx) \; ,
+\end{equation*}
+die Differentialgleichung, falls die \gls{Dispersionsrelation} \index{Dispersionsrelation} 
+\begin{equation}
+  \omega = \sqrt{\frac{E}{\varrho}}\,k
+  \label{eq:kontmech_DispersionsRel}
+\end{equation}
+erfüllt ist. Für eine beidseitig eingespannte Saite verbieten sich jedoch solche Lösungen wegen der Randbedingungen.
+Da die
+Differentialgleichung linear ist, sind jederzeit beliebige Überlagerungen von Lösungen der beidseitig eingespannte Saite möglich,
+die in der Summe sich als ausbreitende Wellen auf der Saite interpretieren lassen. Beispiele werden
+wir in \probref{kontmech_WelleSaite} untersuchen.
+\end{example}
+
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsubsection{Numerisches Lösungsverfahren über finite Differenzen}
+\label{kap:kontemch_finiteDifferenzen}
+\index{Finite Differenzen Methode}\index{Differenzen!finite}\index{Finite Differenzen Methode|textbf}
+
+Lineare \emph{\gls{PDGL}en}\index{Differentialgleichung!partielle} (PDGL) der Form
+\begin{equation}
+  \left ( \sum_i a_i \frac{\partial^2}{\partial x_i^2} +
+    \sum_i b_i \frac{\partial}{\partial x_i} + c \right )
+  f(\vec{x}) + d = 0 \; ,   \label{eq:kontmech_GrundformPDGL1}
+\end{equation}
+zu denen auch die Differentialgleichung \eqref{eq:kontmech_PDGLSaite} der
+schwingenden Saite gehört, lassen sich numerisch mit finiten Differenzen
+lösen. Wir können das hier nicht vollständig einführen, wollen aber kurz die
+Idee der Lösungsmethode vermitteln und verweisen auf das entsprechende Kapitel
+im Lösungsteil \bzw auf die Literatur \cite{Otto2019, Fischer2014, Riley2006,
+  Andrews2003}.
+Wir beschränken uns auf den Fall einer PDGL 2. Ordnung mit zwei Variablen
+($x_1 =x\,,\,\,x_2=t$), so dass aus \eqref{eq:kontmech_GrundformPDGL1} 
+\begin{align}
+  \lk a_{11} \frac{\partial^2}{\partial x^2} + a_{12} \frac{\partial^2}{\partial x\,\partial t} + a_{21} \frac{\partial^2}{\partial t\,\partial x } + a_{22} \frac{\partial^2}{\partial t^2} 
+   + b_1 \frac{\partial}{\partial x} + b_2 \frac{\partial}{\partial t} + c \rk \,f(x,t)\nonumber \\
+	&~~+ d = 0    \label{eq:kontmech_GrundformPDGL2}
+\end{align}
+wird.\\
+Definiert man die Diskriminante
+	\[\mathcal{D} = a_{11}\,a_{22} - \frac{a_{12}\,a_{21}}{4} \,,\]
+dann unterscheidet man bei \eqref{eq:kontmech_GrundformPDGL2} verschiedene Typen:
+Gilt $\mathcal{D}(x,t) > 0$, so heißt die PDGL elliptisch im Punkt $(x,t)$, 
+für $\mathcal{D}(x,t) = 0$ ist die PDGL parabolisch im Punkt $(x,t)$, 
+und gilt $\mathcal{D}(x,t) <0$, so haben wir im Punkt $(x,t)$ eine hyperbolische PDGL vorliegen\footnote{Der Ursprung der Bezeichnungen elliptisch, parabolisch und hyperbolisch ergibt sich aus der Theorie der Kegelschnitte. Die allgemeine Kegelschnittgleichung $a_{11}\,x^{2}+a_{12}\,x\,y+a_{22}\,y^{2}+b_1\,x+b_2\,y+c=0$ 
+ist von der Struktur her ähnlich aufgebaut wie die lineare partielle Differentialgleichung 2. Ordnung \eqref{eq:kontmech_GrundformPDGL2}.}.
+Man findet unterschiedliche Lösungsprogramme für die einzelnen Typen. 
+Die Wellengleichung als dynamische Gleichung für die schwingende Saite ist offensichtlich vom hyperbolischen Typus, denn es gilt $\mathcal{D}(x,t) = -\varrho E <0$.
+
+Die Lösungsmethode der finiten Differenzen für diesen Fall baut nun darauf auf, dass man
+die gesuchte Funktion $f(x,t)$ auf Gitterpunkten
+\begin{equation*}
+  (x = x_i \,, t = t_l)
+\end{equation*}
+definiert und damit das Differentialgleichungssystem diskretisiert. Man
+bestimmt in der Lösung also die Daten $f(x_i,t_l)$ für alle
+Indexkombinationen.
+
+Dazu müssen natürlich auch die Ableitungen diskretisiert werden. Dies gelingt
+zum Beispiel für ein (eindimensionales) Gitter aus äquidistanten Schritten $x_i = x_0 + i\,$
+durch
+\begin{subequations}
+  \begin{align}
+    \frac{\partial f(x_i)}{\partial x_i} &= \frac{f(x_{i+1}) - f(x_{i-1})}
+                                           {2\Delta x}  \; ,
+    \label{eq:kontmech_Diskretisierung1} \\
+    \frac{\partial^2 f(x_i)}{\partial x_i^2} &= \frac{f(x_{i+1}) + f(x_{i-1})
+                                               -2 f(x_i)}{\Delta x^2}
+    \label{eq:kontmech_Diskretisierung2} \; ,
+\end{align}
+\end{subequations}
+was natürlich analog für alle anderen Variablen gilt, während diese für
+die $x$-Ableitungen festgehalten werden. Hier muss man nur
+bedenken, dass die Randpunkte gesondert behandelt werden müssen, da die
+Ableitungen symmetrisch aufgebaut sind. Bei unserer PDGL haben wir sogenannte 
+Dirichlet\footnote{Dirichlet (1805–-1859) war ein deutscher Mathematiker, der hauptsächlich auf den Gebieten der Analysis und der Zahlentheorie tätig war.}\indexp{Dirichlet, Peter Gustav Lejeune}-Randbedingungen\index{Randbedingungen!Dirichletsche}\footnote{Die Dirichlet-Randbedingung ist in der Mathematik eine Randbedingung, bei der die Ableitungen einer Lösung nur innerhalb der Domänengrenze angewendet wird.} vorliegen, die wir dadurch definieren, dass die Randwerte, \zb
+$x_0,\, t_0$ und $x_{N+1},\, t_{N+1}$, auf einen festen Wert gesetzt werden,
+\dh die Randpunkte werden im Lösungsverfahren nicht geändert.
+
+Prinzipiell kann man damit das Differentialgleichungssystem auf die 
+Form einer Matrixgleichung für ein lineares Gleichungssystem
+\begin{equation*}
+  \mathbb{M} \,\vec{f} = \vec{0}
+\end{equation*}
+bringen (siehe auch \cite{Fischer2014}). Man sucht also für dieses lineare
+Gleichungssystem den Lösungsvektor $\vec{f}$. Dieses Verfahren wird jedoch in
+seiner Allgemeinheit relativ selten verwendet, da es sehr aufwendig ist.
+
+In der Physik versucht man meist zu bestimmen, wie sich eine Bewegung Körpers/Objektes
+wie der schwingenden Saite in der Zeit verändert. In diesem Fall
+stellt man eine Iterationsgleichung für die Zeitschritte auf. Wie das
+funktioniert, lässt sich am einfachsten an einem Beispiel erklären. Dafür
+greifen wir wieder auf die schwingende Saite zurück.
+
+% BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{Numerische Lösungen zur schwingenden Saite}
+\label{bsp:kontmech_finiteDiffSaite}\index{Saite!schwingende}
+\smallskip
+In der Differentialgleichung \eqref{eq:kontmech_PDGLSaite2} der schwingenden
+Saite treten sowohl in $x$ als auch in $t$ ausschließlich zweite Ableitungen
+auf. Mit dem Diskretisierungsansatz \eqref{eq:kontmech_Diskretisierung2},
+stellen wir also die diskreten Terme
+\begin{equation*}
+  \frac{y(x_i,t_{l+1}) + y(x_i,t_{l-1}) -2 y(x_{i},t_{l})}{\Delta t^2}
+  = \frac{\kappa}{\varrho} \frac{y(x_{i+1},t_l) + y(x_{i-1},t_l)-2 y(x_i,t_l)}
+  {\Delta x^2}
+\end{equation*}
+auf. Dies lösen wir nach $y(x_i,t_{l+1})$ auf, um die Entwicklung in
+der Zeit iterativ zu berechnen. Man erhält
+\begin{align}
+\begin{split}
+  y(x_i,t_{l+1}) = 2 y(x_{i},t_{l}) - y(x_i,t_{l-1}) \\
+	&~~~+ \frac{\kappa}{\varrho}
+  \frac{\Delta t^2}{\Delta x^2} \left ( y(x_{i+1},t_l) + y(x_{i-1},t_l)
+    -2 y(x_i,t_l) \right ) \; .
+\end{split} \label{eq:kontmech_bsp6}
+\end{align}
+Kennt man das volle Raumgitter also für die zwei vorherigen Zeitschritte,
+lässt sich die Lösung der partiellen Differentialgleichung auf diese Weise für
+alle weiteren bestimmen.
+Im \mscr~ \mlkontmechref{SchwingendeSaite01.m} findet sich ein Programm, das diese
+Lösung umsetzt. Eine Schwingung wird für eine Saite der Länge $L =
+\SI{10}{\centi\metre}$ sowie die Materialparameter $\varrho = \SI{1150}
+{\kilo\gram\per \metre^3}$ und $\kappa = \SI{3e9}{\pascal}$ (typisch für Darm- \bzw Nylonsaiten) berechnet. Zu Beginn wird
+eine Welle angenommen, die die Randbedingungen $y(x=0,t) = y(x=L,t) = 0$
+erfüllt. Sie wird für die ersten beiden Zeitschritte identisch eingesetzt,
+um eine maximale Auslenkung zu implementieren. In
+\figref{kontmech_SaiteStehendeWelle} ist das Ergebnis für mehrere
+Zeitschritte dargestellt. Das typische Verhalten einer stehenden Welle
+ist gut zu erkennen.
+
+\begin{center}
+  \includegraphics[width=\textwidth]{SchwingendeSaite01.pdf}
+  \captionof{figure}{Stehende Welle\index{Welle!stehende} auf einer Saite. Siehe \mscr~ \mlkontmechref{SchwingendeSaite01.m}.}\label{abb:kontmech_SaiteStehendeWelle}
+\end{center}
+
+Selbstverständlich können aber auch laufende Wellen\index{Welle!laufende}, für die analytische
+Lösungen deutlich schwieriger zu finden sind mit dieser numerischen Methode
+behandelt werden. Dies wollen wir in \probref{kontmech_WelleSaite}
+tun.
+\end{example}
+% BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Geht man zu zwei Dimensionen über und betrachtet Schwingungen einer Ebene,
+lassen sich die \emph{Chladnischen}\footnote{Ernst Florens Friedrich Chladni (1756--1827) war ein deutscher Physiker und Astronom. Er beschrieb die nach ihm benannten Klangfiguren und erklärte die Herkunft von Meteoriten.}\indexp{Chladni, Ernst Florens Friedrich} \emph{Klangfiguren} finden. Die zugehörige partielle
+Differentialgleichung wird in \probref{kontmech_Chladni} gelöst.
+
+Der gefundene kontinuierlichen Ansatz für die schwingende Saite lässt sich
+leicht erweitern. Ganz ähnlich lässt sich z.B. das Problem der Achterbahn, die
+in \probref{bew_achterbahn_diskret} durch diskrete Wagen simuliert wurde,
+wieder aufgreifen, indem man den Grenzwert eines kontinierlichen Zuges bildet.
+Auf diese Weise kann man sich dem kontinuierlichen Modell aus 
+\kap{rollercoaster} annähern, ohne dabei die Näherung eines vollkommen
+starren Zuges einführen zu müssen. Die Herleitung des Kontinuums-Grenzwerts
+wird in \probref{kontmech_AchterbahnKont} durchgeführt,
+\probref{kontmech_AchterbahnZug} widmet sich dann einer numerischen Lösung
+und Betrachtungen für die Normalbeschleunigung erfolgen in
+\probref{kontmech_AchterbahnBeschleunigungen}.
+
+
+\subsubsection{Ausblick: Dynamik elastischer Körper}
+\label{kap:kontmech_festelastisch}
+\index{Körper!Dynamik elastischer}\index{Körper!elastische}
+
+Die Dynamik elastischer Körper ist \iA sehr komplex. Dies hat
+sich schon in \kap{kontmech_festEigenschaften} angedeutet,
+da z.B. die Verlängerung eines Körpers in der Regel auch eine Verkürzung
+in den Richtungen senkrecht dazu zur Folge hat. Für eine vollständige
+Behandlung muss man alle Richtungen zusammen betrachten.
+Ein solch umfangreicher Ansatz geht über den Umfang dieses Buches hinaus, wir verweisen auf die weiterführende
+Literatur, z.B. \cite{Altenbach1994,Altenbach2018,Rannacher2017}. Wir wollen hier aber angeben, welche Bewegungsgleichungen in der Dynamik elastischer Körper gelöst werden müssen und
+wie diese zu verstehen sind.
+
+Als unabhängige Koordinaten für eine Ausgangskonfiguration bieten sich für
+eine Betrachtung elastischer Körper die materiellen Punkte $\vec{\hat{P}}$  nach der
+Definition aus Gleichung \eqref{eq:kontmech_Materiepunkt} an. Wir wählen
+jedoch die Materiepunkte nicht zu einem beliebigen Zeitpunkt $t_0$, sondern
+so, dass sich alle Materiepunkte in einer Gleichgewichtslage befinden. In
+dieser Gleichgewichtslage gilt also
+\begin{equation*}
+  \vec{r}_0 = \vec{\hat{P}}_0  \; .
+\end{equation*}
+Wir interessieren uns für die Auslenkungen eines Materiepunktes aus der Ruhelage, die wir mit $\vec{u}$ wollen:
+\begin{equation*}
+  \vec{u}(\vec{\hat{P}}) = \vec{r}(\vec{\vec{\hat{P}}}) - \vec{r}_{0}(\vec{\hat{P}})
+  = \vec{r}(\vec{\hat{P}}) - \vec{\hat{P}}_0 \,.
+\end{equation*}
+Es ist zu erwarten, dass in einem
+Körper, der unter Spannung steht, diese Auslenkung für jeden Materiepunkt
+verschieden ist\footnote{Wäre sie für alle Punkte gleich, wäre dies nur
+  eine Verschiebung des ganzen, unveränderten Körpers, was für die
+  Betrachtung der inneren Dynamik uninteressant wäre.}. Alle möglichen
+Deformationen stellen wir durch die Ableitungen
+\begin{equation}
+  \frac{\partial r_i(\vec{\hat{P}})}{\partial r_j}
+\end{equation}
+dar. Sie enthalten Deformationen sowohl in Längs- als auch Querrichtung und
+können prinzipiell als Elemente einer Matrix geschrieben werden.
+
+Vollkommen analog betrachten wir die Spannungen im Körper in allen möglichen
+Richtungen durch das Einführen des \emph{Spannungstensors}\index{Spannungstensor|textbf}
+$\hat{\vec{\sigma}}$. Seine Diagonalelemente enthalten die Zug- und Druckspannungen,
+während Scherspannungen in den Nichtdiagonalelementen notiert werden. Gehen wir
+von einem Material aus, in dem die Deformationen linear von den Spannungen
+abhängen, lässt sich das verallgemeinerte Hooksche\indexp{Hooke, Robert}
+Gesetz\index{Hooksches Gesetz}
+\begin{equation}
+    \hat{\vec{\sigma}} = \mathbb{C}\, \hat{\vec{\epsilon}} \quad \text{\bzw} \quad  \hat{\sigma}_{ij} = C_{ijkl} \,\hat{\epsilon}_{kl} 
+\end{equation}
+finden, wobei wir bei der Komponentenschreibweise die Einsteinschen Summenkonvention verwendet haben.
+Im Spannungstensor $\hat{\vec{\sigma}}$ kommt der lineare und symmetrische
+\emph{Verzerrungstensor}\index{Verzerrungstensor} $\hat{\vec{\epsilon}}$ vor:
+\begin{align}
+    \hat{\vec{\epsilon}} &= \frac{1}{2} \lk \nablav \vec{u} + \lk \nablav
+    \vec{u} \rk^T \rk \quad \text{\bzw} \quad  \hat{\epsilon}_{kl} = \frac{1}{2} \lk \frac{\partial u_k}{\partial p_l} +
+                 \frac{\partial u_l}{\partial p_k}  \rk \,.
+\end{align}
+Offensichtlich ist $\mathbb{C}$ ein Tensor vierter Stufe, der vier
+Indizes besitzt. Ist das Material darüber hinaus isotrop, vereinfacht
+sich der Zusammenhang und es ergeben sich die Beziehungen
+\begin{subequations}
+  \begin{align}
+    \hat{\vec{\sigma}} &= 2 \mu \hat{\vec{\epsilon}} + \lambda \, \mathrm{Sp}(
+                   \,\hat{\vec{\epsilon}}) \, \mathbb{I} \; , \\
+    \hat{\vec{\sigma}} &= \mu \lk \nablav \vec{u} +  \lk \nablav \vec{u} \rk^T \rk
+                   + \lambda \lk \nablav
+                   \cdot \vec{u} \rk \,\mathbb{I}  \; , \\
+    \hat{\sigma}_{ij} &= \mu \lk  \frac{\partial u_i}{\partial p_j} +
+                  \frac{\partial u_j}{\partial p_i} \rk + \lambda
+                  \,\frac{\partial u_k}{\partial p_k} \delta_{ij}
+                  \label{eq:kontmech_Spannungstensor1}
+  \end{align}
+\end{subequations}
+  mit der Einheitsmatrix $\mathbb{I}$. $\mathrm{Sp}(\hat{\vec{\epsilon}})$ ist die Spur des Tensors $\hat{\vec{\epsilon}}$ und die sogenannten \emph{Lam\'e}\footnote{Gabriel Lam\'e (1795--1870) war ein französischer Mathematiker und Physiker, der 
+auf dem Gebiet der Differentialgeometrie und der mathematischen Physik arbeitete. Er wurde berühmt für seine allgemeine Lösung der Wärmeleitungsgleichung.}\indexp{Lam\'e, Gabriel}-\emph{Konstanten}\index{Lam\'e-Konstanten} sind gegeben durch
+\begin{subequations}
+  \begin{align}
+    \lambda &= \frac{\nu}{(1-2\nu)(1+\nu)} E \; ,\\
+    \mu &= G = \frac{1}{2} \frac{1}{1+\nu} E \; ,
+  \end{align}
+\end{subequations}
+wobei die zweite Lam\'e-Konstante $\mu$ dem bereits eingeführten Torsions-
+oder \gls{Schubmodul}\index{Torsionsmodul}\index{Schubmodul} $G$ aus den
+Gleichungen \eqref{eq:kontmech_Torsionsmodul1} bzw.
+\eqref{eq:kontmech_Torsionsmodul3} entspricht und $\lambda$ offensichtlich in enger Beziehung zum Elastizitätsmodul $E$ steht.
+
+Dass die eingeführten Elastizitäts- und Torsionsmodule aus den Kapiteln
+\ref{kap:kontmech_festKontraktionen} und \ref{kap:kontmech_festtorsion}
+die richtigen Spezialfälle darstellen, die im dreidimensionalen
+Spannungstensor enthalten sind, wird in \probref{kontmech_ElastizitaetTorsion}
+herausgearbeitet. Als eine wichtige Anwendung von Spannungen in Körpern wird
+in \probref{kontmech_BogenSpannung} die Spannung eines Bogens durch eine
+Saite untersucht.
+  
+Bleiben in der Dynamik alle Beziehungen linear, lautet die Bewegungsgleichung
+für die Verzerrungen $\vec{u}$
+  \begin{align}
+    \varrho \,\frac{\partial^2 \vec{u}}{\partial t^2}
+    &= \nabla \cdot \hat{\vec{\sigma}} + \varrho \,\vec{f} \quad \text{\bzw} \quad
+    \varrho \,\frac{\partial^2 u_i}{\partial t^2}
+    = \sum_j \frac{\partial \hat{\sigma}_{ji}}{\partial p_j} + \varrho\, f_i \; ,
+  \end{align}
+wobei $\vec{f}$ eine auf ein Volumenelement angreifende Kraftdichte in $\SI{}{\newton\per\metre\cubed}$ und
+$\varrho$ die Massendichte ist.

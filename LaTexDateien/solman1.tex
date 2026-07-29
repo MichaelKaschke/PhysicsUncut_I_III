@@ -1,0 +1,53 @@
+%\input{header.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+
+\part*{Lösungsteil \\ \medskip Band I Mechanik} \label{chap:solman_solutions}
+\addcontentsline{toc}{part}{Lösungsteil - Band I Mechanik}
+\bibliographystyle{spphys}
+\def\chapname{solman_solutions}
+
+\makeatletter
+\@addtoreset{chapter}{part}
+\makeatother
+\renewcommand{\thechapter}{L\,\arabic{chapter}}
+\setcounter{chapter}{0}
+
+%\begin{bibunit}[spphys]
+
+\input{bew/bew_lsguebungen}
+\clearpage
+\input{hm/hm_lsguebungen}
+\clearpage
+\input{adyn/adyn_lsguebungen} 
+\clearpage
+\input{kontmech/kontmech_lsguebungen} 
+
+%\part*{Anhang \matlab{}} \label{chap:solman_matlab}
+%\addcontentsline{toc}{part}{\matlab{} Anhang}
+%\def\chapname{solman_matlab}
+
+%\renewcommand{\thechapter}{M\,\arabic{chapter}}
+%\makeatletter
+%\@addtoreset{chapter}{part}
+%\makeatother
+%\setcounter{chapter}{4}    % sonst wird bei mir der Inhalt von L1 bis L4 angezeigt, obwohl Inhaltsverzeichnis stimmt
+%
+%%\input{solman/solman_math_basics} 
+%
+%\clearpage
+%\input{solman/solman_matlab_basics} 
+
+%\clearpage
+%\input{solman/solman_tables} 
+%
+%\clearpage
+%\input{solman/solman_formeln} 
+%\clearpage
+
+\clearpage
+\bibliography{referenzen}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\cdot
+%\input{footer.tex}

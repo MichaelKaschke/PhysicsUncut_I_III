@@ -1,0 +1,299 @@
+\input{headerAB}
+
+%\thispagestyle{plain}%\mp
+%\restoregeometry 
+%\begin{textblock}{3}(0,0)
+%\includegraphics{BuchtitelseiteWB4.pdf}
+%\end{textblock}
+%\leavevmode
+%\newpage 
+%\thispagestyle{empty}
+%\quad 
+%\newpage
+\pagestyle{fancy}
+
+\author{Michael Kaschke, Holger Cartarius und Roger Tobin}
+\title{Fingerübungen der Physik\\ \\
+Band IV \\ \\ Elektrodynamik \\ \\ Workbook\\}
+
+\subtitle{Ein Übungsbuch zu im Studium selten behandelten Kapiteln der Physik mit ausführlich dargestellten Problemen und \matlab-Programmen.}
+\smallskip
+\maketitle
+
+\begin{dedication}
+\;\;\;Für alle Studenten und Studentinnen, die uns mit ihren neugierigen Fragen immer wieder
+zeigen, dass es in der Physik auch in den kleinsten Nischen ganz viel zu entdecken gibt und \\
+für alle, die Freude an der Schönheit und der großartigen Vielfalt der Physik gefunden haben \\
+oder vielleicht auch mit Hilfe dieses Buches für sich entdecken mögen.\\
+\medskip
+\textsc{Michael Kaschke, Holger Cartarius \\ 
+und Roger Tobin}\\ 
+\medskip
+\medskip
+\end{dedication}
+\frontmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%>
+
+\clearpage
+\include{vorwort4}
+
+\pdfbookmark[1]{Inhaltsverzeichnis}{toc}
+\tableofcontents
+\setcounter{tocdepth}{3}
+
+\mainmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%>
+
+
+% Ab hier die Zusammenfassung von Band I-III
+
+\phantomsection
+\addcontentsline{toc}{part}{Zusammenfassung Inhalt Band I-III}
+\thispagestyle{empty}
+  \begin{flushright}
+    \LARGE
+    \textbf{Inhalt von Band I-III \\}
+  \end{flushright}
+  \vspace*{\fill}
+\newpage
+
+\input{bew/bew_zusammenfassung}
+\input{kontmech/kontmech_zusammenfassung}
+\input{hm/hm_zusammenfassung}
+\input{adyn/adyn_zusammenfassung}
+\input{aero/aero_zusammenfassung}
+\input{spo/spo_zusammenfassung}
+% Ende Zusammenfassung
+
+
+\setcounter{chapter}{6}
+%\setcounter{section}{6}
+
+\newpage
+\phantomsection
+\addcontentsline{toc}{part}{Band IV - Elektrodynamik}
+\thispagestyle{empty}
+  \begin{flushright}
+    \LARGE
+    \textbf{Band IV \\ \bigskip Elektrodynamik \\}
+  \end{flushright}
+  \vspace*{\fill}
+
+%% Achtung diese Zeile auch in edynAB aktivieren 
+\addtocontents{toc}{\protect\setcounter{tocdepth}{4}}% alles zeigen bei WorkBook
+
+\include{edynAB}
+\newpage
+\include{srtAB}
+
+
+
+\clearpage
+\begingroup
+\let\cleardoublepage\relax
+\newpage
+\phantomsection
+% -----------------------------
+% Abkürzungen
+% -----------------------------
+\verzeichnisueberschrift{Abkürzungsverzeichnis}
+\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
+\begin{acronym}[NASA]
+  \acro{NASA}{National Aeronautics and Space Administration}
+  \acro{ESO}{European Southern Observatory}
+\end{acronym}
+% -----------------------------
+% Symbole
+% -----------------------------
+\nomenclature[LA]{$A$}{Fläche, Querschnitt}
+\nomenclature[LB]{$\vec{B}$}{Magnetische Flussdichte}
+\nomenclature[LC]{$c$, $c_0$}{Lichtgeschwindigkeit}
+\nomenclature[LD]{$\vec{D}$}{dielektrische Verschiebung}
+\nomenclature[LE]{$\vec{E}$}{elektrische Feldstärke}
+\nomenclature[LHDach]{$\hat{\vec{H}}$}{komplexe Amplitude der magnetischen Feldstärke}
+\nomenclature[LEDach]{$\hat{\vec{E}}$}{komplexe Amplitude der elektrischen Feldstärke}
+\nomenclature[LEFT]{$\tilde{\vec{E}}$}{Fourier-Transformierte der elektrischen Feldstärke}
+\nomenclature[LF]{$\mathcal{F}$}{Fläche, Oberfläche}
+\nomenclature[LG]{$\mathcal{G}$}{Grenzfläche}
+\nomenclature[LHa]{$\vec{H}$}{magnetische Feldstärke}
+\nomenclature[LJf]{$\BFu$}{Bessel-Funktion}
+\nomenclature[LJfs]{$\sB$}{sphärische Bessel-Funktion}
+\nomenclature[LK]{$\mathcal{K}$}{Kurve}
+\nomenclature[LKw]{$k$}{Wellenzahl}
+\nomenclature[LKwv]{$\vec{k}$}{Wellenzahlvektor}
+\nomenclature[LL]{$L$}{Länge, Abstand}
+\nomenclature[LM]{$\vec{M}$}{Magnetisierung}
+\nomenclature[LNf]{$\NeuFu$}{Neumann-Funktion}
+\nomenclature[LNfs]{$\sNeu$}{sphärische Neumann-Funktion}
+\nomenclature[LP]{$\vec{P}$}{Polarisation, Polarisierbarkeit}
+\nomenclature[Lpvec]{$\vec{p}$}{Dipolmomentdichte}
+\nomenclature[LQ]{$Q$}{elektrische Ladung}
+\nomenclature[LR]{$R$}{elektrischer Widerstand}
+\nomenclature[LV]{$V$}{Volumen}
+\nomenclature[LVa]{$\mathcal{V}$}{Volumen}
+\nomenclature[Ldf]{$\D \vec{f}$}{differentielles Flächenelement}
+\nomenclature[Ldr]{$\D \vec{r}$}{differentieller Raumvektor}
+\nomenclature[Lds]{$\D s$}{differentielles Wegelement}
+\nomenclature[LHf]{$\HankFu$}{Hankel-Funktion}
+\nomenclature[LHfs]{$\sHank$}{sphärische Hankel-Funktion}
+\nomenclature[Lja]{$\vec{j}$}{elektrische Stromdichte}
+\nomenclature[LZa]{$Z$}{Impedanz}
+\nomenclature[LZa0]{$Z_0$}{Vakuum-Impedanz, freie Raumimpedanz}
+\nomenclature[LUa]{$U$}{Potentialfunktion}
+\nomenclature[LSa]{$\vec{S}$}{Poynting-Vektor}
+\nomenclature[Lwa]{$w$}{Energiedichte des elektromagnetischen Felds}
+\nomenclature[Lex]{$\veceX,\vec{e}_i$}{Einheitsvektoren im kartesischen Koordinatensystem}
+\nomenclature[LTA]{$T$}{Periodendauer, Teitdauer}
+\nomenclature[LpA]{$\vec{p}$}{Impuls}
+\nomenclature[LPA]{$P$}{Leistung}
+\nomenclature[LcPhase]{$c_\text{Ph}$}{Phasengeschwindigkeit}
+\nomenclature[LvGruppe]{$v_\text{Gr}$}{Gruppengeschwindigkeit}
+\nomenclature[LJA]{$\mathbb{J}$}{Jones-Matrix}
+\nomenclature[LRA]{$\mathbb{R}(\alpha)$}{Rotations-Matrix um Winkel $\alpha$}
+\nomenclature[LRAxyz]{$\mathbb{R}_x,\mathbb{R}_i$}{Rotations-Matrix Hauptachsen}
+\nomenclature[LPA]{$P$}{Leistung}
+\nomenclature[Lva]{$\vec{v}$}{Geschwindigkeitsvektor}
+\nomenclature[Lde]{$d_e$}{Eindringtiefe}
+\nomenclature[Ln]{$n$}{Brechungsindex}
+\nomenclature[LCH]{$n$}{Cauchy-Hauptwert}
+\nomenclature[LRe]{$\Re(z)$}{Realteil von $z$}
+\nomenclature[LIm]{$\Im(z)$}{Imaginärteil von $z$}
+
+
+\nomenclature[Gxchie]{$\chi_e$}{elektrische Suszeptibilität}
+\nomenclature[Gxchim]{$\chi_m$}{magnetische Suszeptibilität}
+\nomenclature[Geps]{$\varepsilon$, $\varepsilon_0$}{Dielektrizitätskonstante}
+\nomenclature[Gmu]{$\mu$, $\mu_0$}{magnetische Permeabilität}
+\nomenclature[Gphia]{$\varphi$}{Phase}
+\nomenclature[Gla]{$\lambda$}{Wellenlänge}
+\nomenclature[Gphie]{$\Phi_e$}{elektrischer Fluss}
+\nomenclature[Gphim]{$\Phi_m$}{magnetischer Fluss}
+\nomenclature[Grho]{$\rho$}{elektrische Ladungsdichte}
+\nomenclature[Gsigma]{$\sigma$}{elektrische Leitfähigkeit}
+\nomenclature[Gwomega]{$\omega$}{Kreisfrequenz}
+\nomenclature[GPsi]{$\Psi$}{Potentialfunktion, Wellenfunktion}
+\nomenclature[Grthetaphi]{$r,\theta,\phi$}{sphärische Koordinaten}
+\nomenclature[Grhophiz]{$\rho,\phi,z$}{zylindrische Koordinaten}
+\nomenclature[Grepscom]{$\hat{\varepsilon}$}{komplexe Dielektrizitätskonstante}
+\nomenclature[Ggamma]{$\gamma$}{Reibungskoeffizient}
+\nomenclature[GwomegaP]{$\omega_\text{P}$}{Plasmafrequenz}
+\nomenclature[Gkappa]{$\kappa$}{Absorptionskoeffizient}
+
+
+\nomenclature[OE]{$\mathbb{I}$}{Einheitstensor}
+\nomenclature[Onabla]{$\nablav$}{Nabla-Operator}
+\nomenclature[Oquabla]{$\square$}{Quabla-Operator, d'Alembert-Operator}
+\nomenclature[Odelta]{$\Delta$}{Delta-Operator, Laplace-Operator}
+\nomenclature[Odeltav]{$\vec{\Delta}$}{Vektor-Laplace-Operator}
+\nomenclature[Okets]{$\left\langle \ldots \right\rangle_t$}{Mittelung über die Zeit}
+\nomenclature[Orot]{$\rotv$}{Rotation}
+\nomenclature[Ograd]{$\gradv$}{Gradient}
+\nomenclature[Odiv]{$\divv$}{Divergenz}
+
+%Englisch
+%\nomenclature[LA]{$A$}{area, cross-sectional area}
+%\nomenclature[LB]{$\vec{B}$}{magnetic flux density}
+%\nomenclature[LC]{$c$, $c_0$}{speed of light}
+%\nomenclature[LD]{$\vec{D}$}{electric displacement field}
+%\nomenclature[LE]{$\vec{E}$}{electric field}
+%\nomenclature[LEFT]{$\tilde{\vec{E}$}}{Fourier-transform of the electric field}
+%\nomenclature[LF]{$\mathcal{F}$}{surface, area}
+%\nomenclature[LG]{$\mathcal{G}$}{interface}
+%\nomenclature[LHa]{$\vec{H}$}{magnetic field strength}
+%\nomenclature[LJf]{$\BFu$}{Bessel function}
+%\nomenclature[LJfs]{$\sB$}{spherical Bessel function}
+%\nomenclature[LK]{$\mathcal{K}$}{curve}
+%\nomenclature[LKw]{$k$}{wavenumber}
+%\nomenclature[LKwv]{$\vec{k}$}{wave vector}
+%\nomenclature[LL]{$L$}{length, distance}
+%\nomenclature[LM]{$\vec{M}$}{magnetization}
+%\nomenclature[LNf]{$\NeuFu$}{Neumann function}
+%\nomenclature[LNfs]{$\sNeu$}{spherical Neumann function}
+%\nomenclature[LP]{$\vec{P}$}{polarization, polarisability}
+%\nomenclature[Lpvec]{$\vec{p}$}{dipole moment density}
+%\nomenclature[LQ]{$Q$}{electric charge}
+%\nomenclature[LR]{$R$}{electrical resistance}
+%\nomenclature[LV]{$V$}{volume}
+%\nomenclature[LVa]{$\mathcal{V}$}{volume}
+%\nomenclature[Ldf]{$\D \vec{f}$}{differential surface element}
+%\nomenclature[Ldr]{$\D \vec{r}$}{differential position vector}
+%\nomenclature[Lds]{$\D s$}{differential path element}
+%\nomenclature[LHf]{$\HankFu$}{Hankel function}
+%\nomenclature[LHfs]{$\sHank$}{spherical Hankel function}
+%\nomenclature[Lja]{$\vec{j}$}{electric current density}
+%\nomenclature[LZa]{$Z$}{impedance}
+%\nomenclature[LZa0]{$Z_0$}{free-space impedance}
+%\nomenclature[LUa]{$U0$}{potential}
+%\nomenclature[Lxyz]{$x,y,z$}{cartesian coordinates}
+%\nomenclature[LSa]{$\vec{S}$}{Poynting-vector}
+%\nomenclature[Lwa]{$w$}{energy density of electromagnetic field}
+%\nomenclature[Lex]{$\veceX,\veceY,\veceZ$}{unit vectors of cartesian coordinate system}
+%\nomenclature[LTA]{$T$}{time period, duration}
+%\nomenclature[LpA]{$\vec{p}$}{momentum}
+%\nomenclature[LPA]{$P$}{power}
+%\nomenclature[LHDach]{$\hat{\vec{H}}$}{complex amplitude of magnetic field}
+%\nomenclature[LEDach]{$\hat{\vec{E}}$}{complex amplitude of electric field}
+%\nomenclature[LcPhase]{$c_\text{Ph}$}{phase velocity}
+%\nomenclature[LvGruppe]{$v_\text{Gr}$}{group velocity }
+%\nomenclature[LJA]{$\mathbb{J}$}{Jones-matrix}
+%\nomenclature[LRA]{$\mathbb{R}(\alpha}$}{rotation matrix by angle $\alpha$}
+%\nomenclature[LRAxyz]{$\mathbb{R}_x,\mathbb{R}_y,\mathbb{R}_z$}{principal axis rotation matrix}
+%\nomenclature[Lva]{$\vec{v}$}{velocity vector}
+%\nomenclature[Lde]{$d_e$}{penetration depth}
+%\nomenclature[Ln]{$n$}{refractive index}
+%\nomenclature[LCH]{$n$}{Cauchy principal value}
+%\nomenclature[LRe]{$\Re(z)$}{real part of complex $z$}
+%\nomenclature[LIm]{$\Im(z)$}{imaginary part of complex $z$}
+%
+%
+%\nomenclature[Gxchie]{$\chi_e$}{electric susceptibility}
+%\nomenclature[Gxchim]{$\chi_m$}{magnetic susceptibility}
+%\nomenclature[Geps]{$\varepsilon$, $\varepsilon_0$}{permittivity}
+%\nomenclature[Gmu]{$\mu$, $\mu_0$}{permeability}
+%\nomenclature[Gphia]{$\varphi$}{phase}
+%\nomenclature[Gla]{$\lambda$}{wavelength}
+%\nomenclature[Gphie]{$\Phi_e$}{electric flux}
+%\nomenclature[Gphim]{$\Phi_m$}{magnetic flux}
+%\nomenclature[Grho]{$\rho$}{electric charge density}
+%\nomenclature[Gsigma]{$\sigma$}{electrical conductivity}
+%\nomenclature[Gwomega]{$\omega$}{(angular) frequency}
+%\nomenclature[Gdeltax]{$\delta(x)$}{Delta-Funktion}
+%\nomenclature[GPsi]{$\Psi$}{potential function, wavefunction}
+%\nomenclature[Grthetaphi]{$r,\theta,\phi$}{spherical coordinates}
+%\nomenclature[Grhophiz]{$\rho,\phi,z$}{cylindric coordinates}
+%\nomenclature[Grepscom]{$\hat{\varepsilon}$}{complex permittivity}
+%\nomenclature[Ggamma]{$\gamma$}{coefficient of friction}
+%\nomenclature[GwomegaP]{$\omega_\text{P}$}{plasma frequency}
+%\nomenclature[Gkappa]{$\kappa$}{absorption coefficient}
+%
+%
+%
+%\nomenclature[OE]{$\mathbb{I}$}{unit tensor}
+%\nomenclature[Onabla]{$\nablav$}{nabla operator}
+%\nomenclature[Oquabla]{$\square$}{d'Alembert operator}
+%\nomenclature[Odelta]{$\Delta$}{Laplacian}
+%\nomenclature[Odeltav]{$\vec{\Delta}$}{vector Laplacian}
+%\nomenclature[Okets]{$\left\langle \ldots \right\rangle_t$}{time average}
+%\nomenclature[Orot]{$\rotv$}{curl}
+%\nomenclature[Ograd]{$\gradv$}{gradient}
+%\nomenclature[Odiv]{$\divv$}{divergence}
+
+\newpage
+\phantomsection
+\verzeichnisueberschrift{Liste der verwendeten Symbole}
+\addcontentsline{toc}{chapter}{Liste der verwendeten Symbole}
+\printnomenclature[5.5cm]
+\clearpage 
+\endgroup
+
+
+\clearpage
+\newpage
+\fancyhf{}
+\pagestyle{fancy}
+\fancyhead[LE,RO]{\thepage}
+\include{solmanUeb4WB}   
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{footer} 
+

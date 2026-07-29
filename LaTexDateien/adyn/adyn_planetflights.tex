@@ -1,0 +1,491 @@
+\section{Rendezvous im Weltall}\label{kap:adyn_planetflights}
+
+\subsection{Dynamik und Kinematik eines Kopplungsmanövers }\label{kap:adyn_rendezvous}
+
+Wir wollen uns jetzt das Rendezvous\index{Rendezvouz} (\bzw das Andocken) zwischen zwei Raumschiffen, \zb einem Raumtransporter (\emph{"`Verfolger"'}, englisch \textit{Interceptor, Chaser}, Index J) und einer Raumstation (\zb der ISS) in einer Umlaufbahn  (dem \textit{"`Ziel"'}, englisch \textit{Target}, Index T) anschauen und folgen hier der Darstellung in \cite{Carroll2019}.
+Die mathematische Beschreibung des Rendezvous von zwei Raumschiffen im Weltall ist relativ komplex, was unter anderem auch daran liegt, dass die Bewegung der beiden Raumschiffe zueinander, wenn man sie aus einem mit einem der Raumschiffe verbundenen Koordinatensystem beschreibt, dann in einem rotierenden nicht inertialen Koordinatensystem beschrieben werden muss\footnote{Wir werden dabei gewisse Ähnlichkeiten mit dem Fahren auf einer rotierenden Scheibe (\vgl Übung 1.21 in Band I) feststellen.}.\\
+Wir bezeichnen das Inertialsystem mit Ursprung im Erdmittelpunkt mit $\vec{\Sigma}$ und das mitbewegte System, welches seinen Ursprung im Ziel (in der ISS) mit $\vec{\Sigma}'$. Die $z$-Achsen beider Systeme sind parallel und zeigen senkrecht aus der Bahnebene heraus (\figref{adyn_rendezvousKOS01}). Die Koordinaten des Verfolgers (des Raumtransporters) haben daher einen Strich, wenn sie vom Ziel aus gemessen werden, sie sind ohne Strich, wenn sie von der Erde aus gemessen werden.\\
+Für die Kopplung\footnote{Wir benutzen den Begriff Kopplung und Rendezvous hier synonym, obwohl im strengen Sinne der Astrodynamik mit Rendezvous die Begegnung zweier Raumschiffe durch entsprechende Bahnmanöver und mit Kopplung der gesamte mechanische Vorgang der Verbindung zweier Raumschiffe bezeichnet wird.} zweier Objekte im Weltall muss zum Zeitpunkt $t_\text{K}$ der Kopplung im Koordinatensystem der Erde $\vec{\Sigma}$ \bzw im System des Ziels $\vec{\Sigma}'$ gelten:
+\begin{align}
+\begin{split}
+    \vec{\Sigma}: ~~~~ \vec{r}_\text{T}\lk t_\text{K}\rk &= \vec{r}_\text{J}\lk t_\text{K}\rk ~~ \text{und} ~~~  \dot{\vec{r}}_\text{T}\lk t_\text{K}\rk = \dot{\vec{r}}_\text{J}\lk t_\text{K}\rk \,, \\
+    \vec{\Sigma}': ~~~\,~  \vec{r}'\lk t_\text{K}\rk &= 0 ~~ \text{und} ~~~ \dot{\vec{r}}'\lk t_\text{K}\rk = 0 \,. 
+\end{split} \label{eq:adynrendez01}
+\end{align}
+Die Bedingungen für die Geschwindigkeit sichern eine \anf{weiche} Kopplung.\\
+Wir bezeichnen die Position des Ziels (\figref{adyn_rendezvousKOS01}) im Inertialsystem mit:
+\begin{align}
+    \vec{R} = X\,\vec{e}_x + Y\,\vec{e}_y + 0\,\vec{e}_z = R_0\,\vec{e}_{y'} ~~~~ \text{mit} ~~~~ R_0 = \sqrt{X^2+Y^2}\,,\label{eq:adyn_rendez01}
+\end{align}
+entsprechend die des Verfolgers mit
+\begin{align}
+    \vec{r} = x\,\vec{e}_x + y\,\vec{e}_y + z\,\vec{e}_z\label{eq:adyn_rendez02}\,,
+\end{align}
+\bzw im mitbewegten \KOS\ mit
+\begin{align}
+    \vec{r}' = x'\,\vec{e}_{x'} + y'\,\vec{e}_{y'} + z'\,\vec{e}_{z'}\label{eq:adyn_rendez03}\,.
+\end{align}
+%Um ein Rendezvous im Weltall durchzuführen, ist die Beschreibung der Bewegung als Relativbewegung von Ziel und Verfolger sinnvoll, und zwar am einfachsten vom Ziel aus betrachtet. 
+Es gelten dann folgende Bewegungsgleichungen für die Koordinaten des Verfolgers im nichtinertialen \KOS\ des Ziels:
+\begin{align}
+\begin{split}
+    \vec{r}' &= \vec{r} - \vec{R}\,,\\
+    \dot{\vec{r}}' &= \dot{\vec{r}} - \dot{\vec{R}} - \vec{\omega}'\times\vec{r}'\,,\\
+    \ddot{\vec{r}}' &= \ddot{\vec{r}} - \ddot{\vec{R}} - \vec{\omega}'\times\lk\vec{\omega}'\times\vec{r}'\rk-2\vec{\omega}'\times\dot{\vec{r}}'-\dot{\vec{\omega}}' \times\vec{r}'\,.
+\end{split} \label{eq:adyn_rendez04}
+\end{align} 
+Wir wissen aus der Himmelsmechanik, dass für Kepler-Bahnen Drehimpulserhaltung und $\dot{\vec{\omega}} = 0$ gilt, so dass wir mit dem Kreisbahnradius $R_0$ des Ziels  schreiben können:
+\begin{align}
+    \vec{\omega}' = -\omega_0\,\vecpeZ = -\omega_0\,\veceZ ~~~~ \text{mit} ~~~~ \omega_0 = \sqrt{\frac{G\,m_\text{E}}{R_0{}^3}}\,.  \label{eq:adyn_rendez04a}
+\end{align}
+Für den Term $-\vec{\omega}'\times\lk\vec{\omega}'\times\vec{r}'\rk$ finden wir durch einfache Rechnung:
+\begin{align}
+    -\vec{\omega}' \times\lk\vec{\omega}'\times\vec{r}'\rk = \omega_0{}^2\,\lk x'\, \vecpeX +  y'\, \vecpeY \rk = \omega_0{}^2\,\vec{r}' - \omega_0{}^2\, z'\, \vecpeZ
+\end{align} \label{eq:adyn_rendez05}
+und für $\ddot{\vec{R}}$ 
+\begin{align}
+    \ddot{\vec{R}} = -\omega_0{}^2\,\vec{R}= -\frac{G\,m_\text{E}}{R_0{}^3}\,\vec{R} \label{eq:adyn_rendez06}\,.
+\end{align}
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{RendezvousKOS01.pdf} 
+	\caption[Koordinatensysteme für Rendezvous in der Umlaufbahn.]{Koordinatensysteme für Rendezvous in der Umlaufbahn. Wir nehmen zunächst eine Bewegung der beiden Raumschiffe in der $x$-$y$-Ebene an. Das Inertialsystem $\vec{\Sigma}$ ist in der Erde \bzw dem Mond zentriert, das Nicht-Inertialsystem $\vec{\Sigma}'$ auf dem Ziel-Raumschiff, welches sich mit konstanter Winkelgeschwindigkeit um die Erde \bzw den Mond bewegt. Die $z$-Achse zeigt aus der Papierebene heraus.}
+	\label{abb:adyn_rendezvousKOS01}
+\end{figure}
+
+Unter Berücksichtigung der Gravitationskraft der Erde $\vec{F}_\text{G} =-G\,m_\text{E}\,m_\text{R}\,\vec{r}/ r{}^3 $ und anderer nichtgravitativer Kräfte $\vec{F}$ (wie \zb Reibung, Schub) ergeben sich dann folgende Bewegungsgleichungen (in drei Dimensionen), wobei $m_\text{R}$ die Masse des Raumschiffs ist:
+\begin{align}
+\begin{split}
+    \ddot{\vec{r}}' &= G\,m_\text{E}\lk\frac{1}{R_0{}^3}-\frac{1}{r^3}\rk\,\vec{r} - \omega_0{}^2\,z'\,\vec{e}_{z'} - 2\vec{\omega}\times\dot{\vec{r}}' + \frac{\vec{F}}{m_\text{R}} \\
+    &= \omega_0{}^2 \,\lk 1-\frac{R_0{}^3}{r^3}\rk\,\vec{r} - \omega_0{}^2\,z'\,\vec{e}_{z'} -2\vec{\omega} \times\dot{\vec{r}}' + \frac{\vec{F}}{m_\text{R}} \; .
+\end{split}\label{eq:adyn_rendez07}
+\end{align}
+Für kleine Abstände $r'$ wollen wir diese Gleichung nach $x',\,y',\,z'$ entwickeln und schreiben deshalb den Term mit $1/r^3$ wie folgt:\footnote{Das haben wir ja bereits ausgiebig geübt, \zb im \kap{hm_gezeiten}.}
+\begin{align}
+\begin{split}
+    \lk 1-\frac{R_0{}^3}{r^3}\rk\,\omega_0{}^2\,\vec{r} &= \lek 1-\frac{R_0{}^3}{\sqrt{\lk x'{}^2 + \lk R_0+y' \rk^2+z'{}^2\rk^3}}\rek \,\omega_0{}^2\,\lk \vec{r}' + \vec{R} \rk\\
+    &= \lek 1-\frac{1}{\sqrt{\lk\lk \frac{x'}{R_0}\rk^2 +\lk 1+\frac{y'}{R_0}\rk^2 + \lk \frac{z'}{R_0}\rk^2\rk^3}}\rek\,\,\omega_0{}^2\,\lk \vec{r}' + R_0\,\vec{e}_{y'}\rk \,.
+\end{split} \label{eq:adyn_rendez08}
+\end{align}
+Wir können nun $x'/R_0,\,y'/R_0\,,z'/R_0\,\ll\, 1$ annehmen, so dass der Term in der rechteckigen Klammer zu $ \lk 1-\lk 1+2\frac{y'}{R_0}\rk^{-3/2} \rk  = \lk 1-\lk 1-3\frac{y'}{R_0}\rk\rk$ wird und somit aus \eqref{eq:adyn_rendez08}:
+\begin{align}
+\begin{split}
+    \lk 1-\frac{R_0{}^3}{r^3} \rk \, \omega_0{}^2\,\vec{r} 
+		&\approx \omega_0{}^2 \lk 3\,\frac{y'}{R_0}\rk \lk x'\,\veceX + y'\,\veceY + z'\,\veceZ + R_0\,\vecpeY\rk \approx 3y' \, \omega_0{}^2 \, \vec{e}_{y'} \,.
+\end{split} \label{eq:adyn_rendez09}
+\end{align}
+Analog lässt sich zeigen, dass für das Kreuzprodukt in \eqref{eq:adyn_rendez07} gilt:
+\begin{align}
+    -2\vec{\omega}'\times\dot{\vec{r}}' = -2\,\omega_0\,\dot{y}'\,\vecpeX + 2\,\omega_0\,\dot{x}'\,\vecpeY \,. \label{eq:adyn_rendez10}
+\end{align}
+Damit ergibt sich aus \eqref{eq:adyn_rendez07}:
+\begin{align}
+    \ddot{\vec{r}}' = 3\,\omega_0{}^2\,y'\,\vec{e}_{y'}  - \omega_0{}^2\,z'\,\vec{e}_{z'}  + 2\,\omega_0\,\dot{x}'\,\vec{e}_{y'}  -2\,\omega_0\,\dot{y}'\,\vec{e}_{x'}  + \frac{\vec{F}}{m_\text{R}}\,. \label{eq:adyn_rendez11}
+\end{align}
+Man erkennt an \eqref{eq:adyn_rendez11} die verschiedenen Beiträge. Der erste Term ist eine Gezeitenkraft, die Terme mit $\dot{x}'$ \bzw $\dot{y}'$ sind Beiträge der Coriolis-Kraft. In Komponenten und Matrixform geschrieben wird aus \eqref{eq:adyn_rendez11}:
+\begin{align}
+    \begin{pmatrix}
+        \ddot{x}'\\
+        \ddot{y}'\\
+        \ddot{z}'
+    \end{pmatrix}
+    = 2\omega_0
+    \begin{pmatrix}
+      -\dot{y}'\\
+      \dot{x}'\\
+      0
+    \end{pmatrix}
+    +\omega_0^2
+    \begin{pmatrix}
+        0\\
+        3y'\\
+        -z'
+    \end{pmatrix}
+    + \frac{1}{m_\text{R}}
+    \begin{pmatrix}
+        F_{x'}\\
+        F_{y'}\\
+        F_{z'}
+    \end{pmatrix} \,.\label{eq:adyn_rendez22}
+\end{align}
+%\begin{align}
+    %\begin{pmatrix}
+        %\ddot{x}'\\
+        %\ddot{y}'\\
+        %\ddot{z}'
+    %\end{pmatrix}
+%=
+    %\begin{pmatrix}
+       %-2\,\omega_0\,\dot{y}'\\
+        %2\,\omega_0\,\dot{x}' + 3\,\omega_0{}^2\,y' \\
+        %-\omega_0{}^2\,z'
+    %\end{pmatrix} \,+ \,
+		%\begin{pmatrix}
+       %F_{x'}/m_\text{R}\\
+       %F_{y'}/m_\text{R}\\
+       %F_{z'}/m_\text{R}
+    %\end{pmatrix} \, . \label{eq:adyn_rendez12a}
+%\end{align}
+%\begin{subequations}
+%\begin{align}
+    %\ddot{x}' &= -2\,\omega_0\,\dot{y}' + \frac{F_{x'}}{m_\text{R}} \,,\\
+    %\ddot{y}' &= 2\,\omega_0\,\dot{x}' + 3\,\omega_0{}^2\,y'+ \frac{F_{y'}}{m_\text{R}}\,,\\
+    %\ddot{z}' &= -\omega_0{}^2\,z' + \frac{F_{z'}}{m_\text{R}}\,.
+%\end{align}\label{eq:adyn_rendez12}
+%\end{subequations}
+Diese Gleichungen werden in der Literatur als \emph{Hill\footnote{George William Hill (1838--1914) war ein US-amerikanischer Astronom und Mathematiker, dessen Methoden zur Bahnberechnung von Himmelskörpern bis heute u.a. auch in der Raumfahrt verwendet werden.}-Gleichungen}\index{Hill-Gleichungen}\indexp{Hill, George William} bezeichnet. \\
+Wir wollen diese nun unter der Annahme impulsiver Manöver lösen, so dass wir $F_{x'}$, $F_{y'}$, $F_{z'}$ alle gleich Null setzen können. Die Gleichung für $\ddot{z}'(t)$ ist vollkommen von den anderen Gleichungen entkoppelt und man erhält sofort für $z'\lk t\rk$ die Lösung 
+\begin{align}
+\begin{split}
+    z'\lk t\rk &= z_0'\,\cos\lk \omega_0 t\rk + \frac{\dot{z}_0'}{\omega_0}\,\sin\lk \omega_0 t\rk, \\
+    \dot{z}'\lk t\rk &= -z_0'\,\omega_0\,\sin\lk \omega_0 t\rk + \dot{z}_0'\,\cos\lk \omega_0 t\rk \,.
+\end{split}  \label{eq:adyn_rendez13}
+\end{align} 
+Das bedeutet, dass das Raumschiff in $z'$-Richtung eine harmonische Bewegung ausführt, deren Periode durch die Umlaufzeit $T_0 = 2\pi/\omega_0=2\pi\sqrt{R_0{}^3/(G m_\text{E})}$ des Ziels definiert ist. Das bedeutet aber auch, dass durch die entsprechende Wahl von $z_0'$ und $\dot{z}_0'$ diese Bewegung so kompensiert werden kann, dass das Rendezvous-Manöver nur in der $x',y'$-Ebene stattfindet und dort betrachtet werden muss. In dieser Ebene gibt es nun ein interessantes Wechselspiel von Gezeiten- und Coriolis-Kraft. \\
+Wir wollen die Hill-Gleichungen \eqref{eq:adyn_rendez22} weiter lösen und nehmen die Anfangsbedingungen $x_0'$, $\dot{x}_0'$, $y_0'$ und $\dot{y}_0'$ als gegeben an. Die Lösung erfolgt ähnlich zu der, die in Kapitel 1.3.2 in Band I für die Bewegungsgleichungen eines Massepunktes im \KOS\ der rotierenden Erde gezeigt wurde. Wir erhalten anstelle der zwei Differentialgleichungen zweiter Ordnung nun vier Differentialgleichungen erster Ordnung:
+\begin{subequations}
+\begin{align}
+    x'\lk t\rk = &\lk 6\,y_0' +4\,\frac{\dot{x}_0'}{\omega_0}\rk\,\sin\lk \omega_0 t\rk + \frac{2\dot{y}_0'}{\omega_0}\,\cos\lk \omega_0 t\rk + x_0' -2\,\frac{\dot{y}_0'}{\omega_0} - \lk 6\,\omega_0\,y_0' + 3\,\dot{x}_0'\rk\,t\,, \label{eq:adyn_rendez14a} \\
+\dot{x}'\lk t\rk = &\lk 6\,\omega_0\,y_0' +4\,\dot{x}_0'\rk\,\cos\lk\omega_0 t\rk - 2\,\dot{y}_0'\,\sin\lk\omega_0t\rk - 6\,\omega_0\,y_0'-      3\,\dot{x}_0' \,, 
+\label{eq:adyn_rendez14b} \\
+y'\lk t\rk = &-\lk 3\,y_0' +2\,\frac{\dot{x}_0'}{\omega_0}\rk\,\cos\lk \omega_0 t\rk + \frac{\dot{y}_0'}{\omega_0}\,\sin\lk \omega_0 t\rk + 4\,y_0' + 2\,\frac{\dot{x}_0'}{\omega_0} \,, \label{eq:adyn_rendez14c} \\
+\dot{y}'\lk t\rk = &\lk 3\,\omega_0\,y_0' +2\,\dot{x}_0'\rk\,\sin\lk\omega_0 t\rk + \dot{y}_0'\,\cos\lk\omega_0t\rk \,. \label{eq:adyn_rendez14d}
+\end{align} 
+\end{subequations}
+Diese Gleichungen zusammen mit \eqref{eq:adyn_rendez13} heißen \gls{CWG}\index{Clohessy-Wiltshire-Gleichungen|textbf}\footnote{Diese Gleichungen wurden erstmals im Jahre 1960 im Zusammenhang mit dem Mercury Programm der NASA veröffentlicht.} und beschreiben die Bewegung eines Raumschiffs im Koordinatensystem des Ziels, dem sich der Verfolger annähern will. Sie sind die Lösungen der Bewegungsgleichung für den Verfolger im mitbewegten Koordinatensystem, die man natürlich auch numerisch aus dem DGL-System \eqref{eq:adyn_rendez22} der Hill-Gleichungen mittels \matlab{} berechnen kann (siehe \probref{adyn_rendezvous01}). Sie zeigen durch das Zusammenwirken von Gezeitenkraft und Coriolis-Kraft einige Besonderheiten in den Annäherungstrajektorien, die gerade in der Frühphase der bemannten Raumfahrt für Überraschung sorgten. Man beachte insbesondere die direkte lineare Zeitabhängigkeit in \eqref{eq:adyn_rendez14a}.\\
+Auch die Lösungen der Clohessy-Wiltshire-Gleichungen lassen sich vorteilhaft in der Matrix-Form schreiben (hier für den im kräftefreien Fall):
+\begin{align}
+\begin{split}
+    \begin{pmatrix}
+        x'\\
+        y'\\
+        z'
+    \end{pmatrix}
+    = \,&\frac{\sin\omega_0 t}{\omega_0}
+    \begin{pmatrix}
+        4\dot{x}_0'+6\omega_0 y_0\\
+        \dot{y}_0' \\
+        \dot{z}_0'
+    \end{pmatrix}
+    + \frac{\cos\omega_0 t}{\omega_0}
+    \begin{pmatrix}
+        2\dot{y}_0'\\
+        -2\dot{x}_0' -3\omega_0 y_0'\\
+        \omega_0 z_0'
+    \end{pmatrix} 
+    - t
+    \begin{pmatrix}
+        6\omega_0 y_0' + 3\dot{x}_0'\\
+        0\\
+        0
+    \end{pmatrix}+\frac{1}{\omega_0}
+    \begin{pmatrix}
+        1\omega_0 x_0' - 2\dot{y}_0'\\
+        4\omega_0 y_0' + 2\dot{x}_0'\\
+        0 
+    \end{pmatrix} \,, 
+\end{split} \label{eq:adyn_rendez23}
+\end{align}
+worin $x_0'$, $y_0'$, $z_0'$ die Anfangspositionen und $\dot{x}_0'$, $\dot{y}_0'$, $\dot{z}_0'$ die Anfangsgeschwindigkeiten des Verfolgers relativ zum Ziel sind.\\
+Gibt man bei vorgegebenen Anfangswerten eine Zeit $t_\text{K}$ bis zum Zusammentreffen von Verfolger und Ziel vor (Kopplung), dann kann man aus \eqref{eq:adyn_rendez23} die notwendigen Anfangsgeschwindigkeiten berechnen, die der Verfolger haben muss, damit das Rendezvous gelingen kann:
+\begin{align}
+    \begin{pmatrix}
+        \dot{x}_0'\\ \\
+        \dot{y}_0'\\ \\
+        \dot{z}_0'
+    \end{pmatrix}
+    &= 
+    \begin{pmatrix}
+        C(t_\text{K})\cdot\lek x_0'\,\omega_0\,\sin\omega_0 t_\text{K} + y_0'\,\omega_0\,\lk 6\,\omega_0\, t_\text{K}\,\sin\omega_0  t_\text{K} - 14 + 14\cos\omega_0  t_\text{K}\rk \rek \\ \\
+        C(t_\text{K})\cdot\lek 2\,x_0'\,\omega_0\,\lk 1-\cos\omega_0  t_\text{K}\rk + y_0'\,\omega_0\, \lk 4\,\sin\omega_0 t_\text{K} \linebreak -3\,\omega_0 t_\text{K}\,\cos\omega_0 t_\text{K} \rk \rek\\ \\
+			 - \omega_0\,z_0'/\tan\lk\omega_0 t_\text{K}\rk
+    \end{pmatrix}  \label{eq:adyn_rendez24} \\
+		\text{mit} ~~ C(t_\text{K}) &= \lek 3\,\omega_0\, t_\text{K}\,\sin\omega_0  t_\text{K} - 8\,\lk 1- \cos\omega_0  t_\text{K}\rk \rek^{-1}\,. \nonumber
+\end{align}
+Wir leiten noch eine Beziehung für die Energie des Verfolgers im \KOS\ des Ziels her. 
+Da die Coriolis-Kraft immer senkrecht zur Bewegungsrichtung  ist, leistet sie keine Arbeit. Die einzige Kraft, die in \eqref{eq:adyn_rendez22} dann Arbeit leisten kann ist die Gezeitenkraft entlang der $y'$-Koordinate. 
+Es ergibt sich damit für die Energie des Verfolger im \KOS\ des Ziel:
+\begin{align}
+    E &= T + U = \frac{1}{2}\,m_\text{R}\,\lk \dot{x}'^2 + \dot{y}'^2\rk -\int_0^{y'} F\D \tilde{y} = \frac{1}{2}\,m_\text{R}\,\lk \dot{x}'^2+\dot{y}'^2\rk -m_\text{R}\,3\,\omega_0\,\int\limits_0^{y'} \tilde{y}\D \tilde{y} \nonumber \\
+    &= \frac{1}{2}\,m_\text{R}\,\lek \dot{x}'^2+\dot{y}'^2 - 3\,\omega_0\,y'^2\rek = \con \,.  \label{eq:adyn_rendez25}
+\end{align}
+Wir können daraus abschätzen, ab welchem relativen Abstand $y'$ zwischen Ziel und Verfolger die Geschwindigkeit des Verfolgers durch die Gezeitenkraft merklich verändert wird. Da $\omega_0 = 2\pi/T_\text{K} \approx 2\pi / \SI{1}{\hour} \approx 2\pi/\SI{3600}{\second} \approx \SI{e-3}{\radian\per\second}$ muss $y'\leq \SI{1}{\km}$ sein, damit $v= \sqrt{\dot{x}'^2+\dot{y}'^2}$ sich merklich, \dh um $\approx \SI{1}{\metre\per\second}$, ändert. Anders gesagt: Man muss die Clohessy-Wiltshire-Gleichungen\index{Clohessy-Wiltshire-Gleichungen} erst ab Relativabständen von $<\SI{1}{\km}$ berücksichtigen, ansonsten kann man rechnen, als ob die Bewegung in einem Inertialsystem stattfindet. Wir wollen nun die Rückkehr eines Astronauten zu seinem Mutterschiff (\zb der ISS) behandeln.
+%NEBEBENRECHNUNG %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\begin{nebenrechnungNeu} {Clohessy-Wiltshire-Gleichungen}
+%
+%Wir starten von der Darstellung \eqref{eq:adyn_rendez23}:
+%\begin{align}
+%\begin{split}
+    %\omega\,x &= \lk 6 \omega\, y_0 + 4\dot{x}_0\rk\,  \sin \omega t + 2 \dot{y}_0 \, \cos \omega t + \omega t \, \lk -6 \omega\,  y_0 - 3 \dot{x}_0\rk  + \omega\,  \lk x_0 - 2 \dot{y}_0\rk\,,  \\
+    %\omega \, y &= \lk \dot{y}_0\rk \,  \sin \omega t + \lk -3 \omega \, y_0 - 2 \dot{x}_0\rk \,  \cos \omega t + \omega \, \lk 4 y_0 + 2 \dot{x}_0\rk  \, ,\\
+    %\omega \, z &= \dot{z}_0\, \sin \omega t + \omega\,  z_0 \, \cos \omega t +0
+%\end{split}\label{eq:adyn_CWEq_01}
+%\end{align}
+%
+%Umordnung nach $\dot{x}_0, \dot{y}_0, \dot{z}_0$ und $x = y = z = 0$:
+%
+%\begin{align}
+%\begin{split}
+    %\begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix} =\,
+    %&\underbrace{\begin{pmatrix} 4 \sin \omega t - 3 \omega t & 2 \cos \omega t - 2 & 0 \\
+    %-2 \cos \omega t + 2 & \sin \omega t & 0 \\
+    %0 & 0 & \sin \omega t 
+    %\end{pmatrix} }_{\substack{\hat{A}}}
+    %\begin{pmatrix} \dot{x}_0 \\ \dot{y}_0 \\ \dot{z}_0 \end{pmatrix} 
+    %\\ &+ \underbrace{\begin{pmatrix} 6 \omega \,y_0\, \sin \omega t - 6 \omega^2 t\,y_0 + \omega x_0 \\
+    %-3 \omega \,y_0\, \cos \omega t + 4 \omega\, y_0 \\
+    %\omega\, z_0\, \cos \omega t 
+    %\end{pmatrix}}_{\substack{-\hat{B}}}
+%\end{split}\label{eq:adyn_CWEq_02}
+%\end{align}
+%\begin{align}
+    %-\hat{B} &= \omega \, 
+    %\begin{pmatrix}
+        %6 y_0\,\sin \omega t - 6 \omega t \,y_0 + x_0 \\ 
+        %-3 y_0\, \cos \omega t + 4 y_0 \\ 
+        %z_0\, \cos \omega t 
+    %\end{pmatrix} \label{eq:adyn_CWEq_03}\\
+    %\rightarrow \quad \hat{B} &= \omega \,
+    %\begin{pmatrix}
+        %-6 y_0 \,\sin \omega t + 6 \omega t\, y_0 - x_0 \\ 
+        %3 y_0\, \cos \omega t - 4 y_0 \\ 
+        %-z_0\, \cos \omega t 
+    %\end{pmatrix} \label{eq:adyn_CWEq_04}\\
+  %\rightarrow\quad  \hat{B} &=      \hat{A} \hat{X}\nonumber\\
+    %\rightarrow\quad \hat{X} &= 
+    %\begin{pmatrix} 
+        %\dot{x}_0 \\ 
+        %\dot{y}_0 \\ 
+        %\dot{z}_0 
+    %\end{pmatrix} 
+    %= \hat{A}^{-1}\, B\label{eq:adyn_CWEq_05}
+%\end{align}
+%\subsubsection*{Cramersche Regel}
+%\begin{align}
+    %\dot{x}_0 &= \frac{\det \hat{A}_x}{\det \hat{A}}, \quad
+    %\dot{y}_0 = \frac{\det \hat{A}_y}{\det \hat{A}}, \quad
+    %\dot{z}_0 = \frac{\det \hat{A}_z}{\det \hat{A}}\label{eq:adyn_CWEq_06}
+%\end{align}
+%\begin{align}
+    %\det \hat{A} &= 
+    %\begin{vmatrix}
+        %\lk 4 \sin \omega t - 3 \omega t \rk & -2\, \lk 1 - \cos \omega t \rk & 0 \\
+        %+2 \,\lk 1 - \cos \omega t \rk & \sin \omega t & 0 \\
+        %0 & 0 & \sin \omega t
+    %\end{vmatrix} \label{eq:adyn_CWEq_07}
+%\end{align}
+%\begin{align*}
+    %&= \lk 4 \sin \omega t - 3 \omega t \rk\, \sin^2 \omega t + 4 \sin \omega t \,\lk 1 - \cos \omega t \rk^2\\
+    %&= \sin \omega t \,
+    %\lk 4 \sin^2 \omega t - 3 \omega t \,\sin \omega t + 4 + 4 \cos^2 \omega t - 8 \cos \omega t \rk\\
+    %&= \sin \omega t \,
+    %\lek 8 \,\lk 1 - \cos \omega t \rk - 3 \omega t\, \sin \omega t \rek
+%\end{align*}
+%\begin{align}
+    %\det \hat{A}_z &=
+    %\begin{vmatrix}
+         %4 \sin \omega t - 3 \omega t & -2 \,\lk 1 - \cos \omega t \rk & -6 \omega \,y_0\, \sin \omega t + 6 \omega^2 t\, y_0 - \omega \,x_0 \\
+        %2 \,\lk 1 - \cos \omega t \rk & \sin \omega t & -3 \omega \,y_0\, \cos \omega t - 4 \omega \,y_0 \\
+        %0 & 0 & -\omega \,z_0\, \cos \omega t
+    %\end{vmatrix}\\
+    %&= -\lk 4 \sin \omega t - 3 \omega t \rk \,\sin \omega t \,\omega \,z_0 \,\cos \omega t - 4 \omega \,z_0 \,\cos \omega t \,\lk 1 - \cos \omega t \rk^2\nonumber\\
+    %&= -\cos \omega t \,\omega \,z_0 \,
+    %\lk 4 \sin^2 \omega t - 3 \omega t \,\sin \omega t + 4 + 4 \cos^2 \omega t - 8 \cos \omega t \rk \nonumber\\
+    %&= -\cos \omega t \,\omega \,z_0 \,
+    %\lek 8 \,\lk 1 - \cos \omega t \rk - 3 \omega t \,\sin \omega t \rek \nonumber\\
+    %\rightarrow \quad \dot{z}_0 &= - \frac{\cos \omega t\, \omega\, z_0}{\sin\omega t} = -\frac{\omega\,z_0}{\tan\omega t}\label{eq:adyn_CWEq_09}
+%\end{align}
+%\begin{align}
+    %\det \hat{A}_x &=
+    %\begin{vmatrix}
+        %6 \omega \,y_0\, \sin \omega t - 6 \omega^2 \,t \,y_0 + \omega \,x_0 & -2 \,\lk 1 - \cos \omega t \rk & 0 \\
+        %-3 \omega\, y_0\, \cos \omega t + 4 \omega\, y_0 & \sin \omega t & 0 \\
+        %\omega\, z_0\, \cos \omega t & 0 & \sin \omega t
+    %\end{vmatrix}\label{eq:adyn_CWEq_10}
+%\end{align}
+%
+%\end{nebenrechnungNeu}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%BEISPIEL 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{Rückkehr eines Astronauten zur Raumstation}  
+Wir nehmen folgende Parameter an: 
+\begin{align*}
+    h_\text{ISS} &= \SI{420.0}{\km}\,, ~ R_0 = \SI{6778}{\km} \,,~
+    T_\text{P}   = \SI{ 92.4}{\min}\,, ~ \omega_0 = \SI{1.13e-3}{\radian\per\second}\,,~  x_0' = y_0' = \SI{100}{\metre}\,, ~\dot{x}_0' = \dot{y}_0' = 0\,.
+\end{align*}
+\begin{enumerate}
+    \item [a)]
+    Was passiert, wenn der Astronaut \anf{nichts} macht?
+    \begin{align}
+        x'\lk t\rk &= x_0'-6\,y_0'\,\lek\omega_0 t - \sin\lk\omega_0 t\rk\rek\,, ~~~ y'\lk t\rk = y_0' +3\,y_0'\,\lek 1-\cos\lk\omega_0t\rk\rek\,. \label{eq:adyn_rendez26}
+    \end{align}
+    Der Astronaut wird sich durch die Gezeitenkraft in $x'$-Richtung immer weiter von der ISS entfernen und dabei durch die Coriolis-Kraft in $y'$-Richtung eine Art schwingende Bewegung ausführen (\figref{adyn_rendezvous02}).
+		
+	\begin{figure}[H]
+	\includegraphics[width=\textwidth]{RendezvousAstronaut01.pdf} 
+	\caption[Astronaut außerhalb der ISS.]{Astronaut außerhalb der ISS. Der Astronaut befindet sich initial bei $x_0'=y_0'=\SI{100}{\metre}$ und bewegt sich mit einer Anfangsgeschwindigkeit $v_0$ (also keine initiale Relativgeschwindigkeit zum Ziel, d.h. $\dot{x}_0'=\dot{y}_0=0'$) genau in Richtung auf die Station zu. Selbst bei $v_0=0$ entfernt sich der Astronaut mit der Zeit von der Raumstation. Dargestellt sind die Lösungen der Clohessy-Wiltshire-Gleichungen wie im \mscr~ \mladynref{Rendezvous01.m} im Detail ausgeführt.}
+	\label{abb:adyn_rendezvous02}
+\end{figure}
+
+  \item[b)]
+    Was passiert, wenn der Astronaut seinen Rückkehrantrieb (englisch \textit{Return-Thruster}) mit einem Antriebsvermögen von $\SI{1}{\metre\per\second}$ einsetzt?   
+		Intuitiv \anf{zielt} der Astronaut mit seinem auf dem Rückstoß-Prinzip basierenden Thruster genau in Richtung ISS, also mit
+    \begin{align*}
+        \vec{v}_0 = 
+        \begin{pmatrix}
+            \dot{x}_0'\\
+            \dot{y}_0'\\
+            \dot{z}_0'
+        \end{pmatrix}
+        = \frac{1}{\sqrt{2}}
+        \begin{pmatrix}
+            1\\
+            1\\
+            0
+        \end{pmatrix}
+        \SI{}{\metre\per\second}\,.
+    \end{align*}
+    Leider wird durch die kombinierte Wirkung der Gezeiten und Coriolis-Kraft der Astronaut die ISS verfehlen, wie Gleichung \eqref{eq:adyn_rendez23} und \figref{adyn_rendezvous02} und \figref{adyn_rendezvous03}a zeigen.\\
+    \item[c)]
+    Wie muss der Astronaut beim Abfeuern seines Thrusters zielen, damit er die ISS sicher erreicht? \\
+		$\dot{x}_0'$, $\dot{y}_0'$ ergeben sich aus \eqref{eq:adyn_rendez24}. Wir können noch eine kleine Eigengeschwindigkeit des Astronauten vor dem Starten des Thrusters mit $\vec{v}_\text{vor} = \lk\dot{x}_{\text{vor},0'}, \dot{y}_{\text{vor},0'}\rk$ annehmen und erhalten den richtigen Zielwinkel:
+    \begin{align}
+        \tan\lk\gamma\rk = \frac{\Delta v_y}{\Delta v_x} = \frac{\dot{y}_0' -\dot{y}_{\text{vor},0'}}{\dot{x}_0'- \dot{x}_{\text{vor},0'}} \,. \label{eq:adyn_rendez27}
+    \end{align}
+\end{enumerate}
+In der Realität wird sich der Astronaut natürlich in kleinen Minischüben iterativ der ISS nähern, doch auch dafür gelten die abgeleiteten Formeln.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{RendezvousAstronaut02.pdf} 
+	\caption[Astronaut außerhalb der ISS.]{Astronaut außerhalb der ISS. \fa Der Astronaut befindet sich initial bei $x_0'=y_0'=\SI{25}{\metre} \ldots \SI{225}{\metre}$ und "`zielt"' mit seinem Antriebssystem  mit einer Anfangsgeschwindigkeit $v_0$ genau in Richtung auf die Station. Lösung der Hill-Gleichungen. \fb Der Astronaut befindet sich ebenfalls initial bei $x_0'=y_0'=\SI{25}{\metre} \ldots \SI{225}{\metre}$ und bewegt sich mit einem optimierten Zielwinkel $\gamma$ der Richtung Anfangsgeschwindigkeit von $v_0 = \SI{1}{\metre\per\second}$ auf die Station zu (Lösung der Clohessy-Wiltshire-Gleichungen\index{Clohessy-Wiltshire-Gleichungen}). Offensichtlich wird der Astronaut erst bei Entfernung von kleiner als 50 m bei direkter Anzielung der Station auch bei dieser wirklich ankommen. Die Rechnungen sind im \mscr~ \mladynref{Rendezvous02.m} im Detail ausgeführt.}
+	\label{abb:adyn_rendezvous03}
+\end{figure}
+
+\label{bsp:adyn_stranded_astronaut}
+\end{example}
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Rendezvous Space Shuttle und ISS}\label{kap:adyn_rendezvous_ISS}
+
+Ganz analog zu den Rechnungen im vorhergehenden Kapitel kann man das Weltraum-Rendezvous von einem Raumtransporter und der ISS berechnen. 
+Wenn zwei Raumschiffe vor einer Kopplung für längere Zeit in einem konstanten Abstand fliegen sollen, ist dies ohne ständigen Treibstoffverbrauch nur möglich, wenn sich beide in der gleichen Umlaufbahn befinden. Ist dies nicht der Fall,  wird der Verfolger vom Ziel aus gesehen eine Ellipsenbahn (\bzw ellipsenähnliche Bahn) beschreiben, die man sich leicht über die Berechnung im Inertialsystem aus den Kepler-Bahnen beschaffen kann. Dabei muss man berücksichtigen, dass das Koordinatensystem $\vec{\Sigma}'$ in der Zeit mitgedreht werden muss, denn die $y'$-Achse soll ja immer radial nach außen zeigen.
+Zur Berechnung der von der ISS beobachteten Bahnen über die Hill- \bzw CW-Gleichungen muss man neben den Anfangskoordinaten $\vec{r}_0,\, \vec{R}_0$ auch die Anfangsgeschwindigkeiten $\vec{v}_0,\, \vec{V}_0$, sowie deren Umrechnung in das mitbewegte \KOS\ der ISS (des Ziels) kennen. 
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{RendezvousKOS02.pdf} 
+	\caption[Koordinatensysteme für Rendezvous in der Umlaufbahn.]{Koordinatensysteme für Rendezvous in der Umlaufbahn. Wir nehmen eine Bewegung der beiden Raumschiffe in der $x$-$y$-Ebene an. Die $z$-Achse zeigt aus der Papierebene heraus. Für das Ziel wird vereinfachend eine Kreisbahn angenommen, der Verfolger befindet sich auf einer elliptischen Bahn. Ebenfalls wurde vereinfachend angenommen, dass zum Zeitpunkt $t=0$ die Achsen $\veceY,\, \vecpeY$ in die gleiche Richtung zeigen und $\veceY$ auch zum Perigäum der Bahn des Verfolgers.}
+	\label{abb:adyn_rendezvousKOS02}
+\end{figure}
+Die Situation ist in \figref{adyn_rendezvousKOS02} gezeigt. Man liest für die Anfangsbedingungen ab:
+	\begin{align}
+	\begin{split}
+		\vec{r}_0 &= x_0\, \veceX + y_0\,\veceY \,, \\
+		\vec{R}_0 &= (0,R_0)\,, \\
+		\vec{r}_0' &= x_0'\, \vecpeX + y_0'\,\vecpeY \,.
+		\end{split} \label{eq:adyn_rendez28}
+	\end{align}
+Die beiden Vektoren $\vec{R}_0,\,\vec{r}_0$ bilden einen Winkel $\theta_0$, der sich mit $\Delta h_0 =\Delta h(t_0)$ aus
+	\begin{align}
+		\sin\theta_0 &= -\frac{x_0'}{R_0-\Delta h_0} ~~~\text{\bzw}~~~ \cos\theta_0 = -\frac{R_0+y_0'}{R_0-\Delta h_0}\, \label{eq:adyn_rendez29}
+	\end{align}
+bestimmen lässt. Für die Anfangsgeschwindigkeiten finden wir:
+	\begin{align}
+	\begin{split}
+		\vec{V}_0 \,=\,&\dot{\vec{R}}_0 \,= \,R_0\,\omega_\text{T} \,\veceX\,,\\
+		\vec{v}_0 \,=\,&\dot{\vec{r}}_0 \,= \,v_{\text{J},0} \lk \cos\theta_0\,\veceX + \sin\theta_0\,\veceY \rk\,.\\
+	\end{split}  \label{eq:adyn_rendez30}
+	\end{align}
+Befindet sich der Verfolger auch auf einer Kreisbahn mit dem Radius $R_0-\Delta h_0$, dann ist $ v_{\text{J},0} = \omega_\text{J}\,(R_0-\Delta h_0)=\sqrt{G m_\text{M}/(R_0-\Delta h_0)}$, ansonsten bestimmt sich $v_{\text{J},0}$ aus der Lösung der Kepler-Gleichung \bzw der \gls{visvivaadyn} \eqref{eq:hm_vis-viva}. 
+Für einen solchen Fall nehmen wir eine Bahn des Verfolgers mit einer Exzentrizität $e$ und einer großen Halbachse $a=R_0$ an. Zum Zeitpunkt $t=0$ sollen sich Ziel und Verfolger bei $(0,0)\,\bzw (0,y_0')$ befinden. Dann ist 
+\begin{align}
+  \vec{v}_0 &= v_{\text{J},0} \,\veceX ~~~\text{mit}~~~v_{\text{J},0} = \sqrt{\frac{G\,m_\text{E}}{R_0}}\,\sqrt{\frac{1+e}{1-e}} \approx (1+e)\,R_0\,\omega_\text{T} \, \veceX \,. \label{eq:adyn_rendez30a}
+\end{align}
+Hat der Verfolger bereits im Inertialsystem eine Anfangsgeschwindigkeit $\vec{v}_0 \neq 0$, so müssen wir für die Lösung der Hill- \bzw die Nutzung der CW-Gleichungen, die sich daraus im mitbewegten \KOS\ $\vec{\Sigma}'$ ergebende Anfangsgeschwindigkeit $\vec{r}_0'$ kennen. Diese berechnet sich nach \eqref{eq:adyn_rendez04} zu:
+	\begin{align}
+		\dot{\vec{r}}_0' &= \dot{\vec{r}}'(t=0)= \dot{\vec{r}}_0 - \dot{\vec{R}}_0 - \vec{\omega}_0' \times \vec{r}'_0 = \vec{v}_0 - \vec{V}_0 - \vec{\omega}_0' \times \vec{r}'_0  \,. \label{eq:adyn_rendez31}
+	\end{align}
+Hierin ist $\vec{\omega}_0'$ der Rotationsvektor für die Drehung des mitbewegten Koordinatensystems, welches sich mit der Bewegung des Ziels so dreht, dass die $\vecpeY$-Achse immer radial nach außen zeigt.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{Raumschiff2Orbits.pdf} 
+	\caption[Zwei Raumschiffe in unterschiedlichen Umlaufbahnen.]{Zwei Raumschiffe in unterschiedlichen Umlaufbahnen.\fa Bahnen von Ziel und Verfolger im Inertialsystem. \fb Bahn Verfolger von Ziel aus. Lösungen nach der Kepler-Gleichung mit Drehung des mitbewegten Koordinatensystems des Ziels (grün) und CW-Lösung (blau) im Vergleich. Für die Bahn des Ziels wurde $R_0 = \SI{10000}{\kilo\metre}$ angenommen, die Bahn des Verfolgers habe eine Exzentrizität von $e=0.1$ und die große Halbachse $a=R_0$. Es wurden 12 Zeitpunkte des Umlaufs gekennzeichnet. Die erkennbaren Abweichungen der exakten Lösungen nach der Kepler-Gleichung von der CW-Lösung resultieren aus der Tatsache, dass die Linearisierungsbedingung für die CW-Gleichung bei den vorliegenden Parametern nicht mehr erfüllt ist. (Siehe \mscr~ \mladynref{Rendezvous03.m} nach \cite{Carroll2019}) }
+	\label{abb:adyn_rendezvous04}
+\end{figure}
+
+In unserem Fall (der Bewegung des Ziels im Uhrzeigersinn) können wir mit
+	\begin{align}
+		\vec{\omega}_0' &= -\omega_\text{T}\,\vecpeZ = -\omega_\text{T}\,\veceZ ~~~\text{und} ~~~\omega_\text{T} = \sqrt{\frac{G\,m_\text{E}}{R_0{}^3}}  \label{eq:adyn_rendez32}
+	\end{align}
+das Kreuzprodukt $\vec{\omega}_0' \times \vec{r}'_0$ in \eqref{eq:adyn_rendez31} berechnen zu:
+\begin{align}
+ 	\dot{\vec{r}}_0' &= \sqrt{\frac{G\,m_\text{E}}{R_0}}\, \lek \sqrt{\frac{1+e}{1-e}}-1+e \rek\, \vecpeX \approx 2e\,R_0\,\omega_\text{T}\,\vecpeX\,. \label{eq:adyn_rendez34}
+\end{align}
+\figref{adyn_rendezvous04} zeigt die berechnete Bahn des Verfolgers vom Ziel aus betrachtet. Für die CW-Lösung wurde die Näherung aus \eqref{eq:adyn_rendez34} verwendet, in \probref{adyn_rendezvous01} ist die Rechnung dann für Werte der ISS ausgeführt.
+Wir wollen jetzt noch annehmen, dass die beiden Raumschiffe auf (annähernd) gleiche Bahn gebracht worden sind (in \figref{adyn_rendezvousKOS01} \bzw \figref{adyn_rendezvousKOS02} bedeutet das $y_0'=0$) und wollen abschätzen, ab welchem Abstand $\Delta x'$ die Steuerung manuell direkt nach Sicht erfolgen kann.
+Wir starten dazu mit der CW-Gleichung \eqref{eq:adyn_rendez14c} für $y'(t)$ und den Anfangsbedingungen $y_0' = 0$ und $\dot {y}_0'=0$ und nehmen wiederum eine Geschwindigkeit 
+von $v_0=\dot{x}_0=\SI{1}{\metre\per\second}$ an. Es ergeben sich dann für die Koordinate $y'$ nach der Flugzeit $t\approx 100 \ldots 200 \mathrm{s}$ in der Näherung $\omega_0\,t \ll 1$ 
+\begin{align}
+	y'(t) = \frac{2\,\dot {x}_0'}{\omega_0}\,\frac{\lk \omega_0\,t\rk^2}{2} = \dot {x}_0'\,\omega_0\,t^2\,.\label{eq:adyn_rendez41}
+\end{align}
+Bei einem Anflug in direkter Sichtlinie muss aber die Docking-Einrichtung auf $y'(t) = \Delta d \approx \SI{2}{\metre}$ genau getroffen werden, womit sich aus
+\eqref{eq:adyn_rendez41} mit $t=x_0'/\abs{\dot{x}_0'}$ der maximale Abstand $\Delta x'$ ergibt, bis zu welchem ein solcher Direktanflug manuell nach direkter Sichtlinie erfolgen kann (\figref{adyn_rendezvous04a}):
+\begin{align}
+	\Delta x' = \sqrt{\frac{\Delta d\, \abs{\dot{x}_0'}}{\omega_0}} \leq \SI{40}{\metre} \,.\label{eq:adyn_rendez42}
+\end{align}
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{DirektAnflugISS.pdf} 
+	\caption[Trajektorien eines Raumtransporters bei Anflug.]{Trajektorien eines Raumtransporters für verschiedene Anfangspunkte des Rendezvous-Manövers (Anflug unter Schub in direkter Sichtlinie). Eingezeichnet ist auch der erreichte Endabstand $\Delta d$ (des jeweiligen Anflugs von $x_0'$) vom Zentrum der Docking-Vorrichtung für eine Anfangsgeschwindigkeit von $v_0 =  \SI{1}{\metre\per\second}$. (Nach \cite{Carroll2019}, siehe \probref{adyn_rendezvous01} \bzw \mscr~\mladynref{Rendezvous04.m})} \label{abb:adyn_rendezvous04a}
+\end{figure}
+
+\subsection{Wiederankopplung LM und CSM von Apollo 11}\label{kap:adyn_rendezvous_apollo11}
+
+Ein besonders interessanter und zugleich für die erste bemannte Mondlandung extrem erfolgskritischer Fall eines Weltraum-Rendezvous war die Wiederankopplung der Mondfähre von Apollo 11 (\gls{LM}\index{LM} "`The Eagle"', kurz: LM) nach der erfolgreichen Mondlandung mit den Astronauten Armstrong\footnote{Neil Alden Armstrong (1930--2012) war ein US-amerikanischer Testpilot und Astronaut. Er war Kommandant von Apollo 11 und betrat am 21. Juli 1969 als erster Mensch den Mond.}\indexp{Armstrong, Neil Alden} und Aldrin\footnote{Buzz Aldrin (geb. 1930)\indexp{Aldrin, Buzz} ist ein ehemaliger US-amerikanischer Astronaut, der im Rahmen der Apollo-11-Mission kurz nach Neil Armstrong als zweiter Mensch den Mond betrat.} an das Mutterschiff (\gls{CSM}\index{CSM}, kurz: CSM) mit dem Piloten Collins\footnote{Michael Collins (1930--2021) war ein US-amerikanischer Astronaut und umkreiste als Pilot des CSM einsam den Mond, während Armstrong und Aldrin die Mondoberfläche betraten.}\indexp{Collins, Michael}. Details dieses Flugabschnitts sind in dem sehr lesenswerten Apollo Flight Journal \cite{Apollo11FJ} beschrieben.\\
+Wir wollen den finalen Flugabschnitt des LM zwischen dem Zeitpunkt der \gls{TPI}\index{TPI} (TPI-Burn) und dem Bremsmanöver \gls{TPF}\index{TPF} (TPF) modellieren, vgl.~\figref{adyn_rendezvous05}.\footnote{Die vorhergehenden Flugabschnitte kann der Leser leicht mit dem Wissen aus dem \kap{adyn_maneuvers} nachvollziehen.}
+Zum Zeitpunkt des TPI war das LM auf einer \ca 28 km tieferen Bahn als das CSM, \dh $y_0'=y_\text{LM}'\approx -\SI{28}{\kilo\metre}$. Der direkte Abstand zwischen LM und CSM betrug zu diesem Zeitpunkt \ca $\SI{56}{\kilo\metre}$, womit das CSM unter einem Höhenwinkel von $\theta_0 = 26.5\degree$ vom LM aus "`gesehen"' wurde.\\
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{Apollo11LMCSMRendezvous.pdf} 
+	\caption[Rendezvous von CSM und LM von Apollo 11.]{Rendezvous von CSM und LM von Apollo 11. \fa Phase I: Der Flug zum CSM begann mit dem Start des LM von der Mondoberfläche und den Transfer in eine elliptische Bahn von $\SI{87.6}{} \,\mathrm{x}\, \SI{17.6}{\kilo\metre}$. %(\bzw  47.3 x 9.5 Nautische Meilen (die Maßeinheit der NASA)) 
+	Nach einer Stunde hat das LM den apolunaren Punkt erreicht und kommt durch einen sogenannten CSI-Burn (\gls{CSI}) auf eine kreisförmigere Bahn von $\SI{92.5}{} \,\mathrm{x}\, \SI{85.0}{\kilo\metre}$. %(\bzw  50 x 46 Nautische Meilen)
+	Durch einen weiteren Burn (CDH) erreicht das LM eine Bahn mit konstanter Höhe und ist damit in einem konstanten Höhenabstand von \ca $\SI{28}{\kilo\metre}$ zum CSM.
+	%(\bzw  15 Nautischen Meilen)
+  \fb Nach weiteren 40 Minuten erfolgt der so genannte TPI-Burn (\gls{TPI}), welche das LM auf die finale Rendezvous-Bahn bringt. 
+%Nach diesem Burn fliegt das LM in einer nahezu geraden Linie in Bezug auf das feste KOS\ der Sterne auf das CSM zu. Tatsächlich haben die Astronauten die Fixsterne als visuelle Referenz zur Korrektur der Annäherung benutzen können, da sich das LM auf der Nachtseite des Mondes befand. Die finale Phase der Annäherung und das Bremsmanöver (TPF) erfolgten dann bei Tageslicht. %Zwischen TPI und TPF gab es zwei weitere kleinere Kurskorrekturen, die wir hier aber nicht weiter berücksichtigen müssen.
+	(Nicht maßstäbliche Zeichnung nach dem NASA Flight Journal von Apollo 11.)}
+	\label{abb:adyn_rendezvous05}
+\end{figure}
+
+Wir haben in \kap{adyn_rendezvous} gelernt, dass für einen Burn zum direkten Anflug ein anderer Zielwinkel $\gamma$ angenommen werden muss als der direkte Sichtwinkel $\varphi_0 =\arctan({y_0'/x_0'})$. Um diesen Winkel $\gamma$ mit den CW-Gleichungen \eqref{eq:adyn_rendez27} zu berechnen, brauchen wir die Anfangsgeschwindigkeit $\vec{v}_{\text{LM},0}$ des LM im CSM-\KOS\ vor dem Burn. Wir haben diese bereits im vorhergehenden \kap{adyn_rendezvous_ISS} hergeleitet. Wir benutzen das Ergebnis hier, jetzt aber für zwei kreisförmige Bahnen (für CSM und LM). Dann folgt aus Gleichung \eqref{eq:adyn_rendez34} eine Geschwindigkeit des LM vor dem Burn zu:
+\begin{align}
+	\vec{v}_{\text{LM},0} = \lk \omega_\text{LM} - \omega_\text{CSM} \rk \, \lek \lk R_\text{CSM} + y_0' \rk \, \vecpeX - x_0 \, \vecpeY \rek \,. \label{eq:adyn_rendez43}
+\end{align}
+Die $x_0',\, y_0'$ ergeben sich aus einfacher geometrischer Betrachtung aus \figref{adyn_rendezvousKOS02} und die Kreisfrequenzen der Umlaufbahnen sind gegeben durch:
+\begin{subequations}
+	\begin{align}
+		\omega_\text{CSM} &= \sqrt{\frac{G\,m_\text{M}}{R_\text{CSM}{}^3}} \approx \SI{8.8e-4}{\radian\per\second} \,,\\
+		\omega_\text{LM} &= \sqrt{\frac{G\,m_\text{M}}{R_\text{LM}{}^3}} = \sqrt{\frac{G\,m_\text{M}}{\lk R_\text{CSM} - \Delta h\rk^3}} \approx \SI{9.0e-4}{\radian\per\second}\,, \label{eq:adyn_rendez44}
+	\end{align} 
+\end{subequations}
+worin $m_\text{M}$ die Masse des Mondes und $R_\text{CSM},\, R_\text{LM}$ die Bahnradien der beiden Raumschiffe vor dem TPI sind. Wir können Gleichung \eqref{eq:adyn_rendez43} für $x_0',\, y_0' \ll R_0$ entwickeln, indem wir für $\omega_\text{LM}$ näherungsweise $\omega_\text{LM} \approx \sqrt{\lk G\,m_\text{M}\rk/\lk R_\text{CSM} - y_0'\rk^3} $ schreiben und erhalten dann aus \eqref{eq:adyn_rendez43}
+\begin{align}
+	\vec{v}_{\text{LM},0} = \begin{pmatrix} v_{\text{LM},0,x'} \\ v_{\text{LM},0,y'} \end{pmatrix}
+	= -\frac{3}{2}\,\omega_\text{CSM} \, y_0' \,\begin{pmatrix} -x_0'/R_0 \\ 1 + y_0'/R_0 \end{pmatrix} \begin{pmatrix} \vecpeX \\ \vecpeY \end{pmatrix}\,.
+	\label{eq:adyn_rendez46}
+\end{align}
+Damit haben wir alle Größen, um aus den CW-Gleichungen den Geschwindigkeitsbedarf für das TPI-Manöver, die Richtung des TPI-Burn und die finale Trajektorie nach dem TPI zu berechnen.
+Das Ergebnis der Rechnungen haben wir für verschiedene $y_0'$ in \figref{adyn_rendezvous06} dargestellt. Man berechnet für den Geschwindigkeitsbedarf des TPI-Burn 
+\begin{align}
+	\Delta v = \sqrt{\lk \dot{x}_0' - v_{\text{LM},0,x'}\rk^2 + \lk \dot{y}_0'-v_{\text{LM},0,y'}\rk^2}\,,\label{eq:adyn_rendez47}
+\end{align}
+wobei sich die $\dot{x}_0',\,\dot{y}_0'$ aus \eqref{eq:adyn_rendez24} berechnen. Für die drei Fälle aus \figref{adyn_rendezvous06} ergeben sich Geschwindigkeitsbedarfe von $\Delta v = 8.0 \ldots \SI{6.9}{\metre\per\second}$ und ein Zielwinkel des Burn von $\gamma= 19.8\degree$ (nicht zu verwechseln mit dem Abflugwinkel $\alpha$), was gut mit der NASA Planung von $\Delta v = \SI{7.5}{\metre\per\second}$ übereinstimmt. Man erkennt auch aus \figref{adyn_rendezvous06}, dass selbst bei Verpassen des optimalen Zeitpunktes des TPI-Burn (\dh der richtigen Höhe $y_0'$) die Burn-Richtung und auch die Größe von $\Delta v$ relativ unkritisch sind für den Erfolg des Manövers, was sicher etwas vom Stress der Astronauten wegnahm.
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{Apollo11LMCSMTrajektorie.pdf} 
+	\caption[Trajektorien des LM im Anflug auf das CSM von Apollo 11.]{Trajektorien des LM im Anflug auf das CSM von Apollo 11 für verschiedene Höhen des TPI-Burn. Siehe \probref{adyn_rendezvous02} \bzw \mscr~\mladynref{LMCSMApollo11.m}.}
+	\label{abb:adyn_rendezvous06}
+\end{figure}
+Wir möchten noch erwähnen, dass nach der erfolgreichen Kopplung und dem Umstieg der Astronauten vom LM ins CSM das LM wieder abgesprengt wurde. Das wohl mit bedeutsamste Fahrzeug der Menschheitsgeschichte war damit sich selbst \bzw dem Gravitationsfeld des Mondes überlassen. Bis heute konnte man keinen Einschlagkrater des LM auf dem Mond finden, so dass man davon ausgehen muss, dass der \textit{"`Eagle"'}  noch immer den Mond umkreist. Wer sich Modellrechnungen für eine mögliche Bahn des LM anschauen will, dem seien die Referenzen \cite{Khan2021} und \cite{meador2021} empfohlen. Letztere eignet sich auch für einen Einstieg in das von der NASA der Allgemeinheit zur Verfügung gestellte GMAT-Paket \url{software.nasa.gov/software/GSC-17177-1}, in welchem auch sehr leistungsfähige \matlab-Programme für die Astrodynamik und Himmelsmechanik zu finden sind.
+
+
+
+

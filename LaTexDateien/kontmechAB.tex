@@ -1,0 +1,27 @@
+%\input{header.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Physik des Kontinuums}\label{chap:kontmech}
+\def\chapname{kontmech}
+\bibliographystyle{spphys}
+%\begin{bibunit}[spphys]
+\input{kontmech/kontmech_motivation}
+\clearpage
+\input{kontmech/kontmech_kindyn}
+\clearpage
+\input{kontmech/kontmech_fluide}
+\clearpage
+\input{kontmech/kontmech_fest}
+\renewcommand\glslongextraNameAlign{p{36mm}}
+\renewcommand\glslongextraDescAlign{p{60mm}}
+\clearpage
+\bgroup
+\small
+\printunsrtglossary[type=kontmech]
+\egroup
+\clearpage
+\fancyhead[RE]{\nouppercase\rightmark}
+\bibliography{referenzen}
+\clearpage
+\fancyhead[RE]{\nouppercase\leftmark}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\input{footer.tex}

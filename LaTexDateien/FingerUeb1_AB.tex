@@ -1,0 +1,59 @@
+\input{headerAB}
+
+\thispagestyle{plain}%\mp
+\restoregeometry 
+\begin{textblock}{3}(0,0)
+\includegraphics{BuchtitelseiteAB1.pdf}
+\end{textblock}
+\leavevmode
+\newpage 
+\thispagestyle{empty}
+\quad 
+\newpage
+\pagestyle{fancy}
+
+\author{Michael Kaschke und Holger Cartarius \\ \\
+unter Mitwirkung von Ulrich Potthoff}
+\title{Fingerübungen der Physik\\ \\
+Band I \\ \\ Mechanik \\ \\ Arbeitsbuch mit Übungen und Lösungsbeispielen}
+
+\subtitle{Ein Übungsbuch zu im Studium selten behandelten Kapiteln der Physik mit ausführlich dargestellten Problemen und \matlab-Programmen.}
+\smallskip
+\maketitle
+
+\frontmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%>
+
+\clearpage
+
+\pdfbookmark[1]{Inhaltsverzeichnis}{toc}
+\tableofcontents
+
+\mainmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%>
+
+%== pdf cut here begin == %%%%%%%%
+
+\setcounter{chapter}{0}
+%% Achtung diese Zeile auch in bewAB aktivieren 
+\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}% nichts zeigen bei ArbeitsbuchBook
+%%
+\include{bewAB}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}% nichts zeigen bei ArbeitsbuchBook
+\include{kontmechAB}
+
+%== pdf cut here end == %%%%%%%%
+
+% Hier eigentliches pdf-Arbeitsbuch
+
+\clearpage
+\newpage
+\fancyhf{}
+\pagestyle{fancy}
+\fancyhead[LE,RO]{\thepage}
+
+\include{solmanUeb1AB}   
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{footer} 
+

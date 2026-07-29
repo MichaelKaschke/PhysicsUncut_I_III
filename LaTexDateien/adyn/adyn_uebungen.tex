@@ -1,0 +1,868 @@
+%%% Anmerkung 2023-11-13 (mk.):
+%%% Links auf Lösungen komplett auskommentiert, da extra file bew_uebungenAB.tex
+%%% Einfaches Ändern durch  ersetzen \hyperref.. <--> %\hyperref.
+
+%%% Links basieren für ein mögliches e_book auf getrennter pdf-Zieldokumente auf pdf-Hypertags:
+%%%        \linklsg\\%\href{FingerUeb2_AB.pdf#prb:adyn_canonball}{\textcolor{blue} {$\rightarrow$ zur \probref{adyn_canonball}.}}\\
+%%% Einfaches Ändern durch  ersetzen %href{FingerUeb1_AB.pdf.. <--> \linklsg\\%\href{FingerUeb1_AB.pdf..
+%%%
+%%% oder 
+%%% für das Arbeitsbuch als geschlossenes Zieldokument auf normalen Verweisen (siehe bew_uebungenAB.tex):
+%%%        \textcolor{blue} {$\rightarrow$ zur} \probref{adyn_canonball}.\\
+%%%
+
+\section{Übungen zu \autoref{chap:adyn} -- Astrodynamik}\label{kap:adyn_uebungen}
+
+\medskip
+Die Übungen sind mit Schwierigkeitsindikatoren markiert, von einfach ($\ast$) über mittel ($\ast \ast$) bis schwierig ($\ast \ast \ast$).
+Zusatzaufgaben sind zum Teil mit ($\ast \ast \ast \;!$) markiert und eher als Erweiterung des Theorieteils zu betrachten.
+Einige wenige Übungen sind rein analytisch, die große Mehrzahl beinhaltet aber \matlab-Anwendungen. \\
+
+Lösungsbeispiele finden sich in den \onlineZ{} im Arbeitsbuch {\textcolor{blue}{FingerUeb2\_AB.pdf}} und können über den Link \linklsg erreicht werden.\\
+Die entsprechenden \mscre finden sich im GitHub unter \githubSN \bzw
+in den \onlineZ{} (\MKc).\\
+
+%%%-----------------------------------------------------------------------------------------------------------
+
+\subsection{Übungen zu Grundlagen der Raketenphysik}
+
+\medskip
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung1
+\einfach{adyn_canonball}{Jules Vernes Kanonenschuss zum Mond}
+In seinem Buch "`Von der Erde zum Mond"' berichtet Jules Verne, dass ein Kanonenclub in den USA einen Vorschlag machte, mit einer Kanone ein Geschoss von der Erde zum Mond zu schicken. Man plante eine Granate mit einer Nutzlast von $\SI{8.75}{\tonne}$ und einigte sich auf ein Geschützrohr von $\SI{270}{\metre}$ Länge aus Gusseisen. Als Treibladung sollte Schießbaumwolle (Zellulosenitrat) verwendet werden. %Als geeigneter Standort für die Kanone wurde der Bundesstaat Florida gewählt.\\
+%Jules Vernes Astronauten starteten also genau so wie die späteren NASA-Astronauten in Florida und erneuerten den notwendigen Sauerstoff im Projektil durch Erhitzen von Kaliumchlorat.
+Diskutieren Sie die Chancen, die drei Astronauten und zwei Hunde mit dieser Technik sicher zum Mond zu bringen.
+
+\medskip
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_canonball}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\hyperref[lsg:adyn_canonball]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung2
+\einfach{adyn_rocketbasic}{Prinzip Mehrstufenrakete}
+Man kann einige grundsätzliche Erkenntnisse aus der Raketen-Gleichung \eqref{eq:adyn_rockets19} ableiten, wenn man \zb den Spezialfall gleicher Stufenmassen und gleicher Massen für alle $N$~Raketenstufen betrachtet, also $v_{\text{G},i} = v_\text{G}^*\,,~~ m_{0,i}/(m_{0,i}-m_{\text{T},i}) = \mathcal{M}^*\,$. Man erhält aus \eqref{eq:adyn_rockets19}:
+\begin{align}
+\begin{split}
+     \Delta v_\text{ges} &=  N\,v_\text{G}^*\,\ln \mathcal{M}^* ~~\rightarrow ~~  \lk \mathcal{M}^* \rk^N = \e^{\Delta v_\text{ges}/v_\text{G}^*} ~~\text{\bzw} ~~ \mu_\text{L} =  \frac{m_\text{L}}{m_0} = \lk \mathcal{M}^* \rk^{-N}\,,
+\end{split}  \label{eq:adyn_rockets20}
+\end{align}
+was bedeutet, dass das Antriebsvermögen linear mit der Stufenzahl $N$ zunimmt, während das Nutzlastverhältnis exponentiell mit $N$ für diesen speziellen Fall der Massenverhältnisse abnimmt. Leiten Sie \eqref{eq:adyn_rockets20} her.
+
+\medskip
+%\hyperref[lsg:adyn_rocketbasic]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_rocketbasic}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob}  %Übung3
+\schwierig{adyn_rocketopt1}{Optimierung Mehrstufenrakete (Tandemstufung)}
+\begin{enumerate}
+	\item \textit{\textbf{\anf{Optimieren} Sie Parameter der dreistufigen Saturn V Rakete mit 100 t Nutzlast über die Methode der Extremwertberechnung}}\\
+          Nehmen Sie die Ausströmgeschwindigkeiten $v_{\text{G},i}$, die Strukturkoeffizienten $\sigma_i$ und die zu transportierende Nutzlast $m_\text{L}$ \bzw das Nutzlastverhältnis $\mu_\text{L}$ als gegeben an. Daten finden Sie dazu in Tabelle \ref{tab:adyn_parameter_raketen} im Tabellenanhang \kap{adyn_tabellen}. 
+Formulieren Sie das Problem als Extremwertberechnung für $\Delta v_\text{g}$ in Abhängigkeit von den Massenverhältnissen $\mu_i$.\\
+
+	\item \textit{\textbf{Berechnen Sie das erzielbare Nutzlastverhältnis der Saturn V Rakete für den Flug zum Mond über die Methode der der Lagrange-Multiplikatoren}}\\ 
+Gehen von einem Antriebsbedarf $\Delta v_\text{g}= \SI{12.4}{\kilo\metre\per\second}$ aus. Vergleichen Sie Ihr Ergebnis mit dem tatsächlich von der NASA realisierten Nutzlastverhältnis.
+Für die Apollo 11 Mission wählte die NASA folgende Konfiguration der Saturn V Rakete (siehe Tab. \ref{tab:adyn_parameter_Apollo11}), um eine Nutzlast von $\SI{47000}{\kg}$ zum Mond zu bringen:
+\begin{table}%tab1
+\caption[Saturn V Konfiguration für die Apollo 11 Mission.]{Saturn V Konfiguration für die Apollo 11 Mission \cite{Walter2018}.}
+\smallskip
+\hspace{1.5cm}
+\begin{tabular}{L{1.5cm}R{2cm}R{2cm}R{2cm}R{1.5cm}}
+\svhline\noalign{\smallskip}
+Größe				    			& 1. Stufe				& 2. Stufe   	    & 3. Stufe  		& Einheit \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\noalign{\smallskip}
+$m_{0,i}$							&	$\SI{2902000}{}$	&	$\SI{ 658000}{}$	&	$\SI{  165000}{}$	&	$\SI{}{\kg}$	 \\	
+$v_{\text{G},i}$			&	$\SI{  2980}{}$	&	$\SI{   4130}{}$	&	$\SI{    4130}{}$	&	$\SI{}{\metre\per\second}$	 \\	
+$\sigma_i$						&	$\SI{0.0765}{}$	&	$\SI{0.1140}{}$	&	$\SI{0.1110}{}$	&	$\SI{}{}$	 \\	
+\noalign{\smallskip}
+\svhline\noalign{\smallskip}
+\end{tabular} 
+\label{tab:adyn_parameter_Apollo11}
+\end{table}%tab1
+\end{enumerate}
+
+\medskip
+%\hyperref[lsg:adyn_rocketopt1]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_rocketopt1}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\begin{prob}  %Übung4
+\einfach{adyn_rocketopt2}{Vergleich Mehrstufenrakete (Serielle und Parallelstufung)} 
+Stellen Sie die Vor- und Nachteile der Parallelstufung gegenüber der Tandemstufung einer Mehrstufenrakete zusammen.
+
+\medskip
+%\hyperref[lsg:adyn_rocketopt2]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_rocketopt2}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+\subsection{Übungen zu Umlaufbahnen}
+
+\medskip
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob}  %Übung5
+\mittel{adyn_orbits1}{Bahnparameter aus Bodenbeobachtungen}
+Berechnen Sie die Bahnparameter für die Satelliten mit den folgenden gemessenen geozentrischen Orts- und Geschwindigkeitsdaten:\\
+   Satellit 1 (HEO) 
+\begin{align*}
+   \vec{r}  &= [12000,\,32000,\,-6000]\,\SI{}{\km}\,, \\
+	 \vec{v}  &= [1.250,\,1.3,\,-0.2]\,\SI{}{\km\per\second}\,.
+\end{align*}
+   Satellit 2 (LEO, fast kreisförmig, geringe Neigung) 
+\begin{align*}
+   \vec{r}  &= [6600,\,5800,\,-1000]\,\SI{}{\km}\,, \\
+	 \vec{v}  &= [-4.2,\,4.9,\,-0.2]\,\SI{}{\km\per\second}\,.
+\end{align*}
+Berechnen Sie die Bahnparameter der ISS (am 20.3.2023 UTC 12:00) aus den folgenden veröffentlichten geozentrischen Orts- und Geschwindigkeitsdaten der NASA \url{https://spotthestation.nasa.gov/trajectory_data.cfm}:\footnote{Man beachte die Genauigkeiten mit der die Daten von der NASA angegeben werden.}
+\begin{align*}
+    \vec{r}  &= [-4804.680472139880,\,-4787.203226753670,\,418.697383172504]\,\SI{}{\km}\,, \\
+	  \vec{v}  &= [3.084667418034520,\,-3.63637959795974,\,-5.99889734723948]\,\SI{}{\km\per\second}\,. 
+\end{align*}
+
+\medskip
+%\hyperref[lsg:adyn_orbits1]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_orbits1}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+\begin{prob}  %Übung6
+\einfach{adyn_orbits2}{Bodenspuren von Erdsatelliten}
+\begin{enumerate}
+\item \textit{\textbf{Bodenspuren verschiedener Satellitenarten (Epoche 01.01.2000)}} 
+	\begin{itemize}
+			\item Berechnen Sie die Bodenspur eines GEO-artigen-Satelliten.
+			\item Berechnen Sie die Bodenspur eines HEO-Satelliten \zb vom Typ Molnija.
+			\item Berechnen Sie die Bodenspur eines polaren Satelliten. 
+	\end{itemize}
+
+	Benutzen Sie folgende Bahnparameter: \\
+	GEO-artig:\, $a = \SI{25000}{\km},\, e = 0.73,\, i = 8\degree,\, \Omega =45\degree$\,, \\
+	HEO (Typ Molnija):\, $a = \SI{26555}{\km},\, e = 0.72,\, i = 63.4\degree,\, \Omega =120\degree,\,\omega =270\degree$\,,\\
+	Polar-Satellit:\, $a = \SI{7330}{\km},\, e = 0.0,\, i = 93\degree,\, \Omega =130\degree,\,\omega =0\degree$.\\
+
+\item \textit{\textbf{Bodenspuren verschiedener Satelliten in geosynchronen Umlaufbahnen (Epoche 01.01.2000)}}\\
+\begin{itemize}
+	\item 	Satellit 1:\, $e = 0.2,\, i = -20\degree,\, \Omega =+30\degree,\,\omega =360\degree$\,,
+	\item		Satellit 2:\, $e = 0.2,\, i = -30\degree,\, \Omega =-35\degree,\,\omega =+35\degree$\,,
+	\item		Satellit 3:\, $e = 0.2,\, i = +45\degree,\, \Omega =-90\degree,\,\omega =-30\degree$.
+\end{itemize}
+Erklären Sie die Formen der Bodenspuren. Welchen Zusammenhang erkennen Sie? \\
+
+\newpage
+\item \textit{\textbf{Berechnen Sie die Bodenspur der ISS mit den Ergebnissen von \probref{adyn_orbits1}}} (Aufnahme zur vom Erdboden sichtbaren ISS siehe \figref{adyn_ISS}).\\
+\begin{figure} 
+\includegraphics[width=0.85\textwidth]{ISS_ueber_Dresden_2020-05-17.jpg}
+\caption[Überflug der ISS über dem Altstadtpanorama von Dresden.]{Überflug der ISS am 17.5.2020 um 22:18 Uhr über der Altstadt von Dresden. Die Aufnahme besteht aus 20 zusammengesetzten Einzelaufnahmen. Während der Gesamtbelichtung von ca. 2.5 min erzeugen die Fixsterne bereits deutliche Sternspuren. Aufnahme U. Potthoff.}\label{abb:adyn_ISS}
+\end{figure}
+\end{enumerate}
+\medskip
+%\hyperref[lsg:adyn_orbits2]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_orbits2}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob}  %Übung7
+\schwierig{adyn_orbits3}{Bodenbeobachtung von Erdsatelliten}
+Berechnen Sie die topozentrischen Beobachtungsdaten für einen polaren Satelliten von Mitteleuropa aus. Die Bahnparameter sind gegeben durch:
+\begin{align*}
+	&\text{Bahnhöhe}\,\,h & \SI{900}{\km}\\
+	&\text{Exzentrizität}\,\,e & 0.00\\
+	&\text{Bahnneigung} \,\,i &  95 \degree\\
+	&\text{Knoten} \,\, \Omega & 135 \degree \, \text{am 1.1.2020}
+\end{align*}
+Die Stationskoordinaten sind:\\
+Görlitz (D): $~\lambda = 15\degree\,\text{O},\, \varphi = 51\degree\,\text{N}$  und Marienhamn (S): $~\lambda = 20\degree\,\text{O},\, \varphi = 60\degree\,\text{N}$ .\\
+$\theta_0$ sei durch die Beziehung \eqref{eq:adyn_orbit06} mit $\theta_0 = 280.4606\degree + 360.9856473\degree \cdot \lk \mathrm{MJD} - 51544.5\rk$ gegeben. Eine Sichtbarkeit des Satelliten ist nur für $h>0$ gegeben. \\
+
+\textit{\textbf{Zusatzaufgabe:}} Berechnen Sie die topozentrischen Beobachtungsdaten für die ISS mit den Ergebnissen von \probref{adyn_orbits1} für zwei Beobachtungsorte und Zeiten. 
+Die Stationskoordinaten sind: Kapstadt (RSA): $~\lambda = 18.5\degree\,\text{O},\, \varphi = 34\degree\,\text{S}$  und Mombasa (Kenia): $~\lambda = 40.0\degree\,\text{O},\, \varphi = 04\degree\,\text{S}$.\\
+Für welchen Ort und welche Zeit können Sie von einer guten Beobachtungschance ausgehen?  Was können Sie zu den Beobachtungsdauern sagen?
+
+\medskip
+%\hyperref[lsg:adyn_orbits3]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_orbits3}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob}  %Übung 8
+\mittel{adyn_orbits4}{Bodenbeobachtung eines Molniya HEO-Satelliten}
+Berechnen Sie die möglichen Bodenbeobachtungen eines Molniya HEO-Satelliten: Die Bahnparameter sind gegeben durch
+\begin{align*}
+	&\text{Große Halbachse}\,\,h & \SI{26555}{\km}\,\\
+	&\text{Exzentrizität}\,\,e & 0.72\, \\
+	&\text{Bahnneigung} \,\,i &  63.4 \degree\, \\
+	&\text{Knoten} \,\, \Omega & 125 \degree \,\\ 
+	&\text{Argument Perigäum} \,\, \omega & 270 \degree \,\\ 
+	&\text{Mittlere Anomalie} \,\, M & 0 \degree \,
+\end{align*}
+Die Stationskoordinaten sind:\\
+Indien: $~\lambda = 75\degree\,\text{O},\, \varphi = 10\degree\,\text{N}$  und Russland: $~\lambda = 75\degree\,\text{O},\, \varphi = 55\degree\,\text{N}$ .\\
+Die Beobachtungszeiten seien von 11.03.2020\,16:00:00 UTC bis 12.03.2020\,04:00:00 UTC\,.\\
+
+Erklären Sie Ihre Berechnungen und an Hand Ihrer Graphiken, warum der Satellit sehr geeignet ist für die Nachrichtenübertragung in hohe geographische Breiten.\\
+
+\textit{\textbf{Zusatzaufgabe:}} Berechnen Sie mit den Kenntnissen aus \kap{adyn_lambert_transfer} und den Ergebnissen von \probref{adyn_manoevers4} in Umkehrung aus den topozentrischen Beobachtungsdaten zu zwei verschiedenen und Zeiten die Bahnparameter (siehe auch \probref{adyn_orbits_zusatz1}). 
+
+\medskip
+%\hyperref[lsg:adyn_orbits4]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_orbits4}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob}  %Übung 9
+\mittel{adyn_orbits5}{Sonnensynchrone Bahnen}
+Bestimmte Satelliten, wie \zb die Wettersatelliten wie METOP\footnote{METOP ist eine Serie von drei europäischen Wettersatelliten.} oder Erderkundungssatelliten wie Landsat\footnote{Landsat-Satelliten sind zivile Erdbeobachtungssatelliten der NASA zur Erkundung der Erdoberfläche und der Küstenregionen.}, bewegen sich auf einer sogenannten \textit{sonnensynchronen Umlaufbahn} (englisch \textit{Sun Synchronous Orbit} -- SSO, siehe \figref{adyn_synchron_orbit_uebung})\index{Umlaufbahn!sonnensynchrone}. Bei einer solchen Umlaufbahn um die Erde hat die Bahnebene immer den gleichen Winkel zur Linie Erdmittelpunkt-Sonne. Wegen des Umlaufs der Erde um die Sonne kann das nur sein, wenn die Bahnebene die gleiche Rotationsänderung erfährt wie die Erde um die Sonne, \dh die Bahnebene des Satelliten sich in einem Jahr einmal um die Erde dreht, wobei diese kontinuierliche Änderung der Bahnebene nicht durch ein Steuerungsmanöver realisiert werden kann!\\
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{SonnensynchroneBahn.pdf} 
+	\caption[Sonnensynchrone Bahn.]{[Sonnensynchrone Bahn. Symbolische und nicht-maßstabsgetreue Darstellung. }
+	\label{abb:adyn_synchron_orbit_uebung}
+\end{figure}
+
+Wie ist das dann aber mit dem Drehimpulserhaltungssatz in Einklang zu bringen? Denken Sie dabei an Störungen, die durch die abgeplattete Erde hervorgerufen werden.
+
+\textbf{Zusatzaufgabe}\\
+Berechnen Sie die Bodenspur eines der frühen SSO-Satelliten (ERS-1) der ESA.\footnote{Diese European Remote Sensing Satellites ERS dienten der Fernerkundung der Erdoberfläche und sind heute nicht mehr in Betrieb. ERS-1 war dabei der erste Erdbeobachtungssatellit der ESA und eine ihrer wichtigsten Satellitenentwicklungen der 1980er Jahre. Start war 17.07.1991, Missionsende am 10.03.2000.} 
+Der nahezu kreisförmige Orbit war Anfangs so ausgelegt, dass die geographische Länge des Äquator-Durchgangs sich nach 3 Tagen und insgesamt 43 Umrundungen immer wiederholte. Später wurde der Satellit auf eine sonnensynchrone Bahn mit 782\,x\,785\,km und $98.5\degree$ mit einem Wiederholzyklus von 35 Tagen gebracht \cite{Gottschalk1991, Montenbruck2012}.
+
+\medskip
+%\hyperref[lsg:adyn_orbits5]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_orbits5}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+\begin{prob}   %Übung 10
+\mittel{adyn_starlink}{Starlink}
+Starlink ist ein von dem US-Raumfahrtunternehmen SpaceX betriebenes Satellitennetzwerk, das seit 2020 in verschiedenen Ausbaustufen Internetzugang bietet, seit 2023 weltweit. 
+Wenn das Projekt komplett realisiert wird, füllt sich in den
+nächsten Jahren der Himmel mit einer gewaltigen Zahl von Kommunikationssatelliten und wird auch den Anblick unseres Nachthimmels verändern. 
+Mit 4845 Starlink-Satelliten im Erdorbit (Stand Ende September 2023) ist SpaceX bereits heute der mit Abstand größte Satellitenbetreiber weltweit (siehe \figref{adyn_starlink01}). Insgesamt bestehen Genehmigungen für den Start von maximal 19.427 Satelliten, sowie Anträge von SpaceX für nochmals bis zu 22.488 Satelliten. Zusammen entspricht das der fast der fünffachen Zahl aller von 1957 (Sputnik 1) bis 2023 gestarteten Satelliten.\footnote{Seit Sputnik 1 hat die Menschheit \ca 10000 Objekte ins All gebracht. Aktuell befinden sich noch etwas weniger als 6000 im Erdorbit, der Rest ist zurück zur Erde gekehrt oder in der Atmosphäre verglüht.}
+\begin{figure}[H]
+	\includegraphics[width=0.9\textwidth]{Starlink01.pdf} 
+	\caption[Starlink (Himmelspur und künstlerische Darstellung).]{Starlink. Map aller gestarteter Starlink-Satelliten \url{https://satellitemap.space} und Aufnahme der Himmelspur eines Zuges von Starlink-Satelliten über Dresden (Aufnahme: U. Potthoff). Die große Anzahl von Starlink-Satelliten stellt durchaus eine Beeinflussung astronomischer Beobachtungen dar. Siehe dazu auch \cite{FAZ2020} und \url{https://findstarlink.com}.}
+	\label{abb:adyn_starlink01}
+\end{figure}
+
+SpaceX wird das Projekt mit Satelliten in zunächst drei "`Kugelschalen"' umsetzen, und zwar in Höhen von $h_1= \SI{340}{\km}$, $h_2= \SI{550}{\km}$ und $h_3= \SI{1200}{\km}$ mit jeweils $N_i=7518,\, 1584,\,2825$ Satelliten. Durch diese sollen auch die entlegensten
+Orte der Erde mit dem Internet versorgt werden. Wir wollen einige Fakten zu Starlink berechnen (Aufgabe nach \cite{Quetz2019}, mit freundlicher Genehmigung):
+\begin{enumerate}
+	\item Berechnen Sie die Anzahl der Satelliten, die für einen beliebigen Beobachter auf der Erdoberfläche ($h_\text{B}=0$ und Refraktion vernachlässigt) ständig sichtbar sind. Wie viele Starlink-Satelliten sind insgesamt -- alle Schalen zusammengenommen -- dann oberhalb des Horizonts? Wir nehmen dabei an, dass die Satelliten in gleichmäßigen Abständen zueinander fliegen. 
+	\item Welcher mittleren Raumwinkeldichte entspricht diese Anzahl? Vergleichen Sie diese anschaulich mit anderen Himmelsobjekten. Wie viel Zeit braucht ein Starlink-Satellit in der jeweiligen Schale um "`vor"' dem Mond vorbei zu fliegen.
+%	\item Wenn man die Polarregion ($\left|\varphi\right| > 70\degree$) "`ausspart"', \dh keine Abdeckung dort erreicht, erhöht sich logischerweise die Zahl der sichtbaren Satelliten über dem Horizont in den Regionen ($\left|\varphi\right| < 70\degree$). Um wie viel? Was würde es kosten, diese dünn besiedelten Regionen auch noch abzudecken, wenn ein ein Satellit 250000 USD und jeder Start mit jeweils 60 Satelliten 50 Millionen USD kostet?
+\end{enumerate}
+Diese Aufgabe wurde zuerst in ähnlicher Form in \cite{Quetz2019} gestellt.\\
+
+\medskip
+%\hyperref[lsg:adyn_starlink]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:starlink}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+\newpage
+%-----------------------------------------------------------------------------------------------------------
+\subsection{Übungen zu Manövern im Weltall}
+\medskip
+
+%-----------------------------------------------------------------------------------------------------------
+\begin{prob}  %Übung11
+\einfach{adyn_rocket_analogy}{Analogie zum Oberth-Effekt der Astrodynamik}
+
+(Nach \cite{Blanco2019}.)\\
+Stellen Sie sich ein Raketenauto nach \figref{adyn_rocket_analogy01} vor. Es fährt in die Mulde (tiefster Punkt bei B) bei Punkt A ein (mit einer vernachlässigbaren Anfangsgeschwindigkeit) und soll nach Möglichkeit den Punkt C erreichen. An welchem Punkt der Fahrt ist es sinnvoll, die Rakete zu zünden? Welches Antriebsvermögen muss diese mindestens haben? Die Reibung sei vernachlässigt. \\
+Beschreiben Sie mit dieser Analogie den Oberth-Effekt der Astrodynamik.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{OberthEffAnalogie.pdf} 
+	\caption[Analogie-Modell zum Oberth-Effekt.]{Analogie-Modell zum Oberth-Effekt (nach \cite{Blanco2019}).}
+	\label{abb:adyn_rocket_analogy01}
+\end{figure}
+
+\medskip
+%\hyperref[lsg:adyn_rocket_analogy]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_rocket_analogy}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob}  %Übung12
+2
+\einfach{adyn_manoevers1}{Hohmann-Transfer}
+Berechnen Sie die Übergangszeit für den Hohmann-Transfer als Funktion von $r_2/r_1$ und diskutieren Sie diese.\\
+Erklären Sie, warum $\Delta v$ für den Hohmann-Transfer in bestimmten Situationen größer sein kann als die \gls{vescape}, obwohl die Bahn ja noch eine geschlossene Kreisbahn bleibt.\\ 
+Was können Sie zu $\Delta v$ sagen, wenn man den Bahnradius verkleinern will?
+
+\medskip
+%\hyperref[lsg:adyn_manoevers1]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_manoevers1}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+\newpage
+%-----------------------------------------------------------------------------------------------------------
+\begin{prob}  %Übung13
+\mittel{adyn_manoevers2}{Bielliptischer Übergang}
+
+Zwei-Impuls-Übergang von Bahn mit Radius $r_1$ auf eine elliptische Bahn mit Radius $r_2$:
+Da der Antriebsbedarf $\Delta v$ beim Hohmann-Transfer in bestimmten Fällen sehr groß sein kann, kann man überlegen, ob es nicht günstiger ist, dass Raumschiff zunächst auf die \gls{vescape} zu beschleunigen und dann wieder abzubremsen. Zeigen Sie, dass das in der Tat so sein kann. Was ist der Nachteil eines solchen Manövers?
+
+\medskip
+%\hyperref[lsg:adyn_manoevers2]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_manoevers2}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\begin{prob}  %Übung14
+\einfach{adyn_manoevers3}{Hohmann-Oberth-Edelbaum-Transfers aus dem Orbit nach $\infty$}
+Berechnen Sie Antriebsbedarfe und Energiegewinne eines Raumschiffs für die verschiedenen impulsiven Manöver. Für welchen Transfer würden Sie sich entscheiden, wenn der Treibstoffvorrat begrenzt ist?\\
+Berechnen Sie die Flugzeiten des Raumschiffs bei den verschiedenen impulsiven Manövern, bis das Raumschiff eine Entfernung des 50-, 100- \bzw 200-fachen des Radius~$r_1$ der anfänglichen Umlaufbahn hat.
+
+\medskip
+%\hyperref[lsg:adyn_manoevers3]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_manoevers3}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\begin{prob}  %Übung15
+\schwierig{adyn_manoevers4}{Lambert-Problem}
+Das Lambert-Problem wird heute meist in folgender Form geschrieben:
+\begin{align}
+  \Delta t &= \sqrt{\frac{a^3}{\mu}} \,\lek\alpha-\sin\alpha-\lk \beta -\sin\beta\rk \rek \,, \label{adyn_lambert_lsg01}
+\end{align}
+worin
+\begin{align}
+  \sin\lk \frac{\alpha}{2} \rk = \sqrt{\frac{s}{2a}}\,,~~~~~\sin\lk \frac{\beta}{2} \rk = \sqrt{\frac{s-c}{2a}}\, \label{adyn_lambert_lsg02}
+\end{align}
+Funktionen des gesuchten Bahnparameters $a$ und der bekannten geometrischen Größen $s$ und $c$ (siehe \figref{adyn_lambert_lsg01}) sind.
+Diese Formulierung basiert auf der Kepler-Gleichung. 
+Leiten Sie die Gleichung \eqref{adyn_lambert_lsg01} aus der Kepler-Gleichung her und lösen Sie die Gleichung nach dem Bahnparameter $a$ mit Hilfe der Bisektionsmethode. Zur Anwendung der Methode siehe auch \probref{adyn_manoevers5} und \probref{adyn_manoevers6}, sowie die Literatur \cite{Izzo2015}.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{LambertProblem02Geometrie.pdf} 
+	\caption[Geometrie des Lambert-Problems.]{Geometrie des Lambert-Problems.}
+	\label{abb:adyn_lambert_lsg01}
+\end{figure}
+
+\medskip
+%\hyperref[lsg:adyn_manoevers4]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_manoevers4}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\begin{prob}  %Übung16
+\schwierig{adyn_manoevers5}{Venus- und Mars-Flüge}
+Benutzen Sie die Lösungsmethode des Lambert-Problems aus \probref{adyn_manoevers4}, um nun Venus- und Marsflüge aus einer Parkbahn um die Erde zu konzipieren. 
+\begin{itemize}
+	\item Berechnen Sie zunächst die minimal mögliche Transferzeit für ein gewisses Startdatum (\zb 18.6.2023). Diese wird durch einen parabolischen Orbit erreicht. \\
+	\item Berechnen Sie nun für dieses Startdatum die Bahn für eine vorgegebene Flugzeit von 158 Tagen (zur Venus) \bzw 115 Tagen (zum Mars). \\
+Benutzen Sie für Ihre Rechnungen die Werte aus der Tabelle \ref{tab:hm_bahnparameter} im Kapitel \ref{kap:hm_tabellen} der Himmelsmechanik. Hinweis: Sie können auch die Mittelpunktsgleichung\index{Mittelpunktsgleichung} \eqref{eq:hm_mpglg_r/a} aus \kap{hm_mpg} für eine einfache Näherung der elliptischen Bahnen von Mars und Venus verwenden.
+\end{itemize}
+Zusatzaufgabe: Suchen Sie ein optimales Startfenster für den Flug zum Mars aus. Wodurch ist dieses gekennzeichnet? Betrachten Sie dabei zwei Fälle:
+	\begin{enumerate} [a)]
+		\item Sie wollen nur einen Rover auf den Mars schaffen und zwar mit minimalen Treibstoffbedarf.
+		\item Sie wollen mit Ihrer Crew auch möglichst schnell wieder zur Erde zurück. Gehen Sie von realistischen Treibstoffvorräten aus. 
+	\end{enumerate}
+
+\medskip
+%\hyperref[lsg:adyn_manoevers5]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_manoevers5}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\begin{prob}  %Übung17
+\mittel{adyn_manoevers6}{Abfang ballistischer Raketen}
+Benutzen Sie die Lösungsmethode des Lambert-Problems aus \probref{adyn_manoevers4}, um ein Abfangmanöver zu berechnen.\\
+Berechnen Sie das Geschwindigkeitsbudget, die Trajektorie und die Flugzeit einer Abfangrakete für eine interkontinentale ballistische Rakete (\textit{ICBM - \underline{I}nter-\underline{C}ontinental \underline{B}allistic \underline{M}issile}).\\
+Die Abfangrakete befindet sich zum Zeitpunkt der Ortung bei:
+\begin{align*}
+	  \vec{r}(t_1)  = \vec{r}_1 = [6000, 3500, 0]\,\, \SI{}{\km}\,,~~~~
+		\dot{\vec{r}}(t_1)  = \vec{v}_1 = [-2.5, 6.5, 2.5]\,\, \SI{}{\km\per\second}
+\end{align*}
+Die ICBM wurde getrackt mit:
+\begin{align*}
+	  \vec{R}(t_1)  &= \vec{R}_1 = [12250.0, 10250.0, 2000.0]\,\,\SI{}{\km}\,, ~~~~
+		\dot{\vec{R}}(t_1) &= \vec{V}_1 = [-3.5, 1.0, 0] \,\,\SI{}{\km\per\second}
+\end{align*}
+Die ICBM soll binnen 30 min abgefangen werden und zwar bevor sie eine Flughöhe von 100 km erreicht. Ist das möglich?
+Zusatz: Können Sie sagen, von wo die Rakete gestartet ist und wo sie ohne Abfang einschlagen würde?
+
+\medskip
+%\hyperref[lsg:adyn_manoevers6]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_manoevers6}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+\begin{prob}  %Übung18
+\mittel{adyn_manoevers7}{Mondflug mit Ionenstrahltriebwerk}
+Lösen Sie Bewegungsgleichung \eqref{eq:adyn_ionentr_01} numerisch für ein Triebwerk mit kontinuierlichem Schub für den Transfer aus einem LEO in einen GEO.\\
+Parameter: $r_1= \SI{1000}{\km} + R_\text{E}$, $r_2 = \SI{35786}{\km} + R_\text{E}$, Schub $F_\text{S}= \SI{0.5}{\newton}$, Anfangsmasse $m_0= \SI{10000}{\kg}$, Massenausstoß $\dot{m}_\text{R} = \SI{3e-3}{\kg\per\second}$.\\
+
+Berechnen Sie die Zeitdauer und Bahn für einen Mondflug mit einem Ionenstrahltriebwerk. Reduzieren Sie die Triebwerksleistung kontinuierlich so, dass diese bei einem Erreichen eines Abstands von der Erde, der dem Abstand des Lagrange-Punkts $\text{L}_1$ zwischen Erde und Mond entspricht, nahe Null wird. Vergleichen Sie mit dem Hohmann-Transfer.
+
+\medskip
+%\hyperref[lsg:adyn_manoevers7]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_manoevers7}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\begin{prob}  %Übung19
+\mittel{adyn_SOI}{Einflusssphäre - Sphere of Influence SOI}
+Berechnen Sie die Radien der Einflusssphären der Planeten unseres Sonnensystems und vergleichen Sie mit dem Hill-Radius\index{Hill-Sphäre}, den wir in \probref{hm_hill_sphere} berechnet hatten. Worin unterscheiden sich die Radien? Wann muss man welchen heranziehen?
+
+\medskip
+%\hyperref[lsg:adyn_SOI]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_SOI}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob}  %Übung20
+\mittel{adyn_swingby01}{Gravity-Assist-Manöver - Analytische Lösung}
+Finden Sie die analytischen Lösungen für $v_2$, $\Delta v = v_2 -v_1$ und $\gamma_2$ als Funktion der Eingangsparameter $v_1,\,v_\text{P},\,\gamma_1$. 
+Finden Sie eine Beziehung für den Geschwindigkeits- und Energiegewinn beim Gravity-Assist-Manöver und berechnen Sie die in der Tabelle \ref{tab:adyn_results_swingby}
+in \kap{adyn_gravity_assist} angegebenen Werte für die theoretisch maximal erreichbaren Ablenkungen~$\vartheta'$ für die Planeten unseres Sonnensystems bei einem (unrealistischen) perizentralen Abstand von genau dem Planetenradius und einer typischen Einfluggeschwindigkeit von $v_1{}'= \SI{13.0}{\km\per\second}$. 
+
+\medskip
+%\hyperref[lsg:adyn_swingby01]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_swingby01}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob}  %Übung21
+\einfach{adyn_swingby03}{Gravity-Assist-Manöver - Simulation} 
+Erstellen Sie in \matlab{} eine Simulation eines Gravity-Assist-Manöver im Schwerefeld des Jupiters. \\
+
+\medskip
+%\hyperref[lsg:adyn_swingby03]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_swingby03}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+
+\newpage
+\subsection{Übungen zu Rendezvous im Weltall}
+
+\begin{prob}  %Übung22
+\mittel{adyn_rendezvous01}{Rendezvous ISS und Raumtransporter}
+Berechnen Sie, wie das Weltraum-Rendezvous zwischen der ISS und einem Raumtransporter stattfinden könnte. Ab welcher Entfernung kann die Bodenstation dem Kommandanten des Raumtransporters die Anweisung zur direkten manuellen Ansteuerung nach Sicht geben?
+
+Gehen Sie von einer initial leicht elliptischen Bahn des Raumtransporters aus. Die große Halbachse stimmt mit dem Radius der (nahezu) kreisförmigen Bahn der ISS überein und die Exzentrizität beträgt $e=0.035$. Beim Perigäum der Raumtransporterbahn haben die beiden Weltraumsysteme die gleiche wahre Anomalie.\\
+
+Berechnen Sie auch numerisch für den Fall einer großer Elliptizität von $e=0.2$ die Bahnbeobachtung eines Raumschiffs von einer Raumstation aus der Kepler-Lösung, der Lösung aus der vollen Lagrange-Gleichung und zum Vergleich aus den CW-Gleichungen. Erklären Sie Ihrer Ergebnisse.\\
+
+\medskip
+%\hyperref[lsg:adyn_rendezvous01]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_rendezvous01}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob}  %Übung23
+\mittel{adyn_rendezvous02}{Rendezvous Apollo 11 CM und LM}
+Berechnen Sie mit den Daten aus \kap{adyn_rendezvous_apollo11} und in der Näherung, dass die Bahnen von LM und CSM Kreisbahnen sind, wie das Weltraum-Rendezvous zwischen dem LM und dem CSM von Apollo 11 stattfand. Was können Sie über die Zeitabhängigkeit und die Genauigkeit des Zielwinkels des TPI-Burn sagen? 
+Welcher Antriebsbedarf ist für den TPI-Burn notwendig? Berücksichtigen Sie dabei die Geschwindigkeit des LM vor dem TPI-Burn.\\
+Können Sie erklären, warum der Astronaut Collins über die letzte Phase des "`geraden"' Anflugs etwas verwundert war?\\
+
+\medskip
+%\hyperref[lsg:adyn_rendezvous02]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_rendezvous02}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob}  %Übung24
+\mittel{adyn_rendezvous03}{Planung einer Apollo Mission - \emph{Free Return Trajectory}}
+
+Bei jeder der Apollo-Missionen zum Mond gab es eine besondere Sicherheitsmaßnahme. Für den Fall, dass die Mission aus irgendeinem Grund nicht so wie geplant durchgeführt werden konnte, wurde die Flugbahn des Apollo-Raumschiffs so geplant, dass es in einer freien Rückflugbahn (\emph{Free Return Trajectory}) auf einer sogenannten \textit{slingshot trajectory} um den Mond herum "`geschleudert"' und nur durch die Gravitationskräfte von Mond und Erde zur Erde zurückkehren würde. 
+%In der Apollo 8 Mission wurde diese \textit{Free Return Trajectory} durch drei kurze Burns entsprechend angepasst.  Der erste Burn brachte Apollo 8 auf eine elliptische Umlaufbahn um den Mond, der zweite auf eine kreisförmige.  Apollo 8 umkreiste den Mond zehnmal und wurde dann nach einem dritten Burn wieder auf eine \textit{Free Return Trajectory} zurück zur Erde gebracht.  
+
+Bei Apollo 13, der ursprünglich dritten geplanten Mondlandemission, explodierte nach 56 Stunden Flugzeit ein Sauerstofftank an Bord des Raumschiffs. Das Raumschiff hatte nicht genug Treibstoff, um umzukehren und nach Hause zu fliegen. Es gab keine andere Wahl, als den Flug zum Mond fortzusetzen und auf der \textit{Free Return Trajectory} zur Erde zurückzukehren. Ohne die implizit eingebaute Sicherheitsmaßnahme wäre das Überleben der Besatzung von Apollo 13 nicht möglich gewesen.\\
+
+Erstellen Sie zunächst unter vereinfachenden Annahmen, dass  der Flug in der Mondbahnebene um die Erde stattfinden soll und dass nur die SOIs (\probref{adyn_SOI}) von Erde und Mond berücksichtigt werden sollen,  mittels der Methode des \textit{Patched-Conic-}Näherung\index{Patched-Conic-Näherung} (siehe \kap{adyn_gravity_assist}) 
+eine erste näherungsweise Missionsplanung für den Flug zum Mond. Bei der \textit{Free Return Trajectory} soll ohne weiteren Treibstoffverbrauch (von minimalen Kurskorrekturen abgesehen) nach der translunaren Injektion (\textit{Trans Lunar Injection} - TLI) eine sichere Rückkehr zur Erde gewährleistet sein.\\
+Versuchen Sie dann mit den so gewonnenen Anfangsdaten eine numerische Lösung.\\
+Hinweise:
+\begin{itemize}
+	\item Beginnen Sie in der Erdumlaufbahn und legen Sie eine Richtung und eine Anfangsgeschwindigkeit für Ihre TLI fest.
+	\item Stellen Sie die Trajektorie und die Position des Mondes dar.
+	\item Zeigen Sie die Abhängigkeit der Flugbahn von Variationen in der Startgeschwindigkeit und der Startrichtung. 
+\end{itemize}
+Zusatz:
+\begin{itemize}
+	\item Berechnen Sie das nötige Geschwindigkeitsbudget und die dafür nötige Treibstoffmenge für die TLI.
+	\item Planen Sie eine Kurskorrektur, die das Raumschiff aus der \textit{Free Return Trajectory} in eine Mondumlaufbahn von ca. 120 km Höhe bringt und eine weitere, die die Sonde aus dieser wieder in eine \textit{Free Return Trajectory} zurück zur Erde bringt.
+\end{itemize}
+
+
+Für interessierte Leser sei auf das Apollo Flight Journal unter \url{https://www.nasa.gov/history/afj/} sowie die lesenswerte Beschreibung des Physikhintergrunds der Apollo-Missionen in \cite{Lundy2001} verwiesen, in denen jeweils alle Phasen der Apollo Missionen im Detail beschrieben sind.
+
+\medskip
+%\hyperref[lsg:adyn_rendezvous03]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_rendezvous03}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+
+
+\newpage
+\subsection{Übungen zu Starts aus der Erdatmosphäre und zum Wiedereintritt}
+%-----------------------------------------------------------------------------------------------------------
+
+%\begin{prob}  %Übung25
+%\einfach{adyn_forces01}{Kräfte im Weltall}
+%Berechnen Sie die Größenordnungen der Kräfte von Tabelle \ref{tab:adyn_forces01}.
+%Überlegen Sie sich die Wirkungen der Kräfte auf die Umlaufbahnen von Satelliten.\\
+%
+%\medskip
+%%\hyperref[lsg:adyn_forces01]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+%\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_forces01}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+%\noindent\rule[1ex]{\textwidth}{0.5pt}
+%\end{prob}
+%
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob}  %Übung25
+\mittel{adyn_launch01a}{Bewegungsgleichungen für Raketenstart von Erdoberfläche}
+
+Leiten Sie die skalaren Bewegungsgleichungen \eqref{eq:adyn_launch01} für einen Raketenstart von der Erdoberfläche aus \eqref{eq:adyn_launch_vec} her.
+Gehen Sie dabei von einem erdfesten \KOS\ in ein mitbewegtes \KOS\ über und schreiben Sie die Bewegungsgleichung in natürlichen Koordinaten und in geeigneten kartesischen Koordinaten ($h-x$).\\
+
+\medskip
+%\hyperref[lsg:adyn_launch01a]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_launch01a}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob}  %Übung26
+\schwierig{adyn_launch01}{Raketenstarts von verschiedenen Weltraumzentren}
+Die mathematisch-physikalische Behandlung eines Raketenstarts unter Berücksichtigung aller Faktoren (Atmosphäre, geographischer Ort der Startrampe, gewünschte Bahn/Orbit, Nutzlast \usw) ist eine ziemlich komplexe Aufgabe, die letztendlich nur numerisch zu lösen ist. Man kann mit den Erkenntnisse aus \kap{adyn_launch}
+aber einige grundsätzliche Überlegungen anstellen und Abschätzungen machen, bevor man an die numerische Behandlung geht.\\
+%Nach \figref{adyn_launch01} können wir den Flug eines Raumschiffs vom Start auf der Erdoberfläche aus bis zum gewünschten Orbit in 3 Phasen unterteilen:
+%\begin{enumerate}
+	%\item Schubphase
+	%\item Freie Trajektorie (auch \textit{coasting phase} genant)
+	%\item Gegebenenfalls eine Kurskorrektur (Burn) in den finalen, gewünschten Orbit. 
+%\end{enumerate}
+In der Übung sollen folgende Aspekte behandelt werden:
+\begin{itemize}
+	\item Die Dynamik der Schubphase und den notwendigen Treibstoffbedarf  \bzw das Geschwindigkeitsbudget für das Erreichen eines bestimmten Orbits. Wir unterscheiden dabei den Fall des sogenannten \textit{Direct to Orbit} Transfers und des Transfers über eine Hohmann-Transferbahn mit anschließender Kurskorrektur.
+	\item Berechnung des Startverlaufs im mitbewegten \KOS{} nach \kap{adyn_launch} \bzw \probref{adyn_launch01a}.
+	\item Festlegung des zeitlichen Startfensters und der Startrichtung (Startazimut) für den Start von verschiedenen Raumfahrtzentren im mitbewegten \KOS{} sowie im Inertialsystem.
+	\item Komplette 3D-Trajektorienberechung der Startphase bis in den erdnahen Orbit.
+\end{itemize}
+Aufgabenstellungen:
+\begin{enumerate}
+\item Formulieren Sie eine allgemeine Optimierungsstrategie für einen Raumschiffstart in einen erdnahen Orbit. Für die frei Trajektorie nehmen Sie einen Hohmann-Transfer an. Benutzen Sie auch die Ergebnisse von \kap{ady_reentry_conditions}. 
+\item Berechnen Sie numerisch die Startphase einer dreistufigen Rakete (Ariane-1) im durch $\vec{t},\, \vec{n}$ und \vec{h} definierten mitbewegten \KOS. Berücksichtigen Sie den Drag und die Nickkorrektur. Legen Sie die Parameter so fest, dass die Rakete in eine Erdumlaufbahn von \ca 300 km Höhe gelangt.
+\item Zeigen Sie, dass man von einem Startort mit der geographischen Breite $\varphi_0$ ohne (treibstoffintensive) Bahnmanöver im Weltraum keine Orbits mit Inklinationen $i$ kleiner als $\varphi_0$ erreichen kann. Geben Sie auch eine physikalische Erklärung. Berechnen Sie für einen Raumschiffstart zur ISS jeweils Startfenster und Startazimut von Cape Canaveral, Baikonour und Kourou aus.
+\item Berechnen Sie numerisch die 3D-Trajektorien im geozentrischen \KOS\ (Inertialsystem) für einen Raumschiffstart in eine Erdparkbahn von \ca 300 km jeweils von Cape Canaveral, Baikonour und Kourou aus. Berücksichtigen Sie den Einfluss der Erdrotation, der atmosphärischen Reibung, ebenso wie den Nickwinkel und das Startazimut.
+Berechnen Sie die Bodenspur des Raumschiffs von Start bis zum erstmaligen Abschluss einer Erdumrundung. 
+Vergleichen Sie die Startbedingungen von den drei Zentren.\\
+Benutzen Sie dabei die Daten aus Tabelle \ref{tab:adyn_parameter_raketen} für die Ariane-1 Rakete.
+\end{enumerate}
+
+\medskip
+%\hyperref[lsg:adyn_launch01]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_launch01}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob}  %Übung27
+\mittel{adyn_reentry01}{Parameter des Wiedereintritts in die Erdatmosphäre}
+Leiten Sie die Beziehungen \eqref{eq:adyn_reentry03} mit den Kenntnissen aus \kap{hm_abl_kepler} her.\\
+Vergleichen Sie die Problemstellung mit dem Lambert-Problem. Worin liegt der Unterschied, was gibt es für Gemeinsamkeiten?\\
+
+\medskip
+%\hyperref[lsg:adyn_reentry01]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_reentry01}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\newpage
+\begin{prob}  %Übung28
+\mittel{adyn_reentry02}{Auftrieb/Drag-Abhängigkeit bei Wiedereintritt in Erdatmosphäre}
+Untersuchen Sie die Abhängigkeit des Höhenverlaufs $h(t)$. des Geschwindigkeitsverlaufs $v(t)$, des Flight Path Angle $\gamma(t)$ und der Beschleunigung (Abbremsung) $a(t)$ als Funktion des Verhältnisses von Auftrieb zu Drag für verschiedene initiale FPA.\\
+
+\medskip
+%\hyperref[lsg:adyn_reentry02]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_reentry02}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\begin{prob}  %Übung29
+\mittel{adyn_reentry03}{Normierte Gleichungen für $v(h)$ und $\gamma(h)$ bei Wiedereintritt}
+Leiten Sie die Beziehung \eqref{eq:adyn_reentry11} aus \eqref{eq:adyn_launch08} für den Wiedereintritt in die Erdatmosphäre her.\\
+
+\medskip
+%\hyperref[lsg:adyn_reentry03]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_reentry03}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\begin{prob}  %Übung30
+\einfach{adyn_reentry04}{ISS Stabilität - Absturz und Verglühen des Satelliten Tiangong-1}
+\begin{enumerate}
+\item\textbf{\textit{Magnetsturm und ISS-Bahn}}\\
+Dass ein Raumschiff beim Umkreisen der Erde wegen der minimal vorhandenen Reibung ständig an Höhe verliert, ist völlig normal. Bei der ISS sind es normalerweise \ca 100 Meter pro Tag. Berechnen Sie die mit einer geeigneten Näherungsrechnung die effektive Fläche der ISS, die sich aus der normalen Höhenverlustrate bei 420 km ergibt.
+Wenn alle Systeme der ISS plötzlich ausfallen würden, wie lange würde es dauern, bis die ISS zum Absturz käme?\\
+Während der heftigen Magnetstürme im November 2004 sank die ISS bis zu 300 Meter pro Tag, so dass die Raumstation innerhalb weniger Tage um vier Kilometer an Höhe verlor (\figref{adyn_ISS2004}).
+Um wie viel größer war die Reibung durch den Magnetsturm im September? 
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{ISS2004.pdf}
+\caption[Höhe der Bahn der ISS im November 2004.]{Höhenverlust der Bahn der ISS im November 2004 nach einem Magnetsturm. Daten von \cite{JPL2020}\, (siehe auch \mladyndref{ISS20004.txt}).}
+\label{abb:adyn_ISS2004}
+\end{figure}
+
+\item \textbf{\textit{Der Absturz von Tiangong-1}}\\
+Tiangong 1 (chinesisch für "`Himmelspalast 1"') war die erste Weltraumstation der Volksrepublik China. Der Start erfolgte mit einer Trägerrakete "`Langer Marsch"' am 29. September 2011. 
+Das Büro für bemannte Raumfahrt Chinas meldete am 21. März 2016, dass die Geräte an Bord von Tiangong-1 abgeschaltet wurden und dass sich seine Flugbahn im Laufe absenken und die Station in der Erdatmosphäre verglühen würde. Die Bahnhöhe von Tiangong-1 verringerte sich zunehmend, der genaue Zeitpunkt des Wiedereintritts und damit der genaue Ort des Absturzes hing von der zum Teil unbekannten Dichte der Hochatmosphäre und von der Ausrichtung der Raumstation ab und ließ sich bis zuletzt nicht genau voraussagen.
+Am 2. April 2018 um 00:16 Uhr UTC trat Tiangong-1 über dem Südpazifik in die Erdatmosphäre ein und zerbrach in mehrere Teile (\figref{adyn_Tiangong2018}).
+Untersuchen Sie mit einer geeigneten Näherungsrechnung den Absturz des Satelliten Tiangong-1 im Jahre 2018. Verwenden Sie die Daten aus \cite{JPL2020}\, (\mladyndref{Tiangong2018.csv}) \bzw \cite{Fiolhais2023, Pardini2019}.
+\begin{figure}[H]
+\includegraphics[width=0.95\textwidth]{Tiangong2018.pdf}
+\caption[Höhe der Bahn des chinesischen Satelliten Tiangong-1.]{Höhe der Bahn des chinesischen Satelliten Tiangong-1 im Zeitraum Februar bis April 2018. Daten von \cite{JPL2020} (siehe auch \mladyndref{Tiangong2018.csv}).}
+\label{abb:adyn_Tiangong2018}
+\end{figure}
+
+\item \textbf{\textit{Zusatzaufgabe 1}}\\
+
+Berechnen Sie mit den Daten vom 05.03.2018 (\cite{JPL2020, Pardini2019} \bzw \mscr~\mladyndref{ISS2004.csv}) die Bahn der letzten Tage des Satelliten Tiangong-1 und die Bodenspur. Was ist Ihre Vorhersage? Vergleichen Sie mit dem tatsächlichen Ort des Verglühens (Südpazifik $24.5\degree\,\text{S}, \, 151.1\degree\,\text{W}$).\\
+
+\item \textbf{\textit{Zusatzaufgabe 2}}\\
+
+Zeigen Sie numerisch wie extrem kritisch die Wiedereintrittsphase in einem solch einem Fall vom FPA $\gamma$ abhängt. Benutzen Sie die Ergebnisse von \probref{adyn_reentry03}.\\ 
+\end{enumerate}
+
+\medskip
+%\hyperref[lsg:adyn_reentry04]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_reentry04}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\begin{prob}  %Übung31
+\einfach{adyn_BoatRocketModel}{Zur Entspannung}
+Zum Abschluss zur Entspannung eine schöne Analogieaufgabe zwischen einer Rakete und einem Physiker als Bootsfahrer. Dieser will sich durch Abwerfen von Kokosnüssen aus seinem Boot vorwärts bewegen\footnote{Diese schöne Aufgabe geht auf \cite{Lagos2023} zurück}.\\
+\figref{adyn_BoatRocketModel} zeigt die Situation des Bootsfahrers Leonardo, ohne Ruder und sonstigen Antrieb. Er hat lediglich $N$ Kokosnüsse der Masse $m_\text{K}$, die er jeweils mit einer Geschwindigkeit $v_\text{K}$ abwerfen kann. Sein Boot wiegt $m_\text{B}$, er selbst $m_\text{L}$. 
+Zeigen Sie mit Hilfe des Impulserhaltungssatzes, dass das Problem äquivalent ist zu Raketengleichung und dass Sie für $N\rightarrow\infty$ und gleichzeitig  
+$m_\text{K}\rightarrow 0$ tatsächlich die Raketengleichung erhalten.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{BoatRocketModel.pdf}
+\caption[Diskretes Modell der Raketengleichung.]{Diskretes Modell der Raketengleichung.}
+\label{abb:adyn_BoatRocketModel}
+\end{figure}
+
+\medskip
+%\hyperref[lsg:adyn_BoatRocketModel]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\linklsg\\%\href{FingerUeb2_AB.pdf#lsg:adyn_BoatRocketModel}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+\newpage
+\subsection{Weiterführende Zusatzaufgaben und Probleme}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob}  %Zusatz1
+\zusatz{adyn_launchinnovations}{Neue Ideen zum Flug ins Weltall}
+Immer wieder gibt es Berichte zu alternativen und kostengünstigeren Methoden, Lasten von der Erde in den Weltraum zu bringen.
+Besonders zwei Methoden haben in den letzten Jahren große Aufmerksamkeit erreicht und auch entsprechendes Funding:
+\begin{enumerate}
+	\item Steinschleuder-Methode (englisch \textit{Spinlaunch}) \\
+	Bei dieser relativ neuen, \ua von der Firma \textit{Spinlaunch} diskutierten Methode, wird mit einem rotierenden Massenbeschleuniger (einer Art Zentrifuge) eine geschossförmige Trägerrakete in große Höhen katapultiert. Dort sollen die Triebwerke gezündet und die Nutzlast in eine Erdumlaufbahn gebracht werden. Dieses System soll weitaus kostengünstiger arbeiten als herkömmliche Stufenraketen, ein erster Start wird für 2026 prognostiziert (\url{www.spinlaunch.com}, \cite{Krolle2022}).
+	\item Weltraumfahrstuhl (englisch \textit{Space Elevator}) \\
+	Die Idee dieser seit einigen Jahren \ua von der Firma \textit{Liftport} diskutierten Methode besteht darin, an einem Seil aus geeignetem Material Nutzlasten nach oben zu ziehen. Das Seil verläuft vom Äquator senkrecht nach oben über die geostationäre Bahn eines Satelliten hinaus und wird dort eventuell durch eine Gegenmasse abgeschlossen. (\url{www.liftport.com}, \cite{Aravind2007, Swan2013, Rauchhaupt2014}).
+\end{enumerate}
+
+Bewerten Sie diese Methoden, indem Sie einfache Abschätzungen zur Realisierbarkeit machen. Was sind die Top-Probleme \bzw Herausforderungen. Welche Risiken sehen Sie?
+Können Sie eine Kostenabschätzung machen im Vergleich zu heutigen Kosten? SpaceX gibt heute $\SI{3000}{}$ USD pro kg Fracht an.\\
+Würden Sie investieren, in welches der beiden Projekte am ehesten?
+
+\medskip
+\linklsg\\%\hyperref[lsg:adyn_launchinnovations]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob}  %Zusatz2
+\zusatz{adyn_orbits_zusatz1}{Bahnparameter aus Bodenbeobachtungen (Ortsvektoren) }
+Diese Aufgabe wurde aus \cite{Montenbruck2012} entnommen.\\
+Berechnen Sie die Bahnparameter eines Satelliten für folgende Beobachtungen von der Station mit den geozentrischen Stationskoordinaten:\\
+	$x_\text{B} = \SI{1344.143}{\km,}\,\, y_\text{B} = \SI{6068.601}{\km,}\,\,z_\text{B} = \SI{1429.311}{\km}\,.$  (Indien)\\
+Die topozentrischen Messwerte für die indische Station sind:\\
+	02.04.1999\,\, 00:30:00 UTC\,:\; $\mathcal{A} = 132.67\degree~\,,~h=32.44\degree~\,~  R_\text{S}=\SI{16945.45}{\km}$\,,\\
+	02.04.1999\,\, 03:00:00 UTC\,:\; $\mathcal{A} = 123.08\degree~\,,~h=50.06\degree~\,~  R_\text{S}=\SI{37350.34}{\km}$\,.\\
+
+\medskip
+\linklsg\\%\hyperref[lsg:adyn_orbits_zusatz1]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob}  %Zusatz3
+\zusatz{adyn_orbits_zusatz2}{Bahnparameter aus Bodenbeobachtungen (Ortsvektoren) }
+Berechnen Sie aus den in \probref{adyn_orbits3} berechneten topozentrischen Beobachtungsdaten zu den Zeiten 00:32 und 00:38 in Görlitz nun umgekehrt die Bahnparameter.
+Die Stationskoordinaten von Görlitz sind: $\lambda = 15\degree$ O  und $\varphi=51\degree$ N.\\
+
+\medskip
+\linklsg\\%\hyperref[lsg:adyn_orbits_zusatz1]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob}  %Zusatz4
+\zusatz{adyn_manoevers8}{Marsflug mit Ionenstrahltriebwerk}
+Konzipieren Sie einen Marsflug mit einem Ionenstrahltriebwerk. Seien Sie optimistisch und nehmen Sie eine Ausströmgeschwindigkeit von $v_\text{ion}=\SI{50}{\kilo\metre\per\second}$ und einen Anfangsschub von $\SI{50e-3}{\newton\per\kg}$ an. Das Raumschiff soll bereits in einer Parkbahn in 10000 km Abstand von der Mondoberfläche kreisen. Welche Treibstoffmasse ist notwendig, was ist der gesamte Energiebedarf/Leistungsbedarf und mit welcher Flugzeit müssen Sie rechnen? Vergleichen Sie das mit einem Hohmann-Transfer \bzw der Flugzeit, die Sie in \probref{adyn_manoevers5} berechnet haben. \\
+Was können Sie über das Nutzlastverhältnis sagen?\\
+Hinweis: Gehen Sie analog zu \probref{adyn_manoevers7} vor und überlegen Sie sich, welche sinnvollen Näherungen Sie für welchen Flugabschnitt machen können, um die numerische Rechnung zu vereinfachen und zu beschleunigen.
+
+\medskip
+%\hyperref[lsg:adyn_manoevers8]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob}  %Zusatz5
+\zusatz{adyn_swingby02}{Gravity-Assist-Manöver - Allgemeiner Fall}
+Betrachten Sie das GA-Manöver im allgemeinen Fall, \dh dass die Bahnebene der Raumsonde und die Planetenebene nicht mehr übereinstimmen (\figref{adyn_GA3dim}) und die
+Bahnebene auch nicht mehr der Ekliptik entspricht. Geben Sie eine Berechnungsvorschrift für die Ausgangsparameter des GA-Manövers in Matrixschreibweise an.
+Finden Sie über eine vektorielle Definition des Streuparameters eine mathematische Formulierung für die jeweiligen Fälle des GA-Manövers "`vor"' bzw. "`hinter"' einem Planeten und begründen Sie, warum sich daraus entweder $\vartheta' > 0$ oder $\vartheta' < 0$ ergibt.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{GravityAssist3D.pdf} 
+	\caption[Geometrie des Gravity-Assist-Manövers.]{Geometrie des Gravity-Assist-Manövers (nichtkoplanarer Fall).}
+	\label{abb:adyn_GA3dim}
+\end{figure}
+\medskip
+\linklsg\\%\hyperref[lsg:adyn_swingby02]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob}  %Zusatz6
+\zusatz{adyn_swingby04}{Gravity-Assist-Manöver - Zusätzlicher Schub }
+Berechnen Sie die Ausgangsparameter eines GA-Manövers, bei dem die Raumsonde am Perizentrum noch einen Zusatzbetrag $\Delta v_\text{ext}$ aus den Treibstoffvorräten bekommt. Wie verändern sich die Ausgangswerte zum Fall $\Delta v_\text{ext} = 0$ und zum Fall, wenn  $\Delta v_\text{ext}$ an den Punkten $\mathrm{P}_1$ \bzw  $\mathrm{P}_2$ zur Anwendung kommt. Diskutieren Sie Ihre Ergebnisse. 
+
+\medskip
+\linklsg\\%\hyperref[lsg:adyn_swingby04]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob}  %Zusatz7
+\zusatz{adyn_PSP01}{Flug der Parker Solar Probe - PSP}
+Berechnen Sie die Bahn der PSP über die Patched-Conic-Näherung. Benutzen Sie dabei die Werte aus \kap{adyn_interplanetary_flights} und für die Anfangswerte der Bahn Daten der Horizon-Webseite des Jet Propulsion Lab \url{https://ssd.jpl.nasa.gov/horizons.cgi}. Die Daten sind  im File \mladyndref{PSP.csv} hinterlegt. Für die Planeten können die Bahnen mit den Methoden aus dem \kap{hm_bahnen_hk_ss} in der Himmelsmechanik berechnet werden. \\
+Ebenso schätze man ab, ob der Treibstoffvorrat dieser Sonde von $\SI{3650}{\kg}$ mit optimistischen  $v_\text{G} = \SI{4}{\km\per\second}$ ausgereicht hätte, JUICE aus einer elliptischen Bahn um die Sonne (Perihelabstand von etwa $\SI{1}{AE}$) zum Jupiter zu bringen. Hinweis: Die gesamte mitgeführte Treibstoffmasse von JUICE betrug $\SI{3650}{\kg}$, die Strukturmasse und Nutzlast zusammen $\SI{2700}{\kg}$. Als Hinweis sei erwähnt, dass die Startrakete eine Ariane 5 war, die für Transporte in den geostationären Orbit optimiert ist und die mit der Nutzlast von $\SI{6.3}{\tonne}$ beim Start voll ausgelastet war.
+
+\medskip
+%\hyperref[lsg:adyn_PSP01]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob}  %Zusatz8
+\zusatz{adyn_pertubations}{Gestörte Satellitenbahnen - Grundideen der Störungstheorie}
+Berechnen Sie die Änderungen der Bahnparameter eines Satelliten (\bzw eines beliebigen Himmelskörpers) bei Vorhandensein einer beliebigen Störkraft $\vec{F}_\text{S}$ zusätzlich zum Zentralkraftfeld der Erde (\bzw des Zentralkörpers) numerisch und durch analytische Näherungsformeln.
+Benutzen Sie dabei das mit dem Satelliten mitbewegte Koordinatensystem~\vec{PQR}.
+
+Für die numerische Methode können Sie zwei verschiedene Methoden verwenden (vgl. auch \figref{adyn_pertubations01}):
+\begin{enumerate}
+	\item \textbf{Methode von Cowell}\footnote{Philip Herbert Cowell (1870 -- 1949) war ein britischer Astronom, der mit der nach ihm benannten Methode zur Lösung von Differentialgleichungen in rechtwinkligen Koordinaten einen bedeutenden Beitrag zur Berechnung der Bahnen von Himmelskörpern lieferte.}\indexp{Cowell, Philip Herbert}
+	
+	Die Cowell-Methode, Anfang des 20. Jahrhunderts veröffentlicht, besteht darin, dass man einfach die beiden Bewegungsgleichungen für die gestörten Bahn $\vec{\rho}(t)$ und eine Referenzbahn $\vec{r}(t)$ (die sogenannte \gls{Oskulation}) \index{Bahn!oskulierende} \cite{Montenbruck1999} aufschreibt und diese dann simultan numerisch integriert.\\
+
+	\item \textbf{Methode von Encke}\footnote{Johann Franz Encke (1791 -- 1865) war ein deutscher Astronom, der unter anderem die nach ihm benannte Enckesche Teilung des Saturnrings entdeckte. Er bestimmte die Bahnen vieler Kometen und Asteroiden mit hoher Genauigkeit, ebenso wie die Astronomische Einheit.}\indexp{Encke, Johann Franz}
+
+	Die Encke-Methode, die bereits 1857 veröffentlicht wurde, besteht darin, dass man aus den beiden Bewegungsgleichungen für die gestörten Bahn $\vec{\rho}(t)$ und die oskulierende Bahn $\vec{r}(t)$ eine Differentialgleichung für die Differenz $\vec{r}_\Delta (t)$ gewinnt und diese dann mit einem speziellen Verfahren numerisch integriert.
+\end{enumerate}
+	Beide Verfahren zählen zu den sogenannten speziellen Störungstheorien, da letztendlich numerisch integriert werden muss.
+
+	Alternativ kann man versuchen, analytisch über Reihenentwicklungen die zeitliche Variation der Bahnparameter aus den Störbeschleunigungen abzuleiten. Dies ist erstmalig in einem berühmt gewordenen NASA-Report erfolgt \cite{NASA1968}. Man kann, dem dort dargelegten Prinzip folgend, für die Bahnparametervariationen $\D a/ \D t$, $\D e/ \D t$ \usw relativ kompakte Gleichungen herleiten und an diesen auch die Wirkung der unterschiedlichen Störungen gut erkennen.
+	
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{Stoerungsrechnung01.pdf} 
+	\caption[Geometrie für die Störungsrechnung.]{Geometrie für die Störungsrechnung. \fa Definition der oskulierenden Bahn. \fb Definition von  $\vec{r}_\Delta (t)$ für die speziellen Störungsrechnung nach der Methode von Encke.}
+	\label{abb:adyn_pertubations01}
+\end{figure}
+\medskip
+%\hyperref[lsg:adyn_PSP01]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+
+

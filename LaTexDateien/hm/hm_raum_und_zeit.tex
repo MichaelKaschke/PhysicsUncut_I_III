@@ -1,0 +1,412 @@
+\section{Raum und Zeit}\label{kap:hm_raum_und_zeit}
+Die mathematisch-physikalische Behandlung von Problemen
+der Mechanik kann man wie in Band I gezeigt
+elegant mit Methoden der (von Koordinatensystemen unabhängigen)
+Vektorrechnung bewerkstelligen.
+Für die experimentell-astronomische Überprüfung und Beobachtung muss man dann aber ein spezifisches räumliches und auch zeitliches Bezugssystem wählen.
+Im Band I hatten wir den Begriff des Inertialsystems
+als ein Bezugssystem eingeführt, in dem die Newtonsche Mechanik
+ohne die Notwendigkeit der Berücksichtigung von Scheinkräften
+angewendet werden kann.
+Als ein solches Inertialsystem werden wir in der Himmelsmechanik den durch die Fixsterne aufgespannten Raum verwenden.\footnote{Die Festlegung eines Inertialsystems durch die Fixsterne ist gar nicht so selbstverständlich, da sich das Weltall ausdehnt. Für unsere Zwecke ist aber die Annahme, dass der Raum der Fixsterne ein Inertialsystem bildet, ausreichend.}
+Die Auswahl spezifischer Zeit- und Koordinatensystemen für die Beobachtungen und quantitativen Berechnungen in der Himmelsmechanik ist aber nicht so ganz einfach, da es prinzipiell für einen Beobachter auf der Erde (oder einem anderen Planeten) kein absolut festes Koordinatensystem für die Beobachtung gibt, so dass jedes räumliche Koordinatensystem an eine Zeitangabe gekoppelt ist.
+Wir werden auch sehen, dass es je nach Aufgabenstellung unterschiedlich gut geeignete Bezugssysteme gibt.
+
+\subsection{Raum-Koordinatensysteme}\label{kap:hm_koordinatensysteme}
+Für die Festlegung eines räumlichen Koordinatensystems (KOS) braucht es einen Nullpunkt, eine Bezugsrichtung und eine Bezugsebene.
+Die Koordinaten können in jedem dieser Systeme entweder in kartesischen oder Polarkoordinaten (\figref{hm_koordinatensysteme}) berechnet werden.
+Letztere sind in der Himmelsmechanik wegen des direkten Bezugs zu Beobachtungsdaten oft vorteilhaft.
+Wir werden deshalb bei der Behandlung der Bewegungsgleichungen in \kapitel{hm_bewegungsgl} neben der Vektorschreibweise häufig auch parallel die Darstellung in Polarkoordinaten\index{Polarkoordinaten} angeben.
+\begin{figure}%
+\includegraphics[width=\textwidth]{Koordinatensysteme.pdf}%
+\caption[Koordinatensysteme in kartesischen und sphärischen Polarkoordinaten.]{Koordinatensysteme in kartesischen und (astronomischen) sphärischen Polarkoordinaten. Gegenüber dem mathematischen sphärischen KOS nutzt man im astronomischen sphärischen KOS den Winkel $\beta = 90\degree -\theta$.}%
+\label{abb:hm_koordinatensysteme}%
+\end{figure}
+Die Umrechnung zwischen den beiden Koordinatensystemen ist gegeben durch
+\begin{align*}
+x &= r\,\cos\beta\,\cos\lambda ~,\\
+y &= r\,\cos\beta\,\sin\lambda ~,\\ 
+z &= r\,\sin\beta ~.\\ 
+\smallskip
+r &= \sqrt{\rho^2 + z^2} &&\text{ mit } \rho=\sqrt{x^2+y^2} \,,  \nonumber\\
+\beta &= \arctan(z/\rho) &&\text{ für } \rho\neq 0 \text{; ansonsten 0\textdegree, 90\textdegree\ oder -90\textdegree\ je nach Quadrant.} \nonumber\\
+\psi &= 2\arctan\lk \frac{y}{\abs{x}+\rho} \rk\,, \nonumber\\
+\lambda &= \psi &&\text{für } x=0 \text{ und } y>0 \text{ (auf der positiven $y$-Achse)} \,,\nonumber\\
+\lambda &= \psi &&\text{für } x>0 \text{ und } y\geq 0 \text{ (1. Quadrant)} \,, \nonumber\\
+\lambda &= 360\text{\textdegree}+\psi &&\text{für } x\geq 0 \text{ und } y<0 \text{ (4. Quadrant)} \,,\nonumber\\
+\lambda &= 180\text{\textdegree}-\psi &&\text{für } x<0 \text{ (2. und 3. Quadrant)} \,,\nonumber\\
+\lambda &= 0\text{\textdegree} &&\text{für } x=0 \text{ und } y=0 \text{ (im Ursprung)} ~~. \nonumber
+\end{align*}
+Bei der Berechnung der arctan-Funktionen muss man etwas aufpassen und sich überlegen, in welchem Quadranten der Winkel liegt.
+In \matlab{} ist dazu die Funktion atan2 hinterlegt, die \iw der hier angegebenen Berechnung für $\psi$ entspricht und vor allem bei ganzzahligen Vielfachen von $\pi$ für $\psi$ genauere Werte liefert.
+Die Formel lässt sich leicht über die Beziehung für den Tangens des halben Winkels herleiten. Dazu formt man diese über
+	\[
+	\tan\lk \frac{\psi}{2} \rk= \frac{-x \pm \sqrt{x^2+y^2}}{y} = \cot \lk\frac{\psi}{2}-90\degree \rk
+\]
+um und stellt dann die entsprechenden Fallunterscheidungen für $x$ und $y$ an.
+
+Für die Himmelsmechanik empfehlen sich nun zur Festlegung eines KOS zwei natürlich \anf{ausgezeichnete} Bezugsebenen:
+\begin{itemize}
+\item Die Bahnebene\index{Bahnebene}\footnote{Wir haben ja bereits im Kapitel 1 von Band I gezeigt, dass die Bewegung eines Körpers im Zentralkraftfeld wegen der Drehimpulserhaltung in einer Ebene stattfindet.  
+Wir können deshalb die Bewegung in einer Bahnebene als gesichert annehmen. In \kapitel{hm_bewegungsgl} werden wir das noch einmal detailliert zeigen.} der Erde um die Sonne (\emph{\gls{ekliptik}}).
+\item Die Ebene, die durch den Erdmittelpunkt geht und senkrecht zur Erdachse liegt (\emph{Äquatorebene} \index{Aequator@Äquator}).
+\end{itemize}
+Die Schnittlinie zwischen der Ekliptik und der Äquatorebene ergibt dann eine besonders ausgezeichnete gemeinsame Bezugsrichtung/Bezugslinie.
+Schaut man auf dieser Bezugslinie (\figref{hm_ekliptik-aequator}) von der Erde in Richtung zur Sonne, dann wird der Schnittpunkt der Erdbahn, wenn diese die Bezugslinie in der Richtung vom Himmelssüdpol zum Himmelsnordpol\footnote{Als Himmelspole\index{Himmelspol} werden die Durchstoßpunkte der Erdachse mit der gedachten Himmelskugel bezeichnet.} schneidet, \emph{\gls{fruehlingspunkt}} $\vernal$ genannt.\footnote{Im geozentrischen Bild, das wir gleich noch erläutern werden, kann man den Frühlingspunkt\index{Frühlingspunkt|textbf} auch als Schnittpunkt der Sonnenbahn mit dem Himmelsäquator auf der gedachten Himmelskugel betrachten (wiederum in der Richtung von Süd nach Nord).} 
+Die beiden Ebenen (Ekliptik, Äquator) und die Richtung von Erde zum Frühlingspunkt dienen somit als Grundlage für verschiedene astronomische Koordinatensysteme.
+Als Nullpunkt kann der Beobachtungsort entweder im Sonnen- (heliozentrisch\index{Koordinatensystem!heliozentrisches}) oder Erdmittelpunkt (geozentrisch\glslink{geozentrkoord}) gewählt werden -- beides keine besonders komfortablen, dafür aber mathematisch sehr vorteilhafte Beobachtungspunkte.\footnote{An dieser Stelle sei noch einmal auf die grundsätzliche Raum-Zeit-Problematik in der Himmelsmechanik hingewiesen: Weder der Äquator (\bzw die Polachse der Erde) noch die Ekliptik sind wirklich fest im Raum, sondern sie werden durch Kräfte der verschiedenen Himmelskörper in ihrer Lage verändert. Deshalb muss zu jeder Angabe von Koordinaten in einem bestimmten Koordinatensystem eine Zeitangabe gemacht werden.} 
+\begin{figure}%
+\includegraphics[width=\textwidth]{EkliptikAequator.pdf}%
+\caption{Ekliptik, Äquator und Frühlingspunkt.}%
+\label{abb:hm_ekliptik-aequator}%
+\end{figure}
+
+Weitere ausgezeichnete Bezugsebenen sind die Bahnebene eines Himmelskörpers und die Horizontebene\index{Horizontebene} eines Beobachters auf der Erdoberfläche: Beide sind für Beobachtungsdaten sehr wichtig.
+Die Wahl von Bezugsebene, Bezugsrichtung ($x$-Achse) und Nullpunkt (Ursprung) ergeben die verschiedenen Koordinatensysteme, die wir in Tabelle \ref{tab:hm_astro_KOS} zusammengefasst haben.
+Für eine tiefergehende Darstellung der verschiedenen Koordinatensysteme empfehlen wir die Darstellungen in \cite{Montenbruck1999,Praxl2016,Meeus1998}. \\
+Wir geben in \figref{hm_geozent_KOS} die graphische Darstellung des geozentrisch-ekliptikalen KOS\index{Koordinatensystem!geozentrisch-ekliptikales} (GE) und des geozentrisch-äquatorialen KOS\index{Koordinatensystem!geozentrisch-äquatoriales} (GA) an.
+Letzteres rotiert mit dem Fixsternhimmel mit, ist also fest mit diesem verbunden und wird deswegen auch \emph{space-fixed} GA-KOS genannt (GA(sf)).
+Die Definition der zum jeweiligen System gehörenden Koordinaten ist in \figref{hm_geozent_KOS} ersichtlich und im Detail in Tabelle \ref{tab:hm_astro_KOS} aufgeführt.
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{GE_und_GAe_KOS.pdf}%
+\caption[Geozentrisch-ekliptikales und geozentrisch-äquatoriales KOS]{Geozentrisch-ekliptikales und geozentrisch-äquatoriales KOS. Die einzelnen Parameter und ihre Beziehungen zueinander sind im Detail in Tabelle \ref{tab:hm_astro_KOS} erläutert.}%
+\label{abb:hm_geozent_KOS}%
+\end{figure}
+
+Die Umrechnungen zwischen den einzelnen KOS haben wir in Tabelle \ref{tab:hm_Umrechung_KOS} im Tabellenanhang angegeben.
+Die Herleitung kann über die Formeln der sphärischen Trigonometrie \cite{Smart1986} oder eleganter über Rotations- bzw. Drehmatrizen\index{Rotationsmatrix} \index{Drehmatrix} (siehe Kap. 1.2 in Band I \bzw \cite{Montenbruck1999}) erfolgen, da die Transformationen zwischen den einzelnen Koordinatensystemen jeweils durch Drehungen und/oder Translationen beschrieben werden können.
+Wir wollen das am Beispiel der Transformation des Ortsvektors $\vec{r}$ im geozentrisch-ekliptikalen KOS (GE) in den Ortsvektor $\vec{r}'$ des geozentrisch-äquatorialen KOS (GA(sf)) demonstrieren.
+Diese Transformation entspricht, wie wir aus \figref{hm_geozent_KOS} erkennen, einer Drehung um die $x$-Achse um die \emph{Schiefe der Ekliptik}\index{Schiefe der Ekliptik} $\epsilon$.
+Der Winkel $\epsilon$ ist identisch zur Neigung der Erdachse\index{Neigung Erdachse} gegen ihre Bahnebene.
+Die entsprechende Drehung wird durch folgende Matrizen beschrieben:
+\begin{align}
+\begin{split}
+\vec{r}' &= \mathbb{R}_x(-\epsilon)\cdot \vec{r} = \lk \begin{array}{ccc} 1 & 0 & 0 \\ 0 & \cos\epsilon & -\sin\epsilon \\ 0 & \sin\epsilon & \cos\epsilon \end{array}\rk \lk \begin{array}{c} x \\ y\\ z \end{array}\rk ~,~~~\vec{r}' = \lk \begin{array}{c} r\cos\delta\cos\alpha \\ r\cos\delta\sin\alpha \\ r\sin\delta \end{array}\rk\,,\\
+\vec{r} &= \mathbb{R}_x(\epsilon)\cdot \vec{r}' = \lk \begin{array}{ccc} 1 & 0 & 0 \\ 0 & \cos\epsilon & \sin\epsilon \\ 0 & -\sin\epsilon & \cos\epsilon \end{array}\rk \lk \begin{array}{c} x' \\ y' \\ z' \end{array}\rk \,, ~~~ \vec{r} = \lk \begin{array}{c} r\cos\beta\cos\lambda \\ r\cos\beta\sin\lambda \\ r\sin\beta \end{array}\rk \,.
+\end{split} \label{eq:hm_drehung_x_achse1}
+\end{align}
+
+\begin{sidewaystable}
+\vspace{12cm}
+\caption{Astronomische Koordinatensysteme und deren Parameter.}
+\begin{tabular}{L{1cm}|L{3.5cm}|L{2cm}|L{2cm}|L{2cm}|L{2cm}|L{3cm}l}
+\hline\noalign{\smallskip}
+Kurz-		& Bezeichnung &	Ursprung  & Bezugs- & Bezugsrichtung  &	Vertikale  & Horizontale &	Koordinaten \\
+zeichen &							&						& ebene		& $x$-Achse				& Koordinaten	& Koordinaten &							\\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\multicolumn{8}{l}{Absolute Systeme}	\\					
+\noalign{\smallskip}\svhline\noalign{\smallskip}	
+BA & Bahnkoordinaten & Zentralkörper & Bahn & \gls{periapsis} & - &	Abstand $r$, \linebreak Anomalie $\upsilon$  & $\lk \begin{array}{c} r\,\cos \upsilon \\r\,\sin \upsilon \\ 0 \end{array}\rk$ \\
+BA & Bahnkoordinaten & Zentralkörper & Bahn & Knoten\index{Knoten} & - &	Abstand $r$,\linebreak Winkel $u\!=\!\upsilon\!+\!\omega$,\linebreak Länge der Periapsis $\omega$ & $\lk \begin{array}{c} r\,\cos u \\r\,\sin u \\ 0 \end{array}\rk$\\
+HE & Heliozentrisch-ekliptikal & Sonne (Mittelpunkt) & Ekliptik & $\vernal$ & Ekliptikale Breite $b$ & Ekliptikale Länge $l$ & $\lk \begin{array}{c} r\,\cos b\,\cos l \\ r\,\cos b\,\sin l \\ r\,\sin b \end{array}\rk$\\
+GE & Geozentrisch-ekliptikal & Erde (Mittelpunkt) & Ekliptik & $\vernal$ & Ekliptikale Breite $\beta$ & Ekliptikale Länge $\lambda$	& $\lk \begin{array}{c} \Delta\,\cos \beta\,\cos \lambda \\ \Delta\,\cos \beta \,\sin \lambda \\ \Delta\,\sin \beta \end{array}\rk$\\
+GA(sf) & Geozentrisch-äquatorial (space-fixed) & Erde (Mittelpunkt) & Äquator & $\vernal$ & \gls{dekl} $\delta$ & \gls{rektasz} $\alpha$ & $\lk \begin{array}{c} \Delta\,\cos \delta\,\cos \alpha \\ \Delta\,\cos \delta\,\sin \alpha \\ \Delta\,\sin \delta \end{array}\rk$\\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\multicolumn{8}{l}{Relative Systeme}	\\					
+\noalign{\smallskip}\svhline\noalign{\smallskip}	
+GA(ef) & Geozentrisch-äquatorial (earth-fixed) & Erde (Mittelpunkt) & Äquator & Meridian (Greenwich) & Deklination $\delta$ & Stundenwinkel $\tau$ & $\lk \begin{array}{c} \Delta\,\cos \delta\,\cos \tau \\ \Delta\,\cos \delta\,\sin \tau \\ \Delta\,\sin \delta \end{array}\rk$\\
+TA & Topozentrisch-äquatorial & Topozentrum (Beobachter) & Parallele \linebreak (zum Äquator) & Meridian (Greenwich) & Deklination $\delta'$ & Stundenwinkel $\tau$ & $\lk \begin{array}{c} \Delta'\,\cos \delta' \,\cos \tau \\ \Delta'\,\cos \delta'\,\sin \tau \\ \Delta'\,\sin \delta' \end{array}\rk$\\
+TH & Topozentrisch-horizontal & Topozentrum (Beobachter) & Horizont & Süden (Meridian) \linebreak Beobachter & Höhenwinkel $h$ & Azimut $\mathcal{A}$ & - \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{tabular}
+\label{tab:hm_astro_KOS}
+\end{sidewaystable}
+
+
+Daraus ergeben sich dann folgende Umrechnungsformeln für GE nach GA(sf):
+\begin{align}
+\cos\delta\cos\alpha &= \cos\beta\cos\lambda  \,, \label{eq:hm_drehung_x_achse_linear2} \\
+\cos\delta\sin\alpha &= \cos\beta\sin\lambda\cos\epsilon - \sin\beta\sin\epsilon \nonumber \,,\\
+\sin\delta &= \cos\beta\sin\lambda\sin\epsilon + \sin\beta\cos\epsilon  \nonumber ~~.
+\end{align}
+In umgekehrter Richtung von GA(sf) nach GE gilt dann:
+\begin{align}
+\cos\beta\cos\lambda &= \cos\delta\cos\alpha \,,\label{eq:hm_drehung_x_achse_linear_3} \\ 
+\cos\beta\sin\lambda &= \cos\delta\sin\alpha\cos\epsilon + \sin\delta\sin\epsilon \nonumber \,,\\
+\sin\beta &= \sin\delta\cos\epsilon - \cos\delta\sin\alpha\sin\epsilon  \nonumber ~~.
+\end{align}
+In \probref{hm_trafo_koord} werden die Dreh- und Translationsmatrizen für die in Tabelle \ref{tab:hm_Umrechung_KOS} im Tabellenanhang aufgeführten KOS-Transformationen verifiziert. \\
+Im Gegensatz zu den beiden gerade besprochenen absoluten Koordinatensystemen\index{Koordinatensystemen!absolutes} sind das geozentrisch-äquatoriale (\emph{earth-fixed}) KOS (GA(ef)) ebenso wie das topozentrisch-horizontale KOS\index{Koordinatensystem!horizontales} (TH) wegen der Erdrotation von der Zeit abhängig und gehören damit zur Gruppe der relativen KOS.
+Für die Umrechnung zwischen dem raum-fixierten geozentrisch-äquatorialen System\index{Koordinatensystem!geozentrisch-äquatoriales} (GA(sf)) und dem erd-fixierten geozentrisch-äquatorialen System (GA(ef)) führt man den \gls{stundenwinkel} $\tau$ ein.
+\gls{rektasz} $\alpha$ und Stundenwinkel $\tau$ sind die einander entsprechenden Koordinaten im GA(sf) bzw. GA(ef)-Koordinatensystem.
+Die Rektaszension\index{Rektaszension} ist definiert als Winkel entlang des Äquators zwischen der Richtung zum Frühlingspunkt\index{Frühlingspunkt} $\vernal$ (Bezugsrichtung der Rektaszension) und der Richtung zum Himmelsobjekt (\figref{hm_geozent_KOS} und Tabelle \ref{tab:hm_astro_KOS}).
+Die Bezugsrichtung für den Stundenwinkel\index{Stundenwinkel} hingegen ist der ortsfeste \gls{meridian} (die Südrichtung).
+Der Stundenwinkel eines betrachteten Himmelskörpers gibt damit die Differenz zwischen der Rektaszension $\alpha$ dieses Körpers und der Rektaszension derjenigen Himmelskörper an, die gerade ihre größte Höhe über dem Horizont im Meridian erreichen.
+Der Stundenwinkel gibt also die Zeit an, die ein Himmelskörper noch bis zu seiner \gls{kulmination} braucht bzw. die seit seiner \gls{kulmination} schon verstrichen ist.\footnote{Der Stundenwinkel ist ein Winkel- und Zeitmaß. Wir werden in \kapitel{hm_zeitdefinition} den wichtigen Zusammenhang zwischen dem Stundenwinkel und der dort definierten Sternzeit ableiten.} 
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{TH01.pdf}%
+\caption{Topozentrisches Horizontalkoordinatensystem.}%
+\label{abb:hm_topozent_KOS}%
+\end{figure}
+
+Wir betrachten nun noch das topozentrisch-horizontale KOS\index{Koordinatensystem!topozentrisches} (TH) (\figref{hm_topozent_KOS}) etwas genauer.
+Dieses stellt für den Beobachter auf der Erde das natürlichste KOS dar und ist \zb für die Berechnung von Aufgangs- und Kulminationszeiten das geeignete Bezugssystem.
+Das topozentrisch-horizontale KOS geht offensichtlich durch Drehung um die $y$-Achse um den Winkel $90$\textdegree$-\varphi$ aus dem äquatorialen KOS hervor.\footnote{Die von der Erdoberfläche aus gemessenen Horizontal- und Vertikalkoordinaten $\alpha',\delta'$ im TA-KOS weichen im Allgemeinen wenig von den gemessenen im GA-KOS $\alpha,\,\delta$ ab.
+Ausnahmen sind die Beobachtungen von erdnahen Objekten wie \zb Satelliten, Monden, Kometen und benachbarten Planeten.} Der Beobachter B im topozentrisch-horizontalen KOS befindet sich an einem Ort der \emph{\glslink{geogrkoord}{geographischen Breite}} $\varphi$.
+Für ihn ist dann der jeweilige Himmelspol unter dem Winkel $\varphi$ zu sehen.
+Der rechte Teil der \figref{hm_topozent_KOS} zeigt dies für die Nordhalbkugel.
+Als Meridian\index{Meridian} wird der Großkreis an der Himmelskugel bezeichnet, auf dem Südpunkt und Nordpunkt am Horizont, der \gls{zenit} und die beiden Himmelspole liegen.
+Eine häufig benutzte Beziehung zwischen dem äquatorialen KOS und dem topozentrisch-horizontalen KOS ist die Berechnung von Höhe und \gls{azimut} eines Himmelskörpers aus bekannter Deklination und bekanntem Stundenwinkel.
+Diese Beziehung lässt sich wiederum mit Hilfe der Matrizentransformation für die Umrechnung der KOS ableiten (Tabelle \ref{tab:hm_Umrechung_KOS}, \probref{hm_trafo_koord}):
+\begin{merksatz}{Umrechnung vom äquatorialen KOS in das topozentrisch-horizontale KOS}
+\begin{align}
+\begin{split}
+\sin h &= \cos\delta\cos\tau\cos\varphi+\sin\delta\sin\varphi \,,\\
+\tan \mathcal{A} &= \frac{\cos\delta\sin\tau}{\cos\delta\cos\tau\sin\varphi-\sin\delta\cos\varphi} \,. 
+\end{split} \label{eq:hm_Alt-Az-Koord}
+\end{align}
+
+\end{merksatz}
+Wir haben bereits darauf hingewiesen, dass die Bezugsebenen und Bezugsrichtungen der genannten KOS nicht fest im Raum liegen.
+Vielmehr führen diese durch Kräfte von anderen Himmelskörpern als (astronomische) Präzession\index{Präzession} bekannte Kreiselbewegungen aus, die wir bereits in Kapitel 1.5.5 im Band I mit einer Modellrechnung untersucht hatten und die in den Referenzen \cite{Montenbruck1999, Murray2008} detailliert beschrieben wird.
+So verschiebt sich der Frühlingspunkt pro Jahr um etwa 50 Bogensekunden in westlicher Richtung entlang der Ekliptik.
+Dieser Effekt ist so groß, dass er bereits über relativ kurze Beobachtungszeiträume von einigen Jahren auffällt.
+Damit verschieben sich auch die Nullpunkte der astronomischen Koordinatensysteme langsam entlang der Ekliptik und die ekliptikale Länge eines Sterns ohne Eigenbewegung nimmt in einem Jahr um \ca 50 Bogensekunden zu.
+Die Koordinaten eines Himmelsobjekts ändern sich also, ohne dass dies einer eigentlichen Bewegung des Objekts entspricht.\footnote{Der Präzessionsbewegung überlagern sich noch zusätzliche periodische Schwankungen. Diese verschiedenen periodischen Bewegungen, welche die Erdachse zusätzlich zur Präzession ausführt, werden in der Astronomie unter dem Begriff der Nutation\index{Nutation} zusammengefasst. Die Ursachen sind nicht vollständig identisch mit der im Kapitel 1, Band I hergeleiteten Nutation eines schweren Kreisels, aber die Bewegungsform ist sehr ähnlich. Die Verschiebung der Äquinoktialpunkte\index{Aequinoktialpunkte@Äquinoktialpunkte} entlang der Ekliptik erfolgt also nicht völlig gleichmäßig, sondern mit periodisch leicht schwankender Geschwindigkeit.}
+Deshalb braucht es zur Angabe von Koordinaten von Himmelskörpern auch stets den Zeitpunkt, auf den sich die Koordinaten beziehen.
+Von besonderer Bedeutung für Beobachtungen sind die Koordinaten für das Äquinoktium des Beobachtungszeitpunkts, das sogenannte \emph{Äquinoktium des Datums}\glslink{aequinox}.
+Der Begriff \emph{Äquinoktium} \index{Aequinoktium@Äquinoktium} bezeichnet hier den tatsächlichen, aktuellen Schnittpunkt des Himmelsäquators mit der Ekliptik zum Beobachtungszeitpunkt.
+Mit \emph{\gls{epoche}}\index{Epoche} wird in der Himmelsmechanik der Zeitpunkt einer Beobachtung bezeichnet.\footnote{Merkregel: Die Epoche bezeichnet den tatsächlichen Zeitpunkt einer Beobachtung oder eines Vorgangs, das Äquinoktium das Koordinatensystem, in dem gemessen wird.} Vielfach werden Koordinaten auf Koordinatensysteme sogenannter Stan\-dard\-äqui\-noktien\index{Standardäquinoktium} bezogen, die sich auf bestimmte feste Zeitpunkte (etwas verwirrend auch \emph{Standardepochen}\index{Standardepoche} genannt) beziehen.
+\emph{Äquinoktium und Epoche J2000} bedeuten \zb dass sich die Koordinatensysteme, Bahnparameter und die Ekliptikschiefe\index{Ekliptikschiefe} $\epsilon$ auf die Lage von Äquator, Ekliptik und Frühlingspunkt zum 01.\,01.\,2000 beziehen und dass am 01.\,01.\,2000 beobachtet wurde.
+Für diese Epoche gilt beispielsweise $\epsilon\!=\!23.4392911$\text{\textdegree}.
+Wir werden im Folgenden für die Berechnung von Beobachtungsdaten von Himmelskörpern, falls nicht anders angegeben, das Äquinoktium dieses Datums benutzen. 
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{KOS_Vgl.pdf}%
+\caption[Zusammenhänge zwischen häufig benutzten Koordinatensystemen.]{Zusammenhänge zwischen häufig benutzten Koordinatensystemen. \fa Raum-fixiertes geozentrisch"=äquatoriales KOS (GA(sf)), \fb Erd-fixiertes geozentrisch-äquatorales KOS (GA(ef)), \fc Topozentrisch-horizontales KOS (TH).}%
+\label{abb:hm_KOS_Abh}%
+\end{figure}
+\figref{hm_KOS_Abh} fasst noch einmal schematisch die Zusammenhänge zwischen den verschiedenen gebräuchlichen KOS zusammen.
+Wir wollen uns nun im nächsten Kapitel etwas näher mit dem Aspekt der Zeit beschäftigen.
+
+\subsection{Zeitdefinition}\label{kap:hm_zeitdefinition}
+Zeit beschreibt die Abfolge von Ereignissen, hat also eine eindeutige, unumkehrbare Richtung.
+Sie wird in ihrer Skala durch wiederkehrende, periodische Vorgänge definiert, wie sie auch in der Himmelsbeobachtung gegeben sind.
+Wir stellen zunächst die in der Astronomie übliche \glslink{jd}{Julianische Tageszählung}\index{Julianisches Datum} (\emph{Julian Date}\footnote{Das Julianische Datum wurde 1582 vom Franzosen Joseph Justus Scaliger (1540--1609) eingeführt. Nach einer nicht gesicherten Darstellung wählte er die Bezeichnung, um damit seinen Vater Julius Scaliger zu ehren und nicht, wie häufig vermutet, Julius Caesar.} JD) vor, bei der die Tage fortlaufend seit dem 01.\,01.\,($-$4712) (entspricht dem 01.\,01.\,4713 v. Chr.) durchgezählt werden.
+Ein neuer Tag im JD beginnt jeweils um 12:00 am Mittag.\footnote{Dank dieser Konvention braucht bei astronomischen Beobachtungen während der Nacht kein \anf{Datumswechsel} vollzogen zu werden.} So entspricht dem 01.\,01.\,2020 0:00 UT (Mitternacht in Greenwich\footnote{Wir verwenden hier schon die sogenannte Universal Time UT, die wir erst später genauer definieren. Vorerst genügt die Annahme, dass wir eine Uhr haben, die wir UT nennen, auf der unsere astronomische Zeitzählung beruht.}) das Julianische Datum J\,2458849.5,
+dem 01.\,01.\,2021 das Julianische Datum\index{Julianische Datum} J\,2459215.5, dazwischen liegen demzufolge $\text{J\,}2458849.5 - \text{J\,}2459215.5\!=\!366\,\text{Tage}$, denn 2020 war ein Schaltjahr.
+Häufig wird auch das \emph{Modifizierte Julianische Datum} MJD\index{Datum!Modifiziertes Julianisches} verwendet, welches als $\text{MJD}\!=\!\text{JD\,}-2400000.5$ definiert wird.
+Ferner sei noch angemerkt, dass ein nach dem JD berechnetes Julianisches Jahrhundert immer ganzzahlige $36525$ Tage hat, die man in exakt $24$ Stunden zu $3600$ Sekunden unterteilt.
+Es gibt in Computerprogrammen (so auch in \matlab) hinterlegte Routinen zur Berechnung des JD aus dem Kalenderdatum und umgekehrt \cite{Praxl2016,Meeus1998}.
+Mit dem Julianischen Datum haben wir eine elegante Zählung beschrieben, mit der wir in der Himmelsmechanik sowohl große als auch kleine Zeiträume, wie \zb Tagesabschnitte, einheitlich beschreiben können. 
+Wir müssen aber neben der durch das JD definierten Zählweise auch die zugrundeliegende Zeit physikalisch definieren.
+Es sind verschiedene Zeitdefinitionen möglich, und wir unterscheiden (siehe auch \cite{McCarthy2018}):
+\begin{itemize}
+    \item durch Bewegungsgesetze definierte \emph{dynamische} Zeitskalen (\zb Ephemeridenzeit\footnote{Als \emph{\gls{ephemeride}}\index{Ephemeride} wird ganz allgemein die Positionsangabe eines Himmelskörpers bezogen auf ein bestimmtes KOS bezeichnet. Himmelsmechanik ist also nichts anderes als die Bestimmung der Ephemeriden als Funktion der Zeit.} ET),
+    \item Realisierungen durch eine absolut \emph{gleichmäßig ablaufende} Zeit (Atomzeit TAI),
+    \item die bürgerliche oder \emph{Alltagszeit} (Universal Time UT, Universal Time Coordinated UTC) und
+    \item \emph{erdrotationsabhängige} Zeitskalen (Wahre Sonnenzeit und Sternzeit).
+\end{itemize}
+
+\subparagraph{Dynamische Zeit:}
+Für die Berechnungen in der Himmelsmechanik benötigen wir die dynamische Zeit.
+Das ist die Zeit, die auch in den zeitlichen Ableitungen der Bewegungsgleichungen \anf{steckt}.
+Sinnvollerweise benutzt man zur Zeitmaßdefinition periodische Bewegungen der Himmelskörper.
+Die Umlaufdauer\index{Umlaufzeit} der Erde um die Sonne ist weitgehend konstant, und man definiert daher den zeitlichen Abstand zwischen zwei Durchgängen durch den Frühlingspunkt $\vernal$ als \emph{tropisches Jahr}\glslink{tropischesjahr}.
+Die Internationale Astronomische Union hat 1960 daraus die sogenannte \index{Ephemeridenzeit} \emph{Ephemeridenzeit} ET \glslink{et} (engl.\ \emph{ephemeris time}) über die Festlegung der Ephemeridensekunde als SI-Einheit\footnote{Später wurden auf Basis von anderen und verbesserten Messmethoden geringfügig von ET \anf{abweichende} dynamische Zeiten eingeführt (\zb TT, TDT).
+Für unsere Zwecke spielen die Unterschiede keine Rolle.
+Wir benutzen deshalb die Ausdrücke Ephemeridenzeit (ET) und dynamische Zeit (TT, TDT) synonym.} definiert: Eine Ephemeridensekunde ist der Bruchteil 1/31556925.9747 des tropischen Jahres.
+Daraus ergibt sich mit der Länge eines Tages (Ephemeridentag) von genau $86400$ Ephemeridensekunden ($1\,\text{d}= 86400\,\text{s} = 24 \cdot 60 \cdot 60\:\text{s}$) die Länge eines tropischen Jahres in Tagen (d) zu
+\begin{align*}
+a_\text{trop} = 365.2421988\,\text{d}\,. 
+\end{align*}
+Die Nachkommastellen von $a_\text{trop}$ sind den Astronomen seit dem Altertum gut bekannt und haben im Laufe der Zeit zur Einführung verschiedener Kalendersysteme und Schaltjahresfestlegungen geführt.
+
+\subparagraph{Gleichmäßig ablaufendes Zeitmaß (Atomzeit):}
+Die Ephemeridensekunde wurde als SI-Einheit bereits 1967 durch die Sekundendefinition über die \emph{Atomzeit} TAI \glslink{tai} (\emph{Temps Atomique International}) abgelöst.
+Die Atomzeit ist die derzeit beste Realisierung einer dynamischen Zeit.
+Deren Definition wurde aber so gewählt, dass sie im Rahmen der Messgenauigkeit mit der Ephemeridensekunde übereinstimmt.
+Für praktische Zwecke kann daher die Ephemeridensekunde als identisch mit der Atomsekunde betrachtet werden.
+Zwischen beiden so definierten Zeiten besteht eine nahezu konstante Differenz von
+\begin{equation}
+\text{ET} - \text{TAI} = 32.184 \text{s} ~.
+\label{eq:hm_ET-TAI}
+\end{equation}
+
+\subparagraph{Bürgerliche Zeit:}
+Unsere normale Uhrzeit im Alltag, die Weltzeit\index{Universal Time} UT\glslink{ut}\ (\emph{Universal Time}) wird vom Mittagsdurchgang der \anf{mittleren} Sonne abgeleitet.
+Dies ist aber eine fiktive Sonne, deren scheinbare Bahn eine gleichförmig durchlaufene Kreisbahn ist und die mit der wahren Sonne zu bestimmten Zeiten zusammentrifft.
+Da diese so definierte Zeit von der Erdrotation abhängt, diese sich aber verlangsamt (\probref{hm_erdrotation}) und unregelmäßig ist, wird die UT zunehmend von der gleichmäßig ablaufenden TAI abweichen.
+Die UT-Uhr läuft quasi seit einem Null-Zeitpunkt, an dem die beiden Uhren definitionsgemäß synchronisiert wurden -- das war der 01.01.1900 -- mittlerweile um 
+\begin{align*}
+\Delta T &= \ET-\UT = (\ET-\TAI) + (\TAI-\UT) = 32.184\:\text{s} + \sum{\text{leaps}}
+\end{align*}
+der Atomuhr hinterher (und \anf{stottert} auch noch ein bisschen). $\sum{\text{leaps}}$ ist dabei das gemessene Auseinanderlaufen von TAI und UT. Mit der UTC (Universal Time Coordinated) wurde eine Verknüpfung zwischen UT und TAI hergestellt.
+Die UTC weicht dabei nur um ganze Schaltsekunden\index{Schaltsekunde} von TAI und nur um maximal $\SI{0.9}\second$ von UT ab.
+UTC, die wir im Alltag verwenden, stellte also durch die Einführung von Schaltsekunden einen Gleichlauf mit der Atomzeit immer wieder her. Für unsere Rechnungen setzen wir immer $\UT\!\approx\!\UTC$.\footnote{Das in unregelmäßigen Abständen vorgenommene Einfügen sorgt für eine Menge Anpassungsschwierigkeiten für Computer und IT-Systeme. 2012 kam es danach zu Problemen bei Mozilla, LinkedIn und dem Flugbuchungsdienst Amadeus. Eine falsche Schaltsekunde störte auch schon Linux-Systeme. Entschieden hat das \textit{Bureau International des Poids et Mesures} (BPIM) jetzt, dass die koordinierte Weltzeit (UTC) zwischen 2035 und 2135 nicht durch Schaltsekunden unterbrochen werden soll. Dann soll ein Maximalwert für die erlaubte Differenz gelten und gegebenenfalls etwa eine Schaltminute eingefügt werden. Die Wissenschaft solle die Zeit bis dahin jetzt nutzen, um eine weniger problematische Lösung zu finden. Der Abschaffung der Schaltsekunde hat die \textbf{International Telecommunication Union} (ITU) final im Dezember 2023 zugestimmt.}.
+ Zum 01.\,01.\,2020 waren es bereits $\SI{37}{\second}$.
+Die historische Entwicklung von $\Delta T$ wird in\cite{Espenak2014} angegeben.  
+
+Wir wollen an dieser Stelle noch die Konvention festhalten, dass sich, wenn keine weiteren Angaben gemacht werden, das Julianische Datum auf eine Zeitangabe in UT bezieht.
+Benötigt man ein Julianisches Datum mit einer dynamischen Zeitskala als Referenz, dann muss man dies entsprechend kennzeichnen, \zb mit den Symbolen JE oder J(ET). 
+
+\subparagraph{Erdrotationsabhängige Zeitskalen (Wahre Sonnenzeit und Sternzeit):}
+Als weitere in der Astronomie gebräuchliche Zeit wollen wir die \emph{\gls{sternzeit}} $\theta$ behandeln.
+Die regelmäßige scheinbare Bewegung des Fixsternhimmels eignet sich ebenfalls gut für eine Festlegung einer Zeit.
+Die Sternzeit definiert sich aus dem \emph{Sterntag}, welcher der Dauer zwischen zwei Meridiandurchgängen des Frühlingspunktes $\vernal$ entspricht.\footnote{Da der Frühlingspunkt ebenfalls nicht fest im Raum ist, sondern sich wegen der Erdpräzession pro Tag um etwa $0.137''$ rückläufig entlang der Ekliptik bewegt, fällt ein mittlerer Sterntag um $\SI{0.009}{\second}$ kürzer aus als eine Erdrotation.}
+
+In \kapitel{hm_koordinatensysteme} hatten wir bei der Definition des geozentrisch-äquatorialen KOS GA(ef) den Stundenwinkel $\tau$ eingeführt, welcher die Verbindung  der Raumkoordinaten mit der Erdrotation und damit mit der Zeit herstellte.
+Die Sternzeit steht nun in einer direkten Beziehung zum Stundenwinkel.
+Den Stundenwinkel $\tau$ eines Himmelsobjektes O hatten wir definiert als den entlang des Himmelsäquators vom Meridian des Beobachters zum Objekt gemessenen Winkel.
+Andererseits ist die Rektaszension $\alpha$ des Objekts O der entlang des Äquators gemessene Winkel vom Frühlingspunkt $\vernal$ zum Objekt.
+Steht dieses Objekt O nun auf dem Meridian des Beobachters, kulminiert also das Objekt, ist der Stundenwinkel $\tau=0$.
+Nimmt man den Frühlingspunkt $\vernal$ als Objekt, muss an der Position des Beobachters die Sternzeit gemäß Definition gleich dem Stundenwinkel $\tau$ des Frühlingspunktes sein: $\theta\!=\!\tau(\,\vernal)$.
+Daraus folgt für ein beliebiges Objekt O, welches den Stundenwinkel $\tau$ hat, dass die Sternzeit am Ort des Beobachters B gleich der Summe aus Stundenwinkel $\tau$ und Rektaszension $\alpha$ ist, d.\,h.
+\begin{equation}
+\theta = \tau + \alpha
+\label{eq:hm_std_winkel_tau} \,.
+\end{equation}
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{Vgl_Sternzeit_Tau.pdf}%
+\caption[Sternzeit, Rektaszension, Stundenwinkel und geographische Länge.]{Zusammenhang zwischen Sternzeit, Rektaszension, Stundenwinkel und geographischer Länge.}%
+\label{abb:hm_Sternzeit_Stundenwinkel}%
+\end{figure}
+Man verdeutliche sich dies anhand von \figref{hm_Sternzeit_Stundenwinkel}.
+Die Sternzeit ist für alle Beobachter, die sich auf demselben Längengrad\index{Längengrad} $\lambda$ befinden, gleich groß und ist damit eine Ortszeit.
+Die (mittlere) Sternzeit des Referenzortes Greenwich G ist die Mittlere Greenwich Sternzeit GMST $\theta_0$ (\emph{engl.} Greenwich Mean Sidereal Time)\glslink{gmst}.
+Die Ortssternzeit\index{Sternzeit!Orts-} $\theta$ am Beobachterort B wird mit LMST (\emph{engl.} Local Mean Sidereal Time) bezeichnet und berechnet sich mit dem Längengrad $\lambda$ (in \textdegree) wie folgt aus der GMST:
+\begin{equation}
+\text{LMST} = \theta = \text{GMST} + \lambda\,\frac{24 ^\text{h}}{360\degree}  = \theta_0 + \frac{\lambda}{15} \lk \frac{^\text{h}}{\degree} \rk \,. \label{eq:hm_LMST}
+\end{equation}
+Umgekehrt folgt aus der Differenz der lokalen Sternzeit eines Ortes zur Sternzeit in Greenwich die geographische Länge dieses Orts.
+Eine Messung dieser lokalen Sternzeit, \zb durch Bestimmung der Kulmination eines Sterns mit bekannter Rektaszension, entspricht daher einer geographischen Ortung, wenn die mittlere Greenwich Sternzeit bekannt ist (Beispiel \ref{bsp:laengengrad_abst_fl}).
+
+
+%BEISPIEL 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{Bestimmung von Längengrad und Abständen auf sphärischen Flächen}  
+Es sollen die Unsicherheit der Bestimmung eines Längengrades auf See, der Winkelabstand zweier Himmelskörper und die kürzeste Flugstrecke zwischen zwei Städten auf der Erdoberfläche berechnet werden.
+\begin{enumerate}[(a)]
+	\item \emph{Wir wollen die Unsicherheit der Bestimmung eines Längengrades auf See nach einer dreimonatigen Seereise unter der Annahme einer perfekten Kulminationsbestimmung eines Sternes und einer Gangungenauigkeit der mitgeführten Uhren (auf GMST gestellt) von $1$, $3$, $5\:$s pro Tag berechnen.} \\ 	\medskip 
+	Wir bezeichnen die Gangungenauigkeit mit $\Delta g\!=\!1\:\text{s}$, $3\:\text{s}$ \bzw $5\:\text{s}$.
+        Die Seefahrt von \ca 3 Monaten dauere näherungsweise 100 Tage, was eine Uhren-Gesamtverzögerung von $\Delta g_{\text{tot}}\!=\!100\:\text{s}$, $300\:\text{s}$ bzw. $500\:\text{s}$ gegenüber einer perfekten (auf Sternzeit \anf{geeichten} Uhr) nach sich zieht.
+        Aus \eqref{eq:hm_LMST} folgt durch Differenzenbildung
+\begin{equation*}
+\Delta\theta = \Delta g_{\text{tot}} = \frac{\Delta\lambda}{15\degree} \,.
+\end{equation*}
+Hierin sind $\Delta g$ in Stunden anzugeben.
+Es folgt:
+\begin{equation*}
+\Delta\lambda\lek\degree\rek = \frac{15}{3600}\,\Delta g_{\text{tot}}\lek\text{s}\rek = \begin{cases} \ \approx 25' \\ \approx 75' = 1\degree 15' \\ \approx 125' = 2\degree 05' \end{cases}
+\end{equation*}
+Das sind schon beträchtliche Abweichungen.
+Auf dem Äquator sind das im letzten Fall über $\SI{200}{\kilo\metre}$.
+Das zeigt, vor welchem Problem die nautische Navigation lange Zeit stand.
+Dies konnte erst befriedigend mit der Entwicklung hinreichend genauer Uhren durch John Harrison\indexp{Harrison, John} (1693--1776) gelöst werden.
+Harrison war ein englischer Erfinder und Uhrmacher.
+Seine mechanischen und schiffstauglichen Uhren ermöglichten erstmals präzise Zeitmessungen auf See und damit die genaue Bestimmung des Längengrades.
+Man kann daher auch verstehen, dass lange Zeit versucht wurde, die Zeit \bzw Längenbestimmung auf See durch Messung sehr genau bekannter astronomischer Ereignisse vorzunehmen (Mondfinsternisse, Monddistanzen, Sternbedeckungen und Position der Jupitermonde, etc.).
+Sehr anschaulich wird die dadurch erreichte Lösung des sogenannten "`Längenproblems"' in \cite{Dash2004} nacherzählt.\\
+	\item \emph{Es soll der Winkelabstand zweier Himmelskörper bestimmt werden (Siehe \figref{hm_winkelabstand}. Man achte besonders auf die Situation, wenn der Winkelabstand nahe $0\degree$ bzw. $180\degree$ liegt!).} \\ 	\medskip 
+Wir nehmen an, dass die Positionen der beiden Himmelskörper durch Deklination $\delta$ und Rektaszension $\alpha$ gegeben sind.
+Dann können wir nach Tabelle \ref{tab:hm_astro_KOS} die Richtungen zu den Positionen der beiden Himmelskörper als Vektoren $\vec{r}_{1}$ und $\vec{r}_{2}$ schreiben:
+	\begin{align*}
+	\vec{r}_1\:=\:\lk \begin{array}{c} x_1 \\ y_1 \\ z_1 \end{array}\rk\!=\:\lk \begin{array}{c} \cos \delta_1\,\cos \alpha_1 \\ \cos \delta_1\,\sin \alpha_1 \\ \sin \delta_1 \end{array}\rk \ , ~
+	\vec{r}_2\:=\:\lk \begin{array}{c} x_2 \\ y_2 \\ z_2 \end{array}\rk\!=\:\lk \begin{array}{c} \cos \delta_2\,\cos \alpha_2 \\ \cos \delta_2\,\sin \alpha_2 \\ \sin \delta_2 \end{array}\rk  ~.
+	\end{align*}
+	Der Winkelabstand $\gamma$ ist dann einfach über das Skalarprodukt berechenbar:
+	\begin{equation*}
+	\gamma \:=\:\arccos \lk \:x_1 \; x_2\:+\:y_1 \, y_2\:+\:z_2\, z_2\:\rk \ ~.
+	\end{equation*}
+Bei Winkelabständen nahe $0\degree$ und nahe $180\degree$ erhält man nur sehr ungenaue Werte, da der Kosinus dort nahezu konstant ist.
+\begin{center}
+	  \includegraphics[width=0.75\columnwidth]{Winkelabstand.pdf}
+\captionof{figure}{Winkelabstand zweier Himmelskörper.}\label{abb:hm_winkelabstand}
+\end{center}
+Man verwendet dann eine andere Formel.
+Mit der Länge des Differenzvektors $ d=\left|\vec{r}_1- \vec{r}_2\right| = \sqrt{(x_1-x_2)^2+(y_1-y_2)^2+(z_1-z_2)^2}$ ergibt sich dann 
+$\gamma =\arcsin \lk \frac{d}{2} \rk $.\\
+Bei Winkeln nahe $180\degree$ hat man immer noch ein Problem, da dort der Sinus des halben Winkels nahezu konstant ist.
+Das löst man dadurch, dass man den Winkelabstand $\bar{\gamma}$ von einem Objekt zum Antipoden des anderen berechnet.
+Dieser Wert ist ja exakt um $180\degree$ verschoben, sodass $\bar{\gamma}$ wieder nahe bei $0\degree$ liegt.\\
+	\item \emph{Es soll die kürzeste Flugstrecke von St.~Petersburg (P) nach San Francisco (F) nahe der Erdoberfläche berechnet werden (\figref{hm_Flug_SFO}, Geographische Breiten $\varphi_{\text{P}}=59.9\degree$, $\varphi_{\text{F}}=37.8\degree$ und geographische Längen $\lambda_{\text{P}}=30.3\degree$, $\lambda_{\text{F}}=-122.4\degree$), ebenso wie Anfangs- und Endkurs des Flugzeugs.}\\ 	\medskip 
+Wir berechnen wieder den Winkelabstand zwischen den Punkten P und F.
+Die kürzeste Strecke ist dann -- wenn die Abplattung der Erde und die Flughöhe vernachlässigt werden -- der Abschnitt des Großkreises, der durch den Winkelabstand $\gamma$ definiert wird (siehe Abbildung):
+$\overline{\text{PF}}=R_{\earth} \,,\gamma$, wobei $\gamma$ sich wie eben dargestellt berechnet.
+Setzt man die Werte ein, erhält man $\overline{\text{PF}} \approx \SI{8867}{\kilo\metre}$.
+Alternativ kann man die Berechnung natürlich über den Seiten-Kosinussatz der sphärischen Trigonometrie machen.
+
+\begin{center}
+\includegraphics[width=\columnwidth]{Flug_SFO.pdf} \\ 
+\captionof{figure}[Berechnung der kürzesten Flugbahn zwischen zwei Orten.]{Berechnung der kürzesten Flugbahn zwischen zwei Orten entlang der Erdoberfläche.}\label{abb:hm_Flug_SFO} 
+\end{center}
+
+Die Anfangs- und Endkurse können wir mit dem Sinussatz aus dem Kugeldreieck $\Delta \text{F-NP-P}$ bestimmen, wobei wir die relative Richtung zu $N\!=\!360 \degree$ berechnen wollen:
+\begin{align*}
+	\sin\beta &=  \frac{\sin \lk \lambda_{\text{F}}-\lambda_{\text{P}} \rk}{\sin \gamma} \, \sin \lk 90 \degree - \varphi_{\text{F}} \rk ~~
+	\Rightarrow \text{Kurs}_A = 360\degree - \beta \approx 338\degree ~~ \text{Anfangskurs und} \\
+	\sin\alpha &=  \frac{\sin \lk \lambda_{\text{F}}-\lambda_{\text{P}} \rk}{\sin \gamma} \, \sin \lk 90 \degree - \varphi_{\text{P}} \rk ~~
+	\Rightarrow \text{Kurs}_E = 180\degree + \alpha \approx 194\degree ~\text{Endkurs}.
+\end{align*}
+\end{enumerate} \label{bsp:laengengrad_abst_fl} 
+
+\end{example}
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Mit der Sternzeit kommen wir direkt zur (wahren) \emph{Sonnenzeit}\index{Sonnenzeit!wahre} und können damit tatsächlich die bürgerliche Zeit definieren \bzw genau messen.
+Die Sonnenzeit ist wie die Sternzeit eine lokale Zeit.
+Die Sternzeit ist 0 Uhr, wenn der Frühlingspunkt im Meridian steht.
+Analog ist die Sonnenzeit 12 Uhr (mittags), wenn die Sonne den Ortsmeridian durchläuft.
+Man kann auch sagen, dass die Ortszeit der um 12 Stunden ($180\degree$) erhöhte Stundenwinkel der Sonne ist.
+Die so definierte mittlere Ortszeit von Greenwich wird jetzt UT genannt und ist der um 12 Stunden erhöhte Stundenwinkel der fiktiven mittleren Sonne\index{Sonnenzeit!mittlere} in Greenwich\footnote{Die Addition von 12 Stunden ist nötig, weil der Meridiandurchgang der fiktiven mittleren Sonne um 12:00 UT stattfinden soll, ihr Stundenwinkel in diesem Augenblick aber 0 beträgt.}, \dh
+\begin{equation}
+\UT = 12\:\text{h} + \tau_\text{0, m. Sonne} \,.
+\label{eq:hm_UT}
+\end{equation} 
+Für Orte auf einem Längengrad $\lambda$ (in $\degree$) gilt analog zu \eqref{eq:hm_LMST}
+\begin{equation}
+\MOZ = \UT+ \frac{\lambda}{15} \lk \frac{\text{h}}{\degree} \rk \,.
+\label{eq:hm_MOZ}\
+\end{equation}
+Die so definierte Sonnenzeit ergibt einen Sonnentag, der als Basis unserer Alltagszeit UT etwas länger ist als der oben definierte Sterntag. Die eigene Bewegung der Erde um die Sonne führt dazu, dass die Zeit, bis die Sonne wieder kulminiert, etwas länger ist als die Zeit zwischen zwei Fixstern-Meridian-Durchgängen.
+Nach einfacher Rechnung (Beispiel~\ref{bsp:sonnentag_sternentag}) findet man, dass der Sterntag gemessen an den 86400 (SI)-Sekunden des Sonnentags nur 23 Stunden, 56 Minuten und 4.0905 (SI)-Sekunden = 86125 (SI)-Sekunden lang ist.\footnote{Der Sterntag wird wieder in 24 Stunden unterteilt, die wir aber aus nachvollziehbaren Gründen und Respekt vor der Weltliteratur Stefan Zweigs hier nicht Sternstunden nennen.} % auskommentiert: hier gibt es keine Analogie. Genauso wenig bezeichnet ein Sonnentag einen Tag, an dem die Sonne scheint.}
+Die Lage der fiktiven mittleren Sonne auf dem Himmelsäquator kann natürlich nicht durch Beobachtung, sondern nur durch Rechnung bestimmt werden.
+Nach \eqref{eq:hm_std_winkel_tau} gilt für den Meridiandurchgang der mittleren Sonne
+\begin{equation}
+\UT = 12\:\text{h} + \tau_\text{0, m. Sonne} = 12\:\text{h} + \theta_0 - \alpha_\text{0, m. Sonne} \,.
+\label{eq:hm_UT_2}
+\end{equation}
+
+%BEISPIEL 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{Sonnentag und Sterntag}
+  Wir wollen das Verhältnis von Sonnentag und Sterntag berechnen.
+  Aus \figref{hm_Sterntag_Sonnentag} erkennt man, dass $\alpha\!=\!360\degree / n_\text{\astrosun}$, wobei $n_\text{\astrosun}$ die Zahl der Sonnentage pro tropischem Jahr bezeichnet. Das Verhältnis der Tageslängen von Sonnentag $\text{d}_\text{\astrosun}$ zu Sterntag $\text{d}_\diamond$ ist dann:
+\begin{equation*}
+\frac{\text{d}_\text{\astrosun}}{\text{d}_\diamond} = \frac{360\degree + \frac{360\degree}{n_\text{\astrosun}}}{360\degree} = 1+\frac{1}{n_\text{\astrosun}} = 1+\frac{\text{d}_\text{\astrosun}}{\tau_\text{trop}} = \lk 1-\frac{\text{d}_\diamond}{\tau_{\text{trop}}} \rk^{-1}\,.
+\end{equation*}
+\begin{center}
+\includegraphics[width=0.8\columnwidth]{Sterntag_Sonnentag.pdf}% 
+\captionof{figure}{Zum Unterschied zwischen Sterntag und Sonnentag.}\label{abb:hm_Sterntag_Sonnentag}
+\end{center}
+Mit $n_{\text{\astrosun}}\!=\! \frac{\tau_\text{trop}}{\text{d}_{\text{\astrosun}}} \! = \!365.242199 $ folgt daraus ${\text{d}_\text{\astrosun}}/{\text{d}_\diamond}\!=\!1.0027379$.
+Der Sterntag ist damit um rund $1/365$ kürzer als ein mittlerer Sonnentag und beträgt $23$ Stunden $56$ Minuten und $4.0905$ Sekunden. \\
+
+\label{bsp:sonnentag_sternentag}
+\end{example}
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Auf Basis von \eqref{eq:hm_UT_2} wurde der Zusammenhang zwischen Weltzeit\index{Weltzeit} UT und der Greenwich Sternzeit\index{Greenwich Sternzeit} $\theta_0\!=\!\GMST(\UT)$ (\textit{Greenwich Mean Sideral Time})\index{Greenwich Mean Sideral Time} wie folgt festgelegt:
+\begin{align} \label{eq:hm_UT_3}
+\theta_0(\UT) =&\, 24110.5481\:\text{s}+8640184.812866\:\text{s}\, T_0+0.093104\:\text{s}\, T^2  \\
+							 &+\mathcal{O}(T^3) + 1.0027379093\, \UT \nonumber \,,\\
+\text{mit } T_0 = &\frac{\text{JD}_0-2451545.0}{36525}~~\text{und}~~T=\frac{\text{JD}-2451545.0}{36525}\,. \nonumber
+\end{align}
+Dabei sind $T_0$ und $T$ durch das jeweilige Julianische Datum um 0:00 des Beobachtungsdatums ($\text{JD}_0$) bzw. zur Uhrzeit des Beobachtungszeitpunkts (JD) gegeben.
+Der lineare Term in \eqref{eq:hm_UT_3} gibt die Geschwindigkeit der fiktiven mittleren Sonne bezüglich des mittleren Frühlingspunkts an.
+Das entspricht also multipliziert mit der Zeit einer Rektaszension.
+Der quadratische Term berücksichtigt die weiter oben bereits erwähnte präzessionsbedingte Bewegung des Frühlingspunkts.
+Der Faktor $1.0027379093$ ergibt sich aus dem Unterschied zwischen Sonnentag  und Sterntag (Beispiel \ref{bsp:sonnentag_sternentag}).\footnote{Die Länge des Sonnentages wird auch synodische Tageslänge\index{Periode!synodische}, die des Sterntages siderische Tageslänge\index{Periode!siderische} genannt.}
+Gleichung \eqref{eq:hm_UT_3} stellt also einen Zusammenhang zwischen der Sternzeit und der Weltzeit UT her.
+Obwohl die Weltzeit UT ihrer Definition gemäß eigentlich vom Sonnenlauf abzuleiten wäre, wird sie jedoch über \eqref{eq:hm_UT_3} aus den beobachteten Meridiandurchgängen von Sternen, also der Sternzeit, abgeleitet.
+Das ist sinnvoll, da sich Sterndurchgänge wesentlich präziser beobachten lassen als die Position der überaus hellen Sonne.
+Man kann die Formeln aber natürlich auch benutzen, um die Sternzeit aus UT zu berechnen.
+
+Nach diesen beiden mit einigen Definitionen versehenen Kapiteln haben wir nun die geeigneten Werkzeuge (Koordinatensysteme und Zeitdefinitionen), um die Mechanik der Himmelskörper beschreiben und vor allem auch Beobachtungsdaten ableiten \bzw berechnen zu können.
+In der Himmelsmechanik wird im Grunde nichts anderes gemacht, als das Anfangswertproblem der entsprechenden Bewegungsgleichung für den oder die jeweiligen Himmelskörper  (Planeten, Monde, Kometen \ua) zu lösen.
+Die Bewegungsgleichung wollen wir nun als nächstes aus den Gravitationsgesetzen herleiten. 
+Wir werden dabei zunächst allgemein, \dh ohne die Verwendung eines spezifischen Koordinatensystems, vorgehen.
+Erst wenn wir Beobachtungsdaten und Ereignisse konkret berechnen, benutzen wir das jeweils passende räumliche KOS.
+
+

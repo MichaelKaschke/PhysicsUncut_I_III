@@ -1,0 +1,150 @@
+%\input{header.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begingroup
+\let\cleardoublepage\relax
+\chapter*{Vorwort}
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{FingerExcercise.pdf}
+%\caption{Fingerübungen}%
+	\label{fig:FingerExcercise}
+\end{figure}
+Nach der positiven Aufnahme unseres bisherigen Bände "`Fingerübungen der Physik"' legen wir hiermit mit der gleichen Intention den Band IV vor. 
+Für einen Physiker\footnote{Die im Text verwendeten Formen des generischen Maskulinums (\zb \anf{Physiker}, \anf{Studenten}, \anf{Leser}) \usw schließen alle anderen Geschlechtsformen (\zb  \anf{Physikerin}, \anf{Studentin} \usw) ausdrücklich mit ein.} gilt dasselbe wie für einen Pianisten: Übt dieser nicht ständig, wird auch die Hand eines Starpianisten irgendwann nicht mehr die Meisterwerke flüssig spielen können. Und natürlich macht es am meisten Spaß, Stücke zu spielen, die interessant und herausfordernd sind.\\
+
+\textcolor{red}{\todo Überarbeiten}
+
+As discussed in detail in Volume I (Mechanics), we are firmly convinced that students today must become familiar with a wide range of numerical methods and gain practical experience with them as part of their specialized studies. For this reason, especially in the fields of celestial mechanics and astrodynamics, particular emphasis is placed on the numerical calculation of the physical phenomena and examples treated in this volume. We also agree with Rubin Landau (Am. J. Phys., \textbf{76}, 296--306 (2008)), who argued as early as 2008 that computational methods, alongside theory and experiment, constitute a third \anf{path} to physical knowledge, and that computational physics should be understood as a synthesis of physics, applied mathematics, and computer science. Nevertheless, the physical modelling and analytical description of the problems must always remain at the forefront. We therefore always present these before turning to the numerical calculation.\
+There are now a number of very good books for students on computational physics based on the programming language \textbf{\textit{Python}}. However, as already indicated by the subtitle of this book, we have nevertheless chosen to continue using \matlab{}, since in many areas of industry and research it represents the standard software. \matlab{} is excellently suited to solving many mathematical, physical, and technical problems, as well as to the graphical presentation of results. Its academic connection has been maintained to this day through relatively inexpensive student versions, which is also one reason for the great success and widespread use of the software. Furthermore, there is an excellent platform, \matlab{} Central (\url{[https://de.mathworks.com/matlabcentral/}](https://de.mathworks.com/matlabcentral/})), which offers an open exchange for the community of \matlab{} users and provides many program packages for download. There are numerous good introductions to programming with \matlab{}, especially for physicists and engineers. References can be found in the bibliography.\
+In principle, however, there is nothing to prevent the use of other software packages; transferring the \mscr{}s generally presents no problem.
+\textbf{\textit{GNU Octave}}\index{GNU Octave} (\url{[https://octave.org/}](https://octave.org/})) is probably the best alternative to \matlab{}. Octave runs on Linux, Windows, and Mac. For many projects, an \mscr{} will also run under GNU Octave without major modifications. GNU Octave is largely functionally compatible with the basic version of \matlab{} without toolboxes. The source code of GNU Octave can be downloaded from the GNU website.\
+\textbf{\textit{Python}}\index{Python} (\url{[https://www.python.org/}](https://www.python.org/})) is, as mentioned above, a general-purpose programming language. Like \matlab{}, it can be used to produce easily readable and sometimes quite concise code whose structure is very similar to that of \matlab{}.
+In many countries, the language has by now become part of the curriculum in schools and universities. Python supports both object-oriented and functional programming and, like \matlab{}, can also be used as a scripting language.
+NumPy and SciPy are the main Python packages for scientific computing.
+Its handling is therefore comparable to that of \matlab{}.
+The integration of NumPy into Python makes it possible to use and combine it with many other packages from the extensive Python ecosystem.
+The language and the scientific programming packages are available for Linux, Windows, and Mac OS X.
+Highly recommended introductions to programming with Python for physicists and engineers can be found in \cite{Natt2020, Landau2015, Landau2007}.\
+For further details, we refer to our discussion of computational physics in Volume I and in the \onlineZ.
+
+Ein solches mehrbändiges Projekt ist ohne die Hilfe vieler Menschen nicht zu realisieren. 
+Es ist hier unmöglich allen zu danken.\\
+
+Ganz besonderer Dank aber gebührt Herrn Dr. Andreas Dorsel, für seine wertvolle Unterstützung, sowie den Koautoren unseres Band V (Optik), den Herren Prof. Dr. Michael Totzeck und Dr. Michael Kempe. Ohne Sie wäre insbesondere der Umfang des Arbeitsbuches, in welchem umfangreiche Lösungsvorschläge inklusive der zugehörigen \matlab-Programme zusammengefasst sind, nicht möglich gewesen. Ihr sorgfältiges und kritisches Korrekturlesen, sowie umfangreiche Kontrollrechnungen und \matlab-Implementierungen haben viele wertvolle Verbesserungen erbracht.\\
+Herrn Dr. Johannes Kaschke verdanken wir viele wertvolle Diskussionen und Anregungen zur \matlab-Programmierung. Frau Sylvia Kaschke hat uns nicht nur bei der Erstellung vieler Abbildungen, sondern auch moralisch bei manchen Durststrecken und mit vielen Fragen und Diskussionen unterstützt.\\
+Dr. Johannes-Maria Kaltenbach und vielen anderen sind wir für zahlreiche Anregungen und Diskussionen sehr dankbar.\\
+Besonderer Dank gebührt auch dem Springer Verlag und hier vor allem Frau Dr. Gabriele Ruckelshausen und Herrn Ramkumar Padmanaban für die gute Zusammenarbeit und die vielen wertvollen Hinweise.\\
+
+Ohne die Studenten und Studentinnen, an die sich das Buch ja vornehmlich richtet -- genannt seien besonders Jan Albicker, Jerome Perleth und Zhirong Tao-- wäre das Projekt nicht zu Ende gekommen. Ihnen allen gilt unser herzlicher Dank.\\
+
+Wir wünschen uns, dass auch dieser Band einen breiten Leserkreis findet und dass besonders auch Dozenten, Tutoren und Lehrer viele Anregungen für weiterführende Übungen und Projektarbeiten in diesem Buch finden. Die online unter den Links \MKc{} \bzw \githubSN zur Verfügung gestellten Materialien sollen gerade auch Projektarbeiten ermöglichen.\\ 
+
+
+\textsc{Michael Kaschke, Holger Cartarius und Roger Tobin (2026)}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter*{Auszüge aus dem Vorwort zum Band I}
+
+\subsection*{Wie kam es zur Idee für dieses Buch?}
+
+An der Universität Jena kursierte vor etlichen Jahren unter uns Studenten 
+der folgende Witz: Für Absolventen der Universität ist ein Wettbewerb ausgeschrieben, bei dem es gilt einen Projektvorschlag für die Erstellung eines Melkkarussells zu machen und ein Modell vorzustellen.
+Nach einiger Zeit werden der Kommission drei Arbeiten eingereicht, die eines Maschinenbau-Ingenieurs, die eines Betriebswirtschaftlers und die eines Physikers.
+Der Ingenieur kommt mit einem perfekt funktionierenden 1:10-Modell und einer langen Liste technischer Parameter.
+Die Kommission ist beeindruckt.
+Der Betriebswirtschaftler präsentiert Kostenrechnungen, eine Trendanalyse des Milchpreises und vor allem eine überzeugende Gewinnberechnung.
+Begeistert davon erwartet die Kommission den dritten Bewerber.
+Der Physiker kommt nur mit einem Stück Kreide, geht an die Tafel, malt einen Kreis und sagt: \glq{}Als Modell habe ich die Kuh als Kugel und die Milch als homogen verteilt angenommen.
+Daraus ergibt sich folgende Differentialgleichung ...\grq{}.
+
+Uns gefällt der Witz noch heute, beschreibt er doch treffend, wozu die Physikausbildung befähigt: Abstraktion, Modellbildung, und die Ableitung von Prinzipien, um auf deren Basis eine geeignete mathematische Beschreibung und damit eine Erklärung von Phänomenen zu finden.
+Charakteristika, auf die der Physiker zurecht stolz ist und die den geradezu legendären Ruf seiner universellen Einsetzbarkeit begründen.
+Allerdings haben Physiker während des Studiums -- abgesehen vielleicht vom physikalischen Praktikum -- wenig Gelegenheit und Zeit, konkrete Problemstellungen aus dem Alltag detailliert zu berechnen und damit experimentell verifizierbar zu machen.
+Gern behilft sich der Physiker dann mit den sogenannten \anf{back of the envelope}-Rechnungen%
+\footnote{Siehe die Bücher von C. Swartz, Back-of-the-Envelope Physics (The Johns Hopkins University Press, Baltimore,
+2003), S. Mahajan, The Art of Insight in Science and Engineering (The MIT Press, Cambridge, 2014) und A. Zee, Fly by Night Physics: How Physicists Use the Backs of Envelopes (Princeton
+University Press, Princeton, 2020)}, um eine Abschätzung zu erhalten.
+Wir sind ebenfalls große Anhänger dieser Methode, da sie oft den ersten Zugang zum Verständnis eines physikalischen Problems darstellt.
+Allerdings ist es immer schade, wenn weder Zeit noch Methodik zur Verfügung stehen, solch faszinierende Probleme wie \zb den Fehlgang einer Pendeluhr, die Dauer eines Fallschirmsprungs aus der Stratosphäre, die genaue Farbverteilung in einem Regenbogen oder einem Halo genau zu berechnen.
+Natürlich kann jeder Physiker diese Phänomene erklären, ebenso wie eine Sonnenfinsternis oder die grundsätzliche Physik des Segelns.
+Aber kann er auch die genaue Uhrzeit und den Ort der Sonnenfinsternis berechnen oder die Maximalgeschwindigkeit eines Segelbootes?
+Mit diesem Buch wollen wir eine Auswahl \emph{schöner} Physikprobleme behandeln.
+Dabei ist uns bewusst, dass das Kriterium der Schönheit immer ein subjektives Empfinden beinhaltet.
+Es sind aber vor allem aber Themen, die sonst selten oder wenig ausführlich behandelt werden.
+Wir schauen dabei auf ganz verschiedene physikalische Bereiche und Phänomene, die vielleicht auch den Nichtphysiker interessieren und deren Berechnung und Erklärung dem Physiker erlauben, die Schönheit der Physik zu erfassen und auch anderen zu vermitteln.
+
+Ziel des Buches ist es, anhand in sich abgeschlossener Kapitel diese ausgewählten einzelnen physikalischen Probleme, Phänomene oder auch nur Alltagsthemen so zu behandeln, dass sowohl das physikalische Grundverständnis vermittelt und geschärft wird, als auch eine möglichst genaue und detaillierte quantitative Analyse und numerische Berechnung auf dem Computer durchgeführt werden kann.
+Mit diesen kann dann der Physiker beim oben beschriebenen Wettbewerb auch mit seinen Konkurrenten in Bezug auf Detail und Realitätsnähe mithalten. 
+
+\subsection*{Für wen ist dieses Buch gedacht?}
+
+Ganz einfach gesagt richtet es sich an alle, die Freude an der Physik haben und diese auch für allseits interessierende Probleme und Fragestellungen anwenden wollen.
+Primär adressiert es Studierende und Doktoranden der Physik, Mathematik und Ingenieurswissenschaften ebenso wie des Lehramtes für naturwissenschaftliche Fächer.
+Genauso ist es für Dozenten und Lehrer der Physik gedacht, die aus dem Fundus der Übungen und Beispiele Anregungen für eigene Problemstellungen und Projekte gewinnen mögen.
+Die Physik, wie sie im Studium zum Bachelor-Abschluss erreicht wird, stellt in etwa die Grundlage dar, auf der das Buch aufbaut.
+Es eignet sich gleichermaßen zum Selbststudium wie zur Benutzung in Tutorien/Übungen.
+Es ist nicht als eigentliches Lehrbuch gedacht. Die einzelnen Kapitel sind aber in sich geschlossen und können daher als Repetitorium und Kurzusammenfassung verstanden werden, sie leiten im Allgemeinen in die vertiefenden Übungen ein. .
+
+Wir haben es als \anf{Fingerübungen der Physik} betitelt.
+Für einen Physiker gilt dasselbe wie für einen Pianisten: Übt dieser nicht ständig, wird auch die Hand eines Starpianisten irgendwann nicht mehr die Meisterwerke flüssig spielen können.
+Mit Fingerübungen der Physik ist gemeint, dass wir das gesamte Handwerkszeug des Physikers wie Modellbildung, Analysis und Algebra, Abschätzungen, Störungsrechnungen usw. benutzen wollen, um damit spannende und interessante physikalische Alltagsprobleme zu erklären und quantitativ zu beschreiben.
+
+\subsection*{Warum gerade diese Auswahl der Themen?}
+
+Jede Auswahl ist subjektiv.
+Dennoch haben wir versucht, bei der Auswahl auch objektive Kriterien einfließen zu lassen. Die Probleme und Phänomene
+\begin{enumerate}
+	\item sollen sich sinnvoll zu größeren Kapiteln bündeln lassen.
+          Diese sind wiederum in sich relativ geschlossen und werden durch eine Zusammenfassung der grundlegenden Theorie eingeführt.
+	\item erlauben eine schrittweise Erläuterung, Einführung oder auch Wiederholung der zugrundeliegenden Theorie.
+	\item sind allgemein bekannt oder können zumindest zu verwandten Problemen in Bezug gesetzt werden.
+	\item werden selten oder nur oberflächlich im Physik-Studiengang (bis zum Bachelor) behandelt.
+        \item können gut in \matlab{} oder anderen Programmiersprachen wie GNU Octave oder Python bearbeitet werden und erlauben die Berechnung nachprüfbarer Ergebnisse.
+	\item bieten eine Basis für weitere und tiefergehende Fragestellungen und Übungen.
+\end{enumerate}
+
+\subsection*{Warum numerische Berechnungen und \matlab?}
+
+Wir sind der Überzeugung, dass numerische Verfahren zur Lösung realitätsnaher Problemstellungen unverzichtbar sind. Diese werden aber ebenso wie die oben genannten \anf{seltenen} Kapitel in der Lehre und in Büchern kaum behandelt.
+Hingegen beobachtet man in letzter Zeit im Internet eine Flut von Apps, die mehr oder weniger fertige Darstellungen und durchaus graphisch ansprechende Simulationen von physikalischen Vorgängen und Phänomenen zeigen. Sie erzeugen daher sicher eine gute Anschaulichkeit und auch ein gutes Grundverständnis. Sie erlauben häufig mit einigen interaktiven Elementen auch eine gewisse spielerische Simulationsbandbreite, ermöglichen aber fast nie einen Einblick in die zugrundeliegenden Algorithmen.
+Daher halten wir das Konzept, Grundlagenthemen der Physik anhand spannender realitätsnaher Beispiele und Probleme zu erläutern und mit numerischen Methoden zu verbinden, für sehr wichtig.\\
+%In den nachfolgenden \anf{Bemerkungen zur computergestützten Physik} gehen wir etwas vertieft auf die Thematik der numerischen und Computermethoden in der Physik ein.\\
+\matlab{} ist aus unserer Sicht das geeignete und ergänzende Handwerkszeug, um auf Basis der Problemanalyse und des gut strukturierten Lösungsansatzes zu anschaulichen, quantitativen und gut visualisierbaren Ergebnissen zu kommen.
+Es vereint eine relativ einfache, anschauliche Programmiersprache mit vielen hinterlegten mathematischen Funktionen und Prozeduren sowie einer mächtigen Bibliothek graphischer Ausgaberoutinen.
+Vielen Studenten wird \matlab{} oder verwandte Programmpakete und Programmiersprachen wie \zb GNU Octave oder Python aus dem Studium gut bekannt sein.
+Deswegen sind die mitgelieferten Programme einfach zu lesen und zu verstehen.
+Es ging uns nicht darum, die beste und kürzeste \matlab-Realisierung zu liefern, der Leser sollte vielmehr die physikalische Modellierung in der Realisierung des numerischen Programms bzw. der Simulation mit \matlab{} wiedererkennen.
+Daher sind die Programme nicht auf \anf{best programming style} optimiert, jedoch zum größten Teil das Verständnis fördernd kommentiert.
+Der Leser kann diese Programme beliebig weiter optimieren, vereinfachen oder auch erweitern.
+
+\subsection*{Warum Übungen?}
+
+Das Sprichwort sagt: \anf{Übung macht den Meister}.
+Die zahlreichen Übungen sind didaktisch als Fortsetzung der einzelnen Kapitel gedacht und daher die eigentlichen \anf{Fingerübungen}.
+Es wird sehr empfohlen, diese durchzuarbeiten oder aber zumindest die Lösungsvorschläge nachzuvollziehen.
+Das Schöne an der Physik ist ja, dass es zur Lösung eines Problems oft mehrere Zugänge und Wege gibt.
+Bei der Auswahl der Lösungsvorschläge haben wir uns deshalb weitgehend von didaktischen Gesichtspunkten und häufig auch der einfachen Übersetzbarkeit in ein \matlab-Programm leiten lassen, wohl wissend, dass es manchmal auch andere deutlich kompaktere und elegantere Ansätze gibt.
+Die \mscre sind quasi die kostengünstigen Experimente für den Leser zu den einzelnen, eher theoretischen, Abschnitten des Buches.
+
+\subsection*{Wie sollte man dieses Buch lesen?}
+
+Das ist wirklich jedem selbst überlassen.
+Die einzelnen Kapitel sind bewusst in sich abgeschlossen.
+Das gilt dank der durchgerechneten Beispiele bei entsprechenden Vorkenntnisse selbst für einzelne Abschnitte innerhalb der Kapitel.
+Querverweise dienen eher dem Nachschlagen, als dass sie zum Verständnis der einzelnen Abschnitte notwendig sind. 
+Wir haben uns auch bewusst für eine umfangreiche Angabe von oft auch englischsprachiger Originalliteratur entschieden. Zum einen wollen wir damit auch in einem eher für Studierende gedachten Buch so weit möglich und bekannt Erstpublikationen und Erstautoren für die behandelten Probleme bekannt machen, zum anderen soll die verwiesene Literatur auch zum vertieften Selbststudium und zur Erweiterung und Übertragung der behandelten physikalischen Probleme auf andere Themen anregen.\\
+Wir -- \dh alle am Projekt Beteiligten -- hoffen, dass die Leser genauso viel Freude an den behandelten Problemen empfinden wie wir beim Schreiben, und dass sie mit dem Buch die Schönheit der Physik auf ihre ganz eigene Art und Weise erleben können.
+Gibt es etwas Schöneres als die Welt um uns herum verstehen und erklären zu können?\\
+
+\textsc{Michael Kaschke und Holger Cartarius (2023)}
+\endgroup
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\input{footer.tex}

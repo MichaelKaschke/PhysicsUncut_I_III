@@ -1,0 +1,181 @@
+
+\section{Lösung der Kepler-Gleichung} \label{kap:lsg_kepler}
+
+Das Besondere an der Kepler-Gleichung ist neben ihrer grundlegenden Bedeutung für die Himmelsmechanik ihre offensichtliche Einfachheit und Kompaktheit in der Formulierung (man kann auch sagen Schönheit) und ihre gleichzeitige Komplexität in der Lösung. Schon Kepler wies darauf hin, dass er für die Gleichung keine analytisch geschlossene Lösung finden konnte und stachelte nachfolgende Generationen an, sich der Lösung dieser Aufgabe zu widmen \cite{Kepler1992}.
+Neben Newton\indexp{Newton, Sir Isaac}  waren es vor allem Lagrange\footnote{Joseph-Louis Lagrange (1736--1813) war ein italienisch-französischer Mathematiker und Astronom und gilt als Begründer der analytischen Mechanik (\emph{Mécanique Analytique}, 1788).}\indexp{Lagrange, Joseph-Louis}, Cauchy\footnote{Augustin-Louis Cauchy (1789--1857) war ein französischer Mathematiker, der besonders auf dem Gebiet der Analysis tätig war.}\indexp{Cauchy, Augustin-Louis} und Bessel\footnote{Friedrich Wilhelm Bessel (1784--1846) war ein deutscher Wissenschaftler, der auf den Gebieten der Astronomie, Mathematik, Geodäsie und Physik bedeutsame Beiträge lieferte.}\indexp{Bessel, Friedrich Wilhelm}, die sich dem Thema widmeten und aus der Beschäftigung mit der Kepler-Gleichung wertvolle und fundamentale Beiträge zur Entwicklung der Mathematik lieferten.
+Erwähnt seien die Newton-Raphson-Näherungsmethode, inverse Reihenentwicklungen, komplexe Analysis und die Bessel-Funktionen.
+Seither gab es in jeder Dekade mindestens ein oder zwei Arbeiten zur analytisch geschlossenen Lösung der Kepler-Gleichung.
+Als aktuelle Beispiele seien die Arbeiten in \cite{Siewert1972} und \cite{Perovich2016} angeführt.
+Sie reihen sich ein in das Bemühen, weiter nach einer einfachen analytisch geschlossenen Lösung (zumindest für Spezialfälle) zu suchen.
+Wir wollen im Folgenden jedoch die beiden grundsätzlichen Näherungsmethoden (Iteration und Reihenentwicklung) zur Lösung der Kepler-Gleichung vorstellen.             
+
+\subsection{Iterationsverfahren}\index{Iterationsverfahren} \label{kap:iteration_kepler}
+Ein naheliegender Ansatz zur Lösung der Kepler-Gleichung ist die Iteration\index{Iteration}, d.\,h. man berechnet eine Näherung für die Größe $E_{k+1}(t)$ aus einer zuvor bestimmten Näherung $E_k(t)$ nach
+\begin{equation*}
+E_{k+1}(t) = M(t) + e\,\sin E_k(t) 
+\end{equation*}
+mit dem sinnvollerweise zu setzenden \textit{Iterationsanfang}
+\begin{equation}
+E_0 (t)=M(t) ~.\label{eq:hm_iteration_anfang}
+\end{equation}
+Das liegt besonders nahe, wenn die Exzentrizität $e$ relativ klein ist, weil dann die Abweichung von der Kreisbahn relativ gering ist.
+Man kann aber auch andere Iterationsanfänge wählen und in bestimmten Fällen muss man das auch, insbesondere bei großen Exzentrizitäten $e$ \cite{Strebel2001}.
+Unter Nutzung der trigonometrischen Additionstheoreme $\sin(x+y)\!=\!\sin x \cos y + \cos x \sin y$ und der Näherung für kleine Argumente $\sin x\!\approx\! x -  x^3/6 + \ldots$ bzw. $\cos x\!\approx\! 1-x^2/2 + \ldots$ kann auf \eqref{eq:hm_iteration_anfang} folgend die nächste Iteration durchgeführt werden:\footnote{Wir lassen der Einfachheit halber die Notation der Zeit $t$ weg.}
+\begin{equation}
+E_1 = M+e\,\sin M ~~. \label{eq:hm_E_1_kepler}
+\end{equation}
+Der nächste \textit{Iterationsschritt} lautet:
+\begin{align}
+\begin{split}
+E_2 &= M + e\,\sin E_1 = M + e\,\sin (\underbrace{M+e\,\sin M}_{E_1}) \\
+		&= M + e\,\sin M\, \cos(\underbrace{e\,\sin M}_{E_1-E_0})  +  e\,\cos M\, \sin(\underbrace{e\,\sin M}_{E_1-E_0}) \,. 
+\end{split} \label{eq:hm_E_2_kepler}
+\end{align}
+Da $E_{k+1}(t)-E_k(t)\!=\!e\,\sin E_k(t)$ eine kleine Größe ist, kann man mit der Näherung für kleine Winkel schreiben:
+\begin{align*}
+E_2 &\approx  M + e\,\sin M\, \lk 1-\frac{e^2}{2} \sin^2 M \rk + e\,\cos M \, e\,\sin M + \mathcal{O}(e^3) \\
+    &= M + e\,\sin M + \frac{e^2}{2}\,\sin 2M + \mathcal{O}(e^3) \,. 
+\end{align*}
+Der nächste Iterationsschritt ergibt
+\begin{equation*}
+E_3 \approx M + e\,\sin E_2 = M+e\sin\lk M+e\sin M+\frac{1}{2}e^2 \sin 2M\rk ~~, \label{eq:hm_E_3_kepler}
+\end{equation*}
+woraus wiederum mit den Additionstheoremen und Näherungen für kleine $e$ folgt:
+\begin{equation*}
+E_3 = M+ \lk e-\frac{1}{8} e^3\rk \sin M + \frac{1}{2}e^2\,\sin 2M + \frac{3}{8}e^3\,\sin 3M + \mathcal{O}(e^4) \,.
+\end{equation*}
+Verallgemeinert man die Schritte induktiv, erhält man
+\begin{equation}
+E = M+ \sum_{k=1}^{\infty} b_k(e)\,\sin kM \,. \label{eq:hm_reihenentw_iteration}
+\end{equation}
+Diese Reihe stellt eine Entwicklung nach \anf{Frequenzvielfachen} von $M$ dar.
+Das kann auch so verstanden werden, dass die Zeitentwicklung der Bewegung auf der Ellipsenbahn gegenüber der reinen Kreisbahnbewegung Oberfrequenzen hat, deren Koeffizienten von der Exzentrizität $e$ abhängen.
+Im Fall von $e\!>\!0.6627434$ divergiert die Entwicklung nach \eqref{eq:hm_reihenentw_iteration} \cite{Murray2008}.
+Es muss dann auf andere Iterationsverfahren (Regula falsi, Newton-Raphson, Sekanten- und Tangentenverfahren) und andere Iterationsstartwerte zurückgegriffen werden \cite{Strebel2001}.
+Wir geben hier noch die Entwicklung von \eqref{eq:hm_reihenentw_iteration} bis zur vierten Ordnung von $e$ an:
+\begin{align}
+\begin{split}
+E = M &+\lk e-\frac{1}{8}e^3\rk \sin M + \lk \frac{1}{2} e^2 - \frac{1}{6} e^4 \rk \sin 2M  \\
+      &+ \frac{3}{8}e^3\,\sin 3M + \frac{1}{3} e^4\,\sin 4M + \mathcal{O}(e^5) \,. 
+\end{split} \label{eq:hm_entwicklung_4Ord}
+\end{align}
+Damit haben wir eine Näherungslösung für $E$ gewonnen, aus der man über \eqref{eq:hm_nu(t)_alternativ} die wahre Anomalie des Planeten \bzw über \eqref{eq:hm_exzentrische_Anomalie} dessen Entfernung zum Zentralkörper bestimmen kann.
+Die Lösung beinhaltet als Parameter lediglich die Exzentrizität $e$ und über $M$ die große Halbachse $a$ und die Zeitdifferenz zum Anfangswert $t_0$.
+Die Frage ist nun, ob die Koeffizienten $b_k(e)$ in \eqref{eq:hm_reihenentw_iteration} in einer allgemeinen Form dargestellt und nicht nur schrittweise über ein Iterationsverfahren berechnet werden können.
+
+\subsection{Reihenentwicklung}\index{Reihenentwicklung}
+Da $E\!-\!M\!=\!e\sin E$ für kleine $e$ eine kleine Größe ist, ist es sinnvoll, die Kepler-Gleichung nach $E\!-\!M$ zu entwickeln.
+Wir machen dazu folgenden Ansatz:
+\begin{align*}
+e\,\sin E &= \sum_{k=1}^{\infty} b_k(e)\,\sin(kM) \Rightarrow b_k(e) = \frac{2}{\pi} \int\limits_0^\pi e\,\sin E\,\sin(kM) \,\D M \,. 
+\end{align*}
+Mittels partieller Integration unter Nutzung der Kepler-Gleichung ergibt sich
+\begin{align*}
+b_k(e) &= \underbrace{\frac{2}{k\pi} \lek e\,\sin E\,\cos(kM) \rek^0_\pi}_{=0} + \frac{2}{k\pi} \int\limits_0^\pi \lk \frac{\D E}{\D M} -1\rk \cos(kM)\,\D M \\
+       &= \frac{2}{k\pi} \int\limits_0^\pi \cos (kM) \,\D E - \underbrace{\frac{2}{k\pi} \int\limits_0^\pi \cos (kM) \D M}_{=0} \,. 
+\end{align*}
+Setzen wir $kM =  k\,\lk E - \sin E \rk$ (Kepler-Gleichung) im Integranden, erhalten wir
+\begin{equation}
+b_k(e) = \frac{2}{k\pi} \int\limits_0^\pi \cos \lek k(E-e\,\sin E)\rek \,\D E \,. \label{eq:hm_b_k(e)}
+\end{equation}
+Hier verwenden wir jetzt die \emph{Bessel-Funktionen} erster Art $\mathcal{J}_n (z)$, die über das \emph{Bessel-Integral} wie folgt definiert \cite{Olver1992} sind:
+\begin{align}
+  \mathcal{J}_n(z)
+  &= \frac{1}{\pi} \int\limits_0^\pi \cos (z\,\sin\theta - n\theta)\,\D \theta 
+    = \frac{1}{n!} \lk \frac{z}{2} \rk^n \sum_m^{\infty} (-1)^m \frac{(z/2)^{2m}}
+    {m! (n+1)(n+2) \ldots (n+m)} \,.\label{eq:hm_besselfkt_erster_art_int}
+\end{align}
+Da die cos-Funktion gerade ist, kann \eqref{eq:hm_b_k(e)} mit \eqref{eq:hm_besselfkt_erster_art_int} geschrieben werden als
+\begin{equation}
+b_k(e) = \frac{2}{k} \mathcal{J}_k(ke) \,. \label{eq:hm_b_k(e)_Bessel}
+\end{equation}
+Damit lässt sich die Lösung der Kepler-Gleichung nun als Reihe mit \gls{besselfkt}en schreiben:
+\begin{equation}
+E = M + 2 \sum_{k=1}^\infty \frac{\mathcal{J}_k(ke)}{k}\,\sin(kM) \,.
+\label{eq:hm_lsg_kepler_reihe}
+\end{equation}
+Wir empfehlen die Reihenentwicklung \eqref{eq:hm_lsg_kepler_reihe} einmal selbst bis zur vierten Ordnung in $e$ durchzuführen.
+Als Ergebnis erhält man eine der Reihe \eqref{eq:hm_entwicklung_4Ord} entsprechenden Lösung.
+Numerische Berechnungen zur Konvergenz der Reihe 
+\eqref{eq:hm_lsg_kepler_reihe} sind in \probref{hm_bessel} ausgeführt.
+
+
+\subsection{Mittelpunktsgleichung}\label{kap:hm_mpg}
+Da \glslink{mittelpunktsglg} bei kleinen Exzentrizitäten auch die Differenz von wahrer und mittlerer Anomalie eine kleine Größe sein sollte, ist für viele Problemstellungen eine Reihenentwicklung dieser Differenz direkter und besser geeignet.
+Man spart sich dabei den Zwischenschritt der Berechnung von $E$ und die anschließende Umrechnung in $\upsilon$ über \eqref{eq:hm_nu(t)_alternativ}.
+Eine solche Reihenentwicklung für die Differenz von wahrer und mittlerer Anomalie wird auch Mittelpunktsgleichung genannt:
+\begin{infobox} {Mittelpunktsgleichung}
+\begin{align}
+\begin{split}
+\mathcal{C}=\upsilon-M &= 2e \sin M + \frac{5}{4}e^2\,\sin(2M) \\
+&+ e^3 \lk \frac{13}{12} \sin(3M) - \frac{1}{4} \sin M \rk  \\
+&+ e^4 \lk \frac{103}{96} \sin(4M) - \frac{11}{24} \sin(2M)  \rk + \mathcal{O}(e^5) \,. 
+\end{split} \label{eq:hm_mpglg_nu-M}
+\end{align} \\
+\end{infobox}
+
+Da wir die Mittelpunktsgleichung im Folgenden häufig brauchen werden, zeigen wir die Herleitung dieser Reihe in Beispiel \ref{bsp:mittelpktglg} und einen alternativen Weg in \probref{hm_alternative_MPG}.
+Ebenso kann in ähnlicher Form eine Reihe für $r/a$ abgeleitet werden (siehe dazu auch \cite{Brouwer1961,Guthmann2000}):
+\begin{align}
+\begin{split}
+\frac{r}{a} = &1 + \frac{1}{2}e^2 - 2e \sum_k^\infty \frac{1}{k^2} \frac{\D }{\D e} \mathcal{J}_k(ke)\,\cos(kM) \\
+            = &1-e \cos M + e^2(1-\cos(2M) + \frac{3}{8}e^3 (\cos M - \cos(3M)  \\
+						&+\frac{1}{3} e^4 (\cos(2M) - \cos(4M) + \mathcal{O}(e^5) \,.  
+\end{split} \label{eq:hm_mpglg_r/a}
+\end{align}
+
+%BEISPIEL 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{Mittelpunktsgleichung}
+\textit{Wir wollen die Mittelpunktsgleichung herleiten. Wir starten mit der Beziehung \eqref{eq:hm_drehimpuls_von_ae} für den Drehimpuls $r(\upsilon)$ und leiten daraus eine Gleichung für $\dot{\upsilon}(r)$ ab, die wir mit $\text{d}M\!=\!2\pi/T_\text{P}\,\text{d}t$ und der Substitution $r$ mittels der Definition der exzentrischen Anomalie in eine Gleichung für $\text{d}\upsilon\!=\!f(\text{d}M)$ umformen. Diese Gleichung
+enthält $\text{d}E/\text{d}M$. Für $\text{d}E/\text{d}M$ setzen wir die Bessel-Reihe \eqref{eq:hm_lsg_kepler_reihe} ein und können das Zwischenergebnis dann gliedweise integrieren.}\\
+
+Wir starten also mit der Beziehung für den Drehimpuls nach \eqref{eq:hm_drehimpuls_von_ae} und nutzen das 3.~ Keplersche Gesetz:
+\begin{align*}
+L &= \sqrt{a\mu_\text{G}(1-e^2)} = r^2\,\dot{\upsilon} = \sqrt{1-e^2}\,n_\text{P}\,a^2\,.
+\end{align*}
+Mit der Definition der exzentrischen Anomalie $r\!=\!a(1-e\cos E)$ können wir schreiben:
+\begin{align}
+a^2(1-e\cos E)^2\,\text{d}\upsilon &= n_\text{P}\,a^2\sqrt{1-e^2}\,\text{d}t \nonumber \\
+\Rightarrow \text{d}\upsilon &= \frac{\sqrt{1-e^2}}{(1-e\cos E)^2}\,\text{d}M ~~\text{mit}~~ \text{d}t = \frac{1}{n_\text{P}}\,\text{d}M \label{eq:hm_bsp_mpg_9} \,.
+\end{align}
+Differentiation der Kepler-Gleichung nach $\text{d}M$ ergibt die Beziehung:
+\begin{align*}
+\frac{\text{d}}{\text{d}M} E &= \frac{\text{d}}{\text{d}M} (M+e\sin E) = 1+e\cos E \frac{\text{d}E}{\text{d}M} ~~\Rightarrow \frac{\text{d}E}{\text{d}M} = \frac{1}{1-e\cos E} \,,
+\end{align*}
+die wir  in \eqref{eq:hm_bsp_mpg_9} einsetzen und
+\begin{equation}
+\text{d}\upsilon = \sqrt{1-e^2} \lk \frac{\text{d}E}{\text{d}M} \rk^2 \text{d}M \, \label{eq:hm_bsp_mpg_10}
+\end{equation}
+erhalten. Das ist schon eine differentielle Form von $\upsilon(M)$, die wir aber noch integrieren müssen. 
+Um eine integrierbare Form für $\text{d}E/\text{d}M$ zu erhalten, leiten wir die Bessel-Reihe \eqref{eq:hm_lsg_kepler_reihe} nach $\text{d}M$ ab:
+\begin{align*}
+\frac{\text{d}E}{\text{d}M} &= \frac{\text{d}}{\text{d}M} \lk M + 2 \sum_{k=1} \frac{\mathcal{J}_k(ke)}{k}\,\sin(kM) \rk = 1+ 2 \sum_{k=1}\,{\mathcal{J}_k(ke)}\,\cos(kM) \\
+                            &= \frac{\text{d}}{\text{d}M} \lk M + e\sin M + \frac{e^2}{2}\sin(2M) + \ldots \rk = 1+e\cos M + e^2\cos(2M) + \mathcal{O}(e^3) ~.
+\end{align*}
+Hierbei haben wir die Entwicklung der Bessel-Funktion \eqref{eq:hm_besselfkt_erster_art_int} nur bis zum quadratischen Term berücksichtigt.
+Quadrieren ergibt:
+\begin{align*}
+\lk\frac{\text{d}E}{\text{d}M}\rk^2 &= [ 1+ \underbrace{e\cos M}_{=x} + \underbrace{e^2\cos(2M)}_{=y} + \:\mathcal{O}(e^3)]^2 \,.
+\end{align*} 
+Mit der Zwischenrechnung $(1+x+y+\ldots)(1+x+y+\ldots)\!=\!1+2x+2y+2xy+x^2+y^2+\ldots\!=\!1+2x+(2y+x^2)+2xy+\ldots$ erhalten wir zunächst
+\begin{align*}
+\lk\frac{\text{d}E}{\text{d}M}\rk^2 &= 1+2e\cos M + 2e^2\cos(2M) + \underbrace{e^2\cos^2 M}_{=\frac{e^2}{2}(1+\cos(2M))} + 2e^3\cos M\cos(2M) \\
+&= 1+2e\cos M + \frac{1}{2}e^2 + \frac{5}{2} e^2\cos(2M) + 2e^3\cos M\cos(2M)
+\end{align*}
+und damit über Integration von \eqref{eq:hm_bsp_mpg_10} schließlich
+\begin{align}
+\begin{split}
+\upsilon &= \lk M + 2e\sin M + \frac{5}{4} e^2\sin(2M) + \frac{1}{2} e^2 M \rk \lk 1-\frac{1}{2} e^2+\ldots \rk \\ 
+\upsilon &= M + 2e\sin M + \frac{5}{4}e^2\sin(2M) + \mathcal{O}(e^3) \,. 
+\end{split}\label{eq:hm_bsp_mpg_12}
+\end{align}
+Wir empfehlen in den \textbf{Übungen} \ref{prob:hm_iteration} und \ref{prob:hm_bessel} die Entwicklung  von \eqref{eq:hm_bsp_mpg_12} bis zu Ordnungen $\mathcal{O}(\geq e^4)$ auszuführen.
+Man kann dazu auch die Symbolic Math Toolbox von \matlab{} oder ähnliche Tools nutzen.\\
+
+\label{bsp:mittelpktglg}
+\end{example}
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Mit der nun vorliegenden Lösung der Kepler-Gleichung wollen wir uns erst einmal auf das System Sonne-Erde konzentrieren, um anschließend auch Bahnen von Planeten und Kometen zu berechnen.
+
+

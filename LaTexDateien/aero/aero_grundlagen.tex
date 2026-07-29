@@ -1,0 +1,1178 @@
+\section{Physikalische Grundlagen Aerodynamik}\label{kap:aero_grundlagen}
+
+
+\subsection{Wiederholung Grundgleichungen Kontinuumsmechanik (Band~I)}\label{kap:aero_wiederholung}
+
+In diesem Abschnitt möchten wir die wesentlichen Gleichungen und Zusammenhänge,
+die bereits in Band~I \cite{Kaschke2024a} ausführliche behandelt wurden, kurz
+zusammenfassen, da sie für die Aerodynamik von Bedeutung sind und als
+Grundlage für die folgenden Grundlagenkapitel dienen müssen. Für eine
+ausführlichere Darstellung wird ausdrücklich auf Band~I oder die umfangreiche
+Literatur zur Kontinuumsmechanik \cite{Schmutzer2005,Bartelmann2015,%
+  Altenbach1994,Altenbach2018,Heintze2016,Rannacher2017,Garvin2023}.
+
+\subsubsection{Materiepunkte und Koordinaten}
+\label{kap:aero_materiepunkte}\index{Koordinaten!kontinuierliche Körper}
+
+Um die Kinematik kontinuierlicher Körper überhaupt beschreiben zu können,
+muss ein Koordinatensystem eingeführt werden. Da ein unveränderliches
+körperfestes Koordinatensystem bei Fluiden, die ihre Form  verändern können,
+wenig sinnvoll ist, haben sich in der Kontinuumsmechanik zwei
+Koordinatensysteme etabliert, bei denen man einzelne Materiepunkte
+$\vec{\hat{P}}$ herausgreift und das infinitesimale Volumen $V$ um diese
+herum betrachtet. Der Körper ist dann durch die Ansammlung eines Kontinuums
+von Materiepunkten $\vec{\hat{P}}$ und die darin enthaltene Masse
+$\D m(\vec{\hat{P}}) = \varrho(\vec{\hat{P}})\,\mathrm{d}V$ beschrieben.
+Wir gehen immer von einem raumfesten Koordinatensystem \vec{\Sigma} aus, in
+dem die Punkte $\vec{\hat{P}}$ dadurch festgelegt sind, dass man ihnen
+Koordinaten in $\vec{\Sigma}$ zu einem festen Zeitpunkt $t_0$ zuordnet,
+\begin{equation}
+  \vec{\hat{P}} \Leftrightarrow \vec{r}(\vec{\hat{P}},t_0) \; .
+  \label{eq:aero_Materiepunkt}
+\end{equation}
+Die beiden Koordinatensysteme, auf die auch wie häufiger zurückgreifen
+möchten, sind dann:
+\begin{itemize}
+\item Die \gls{aero_eulerscheKoordinaten}\index{Euler-Koordinaten}%
+  \indexp{Euler, Leonhard}, in denen wir angeben, an welchen Orten
+  $\vec{r}$ sich die Materiepunkte $\vec{p}$ in $\vec{\Sigma}$ 
+  befinden\footnote{Wir bezeichnen somit die Koordinaten eines Punktes
+  $\vec{\hat{P}}$ mit dem Vektor $\vec{r}(\vec{\hat{P}})$. $\vec{\hat{P}}$ ist
+  nicht zu verwechseln mit dem später eingeführten Druck $p$ im Fluid.}
+\begin{subequations}
+  \begin{equation}
+    \vec{r} = \vec{r}(\vec{\hat{P}},t) \,.
+    \label{eq:aero_EulerKoord}
+  \end{equation}
+  Bei der Eulerschen Beschreibung bleibt das \KOS quasi ortsfest.
+\item In den \gls{aero_lagrangescheKoordinaten}\index{Lagrange-Koordinaten}%
+  \indexp{Lagrange, Joseph-Louis} beschreibt man einen kontinuierlichen Körper
+  dadurch, dass man angibt, welcher materielle Punkt $\vec{\hat{P}}$ sich zu
+  einer Zeit $t$ am Ort $\vec{r}$ befindet,
+  \begin{equation}
+    \vec{\hat{P}} = \vec{\hat{P}}(\vec{r},t) \; .
+    \label{eq:aero_LagrangeKoord}
+  \end{equation}
+  Sie beschreiben also die Umkehrung der Gleichung \eqref{eq:aero_EulerKoord},
+  die dadurch möglich wird, dass sie nicht zwei Materiepunkte am selben Ort
+  befinden können. Bei einer Beschreibung nach Lagrange wird das \KOS quasi
+  mit den Materiepunkten mitbewegt. Wir beziehen uns immer auf das gleiche
+  Fluidelement $\vec{\hat{P}}$.
+\end{subequations}
+\end{itemize}
+
+\subsubsection{Kinematik}
+\label{kap:aero_kinematik} \index{Kinematik!kontinuierliche Körper}
+
+Möchten wir die Geschwindigkeit eines Materiepunkts betrachten, stellen
+wir zunächst fest, dass dieser nach \eqref{eq:aero_Materiepunkt} selbst in der
+Zeit unveränderlich ist, und daher die Geschwindigkeit von von der Änderung
+seiner Position abhängt,
+\begin{subequations}
+  \begin{equation}
+    \vec{v}(\vec{\hat{P}} ,t) = \frac{\D}{\D t} \vec{r}(\vec{\hat{P}},t) = \frac{\partial}
+    {\partial t}\vec{r}(\vec{\hat{P}} ,t) \; . \label{eq:aero_GeschwZeit}
+  \end{equation}
+  Man kann aber auch nach der Geschwindigkeit eines beliebigen Materiepunkts
+  zum Zeitpunkt $t$ an einem bestimmten Ort $\vec{r}$ fragen und findet dafür
+  mit der Lagrangekoordinate \eqref{eq:aero_LagrangeKoord} 
+  \begin{equation}
+    \vec{v}(\vec{r},t) = \vec{v}(\vec{\hat{P}}(\vec{r},t),t) \; .
+    \label{eq:aero_GeschwOrt}
+  \end{equation}
+\end{subequations}
+Dies wirkt sich auch auf Beschleunigungen aus. Unter der
+\emph{materiellen}\index{Beschleunigung!materielle} oder
+\emph{substantiellen Beschleunigung}\index{Beschleunigung!substantielle}
+versteht man die Beschleunigung, die ein Materieteilchen am Ort $\vec{r}$
+erfährt,\dh in dem wir \eqref{eq:aero_GeschwOrt} ableiten (siehe auch
+Gleichung (2.28) in Band~I),
+\begin{equation}
+    \vec{a}(\vec{r},t) = \lk \vec{v}(\vec{r},t) \cdot \nablav \rk
+    \vec{v}(\vec{r},t) + \frac{\partial}{\partial t} \vec{v}(\vec{r},t) \; . 
+  \label{eq:aero_Beschleunigung}
+\end{equation}
+
+Da man sowohl feste Materiepunkte als auch feste Orte betrachten kann,
+ergeben sich für die Bewegung eine Fluids verschiedene physikalische
+Sichtweisen. Die gesamte Bewegung des Fluids zu einem Zeitpunkt $t$ nennt man
+\textit{Strömung}\index{Strömung}. Die Ortskurve, die ein bestimmter
+Materiepunkt in der Zeit durchläuft, nennt man eine
+\gls{aero_Bahnlinie}\index{Bahnlinie}. Sofern das Geschwindigkeitsfeld
+\eqref{eq:aero_GeschwOrt} bekannt ist, erhält man sie durch Integration über
+die Zeit. Eine Linie, die immer tangential an das Geschwindigkeitsfeld zu einem
+festen Zeitpunkt~$t$ anliegt, nennt man eine
+\gls{aero_Stromlinie}\index{Stromlinie}.
+Diese Stromlinien stellen dar, wie die Strömung zum aktuellen Zeitpunkt $t$ 
+verläuft. Diese müssen nicht mit den Bahnkurve übereinstimmen, siehe
+\figref{aero_KontKoerpKoord02}. Dies tun sie jedoch in einer stationären
+Strömung.
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{AeroStromlinie.pdf}
+  \caption[Bahn- und Stromlinie einer Strömung]{Eine \gls{aero_Stromlinie}
+    (blau) liegt tangential am Geschwindigkeitsfeld zu einem festen Zeitpunkt
+    (grüne Pfeile) an. Im Gegensatz dazu beschreibt eine \gls{aero_Bahnlinie}
+    (rot) die Ortskurve, die ein Materiepunkt mit der Zeit durchläuft.}
+  \label{abb:aero_KontKoerpKoord02}
+\end{figure}
+
+\subsubsection{Eigenschaften von Strömungen}
+\label{kap:aero_EigenschaftenStroemungen} 
+
+In der Dynamik ist nicht nur wichtig, mit welcher Geschwindigkeit sich
+eine Strömung bewegt, sondern auch wie dabei Materie der Dichte $\varrho$
+bewegt wird. Eine wichtige Größe, um dies zu beschreiben, ist die
+\emph{Stromdichte}\index{Stromdichte}
+\begin{equation}
+  \vec{j} = \varrho \,\vec{v} \; .
+  \label{eq:aero_Stromdichte}
+\end{equation}
+Der \emph{Fluss}\index{Fluss}\index{Strömung!Fluss} einer Strömung durch
+eine Oberfläche lässt sich mit der Stromdichte $\vec{j}$ zu
+\begin{equation*}
+  \Phi = \int_A \vec{j} \cdot \D\vec{A} = \int_A \varrho \,\vec{v} \cdot
+  \D\vec{A}
+\end{equation*}
+berechnen. Er gibt an, wie viel der Materie in einer gewissen Zeit durch
+die Querschnittsfläche $A$ fließt. Aus der Massenerhaltung folgt die
+Kontinuitätsgleichung in integraler
+\begin{subequations}
+  \begin{equation}
+    \frac{\partial}{\partial t} M = \int_V
+    \frac{\partial}{\partial t}\varrho\,\D V  = -\int_{A = \partial V}
+    \vec{j}\cdot \D\vec{A} = \Phi
+    \label{eq:aero_KontinuitaetsglMakr}
+  \end{equation}
+  und differentieller
+  \begin{equation}
+    \frac{\partial}{\partial t}\varrho + \divv \vec{j} =
+    \frac{\partial}{\partial t}\varrho + \divv \lk \varrho\, \vec{v} \rk = 0
+    \label{eq:aero_KontinuitaetsglDiff}
+  \end{equation}
+\end{subequations}
+Form. Für \emph{inkompressible} Flüssigkeiten\index{Flüssigkeit!inkompressible},
+deren Dichte zeitlich und räumlich konstant ist, also $\partial \varrho/
+\partial t = 0$ und $\divv\lk \varrho\, \vec{u} \rk = \varrho \divv \vec{u}$,
+gilt, vereinfacht sich die Kontinuitätsgleichung
+\eqref{eq:aero_KontinuitaetsglDiff} zu
+\begin{equation}
+  \divv \vec{v}  = 0 \; .
+  \label{eq:aero_KontinuitaetsglInkompr}
+\end{equation}
+Das Strömungsfeld weist also keine Divergenzterme auf. Dies entspricht der
+Tatsache, dass an keinem Punkt in der inkompressiblen Flüssigkeit Masse
+konzentriert oder ausgedünnt werden kann. 
+
+Die Formen von Strömungen unterscheidet man nach mehreren Charakteristiken.
+\begin{itemize}
+\item Eine Strömung, bei der verschiedene Schichten einer Flüssigkeit oder
+  eines Gases nicht miteinander mischen, Bezeichnen wir als
+  \emph{laminar}\index{Strömung!laminar|textbf}. Diese können auch daraus
+  bestehen, dass Schichten mit unterschiedlichen Geschwindigkeiten glatt
+  aneinander vorbei gleiten dann aber glatt aneinander vorbei. Beispiele sind
+  in \figref{aero_FormenStroemungen}a gezeigt. Laminare Strömungen treten
+  immer dann auf, wenn der Energieübertrag innerhalb der Flüssigkeit oder des
+  Gases groß ist, also die interne Reibung eine große Rolle spielt und damit
+  die Bewegung des Kontinuums dominiert. 
+  
+  \begin{figure}
+    \includegraphics[width=\textwidth]{Aero_FormenStroemungen}
+    \caption[Formen von Strömungen]{Formen von Strömungen. \fa In laminaren
+      Strömungen gleiten unterschiedliche Schichten glatt, \dh ohne
+      Vermischung, aneinander vorbei.
+      \fb In turbulenten Strömungen schneiden sich die \gls{aero_Bahnlinie}n der
+      einzelnen Schichten. Es kommt zu Durchmischungen der Schichten.}
+    \label{abb:aero_FormenStroemungen}
+  \end{figure}
+
+  Wenn dies nicht mehr erfüllt ist und verschiedenen Schichten ineinander
+  eindringen, verwirbeln und miteinander mischen, nennt man die Strömung
+  \emph{turbulent}\index{Strömung!turbulent|textbf}, siehe
+  \figref{aero_FormenStroemungen}b.
+\item Die \emph{Rotation}\index{Strömungsrotation}\index{Rotation!Strömung}\index{Rotation}
+  berechnet sich nach $\rotv \vec{v}$ und gibt an, ob sich Objekte, die sich
+  in der Strömung bewegen, in eine Rotationsbewegung versetzen lassen.
+\item Ein besonderer Fall der Strömung eines Fluids ist die
+  \emph{Potentialströmung}\index{Potentialströmung}, bei der sich das
+  Geschwindigkeitsfeld $\vec{v}(\vec{r})$ aus einem Potential berechnen lässt.
+  Diesen Fall behandeln wir ausführlich in Kapitel
+  \ref{kap:aero_potentialstroemungen}.
+\end{itemize}
+
+\subsubsection{Euler-Gleichung}\indexp{Euler, Leonhard}
+\label{kap:aero_EulerGl}\index{Euler-Gleichung (Kontinuumsmechanik)|textbf}
+
+Ein erster Schritt um die Dynamik eines Fluids beschreiben zu können, ist
+die Identifikation der Kräfte, die auf ein Volumenelement wirken können.
+Wie in Band~I in Kapitel 2.3.4.1 dargestellt ist, ist es sinnvoll, folgende
+Kräfte zu unterscheiden, die auf ein differentielles Volumenelement
+$\D V$ wirken. 
+
+\begin{enumerate}
+\item \emph{Volumenkräfte}\index{Volumenkräfte}, die an jedem Raumpunkt direkt
+  angreifen (wie \zb die Schwerkraft):
+  \begin{equation*}
+    \vec{F}_\text{V} = \vec{f}_\text{V} \D V
+  \end{equation*}
+  mit der Kraftdichte $\vec{f}_V$
+\item \emph{Druckkräfte}, die sich ergeben, wenn der Druck im Fluid nicht
+  homogen ist und dann durch ein Oberflächenintegral über den Rand
+  $\partial V$ von $\D V$ berechnet werden können:
+  \begin{equation*}
+    \vec{F}_\text{D} = -\int_{\partial V} p(\vec{r}')\, \D \vec{A}'
+  \end{equation*}
+  Für das differentielle Volumenelement lässt sich die Druckkraft allerdings
+  auch schreiben als:
+  \begin{equation}
+    \vec{F}_\mathrm{D} = -\vec{\nabla} p\, \D V \;  .
+    \label{eq:aero_Druckkraft}
+  \end{equation}
+\item Reibungskräfte, bei denen zwischen innerer Reibungen und Reibungen
+  mit dem Rand unterscheiden werden muss:
+  \begin{equation*}
+    \vec{F}_\text{R} = \vec{f}_\text{R} \D V
+  \end{equation*}
+\end{enumerate}
+
+Auf dieses differentielle Volumenelement wirken nun nach den Newtonschen
+Bewegungsgleichungen alle Kräfte
+\begin{equation}
+  \varrho\, \D V\, \vec{a}(\vec{r},t) = \sum_i \vec{F}_i \; ,
+  \label{eq:aero_kraefte_an_dV}
+\end{equation}
+aus auf die \emph{Euler-Gleichung}\index{Euler-Gleichung (Kontinuumsmechanik)}
+\begin{equation}
+  \varrho \lk \lk \vec{v} \cdot \nabla \rk \vec{v} + \frac{\partial}{\partial t}
+  \vec{v} \rk = \vec{f}_\text{V}  + \vec{f}_\text{R} - \vec{\nabla} p
+  \label{eq:aero_EulerGleichung}
+\end{equation}
+führt.
+
+\subsubsection{Bernoulli-Gleichung}
+\label{kap:aero_BernoulliGl}\index{Bernoulli-Gleichung}
+
+Der Fall einer stationären Strömung ($\d \vec{v} /\d t = 0$) bei
+veränderlichem Querschnitt tritt sehr häufig auf und wir werden auch
+in diesem Band darauf zurückgreifen. In einem solchen Fall gilt die
+\emph{Bernoulli-Gleichung}\index{Bernoulli-Gleichung}, die in Band~I in
+Kapitel 2.3.4.2 für den in \figref{aero_StroemungBernoulli} dargestellten
+Fall einer Strömung durch ein Rohr mit veränderlichem Querschnitt behandelt
+wird.
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{AeroStroemungBernoulli.pdf}
+  \caption[Zur Bernoulli-Gleichung]{Zur Bernoulli-Gleichung: Strömung durch
+    ein Rohr mit von einander verschiedenen Querschnitten $A_1$ und $A_2$
+    entlang der Koordinate $x$. Der Druck in beiden Rohrbereichen ist
+    ebenfalls verschieden.}
+  \label{abb:aero_StroemungBernoulli}
+\end{figure}
+
+Allein aus der Massenerhaltung ergibt sich bereits, dass sich die
+Strömungsgeschwindigkeiten in den Abschnitten mit den Querschnitten
+$A_1$ und $A_2$ von einander unterscheiden müssen. Mit Hilfe der
+Euler-Gleichung \eqref{eq:aero_EulerGleichung} erkennt man, dass die
+dafür notwendige Beschleunigung nur durch einen Druckunterschied
+entstehen kann. Aus der Euler-Gleichung lässt sich die Bernoulli-Gleichung
+auch direkt herleiten. Man erhält
+\begin{equation}
+  \frac{1}{2} \varrho \, u_1^2 + p_1 = \frac{1}{2} \varrho \, u_2^2 +  p_2
+  \; , \label{eq:aero_BernoulliGl}
+\end{equation}
+wobei eine Konstante
+\begin{equation}
+  p_0 = \frac{1}{2} \varrho \, u^2 + p \; ,
+  \label{eq:aero_Staudruck}
+\end{equation}
+auftritt, die sich als Druck interpretieren lässt, den die Flüssigkeit ruhend
+(also im Grenzfall eines unendlich breiten Rohres) annehmen würde. Der Druck
+$p$ ist der \emph{statische Druck der strömenden Flüssigkeit}%
+\index{Druck!statischer}.
+
+\subsubsection{Navier-Stokes-Gleichung}
+\label{kap:aero_NavierStokes}\index{Navier-Stokes-Gleichung|textbf}
+
+Eine wichtige Gleichung für die Beschreibung der Bewegung von Fluiden ist
+die Navier-Stokes-Gleichung, die eine Spezialform der Euler-Gleichung
+\eqref{eq:aero_EulerGleichung} darstellt, in der die innere Reibung explizit
+ausformuliert wird.
+
+Aus diesem Grund möchten wir die innere Reibung, die bereits oben erwähnt
+wurde, hier etwas ausführlicher aufgreifen. Sie entsteht, wenn während der
+Bewegung von Flüssigkeiten und Gasen die einzelnen Atome oder Moleküle
+untereinander stoßen und dabei Impuls übertragen. Die Überlegungen in Kapitel
+2.3.4.3 von Band~I gehen führen uns zu der Erkenntnis, dass die Reibungskraft
+$\vec{F}_\text{R}$ proportional zur Grenzfläche $A$ zwischen zwei
+Flüssigkeitsschichten, die mit unterschiedlicher Geschwindigkeit fließen, und
+dem Geschwindigkeitsgradienten sein muss. Ausgedrückt in einem
+Koordinatensystem, dessen $z$-Achse in Richtung der Strömung zeigt und dessen
+$y$-Achse die Richtung angibt, in der sich der Betrag der Geschwindigkeit
+ändert, erhält man somit
+\begin{equation}
+  \vec{F}_\text{R} = \eta \, A \, \frac{\partial v_z}{\partial y}
+  \veceZ \; ,
+  \label{eq:aero_ReibungskraftInnere}
+\end{equation}
+wobei wir den Proportionalitätsfaktor $\eta$ als \gls{viskositaet}
+bezeichnen\index{Viskosität}. Die Viskosität hat die Einheit
+$\SI{}{\newton \second \per \metre^2}$ und beschreibt die
+Eigenschaft der Flüssigkeit oder des Gases, Widerstand gegen eine
+Bewegungsänderung zu leisten.
+
+Diese Kraft beschreibt allerdings nur, welche Reibung an der Grenze zwischen
+zwei Schichten der Flüssigkeit oder des Gases entsteht. Wollen wir die Kraft
+wissen, die auf ein Volumen $\D V$ der Flüssigkeit wirkt, müssen wir dieselbe
+Überlegung an beiden Rändern des Volumenelements durchführen. In einer
+linearen Näherung, die für ein infinitesimales Volumenelement $\D V$ in jedem
+Fall gerechtfertigt ist, ergibt sich daraus
+\begin{align}
+  \vec{F}_{\text{R},y} = \eta \, \frac{\partial^2 v_z}{\partial y^2}
+  \big|_{y_0}\, \veceZ\, \D V \; .
+\end{align}
+In allgemeinen Fall, in dem die Geschwindigkeit nicht entlang einer der
+Koordinatenachsen ausgerichtet ist, erhält man für die gesamten Kräfte, die
+sich durch die Reibung der Schichten aneinander auf das Volumenelement $\D V$
+ergeben
+\begin{align}
+  \vec{F}_{\text{R}}
+  &= \eta \, \Delta \vec{v}\big|_{(x_0, y_0, z_0)} \, \D V
+    = \eta \, \Delta \vec{v}\big|_{\vec{r}_0} \, \D V ~~~\text{\bzw}~~~
+    \vec{f}_{\text{R}} = \eta \, \Delta \vec{v}\big|_{\vec{r}_0} \; .
+    \label{eq:aero_InnereReibung}
+\end{align}
+
+Diese gefundene Beziehung können wir nun in die Euler-Gleichung
+\eqref{eq:aero_EulerGleichung} einsetzen, um die Navier-Stokes-Gleichung
+zu erhalten. Diese stellen wir entsprechend aller bisherigen Betrachtungen
+für inkompressible Fluide auf. In Kapitel~\ref{kap:aero_kompressibleStroemungen}
+werden wir Erweiterungen für kompressible Strömungen vornehmen. Für den
+hier betrachteten Fall erhalten wir
+\begin{equation}
+  \varrho \lk \lk \vec{v} \cdot \nablav \rk \vec{v} + \frac{\partial}
+  {\partial t} \vec{v} \rk = \vec{f}_\text{V}  + \eta \, \Delta \vec{v}
+  - \nablav p \; ,
+  \label{eq:aero_NavierStokes}
+\end{equation}
+in der nur noch die Kraftdichte $\vec{f}_\text{V}$ der von außen wirkenden
+Volumenkräfte nicht explizit gegeben sind.
+
+Die Navier-Stokes-Gleichung ist eine partielle Differentialgleichung in
+$\vec{v}(\vec{r},t)$ bei gegebenen externen Kräften $ \vec{f}_\text{V}$ und
+statischen Druck $p$, die natürlich beide von der Wechselwirkung mit der
+Umgebung abhängen. Die Navier\footnote{Claude Louis Marie Henri Navier (1785
+  -- 1836) war ein französischer Mathematiker, Bauingenieur und Physiker. Er
+  brachte die Elastizitätstheorie in eine mathematisch handhabbare Form und
+  gilt auch als Begründer der Baustatik. 1822 gab er die
+  Navier-Stokes-Gleichungen für die Bewegung einer viskosen Flüssigkeit
+  an.}\indexp{Navier, Claude Louis Marie Henri}-Stokes\footnote{Sir George
+  Gabriel Stokes\indexp{Stokes, Sir George Gabriel} (1819--1903) war ein
+  irischer Mathematiker und Physiker. Er arbeitete auf dem Gebiet der
+  mathematischen und experimentellen Physik und beschäftigte sich
+  hauptsächlich mit der Hydrodynamik, der Elektrodynamik und der
+  Akustik.}-Gleichung\indexp{Stokes, Sir George Gabriel} ist damit eine
+Erweiterung der Euler-Gleichung der Kontinuumsmechanik um die Viskosität
+\bzw Reibung beschreibenden Terme. Zu ihrer Lösung möchten wir anmerken:
+
+\begin{itemize}
+\item Wie viele partielle Differentialgleichung stellt sie eine große
+  mathematische Herausforderung dar und es ist nicht bekannt, ob es für den
+  allgemeinen dreidimensionalen Fall eine überall definierte (eindeutige)
+  Lösung gibt. Tatsächlich stellt die Frage nach ihrer Lösung in ihrer
+  allgemeiner eines der großen ungelösten mathematischen Problemen dar und ist
+  eines der sogenannten sieben Millennium-Probleme.\footnote{Als
+    Millennium-Probleme wurden im Jahr 2000 durch das
+    \textit{Clay Mathematics Institute (CMI)} in Cambridge (Massachusetts,
+    USA) sieben ungelöste mathematische Problem in einer Liste zusammen
+    gefasst. Für die Lösung eines der sieben Probleme wurde jeweils ein
+    Preisgeld von einer Million US-Dollar ausgelobt.}
+\item Gesuchte Variable ist der Geschwindigkeitsvektor $\vec{v}$, teilweise
+  der Druck, da er \ia ebenfalls unbekannt ist. Die Dichte ist für
+  inkompressible Flüssigkeit konstant und wird wie die externen Kräfte als
+  bekannt angenommen.
+\item Die \NVS ist vektoriell mit drei Komponenten, die gekoppelte
+  Differentialgleichungen bilden. Wir haben aber mit den drei Komponenten der
+  Geschwindigkeit (als Funktion von Ort und Zeit) und dem Druck vier
+  unbekannte. Die vierte Gleichung ist die Kontinuitätsgleichung
+  \eqref{eq:aero_KontinuitaetsglInkompr} für inkompressible Flüssigkeiten.  
+\item Der Druck taucht in der Gleichung nur in Form $\nablav p$ auf. Das
+  bedeutet, dass die Dynamik von inkompressiblen Fluiden immer nur von
+  Druckdifferenzen abhängt und nicht von den Absolutwerten des Drucks, was
+  relativ einsichtig ist.
+\item Wegen des Terms $\lk \vec{v} \cdot \nablav \rk \vec{v}$ ist die
+  Differentialgleichung nichtlinear, dieser Term stellt die eigentlich
+  Schwierigkeit in der Lösung der DGL dar.
+\end{itemize}
+
+Zwei wichtige lösbare Spezialfälle der Navier-Stokes-Gleichung sind der Fall,
+in dem jegliche von außen angreifende Volumenkräfte fehlen,
+\begin{subequations}
+  \begin{align}
+    \varrho \lk \lk \vec{v} \cdot \nablav \rk \vec{v} + \frac{\partial}
+    {\partial t} \vec{v}  \rk
+    &= \eta \, \Delta \vec{v} - \nablav p \; ,
+      \label{eq:aero_NavierStokesFrei} \\
+    \intertext{und ein Fluid im homogenen Gravitationsfeld mit der
+    Kraftdichte $\varrho\,\vec{g}$,} 
+    \varrho \lk \lk \vec{v} \cdot \nablav \rk \vec{v} + \frac{\partial}
+    {\partial t} \vec{v} \rk
+    &= \varrho\,\vec{g} + \eta \, \Delta \vec{v} - \nablav p \; .
+      \label{eq:aero_NavierStokesSchwerefeld}
+  \end{align}
+\end{subequations}
+
+\subsubsection{Zusammenfassung der Bewegungen von Flüssigkeiten und Gasen}
+
+In den vorherigen Abschnitten hat sich bereits angedeutet, dass es verschiedene
+Grenz- und Spezialfälle für Strömungen gibt, die häufig auftreten und
+daher zunächst beschrieben werden sollen. Eine Übersicht ist in
+Tabelle~\ref{tab:aero_stroemung_overview} dargestellt.
+
+\begin{table}
+\caption[Übersicht der verschiedenen Strömungsarten.]{Übersicht der verschiedenen Strömungsarten.}
+\begin{tabular}{L{3cm}L{4.5cm}L{4.5cm}}
+  \hline\noalign{\smallskip}
+  Charakterisierung &  &    \\
+  \noalign{\smallskip}\svhline\noalign{\smallskip}
+	nach innerer Reibung&ideal Fluide\index{Fluid!ideales}, ohne innerer Reibung \linebreak $\eta =0$ &reale Fluide\index{Fluid!reales}, mit innerer Reibung \linebreak $\eta \neq 0$\\
+\rule{0pt}{1pt}\\
+	nach Kompressibilität&inkompressibel \linebreak  $\varrho = \con$ &kompressibel \linebreak  $\varrho \neq \con$ \\
+\rule{0pt}{1pt}\\
+	nach Wirbelfreiheit&wirbelfrei, laminar \linebreak  $\rotv \vec{v} = 0$ & verwirbelt\linebreak  $\rotv \vec{v} \neq 0$  \\
+\rule{0pt}{1pt}\\
+	nach Quellenfreiheit&quellenfrei \linebreak $\divv \vec{v} = 0$ &mit Quellen und Senken \linebreak $\divv \vec{v} \neq  0$\\
+\rule{0pt}{1pt}\\
+	nach zeitlichem Verhalten &stationär \linebreak  $\d \vec{v}/ \d t  = 0$&nicht-stationär \linebreak  $\d \vec{v}/ \d t  \neq 0$ \\
+\rule{0pt}{1pt}\\
+	Potentialströmung&quellenfrei, wirbelfrei \linebreak $\vec{v} = -\gradv \varphi$ &\\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{tabular}
+\label{tab:aero_stroemung_overview}
+\end{table}
+
+\subsubsection{Laminare Strömungen inkompressibler Flüssigkeiten}
+\label{kap:aero_laminareStroemungenFluessigkeiten}
+\index{Strömung!laminar}
+
+Ein relativ einfacher Fall mit häufigen Anwendungen in der Fluiddynamik
+sind laminaren Strömungen inkompressibler Flüssigkeiten mit konstanter
+Geschwindigkeit. Hier ist von Interesse, das Strömungsprofil, also die
+Funktion $\vec{v}(\vec{r},t)$ in Abhängigkeit von der Geometrie, in der
+sich die Strömung ausbildet, zu bestimmen. Dazu gehen wir von der
+Navier-Stokes-Gleichung \eqref{eq:aero_NavierStokesFrei} ohne von außen
+wirkende Volumenkräfte $\vec{f}_\text{V}$ aus.
+
+Für einen konstanten Querschnitt folgt aus der Massenerhaltung und der
+Inkompressibilität, dass sich die Geschwindigkeit in Richtung des Flusses
+nicht ändern kann. Legen wir das Koordinatensystem so, dass die Geschwindigkeit
+$\vec{v}$ in Richtung von $\veceZ$ erfolgt, gilt somit $\vec{v} = v_z(x,y)\,
+\veceZ$. Daraus folgt für den ersten Term auf der linken Seite der
+Navier-Stokes-Gleichung \eqref{eq:aero_NavierStokesFrei}, dass
+\begin{equation*}
+  \left ( \vec{v} \cdot \nablav \right ) \vec{v} =  \left ( v_z(x,y)\,\veceZ
+    \cdot \nablav \right ) v_z(x,y) \,\veceZ
+  =  \left (v_z(x,y) \frac{\partial}{\partial z}  \right ) v_z(x,y)\, \veceZ
+    = \vec{0} \; .
+\end{equation*}
+Für eine stationäre Strömung gilt weiterhin, dass $\partial \vec{v}/\partial t	
+=0$ und die Navier-Stokes-Gleichung reduziert sich auf ein Gleichgewicht von
+Druckkraft und  Reibung:
+\begin{equation}
+  \eta \, \Delta \vec{v} - \nablav p = \vec{0} \; .
+  \label{eq:aero_NaStstat}
+\end{equation}
+
+Wichtige Beispiele, die in Abschnitt 2.4.1 von Band~I ausführlich behandelt
+werden, sind
+\begin{itemize}
+\item eine Strömung, die in $x$-Richtung beliebig ausgedehnt ist, in
+  $y$-Richtung von zwei parallelen Platten im Abstand $b$ begrenzt wird und
+  das parabelförmige Strömungsprofil
+  \begin{equation*}
+    v_z(y) = \frac{1}{2\eta} \frac{\partial p}{\partial z} \left ( \left ( y^2 -
+        \frac{b}{2} \right )^2 -\frac{b^2}{4} \right )
+  \end{equation*}
+  besitzt, sowie
+\item eine Strömung durch ein kreisrundes Rohr mit dem Durchmesser $R$
+  und dem radialen Strömungsprofil
+  \begin{equation*}
+    v_z(R) = \frac{1}{4\eta} \frac{\partial p(z)}{\partial z} \left ( r^2 - R^2
+    \right ) \; .
+  \end{equation*}
+  das ebenfalls parabelförmig ausfällt und Gesetz von Hagen\footnote{Gotthilf
+    Heinrich Ludwig Hagen (1797--1884) war ein deutscher Wasserbauingenieur
+    und Hochschullehrer. Er gab das erste in deutscher Sprache erschienene
+    Handbuch der Wasserbaukunst heraus.}\indexp{Hagen, Gotthilf Heinrich
+    Ludwig}-Poiseuille\footnote{Jean Léonard Marie Poiseuille (1797--1869) war
+    ein französischer Physiologe und Physiker. Er arbeitete vorwiegend auf dem
+    Gebiet der Physiologie des Blutkreislaufs und versuchte physikalische
+    Erkenntnisse auf die Physiologie zu übertragen.}\indexp{Poiseuille, Jean
+    Léonard Marie}\index{Gesetz von Hagen-Poiseuille} genannt wird.
+\end{itemize}
+In beiden Beispielen wird die Strömung von einem Druckgradienten $\partial
+p(z)/\partial z$ bewirkt.
+
+In komplizierteren Geometrien gestaltet sich das Finden von Lösungen meist 
+schwieriger. Der Spezialfall \eqref{eq:aero_NaStstat} der
+Navier-Stokes-Gleichung lässt sich jedoch leicht numerisch lösen. Die Partial
+Differential Equation Toolbox von \matlab{} hält entsprechende
+Lösungsverfahren bereit.
+
+\subsubsection{Wirbel in Strömungen (Turbulenz)}
+\label{kap:wirbel}
+\index{Wirbel!Strömung}\index{Strömung!turbulente}\index{Turbulenz}\index{Strömung!Wirbel}
+
+Bei den Eigenschaften von Strömungen in \kap{aero_EigenschaftenStroemungen}
+wurde bereits angemerkt, dass Rotation $\rotv \vec{v}$ zur Charakterisierung
+von Strömungen herangezogen wird. Diese hat zusätzlich eine besondere Bedeutung,
+um Wirbel zu identifizieren. Wirbel entstehen insbesondere, wenn Hindernisse
+von Flüssigkeiten oder Gasen umströmt werden und die Reibung relativ gering
+ist. In den Anwendungen dieses Bandes werden sie häufig vorkommen.
+
+Wir nähern uns dem Konzept der Wirbel mathematisch zunächst, indem wir den
+\emph{Wirbelvektor}\index{Wirbelvektor} als die Hälfte der Rotation der
+Geschwindigkeit einer Strömung,
+\begin{equation}
+  \vec{\Omega} = \frac{1}{2} \rotv \vec{v} \; ,
+  \label{eq:aero_Wirbelvektor}
+\end{equation}
+eingeführt. Dass dies eine sinnvolle Wahl ist, erkennt man sofort, wenn man
+sich den einfachst möglichen Fall einer kreisförmigen Strömung mit konstanter
+Winkelgeschwindigkeit $\vec{\omega} =\conv$ anschaut.\footnote{Tatsächlich ist
+  dies ein recht häufiger und wichtiger Fall, da sich typischerweise das Innere
+  eines Wirbels, der sogenannte Wirbelkern, genau so verhält.} Ein solcher
+Wirbel wird durch den Geschwindigkeitsvektor
+\begin{equation*}
+  \vec{v}(\vec{r}) = \vec{\omega} \times \vec{r} 
+\end{equation*}
+beschrieben.
+Der Wirbelvektor berechnet sich mit Gleichung (2.23) aus Band I zu 
+\begin{align}
+  \vec{\Omega}
+  &= \frac{1}{2} \rotv \vec{v} = \frac{1}{2}\, \rotv \vec{v}
+    = \frac{1}{2}\, \rotv \lk \vec{\omega} \times \vec{r} \rk = \frac{1}{2}
+    \,\nablav \times \lk  \vec{\omega} \times \vec{r} \rk \notag \\
+  &= \frac{1}{2} \, \left (
+    \vec{\omega} \underbrace{\lk \nablav \cdot \vec{r} \right )}_{=3}
+  - \vec{r} \underbrace{\left ( \nablav \cdot \vec{\omega} \right )}_{=0}
+  + \underbrace{\left ( \vec{r} \cdot \nablav \right ) \vec{\omega}}_{=0}
+  - \underbrace{\left ( \vec{\omega} \cdot \nablav \right ) \vec{r}
+  }_{=\vec{\omega}} \rk
+  = \vec{\omega} \; .
+\end{align}
+Er ist also mit der Winkelgeschwindigkeit identisch.
+
+Zusätzlich zur differentiellen Charakterisierung eines Wirbels mit dem
+Wirbelvektor $\vec{\Omega}$ wird die \emph{Zirkulation}\index{Zirkulation!Strömung}\index{Strömung!Zirkulation} als integrale Beschreibung
+\begin{equation}
+  Z = \oint_{\partial A} \vec{v} \cdot \D\vec{s}
+  = \int_{A} \rotv \vec{v} \cdot \D \vec{A} = 2\, \int_{A} \vec{\Omega}
+  \cdot \D \vec{A} 
+  \label{eq:aero_Zirkulation}
+\end{equation}
+herangezogen, die sich nach dem Integralsatz von Stokes (siehe Gleichung (2.20)
+in Band I) entweder als Wegintegral entlang des Randes $\partial A$  der
+durchströmten Fläche $A$ oder als Oberflächenintegral mit dem orientierten
+Flächenelement $\D\vec{A}$ berechnen lässt, wobei der Wirbelvektor
+$\vec{\Omega}$ wieder auftritt. Wieder kann man sich die Bedeutung an
+einem einfachen Spezialfall verdeutlichen. Gehen wir von einem Wirbel aus,
+der eindeutig in einer Ebene liegt und bilden wir die Zirkulation in dieser
+Ebene, wissen wir ganz sicher, dass die Rotation, die senkrecht auf der
+Geschwindigkeit steht, parallel zum Normalenvektor der Fläche liegt. Wir
+können also in \eqref{eq:aero_Zirkulation} mit Beträgen rechnen und erhalten
+\begin{equation}
+  Z = \int_{A} \rotv \vec{v} \cdot \D \vec{A}
+  = \int_{A} \left | \rotv \vec{v} \right | \D A
+  = 2 \int_{A} \left | \vec{\Omega} \right | \D A
+  = 2 A \bar{\Omega}
+  \label{eq:aero_ZirkulationWirbelvektor}
+\end{equation}
+mit dem Flächenmittelwert $\bar{\Omega}$ des Betrags des Wirbelvektors. Da
+$\Omega$ die Bedeutung der lokal gültigen Winkelgeschwindigkeit des Wirbels
+hat, wird deutlich, dass die Zirkulation den Mittelwert der Kreisfrequenz des
+Wirbels misst.
+
+Auch in Wirbeln gibt es gewisse Erhaltungsgrößen. Zwei davon werden durch
+die Helmholtzschen\footnote{Hermann Ludwig Ferdinand von Helmholtz (1821 --
+  1894) war ein deutscher Mediziner, Physiologe und Physiker. Als
+  Universalgelehrter leistete er wichtige Beiträge zur mathematischen Theorie
+  der Optik, Akustik, Elektrodynamik, Thermodynamik und Hydrodynamik. Er war
+  einer der einflussreichsten Naturwissenschaftler seiner Zeit und wurde oft
+  auch als "`Richskanzler der Physik"' bezeichnet.}\indexp{Helmholtz, Hermann
+  von} Wirbelsätze\index{Wirbelsätze!Helmholtzsche}\index{Helmholtzsche
+  Wirbelsätze} ausgedrückt, die in Kapitel 2.4.2 von Band I hergeleitet werden.
+Hier sollen ihre Aussagen kurz zusammengefasst werden.
+\begin{enumerate}
+\item Der \emph{1. Helmholtzsche Wirbelsatz}\index{Wirbelsatz!1.
+    Helmholtzscher} gilt im Fall der Navier-Stokes-Gleichung
+  \eqref{eq:aero_NavierStokes} für verschwindende äußere Kräfte
+  ($\vec{f}_\text{V}=0$) und eine inkompressible ($\varrho = \con$), ideale
+  Flüssigkeit ohne innere Reibung ($\eta = 0$). In diesem Fall findet man
+  \begin{equation*}
+    \rotv \lk \vec{\Omega} \times \vec{v} \rk + \frac{\partial \vec{\Omega}}
+    {\partial t} = 0\; . 
+  \end{equation*}
+  Sofern zu einem beliebigen Zeitpunkt $\vec{\Omega} = \vec{0}$ gilt, folgt
+  daraus $\partial \vec{\Omega}/\partial t = \vec{0}$. Dies lässt sich
+  zu Interpretieren, dass in einer idealen inkompressiblen Flüssigkeit, die
+  keine Wirbel enthält, auch niemals Wirbel entstehen werden.
+\item Der \emph{2. Helmholtzsche Wirbelsatz}\index{Wirbelsatz!2. Helmholtzscher} 
+  folgt aus der Tatsache, dass die Divergenz einer Rotation immer verschwindet.
+  Damit lässt sich für den Wirbelvektor $\vec{\Omega}$ berechnen, dass
+  \begin{equation}
+    \int_{\partial V} \vec{\Omega} \cdot \D \vec{A} = 0
+    \label{eq:aero_Quellenfreiheit02}
+  \end{equation}
+  mit dem Rand $\partial V$, der ein Volumen $V$ einschließt. Wählt man
+  als Volumen eine Wirbelröhre, ein schlauchförmiges Stück, dessen Mantel so
+  gewählt ist, dass auf ihm der Wirbelvektor parallel zur Oberfläche zeigt
+  (siehe \figref{aero_Wirbelroehre}), verbleiben von diesem Oberflächenintegral
+  nur die Querschnittsflächen $A_1$ und $A_2$ und es folgt
+  \begin{equation*}
+    Z_1 = 2 \int_{A_1} \vec{\Omega} \cdot \D \vec{A} = 
+    Z_2 = -2 \int_{A_2} \vec{\Omega} \cdot \D \vec{A} \; .
+  \end{equation*}
+  Die Zirkulation entlang einer Wirbelröhre ist also konstant.
+\end{enumerate}
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{Aero_Wirbellinien}
+  \caption[Veranschaulichung einer Wirbelröhre]{Veranschaulichung einer
+    Wirbelröhre. Auf dem Mantel zeigt der Wirbelvektor parallel zur
+    Oberfläche. Er wird von Wirbellinien, die tangential an die Wirbelvektoren
+    liegen, gebildet.}
+  \label{abb:aero_Wirbelroehre}
+\end{figure}
+
+
+\subsubsection{Skalierungseigenschaften der Navier-Stokes-Gleichung}
+\index{Skalierungseigenschaften!Navier-Stokes-Gleichung}
+
+Strömungen zu untersuchen ist oft komplex. Eine Skalierungseigenschaft der
+Navier-Stokes-Gleichung vereinfacht dies jedoch in vielen Fällen, da es
+möglich ist technische Bauteile in Strömungskanälen an verkleinerten Modellen
+zu untersuchen. Führt man in der Navier-Stokes-Gleichung
+\eqref{eq:aero_NavierStokesFrei} eine  Längeneinheit $l$ und eine
+Geschwindigkeitseinheit $u$ so ein, dass
+\begin{equation*}
+  \vec{r} = l \, \tilde{\vec{r}} \, \quad \nablav = \frac{1}{l}
+  \tilde{\nablav} \; \quad \Delta = \frac{1}{l^2} \tilde{\Delta} \; ,
+  \quad  \vec{v} = u \, \tilde{\vec{v}} \; \quad
+  t = \frac{l}{u} \, \tilde{t} \, \quad \frac{\partial}{\partial t}
+  = \frac{u}{l}\frac{\partial}{\partial \tilde{t}} \; , 
+\end{equation*}
+so folgt daraus
+\begin{equation}
+  \lk \tilde{\vec{v}} \cdot \tilde{\nablav} \rk \tilde{\vec{v}}
+  + \frac{\partial}{\partial \tilde{t}} \tilde{\vec{v}} 
+  = \frac{1}{u\,l\,\varrho} \eta \, \tilde{\Delta} \tilde{\vec{v}}
+  - \tilde{\nablav} \frac{p}{\varrho\,u^2} \; ,
+  \label{eq:aero_NavierStokesSkaliert01}
+\end{equation}
+Man erhält also jeweils dasselbe Strömungsverhalten, wenn man die
+\gls{aero_reynoldszahl}\footnote{Osborne Reynolds (1842 -- 1912) war ein
+  irisch-britischer Physiker. Nach ihm ist die Kennzahl zur Beurteilung
+  viskoser Strömungen und insbesondere deren Übergang zur Turbulenz
+  benannt.}\indexp{Reynolds, Osborne}\index{Reynoldszahl}
+\begin{equation}
+  \mathrm{Re} = \frac{\varrho\,u\,l}{\eta}
+\end{equation}
+und den dimensionslosen Druck
+\begin{equation}
+  \tilde{p} = \frac{p}{\varrho\,u^2}
+\end{equation}
+konstant hält. In dieser Skalierung lautet die Navier-Stokes-Gleichung dann
+\begin{equation}
+  \lk \tilde{\vec{v}} \cdot \tilde{\nablav} \rk \tilde{\vec{v}}
+  + \frac{\partial}{\partial \tilde{t}} \tilde{\vec{v}} 
+  = \frac{1}{\mathrm{Re}} \, \tilde{\Delta} \tilde{\vec{v}}
+  - \tilde{\nablav} \tilde{p} \; .
+  \label{eq:aero_NavierStokesSkaliert02}
+\end{equation}
+
+Die Reynolds-Zahl hilft darüber hinaus für weitere Charakterisierungen.
+Überschreitet sie einen (problemabhängigen) kritischen Wert
+$\mathrm{Re}_\text{krit}$, wird eine bis dahin laminare Strömung anfällig
+gegen kleinste Störungen und es findet ein Übergang von laminarer zu
+turbulenter Strömung statt. Für Experimente in der Hydrodynamik und
+Aerodynamik muss der Wert der Reynolds-Zahl von Original und verkleinerten
+Modell gleich sein, um ein ähnliches Strömungsfeld zu erhalten. In der
+Literatur wird häufig ein Wert von $\mathrm{Re}_\text{krit} \approx 2300$
+\cite{Schade1989, BergmannSchaefer1998} angegeben. 
+Allerdings gibt die kritische Reynolds-Zahl nicht exakt den Übergang von einer
+laminaren zu einer turbulenten Strömung an. Häufig zerfallen Turbulenzen
+unterhalb der kritischen Reynolds-Zahl wieder schnell, insbesondere je kleiner
+die Reynolds-Zahl ist. Es ist in Experimenten gelungen, laminare Rohrströmungen
+mit Reynolds-Zahlen bei 50.000 zu erzeugen, ohne dass die Strömung turbulent
+geworden ist \cite{Schade1989, BergmannSchaefer1998}.
+
+
+\subsection{Ergänzungen zu Grundlagen der Kontinuumsmechanik}\label{kap:aero_ergaenzungen}
+
+\subsubsection{Potentialströmungen}
+\label{kap:aero_potentialstroemungen}
+
+In \kap{aero_EigenschaftenStroemungen} wurden Potentialströmungen bereits
+als solche erwähnt, die besonders einfach seinen, weil sich das
+Geschwindigkeitsfeld $\vec{v}$ aus einer skalaren Funktion, einem Potential
+berechnen lässt. Tatsächlich haben wir in Beispiel 2.1 von Band I, den
+Wasserwellen, bereits Gebrauch von einem solchen Potential gemacht. Dieses
+Beispiel wollen wir uns noch einmal kurz vergegenwärtigen, um zu motivieren,
+worin der Vorteil der Einführung eines solchen Potentials liegt, bevor
+wir den allgemeinen Ansatz behandeln möchten.
+
+Um das Problem der Wasserwellen, die sich in eine Richtung ausbreiten, lösen
+zu können, müssen die Euler-Gleichung des Problems,
+\begin{subequations}
+  \begin{equation}
+    \varrho \lk \lk v_x \frac{\partial}{\partial x} + v_z \frac{\partial}
+    {\partial z} \rk \begin{pmatrix} v_x \\ 0 \\ v_z \end{pmatrix}
+    + \frac{\partial}{\partial t} \begin{pmatrix} v_x \\ 0 \\ v_z \end{pmatrix}
+    \rk =  - \begin{pmatrix} \partial p/\partial x \\ 0 \\
+      \partial p/\partial z \end{pmatrix} + \varrho \begin{pmatrix} 0 \\ 0 \\ -g
+    \end{pmatrix}\; .
+    \label{eq:aero_Wasserwellen_Euler}
+  \end{equation}
+  und die Kontinuitätsgleichung
+  \begin{equation}
+    \frac{\partial v_x}{\partial x} + \frac{\partial v_z}{\partial z} = 0
+    \label{eq:aero_Wasserwellen_Kontinuitaet}
+  \end{equation}
+\end{subequations}
+gelöst werden. Man erkennt, dass \eqref{eq:aero_Wasserwellen_Euler} zwei
+nichttriviale Zeilen liefert. Insgesamt liegen also zusammen mit
+\eqref{eq:aero_Wasserwellen_Kontinuitaet} drei gekoppelte
+Differentialgleichungen für die Variablen $v_x$, $v_y$ und $p$ vor.
+
+Tatsächlich wird das Problem jedoch mit der Feststellung gelöst, dass
+die Bewegung rotationsfrei zustande kommt und eine reibungsfreie Flüssigkeit
+dann auch rotationsfrei bleibt. Wenn aber
+\begin{equation}
+  \rotv \vec{v} = \vec{0}
+  \label{eq:aero_rotationsfrei}
+\end{equation}
+gilt, wissen wir aus der Mathematik, dass sich $\vec{v}$ als Gradient eines
+Potentials schreiben lässt, das im vorliegenden Beispiel mit
+\begin{equation}
+  \vec{v} = \nabla \Psi(x,z) \; , \qquad v_x = \frac{\partial \Psi(x,z)}
+  {\partial x} \; , \quad v_z = \frac{\partial \Psi(x,z)}{\partial z}
+  \label{eq:aero_Potentialansatz_Wasserwellen}
+\end{equation}
+ausdrücken lässt. Setzt man dieses ein, erhält man die beiden
+Differentialgleichungen
+\begin{subequations}
+  \begin{equation}
+    \frac{\varrho}{2} \lk \frac{\partial \Psi}{\partial x} \rk^2
+    + \frac{\varrho}{2} \lk \frac{\partial \Psi}{\partial z}  \rk^2
+    + \varrho \frac{\partial \Psi}{\partial t} = - \varrho g z  - p + C
+  \end{equation}
+  und
+  \begin{equation}
+    \frac{\partial^2 \Psi}{\partial x^2} + \frac{\partial^2 \Psi}
+    {\partial z^2} = \Delta \, \Psi = 0 \; .
+  \end{equation}
+\end{subequations}
+Das sind immer noch partielle Differentialgleichungen und sie sind auch
+gekoppelt, jedoch wurde die Zahl der Funktionen, für die eine Lösung gesucht
+werden muss, um eins erniedrigt. Dies gelang, da explizit auf die Möglichkeit
+verzichtet wurde, dass die Lösung ein Rotationsfeld enthalten kann.
+
+Im Beispiel der Wasserwellen findet man als Lösung
+\begin{subequations}
+  \begin{equation}
+    \Psi(x,z,t) = \Psi_0 \cosh \lk k (z + h) \rk
+    \sin(\omega t - k x + \varphi_0) \; .
+  \end{equation}
+  mit der \gls{aero_Dispersionsrelation} für
+  Wasserwellen\index{Dispersionsrelation}
+  \begin{equation}
+    \omega^2 = g k \tanh(kh) \; .
+  \end{equation}
+\end{subequations}
+Dies ist eine Lösung für das Potential $\Psi$. Mit
+\eqref{eq:aero_Potentialansatz_Wasserwellen} lässt sich daraus das
+Geschwindigkeitsfeld
+\begin{subequations}
+  \begin{align}
+    v_x &= -k\, \Psi_0 \cosh \lk k (z + h) \rk \cos(\omega t - k x
+          + \varphi_0) \\
+    v_z &= k\, \Psi_0 \sinh \lk k (z + h) \rk \sin(\omega t - k x
+          + \varphi_0)
+  \end{align}
+\end{subequations}
+finden.
+
+Dieses Vorgehen möchten wir jetzt erweitern. Wir gehen also davon aus,
+dass wir ein beliebiges dreidimensionales, rotationsfreies
+Geschwindigkeitsfeld, das also \eqref{eq:aero_rotationsfrei} erfüllt, vorliegt
+und wir die Geschwindigkeit aus dem Gradienten eines Potentials $\Psi(x,y,z)$
+erhalten können,
+\begin{equation}
+  \vec{v} = \nabla \Psi(x,y,z) \; , \qquad v_x = \frac{\partial \Psi(x,y,z)}
+  {\partial x} \; , \quad v_y = \frac{\partial \Psi(x,y,z)}{\partial y} \; ,
+  \quad v_z = \frac{\partial \Psi(x,y,z)}{\partial z} \; .
+\end{equation}
+Setzen wir dies in die Euler-Gleichung \eqref{eq:aero_EulerGleichung} ein,
+so erhalten wir zunächst
+\begin{equation}
+  \varrho \lk \lk \nabla \Psi \cdot \nabla \rk \nabla \Psi
+  + \frac{\partial}{\partial t} \nabla \Psi \rk = \vec{f}_\text{V}
+  + \vec{f}_\text{R} - \vec{\nabla} p \; .
+\end{equation}
+Den quadratischen Term in $\Psi$ wollen wir dabei genauer betrachten.
+\begin{multline}
+  \lk \nabla \Psi \cdot \nabla \rk \nabla \Psi
+  = \lk \frac{\partial \psi}{\partial x} \frac{\partial}{\partial x}
+  + \frac{\partial \psi}{\partial y} \frac{\partial}{\partial y}
+  + \frac{\partial \psi}{\partial z} \frac{\partial}{\partial z} \rk
+  \begin{pmatrix} \partial \Psi/\partial x \\ \partial \Psi/\partial y \\
+    \partial \Psi/\partial z \end{pmatrix} \\
+  = \begin{pmatrix} (\partial \psi/\partial x) (\partial^2 \Psi/\partial x^2)
+    + (\partial \psi/\partial y) (\partial^2 \Psi/\partial x\,\partial y)
+    + (\partial \psi/\partial z) (\partial^2 \Psi/\partial x\,\partial z) \\
+    (\partial \psi/\partial x) (\partial^2 \Psi/\partial x \, \partial y)
+    + (\partial \psi/\partial y) (\partial^2 \Psi/\partial y^2)
+    + (\partial \psi/\partial z) (\partial^2 \Psi/\partial y\,\partial z) \\
+    (\partial \psi/\partial x) (\partial^2 \Psi/\partial x \, \partial z)
+    + (\partial \psi/\partial y) (\partial^2 \Psi/\partial y\, \partial z)
+    + (\partial \psi/\partial z) (\partial^2 \Psi/\partial z^2) 
+  \end{pmatrix} \\
+  = \frac{1}{2} \begin{pmatrix}
+    (\partial/\partial x) \lk (\partial \psi/\partial x)^2
+    + (\partial \psi/\partial y)^2 + (\partial \psi/\partial z)^2 \rk \\
+    (\partial/\partial y) \lk (\partial \psi/\partial x)^2
+    + (\partial \psi/\partial y)^2 + (\partial \psi/\partial z)^2 \rk \\
+    (\partial/\partial y) \lk (\partial \psi/\partial x)^2
+    + (\partial \psi/\partial y)^2 + (\partial \psi/\partial z)^2 \rk \\
+  \end{pmatrix}
+   = \frac{1}{2} \nabla \lk \nabla \Psi \cdot \nabla \Psi \rk 
+\end{multline}
+Die Euler-Gleichung lässt sich also in der Form 
+\begin{equation}
+  \nabla \lk \frac{1}{2} \lk \nabla \Psi \cdot \nabla \Psi \rk
+  + \frac{\partial \Psi}{\partial t} \rk = \vec{f}_\text{V}
+  + \vec{f}_\text{R} - \vec{\nabla} p
+  \label{eq:aero_Euler_Potential}
+\end{equation}
+schreiben. 
+
+Analog lässt sich auch die Kontinuitätsgleichung
+\eqref{eq:aero_KontinuitaetsglDiff} durch das Potential $\Psi$ ausdrücken.
+Wir finden
+\begin{subequations}
+  \begin{equation}
+    0 = \frac{\partial \varrho}{\partial t} + \divv \lk \varrho\, \nabla \Psi
+    \rk = \frac{\partial \varrho}{\partial t} + \divv \lk \varrho\, \nabla
+    \Psi \rk
+  \end{equation}
+  und für ein inkompressibles Fluid (bei dem die Dichte also sowohl in
+  der Zeit als auch im Raum konstant ist)
+  \begin{equation}
+    0 = \varrho\, \Delta \Psi \; .
+    \label{eq:aero_KontInkompressibel}
+  \end{equation}
+\end{subequations}
+
+Verwenden wir die Erkenntnis aus der Euler-Gleichung in Potential-Formulierung
+in der Navier-Stokes-Gleichung \eqref{eq:aero_NavierStokes}, erhalten wir
+\begin{equation}
+  \nabla \lk \frac{1}{2} \lk \nabla \Psi \cdot \nabla \Psi \rk
+  + \frac{\partial \Psi}{\partial t} \rk = \vec{f}_\text{V}  + \eta \,
+  \Delta \grad \Psi - \nablav p 
+\end{equation}
+bzw. für die beiden in \kap{aero_NavierStokes} genannten Spezialfälle
+der fehlenden Volumenkräfte
+\begin{subequations}
+  \begin{align}
+    \nabla \lk \frac{1}{2} \lk \nabla \Psi \cdot \nabla \Psi \rk
+  + \frac{\partial \Psi}{\partial t} \rk 
+    &= \eta \, \Delta \grad \Psi - \nablav p
+      \label{eq:aero_NavierStokesPotkV}
+      \intertext{und des Fluids im homogenen Gravitationsfeld} 
+      \nabla \lk \frac{1}{2} \lk \nabla \Psi \cdot \nabla \Psi \rk
+      + \frac{\partial \Psi}{\partial t} \rk 
+    &= \varrho\,\vec{g} + \eta \, \Delta \grad \Psi - \nablav p \; .
+      \label{eq:aero_NavierStokesPotg}
+  \end{align}
+\end{subequations}
+
+An dieser Stelle muss erwähnt werden, dass die Potentialbeschreibung für
+die Euler-Gleichung und insbesondere für die Navier-Stokes-Gleichung eine
+Näherung darstellt. Durch den Reibungsterm ist nicht garantiert, dass eine
+einmal rotationsfreie Strömung auch immer rotationsfrei bleibt. Dies kann
+eine aus einem Potential gewonnene Geschwindigkeit jedoch nicht abbilden.
+Allerdings gilt für Potentialströmungen inkompressibler Flüssigkeiten die
+Besonderheit, dass der Reibungsterm aus der Navier-Stokes-Gleichung vollständig
+verschwindet. Dies lässt sich einfach nachrechnen, denn wir formen um
+\begin{equation*}
+  \Delta \grad \Psi = \grad \Delta \Psi - \rotv \grad \Psi
+\end{equation*}
+Der zweite Term verschwindet offensichtlich, denn so haben wir gerade das
+Potential gefunden. Der erste ist jedoch auch identisch Null, was leicht
+anhand der Kontinuitätsgleichung inkompressibler
+\eqref{eq:aero_KontInkompressibel} Flüssigkeiten festgestellt werden kann.
+Es gilt also
+\begin{equation*}
+  \Delta \grad \Psi = \vec{0} \; ,
+\end{equation*}
+der Reibungstermin der Navier-Stokes-Gleichung wird von der
+Potentialformulierung "`übersehen"' und wir erhalten in dieser Näherung 
+\begin{equation}
+  \nabla \lk \frac{1}{2} \lk \nabla \Psi \cdot \nabla \Psi \rk
+  + \frac{\partial \Psi}{\partial t} \rk = \vec{f}_\text{V}  - \nablav p 
+\end{equation}
+bzw. in den beiden Spezialfällen nach \eqref{eq:aero_NavierStokesPotkV}
+und \eqref{eq:aero_NavierStokesPotg}
+\begin{subequations}
+  \begin{align}
+    \nabla \lk \frac{1}{2} \lk \nabla \Psi \cdot \nabla \Psi \rk
+  + \frac{\partial \Psi}{\partial t} \rk 
+    &= - \nablav p \; , \\
+      \nabla \lk \frac{1}{2} \lk \nabla \Psi \cdot \nabla \Psi \rk
+      + \frac{\partial \Psi}{\partial t} \rk 
+    &= \varrho\,\vec{g} - \nablav p \; .
+      \label{eq:aero_NavierStokesSpezialNaeherung}
+  \end{align}
+\end{subequations}
+
+Aus der Tatsache, dass der Reibungsterm nicht mit der Potentialformulierung
+verträglich ist, lässt sich bereits eine Vermutung ableiten. Dazu erinnern wir
+uns an die Helmholtzschen Wirbelsätze aus Kap.~\ref{kap:wirbel}. Der 1.
+Helmholtzsche Wirbelsatz besagt, dass in einer idealen (\dh reibungsfeien)
+inkompressiblen Strömung, in der keine Wirbel existieren, auch keine weiteren
+Wirbel entstehen werden. Nun wissen wir, dass eine Potentialformulierung
+(also eine Formulierung für eine Strömung, deren mathematische Struktur
+Wirbel gar nicht enthalten kann) nicht mit dem Reibungsterm aus den
+Navier-Stokes-Gleichungen verträglich ist. Daraus kann man vermuten, dass
+Reibung nötig ist, um zu Wirbeln führen zu können. Dies ist in inkompressiblen
+Strömungen tatsächlich so und das dürfen wir uns merken.
+
+\begin{example}{Staupunktströmung}
+  Als ein Beispiel für eine Strömungsform, die einen häufig benötigten Fall
+  behandelt und die sich durch ein Potential darstellen lässt, wollen
+  wir eine Staupunktströmung betrachten. Dabei gehen wir so vor, dass wir
+  zunächst das Potential angeben und daraus schließen, wie die Strömung
+  verläuft.
+
+  Das Potential einer (zweidimensionalen) Staupunktströmung lautet
+  \begin{equation}
+    \Psi(x,y) = \frac{a}{2}\lk x^2 - y^2 \rk \; .
+  \end{equation}
+  Das ist, wie unschwer zu erkennen ist, die Gleichung einer Hyperbel. Diese
+  ist in \figref{aero_Staupunktstroemung}a dargestellt.
+
+  \begin{center}
+    \includegraphics[width=\textwidth]{Staupunkt}
+    \captionof{figure}[Potential und Stromlinien einer Staupunktströmung]
+    {\fa Potenial und \fb Geschwindigkeitsfeld einer Staupunktströmung}%
+    \label{abb:aero_Staupunktstroemung}
+  \end{center}
+
+  Daraus berechnen wir die Stromlinien:
+  \begin{equation}
+    \vec{v} = \nabla\Psi(x,y) = \begin{pmatrix} ax \\ -ay \end{pmatrix}
+  \end{equation}
+  In \figref{aero_Staupunktstroemung}b sind diese Stromlinien dargestellt.
+  Man erkennt deutlich, dass auf den Diagonalen ein Strom direkt auf  den
+  Ursprung zeigt. Dies bewirkt eine Stauung der Strömung am Urpsprung und
+  alle anderen Stromlinien führen an diesem vorbei.
+\end{example}
+
+
+
+\subsubsection{Laplace-Gleichung}
+\label{kap:aero_Laplace-Gleichung}
+
+
+\subsubsection{Auftrieb}
+\label{kap:aero_Auftrieb}
+
+Der Auftrieb ist eine der wichtigsten Eigenschaften von Fluiden im
+Gravitationsfeld, ein einen höhenabhängigen Druck zur Folge haben. Ohne den
+Aufrtrieb könnte nicht erklärt werden, warum Schiffe schwimmen oder Ballons
+in der Atmosphäre aufsteigen können. Manchmal wirken Effekte, die er
+hervoruft, paradox. Dabei sind die Grundlagen recht einfach und man muss sie
+nur gründlich beachten.
+
+\begin{example}{Auftrieb für einen Quader}
+  Wir nähern uns dem Auftrieb mit \figref{aero_Auftrieb_Quader}.
+  \begin{center}
+    \includegraphics[width=\textwidth]{AuftriebQuader}
+    \captionof{figure}[Zur Herleitung des Auftriebs für einen Quader]
+    {Zur Herleitung des Auftriebs für einen Quader. In einem Fluid im
+      Gravitationsfeld hängt der Druck von der Höhe ab. Er wirkt allseitig
+      auf den Körper.}
+    \label{abb:aero_Auftrieb_Quader}
+  \end{center}
+  Der Körper hat hier als Quader eine einfache Form, mit der wir uns das Prinzip
+  des Auftriebs bereits recht einfach überlegen können. Auf den Quader wirkt von
+  allen Seiten ein Druck, der nur von der Höhe abhängig ist. Die Gesamtkraft
+  auf den Quader ergibt sich zu
+  \begin{equation}
+    \vec{F} = - \int_{\partial \mathcal{V}} p(z) \, \D\vec{f} \; ,
+    \label{eq:Kraft_Auftrieb}
+  \end{equation}
+  worin $\partial \mathcal{V}$ für die Oberfläche des Quaders steht. Der Druck
+  wirkt an jedem Punkt senkrecht auf die Oberfläche, was durch den (nach außen
+  gerichteten) Normalenvektor $\D\vec{f}$ angezeigt wird. Man überlegt sich in
+  der sehr symmetrischen Form sofort, dass die Seitenflächen keinen Beitrag
+  liefern. Zu jedem Punkt einer Seitenfläche, an dem die Kraft $\D p = -p(z)
+  \D\vec{f}$ angreift, gibt es einen gegenüberliegenden, an dem exakt die
+  entgegengesetzte Kraft $-\D p$ wirkt. Diese beiden Kräfte heben sich
+  gegenseitig auf (grüne Pfleile in \figref{aero_Auftrieb_Quader}). Es
+  verbleiben die Boden- und Deckenfläche (blaue Pfeile). Der Druck im Fluid
+  ergibt sich in Abhängigkeit der Höhe $z$ zu
+  \begin{equation}
+    p(z) = p_0 - \varrho_F\,g\,z \; ,
+    \label{eq:Fluiddruck_Auftrieb}
+  \end{equation}
+  wobei $\varrho_W$ die Dichte des Fluids beschreibt. Mit der Grundfläche
+  $A_0$ des Quaders, seiner Höhe $h$ und seinem Volumen $V=A_0\,h$ findet
+  man für die Kraft auf den Quader
+  \begin{equation}
+    \vec{F} = -(p_0-\varrho_W\,g\,z_0) A_0 + (p_0-\varrho_W\,g\,(z_0-h)) A_0
+    = \varrho_W\,g\,h\,A_0 = \varrho_W\,g\,V = m_W\, g \; .
+  \end{equation}
+  Sie entspricht also exakt der Gewichtskraft, die das von ihm verdrängte
+  Fluid hätte.
+\end{example}
+
+Die Herleitung aus dem Beispiel möchten wir nun verallgemeinern. Dazu gehen
+wir wieder von Gleichung \eqref{eq:Kraft_Auftrieb} aus und nehmen an,
+dass der Körpfer eine beliebige Form hat. Zur Berechnung greifen wir auf
+den Integralsatz von Gauß aus (2.21) in Band I zurück, wenden ihn jedoch
+auf das Produkt eines Skalarfeldes $f$ mit einem Vektorfeld $\vec{A}$ an,
+\begin{subequations}
+  \begin{align}
+    \int\displaylimits_{\mathcal{V}} \divv\,\lk f\,\vec{A} \rk \:\D V\,
+    = \oint\displaylimits_{\mathcal{F} = \d \mathcal{V}} f\,\vec{A}\cdot \D \vec{f}
+    \; .
+  \end{align}
+  Mit der Identität (2.13b) aus Band I erhalten wir
+  \begin{align}
+    \int\displaylimits_{\mathcal{V}} \lk \nabla f \cdot \vec{A}  + f \divv
+    \vec{A} \rk \:\D V\, = \oint\displaylimits_{\mathcal{F} = \d \mathcal{V}}
+    f\,\vec{A} \cdot \D \vec{f} \; ,
+  \end{align}
+  was im Spezialfall eines konstanten Vektorfeldes $\vec{A}$ auf
+  \begin{align}
+    \int\displaylimits_{\mathcal{V}} \nabla f \cdot \vec{A}  \:\D V\,
+    = \oint\displaylimits_{\mathcal{F} = \d \mathcal{V}} f\,\vec{A} \cdot
+    \D \vec{f}
+  \end{align}
+  führt. Setzt man nacheinander die Basisvektoren einer beliebigen
+  Basis\footnote{\vec{A} darf ein beliebiger konstanter Vektor sein.} ein, so
+  erhält man
+  \begin{align}
+    \int\displaylimits_{\mathcal{V}} \nabla f \:\D V\,
+    = \oint\displaylimits_{\mathcal{F} = \d \mathcal{V}} f\,\vec{A} \cdot \D
+    \vec{f} \; .
+  \end{align}
+\end{subequations}
+Dies kann nun auf Gleichung \eqref{eq:Kraft_Auftrieb} angewendet werden. Dies
+führt auf
+\begin{subequations}
+  \begin{equation}
+    \vec{F} = - \int_{\partial \mathcal{V}} p(z) \, \D\vec{f}
+    =  - \int_{\mathcal{V}} \nabla p(z) \, \D V 
+    \label{eq:Kraft_Auftrieb_allgemein}
+  \end{equation}
+  \bzw mit dem Druck \eqref{eq:Fluiddruck_Auftrieb}
+  \begin{equation}
+    \vec{F} = g\, \int_{\mathcal{V}} \varrho_F \,\D V
+    =  m_F \, g \; ,
+    \label{eq:Kraft_Auftrieb_allgemein02}
+  \end{equation}
+\end{subequations}
+also eine nach oben gerichtete Kraft, die genau der Gewichtskraft des
+Fluids entspricht, das dasselbe Volumen wie der Körper eingenommen hätte.
+
+\subsubsection{Grenzschichten}
+
+Grenzschichten sind wir in Band I bereits an mehreren Stellen begegnet.
+Als ein sehr typisches Beispiel greifen wir die Haftbedingung an einer
+Wand wieder auf, die bereits in Beispiel 2.4 von Band I vorkam, jetzt jedoch
+in der leicht veränderlichen Situation, dass nur auf einer Seite eine
+Berandung existiert.
+
+\begin{example}{Haftbedingung an einer Wand}
+  \smallskip
+  Wir gehen von einer stationären Strömung aus, die in eine Richtung
+  $z$ erfolgt und die in $y$-Richtung auf der linken Seite berandet ist.
+  Da wir daran interessiert sind, zu verstehen, wie die Grenzschicht an dieser
+  Wand aussieht, nehmen wir an, dass eine Berandung auf der rechten Seite
+  so weit entfernt ist, dass sie sich hier nicht auswirkt, und der Einfluss
+  der linken Wand somit isoliert betrachtet werden kann. In unserer
+  Modellierung nehmen wir entsprechend auf der rechten Seite keine Berandung
+  an, sondern eine feste Flussgeschwindigkeit der Flüssigkeit. Analog nehmen
+  wir an, dass wir keine Auswirkung von Berandungen in $x$-Richtung beachten
+  müssen. Tatsächlich rechnen wir mit einem zweidimensionalen Strömungsfeld.
+  Die betrachtete Situation ist in \figref{aero_GrenzschichtWand}
+  dargestellt.
+
+  \begin{center}
+    \includegraphics[width=\textwidth]{InnereReibung.pdf}
+    \captionof{figure}[Betrachtung einer Grenzschicht]{Betrachtung einer
+      Grenzschicht. Eine Strömung wird auf einer Seite von einer Wand
+      berandet. Es bildet sich ein Geschwindigkeitsprofil heraus.}
+    \label{abb:aero_GrenzschichtWand}
+  \end{center}
+  
+  Das Verhalten an der Grenzschicht untersuchen wir, indem wir die
+  Navier-Stokes-Gleichung \eqref{eq:aero_NaStstat} für einen stationären
+  Fall\footnotemark angepasst auf die vorliegende Geometrie lösen. In
+  Beispiel 2.4 von Band I haben wir bereits argumentiert, dass der Druck
+  ausschließlich von $z$ abhängen wird, also $p=p(z)$, und $v_z$ ausschließlich
+  von $y$ abhängt, also $v_z = v_z(y)$. Davon können wir auch hier wieder
+  ausgehen.
+
+  Die Navier-Stokes-Gleichung  \eqref{eq:aero_NaStstat} reduziert sich dann
+  auf
+  \begin{align*}
+    \eta \, \frac{\partial^2}{\partial y^2} v_z(y)\, \veceZ - \frac{\partial p}
+    {\partial z}\, \veceZ
+    &= \vec{0} \quad \text{bzw.} \quad 
+      \eta \, \frac{\partial^2}{\partial y^2} v_z(y)
+      = \frac{\partial p}{\partial z} \, ,
+  \end{align*}
+  was auf das Strömungsprofil
+  \begin{equation*}
+    v_z(y) = \frac{1}{2\eta} \frac{\partial p(z)}{\partial z}\,y^2 + \alpha y
+    + \beta
+  \end{equation*}
+  führt.
+
+  Die Randbedingungen lauten nun $v_z(y=0)=0$ und $v_z(y=b)=v_0$ mit der
+  Geschwindigkeit $v_0$, die am rechten Rand der Darstellung herrschen
+  soll und vorgegeben ist. Daraus findet man
+  \begin{equation*}
+    \alpha = \frac{v_0}{b}-\frac{1}{2\eta} \, \frac{\partial p(z)}{\partial z}
+    \, b \; , \qquad \beta = 0 \; .
+  \end{equation*}
+  Das Strömungsprofil lautet also
+  \begin{equation}
+    v_z(y) = \frac{1}{2\eta} \frac{\partial p(z)}{\partial z} \, \lk y^2
+    - b\,y \rk + \frac{v_0}{b} y \; .
+    \label{eq:aero_StroemungsprofilWand}
+  \end{equation}
+  \label{bsp:aero_HaftbedingungWand}
+\end{example}
+\footnotetext{Dieser soll sich bereits eingestellt haben.} 
+
+\subsubsection{Strömungsablösung}
+
+\subsubsection{Kompressible Strömungen}
+\label{kap:aero_kompressibleStroemungen}
+
+Unterschall
+
+Überschall
+
+Schallgeschwindigkeit
+
+
+\subsection{Thermodynamische Grundlagen für die Aerodynamik}\label{kap:aero_thermodyn}
+
+
+
+

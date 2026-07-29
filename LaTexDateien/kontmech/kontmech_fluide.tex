@@ -1,0 +1,392 @@
+\section{Bewegungen von Flüssigkeiten und Gasen}\label{kap:kontmech_fluide}
+\index{Flüssigkeiten}\index{Gase}
+Wir wollen uns nun einige Spezialfälle der \NVS genauer anschauen. Uns interessieren dabei vor allem die Strömungsprofile,
+die sich durch die Reibung ergeben.
+
+\subsection{Laminare Strömungen inkompressibler
+  Flüssigkeiten}
+\label{kap:kontmech_laminareStroemungenFluessigkeiten}
+\index{Strömung!laminar}
+
+Zunächst möchten wir uns mit dem relativ einfachen Fall der
+Fluiddynamik beschäftigen, den \emph{laminaren Strömungen
+in inkompressiblen Flüssigkeiten} mit konstanter Geschwindigkeit. 
+
+Um die Strömungsprofile (wir erinnern uns, dass ein Strömungsprofil durch $\vec{v}(\vec{r},t)$ 
+beschrieben wird) zu bestimmen, gehen wir von der Navier-Stokes-Gleichung
+\eqref{eq:kontmech_NavierStokesFrei} ohne von außen wirkende Volumenkräfte $\vec{f}_\text{V}$ aus.
+Wir gehen ferner von einem konstanten Querschnitt der Strömung aus und legen das
+Koordinatensystem so, dass die Geschwindigkeit $\vec{v}$ in Richtung von
+$\veceZ$ erfolgt. Der konstante Querschnitt erzwingt zusammen mit der
+Massenerhaltung und der Inkompressibilität, dass sich die Geschwindigkeit in
+$z$-Richtung nicht ändern kann, es gilt also $\vec{v} = v_z(x,y)\, \veceZ$.
+Daraus folgt für den ersten Term auf der linken Seite der
+Navier-Stokes-Gleichung \eqref{eq:kontmech_NavierStokesFrei}, dass
+\begin{equation*}
+  \left ( \vec{v} \cdot \nablav \right ) \vec{v} =  \left ( v_z(x,y)\,\veceZ
+    \cdot \nablav \right ) v_z(x,y) \,\veceZ
+  =  \left (v_z(x,y) \frac{\partial}{\partial z}  \right ) v_z(x,y)\, \veceZ
+    = \vec{0} \; .
+\end{equation*}
+Für eine stationäre Strömung gilt weiterhin, dass $\partial \vec{v}/\partial t	
+=0$. Somit reduziert sich die Navier-Stokes-Gleichung auf ein Gleichgewicht von
+Druckkraft und  Reibung:
+\begin{equation}
+  \eta \, \Delta \vec{v} - \nablav p = \vec{0} \; .
+  \label{eq:kontmech_NaStstat}
+\end{equation}
+Im folgenden Beispiel wollen wir diese Differentialgleichung für zwei
+sehr einfache Geometrien lösen.
+
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{Stationäre laminare Strömungen in einfachen Profilen}
+\label{bsp:kontmech_laminareStroemungen}\index{Strömung!laminare}
+\smallskip
+
+In diesem Beispiel wollen wir die Differentialgleichung
+\eqref{eq:kontmech_NaStstat} für stationäre Strömungen in zwei sehr einfachen
+Geometrien lösen, um einen ersten Eindruck zu bekommen, wie solche
+Lösungen aussehen können. Zunächst gehen wir von einer Situation aus, die
+\figref{kontmech_InnereReibung1}a sehr ähnlich ist. Wir wollen jetzt
+jedoch annehmen, dass die Berandung auf beiden Seiten unbeweglich ist. Die
+Strömung wird durch ein Druckgefälle angetrieben und wir gehen davon aus,
+dass sie sich stationär eingestellt hat, sodass \eqref{eq:kontmech_NaStstat}
+gilt. Wenn wir zusätzlich davon ausgehen, dass die Form des Randes in
+$x$-Richtung so tief ist, dass ihre Ränder im betrachteten Teil der Strömung
+keinen Einfluss haben, können wir folgende Annahmen treffen.
+\begin{itemize}
+\item Die stationäre Strömung findet nur in Richtung $\veceZ$ statt. Es gilt
+  also $\vec{v} = v_z \veceZ$.
+\item Aus Symmetriegründen erwarten wir, dass der Druck ausschließlich
+  von $z$ abhängt. Andernfalls würden nach \eqref{eq:kontmech_NaStstat} sofort
+  Strömungen in den Richtungen $\veceX$ und $\veceY$ auftreten, die diese
+  Druckdifferenzen ausgleichen. Es gilt also $p=p(z)$.
+\item Die Materieerhaltung in der inkompressiblen Flüssigkeit erzwingt , dass
+  $v_z$ nicht von $z$ abhängt. Die Geschwindigkeit muss in jedem Rohrabschnitt
+  dieselbe sein. Da wir nach Voraussetzung auch keinen Einfluss der Berandung
+  in $x$-Richtung haben, gilt $v_z = v_z(y)$.  
+\end{itemize}
+Mit diesen Überlegungen reduziert sich Gleichung  \eqref{eq:kontmech_NaStstat}
+zu
+\begin{align*}
+  \eta \, \frac{\partial^2}{\partial y^2} v_z(y)\, \veceZ - \frac{\partial p}
+  {\partial z}\, \veceZ
+  &= \vec{0} \quad \text{bzw.} \quad 
+    \eta \, \frac{\partial^2}{\partial y^2} v_z(y)
+  = \frac{\partial p}{\partial z} \,.
+\end{align*}
+Aus dieser Differentialgleichung lässt sich für einen gegebenen Druckgradienten 
+$p(z)$ eine formale Lösung für das Strömungsprofil $v_z(y)$ finden,
+\begin{equation*}
+  v_z(y) = \frac{1}{2\eta} \frac{\partial p(z)}{\partial z}\,y^2 + \alpha y + \beta \,.
+\end{equation*}
+Aus den Randbedingungen $v_z(y=0) = v_z(b) = 0$ findet man $\beta=0$ und
+\begin{equation*}
+  \alpha = - \frac{b}{2\eta} \frac{\partial p(z)}{\partial z} 
+~~~\text{sowie}~~~
+  v_z(y) = \frac{1}{2\eta} \frac{\partial p}{\partial z} \left ( \left ( y^2 -
+    \frac{b}{2} \right )^2 -\frac{b^2}{4} \right ) \; .
+\end{equation*}
+Dies ist eine nach unten offene Parabel mit dem Scheitel in der Mitte zwischen
+den beiden Wänden und der maximalen Geschwindigkeit
+\begin{equation}
+  v_\text{max} = - \frac{1}{2\eta} \frac{\partial p(z)}{\partial z}
+  \frac{b^2}{4}  \; .
+\end{equation}
+Die Strömungsgeschwindigkeit nimmt also von der Mitte zum Rand hin quadratisch
+ab. Sie hängt proportional von der Druckdifferenz $\partial p(z) / \partial z$ 
+und der Breite der Strömung $b$ ab und ist umgekehrt proportional zu der
+Viskosität.\\
+
+Ganz ähnlich lässt sich die Strömung durch ein kreisrundes Rohr \index{Strömung!Rohr} mit dem
+Radius $R$ beschreiben.
+Wir gehen erneut davon aus, dass sie nur in $z$-Richtung erfolgt. Dann wird
+auch der Druck weiterhin nur von $z$ abhängen. Die Symmetrie erfordert nun,
+dass die Strömung allein vom Abstand zum Mittelpunkt des Rohrquerschnitts
+abhängt. In Zylinderkoordinaten lässt sich das durch $v_z = v_z(r)$
+beschreiben. Die Navier-Stokes-Gleichung \eqref{eq:kontmech_NaStstat} für
+den stationären Fall nimmt dann in Zylinderkoordinaten\index{Zylinderkoordinaten} die Form
+\begin{equation*}
+  \eta \, \frac{1}{r} \frac{\partial}{\partial r} \left ( r\,
+    \frac{\partial v_z(r)}{\partial r} \right ) = \frac{\partial p(z)}{\partial z}
+\end{equation*}
+an. Die allgemeine Lösung dieser Differentialgleichung lautet
+\begin{equation*}
+  v_z(r) = \frac{1}{4\eta} \frac{\partial p}{\partial z} r^2 + \alpha \ln r
+  + \beta
+\end{equation*}
+Damit die Strömungsgeschwindigkeit im Ursprung endlich bleibt, muss $\alpha =
+0$ gelten. Die Forderung, dass am Rand des Rohrs keine Strömung stattfindet, 
+$v_z(R) = 0$, ergibt schließlich
+\begin{equation*}
+  \beta = - \frac{R^2}{4\eta} \frac{\partial p(z)}{\partial z} 
+\end{equation*}
+und die Strömungsgeschwindigkeit
+\begin{equation}
+  v_z(R) = \frac{1}{4\eta} \frac{\partial p(z)}{\partial z} \left ( r^2 - R^2
+  \right ) \; .
+  \label{eq:kontmech_StroemungsGeschwKreisrohr}
+\end{equation}
+Auch hier ist das Strömungsprofil also parabelförmig. Die maximale
+Strömungsgeschwindigkeit lautet
+\begin{equation*}
+  v_\mathrm{max}  = v_z(0) = -\frac{1}{4\eta} \frac{\partial p(z)}{\partial z} R^2
+  \; .
+\end{equation*}
+Sie steigt also bei konstanter Druckdifferenz quadratisch mit dem Rohrquerschnitt an.
+
+\end{example}
+%BEISPIEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Die Beziehung \eqref{eq:kontmech_StroemungsGeschwKreisrohr} wird auch das Gesetz von Hagen\footnote{Gotthilf Heinrich Ludwig Hagen (1797--1884) war ein deutscher Wasserbauingenieur und Hochschullehrer. Er gab das erste in deutscher Sprache erschienene Handbuch der Wasserbaukunst heraus.}\indexp{Hagen, Gotthilf Heinrich Ludwig}-Poiseuille\footnote{Jean Léonard Marie Poiseuille (1797--1869) war ein französischer Physiologe und Physiker. Er arbeitete vorwiegend auf dem Gebiet der Physiologie des Blutkreislaufs und versuchte physikalische  Erkenntnisse auf die Physiologie zu übertragen.}\indexp{Poiseuille, Jean Léonard Marie}\index{Gesetz von Hagen-Poiseuille} genannt. Es beschreibt den Zusammenhang zwischen der Geschwindigkeit einer laminaren stationären Strömung bei einer dynamischen Viskosität $\eta$ in einem kreiszylindrischen Rohr mit dem Radius $R$ und bei einem Druckgradienten über die Längskoordinate der Strömung.
+
+In komplizierteren Geometrien gestaltet sich das Finden von Lösungen meist deutlich
+schwieriger. Der Spezialfall \eqref{eq:kontmech_NaStstat}
+der Navier-Stokes-Gleichung lässt sich jedoch leicht numerisch lösen. Die Partial
+Differential Equation Toolbox von \matlab{} hält entsprechende
+Lösungsverfahren bereit, die leicht zu bedienen sind. Ein Beispiel betrachten
+wir in \probref{kontmech_StroemungRechteckrohr}, in der wir das
+Geschwindigkeitsprofil einer laminaren, stationären Strömung in einem rechteckigen Rohr lösen.
+
+
+\subsection{Wirbel in Strömungen (Turbulenz)}
+\index{Wirbel!Strömung}\index{Strömung!turbulente}\index{Turbulenz}\index{Strömung!Wirbel}
+
+Nun wollen wir uns mit dem komplexeren Fall der
+Fluiddynamik beschäftigen, dem Auftreten von Wirbeln in Strömungen, insbesondere bei kleinen oder verschwindenden inneren Reibungen. 
+Wir behalten aber die Annahme 
+inkompressibler Fluide bei. 
+In \kap{kontmech_FormenStroemungen} haben wir bereits
+gesehen, dass die Vektorgröße Rotation $\rotv \vec{v}$ 
+eine Strömung charakterisiert.
+Besondere Bedeutung hat dies, wenn eine Strömung Wirbel aufweist. Wirbel
+entstehen insbesondere, wenn Hindernisse von Flüssigkeiten oder Gasen
+umströmt werden und die Reibung relativ gering ist.
+
+Um uns dem Konzept der Wirbel mathematisch zu nähern, betrachten wir zunächst den einfachsten
+Fall einer konstanten kreisförmigen Strömung mit konstanter
+Winkelgeschwindigkeit $\vec{\omega} =\conv$. In dieser verhält sich die Strömung wie
+ein starrer Körper und man könnte erwarten, dass das für Fluide eine
+unrealistische Beschreibung ist. Tatsächlich ist dies jedoch ein recht
+zutreffender Fall, da sich typischerweise das Innere eines Wirbels, der
+sogenannte Wirbelkern, genau so verhält wie ein starrer Körper. Wir können
+einen solchen Wirbel durch den Geschwindigkeitsvektor $\vec{v}$ beschreiben:
+\begin{equation*}
+  \vec{v}(\vec{r}) = \vec{\omega} \times \vec{r} .
+\end{equation*}
+Damit die Winkelgeschwindigkeit an jedem Ort konstant sein kann, muss die
+Geschwindigkeit linear mit dem Abstand $|\vec{r}|$ vom Zentrum des Wirbels
+ansteigen. Die Winkelgeschwindigkeit können wir wiederum für diesen Wirbel
+aus
+\begin{align}
+  \frac{1}{2}\, \rotv \vec{v}
+  &= \frac{1}{2}\, \rotv \lk \vec{\omega} \times \vec{r} \rk = \frac{1}{2} \,\nablav \times \lk  \vec{\omega} \times \vec{r} \rk \\
+  &= \frac{1}{2} \, \left (
+    \underbrace{\vec{\omega} \lk \nablav \cdot \vec{r} \right )}_{=3\vec{\omega}}
+  - \vec{r} \underbrace{\left ( \nablav \cdot \vec{\omega} \right )}_{=0}
+  + \underbrace{\left ( \vec{r} \cdot \nablav \right ) \vec{\omega}}_{=0}
+  - \underbrace{\left ( \vec{\omega} \cdot \nablav \right ) \vec{r}
+  }_{=\vec{\omega}} \rk
+  = \vec{\omega}
+\end{align}
+erhalten. Bei der Rechnung haben wir \eqref{eq:kontmech_nablaop02} aus \kap{kontmech_VektorAnalysis} benutzt.\\
+Im allgemeinen Fall $\vec{\omega} = \vec{\omega}(\vec{r})$ kann $\vec{\omega}$ natürlich an jedem
+Ort unterschiedlich ausfallen. Um auch solche Strömungen beschreiben zu können,
+wird der \emph{Wirbelvektor}\index{Wirbelvektor} als die Hälfte der Rotation der Geschwindigkeit,
+\begin{equation}
+  \vec{\Omega} = \frac{1}{2} \rotv \vec{v} \; ,
+  \label{eq:kontmech_Wirbelvektor}
+\end{equation}
+eingeführt. Im Fall des gerade beschriebenen einfachen Wirbels ist der Wirbelvektor mit dem Vektor der
+Winkelgeschwindigkeit identisch.
+
+Als weiteres Maß für die Stärke eines Wirbels wird die \emph{Zirkulation}\index{Zirkulation!Strömung}\index{Strömung!Zirkulation}
+\begin{equation}
+  Z = \oint_{\partial A} \vec{v} \cdot \D\vec{s}
+  = \int_{A} \rotv \vec{v} \cdot \D \vec{A} = 2\, \int_{A} \vec{\Omega} \cdot \D \vec{A}\; ,
+  \label{eq:kontmech_Zirkulation}
+\end{equation}
+eingeführt, die sich nach dem Integralsatz von Stokes (siehe \eqref{eq:kontmech_Integralsatz_Stokes} in \kap{kontmech_Integralsaetze}) entweder als Wegintegral entlang des
+Randes $\partial A$  der durchströmten Fläche $A$ oder als Oberflächenintegral mit dem
+orientierten Flächenelement $\D\vec{A}$ berechnen lässt. Man beachte, dass
+die Rotation $\rotv \vec{v}$ auch hier wieder auftritt. 
+
+Bilden wir die Zirkulation für eine Fläche, in der der Wirbel liegt, wissen
+wir ganz sicher, dass die Rotation, die senkrecht auf der Geschwindigkeit
+steht, parallel zum Normalenvektor der Fläche liegt. Wir können also
+in \eqref{eq:kontmech_Zirkulation} mit Beträgen rechnen und erhalten:
+\begin{equation}
+  Z = \int_{A} \rotv \vec{v} \cdot \D \vec{A}
+  = \int_{A} \left | \rotv \vec{v} \right | \D A
+  = 2 \int_{A} \left | \vec{\Omega} \right | \D A
+  = 2 A \bar{\Omega}\,.
+  \label{eq:kontmech_ZirkulationWirbelvektor}
+\end{equation}
+Hier haben wir den Flächenmittelwert $\bar{\Omega}$ des Betrags des
+Wirbelvektors eingeführt. Da $\Omega$ die Bedeutung der lokal gültigen
+Winkelgeschwindigkeit des Wirbels hat, wird klar, warum die Zirkulation
+ein Maß für die Stärke des Wirbels ist. Sie misst den Mittelwert
+der Kreisfrequenz des Wirbels. Für das Beispiel eines idealen Wirbels untersuchen
+wir dies genauer in \probref{kontmech_IdealerWirbel}.
+
+Bisher haben wir nur ein sehr einfaches Beispiel angeschaut. Anhand dessen wird mit den eingeführten 
+allgemeinen Größen aber schon deutlich, dass Wirbel sehr viele Varianten
+haben können. Es gibt jedoch Einschränkungen. Zu diesen zählen die zwei
+\emph{Helmholtzschen}\footnote{Hermann Ludwig Ferdinand von Helmholtz (1821 -- 1894) war ein deutscher Mediziner, Physiologe und Physiker. Als Universalgelehrter leistete er wichtige Beiträge zur mathematischen Theorie der Optik, Akustik, Elektrodynamik, Thermodynamik und Hydrodynamik. Er war einer der einflussreichsten Naturwissenschaftler seiner Zeit und wurde oft auch als „Reichskanzler der Physik“ bezeichnet.}\indexp{Helmholtz, Hermann von} \emph{Wirbelsätze}\index{Wirbelsätze!Helmholtzsche}.
+Um den ersten zu verdeutlichen, wenden wir die
+Rotation auf die Navier-Stokes-Gleichung \eqref{eq:kontmech_NavierStokes}
+für den Fall an, dass es keine äußeren Kräfte gibt ($\vec{f}_\text{V}=0$), 
+eine ideale Flüssigkeit ohne innere Reibung ($\eta = 0$) vorliegt und diese
+inkompressibel ist ($\varrho = \con$). Wir erhalten:
+\begin{equation*}
+  \varrho \, \lek \,\rotv \lk \lk \vec{v} \cdot \nablav \rk \vec{v} \rk
+  + \rotv \frac{\partial \vec{v}}{\partial t} \rek
+  = - \rotv \nablav p \; .
+\end{equation*}
+Den Differentialoperator im ersten Term können wir (siehe \probref{kontmech_UmformungWirbelsatz}) umformen zu
+\begin{equation*}
+  \rotv \lk \lk \vec{v} \cdot \nablav \rk \vec{v} \rk
+  = 2 \,\rotv (\vec{\Omega} \times \vec{v} )
+\end{equation*}
+und im zweiten Term können wir die Reihenfolge der zeitlichen und der
+räumlichen Ableitungen vertauschen, so dass wir $\rotv \partial \vec{v}/
+\partial t = \partial \rotv \vec{v}/\partial t = 2 \partial \vec{\Omega}/\partial t$
+erhalten. Der Term auf der rechten Seite verschwindet, da ein Gradientenfeld
+immer wirbelfrei ist (siehe \eqref{eq:kontmech_nablaop06} in \kap{kontmech_VektorAnalysis}). Dies führt schließlich auf
+\begin{equation*}
+  \rotv \lk \vec{\Omega} \times \vec{v} \rk + \frac{\partial \vec{\Omega}}
+  {\partial t} = 0\; . 
+\end{equation*}
+Wir betrachten nun den Fall, dass zu einem beliebigen Zeitpunkt
+$\vec{\Omega} = \vec{0}$ gilt. Daraus folgt dann $\partial \vec{\Omega}/\partial t
+= \vec{0}$, das heißt die Rotation bleibt dann für alle Zeiten 0.
+Anschaulich lässt sich das interpretieren, dass in einer idealen
+inkompressiblen Flüssigkeit, die keine Wirbel enthält, auch niemals Wirbel
+entstehen werden. Diese Aussage bezeichnet man vielfach als den 
+\emph{1. Helmholtzschen Wirbelsatz}.\index{Wirbelsatz!1. Helmholtzscher}
+
+Eine zweite Aussage erhalten wir aus der Tatsache, dass die Divergenz einer
+Rotation immer verschwindet. Damit erhalten wir
+\begin{equation}
+  \divv \rotv \vec{v} = 2 \divv \vec{\Omega} = 0 \; .   \label{eq:kontmech_Quellenfreiheit01}
+\end{equation}
+Dies muss natürlich auch in einem Integral gelten, sodass wir sagen können, dass
+\begin{equation}
+  \int_V \divv \rotv \vec{v} \, \D V = 2 \int_V \divv \vec{\Omega} \, \D V
+  = 0 \; ,
+  \label{eq:kontmech_QuellenfreiheitWirbelvektor}
+\end{equation}
+was sich mit dem Gaußschen Integralsatz (siehe \eqref{eq:kontmech_Integralsatz_Gauss} in \kap{kontmech_Integralsaetze}) zu
+\begin{equation}
+  \int_{\partial V} \vec{\Omega} \cdot \D \vec{A} = 0 \label{eq:kontmech_Quellenfreiheit02}
+\end{equation}
+mit dem Rand $\partial V$ des Volumens $V$ umformen lässt. Als Volumen wählen
+wir eine Wirbelröhre, ein schlauchförmiges Stück, dessen Mantel so gewählt
+ist, dass auf ihm der Wirbelvektor parallel zur Oberfläche zeigt (siehe
+\figref{kontmech_Wirbelroehre}). Damit zeigt jedoch der Wirbelvektor
+auf diesem Mantel immer senkrecht zum Normalenvektor $\D\vec{A}$ und somit
+verschwindet dieser Teil des Oberflächenintegrals. Es verbleibt die beiden
+Querschnittsflächen $A_1$ und $A_2$ und aus dem Integral \eqref{eq:kontmech_QuellenfreiheitWirbelvektor}
+folgt:
+\begin{equation*}
+  \int_{A_1} \vec{\Omega} \cdot \D \vec{A} = -\int_{A_2} \vec{\Omega} \cdot
+  \D \vec{A} \; .
+\end{equation*}
+Darin erkennen wir aber gerade die (halbe) Zirkulation
+\eqref{eq:kontmech_ZirkulationWirbelvektor} wieder und mit der Berücksichtigung
+dass die Normalenvektoren der beiden verbleibenden Flächen gerade
+entgegengesetzt sind, führen wir
+\begin{align*}
+  Z_1 &= 2 \int_{A_1} \vec{\Omega} \cdot \D \vec{A} \quad \text{und} \quad 
+  Z_2 = -2 \int_{A_2} \vec{\Omega} \cdot \D \vec{A} 
+\end{align*}
+ein, was uns auf $Z_1 = Z_2$ schließen lässt. Der \emph{2. Helmhotzscher
+Wirbelsatz}\index{Wirbelsatz!2. Helmholtzscher} besagt also, dass die Zirkulation entlang einer Wirbelröhre
+konstant ist. Innerhalb einer solchen können in einer idealen, inkompressiblen
+Flüssigkeit somit keine Wirbel entstehen oder verschwinden. Lokal wird dies
+bereits durch die Quellenfreiheit des Wirbelvektors in
+\eqref{eq:kontmech_QuellenfreiheitWirbelvektor} ausgedrückt.
+
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{Wirbellinien}
+  \caption[Veranschaulichung einer Wirbelröhre]{Veranschaulichung einer
+    Wirbelröhre. Auf dem Mantel zeigt der Wirbelvektor parallel zur
+    Oberfläche. Er wird von Wirbellinien, die tangential an die Wirbelvektoren
+    liegen, gebildet.}
+    \label{abb:kontmech_Wirbelroehre}
+\end{figure}
+
+
+\subsection{Skalierungseigenschaften der Navier-Stokes-Gleichung}
+\label{Skalierungseigenschaften!Navier-Stokes-Gleichung}
+
+Wir haben gesehen, dass Strömungen von vielen Faktoren abhängen. Oft untersucht
+man jedoch technische Bauteile in Strömungskanälen an verkleinerten Modellen.
+Es ist möglich, dabei zu Ergebnissen aus den Modellversuchen zu kommen, 
+aus denen man direkt das Verhalten eines Systems bei realen Größenverhältnissen schließen kann.
+Das liegt an den Skalierungseigenschaften der Navier-Stokes-Gleichung
+\eqref{eq:kontmech_NavierStokesFrei}. Wir schreiben dazu die
+Gleichung noch einmal auf,
+\begin{equation*}
+  \varrho \lk \lk \vec{v} \cdot \nablav \rk \vec{v} + \frac{\partial}
+  {\partial t}\vec{v} \rk = \eta \, \Delta \vec{v} - \nablav p \; . \\
+\end{equation*}
+Um eine Skalierung der Längen durchführen zu können, führen wir eine
+Längeneinheit $l$ so ein, dass wir in der Navier-Stokes-Gleichung nur
+noch dimensionslose Ortsvariable stehen haben,
+\begin{equation*}
+  \vec{r} = l \, \tilde{\vec{r}} \, \qquad \nablav = \frac{1}{l} \tilde{\nablav}
+  \; \quad \Delta = \frac{1}{l^2} \tilde{\Delta} \; .
+\end{equation*}
+Als weitere wichtige Größe geht die Strömungsgeschwindigkeit ein. Auch für
+diese führen wir mit der Geschwindigkeitseinheit $u$ über
+\begin{equation*}
+  \vec{v} = u \, \tilde{\vec{v}}
+\end{equation*}
+eine Skalierung ein. Aus diesen beiden folgt eine Zeiteinheit, die auch
+auf Zeitableitungen anzuwenden ist,
+\begin{equation*}
+  t = \frac{l}{u} \, \tilde{t} \, \qquad \frac{\partial}{\partial t}
+  = \frac{u}{l}\frac{\partial}{\partial \tilde{t}} \; .
+\end{equation*}
+
+Setzen wir alle diese Skalierungen ein, erhalten wir
+\begin{equation*}
+  \varrho \frac{u^2}{l} \lk \lk \tilde{\vec{v}} \cdot \tilde{\nablav} \rk
+  \tilde{\vec{v}} + \frac{\partial}{\partial \tilde{t}} \tilde{\vec{v}} \rk
+  = \frac{u}{l^2} \eta \, \tilde{\Delta} \tilde{\vec{v}} - \frac{1}{l}
+  \tilde{\nablav} p \; , \\
+\end{equation*}
+was sich durch den Vorfaktor der linken Seite dividieren lässt, sodass
+wir
+\begin{equation}
+  \lk \tilde{\vec{v}} \cdot \tilde{\nablav} \rk \tilde{\vec{v}}
+  + \frac{\partial}{\partial \tilde{t}} \tilde{\vec{v}} 
+  = \frac{1}{u\,l\,\varrho} \eta \, \tilde{\Delta} \tilde{\vec{v}}
+  - \tilde{\nablav} \frac{p}{\varrho\,u^2} \; \label{eq:kontmech_NavierStokesSkaliert01}
+\end{equation}
+erhalten.
+
+Man erkennt also, dass man dasselbe Strömungsverhalten erhält, wenn man die
+\gls{reynoldszahl}\footnote{Osborne Reynolds (1842 -- 1912) war ein irisch-britischer Physiker. Nach ihm ist die Kennzahl zur Beurteilung viskoser Strömungen und insbesondere deren Übergang zur Turbulenz benannt.}\indexp{Reynolds, Osborne}\index{Reynoldszahl}
+\begin{equation}
+  \mathrm{Re} = \frac{\varrho\,u\,l}{\eta}
+\end{equation}
+und den dimensionslosen Druck
+\begin{equation}
+  \tilde{p} = \frac{p}{\varrho\,u^2}
+\end{equation}
+konstant hält. In dieser Skalierung lautet die Navier-Stokes-Gleichung dann
+\begin{equation}
+  \lk \tilde{\vec{v}} \cdot \tilde{\nablav} \rk \tilde{\vec{v}}
+  + \frac{\partial}{\partial \tilde{t}} \tilde{\vec{v}} 
+  = \frac{1}{\mathrm{Re}} \, \tilde{\Delta} \tilde{\vec{v}}
+  - \tilde{\nablav} \tilde{p} \; . \label{eq:kontmech_NavierStokesSkaliert02}
+\end{equation}
+
+Überschreitet die Reynolds-Zahl einen (problemabhängigen) kritischen Wert $\mathrm{Re}_\text{krit}$, wird eine bis dahin laminare Strömung anfällig gegen kleinste Störungen und es findet ein Übergang von laminarer zu turbulenter Strömung statt. Für Experimente in der Hydrodynamik und Aerodynamik muss der Wert der Reynolds-Zahl von Original und verkleinerten Modell gleich sein, um ein ähnliches Strömungsfeld zu erhalten. In der Literatur wird häufig ein Wert von $\mathrm{Re}_\text{krit} \approx 2300$ \cite{Schade1989, BergmannSchaefer1998} angegeben. 
+Allerdings gibt die kritische Reynolds-Zahl nicht exakt den Übergang von einer laminaren zu einer turbulenten Strömung an. Häufig zerfallen Turbulenzen unterhalb der kritischen Reynolds-Zahl wieder schnell, insbesondere je kleiner die Reynolds-Zahl ist. Andererseits ist es in Experimenten gelungen, laminare Rohrströmungen mit Reynolds-Zahlen bis $\SI{50000}{}$ zu erzeugen, ohne dass dabei die Strömung turbulent geworden ist \cite{Schade1989, BergmannSchaefer1998}. 
+
+
+

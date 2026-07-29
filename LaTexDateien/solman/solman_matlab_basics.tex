@@ -1,0 +1,837 @@
+%\input{header.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{\matlab-Basics} \label{kap:solman_matlab}
+
+Im Folgenden sollen einige \matlab-Elemente und -Funktionalitäten vorgestellt werden. Es geht hierbei nicht darum, eine Vorlesungsskript oder gar ein kurzgefasstes Lehrbuch für \matlab{} zusammenzustellen. Dazu gibt es viele hervorragende Standardwerke (\zb \cite{Wilson2003, Pietruszka2020, Schweizer2016, Attaway2013}) und auch umfangreiche Online-Dokumentationen im Internet (\zb \url{https://www.mathworks.com/matlabcentral}). Wir wollen mit der Zusammenstellung die Themen herausheben, die in der Computational Physics (CP) häufig vorkommen.
+
+
+\section{Matrix-Operationen}
+Wie im Namen hinterlegt - MATrix LABoratory - verwendet \matlab{} für Variablen konsequent und komfortable die Matrixschreibweise. Umrahmt von eckigen Klammern können die Zeilen einer Matrix getrennt durch ein Semikolon hintereinander eingegeben werden.
+\begin{lstlisting} [frame=single]
+>> x = [1 2 3;4 3 2]
+x =
+     1     2     3
+     4     3     2
+\end{lstlisting} 
+Sub-Matrizen sind über die Angabe von Zeilen- und Spaltenindices adressierbar, hier \zb die Selektion von Zeile 1 und Spalten 2 bis Ende der Matrix $x$.
+\begin{lstlisting} [frame=single]
+>> x(1,2:end)
+ans =
+    2    3
+\end{lstlisting} 
+Matrixoperationen, \zb $x\cdot x^T$, folgen konsequent den Gesetzen der linearen Algebra, man achte selber auf korrekte Zeilen- und Spaltendimensionen. Ein angehängter Apostroph transponiert die Matrix.
+\begin{lstlisting} [frame=single]
+>> x*x'
+ans =
+    14    16
+    16    29
+\end{lstlisting} 
+Die Möglichkeit zur elementweisen Multiplikation hingegen bietet der Punkt-Operator.
+\begin{lstlisting} [frame=single]
+>> x.*x
+ans =
+     1     4     9
+    16     9     4
+\end{lstlisting} 
+Zahlreiche mathematische Funktionen (\mlcmd{sin}, \mlcmd{cos}, \mlcmd{exp},...) gestatten in der Regel matrixwertige Argumente und liefern elementweise Funktionswerte, der skalare Fall entspricht dem Sonderfall der Matrixdimension $1\times 1$. 
+Weitere \matlab-Funktionen wie \zb \mlcmd{max}, \mlcmd{min}, \mlcmd{mean}  agieren an Zeilen- oder Spaltenvektoren, während sich die Funktionsweise anderer Matrixfunktionen wie beispielsweise \mlcmd{inv}, \mlcmd{norm}, \mlcmd{eig} aus deren Kontext heraus ergibt.
+Äußerst praktisch ist der Einsatz vektorwertiger Variablen bei Zeitreihen, die bei geschickten Einsatz sehr effektiv verwendet werden können und in geeigneter Matrixnotation \ggf ohne Schleifenfunktionen auskommen können.
+
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+%\section{Ein- und Ausgabe} \label{kap:solman_matlab_IO}
+\section{Import aus externen Datenquellen}
+
+\matlab{} bietet vielfältige Unterstützung beim Import von externen Daten. Neben Datenbankanbindungen, auf die hier nicht eingegangen werden soll, sind  kommaseparierte Textdateien häufig die Quelle externen Zahlenmaterials. Mehrere Möglichkeiten zum Datenimport bestehen, so lassen sich z.B. Einzelwerte aus \mlbewdref{Liste.csv} mittels \mlcmd{csvread} unmittelbar einer Variable~\mlcmd{Liste} zuweisen:
+\begin{lstlisting} [frame=single]
+>> type Liste.csv
+2,3
+
+>> Liste = csvread('Liste.csv')
+
+Liste =
+     2     3
+\end{lstlisting} 
+
+Etwas komplexere Datenstrukturen, z.B. bestehend aus mehreren Datentypen (string, integer, float) wie in \mlbewdref{TypListe.csv}, lassen sich unter Berücksichtigung ihrer Struktur mittels \mlcmd{textscan} einlesen und einer matrixwertigen Variable \mlcmd{ListeArray} zuweisen:
+\begin{lstlisting} [frame=single]
+>> type TypListe.csv
+'r' 1 0 0 0.2
+'g' 0 1 0 0.3
+'b' 0 0 1 0.4
+
+>> fileID = fopen('TypListe.csv','r');
+>> ListeArray = textscan(fileID,'%s%u%u%u%f');
+>> fclose(fileID);
+>> ListeArray{5}
+ans =
+    0.2000
+    0.3000
+    0.4000
+\end{lstlisting} 
+
+%\newpage
+Ist das Zielformat wie bei \mlbewdref{PlanetenFarben.csv} eine Tabelle, so bietet sich die Verwendung des \mlcmd{readtable}-Befehls an:
+\begin{lstlisting} [frame=single]
+>> Colors = readtable('PlanetenFarben.csv');
+Colors =
+ 15x9 table
+R       G       B       Name         Farbe            Hex       
+______  ______  ______  ___________  _______________  __________...
+0.9059  0.2588  0.6941  {'Merkur' }  {'Pink normal'}  {'E742B1'}
+\end{lstlisting} 
+Alle genannten Import-Kommandos bieten zahlreiche Optionen, es sei auf die jeweilige Hilfe verwiesen.\\[2ex]
+Zudem steht über die Menüfunktion \glqq HOME $\rightarrow$ Import Data\grqq{} eine komfortabler Weg zur Verfügung, um  dem eigenen \matlab-Skript externe Rohdaten zugänglich zu machen. 
+Ein graphisches Interface erlaubt in einem geführten Ablauf die Möglichkeit zur Auswahl von Zeilen und Spalten sowie die gezielte Typ-Zuweisung einzelner Spalten.
+Ein dabei automatisch generiertes \matlab-Skript ($\rightarrow$ \glqq generate script\grqq) sichert die Wiederverwendbarkeit des Codes zum erneuten Import externen Zahlenmaterials.\\[2ex]
+
+Als ebenfalls sehr nützlich erweist sich bei der Behandlung physikalisch-technischer Fragestellungen die Möglichkeit zur Bearbeitung von Mediendateien wie Bildern oder Tonaufzeichnungen. 
+Hierzu dienen beispielsweise die \matlab-Befehle \mlcmd{imread} und \mlcmd{audioread} zum Daten einlesen bzw. deren Pendants \mlcmd{imwrite} und \mlcmd{audiowrite} zur Ausgabe.
+\begin{lstlisting} [frame=single]
+x = imread('Analemma.jpg');               % Bilddatei einlesen
+[y,Fs] = audioread('Aufzeichnung.mp3');   % Tondatei einlesen
+\end{lstlisting} 
+
+
+
+
+
+\section{Numerische Ausgabe}
+
+Variablen im Workspace werden einerseits im \matlab-Workspace-Fenster angezeigt, können andererseits durch Eingabe ihres Namens oder durch Verwendung des \mlcmd{disp}-Befehls auch direkt auf der Kommandozeile dargestellt werden. 
+\begin{lstlisting} [frame=single]
+>> x = randn(1,3);      % eine Vektor normalverteiler Zufallszahlen
+>> x
+x =
+   -0.4336    0.3426    3.5784
+
+>> disp(x)
+   -0.4336    0.3426    3.5784
+\end{lstlisting} 
+
+Häufig besteht bei längeren Simulationen die Anforderung, Rechenergebnisse in tabellarischer Form darzustellen und \ggf in eine kommaseparierte Ergebnis-Datei zu schreiben.
+Hierzu bietet sich der \mlcmd{sprintf}-Befehl für strukturierte Strings \bzw der \mlcmd{fprintf}-Befehl zur strukturierten Dateiausgabe an:
+\begin{lstlisting} [frame=single]
+Name = 'Mond';
+Farbe = 'Grau normal';
+R1 = 85; G1 = 86; B1 = 87;
+R = R1/255; G = G1/255; B = B1/255;
+Hex = '555657';
+fid = fopen('PlanetenFarben.csv','a');
+fprintf(fid,'%.4f;%.4f;%.4f;%s;%s;%s;%i;%i;%i\r',R,G,B,Name,Farbe,Hex,R1,G1,B1);
+fclose(fid);
+
+>> type PlanetenFarben.csv
+R;G;B;Name;Farbe;Hex;R1;G1;B1
+0.9059;0.2588;0.6941;Merkur;Pink normal;E742B1;231;66;177
+...
+0.3333;0.3373;0.3412;Mond;Grau normal;555657;85;86;87
+\end{lstlisting} 
+
+
+\section{Einfache graphische Ausgabe}
+
+Ein Vorzug von \matlab{} liegt in der Möglichkeit, erzeugte Simulationsergebnisse schnell und ohne Aufwand von der \matlab-Kommandozeile oder aus einem Skript heraus visualisieren zu können. So wird z.B. der Inhalt der Variable \mlcmd{x} mittels \mlcmd{plot}-Befehl sofort graphisch erfassbar:
+\begin{lstlisting} [frame=single]
+>> x=rand(20,2)*[2 1;0 1];    % korrelierte Zufallszahlen
+>> plot(x)                    % graphische Darstellung
+>> x'                         % transponierte Matrix
+ans =
+  1.6001   0.8628   1.8213   0.3637   0.5276   0.2911   0.2721 ...
+  1.0400   0.8487   0.9603   1.0846   1.2086   0.6364   0.6253 ...
+\end{lstlisting} 
+
+\begin{figure}
+ \begin{center}
+  \includegraphics[width=0.5\textwidth]{simres.pdf}
+ \end{center}
+ \caption{Ergebnisfenster zur Daten-Visualisierung mittels plot-Befehl.}\label{abb:solman_matlab_simres}
+\end{figure}
+
+In \matlab{} existiert eine Vielzahl von Diagrammtypen und Visualisierungsmöglichkeiten, die per Kommandozeile oder graphischem Bedienerinterface (siehe Menüleiste \glqq PLOTS\grqq) angesprochen werden können.
+Einige der weiterführenden Plotbefehle sind unten noch einmal zusammenfassend aufgeführt. In den Texten und Übungen des Buches sind \mscre angegeben, die von den meisten dieser Befehle Gebrauch machen. 
+\begin{table}%
+\caption{Befehle für graphische Ausgabe.}
+\smallskip
+\begin{tabular}{|L{1.3cm}L{2.7cm}|L{1.3cm}L{2.7cm}|L{1.3cm}L{2.7cm}|}
+\hline\noalign{\smallskip}
+Funktion& Beschreibung &Funktion& Beschreibung &Funktion& Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\rule{0pt}{6pt} plot & 2-dimensionales Diagramm & semilogx & Diagramm mit logarithmischer x-Achse &  & schattierte Fläche 3-dimensional\\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} subplot  & Matrixanordnung von Diagrammen& semilogy & Diagramm mit logarithmischer y-Achse  & mesh & 3-dimensionales Gitterdiagramm\\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} loglog  & Doppelt-logarithmisches Diagramm & surf & 3-dimensionale schattierte Oberfläche& grid & Gitterlinien im Diagramm\\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{tabular} \label{tab:solman_matlab_plot}
+\end{table}
+
+Bitte beachten Sie die Skripte im Text für die verschiedenen Verwendungen dieser Befehle.
+
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+%\newpage
+\section{Animationen} \label{kap:solman_matlab_film}
+Mit \matlab{} kann man anschauliche Animationen erstellen. Nehmen wir als Beispiel eine sich ausbreitende gedämpfte Welle. Man erstellt zunächst ein Raum- und Zeitarray, gibt dann dieses Array bei jedem Zeitschritt graphisch aus und speichert den Plotframe in einem Array $M$ mit \textcolor{cyan}{\texttt{getframe}} ab. Man hält dann das Programm für eine kurze Zeit an (\zb \textcolor{cyan}{\texttt{pause}(0.1)} ). Den gesamten Ablauf kann man als Film mit 15 Bildern pro Sekunde als AVI-Datei abspeichern. Ein Beispiel ist hier angegeben:\\
+\begin{lstlisting} [frame=single]
+clear all
+x=0:0.01:1;          % Raum-Array
+t=0:0.01:1;          % Zeit-Array
+nt=length(t);        % Zeitschritte
+figure();
+for j=1:nt 
+    y=exp(-t(j)).*sin(2*pi*(x-t(j)));  % Wanderwelle
+    plot(x,y,'color','r','linewidth',2); % Plot für jeden Zeitschritt
+    ylim([-1 1]);
+    grid on;
+    M(j) = getframe; % speichere Movie Frames 
+    pause(0.05);     % kurz pausieren
+end 
+movie(M, 1, 15)      % einmal mit 15 Bildern pro Sekunde abspielen
+movie2avi(M,'wave'); % erstellt die Datei wave.avi 
+\end{lstlisting} 
+Für die Ausgabe des Videos verwenden Sie folgenden Code:
+\begin{lstlisting} [frame=single]
+M = moviein(n); 
+for j=l:n 
+    plot 
+    M(:,j) = getframe;
+end 
+movie(M) 
+\end{lstlisting} 
+
+
+
+
+
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+\section{Skripte und benutzerdefinierte Funktionen} \label{kap:solman_matlab_files}
+Ein \mscr, \zb mit \textcolor{blue}{test.m} bezeichnet, ist eine Textdatei, die \matlab-Befehle in einer geeigneten Reihenfolge enthält, damit sie vom Programm interpretiert und ausgeführt werden kann. Kommentarzeilen beginnen mit dem Prozent-Zeichen $\%$. Eine einfache m-Datei kann aus dem Befehlsfenster erstellt werden, indem der Befehl \textcolor{cyan}{$>>$ \texttt{ diary test.m }} gefolgt von mehreren Befehlen eingegeben wird, die eingeschlossen oder getestet werden sollen. Die Datei kann dann durch Eingabe von \textcolor{cyan}{$>>$ texttt{diary off }} geschlossen und über den \matlab-Editor oder einen anderen Texteditor aufgerufen werden. Durch Aufrufen des Namens der Datei im \matlab-Befehlsfenster; \dh durch Eingabe von \textcolor{cyan}{$>>$ \texttt{test} } wird die \matlab-Engine damit fortfahren, es zu interpretieren und die erforderliche Ausgabe zu erzeugen. Alle Fehler im Skript werden im Befehlsfenster angezeigt und können mit dem Texteditor behoben werden. 
+\matlab{} hat viele eingebaute Funktionen, wie vom nächsten Abschnitt beschrieben werden soll. Ein Benutzer kann auch eigene Funktionen erstellen. Eine Benutzerfunktion in \matlab{} ist entweder auch eine \textcolor{blue}{FunktionsName.m}-Datei oder aber sie wird am Ende des \matlab{} Files angegeben. Als Beispiel wolle wir die numerische Ableitung von $\sin\lk x\rk$ bei $x$ berechnen. Wir erstellen eine Skriptdatei mit dem Namen \textcolor{blue}{SinusAbleitung.m}: 
+\begin{lstlisting} [frame=single]
+function [F] = SinusAbleitung(x,del)
+% Ableitung von sin(x) bei x im Intervall [x,x+del]
+F = (sin(x+del)-sin(x))/del; 
+\end{lstlisting} 
+Sobald die Textdatei mit den obigen Zeilen unter dem Namen \textcolor{blue}{SinusAbleitung.m} gespeichert ist, kann sie über eine Zeile in einem \mscr aufgerufen werden. Zur Berechnung der Ableitung von $\sin\lk x\rk$ bei $x=\pi/3$ benötigen. Ist die Datei im Arbeitsverzeichnis gespeichert, so erhält man \zb:
+\begin{lstlisting} [frame=single]
+>>SinusAbleitung(pi/3,l.e-3) 
+ans=0.5000
+\end{lstlisting} 
+Die Eingabe des Hilfeaufrufs im Befehlsfenster ergibt die Ausgabe:
+\begin{lstlisting} [frame=single]
+>>help SinusAbleitung
+Ableitung von sin(x) bei x im Intervall [x,x+del]
+\end{lstlisting} 
+Dies ist die Zeile, die im Skript selbst als Kommentar eingefügt wurde. Es ist wichtig, Kommentare innerhalb der Funktionen zu schreiben, um sich an ihre Verwendung zu erinnern und zu dokumentieren, dass solche Funktionen (im Arbeitsverzeichnis) vorhanden sind. 
+%-----------------------------------------------------------------------------------------------
+\section{Einige mathematische Funktionen}  \label{kap:solman_matlab_func}
+
+Tabelle \ref{tab:solman_matlab_func} führt einige häufig verwendete, vordefinierte \matlab-Funktionen auf.
+\begin{table}%
+\caption{Auswahl vordefinierter mathematischer Funktionen.}
+\smallskip
+\begin{tabular}{|L{1.3cm}L{2.7cm}|L{1.3cm}L{2.7cm}|L{1.3cm}L{3.5cm}|}
+\hline\noalign{\smallskip}
+Funktion& Beschreibung &Funktion& Beschreibung &Funktion& Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\rule{0pt}{6pt} $\tan$   & Tangens & $\min$ & kleinstes & $\tril$ &unterer dreieckiger Teil der Matrix \\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} $\arcsin$   & Arcus Sinus & $\sign$ & signum & $\size$ & Größe einer Matrix\\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} $\acos$   & Arcus Cosinus & $\length$ & Länge eines Vektors& $\dett$ & Determinante  \\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} $\arctan$   & Arcus Tangens & $\sort$ & aufsteigend sortierte Reihenfolge& $\inv$ & Inverse einer Matrix\\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} $\exp$   & Exponentialfunktion & $\summ$ & Summe der Elemente einer Matrix & $\rand$ & mit Zufallszahlen gefüllte Matrix\\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} $\log$   & natürlicher Logarithmus & $\prodd$ & Produkt der Elemente einer Matrix& $\rref$ & reduziert die Zeilenstufen einer Matrix\\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} $\sin$   & Sinus & $\ceil$ & gegen positiv unendlich runden& $\diag$ & Diagonale einer Matrix extrahieren oder diagonale Matrix bilden\\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} $\cos$   & Kosinus & $\max$ & größte Komponente & \odezd{}, \linebreak \odevf{} & Lösungsalgorithmus für Differentialgleichungen (Kap. \ref{kap:solman_matlab_dgl}) \\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} abs   & absoluter Wert & median & Medianwert & $\eig$ & Eigenwerte und Eigenvektoren\\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} $\sqrtt$   & Quadratwurzel & $\mean$ & Mittelwert & $\poly$ &Polynom\\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} $\rem$   & Rest& $\std$ & Standardabweichung & $\quaddd$ & numerische Integration\\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} $\round$   & auf nächsten Integer Wert aufrunden& $\eye$ & Identitätsmatrix & $\fzero $ & Nullstellen einer Funktion\\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} $\floor$   & auf nächsten Integer Wert abrunden& $\zeros$ & Matrix aus Nullen & $\roots$ & Wurzeln von Polynomen\\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} $\modd$   & Modulo & $\ones$ & Matrix aus Einsen  & besselj & Bessel-Funktion erster Art\\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{tabular} \label{tab:solman_matlab_func}
+\end{table}
+
+Eine vollständige Beschreibung der Funktionen findet man über die Eingabe des Hilfebefehls \mlcmd{help <Befehl>}.
+
+%-----------------------------------------------------------------------------------------------
+\newpage
+\section{Programmierung} \label{kap:solman_matlab_prog}
+Unter Programmierung in \matlab{} wollen wir eine Abfolge von Befehlen in einem \mscr verstehen, um wiederholte Berechnungen durchzuführen und Berechnungen allgemein verfügbar zu machen. Programmieren ist \zb wichtig, wenn Schleifen und logische Anweisungen in Verbindung mit eingebauten oder benutzerdefinierten Funktionen verwendet werden. Wir geben einige Beispiele dafür an:
+\begin{lstlisting} [frame=single]
+for i=l:1:1000
+    x(i)=i*2;
+    y(i)=sqrt(x(i));
+end
+\end{lstlisting} 
+Die Zeilen erstellen ein 1000-Elemente-Array für $x$ zwischen $2$ und $2000$, für das die Quadratwurzel berechnet und im Array für $y$ gespeichert wird. In \matlab{} gibt es viel einfachere Möglichkeiten, dasselbe zu tun, das Beispiel demonstriert nur die Verwendung von Schleifen. Ein Beispiel für eine andere Programmierung mit dem gleichen Ergebnis:
+\begin{lstlisting} [frame=single]
+x = 2:2:2000;
+y = sqrt(x);
+\end{lstlisting} 
+Ein Beispiel für eine if-else-Anweisung ist im Folgenden zu sehen, in dem in der Matrix $y$  alle ganzzahligen Quadratzahlen von 1 bis 1000 und in $z$ alle anderen einsortiert werden:
+\begin{lstlisting} [frame=single]
+ky=1;
+kz=1;
+for i=1:1000
+    x(i)=sqrt(i);
+    if abs(round(x(i))-x(i)) == 0
+       y(ky) = i;
+       ky = ky+1;
+    else
+       z(kz) = i;
+       kz = kz+1;
+    end
+end
+\end{lstlisting} 
+
+%-----------------------------------------------------------------------------------------------
+%\newpage
+\section{Nullstellen von Funktionen} \label{kap:solman_matlab_roots}
+
+Die eingebaute \matlab-Funktion \mlcmd{fzero} ist sehr nützlich und kann verwendet werden, um die Nullstellen einer Funktion zu bestimmen. Wir suchen \zb den Wert von $x$, bei dem die Beziehung $x = \e^{-x^2}$ erfüllt ist. 
+\begin{lstlisting} [frame=single]
+>>fzero('x-exp(-x^2)',0.5)
+ans=0.6529
+\end{lstlisting} 
+wobei wir 0.5 als initialen Schätzwert verwendet haben. Eine vollständige Beschreibung der Funktion \mlcmd{fzero} wie für alle anderen Funktionen finden man über den Hilfebefehl. Natürlich können wir auch die Nullstellen von benutzerdefinierte Funktionen bestimmen.\\
+Ein weiteres Beispiel ist Berechnung von Wurzeln von Polynomen. Dazu kann die eingebaute Funktion \mlcmd{roots} verwendet werden. Als Beispiel berechnen wird die Nullstellen (Wurzeln) des  Polynoms 5. Ordnung $x^5+6x^3-2x+5$:
+\begin{lstlisting} [frame=single]
+>>x = roots([ 1 0 6 0 -2 5])
+x =
+  -0.0590 + 2.5180i
+  -0.0590 - 2.5180i
+  -1.0000 + 0.0000i
+   0.5590 + 0.6897i
+   0.5590 - 0.6897i
+\end{lstlisting} 
+Die Lösung besteht aus einer reellen und vier jeweils konjugiert komplexen Wurzeln. In Umkehrung gilt unter Verwendung des \mlcmd{poly}-Kommandos:
+\begin{lstlisting} [frame=single]
+>> poly(x)
+
+ans =
+    1.0000   -0.0000    6.0000   -0.0000   -2.0000    5.0000
+\end{lstlisting} 
+
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\section{Numerische Integration} \label{kap:solman_matlab_int}
+Numerische Integration ist mit \matlab{} sehr einfach. Eine Möglichkeit besteht in der Nutzung der integrierten \mlcmd{quad} Funktion. Ein Beispiel dafür ist die Integration der $\sin^2(x)$-Funktion über das Intervall $\lek 0, 2\pi\rek$ :
+\begin{lstlisting} [frame=single]
+>>quad('sin(x).^2',0, 2*pi);
+ans =3.1416
+\end{lstlisting} 
+Hier haben wir eine vom Benutzer eingebauten Funktion inline benutzt. Man beachte die Operatoren für die elementweise Ausführung (\zb .*). Alternativ kann man die zu integrierende Funktion über eine \textit{inline} Anweisung oder ein Handle @ auf eine zuvor definierte Funktion erzeugen.
+\begin{lstlisting} [frame=single]
+>> g=inline('2*x.^3+x.^5.*sin(x).^2');
+>> quad(g,0,pi)
+ans=86.4451 
+\end{lstlisting} 
+Hier wurde die Funktion $2 x^3+x^5 \sin^2(x) $ auf $\lek 0, \pi\rek$ integriert. Mit Handle sieht das entsprechende \mscr folgendermaßen aus:
+\begin{lstlisting} [frame=single]
+int3 = quad(@myfunc,0,pi);
+function gh = myfunc(x)
+    gh = 2*x.^3+x.^5.*sin(x).^2;
+end
+int3=86.4451 
+\end{lstlisting} 
+
+
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+%\newpage
+\section{Differentialgleichungen} \label{kap:solman_matlab_dgl}
+
+Eine wesentliche Fähigkeit von \matlab{} ist die numerische Lösung von Differentialgleichungen\index{Differentialgleichung} (DGL). Bei der numerischen Lösung von DGL bestimmt man ausgehend von Anfangsbedingungen\index{Anfangsbedingungen} (AB) eine Folge von Wertepaaren $(t_0, y_0)$, $(t_1, y_1)$, $(t_2, y_2), \ldots $, die den Verlauf der gesuchten Funktion $y(t)$ annähern sollen. In \matlab{} wird unterschieden zwischen gewöhnlichen Differentialgleichungen\index{Differentialgleichung!gewöhnliche} (ODE, \textit{Ordinary Differential Equations}), differential-algebraischen
+Gleichungen \index{Differential-Algebraisches System} (DAE, \textit{Differential Algebraic Equations}) \ua Die in \matlab{} enthaltenen numerischen Lösungsalgorithmen (\textit{Solvers})\index{Solver} können für eine
+Vielzahl von Systemen eingesetzt werden, die durch Differentialgleichungen beschreibbar sind. Ausführliche Behandlung zu Differentialgleichungen und deren numerischer Lösung finden sich in \cite{Riley2006, Felder2016, Fischer2014}.
+
+\subsection{Gewöhnliche Differentialgleichungen (ODE)} \label{kap:solman_matlab_ODE}
+ 
+Mathematisch lässt sich eine gewöhnliche Differentialgleichung mit dem Zustandsvektor $\vec{Y}$
+und dem Zeitargument $t$, einer beliebigen vektorwertigen Funktion $\vec{f}$ und dem Anfangsbedingungen $\vec{Y}_0$
+zum Zeitpunkt $t_0$ als Differentialgleichungssystem erster Ordnung darstellen:
+	\begin{align}
+\frac{\D \vec{Y}}{\D t} = \vec{f}(t,\vec{Y}) ~~~~\text{mit} ~~~~\vec{Y}(t_0) = \vec{Y}_0\,. \label{eq:solman_matlabdgl01}
+	\end{align}
+\matlab{} hat die Fähigkeit, solche Differentialgleichungen mit eingebauten Funktionen wie \textcolor{cyan}{\texttt{ode45}} oder \textcolor{cyan}{\texttt{ode23}} \ua zu lösen. Wir wollen als Beispiel ein eindimensionales Problem lösen. Als Beispiel haben wir die DGL $\dot{y}=(y-t^2)\e^{-t}$ für $y\lk t\rk$ auf dem Intervall $\lek 0,20\rek$ mit der Anfangsbedingung $t=0, y=1$ ausgewählt. In \matlab{} kann dies wie folgt erreicht werden: 
+\begin{lstlisting} [frame=single]
+tspan=linspace(0,10);
+[t,y]=ode45(@myfunc,tspan,1 ); 
+figure()
+plot(t,y)
+function f = myfunc(t,y)
+  f=(y-t.^2).*exp((-t));
+end
+\end{lstlisting} 
+Zur Lösung von Differentialgleichungen gemäß \eqref{eq:solman_matlabdgl01} stehen in \matlab{} verschiedene Algorithmen (Solver) zur Verfügung. Die \matlab-Solver unterscheiden sich hinsichtlich ihres Verhaltens bei sogenannten steifen Differentialgleichungen.\index{Differentialgleichung!steife} Eine Differentialgleichung wird als steif (\textit{stiff}) bezeichnet, wenn die Verfahren wegen ihres beschränkten Stabilitätsgebietes erhebliche Genauigkeitsprobleme haben oder wenn Schaltvorgänge zu berücksichtigen sind. Diese treten bis auf wenige Ausnahmen in den im Buch betrachteten Fällen nicht auf. Bei der Wahl der Integrationsverfahren hat sich deshalb folgendes Vorgehen bewährt. Zuerst
+wählt man den Solver \textcolor{cyan}{\texttt{ode45}}, welcher eine Implementierung eines expliziten Runge-Kutta-Verfahrens\index{Runge-Kutta-Verfahren} 5. Ordnung ist (siehe die \onlineZ \bzw \cite{Riley2006, Fischer2014, Natt2020}). Dann überprüft man die Ergebnisse auf Stabilität und kann gegebenenfalls einen Solver wie \textcolor{cyan}{\texttt{ode15s}} oder \textcolor{cyan}{\texttt{ode23s}} zur Berechnung probieren. Wir empfehlen, sich die Skripte des Buches für die einzelnen Beispiele anzuschauen oder die Befehle \textcolor{cyan}{\texttt{ help ode45}} \bzw \textcolor{cyan}{\texttt{ode15s}} in das Befehlsfenster einzugeben, um weitere Informationen und Details zu erhalten. 
+
+Bisher haben wir nur DGL \bzw DGL-Systeme mit ersten Ableitungen betrachtet. In der Physik und insbesondere in der Mechanik treten aber vorwiegend DGL-Systeme zweiter Ordnung nach der Zeit auf, \dh wir haben eigentlich System der Form:
+	\begin{align}
+\frac{\D^2 \vec{\tilde{Y}}}{\D t^2} = \vec{f}(t,\vec{\tilde{Y}}) ~~~~\text{mit} \vec{}(t_0) = \vec{\tilde{Y}}_0\,. \label{eq:solman_matlabdgl02}
+	\end{align}
+Diese kann man aber problemlos in ein System 1. Ordnung gemäß \eqref{eq:solman_matlabdgl01} überführen. Wir wollen das für ein DGL-System für 3 Koordinaten $(\tilde{Y}_1, \tilde{Y}_2, \tilde{Y}_3)$ zeugen.
+Wir schreiben dazu:
+\begin{align}
+	Y_1 &= \tilde{Y}_1,~~~~ &Y_2 = \D \tilde{Y}_1 / \D t \nonumber \\
+	Y_3 &= \tilde{Y}_2,~~~~ &Y_4 = \D \tilde{Y}_4 / \D t  \label{eq:solman_matlabdgl03} \\
+	Y_5 &= \tilde{Y}_3,~~~~ &Y_6 = \D \tilde{Y}_6 / \D t \nonumber \,.
+\end{align}
+Das äquivalente $2n$-dimensionale DGL-System 1. Ordnung zum $n$-dimensionalen System 2.Ordnung \eqref{eq:solman_matlabdgl02} lautet dann.
+\begin{align}
+	\dot{Y}_1 &= Y_4 = f_1(Y_4)~ , ~~&\dot{Y}_4 = f_4(t, \vec{Y}) \nonumber \\
+	\dot{Y}_2 &= Y_5 = f_2(Y_5)~ , ~~&\dot{Y}_5 = f_5(t, \vec{Y})  \label{eq:solman_matlabdgl04} \\ 
+	\dot{Y}_3 &= Y_6 = f_3(Y_6)~ , ~~&\dot{Y}_6 = f_6(t, \vec{Y}) \nonumber \,.
+\end{align}
+Dieses Verfahren haben wir \zb bei der Berechnung der Wirkungen der Corioliskraft im Kapitel Physik der Bewegung angewendet. Dort wurde die die Funktion $\vec{f}$ mit Parametern versehen und als \textcolor{cyan}{\texttt{CoriolisDGLS(t,Y,Omeg,Cphi,Sphi,G,Eta)}} definiert:
+\begin{lstlisting} [frame=single]
+% Differentialgleichungssystem für Corioliskraft
+function dY = CoriolisDGLS(t,Y,Omeg,Cphi,Sphi,G,Eta)
+  dY    = zeros(6,1);
+  dY(1) = Y(4); dY(2) = Y(5); dY(3) = Y(6);
+  vbet  = sqrt(Y(4)^2+Y(5)^2+Y(6)^2);
+  dY(4) = 2*Omeg*Sphi*Y(5)-Eta*vbet*Y(4);
+  dY(5) = -2*Omeg*Sphi*Y(4)-2*Omeg*Cphi*Y(6)-Eta*vbet*Y(5);
+  dY(6) = 2*Omeg*Cphi*Y(5)-G-Eta*vbet*Y(6);  
+end
+\end{lstlisting} 
+Wir hatten bisher auch implizit angenommen, dass das DGL-System in expliziter Form, \dh in der Form $\D \vec{Y}/\D t = \vec{f}(t,\vec{Y})$ vorliegt. Häufig aber findet man es eher in der Form:
+\begin{equation} 
+    \mathbb{M}(t,\vec{Y}) \dot{\vec{Y}} = f(t,\vec{Y})\,, \label{eq:solman_matlabdgl05}
+\end{equation} 
+worin $\mathbb{M}$ die sogenannte Massen-Matrix ist. %Wir finden eine solche Form \ua in der \probref {bew_Hantelwurf}:
+\begin{align*}
+    \begin{bmatrix}
+          1 & 0  & 0 & 0 & 0 & 0 \\
+          0 & m_1+m_2  & 0 & 0 & 0 & -m_2\,L\sin Y_5 \\
+          0 & 0  & 1 & 0 & 0 & 0 \\
+          0 & 0  & 0 & m_1+m_2 & 0 & m_2\,L\cos Y_5\\
+          0 & 0  & 0 & 0 & 1 & 0 \\
+          0 & -L\sin Y_5  & 0 & L \cos Y_5 & 0 & L^2 \\
+    \end{bmatrix}
+    \begin{bmatrix}
+          \dot{Y}_1 \\
+          \dot{Y}_2 \\
+          \dot{Y}_3 \\
+          \dot{Y}_4 \\
+          \dot{Y}_5 \\
+          \dot{Y}_6 \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+          Y_2 \\
+          m_2\,L\,{Y_6}^2 \cos Y_5 \\
+          Y_4 \\
+          m_2\,L\,{Y_6}^2 \sin Y_5 - (m_1+m_2)\,g\\
+          Y_6 \\
+          -g\,L\cos Y_5\\
+    \end{bmatrix}
+\end{align*} 
+Das System kann also in der Form einer Matrixgleichung gemäß \eqref{eq:solman_matlabdgl05} geschrieben werden. Die weitere Berechnung der Lösung diese DGL-Systems mittels \matlab{} mit dem \texttt{ode45} Solver ist völlig analog mit der beschriebenen Vorgehensweise zur Lösung von Gleichungssystemen der Form \eqref{eq:solman_matlabdgl04}. Lediglich muss hier beim Setzen der Optionen für den \texttt{ode45} Solver mittels \textcolor{cyan}{\texttt{odeset}} die Massenfunktion \textcolor{cyan}{\texttt{'Mass'}}  ($M = \text{Mass}(t,Y,P)$) aufgerufen werden. Dabei wird mit $P$ auch eine Struktur mit dem Parametersatz übergeben.%in unserem Fall $(m_1, m_2, L, g)$.
+\begin{lstlisting} [frame=single]
+opts = odeset('Mass',@(t,Y) Mass(t,Y,P1));
+[t,Y1] = ode45(@(t,Y) f(t,Y,P1),tspan,Y01,opts);
+function M = Mass(t,q,P)
+% Extrahiere Parameter
+m1 = P.m1; m2 = P.m2; L = P.L; g = P.g;
+% Massen-Matrix
+M = zeros(6,6);
+M(1,1) = 1;
+M(2,2) = m1 + m2;
+M(2,6) = -m2*L*sin(q(5));
+M(3,3) = 1;
+M(4,4) = m1 + m2;
+M(4,6) = m2*L*cos(q(5));
+M(5,5) = 1;
+M(6,2) = -L*sin(q(5));
+M(6,4) = L*cos(q(5));
+M(6,6) = L^2;
+end
+% DGL Funktion f
+function dYdt = f(t,Y,P) 
+% Extrahiere Parameter
+m1 = P.m1; m2 = P.m2; L = P.L; g = P.g;
+% DGL
+dYdt = [Y(2)
+        m2*L*Y(6)^2*cos(Y(5))
+        Y(4)
+        m2*L*Y(6)^2*sin(Y(5))-(m1+m2)*g
+        Y(6)
+        -g*L*cos(Y(5))];
+end
+\end{lstlisting} 
+
+\textbf{\textit{Setzen der Optionen für Solver:}} \\
+Unter Berücksichtigung von Optionseinstellungen für den Solver und Parameterübergaben an die Funktionen \textcolor{cyan}{\texttt{dYdt}} lauten die allgemeinen Aufrufe der
+verschiedenen Solver:
+\begin{lstlisting} [frame=single]
+options = odeset(’name1’,wert1,’name2’,wert2,...);
+[t,Y] = solver(@dYdt,tspan,Y0,options,p1,p2,...);
+\end{lstlisting} 
+Die Parameter p1, p2, ... werden an die Funktion dYdt und an alle evtl. in den Optionen
+definierten Funktionen als zusätzliche Argumente übergeben. Eine Struktur \textcolor{cyan}{\texttt{options}} mit Standardvorbelegungen
+wird durch das Kommando \textcolor{cyan}{\texttt{odeset}} erzeugt, damit wird das Verhalten der Solver gesteuert. Folgende Werte können gesetzt werden.
+
+\begin{table}%
+\caption{Auswahl von Werten (Standardwerten) für das Setzen von Optionen mit \textcolor{cyan}{\texttt{odeset}}.}
+\smallskip
+\begin{tabular}{|L{4cm}|L{6cm}|}
+\hline\noalign{\smallskip}
+Optionsparameter  & Wert  \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\rule{0pt}{6pt} AbsTol &[ positive scalar or vector \textcolor{red}{(1e-6)} ] \\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} RelTol &[ positive scalar \textcolor{red}{(1e-3)} ]\\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} Mass &[ matrix | function\_handle ]\\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} Events &[ function\_handle ] \\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} MassSingular &[ yes | no | \textcolor{red}{(maybe)} ]\\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} Events &[ function\_handle ] \\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} Jacobian &[ matrix | function\_handle]\\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} NormControl &[ on | \textcolor{red}{(off)} ]\\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} Events &[ function\_handle ] \\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} NonNegative &[ vector of integers ]\\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} Events &[ function\_handle ] \\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} InitialStep &[ positive scalar ]\\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} MaxStep &[ positive scalar ]\\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} OutputFcn &[ function\_handle ]\\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} OutputSel &[ vector of integers ] \\
+\hline\noalign{\smallskip}
+\rule{0pt}{6pt} InitialSlope &[ vector ] \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{tabular} \label{tab:solman_matlab_odeset}
+\end{table}
+In eckigen Klammern werden die möglichen Werte \bzw rot in runden Klammern die
+Standardwerte angezeigt. Die genauere Bedeutung der einzelnen Parameter der Options-Struktur wird in den einzelnen \mscren erläutert und auch ersichtlich. Im Allgemeinen braucht man nur wenige Optionen zu verändern und kann vielfach mit Standardwerten arbeiten. Für weitere Details verweisen wir auf das Hilfemenü von \matlab{}. \\
+
+\textbf{\textit{Event}-Behandlung:} \\
+In vielen technischen Systemen spielen Schaltvorgänge oder Unstetigkeiten
+eine wichtige Rolle. Typische Beispiele sind Haftreibungsvorgänge, Stoßvorgänge oder 
+das Verschwinden von Zwangskräften (siehe Kap. Physik der Bewegung).
+Die numerischen Integrationsverfahren dürfen über solche
+Unstetigkeitsstellen nicht einfach hinwegintegrieren. Die Solver in \matlab{}
+sind zu diesem Zweck mit Mechanismen zur Detektion solcher Unstetigkeiten, so
+genannter \textit{Events}, ausgestattet. Die Solver sind in der Lage, während der Integration
+die Schrittweite so anzupassen, dass die Nullstellen einer Event-Funktion exakt mit einem Integrationsschritt
+getroffen werden. Wenn die Nullstelle erreicht wird, kann die Integration
+entweder ganz normal fortgesetzt oder angehalten werden. Die Option \textcolor{cyan}{\texttt{events}} wird
+benutzt, um die Funktion anzugeben, deren Nullstellen detektiert werden sollen. Die
+Funktion muss die folgende Form besitzen:
+\begin{lstlisting} [frame=single]
+function [value,isterminal,direction] = ereignis(t,Y,p1,p2,...)
+\end{lstlisting} 
+Die Funktion \textit{Event} wird mit dem aktuellen Zeitpunkt t, dem Zustandsvektor Y und
+evtl. weiteren Parametern p1, p2, ... aufgerufen. Die Rückgabewerte haben die folgende
+Bedeutung:
+\begin{itemize}
+	\item \textcolor{cyan}{\texttt{value}} ist ein Vektor, dessen Nulldurchgänge vom Solver überwacht werden. Das Element \textcolor{cyan}{\texttt{value(i)}} wird als i-tes Ereignis bezeichnet.
+	\item \textcolor{cyan}{\texttt{isterminal(i)=1}} bedeutet, dass bei einem Nulldurchgang von \textcolor{cyan}{\texttt{value(i)}}= die numerische
+Integration zu beenden ist. Wenn \textcolor{cyan}{\texttt{isterminal(i)=0}} ist, wird die Integration fortgesetzt.
+	\item \textcolor{cyan}{\texttt{direction(i)=0}} heißt, dass alle Nulldurchgänge von \textcolor{cyan}{\texttt{value(i)}} zu detektieren
+sind; bei \textcolor{cyan}{\texttt{direction(i)=1}} werden nur Nulldurchgänge negativ zu positiv bzw.
+bei \textcolor{cyan}{\texttt{direction(i)=-1}} nur Nulldurchgänge von positiv zu negativ detektiert.
+\end{itemize}
+Die Überwachung von Ereignissen wird durch die Option \textcolor{cyan}{\texttt{events}} aktiviert:
+\begin{lstlisting} [frame=single]
+options = odeset(’Events’, @ereignis);
+\end{lstlisting} 
+Durch die Verwendung der Option \textcolor{cyan}{\texttt{events}} gibt der Solver weitere Rückgabewerte aus:
+\begin{lstlisting} [frame=single]
+[t,Y,TE,YE,IE] = solver(@dYdt,tspan,Y0,options,p1,p2,...);
+\end{lstlisting} 
+Im Spaltenvektor TE werden die Zeitpunkte des Auftretens eines Events aus der Funktion
+\textcolor{cyan}{\texttt{Ereignis}} zurückgegeben. Die Zeilen von YE enthalten den Lösungsvektor zu diesen
+Event-Zeitpunkten. Die Werte in IE geben den Index des Elements \textcolor{cyan}{\texttt{value(IE)}} der
+Ereignisfunktion an, bei der ein Nulldurchgang stattfand.\\
+
+\textbf{Feste Ausgabeschrittweite der Solver:} \\
+Der Solver \textcolor{cyan}{\texttt{ode45}} arbeitet mit einem verbesserten Runge-Kutta-Verfahren, mit dem die Schrittweite gesteuert werden.
+Wegen dieser automatischen Schrittweitensteuerung legt textcolor{cyan}{\texttt{ODE45}} selbst fest, in wie viele Zeitschritte das vorgegebene Zeitintervall unterteilt wird. 
+Die Zeitschritte sind im Allgemeinen nicht mehr äquidistant, deshalb ist die Matrix der Ergebnisse Y immer im Zusammenhang mit dem Ergebnisvektor
+t zu sehen. Die Länge des Ergebnisvektors kann gegebenenfalls mit der \matlab-Funktion \textcolor{cyan}{\texttt{length}} erfragt werden. Häufig braucht man aber doch äquidistante Ausgabewerte. Hier gibt es zwei Möglichkeiten.\\
+\begin{itemize}
+	\item \textcolor{cyan}{\texttt{odeset}} ohne Eventfunktion:\\
+                In diesem Fall kann man durch explizite Angabe der Range in äquidistanter Form eine äquidistante Ausgabe für Y erzwingen.
+\begin{lstlisting} [frame=single]
+Y0 = [100,0]
+tspan = linspace(1,5,101)
+opt=odeset('AbsTol',1.e-9,'RelTol',1.e-7);           
+[t,Y]=ode45(@DGL,tspan,Y0,opt); 
+plot(t,Y(:,1)); %t, hat äquidistante Elemente
+function dY = DGL(t,Y)
+g  = 9.81;  
+dY = [Y(2); -g];
+end
+\end{lstlisting} 
+
+	 \item \textcolor{cyan}{\texttt{odeset}} mit Eventfunktion:\\
+                Das gerade beschriebene Verfahren funktioniert in diesem Fall wegen der Event bezogenen Schrittsteuerung nicht.
+                Hier hilft nur, möglichst viele Ausgabewerte zu berechnen und dann zu interpolieren.
+                Wir haben dies \zb in \mlbewref{MurphysLaw.m} ausgeführt und geben hier das Listing an:
+\begin{lstlisting} [frame=single]
+options1=odeset('AbsTol',1.e-9,'RelTol',1.e-7,'events',@MyEvent1);
+[t,Y,TE,YE,IE]=ode45(@dgl_Brett1,tspan,AB,options1,P1); 
+% t,Y sind nicht äquidistant
+% interpolieren, um äquidistante intervalle für den ode output zu erhalten
+Yeq=interp1(t,Y,tspan); % Yeq ist nun äquidistanter
+\end{lstlisting} 
+
+\end{itemize}
+
+\subsection{Differential-Algebraische Gleichungen (DAE)} \label{kap:solman_matlab_DAE}
+
+Häufig lassen sich DGLen der Mechanik durch eine Differentialgleichung
+mit Masse-Matrix gemäß Gleichung \eqref{eq:solman_matlabdgl05} darstellen.
+In der zeit- und zustandsabhängigen Masse-Matrix $\mathbb{M}$sind typischerweise Massen und
+Trägheitsmomente des Systems enthalten. Wenn die Masse-Matrix nicht
+singulär\index{Matrix!nicht-singuläre} ist (siehe die \onlineZ), kann die Gleichung umgeformt werden und es existiert
+eine Lösung für alle Anfangsbedingungen $t_0$ und $\vec{Y}_0$.
+Bei nicht singulärer Masse-Matrix sind alle Solver in der Lage, ein System gemäß Gleichung
+\eqref{eq:solman_matlabdgl05} zu lösen. 
+
+Bei singulärer Matrix\index{Matrix!singuläre} $\mathbb{M}(t,\vec{Y})$ stellt Gleichung \eqref{eq:solman_matlabdgl05}
+eine differential-algebraische Gleichung (DAE)\index{Differential-Algebraisches System}  dar, die nur dann eine Lösung besitzt, wenn der Anfangswert
+$\vec{Y}_0$ konsistent mit der DAE ist. Das bedeutet, es muss eine Anfangssteilheit
+$\D \vec{Y}_0 / \D t$ existieren, so dass 
+	\[\mathbb{M}(t,\vec{Y}_0) \D \vec{Y} / \D t |t_0 = f(t_0, )
+	\]
+ist. Bei nicht konsistenter Anfangsbedingung versucht der Solver in deren Nähe eine konsistente zu finden
+und das Problem mit diesen neuen Anfangswerten zu lösen. DAEs können nur mit
+den Solvern \textcolor{cyan}{\texttt{ode15s}} und \textcolor{cyan}{\texttt{ode23t}} behandelt werden. Der Solver \textcolor{cyan}{\texttt{ode23s}} kann nur
+DAEs mit konstanter Masse-Matrix lösen. In der Option \textcolor{cyan}{\texttt{Mass}} muss entweder eine
+konstante Matrix oder ein Zeiger auf eine Funktion zur Ermittlung der Masse-Matrix
+enthalten sein.\\
+Ein nicht-getriebenes Pendel der Länge L mit Reibung $F_\text{R}$ soll als Beispiel für eine Differentialgleichung
+mit Masse-Matrix dienen und wird in die Form \eqref{eq:solman_matlabdgl05} gebracht. Zusätzlich wird
+angenommen, dass die Masse $m$ des Pendels mit der Zeit exponentiell abnimmt und
+das Pendel nicht angetrieben wird. 
+Als Differentialgleichungssystem mit Masse-Matrix ergibt sich:
+\begin{align}
+\dot{Y}_1 &= Y_2 ~~,~~m(t) \dot{Y}_1 = -m(t)\frac{g}{L}\sin{Y_1} - \frac{2\,F_\text{R}}{\pi L}\sin{Y_1} \arctan{10 Y_2} \, \label{eq:solman_matlabdgl07} \\
+\rightarrow \mathbb{M}(t,\vec{Y}) &=  \begin{pmatrix}
+        1 & 0 \\
+        0 & m(t) 
+        \end{pmatrix} \,.\label{eq:solman_matlabdgl08}
+\end{align}
+Die Funktion \textcolor{cyan}{\texttt{Ydot\_pendelmass}} repräsentiert die rechten Seiten der Gleichungen in \eqref{eq:solman_matlabdgl07}.
+\begin{lstlisting} [frame=single]
+% DAE Pendel
+% Daten, Anfangswerte, Zeitspanne, Optionen
+L = 5; m0 = 30; g = 9.81; FR = 4; T = 15;
+Y0 = [15/360*2*pi; 0];
+tspan = [0 20]; 
+%Damit der Solver die Masse-Matrix verwenden kann, muss sie ueber die Option Mass auf
+%@mass gesetzt werden. Die Loesung erfolgt mit Solver ode15s 
+options = odeset('Mass', @mass);
+[t Y] = ode15s(@Ydot_pendelmass,tspan,Y0,options,L,m0,g,FR,T);
+%-----------------------------------------------
+% Ydot_pendelmass, DGL
+function Ydot = Ydot_pendelmass(t,Y,L,m0,g,FR,T)
+  m = m0*exp(-t/T);
+  Ydot = [Y(2); -m*g/L*sin(Y(1)) - FR*2/pi*atan(10*Y(2))/L];
+end
+%-----------------------------------------------
+% mass.m
+% Berechnung der Masse-Matrix wird in der Funktion mass
+% realisiert. Daten des Pendels als Parameter vom Solver uebergeben.
+function M = mass(t,Y,L,m0,g,FR,T)
+  M = [1 0; 0 m0*exp(-t/T)];
+end
+\end{lstlisting} 
+
+\begin{lstlisting} [frame=single]
+% Ausgabe
+figure()
+plot (t,Y(:,1));
+hold on
+plot (t,Y(:,2));
+figure()
+plot (t,m0*exp(-t/T));
+\end{lstlisting} 
+Als Lösung für $\varphi(t)=$Y(:,1) und $\dot{\varphi}(t)=$Y(:,2) über die Zeitspanne von 20 s ergibt sich der in \figref{solman_matlab_DAE}a dargestellte Verlauf.
+In \figref{solman_matlab_DAE}b ist der zugehörige Masseverlauf dargestellt.
+Eine etwas komplexere DAE haben wir im Kapitel Physik der Bewegung von Körpern (Band I) mit dem \mscr \mlbewref{TrebSimDAE.m} behandelt:
+\begin{lstlisting} [frame=single]
+% Runge-Kutta-Verfahren-MATLAB ODE15s
+opts = odeset('Mass',@(t,Y) Mass1(t,Y,P),'RelTol',1e-6);
+[t,Y] = ode15s(@(t,Y) F1(t,Y,P),tv,AB1,opts);
+% -------------------------------------------------------
+% Massen-Matrix für Schleifphase (mit Zwangsbedingung)
+function M = Mass1(t,q,P)
+% Parameter extrahieren
+JG  = P.JG; JW  = P.JW; JbW = P.JbW; JBG = P.JBG;
+J0  = P.J0; b   = P.b; lW  = P.lW;
+% Massen-Matrix aufstellen
+M = zeros(7,7);
+M(1,1) = 1; M(2,2) = J0; M(3,3) = 1; 
+M(4,4) = JG; M(5,5) = 1; M(6,6) = JW; 
+M(2,4) = +JBG*cos(q(1)-q(3)); M(4,2) = M(2,4);
+M(2,6) = -JbW*cos(q(1)-q(5)); M(6,2) = M(2,6);
+M(7,2) = -b*cos(q(1)); M(7,6) = lW*cos(q(5));
+M(2,7) = M(7,2); M(6,7) = M(7,6);
+end
+% -------------------------------------------------------
+% DGL Funktion
+function dYdt = F1(t,Y,P)
+% Parameter extrahieren
+LG  = P.LG;  lW  = P.lW;  MG  = P.MG; mW  = P.mW; 
+JBG = P.JBG; JbW = P.JbW; g   = P.g;   U0  = P.U0; b   = P.b; 
+% DGL
+dYdt = [Y(2);
+ -JBG*Y(4)^2*sin(Y(1)-Y(3))+JbW*Y(6)^2*sin(Y(1)-Y(5))-U0*cos(Y(1));
+ Y(4); 
+ +JBG*Y(2)^2*sin(Y(1)-Y(3)) - MG*LG*g*cos(Y(3));
+ Y(6);
+ -JbW*Y(2)^2*sin(Y(1)-Y(5)) - mW*lW*g*cos(Y(5));
+ -b*Y(2)^2*sin(Y(1)) + lW*Y(6)^2*sin(Y(5))];
+end
+\end{lstlisting} 
+
+\begin{figure}[!htpb]
+\includegraphics[width=\textwidth]{ExampleDAE.pdf}
+\caption[Ergebnisfenster des \matlab-Programms für DAE-Berechnung.]{Ergebnisfenster des \matlab-Programms für DAE-Berechnung \eqref{eq:solman_matlabdgl07}.}\label{abb:solman_matlab_DAE}
+\end{figure}
+
+\subsection{Differentialgleichung mit Delay-Zeiten (DDE)} \label{kap:solman_matlab_DDE}
+
+\newpage
+\subsection{Partielle Differentialgleichungen (PDE)} \label{kap:solman_matlab_PDG}
+
+In Anlehnung an die \matlab-Onlinehilfe unter
+\url{https://de.mathworks.com/help/matlab/math/partial-differential-equations.html}
+sei hier ein einfaches Beispiel der Wärmeleitungsgleichung 
+\begin{align}
+  \frac{\partial u}{\partial t} = 0.1\cdot\frac{\partial^2 u}{\partial x^2}
+\end{align}
+angegeben. Es handelt sich um eine parabolische Differentialgleichung, die die örtliche und zeitliche Änderung der Temperatur $u(x,t)$ wiedergibt.
+Dies mag ein eindimensional modellierter Stab sein, dessen Temperatur auf halben Niveau startet und dessen Enden hoher \bzw niedriger Temperatur ausgesetzt werden.
+Für die \matlab-Simulation sind die Angabe von (örtlichen) Randbedingungen $u(0,t) = 0$ und $u(1,t) = 1$
+\begin{lstlisting} [frame=single]
+function [pl,ql,pr,qr] = WlgRandbedingungen(xl,ul,xr,ur,t)
+  pl = ul;
+  ql = 0;
+  pr = ur - 1;
+  qr = 0;
+end
+\end{lstlisting} 
+sowie der (zeitlichen) Anfangsbedingung $u(x,0)=0.5$
+\begin{lstlisting} [frame=single]
+function u0 = WlgAnfangswerte(x)
+  u0 = 0.5;
+end
+\end{lstlisting} 
+erforderlich. Ebenso wie die Definition der PDE (mit diversen Anpassungsfaktoren $c,s$ für allgemeinere Problemklassen)
+\begin{lstlisting} [frame=single]
+function [c,f,s] = WlgPDE(x,t,u,dudx)
+  c = 1;
+  f = 0.1*dudx;
+  s = 0;
+end
+\end{lstlisting} 
+erfolgt dies in jeweils eigenen Funktions-Skripten. Der Aufruf des eigentlichen PDE-Solvers \mlcmd{pdepe} erfolgt mit
+\begin{lstlisting} [frame=single]
+% PDG Solver
+x = linspace(0,1,200);
+t = linspace(0,1,200);
+u = pdepe(0,@WlgPDE,@WlgAnfangswerte,@WlgRandbedingungen,x,t)';
+colormap hot
+imagesc(t,x,u)
+colorbar
+xlabel('t')
+ylabel('x')
+\end{lstlisting} 
+und liefert den örtlichen und zeitlichen Temperaturverlauf für $0\le x\le 1$ und $0\le t \le 1$, siehe Abb. \ref{abb:solman_matlab_PDE}.
+\begin{figure}[!htpb]
+ \includegraphics[width=\textwidth]{WlgPDGL.pdf}
+ \caption[Ergebnisfenster des \matlab-Programms für PDE-Berechnung.]{Ergebnisfenster des \matlab-Programms für PDE-Berechnung.}
+\end{figure}
+
+%%%%%%%
+
+\newpage
+\section{Symbolische Berechnung}\label{kap:solman_matlab_symb}
+\matlab{} kann symbolische Rechnungen durchführen. Geben Sie \texttt{help symbolic}  in die Befehlszeile ein,
+Eine Liste der verfügbaren Funktionen wird angezeigt, wenn die Symbolic Math Toolbox mit der Version von \matlab{} verfügbar ist. Ein einfaches Beispiel für eine symbolische Operation ist das Plotten der Funktion $y = 2 t \sin(t/2/\pi)$. Dies wird durch Eingabe der folgenden Zeilen erreicht: \\
+\begin{lstlisting} [frame=single]
+>> syms t a
+>> a = 2
+>> y=2*t
+y=2*sqrt(t/a)*sin(t/2)
+ezplot(t,y)
+\end{lstlisting} 
+Ein weiteres Beispiel ist das Plotten der Funktion $y = 2 t^2 \e^{ -a t^2}$ und ihrer Ableitung. Dies wird in einem \mscr wie folgt realisiert:\\
+\begin{lstlisting} [frame=single]
+syms t y f a
+y=2*t^2*exp(-a*t^2)
+f=diff(y,t)
+f = 4*t*exp(-a*t^2) - 4*a*t^3*exp(-a*t^2)  % Ergebnis
+a=0.5000;
+ezplot(t,eval(y),[-5 5])
+hold on
+ezplot(t,eval(f),[-5 5])
+\end{lstlisting} 
+Das Ergebnis ist in \figref{solman_matlab_symb} zu sehen. Weitere Beispiele für symbolische Berechnungen sind in den \matlab-Lehrbüchern \cite{Schweizer2016, Attaway2013} oder im Hilfemenü von \matlab{} verfügbar.
+\begin{figure}[!htpb]
+\includegraphics[width=\textwidth]{MatLabSymbolic.pdf}
+\caption[Ergebnisfenster des \matlab-Programms für symbolische Berechnung.]{Ergebnisfenster des \matlab-Programms für eine symbolische Berechnung.}\label{abb:solman_matlab_symb}
+\end{figure}
+
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\section{Toolboxen}
+Auch wenn es aus methodisch-didaktischer Sicht sinnvoll erscheint, sich seine eigenen Funktionsbibliotheken zu erstellen, muss das Rad nicht immer neu erfunden werden.
+Die Basis-Fähigkeiten von \matlab{} können nämlich durch die Verwendung von vorkonfigurierten Toolboxen signifikant erweitert werden. Diese kuratierten Toolboxen müssen separat installiert werden. Toolboxen sind Bibliotheken von Skripten, die von der Firma Mathworks und Kooperationspartnern (\url{http://www.mathworks.com}) erstellt wurden, um bestimmte Problemgruppen zu lösen. Derzeit sind \ua folgende Toolboxen verfügbar, die für die Anwendungen in diesem Buch und in der CP relevant sind:
+\begin{itemize}
+	\item Symbolic Math Toolbox
+	\item Mapping Toolbox
+	\item Partial Differential Equation Toolbox
+	\item Statistics and Machine Learning Toolbox
+	\item Curve Fitting Toolbox
+	\item Optimization Toolbox
+	\item Image Processing Toolbox
+	\item Verschiedene Toolboxen zur Physikalische Modellierung
+\end{itemize}
+Ausführlichere Informationen zu diesen Toolboxen erhalten Sie unter \url{http://www.mathworks.com}.
+Das Kommando \mlcmd{ver} listet zudem alle installierten Toolboxen und deren Versionsnummern auf.
+
+\chapter{Verzeichnis der \mscre} \label{kap:solman_matlablist}
+
+\input{bew/bew_matlabskripts} 
+\clearpage
+\input{kontmech/kontmech_matlabskripts} 
+\clearpage
+\input{hm/hm_matlabskripts} 
+\clearpage
+\input{adyn/adyn_matlabskripts} 
+\clearpage
+
+
+%\input{footer.tex}
+
+

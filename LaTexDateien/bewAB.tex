@@ -1,0 +1,37 @@
+%\input{header.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addtocontents{toc}{\protect\setcounter{tocdepth}{3}}% alles zeigen für Workbook
+%\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}% nichts zeigen für Arbeitsbuch
+
+\chapter{Physik der Bewegung von Körpern}\label{chap:bew}
+\def\chapname{bew}
+\bibliographystyle{spphys}
+%\begin{bibunit}[spphys]
+\input{bew/bew_motivation}
+\clearpage
+\input{bew/bew_massepunkt}
+\clearpage
+\input{bew/bew_anwendungen_I}
+\clearpage
+\input{bew/bew_starrerkoerper}
+\clearpage
+\input{bew/bew_anwendungen_II}
+\clearpage
+%\clearpage
+%\input{bew/bew_tabellen}
+\renewcommand\glslongextraNameAlign{p{36mm}}
+\renewcommand\glslongextraDescAlign{p{60mm}}
+\clearpage
+\bgroup
+\small
+\printunsrtglossary[type=bew]
+\egroup
+\clearpage
+\fancyhead[RE]{\nouppercase\rightmark}
+\begingroup
+\let\cleardoublepage\relax
+\bibliography{referenzen}
+\endgroup
+\fancyhead[RE]{\nouppercase\leftmark}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\input{footer.tex}

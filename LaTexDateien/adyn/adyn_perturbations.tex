@@ -1,0 +1,377 @@
+\section{Start aus der Erdatmosphäre und Wiedereintritt}\label{kap:adyn_launch_reentry}
+
+\subsection{Kräfte im erdnahen Weltall}\label{kap:adyn_forces}
+
+Zum Abschluss der Astrodynamik wollen wir uns mit Situationen beschäftigen, in denen neben der Gravitationskraft weitere Kräfte eine Rolle spielen. Das ist insbesondere bei Starts von der Erdoberfläche, Bahnen in niedriger Höhe und natürlich beim Wiedereintritt in die Erdatmosphäre der Fall. \\
+In den meisten Fällen wird man die Bewegungsgleichung nur numerisch integrieren können, wir wollen aber in einigen Fällen auch Näherungsformeln angeben. \\
+Zunächst untersuchen wir die zur Gravitation der Erde (die als Zentralkraft angenommen wird) zusätzlich auftretenden Kräfte, um dann die jeweiligen relevanten Kräfte bei der Berechnung von Start, Wiedereintritt in die Erdatmosphäre \bzw in Flug in niedrigen Orbits zu berücksichtigen. 
+
+\subsubsection{Atmosphärische Reibung \index{Drag}\index{Reibung!atmosphärische}}\label{kap:adyn_drag}
+
+Die atmosphärische Reibung stellt die größte nicht-gravitative Störung für Satelliten und Raumsonden bei Start und Wiedereintritt sowie Flügen in extrem geringen Flughöhen dar. Die genaue Modellierung der atmosphärischen Reibung ist aber nicht ganz einfach, da \ia die Eigenschaften der Atmosphäre in den verschiedenen Höhenbereichen nicht ausreichend genau bekannt sind und auch die genaue Wechselwirkung der atmosphärischen Teilchen mit der Form und Oberfläche des Raumschiffs stark variiert. \\
+Wir werden deshalb auf das uns aus Band I bereits bekannte einfache Kraftmodell der Newtonschen Reibung zurückgreifen. 
+Nach diesem beschreiben wir die atmosphärische Reibung (Englisch \textit{\gls{drag}}\index{Drag|textbf}) mit:
+\begin{align}
+    \vec{F}_\text{D} = -\frac{1}{2}\,c_\text{D}\,A\,\varrho\,v_\text{R}{}\,\dot{\vec{r}}\,. \label{eq:adyn_forces01}
+\end{align}
+Hierin ist $c_\text{D}$ der atmosphärische Reibungskoeffizient, der typischerweise im Bereich von $\SI{1.5}{}\ldots\SI{3.0}{}$ liegt, $A$ die effektive Querschnittsfläche des Raumschiffs, $\varrho$ die (höhenabhängige) Dichte der Atmosphäre und $v_\text{R}$ der Betrag des momentanen Geschwindigkeitsvektors~$\dot{\vec{r}}$. Für die Dichte werden in der Astrodynamik verschiedene Modelle verwendet, im einfachsten Fall kann $\varrho$ nach der barometrischen Höhenformel \index{Höhenformel!barometrische|textbf} mit 
+\begin{align}
+    \varrho = \varrho_0\,\e^{-\frac{h}{H_0}} \label{eq:adyn_barom_h_fomulae}
+\end{align}
+angegeben werden,
+worin $H_0$ und $\varrho_0$ für die Standardatmosphäre \cite{ISA1976} durch
+\begin{align}
+    H_0= \frac{R\,T}{\tilde{M}_\text{L}\,g} = \SI{6.7}{\km}~~~\text{und}~~~\varrho_0 = \SI{1.752}{\kg\per\metre\cubed} \label{eq:adyn_barom_h_fomulae_zusatz}
+\end{align}
+gegeben sind. 
+$R$ ist die universelle Gaskonstante $R= \SI{8.314}{\joule\per\K\per\mole}$, $T$ die gegebenenfalls höhenabhängige absolute Temperatur und $\tilde{M}_\text{L}$ ist die (mittlere) molare Masse der Luft $\tilde{M}_\text{L}=\SI{28.9e-3}{\kg\per\mole}$. Letztlich wird die Dichte noch von Faktoren wie der Einstrahlung der Sonne (die eine halbtägliche Variation der Dichte bewirkt) und auch geomagnetischen Einflüssen abhängen, die Teilchendichte und -zusammensetzung beeinflussen.\footnote{Ein in der Astrodynamik weit verbreitetes Modell ist das Harris-Priester-Modell, das aber über den Umfang und Anspruch dieses Buches hinausgeht. Wir verweisen auf die weiterführende Literatur \cite{Walter2018, Montenbruck2012}.} 
+Wir werden für unsere grobe Abschätzung \ia mit der barometrischen Höhenformel oder der tabellierten Standardatmosphäre (US Standard Atmosphere Table \cite{ISA1976}) arbeiten, was für unsere Zwecke meist ausreichend ist.
+Es sei noch darauf hingewiesen, dass die Atmosphäre neben dem Drag auch noch einen Auftrieb bewirken kann, den wir beim Wiedereintritt zu berücksichtigen haben, sonst aber vernachlässigen werden. 
+
+\subsubsection{Strahlungsdruck \index{Strahlungsdruck}} \label{kap:adyn_strahlungsdruck}
+
+Der Strahlungsdruck ist eine weitere Störkraft. Sie wird hervorgerufen durch den Druck, den ein Strahl von Photonen auf einen Körper ausübt, wenn dieser auf die Oberfläche des Körpers trifft. Wir werden diese in der Elektrodynamik herleiten, hier geben wir nur die für die Astrodynamik relevante Beziehung an:
+\begin{align}
+    F_\text{Rad} = \frac{s_0}{c}\,\lk\frac{\au}{d}\rk^2 \label{eq:adyn_forces04}
+\end{align}
+mit $s_0 = \hat{s}_0\,\lek 1+0.034\,\cos\lk\frac{360\,n}{365.25}\rk\rek$ und $\hat{s}_0 = \SI{1376.6}{\W\per\square\metre}$ (Solarkonstante). Dabei sind $n$ die Nummer des Tages eines Jahres, $d$ der Abstand der Raumsonde zur Sonne und $\au$ wie üblich die astronomische Einheit.\\
+Die tatsächlich auf ein Raumschiff ausgeübte Kraft des Strahlungsdrucks hängt von weiteren Faktoren ab, \zb der tatsächlichen Geometrie des Raumschiffs, der  Abschattung der Sonne durch andere Himmelskörper \ua Wir werden den Strahlungsdruck im weiteren nicht berücksichtigen, er ist bei Start und Wiedereintritt \ia gegen den Drag zu vernachlässigen, muss aber bei HEO-Satelliten und im interplanetaren Raumflug\footnote{Der Strahlungsdruck kann besonders im interplanetaren Raum auch zum Antrieb benutzt werden. Dazu werden Raumschiffe mit sogenannte Sonnensegeln, die die Solarstrahlung zum Antrieb des Raumschiffs nutzen, ausgestattet. In \cite{Bailer2021} wird die japanische Mission IKAROS behandelt, die mit einem solchen Antrieb im interplanetaren Raum unterwegs ist.} unbedingt berücksichtigt werden. 
+
+\subsubsection{Gravitative Störungen} \label{kap:adyn_gravity_pertubations}
+Neben Drag und Strahlungsdruck gibt es auch Störungen, die durch das nicht vollständig sphärische Gravitationsfeld hervorgerufen werden. Solchen Störungen werden durch die Abweichung der Form der Erde von einer idealen Kugel oder vom Gravitationseinfluss anderer Planeten und Monde hervorgerufen. Wir sind diesen Kräften bereits mehrfach begegnet. Im Kapitel 1.5.6 in Band I hatten wir bei der Behandlung der Präzession der Erde und in diesem Band im \kap{Periheldrehung} bei der Perihelverschiebung des Merkurs bereits solche Störungen berücksichtigt. \\
+Die allgemeine Vorgehensweise zur Berechnung solcher Störungen mit Hilfe der Potential\-theorie hatten wir ausführlich bei der Theorie der Gezeiten in \kap{hm_gezeiten_Laplace} behandelt. Wir haben das reale, von der sphärischen Symmetrie abweichende Gravitationspotential $U\lk \vec{r} \rk  = U(r,\, \phi,\,\lambda)$ nach \eqref{eq:hm_pot_theo07a} durch eine Entwicklung nach Kugelflächenfunktionen\index{Kugelflächenfunktionen} des Winkels der geozentrischen Breite $\phi$ beschrieben. Der Einfachheit halber haben wir Rotationssymmetrie angenommen (also keine Abhängigkeit von der Länge $\lambda$) und brauchen deshalb nur die Entwicklung nach $\phi$ zu betrachten. In \eqref{eq:hm_pot_theo07a} hatten wir den Winkel~$\theta$ verwendet und deshalb bei den Legendre-Polynomen\index{Legendre-Polynome} $\PL n(\,\cos\theta)$ geschrieben.  Hier aber benutzen wir die geozentrische Breite $\phi=\frac{\pi}{2}-\theta$ , so dass sich ergibt: 
+\begin{align}
+    \frac{1}{m}\,U\lk r,\phi\rk =-\frac{M\,G}{r}\,\lk 1-\sum\limits_{n-2}^\infty\,J_n\,\lk\frac{R_0}{r}\rk^n\,\PL n\,\lk\sin\phi\rk\rk \,.\label{eq:adyn_forces05} 
+\end{align}
+Die Störterme $J_n$ in \eqref{eq:adyn_forces05} bestimmen sich aus der Form und Masseverteilung der Planeten und werden oft auch als zonale Harmonische\index{Harmonische!zonale} bezeichnet. Nehmen wir die für die meisten Himmelskörper gültige Näherung eines oblaten Rotationsellipsoids an, gilt:
+\begin{align*}
+    J_2 \gg J_n ~~~~ \forall\, n>2\,.
+\end{align*}
+Für die Erde gilt beispielsweise $ |J_2| = \SI{1.08e-3}{} \: \gg \:|J_4| = \SI{1.62e-6}{}$, 
+so dass es für unsere Zwecke genügt, nur $J_2$ bei der Berechnung von \eqref{eq:adyn_forces05} zu berücksichtigen. 
+Bei der Behandlung der Gezeiten in \kap{hm_gezeiten} hatten wir auch gesehen, dass das Potential der Gezeitenkräfte eine ähnliche mathematische Struktur aufweist, wie das Potential welches durch einen Rotationsellipsoiden erzeugt wird. Wir können daher annehmen, dass die Gezeitenkräfte von Sonne und Mond ähnliche Störwirkungen auf einen Erdorbit eines Satelliten hervorrufen, wie die Störungen, die von der abgeplatteten Form der Erde herrühren. \\
+Tabelle \ref{tab:adyn_forces01} zeigt die relativen Größenverhältnisse der einzelnen Störungen für eine Bahn $h=\SI{400}{\km}$ (ISS) und eine Bahn $h\approx\SI{40000}{\km}$ (GEO-Satellit).\\
+Die Frage ist nun, wie die einzelnen Störbeschleunigungen wirken. Da der Drag immer entgegen der Bewegungsrichtung wirkt, führt er zu einer Geschwindigkeitsänderung und somit auch einer Änderung von Halbachse und Elliptizität der Bahn. Die zonalen Harmonischen $J_n$ und auch die Gravitationseinflüsse von Sonne und Mond bewirken eine Drehung der Apsidenlinie \bzw Perigäumsverschiebung (\vgl \kap{Periheldrehung}) und eine Verschiebung des Knotens der Bahn. Abhängig von der Einstrahlcharakteristik der solaren Strahlung kann der Strahlungsdruck sowohl eine Änderung des Bahnradius als auch der Apsidenlinie bewirken.\\
+
+\begin{table}[ht]
+    \begin{center}
+    \begin{tabular}{|C{4cm}|C{3cm}|C{3.0cm}|}
+    \hline
+    \rule{0pt}{3pt}& &  \\
+      $\text{Störung durch}$ & ISS/LEO-Satellit  & GEO-Satellit \\
+    %\rule{0pt}{3pt}& &  \\
+       & $h\approx\SI{500}{\km}$ & $h\approx\SI{40000}{\km}$ \\
+    \rule{0pt}{3pt}& &  \\
+    \hline
+    %\rule{0pt}{3pt}& &   \\
+    \rule{0pt}{6pt} Abplattung Erde $J_2$&$\SI{e-5}{}$ & $\SI{e-8}{}$ \vphantom{$I^{I^I}$} \\
+    %\rule{0pt}{3pt}& &  \\
+    \rule{0pt}{6pt} $\text{Gravitation Mond}$ &$\SI{e-9}{}$ & $\SI{5e-9}{}$ \\
+    %\rule{0pt}{3pt}& &  \\
+    \rule{0pt}{6pt} $\text{Gravitation Sonne}$ &$\SI{5e-10}{}$ & $\SI{2e-9}{}$ \\
+    %\rule{0pt}{3pt}& &  \\
+    \rule{0pt}{6pt} Abplattung Erde $J_4$&$\SI{e-8}{}$ & $\SI{1e-11}{}$ \\
+    %\rule{0pt}{3pt}& &  \\
+    \rule{0pt}{6pt} $\text{Strahlungsdruck}$ &$\SI{5e-8}{}$ & $\SI{5e-8}{}$ \\
+    %\rule{0pt}{3pt}& &  \\
+    \rule{0pt}{6pt} $\text{Drag}$ &$\SI{6e-8}{}$ & $\approx 0$ \\
+    %\rule{0pt}{3pt}& &  \\
+    \hline
+    \end{tabular}    
+    \end{center}
+    \caption{Ungefähre Größenordnungen von Störbeschleunigungen (alle in $\SI{}{\km\per\square\second}$) auf Satelliten in verschiedenen Höhen über der Erde \cite{Montenbruck2012, Walter2018}.}
+    \label{tab:adyn_forces01}
+\end{table}
+\subsection{Raketenstart von der Erde}\label{kap:adyn_launch}
+
+Ein Raketenflug in eine erdnahe Umlaufbahn kann in drei Phasen unterteilt werden:
+\begin{itemize}
+	\item Start und die Schubphase, in der die Rakete mit dem Raumschiff auf eine Geschwindigkeit~$v_\text{f}$ bis zum Übergangspunkt (\gls{Brennschluss}) beschleunigt wird,
+	\item die Bewegung auf einer freien Kepler-Trajektorie bis zum Erreichen des Apogäums,
+	\item den Burn mit $\Delta v$, der das Raumschiff auf die gewünschte Zielumlaufbahn bringt.
+\end{itemize}
+Diese Phasen sind in \figref{adyn_launch01}a dargestellt. Wir weisen bereits hier darauf hin, dass man sich das Problem der Rückkehr eines Raumschiffs zur Erde, insbesondere unter Berücksichtigung der Phase des Wiedereintritts in die Erdatmosphäre, als genau umgekehrt ablaufende Dynamik vorstellen kann (\figref{adyn_launch01}b). Wir werden das im \kap{adyn_reentry} genauer betrachten.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{PhasenStartvonErde.pdf}
+\caption[Phasen eines Raketenflugs vom Start bis in eine Erdumlaufbahn.]{\fa Phasen eines Raketenflugs vom Start auf der Erdoberfläche in eine Erdumlaufbahn. Der Übergangspunkt ist hier durch das Ende der Schubphase definiert. \fb Phasen eines Raketenflugs aus einem Erdorbit bis zur Landung auf der Erdoberfläche. Der Übergangspunkt  ist hier durch den Eintritt in den sogenannten aerodynamischen Bereich (\kap{adyn_reentry}) definiert.}
+\label{abb:adyn_launch01}
+\end{figure}
+
+In \figref{adyn_launch02} sind:
+\begin{center}
+\begin{tabular}{L{2cm}L{10cm}}
+        \rule{0pt}{12pt}$\vec{F}_\text{S}, \vec{F}_\text{D}$, $\vec{F}_\text{A}$ & die Schubkraft, der \index{Drag}\textit{\glslink{drag}{Drag}} \bzw der Auftrieb,  \\
+        \rule{0pt}{12pt}$\alpha$ & der Winkel zwischen Schub $\vec{F}_\text{S}$ und der Geschwindigkeit der Rakete $\vec{v}$, im Englischen \index{Angle of Attack}\textit{\glslink{AngleOfAttack}{Angle of Attack (AoA)}} genannt, \\
+        \rule{0pt}{12pt}$\gamma$ & der Winkel zwischen der Geschwindigkeit $\vec{v}$ und dem lokalen Horizont, im Englischen \index{Flight Path Angle}\textit{\glslink{FlightPathAngle}{Flight Path Angle (FPA)}} $\gamma$ genannt,\\
+         \rule{0pt}{12pt}$h, s$ & die Höhe über der Erdoberfläche \bzw  der zurückgelegte Weg der Sonde.\\
+\end{tabular}
+\end{center}
+
+Wir berechnen nun unter Berücksichtigung der äußeren Kräfte die Aufstiegsbahn einer Rakete. Nach Tabelle \ref{tab:adyn_forces01} müssen wir für die Aufstiegsphase sicher den Drag einrechnen, alle anderen Kräfte können wir im Bereich $R_\text{E} < r < R_\text{E} + h$ mit $h \leq \SI{100 }{\km}$ vernachlässigen. \\
+Um die Bewegungsgleichungen aufzustellen, betrachten wir \figref{adyn_launch02}a. In vektorieller Form lauten diese im Erd-\KOS :
+\begin{align}
+      m_\text{R}(t)\,\ddot{\vec{r}} &= \vec{F}_\text{S} (t) + m_\text{R}(t)\,\vec{g}(\vec{r}) + \vec{F}_\text{D}(\dot{\vec{r}}, \vec{r}) + \vec{F}_\text{A}(\dot{\vec{r}}, \vec{r})  \,. \label{eq:adyn_launch_vec}
+\end{align}
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{RaumflugstartErde.pdf}
+\caption[Kräfte beim Raketenstart von der Erdoberfläche und beim Wiedereintritt.]{Zur Herleitung der Bewegungsgleichungen für den Raketenstart \bzw den Wiedereintritt in die Erdatmosphäre. \fa Kräfte beim Raketenstart von der Erdoberfläche. \fb Kräfte beim Wiedereintritt in die Erdatmosphäre.}
+\label{abb:adyn_launch02}
+\end{figure}
+
+Bei der Planung von realen Raumfahrtmissionen wird man \ia mit bekannten \bzw vorgegebenen  Größen $\vec{F}_\text{S}(t),\, \vec{F}_\text{D}(\dot{\vec{r}}, \vec{r})$ und $\vec{F}_\text{A}(\dot{\vec{r}}, \vec{r})$ die gesuchten Größen $\vec{r}$ und $\vec{v}=\dot{\vec{r}}$ aus \eqref{eq:adyn_launch_vec} numerisch berechnen. 
+
+Wir werden nun ein System von skalaren Bewegungsgleichungen zur mathematischen Behandlung der Aufstiegsphase aus \eqref{eq:adyn_launch_vec} herleiten. 
+Der Aufstiegsbereich wird als relativ klein angenommen, so dass $r, R_\text{E} \gg s,h$ und $R_\text{E}/r \approx 1$.
+Ferner sollen die Kräfte $\vec{F}_\text{D}(\dot{\vec{r}},\vec{r}), \vec{F}_\text{A}(\dot{\vec{r}},\vec{r})$ in der Bahn\-ebene des Raumschiffs liegen. Das erlaubt uns ein Behandlung als zweidimensionales Problem. Wir gehen weiter in ein mit dem Raumschiff mitbewegtes \KOS\ über, dessen $x$-Achsenrichtung mit dem lokalen Horizont zusammenfällt (\figref{adyn_launch02}a). In diesem \KOS\ ergibt sich folgendes System von Bewegungsgleichungen\footnote{Auch hier sei wieder angemerkt, dass das Problem des Wiedereintritts in die Erdatmosphäre als genau umgekehrt ablaufende Dynamik gesehen werden kann, lediglich der Schub wird \ia Null sein. In \figref{adyn_launch02}b sind die wirkenden Kräfte für diesen Fall dargestellt und im \kap{adyn_reentry} werden wir auf die nachfolgenden Rechnungen in diesem Kapitel Bezug nehmen.} für die vier unabhängigen\footnote{In einem zweidimensionalen System gibt es eigentlich nur zwei unabhängige Variablen, für die ein Differentialgleichungssystem 2. Ordnung nach der Zeit gilt. Dieses ist aber einem Differentialgleichungssystem 1. Ordnung nach der Zeit für vier unabhängigen Variablen äquivalent.} Variablen $v$, $\gamma$, $h$, $x$ (\probref{adyn_launch01a}): 
+
+\begin{subequations}
+    \begin{align}
+        \frac{\D v}{\D t} &= \frac{F_\text{S}(t)\,\cos\alpha-F_\text{D}(h,v)}{m_\text{R}} -g(h)\,\sin\gamma\,,\label{eq:adyn_launch01a} \\
+        v\,\frac{\D \gamma}{\D t}&= \frac{F_\text{S}(t)\,\sin\alpha + F_\text{A}(h,v)}{m_\text{R}} - \lk g(h) -\frac{v^2}{R_\text{E} + h}\rk \,\cos\gamma\,, \label{eq:adyn_launch01b}\\
+        \frac{\D r}{\D t} &= \frac{\D h}{\D t} - v\,\sin\gamma\,~~\,~\rightarrow ~~ \frac{\D h}{\D t} \approx v\,\sin\gamma \,,\label{eq:adyn_launch01c} \\
+        \frac{\D s}{\D t} &= \lk \frac{R_\text{E}}{r}\rk\,v\,\cos\gamma\,~~\rightarrow ~~ \frac{\D x}{\D t} \approx \,v\,\cos\gamma\,. \label{eq:adyn_launch01d}
+    \end{align} \label{eq:adyn_launch01}
+\end{subequations} 
+
+Bekannte Parameter in \eqref{eq:adyn_launch01} sind $F_\text{S}\lk t\rk$, $F_\text{D}\lk h\rk$ und $g\lk h\rk$. Der FPA $\gamma$ ist aus folgendem Grund noch explizit zeitabhängig: Raketen starten aus Gründen der strukturellen Stabilität \iA senkrecht von der Erdoberfläche ($\gamma_0 = 90\degree$). Nach einiger Zeit hat die Rakete eine Höhe von $\SI{500}{}\ldots\SI{1000}{\metre}$ erreicht und es erfolgen dann eine oder mehrere sogenannte Nickkorrekturen\index{Nickkorrektur} des FPA um $\Delta \gamma\approx 1\degree\ldots8\degree$, die die Rakete in eine geneigte Bahn übergehen lassen.\\
+Die Bewegungsgleichung \eqref{eq:adyn_launch01a} kann formal integriert werden und ergibt dann mit der Raketen-Gleichung\index{Raketen-Gleichung} \eqref{eq:adyn_rocketequ} für $t=t_\text{f}$ (Zeit zum Übergangspunkt) eine Beziehung für den Betrag der Endgeschwindigkeit: 
+\begin{align}
+    v(t_\text{f}) &= \int\limits_0^t \frac{F_\text{S}}{m_\text{R}}\,\D t' - \underbrace{\int\limits_0^t \frac{F_\text{D}}{m_\text{R}}  \,\D t'}_{\mathrm{Reibungsverlust}} - \underbrace{\int\limits_0^t \frac{F_\text{S}\,(1-\cos\alpha)}{m_\text{R}}  \,\D t'}_{\mathrm{Steuerungsverlust}}  - \underbrace{\int\limits_0^t g\,\sin\gamma \,\D t'}_{\mathrm{Gravitationsverlust}} \nonumber \\
+		&=  v_\text{G}\ln{\frac{m_0}{m_\text{f}}} - \Delta v_\text{D} - \Delta v_\text{S} - \Delta v_\text{G}  \,. \label{eq:adyn_launch07}
+\end{align}
+Hierin ist $v_\text{G}$ die in \kap{adyn_rockets} definierte Austrittsgeschwindigkeit der Treibgase der Rakete und $m_\text{f}$ ist über  $m_\text{f} = m(t_\text{f}) = m_0 - \dot{m}\,t_\text{f}$ gegeben. Diese Gleichung zeigt, dass zusätzlich zum Antriebsbedarf nach der Raketen-Gleichung der Schub noch die Reibungs-, Steuerungs- und Gravitationsverluste kompensieren muss.\footnote{Die Steuerungsverluste durch einen AoA $\neq 0$ sind meist klein gegen die Reibungs- und Gravitationsverluste und können daher meist vernachlässigt werden. Den unterstützenden Effekt der Erdrotation betrachten wir am Ende dieses Kapitels.}\\
+Wir wollen nun \eqref{eq:adyn_launch01} numerisch lösen und werden uns die Rechnungen etwas vereinfachen, in dem wir den Auftrieb $F_\text{A}$ gleich Null setzen. Ebenso soll die Raketensteuerung so realisiert werden, dass $\vec{F}_\text{S}\parallel \vec{v}$, \dh $\alpha \approx 0$.  Ferner nehmen wir eine "`ebene"' Erde an, \dh $r, R_\text{E} \gg h$, $R_\text{E}/r \approx 1$ und $g \gg v^2/r$. Die Bewegungsgleichungen \eqref{eq:adyn_launch01} vereinfachen sich zu:
+\begin{subequations}
+    \begin{align}
+        \dot{v} &= \frac{\D v}{\D t} = \frac{F_\text{S}\lk t\rk - F_\text{D}\lk h\rk}{m_\text{R}} - g\lk h\rk \,\sin\gamma\,,\label{eq:adyn_launch08a} \\
+        \dot{\gamma}&= \frac{\D \gamma}{\D t} = \frac{g\lk h \rk}{v} \,\cos\gamma\,, \label{eq:adyn_launch08b} \\
+        \dot{h} &= \frac{\D h}{\D t} = v\,\sin\gamma\,, \label{eq:adyn_launch08c} \\
+        \dot{x} &= \frac{\D x}{\D t} = v\,\cos\gamma\,. \label{eq:adyn_launch08d}
+    \end{align} \label{eq:adyn_launch08}
+\end{subequations}
+
+Für den Drag $F_\text{D}\lk h\rk$ benutzen wir die Beziehung \eqref{eq:adyn_forces01} und die einfache barometrische Höhenformel \eqref{eq:adyn_barom_h_fomulae}. 
+Die numerische Lösung erfolgt mit der \matlab-Routine \odevf, wobei $F_\text{S}\lk t\rk$ für die verschiedenen Bahnphasen explizit zeitabhängig sein kann. Der FPA kann durch einzelne sogenannte Nickkorrekturen zu Zeiten $t=t_\text{Nick}$ in Sprüngen verändert werden. In \figref{adyn_launch03} ist das Ergebnis der Rechnungen, die im \mscr{} \mladynref{RaketenstartReal.m} hinterlegt sind, für verschiedene Parametersätze der Nickkorrektur $\Delta \gamma$ gezeigt. Auch ein Vergleich zum Fall mit vernachlässigbarer aerodynamischer Reibung ist angegeben. Man erkennt sehr schön, welchen großen Einfluss die Nickkorrektur auf die Bahnhöhe und Bahnform der Rakete hat. \\
+
+Abschließend seien noch einige Bemerkungen zur Optimierung der Aufstiegsphase einer Raketenmission in einen erdnahen Orbit gegeben.
+Offensichtlich geht es zum einen darum, den Gesamtantriebsbedarf $\Delta v$ so gering wie möglich zu machen. Zum anderen soll auch eine vorgegebene Bahn unter bestimmten Randbedingungen (Übergangspunktfestlegung, Zeitprofil, Schub, Nickprofil etc.) erreicht werden. Die Optimierung geschieht folgendermaßen: Man löst die Bewegungsgleichungen \eqref{eq:adyn_launch01} \bzw \eqref{eq:adyn_launch08} unter Berücksichtigung der gegebenen Funktionen $F_\text{S}(t),\, m_\text{R}(t)$ und $\Delta \gamma(t,h)$, der Anfangs- und Endbedingungen für $h, \gamma$ und $v$ und sucht das minimale $\Delta v$, in dem man die Summe der einzelnen Verlustbeiträge in \eqref{eq:adyn_launch07} minimiert. Daraus ergibt sich 
+die finale Geschwindigkeit $v_\text{f}$ am Übergangspunkt in die freie Trajektorie zu:
+\begin{align}
+    v_\text{f} = v_\text{G}\ln{\frac{m_0}{m_\text{f}}} - \Delta v_\text{D} - \Delta v_\text{G} + \Delta v_\text{E} \,. \label{eq:adyn_launch09}
+\end{align}
+Hierin sind $\Delta v_\text{D}$ und $\Delta v_\text{G}$ die in \eqref{eq:adyn_launch07} definierten Antriebsbedarfe zur Kompensation der Reibung und der Arbeit im Gravitationsfeld.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{RaketenstartReal.pdf}
+\caption[Trajektorie eines Raketenstarts von der Erdoberfläche.]{Trajektorie eines Raketenstarts von der Erdoberfläche für verschiedene Nickwinkel $\Delta \gamma$. Parameter: 
+$c_\text{D}\,A = \SI{1.5}{\metre\squared}$ (Widerstandsbeiwert x Fläche), $m_0 = \SI{1e5}{\kg}$ (Startmasse), $m_\text{L} = \SI{5e3}{\kg}$ (Payload), $\dot{m} = \SI{500}{\kg\per\second}$ (Masseverlust), $F_\text{S} = \SI{1.47e3}{\newton}$ (Schub), Nickkorrektur nach $t = \SI{20}{\second}$, Ende Schub nach $t_\text{BO} = \SI{190}{\second}$ (Brennschluss). Für die Abhängigkeit der Dichte von der Höhe wurde \eqref{eq:adyn_barom_h_fomulae} verwendet. Die Trajektorien bis zum Burn-Out sind durchgestrichen gezeichnet, für $t > t_\text{BO}$ gestrichen. Zum Vergleich ist die Trajektorie für eine Situation ohne Drag in Hellblau und der Startplatz um $\Delta x = \SI{-25}{\km}$ verschoben gezeigt. Siehe auch \mscr{} \mladynref{RaketenstartReal.m} für weitere Details und Graphiken.}
+\label{abb:adyn_launch03}
+\end{figure}
+
+Die Endgeschwindigkeit $v_\text{f}$ im \KOS\ der Erde wird noch durch die von der Erde mitgegebene Anfangsgeschwindigkeit $\Delta v_\text{E,t}$ erhöht (vorausgesetzt der Flug erfolgt in Richtung der Erdrotation und die Inklination der Bahn entspricht ungefähr der geographischen Breite des Startplatzes). Dieser Beitrag ergibt sich zu:
+\begin{align}
+	 \Delta v_\text{E,t}& = \SI{0.465}{\km\per\second}\,\cos\phi_0\,.  \label{eq:adyn_launch10}
+\end{align}
+Hierin ist $\phi_0$ die geographische Breite des Startorts.\\
+In \probref{adyn_launch01} wollen wir verschiedene Fragen des Raketenstarts genauer beleuchten. Wir werden den Einfluss der Erdrotation und des Richtungsvektors nach Start für verschieden geographische Breiten der jeweiligen Startorte berücksichtigen. Ebenso wollen wir den Start einer mehrstufigen Rakete mit den Werten aus Tabelle \ref{tab:adyn_parameter_raketen} simulieren. 
+
+\subsection{Wiedereintritt eines Raumschiffs in die Erdatmosphäre}\label{kap:adyn_reentry}
+
+Wie im vorherigen Kapitel bereits angemerkt, kann die Dynamik des Wiedereintritts in die Erdatmosphäre (\textit{Reentry}\index{Reentry}) durch die gleichen Bewegungsgleichungen  beschrieben werden, die wir für die Start- und Anfangsphase eines Raumfluges hergeleitet hatten (Gleichungen \eqref{eq:adyn_launch_vec} und \eqref{eq:adyn_launch01}). Allerdings sind die Anfangs- und Randbedingungen voneinander verschieden, was zu deutlich unterschiedlichen Effekten führt (\figref{adyn_launch02}). Außerdem ist im Fall des Wiedereintritts kein Schub zu berücksichtigen, dafür ist aber \ia der beim Start/Aufstieg vernachlässigte Auftrieb durchaus von Bedeutung. Bevor wir uns mit der Dynamik des Wiedereintritts genauer beschäftigen, wollen wir kurz auf die thermischen Problemstellungen eingehen, die mit dem Wiedereintritt in die Erdatmosphäre verbunden sind. 
+
+\subsubsection{Thermodynamische Überlegungen zum Wiedereintritt}
+
+Eine Raumsonde, die aus einem Erdorbit in einer Höhe von \ca $\SI{125}{\km}$ wieder in die Erdatmosphäre eintritt, besitzt in etwa eine spezifische kinetische Energie von 
+\begin{align*}
+    T = \frac{1}{2}\,v_\text{k}{}^2 \approx \SI{31}{\mega\J\per\kg}\,.
+\end{align*}
+Diese Energie wird in der Phase des Wiedereintritts innerhalb typischer Zeiten $\tau \approx \SI{30}{}\ldots\SI{120}{\second}$  durch die atmosphärische Bremsung in Wärmeenergie $Q_\text{th} = 
+\dot{Q}_\text{th}\,\tau$ umgewandelt und muss dissipiert werden. Dabei werden interessanterweise $99.9\%$ der Wärmeleistung $P_\text{th}$ in die die Sonde umfließende Strömung der atmosphärischen Teilchen \anf{wegtransportiert}. Nur $0.1\%$ von $P_\text{th}$ \cite{Walter2018} müssen vom Raumschiff aufgenommen und auch wieder abgestrahlt werden. Nach dem Stefan\footnote{Josef Stefan (1835--1938) war ein österreichischer Mathematiker und Physiker, der auf den Gebieten der Akustik, Optik und der Wärmeleitung von Gasen sowie der Abhängigkeit der Wärmestrahlung von der Temperatur arbeitete.}\indexp{Stefan, Josef}-Boltzmann-Gesetz\index{Stefan-Boltzmann-Gesetz}\footnote{Ludwig Eduard Boltzmann (1844--1906) war ein österreichischer Physiker. Seine bedeutendsten Leistungen liegen im Bereich der Thermodynamik und der statistischen Mechanik. Er war einer der vehementesten Verfechter der Atomistik und gilt als einer der Vollender der klassischen Physik des 19. Jahrhunderts.}
+%Schwer depressiv erkrankt auch auf Grund vieler Anfeindungen, nahm er sich im Alter von 62 Jahren das Leben.}
+\indexp{Boltzmann, Ludwig Eduard} für einen schwarzen Strahler \cite{Meschede2010} ist die abgestrahlte Leistung eines solchen Strahlers mit seiner Temperatur über
+\begin{align}
+    T^4 = 0.001\,\frac{P_\text{th}}{\sigma\,A} \label{eq:adyn_reentry01}
+\end{align}
+verknüpft, worin $\sigma$ die Stefan-Boltzmann-Konstante\index{Stefan-Boltzmann-Konstante} mit $\sigma = \SI{5.6705e-8}{\W\per\metre\squared\per\raiseto{4}\K}$ und $A$ die Fläche des strahlenden Körpers (\zb des Hitzeschildes der Sonde) sind. Setzen wir typische Werte von  $m=\SI{3000}{\kg}$, $A=\SI{3}{\square\metre}$, $\tau = \SI{30}{\second}$ ein, dann erhalten wir Temperaturen bis zu $T\approx\SI{1400}{\K}$. Dies gibt ein Gefühl für die Temperaturen, die durch ein entsprechend konstruiertes Hitzeschild ausgehalten werden müssen. 
+
+\subsubsection{Berechnung der Anfangsbedingung am Übergangspunkt} \label{kap:ady_reentry_conditions}
+
+\figref{adyn_launch01}b und \figref{adyn_launch02}b zeigen den Übergangspunkt von der freien Trajektorie in die eigentliche Phase des aerodynamischen Wiedereintritts in die Atmosphäre. Man hat festgelegt, dass dieser Punkt einheitlich in einer Höhe von $h_\text{Re} = \SI{400000}{}\,\mathrm{ft} \approx \SI{122}{\km}$ liegen soll (\figref{adyn_reentry02}).
+Damit wird eine entsprechende Sphäre mit dem Radius $ h_\text{Re} = \SI{6500}{\km}$ definiert, bei welcher die Atmosphäre beginnt, einen signifikanten Einfluss auf das Raumschiff zu haben. Man berechnet die Dichte in $h_\text{Re}$ nach der barometrischen Höhenformel\index{Höhenformel!barometrisch} \eqref{eq:adyn_barom_h_fomulae} zu
+\begin{align*}
+    \varrho_\text{Re}= \varrho(h_\text{Re}) = \varrho_0\,\e^{-h_\text{Re}/H_0} = \SI{21.7}{\kg\per\km\cubed}\,. 
+\end{align*}
+Verbesserte Modelle der Atmosphäre wie CIRA-72 oder das Harris-Priester-Modell \cite{Vallado2007} liefern für $\varrho_\text{Re}$ Werte zwischen $\SI{24.49}{\kg\per\km\cubed}$ und $\SI{19,73}{\kg\per\km\cubed}$. Die einfache barometrische Höhenformel ist also für uns eine brauchbare Näherungsformel. \\
+Aus den Beziehungen für eine Kepler-Ellipse (\kap{hm_abl_kepler}) lassen sich folgende Beziehungen für die Größen am Übertrittspunkt gewinnen (\figref{adyn_launch01} mit $r_\text{Re} = R_\text{E} + h_\text{Re}$): 
+\begin{subequations}
+\begin{align}
+    \cos\gamma_\text{Re} &= \frac{1+e\,\cos\upsilon_\text{Re}}{\sqrt{1+2e\,\cos\upsilon_\text{Re} +e^2}}\,,\label{eq:adyn_reentry02a}\\
+    v_\text{Re} &= \frac{\mu_\text{E}}{L}\,\sqrt{1+2e\,\cos\upsilon_\text{Re}+e^2} \label{eq:adyn_reentry02b} \,,\\
+    r_\text{e} &= \frac{a\,\lk 1-e^2\rk}{1+e\,\cos\upsilon_\text{Re}} = R_\text{E} +h_\text{Re}\,.\label{eq:adyn_reentry02c}
+\end{align} \label{eq:adyn_reentry02}
+\end{subequations}
+
+\begin{figure}[H]
+\includegraphics[width=0.8\textwidth]{ReentryGeometrie01.pdf}
+\caption[Wiedereintritt-Transferbahn.]{Wiedereintritt-Transferbahn (Deorbit). Parameter: $r_\text{A} = R_\text{E} + \SI{422}{\km} =\SI{6800}{\km}$, $q=1.0462$.
+Siehe auch \mscr{}\mladynref{Transfer2Reentry.m} für weitere Details und Graphiken.}
+\label{abb:adyn_reentry02}
+\end{figure}
+
+Hier sind $\gamma_\text{Re}$ der FPA und $r_\text{Re}$ der Abstand zum Erdzentrum am Übergangspunkt bekannte Größen. Gesucht sind der Bahnparameter $e,\,a, \upsilon_\text{Re}$ der freien Trajektorie bis zum Wiedereintrittspunkt (im Englischen auch \textit{Deorbit}, also Abstiegsbahn genannt), die Geschwindigkeit $v_\text{Re}$ und der notwendigen Antriebsbedarf $\Delta v$ beim Apogäum $\Delta v$ (\figref{adyn_reentry01}). 
+Der Drehimpuls der Bahn ist nach \eqref{eq:hm_drehimpuls_von_ae} gegeben durch:  $L=\sqrt{\mu_\text{E}\,a\,\lk 1-e^2\rk}$. Wir setzen  
+\begin{align*}
+    q=\frac{r_\text{A}}{r_\text{Re}} > 1\,.
+\end{align*}
+Für die Berechnung des Wiedereintritts kann $q$ über $r_\text{A}$ als bekannt angenommen werden, ebenso wie der  FPA beim Eintritt $\gamma_\text{Re}$. Dieser wird aus Gründen der thermischen Belastung  \ia kleiner als $10\degree$ gewählt. Aus \eqref{eq:adyn_reentry02} findet man leicht:
+\begin{subequations}
+\begin{align}
+    e &= \frac{q^2-\lk 2q-1\rk\,\cos^2\gamma_\text{Re}}{q^2-\cos^2\gamma_\text{Re}}\,, \\
+    v_\text{Re} &= \sqrt{\frac{2\mu_\text{E}}{r_\text{A}}\,\frac{q^2\,(q-1)}{q^2-\cos^2\gamma_\text{Re}} }\,, \\
+    \cos \upsilon_\text{Re} &= \frac{(q-1)^2\cos^2\gamma_\text{Re}- q^2\sin^2\gamma_\text{Re}}{(q-1)^2+(2\,q-1)\,\sin^2\gamma_\text{Re}}\,,\\
+   \Delta v &= \frac{\mu_\text{E}}{r_\text{A}} - \cos\gamma_\text{Re}\,\frac{v_\text{Re}}{q}\,.
+\end{align}\label{eq:adyn_reentry03}
+\end{subequations}
+
+\begin{figure}[H]
+\includegraphics[width=0.95\textwidth]{ReentryGeometrie02.pdf}
+\caption[Parameter zur Berechnung der Wiedereintritt-Transferbahn.]{Parameter zur Berechnung der Wiedereintritt-Transferbahn (Deorbit). Die Festlegung von $h_\text{Re}$ auf eine nichtmetrische SI-Einheit $\SI{400000}{}\,\mathrm{ft}$ kommt noch aus der Zeit, da die westliche Raumfahrtwissenschaft sehr stark durch die USA dominiert war. Es sind im übrigen schon Raumfahrtmissionen wegen unterschiedlicher Verwendung nichtmetrischer \bzw imperialer Einheiten und inkorrekter Konversion fehlgeschlagen. Das soll uns nicht passieren, weswegen wir ausschließlich das SI-Einheiten-System (siehe die \onlineZ) verwenden.}
+\label{abb:adyn_reentry01}
+\end{figure}
+
+Wir überlassen es dem Leser als Übung, die einzelnen Schritte zur Herleitung der Beziehungen \eqref{eq:adyn_reentry02} und \eqref{eq:adyn_reentry03} mit den Kenntnissen aus der Himmelsmechanik \kap{lsg_kepler} nachzuvollziehen (\probref{adyn_reentry01}). \\
+Man berechnet nun nach \eqref{eq:adyn_reentry03} schrittweise $e$, $v_\text{Re}$ schließlich $\Delta v$ und $\upsilon_\text{Re}$ \bzw $\upsilon_\text{Re}$ =  $\left| \upsilon_\text{Re}- 180\degree \right|$.\\
+%Für diesen Fall und $q= \frac{r_\text{A}}{r_\text{Re}} \to 1$ kann man aus \eqref{eq:adyn_reentry03} eine Näherung erhalten:
+%\begin{subequations}
+%\begin{align}
+    %\upsilon_\text{Re} &= \sqrt{\frac{\mu_\text{E}}{r_\text{A}}} \,\lk 1+\frac{3}{4}\,\lk q-1\rk -\frac{\gamma_\text{Re}{}^2}{8\,\lk q-1\rk}\rk\,,\\
+    %\Delta v &= \sqrt{\frac{\mu_\text{E}}{A_\text{A}}}\,\lk q-1 + \frac{\gamma_\text{Re}{}^2}{2\,\lk q-1\rk}\rk
+%\end{align}\label{eq:adyn_reentry04}
+%\end{subequations}
+Als Beispiel sei die Rückkehr eines Transport-Raumschiffes von der ISS genannt. Man wählt einen FPA von $\gamma_\text{Re}=6\degree$ und erhält mit $r_\text{A} = R_\text{E} + \SI{422}{\km} =\SI{6800}{\km}$, $q=1.0462$ (siehe \mscr \mladynref{Transfer2Reentry.m} \figref{adyn_reentry02}): 
+\begin{align*}
+    \theta_\text{Re} = 45.5\degree\,, && v_\text{Re} =  \SI{7.50}{\km\per\second}\,, && \Delta v = -\SI{530}{\metre\per\second}\,.
+\end{align*}
+Wir können leicht numerisch oder auch analytisch aus \eqref{eq:adyn_reentry03} ableiten, dass für den Wiedereintritt aus einem LEO näherungsweise gilt:
+	\[ q \to 1\,, ~~v_\text{Re} \approx v_\text{K} =\sqrt{\frac{\mu_\text{E}}{R_\text{E}}} = \SI{7.905}{\km\per\second} ~~\text{(1.\,\gls{vkosmos})}\,. \]
+Ebenso kann man sich überlegen, dass für einen direkten Wiedereintritt in die Erdatmosphäre aus dem interplanetaren Raum die Anfangsbedingungen lauten: 
+	\[ q \to \infty\,,~~ v_\text{Re} \approx \sqrt{\frac{2\mu}{r_\text{Re}}} = \SI{11.8}{\km\per\second} ~~\text{(2.\,\gls{vkosmos})}\,,\\
+    ~~~~\upsilon_\text{Re} = 2\,\gamma_\text{Re}\,.\]
+
+\subsubsection{Berechnung der Dynamik des Wiedereintritts in die Erdatmosphäre}
+
+Wir lösen nun mit den berechneten Anfangsbedingungen die Bewegungsgleichungen für die Wiedereintritt-Phase numerisch. Das Ergebnis ist in \figref{adyn_reentry03} und \figref{adyn_reentry04} gezeigt. In der ersten Abbildung ist der "`Gleitpfad"' $h(x)$ für zwei verschiedene initiale FPA $\gamma_\text{Re}$ gezeigt. Erwartungsgemäß wird bei einem steilen Eintauchen in die Erdatmosphäre $\gamma_\text{Re} \approx 10\degree$ der Gleitpfad steiler und kürzer und damit auch die thermische Belastung größer. 
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{RaumschiffReentry01.pdf}
+\caption[Gleitpfad beim Wiedereintritt.]{Gleitpfad beim Wiedereintritt für zwei verschiedene initiale FPA $\gamma_\text{Re}$. Parameter:
+$c_\text{D}\cdot A = \SI{1.5}{\metre\squared}$ (Widerstandsbeiwert $\cdot$ Fläche), $m_\text{L} = \SI{5e3}{\kg}$ (Payload). Für die Abhängigkeit der Dichte von der Höhe wurde \eqref{eq:adyn_barom_h_fomulae} verwendet. Siehe auch \mscr{} \mladynref{ReentrySummary.m} für weitere Details und Graphiken.}
+\label{abb:adyn_reentry03}
+\end{figure}
+
+In \figref{adyn_reentry04} sind neben dem Höhenverlauf $h(t)$ auch der Geschwindigkeitsverlauf $v(t)$ und die Beschleunigung (Abbremsung) $a(t)$  über der Zeit aufgetragen. Deutlich zu erkennen sind die einzelnen Phasen des Abbremsens, so bei $t=50 \ldots 90\,\mathrm{s}$ für $\gamma_\text{Re} = 10\degree$ \bzw $t= 100 \ldots 180\,\mathrm{s}$ für $\gamma_\text{Re} = 4\degree$. Im zweiten Fall ist also die thermische Belastung (Temperaturerhöhung) auf Grund der doppelt so langen "`Bremszeit"' auf etwa 85\% und die gegebenenfalls durch Astronauten auszuhaltende Maximalbeschleunigung von $20\,g$ auf etwa $5\,g$ reduziert.
+\begin{figure}[H]
+\includegraphics[width=1.0\textwidth]{RaumschiffReentry02.pdf}
+\caption[Zeitverläufe beim Wiedereintritt.]{Zeitverläufe beim Wiedereintritt für $h,\, v$ und $a$. Parameter: 
+$c_\text{D}\cdot A = \SI{1.5}{\metre\squared}$ (Widerstandsbeiwert $\cdot$ Fläche), $m_\text{L} = \SI{5e3}{\kg}$ (Payload). Für die Abhängigkeit der Dichte von der Höhe wurde \eqref{eq:adyn_barom_h_fomulae} verwendet. \fa initialer FPA $\gamma\text{Re} = 10\degree$,  \fb initialer FPA $\gamma\text{Re} = 4\degree$. Siehe auch \mscr{} \mladynref{ReentrySummary.m} für weitere Details und Graphiken.}
+\label{abb:adyn_reentry04}
+\end{figure}
+
+Ebenso erkennbar sind Phasen annähernd konstanter Geschwindigkeit und Phasen in denen es auf Grund eines speziellen Auftrieb/Drag-Verhältnisses sogar kurzzeitig zu einem Ansteigen des Raumschiffs kommen kann. Diese Abhängigkeit untersuchen wir in \probref{adyn_reentry02}.
+
+\subsubsection{Näherungsformel für einzelne Phasen}
+
+Wir wollen nun noch für einzelne Phasen des Wiedereintritts einfache Näherungsbeziehungen herleiten. Dabei wenden wir eine häufig benutzte Methode an, mit der das noch recht komplexe Differentialgleichungssystem \eqref{eq:adyn_launch08}, in welchem wir wieder den Auftrieb berücksichtigen wollen, weiter vereinfacht werden kann. Für den Drag und den Auftrieb benutzen wir wiederum die barometrische Höhenformel 
+\begin{align}
+    F_\text{D} &= m_\text{R}\,v^2 \frac{\kappa_\text{D}}{H_0} \e^{-h/H_0} ~~~\text{\bzw}~~~
+    F_\text{A} = m_\text{R}\,v^2 \frac{\kappa_\text{A}}{H_0} \e^{-h/H_0} \,. \label{eq:adyn_reentry10a}
+\end{align}
+Für das Verhältnis von Auftrieb zu Drag schreiben wir $A/D = \kappa_\text{A}/\kappa_\text{D}$.
+Die Gleichung \eqref{eq:adyn_launch08c} kann benutzt werden um über $t=t\lk h\rk$ die Zeitvariable zu eliminieren, womit wir $v\lk h\rk$ und $\gamma\lk h\rk$ bekommen. Gleichzeitig wollen wir zu dimensionslosen Größen übergehen. Für die Geschwindigkeit schreiben wir $\mu = v/v_\text{K}$ mit $v_\text{k} = \sqrt{\mu_\text{E}/R_\text{E}}$ als die 1.~\gls{vkosmos}. Für die Höhe und Bodendistanz $\eta=h/H_0$ \bzw $\xi=x/H_0$ und für die Zeit $\tau= t\,g_\text{E}/v_\text{K}$, worin $g_\text{E}= \mu_\text{E}/R_\text{E}{}^2$ die Erdbeschleunigung auf der Erdoberfläche ist.
+Zum Schluss führen wir noch eine dimensionslose spezifische kinetische Energie $\hat{\epsilon}$ ein:
+\begin{align}
+    \hat{\epsilon} = \mu^2 = \frac{v^2}{v_\text{K}{}^2}~.\label{eq:adyn_reentry10b}
+\end{align}
+Die dimensionslose Höhe $\eta=h/H_0$ skalieren wir exponentiell entsprechend der barometrischen Höhenformel zur ebenfalls diemensionslosen Höhe $\hat{\eta}$:
+\begin{align}
+    \hat{\eta} = \frac{2\,\kappa_\text{D}}{\sin\gamma_\text{Re}}\,\e^{-\eta} \;.\label{eq:adyn_reentry10c}
+\end{align}
+Nach etwas Algebra, die wir in \probref{adyn_reentry03} ausgeführt haben, erhalten wir aus \eqref{eq:adyn_launch08}:
+\begin{subequations}
+\begin{align}
+    \frac{\D \lk \ln\hat{\epsilon}\rk}{\D\hat{\eta}} &= -\underbrace{\frac{\sin\gamma_\text{Re}}{\sin\gamma}}_{\text{Drag}}\, + \underbrace{\frac{2H_0}{\hat{\epsilon}\,\hat{\eta}\,R_\text{E}}}_{\text{Gravitation}}\,, \label{eq:adyn_reentry11a}\\
+    \frac{\D \lk\cos\gamma\rk}{\D \hat{\eta}} &= \underbrace{\frac{\sin\gamma_\text{Re}}{2}\,\frac{A}{D}}_{\text{Auftrieb}} \,- \underbrace{\lk\frac{1}{\hat{\epsilon}-1}\rk\,\frac{H_0\,\cos\gamma}{\hat{\eta}\,R_\text{E}}}_{\text{Gravitation, Zentrifugalkraft}} \,.\label{eq:adyn_reentry11b}
+\end{align} \label{eq:adyn_reentry11}
+\end{subequations}
+
+Wir haben zwei Gleichungen erhalten. Die erste beschreibt die Veränderung der (dimensionslosen) Energie über die dimensionslose Höhe und die zweite die Veränderung des FPA ebenfalls über die dimensionslose Höhe.  Auf den ersten Blick sieht das nicht wie ein Fortschritt aus, aber die Gleichungen zeigen eine Separation in vier Terme, die den wirkenden Kräften (Auftrieb, Drag, Gravitation und Zentrifugalkraft) zugeordnet werden können. Aus
+\begin{align*}
+    a = \frac{\D v}{\D t}= \frac{\D v}{\D \lk\ln\hat{\epsilon}\rk}\,\frac{\D\lk\ln\hat{\epsilon}\rk}{\D\hat{\eta}}\,\frac{\D\hat{\eta}}{\D h}\,\frac{\D h}{\D t}
+\end{align*}
+folgt
+\begin{align}
+    a &= \frac{\hat{\epsilon}\,v_\text{K}{}^2}{2v} \,\lek - \frac{\sin\gamma_\text{Re}}{\sin\gamma} + \frac{2H_0}{\hat{\epsilon}\,\hat{\eta}\,R_\text{Re}}\rek\,\lk -\frac{\hat{\eta}}{H_0}\rk\,\lk-v\,\sin\gamma\rk \nonumber \\
+    \rightarrow~~~a &= -g_\text{E}\,\lk \frac{\hat{\epsilon}\,\hat{\eta} \,R_\text{E}}{2H_0}\,\sin\gamma_\text{Re} - \sin\gamma\rk\,. \label{eq:adyn_reentry12}
+\end{align}
+Damit haben wir eine Gleichung gewonnen, die uns erlaubt, abhängig von den Parametern $H_0$, $\kappa_\text{D}$, $A/D$ und $\gamma_\text{Re}$ eine Abschätzung für die Beschleunigung zu machen. Wir wollen das an zwei Phasen verdeutlichen:
+\subparagraph{Phase ohne Drag}
+Wir können $\kappa_\text{D}\approx 0$ setzen und erhalten aus \eqref{eq:adyn_reentry12}:
+\begin{subequations}
+\begin{align}
+    a &= \dot{v} = g_\text{E}\,\sin\gamma \,,\\
+    \dot{\gamma} &= 0\,,\\
+    \dot{h} &= -v\,\sin\gamma
+\end{align} \label{eq:adyn_reentry13}
+\end{subequations}
+mit den einfachen Lösungen 
+\begin{subequations}
+\begin{align}
+    \gamma &= \gamma_\text{Re} \,,\\
+    h &= h_\text{Re} - v_\text{Re}\,\sin\gamma_\text{Re}\,t \,,\\
+    v &= v_\text{Re} + g_\text{E}\,\sin\gamma_\text{Re}\,t\approx v_\text{Re}\,.
+\end{align}\label{eq:adyn_reentry14}
+\end{subequations}
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{ReentryNaeherungen01.pdf}
+\caption[Lösungen der Bewegungsgleichungen für den Wiedereintritt.]{Lösungen der Bewegungsgleichungen für den Wiedereintritt für verschiedene Reibungskoeffizienten. Siehe auch \mscr{} \mladynref{ReentryNaeherungen.m} für weitere Details und Graphiken.}
+\label{abb:adyn_reentry05}
+\end{figure}
+
+Wir können das sehr gut in \figref{adyn_reentry05} und \figref{adyn_reentry06} erkennen. Wann aber ist nun das Ende dieser Phase erreicht?
+Dazu betrachten wir \eqref{eq:adyn_reentry11a} und sehen, dass $\D \ln\hat{\epsilon} / \D \hat{\eta}< 0$ wird, wenn
+\begin{align}
+    \frac{\sin\gamma_\text{Re}}{\sin\gamma} = \frac{2H}{\hat{\epsilon}\,\hat{\eta}\,R_\text{E}}\label{eq:adyn_reentry15}\,.
+\end{align}
+In der initialen Phase ist aber $\hat{\epsilon}\approx 1$ und $\gamma\approx \gamma_\text{Re}$, so dass daraus eine Bedingung für $h$ entsteht, bei welcher die sogenannte ballistische Phase beginnt:
+\begin{align}
+    \hat{\eta} &= \frac{2H_0}{R_\text{E}} ~~ \to ~~ \frac{2\,\kappa_\text{D}}{\sin\gamma_\text{Re}}\,\e^{-\frac{h}{H_0}} = \frac{2H_0}{R_\text{E}} ~~\to ~~ h = -H_0\,\ln\,\frac{H_0\,\sin\gamma_\text{E}}{R_\text{E}\,\kappa_\text{D}}\,.\label{eq:adyn_reentry16}
+\end{align}
+Wegen $\D \hat{\epsilon} /\D \hat{\eta} = 0 $ ist das auch die Höhe, bei der die maximale Geschwindigkeit erreicht wird.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{ReentryNaeherungen02.pdf}
+\caption[Näherungslösungen normierte Bewegungsgleichungen für Wiedereintritt.]{Näherungslösungen der normierten Bewegungsgleichungen für den Wiedereintritt im Vergleich zur "`exakten"' Lösung. \fa Free-Drag Phase \fb Ballistische Phase. Man erkennt, dass fast unabhängig von $\kappa_\text{D}$ die Abbremsung auf eine gleichförmige Bewegung in einer Höhe von ca. 40 km erfolgt. Siehe auch \mscr{} \mladynref{ReentryNaeherungen.m} für weitere Details und Graphiken.}
+\label{abb:adyn_reentry06}
+\end{figure}
+
+\subparagraph{Ballistische Phase mit großem Drag}
+Die nachfolgende Phase soll unter der Vereinfachung betrachtet werden, dass alle anderen Kräfte außer dem Drag vernachlässigt werden können, \dh $A=0$, $\hat{\epsilon}\approx 1$. 
+Dann folgt aus \eqref{eq:adyn_reentry11}:
+\begin{align}
+\begin{split}
+    \frac{\D \ln\hat{\epsilon}}{\D \hat{\eta}} &= -\frac{\sin\gamma_\text{Re}}{\sin\gamma} + \underbrace{\frac{2H_0\,\sin\gamma_\text{Re}}{R_\text{E}\,\kappa_\text{D}}\,\e^{\frac{h}{H_0}}}_{\approx 0}\,,\\
+    \frac{\D \cos\gamma}{\D \hat{\eta}} &= 0 \,\,. 
+\end{split}   \label{eq:adyn_reentry17}
+\end{align}
+Das System lässt sich leicht lösen und wir erhalten mit $\gamma = \gamma_\text{Re} = \con $ und 
+\begin{align}
+    \ln\,\frac{\hat{\epsilon}}{\hat{\epsilon}_\text{Re}} &= -\lk\hat{\eta}-\hat{\eta}_\text{Re}\rk \to ~~~ \hat{\epsilon} = \hat{\epsilon}_\text{Re}\,\e^{-\hat{\eta}_0-\hat{\eta}_\text{Re}}\approx\hat{\epsilon}_\text{Re}\,\e^{-\hat{\eta}}\,,\nonumber\\
+    v &\approx v_\text{Re}\,\e^{-\frac{\hat{\eta}}{2}} = v_\text{Re}\,\e^{-\lek\frac{\kappa_\text{D}}{\sin\gamma_\text{Re}}\,\e^{-h/H_0}\rek}\,.\label{eq:adyn_reentry18}
+\end{align}
+Auch diese Phase ist in \figref{adyn_reentry06} gut zu erkennen. \\
+
+Wir möchten zum Schluss noch einmal darauf hinweisen, dass neben dem Drag auch das nichtsphärische Gravitationsfeld der Erde und der Strahlungsdruck einen abbremsenden Charakter auf Raumsonden in niedrigen Orbits haben. In \probref{adyn_reentry04} werden wir ein sehr einfaches Modell einer solchen abfallenden, sinkenden Umlaufbahn untersuchen.
+Wir konnten mit diesem kurzen Exkurs das hochinteressante Thema des Wiedereintritts von Raumschiffen in die Erdatmosphäre nur anreißen und müssen den interessierten Leser für weitere Details an die entsprechende Fachliteratur verweisen \cite{Walter2018, Veris2018}, womit wir dann auch das schöne Kapitel der Astrodynamik schließen. \\

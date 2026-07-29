@@ -1,0 +1,327 @@
+\section[Relativistische Physik]{Relativistische Physik}\label{kap:edy_RelPhys}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Elektrodynamik und Relativität}\label{kap:edyn_Edyn_and_Relativity}
+
+
+In diesem Abschnitt wollen wir die Grundideen der Mechanik im Rahmen der \textit{Speziellen Relativitätstheorie} (SRT) untersuchen. Aus Platzgründen kann hier keine ausführlichere Darstellung gegeben werden. Die SRT ist besonders in Fällen relevant, in denen Geschwindigkeiten nicht mehr klein gegenüber der Lichtgeschwindigkeit $c$ sind.
+
+\subsubsection{Einsteins Postulate }\label{kap:edyn_RelPostulate}\indexp{Einstein, Albert}
+
+Die SRT folgt aus zwei Postulaten:
+\begin{enumerate}
+    \item  Die physikalischen Gesetze sind in allen Inertialsystemen gleich. 
+    \item Die Lichtgeschwindigkeit $c$ im Vakuum ist unabhängig von Ort und Zeit.
+\end{enumerate}
+Postulat 1 ist schon in der Newton-Mechanik erfüllt (siehe \ref{kap:bew_trafo_bezugssystem}). Das Neue ist, dass Postulat 2 ($c =$ const) als physikalisches Gesetz im Sinne von Postulat 1 verstanden wird. Postulat 2 beruht auf dem berühmten Interferenz-Experiment von Michelson\indexp{Michelson, Albert Abraham} und Morley (1886), wonach $c$ in jeder Richtung relativ zur Bewegungsrichtung des KOS gleich ist. \\
+Wir zeigen jetzt, dass die bisher betrachtete Mechanik den Einsteinchen Postulaten widerspricht. Wir betrachten zwei Inertialsysteme $\sum$ und $\sum_\text{f}'$ wobei $\sum_\text{f}'$ sich gegenüber $\sum$ mit der Geschwindigkeit $v$ entlang der gemeinsamen $x$-Achse bewegen soll. In $\sum$ werden zwei Lichtblitze in der positiven und negativen $x$-Richtung ausgesandt. Nach Postulat 2 sind ihre Geschwindigkeiten in $\sum$
+        \begin{align}
+            \vec{c}_1 = 
+            \begin{pmatrix}
+                    c\\0\\0
+            \end{pmatrix} 
+            , ~~~~
+            \vec{c}_2 = 
+            \begin{pmatrix}
+                    -c\\0\\0
+            \end{pmatrix} \,.
+        \end{align}
+In \kapitel{bew_Galilei_Trafo} hatten wir gesehen, dass aus den Newtonschen Axiomen die Galilei-Transformationen als Transformationen zwischen Inertialsystemen folgen. Die Galilei-Transformation liefert die folgenden Geschwindigkeiten in $\sum$
+        \begin{align}
+            \vec{c}_1' &= 
+            \begin{pmatrix}
+                    c-v\\0\\0
+            \end{pmatrix} 
+            , ~~~~
+            \vec{c}_2' = 
+            \begin{pmatrix}
+                    -c-v\\0\\0
+            \end{pmatrix} \,, \\
+            \rightarrow c_1' &= c-v, ~~~~ c_2'=c+v\,,
+        \end{align}
+falls $v<c$ gilt. Nach Postulat 2 in Verbindung mit Postulat 1 muss aber gelten $c_1' = c_2' = c$. Wir finden also einen Widerspruch.
+
+\subsubsection{Die Lorentz-Transformation}
+Wenn wir die Einsteinsehen Postulate zu Grunde legen, müssen wir die Galilei-Transformation (und letztlich die Newtonschen Axiome) verändern. \\
+Wir betrachten wieder zwei Inertialsysteme $\sum$ und $\sum'$ deren Ursprünge zur Zeit $t=t'=0$ zusammenfallen mögen. $\sum'$ bewege sich gegenüber $\sum$ mit der Geschwindigkeit $\vec{v}$. Zur Zeit $t=0$ werde am (gemeinsamen) Ursprung eine elektromagnetische Kugelwelle ausgelöst. Dann gilt für die Wellenfront 
+        \begin{align}
+            &\text{in} \sum: ~~~~ c^2\,t^2 = x^2+y^2+z^2 \,, \\
+            &\text{in} {\sum}': ~~~~ c^2\,{t'}^2 = {x'}^2+{y'}^2+{z'}^2 \,.
+        \end{align}
+Die Transformation muss so erfolgen, dass beide Gleichungen erfüllt sind. Offenbar ist die Größe
+        \begin{align}
+            s^2 :=c^2t^2-x^2-y^2-z^2 \equiv c^2\,t^2 -\vec{r}^2 \,,
+        \end{align}
+invariant, d.h. in beiden Bezugssystemen gleich, nämlich Null. Wir suchen nun für $c^2\,t^2-\vec{r}^2 = 0$ garantiert, dass gilt $c^2\,{t'}^2 - {\vec{r}'}^2 = 0$. Die Größe $s^2 =c^2\,t^2 -\vec{r}^2$ sieht dem Betragsquadrat eines Vektors ($ct,x,y,z$) ähnlich. Wir wissen, dass das Betragsquadrat von Vektoren unter Drehungen invariant ist, und vermuten daher, dass die gesuchte Transformation eine verallgemeinerte Drehung ist. Wir führen zunächst eine nützliche Notation ein:
+        \begin{itemize}
+            \item $\lk a^0,a^1,a^2,a^3\rk = \lk a^0,\vec{a}\rk$ (beachte die hochgestellten Indizes) heißt kontravarianter Vierervektor (oder 4-Vektor).
+             \item $\lk a^0,a^1,a^2,a^3\rk = \lk a^0,-\vec{a}\rk$ heißt kovarianter Vierervektor (4-Vektor).
+             \item Das Skalarprodukt zweier 4-Vektoren ist definiert durch
+             \begin{align}
+                 \sum_{\mu=0}^3\,a_\mu\,b^\mu = \sum_{\mu=0}^3\,a^\mu\,b_\mu =a^0\,b^0 = \vec{a}\cdot\vec{b}\,.
+             \end{align}
+             Verwende die Einsteinsche Summenkonvention (Es ist offensichtlich wichtig, sorgfältig zwischen oberen und unteren Indizes zu unterscheiden.). 
+            \item Das Betragsquadrat eines 4-Vektors ist dann
+            \begin{align}
+                a_\mu\,a^\mu = \lk a^0\rk^2 -\vec{a}\cdot \vec{a}\,.
+            \end{align}
+            Man sieht, dass $a_\mu\,a^\mu$ negativ werden kann.
+            \item Es gilt offenbar
+            \begin{align}
+            \begin{pmatrix}
+                    a^0\\a^1\\a^2\\a^3
+            \end{pmatrix} = 
+            \begin{pmatrix}
+                    1 &0&0&0 \\
+                     0 &-1&0&0 \\
+                      0 &0&-1&0 \\
+                       0 &0&0&-1 \\
+            \end{pmatrix}
+            \begin{pmatrix}
+                    a_0\\a_1\\a_2\\a_3
+            \end{pmatrix}    
+            \end{align}
+            also
+            \begin{align}
+                a^\mu = g^{\mu\nu}\,a_\nu
+            \end{align}
+            und analog 
+            \begin{align}
+                a_\mu  = g_{\mu\nu}\,a^\nu \,,
+            \end{align}
+            wobei $g^{\mu\nu}$ und $g_{\mu\nu}$ die Matrixdarstellung
+            \begin{align}
+                g=
+                \begin{pmatrix}
+                       1 &0&0&0 \\
+                     0 &-1&0&0 \\
+                      0 &0&-1&0 \\
+                       0 &0&0&-1 \\ 
+                \end{pmatrix}
+            \end{align}
+            haben. $g$ heißt metrischer Tensor oder einfach Metrik. Mit Hilfe des metrischen Tensors können wir Indizes heben oder senken, d.h. Vektoren zwischen kontravarianter und kovarianter Form umrechnen. Der metrische Tensor ist in der SRT in Raum und Zeit konstant, in der Allgemeinen Relativitätstheorie wird selbst zu einer dynamischen Größe.
+        \end{itemize}
+Wir definieren eine allgemeine Lorentz-Transformation als eine lineare Abbildung
+        \begin{align}
+            x_\mu' = {L_\mu}^\nu \,\,x_\nu ,~~~~ {x^\mu}' = {L^\mu}_\nu \! x^\nu \,,
+        \end{align}
+die Skalarprodukte invariant lässt. Dann ist, wie oben gesehen, ${L_\mu}^\nu\,{L^\mu}_\lambda = {\delta_\lambda}^\nu$. Daher sind ${L_\mu}^\nu$ und ${L^\mu}_\nu$ die Komponenten zweier zueinander inversen Matrizen. \\
+Weiter sei ein Lorentz-Skalar (Welt-Skalar) eine Größe, die unter Lorentz-Transformationen invariant ist. Damit sind Skalarprodukte und speziell Betragsquadrate Lorentz-Skalare. \\
+Wie sieht die Matrix $L$ mit den Komponenten ${L^\mu}_\nu$ aus? Wir betrachten o.B.d.A die Bewegung des Bezugssystems $\sum'$ gegenüber $\sum$ entlang der gemeinsamen $x$-Achse mit der Geschwindigkeit $\vec{v}$. Es ist sicherlich $y'=y$ und $z'=z$. Außerdem ist der Koordinatenursprung in der $yz$-Ebene willkürlich, also sollten $x'$ und $t'$ nicht von $y, z$ abhängen. Damit ist
+        \begin{align}
+            L = 
+            \begin{pmatrix}
+                   {L^0}_0 & {L^0}_1 & 0 & 0 \\
+                   {L^1}_0 & {L^1}_1 & 0 & 0 \\
+                   0 & 0 & 1 & 0 \\
+                   0 & 0 & 0 & 1 \\
+            \end{pmatrix}\,.
+        \end{align}
+Also ist 
+        \begin{align}
+            c\,t' &= {L^0}_0\,ct + {L^0}_1\,x\,,\\
+            x' &= {L^1}_0\,ct + {L^1}_1\,x\,.
+        \end{align}
+Nun soll für alle $x,t$ gelten
+        \begin{align}
+            c^2t^2-x =& c^2t^2-x' = \lk {L^0}_0\,ct +{L^0}_1\,x\rk^2 - \lk {L^1}_0\,ct + {L^1}_1\,x\rk^2 \nonumber \\ 
+            =& \lek\lk {L^0}_0\rk^2-\lk {L^1}_0\rk^2\rek\,c^2t^2 +2\,\lek {L^0}_0\,{L^0}_1 - {L^1}_0\,{L^1}_1\rek\,ct\,x \\ &+ \lek\lk {L^0}_1\rk^2-\lk {L^1}_1\rk^2\rek\,x^2\,. \nonumber
+        \end{align}
+Koeffizientenvergleich ergibt
+        \begin{align}
+            \lk {L^0}_0\rk^2 - \lk {L^1}_0\rk^2 &= 1\,, \label{eq:bew_relmech01}\\
+            {L^0}_0\,{L^0}_1 - {L^1}_0\,{L^1}_1 &= 0\,, \label{eq:bew_relmech02}\\
+            \lk {L^0}_1\rk^2-\lk {L^1}_1\rk^2 &= -1\,. \label{eq:bew_relmech03}
+        \end{align}
+Speziell für dem Ursprung von $\sum'$ gilt
+        \begin{align}
+            x=vt = \frac{v}{c}\,ct
+        \end{align}
+und damit 
+        \begin{align}
+            &x=0={L^1}_0\,ct + {L^1}_1\,x = \lk {L^1}_0 + {L^1}_1\,\frac{v}{c}\rk\,ct \\
+            \rightarrow ~~~~ &{L^1}_0 + {L^1}_1\,\frac{v}{c} = 0 \,.
+        \end{align}
+Zusammen mit den Gleichungen \ref{eq:bew_relmech01}-\ref{eq:bew_relmech03} haben wir nun vier Gleichungen für vier Unbekannte. Die Lösung ist
+        \begin{align}
+            {L^1}_1 &= {L^0}_0 = \frac{1}{\sqrt{1-\frac{v^2}{c^2}}}=:y \,, \\
+            {L^1}_0 &= {L^0}_1 = - \frac{\frac{v}{c}}{\sqrt{1-\frac{v^2}{c^2}}} =: -\beta\,\gamma ~~~~ \text{mit} ~~~~ \beta:=\frac{v}{c} \,,
+        \end{align}
+wie man durch Einsetzen bestätigt. \\
+Also ist 
+        \begin{align}
+        \begin{pmatrix}
+               \gamma & -\beta\,\gamma & 0 & 0 \\
+                   -\beta\,\gamma  & \gamma & 0 & 0 \\
+                   0 & 0 & 1 & 0 \\
+                   0 & 0 & 0 & 1 \\
+       \end{pmatrix}
+        \end{align}
+und die Lorentz-Transformation lautet 
+        \begin{align}
+            c\,t' &= \gamma\,ct - \beta\,\gamma\,x \,, \\
+            x' &= -\beta\,\gamma\,ct +\gamma\,x\,.
+        \end{align}
+Für $v\ll c$ ergibt sich $\gamma \rightarrow 1$, $\beta \rightarrow 0$, $\beta\,c = v$, also die Galilei-Transformation. Der nicht-relativistische Grenzfall kommt also richtig heraus. 
+
+\subsubsection{Eigenzeit und Vierergeschwindigkeit}
+Für eine relativistische Behandlung müssen wir alle physikalischen Größen als Lorentz-Skalare oder Vierervektoren formulieren, dann verhalten sie sich unter Transformationen zwischen Intertialsystemen richtig. Wir kennen bisher den Orts-Vierervektor $x^\mu$. Für die Lagrange-Mechanik brauchen wir zumindest noch einen Geschwindigkeits-Vierervektor (Vierergeschwindigkeit) $u^\mu$. Wie sieht dieser aus? Der Ansatz 
+        \begin{align}
+            u^\mu :\stackrel{?}{=} \frac{\D x^\mu}{\D t}
+        \end{align}
+ist keine gute Idee, denn $t = \frac{x^0}{c}$ ist kein Lorentz-Skalar: wir haben gerade gesehen, dass sich $t \rightarrow \underline{t}$ unter Lorentz-Transformationen ändert. Damit ist $\frac{\D x^\mu}{\D t}$ kein Vierervektor. Wir benötigen also zunächst einen Skalar der Zeit. Eine vernünftige Wahl ist die Eigenzeit $\tau$, also die auf einer mitgeführten Uhr gemessene Zeit. Wir benötigen deren Differential $\D \tau$. Es ist
+        \begin{align}
+            c^2\,\D \tau^2 -0 = c^2\,\D t^2-\D x^2 -\D y^2 -\D z^2 = \D s^2 \,.
+        \end{align}
+Die linke Seite der Gleichung bezieht sich auf das mitgeführte Koordinatensystem, in dem die Uhr natürlich keinen Weg zurücklegt. Es folgt
+        \begin{align}
+            c^2\,\D \tau^2  &= c^2\,\D t^2 - v^2\,\D t^2 = \lk c^2-v^2\rk\,\D t^2 \,, \\
+             \rightarrow ~~~~ \D \tau &= \sqrt{1-\frac{v^2}{c^2}}\,\D t = \frac{\D t}{\gamma}\,.
+        \end{align}
+Da $\gamma \geq 1$ ist, vergeht die Eigenzeit immer langsamer als die Laborzeit (Zeitdilatation). Nun können wir die Vierergeschwindigkeit 
+        \begin{align}
+            u^\mu := \frac{\D x^\mu}{\D \tau}
+        \end{align}
+als korrekten Vierervektor definieren. Es ist $u^\mu = \gamma\,\frac{\D x^\mu}{\D t}$ mit Komponenten 
+        \begin{align}
+            u^0 &= \gamma\,\frac{\D ct}{\D t} =\gamma\,c\,, \\
+            \vec{u} &= \gamma\,\frac{\D \vec{r}}{\D t} = \gamma\,\vec{v} ~~~~ \text{mit der gewöhnlichen Geschwindigkeit $\vec{v}$.}
+        \end{align}
+Also ist
+        \begin{align}
+            u_\mu\,u^\mu
+       = \lk u^0\rk^2 -\vec{u}\cdot\vec{u} = \gamma^2\,c^2-\gamma^2\,v^2 = \frac{c^2-v^2}{1-\frac{v^2}{c^2}} = c^2 \,. \end{align} 
+Das ist offensichtlich ein Lorentz-Skalar. Da $s$ die Bogenlänge entlang einer Weltlinie ist, ist $u^\mu = \frac{\D x^\mu}{\D \tau} = c\,\frac{\D x^\mu}{\D s}$ Tangentenvektor an der Weltlinie, siehe \figref{bew_RelMech01}.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{Platzhalter.pdf}
+\caption{Weltlinie.} 
+\label{abb:bew_RelMech01}
+\end{figure}
+
+
+\subsection{Relativistische Elektrodynamik}\label{kap:edyn_EdynRelativity}
+
+\subsubsection{Viererschreibweise der \MWG{} und des elektromagnetischen Feldes}\label{kap:edyn_4vector}
+
+\subsubsection{Lagrange- und Hamilton-Formulierung des elektromagnetischen Feldes}\label{kap:edyn_Lagrange}
+
+
+\subsection{Relativistische Mechanik}\label{kap:edyn_MechanRelativity}
+
+
+\subsubsection{Lagrange-Gleichung für das freie Teilchen}
+Man kann um auch die Lagrange-Mechanik für ein relativisches Teilchen zu formulieren:
+       \begin{align}
+           S:=
+       \end{align}
+und erhält analog zu Kapitel \ref{kap:bew_Lagrange_II} die Lagrange-Gleichungen 2. Art
+        \begin{align}
+            \frac{\D}{\D \tau}\,\frac{\d \mathcal{L}}{\d u^\mu} - \frac{\d \mathcal{L}}{\d u^\mu} = 0, ~~~~ \mu = 0,1,2,3\,.
+        \end{align}
+Wie muss $\mathcal{L}$ für ein freies Teilchen aussehen?
+        \begin{enumerate}
+            \item $\mathcal{L}$ darf nicht von Orts-Vierervektor (Raum-Zeit-Punkt) $x^\mu$, oder von $\tau$ abhängen.
+            \item $\mathcal{L}$ muss ein  Lorentz-Skalar sein, der nur vom Vierervektor $u^\mu$, abhängt. Daher kann $\mathcal{L}$ nur vom Skalar $u_\mu\,u^\mu$, abhängen.
+            \item Für $v \ll c$ muss der nicht-relativistische Grenzfall
+            \begin{align}
+                \mathcal{L}_0 = \frac{1}{2}\,m\,v^2
+            \end{align}
+            herauskommen, zumindest bis auf ein totales Differential. 
+        \end{enumerate}
+Wir setzen, mit einer noch unbestimmten Proportionalitätskonstanten $\alpha$,
+        \begin{align}
+        \begin{split}
+            \mathcal{L}\,\D \tau &= \alpha\,\sqrt{u_\mu\,u^\mu}\,\D \tau = \alpha\,c\,\frac{\D t}{\gamma} = \alpha\,c\,\sqrt{1-\frac{v^2}{c^2}}\,\D t \\
+            &\stackrel{v \ll c}{\cong} \alpha\, c\,\lk 1-\frac{1}{2}\,\frac{v^2}{c^2}\rk\,\D t \\
+            &= \underbrace{\alpha\,c\,\D t}_{\substack{irrelevantes totales Differential }} - \frac{1}{2c}\,\alpha\,v^2\,\D t\,.
+        \end{split}
+        \end{align}
+Also müssen wir $\alpha =-m\,c$ setzen und erhalten
+        \begin{align}
+            \mathcal{L} = -m\,c\,\sqrt{u_\mu\,u^\mu}\,.
+        \end{align}
+Die Lagrange-Gleichungen enthalten Ableitungen nach Komponenten von Vierervektoren. Wir müssen kurz diskutieren, wie diese Ableitungen definiert sind. Da sicherlich gilt
+        \begin{align}
+            \frac{\d x^0}{\d x^0} =  \frac{\d x^1}{\d x^1} = \ldots = 1\,,
+        \end{align}
+folgt\footnote{\vgl $\divv \vec{r} =3$.}
+         \begin{align}
+             \frac{\d x^\mu}{\d x^\mu} = 4\,.
+         \end{align}
+Wir können also schreiben
+        \begin{align}
+            \d_\mu := \frac{\d}{\d x^\mu} 
+        \end{align}
+und analog
+        \begin{align}
+            \d^\mu = \frac{\d}{\d x_\mu}\,.
+        \end{align}
+Man kann leicht zeigen, dass sich die $\d_\mu$ tatsächlich wie kovariante Komponenten transformieren: Es gilt 
+        \begin{align}
+            \underline{x}_\nu = {L_\nu}^\mu\,x_\mu ~~~~ \text{und} ~~~~ \underline{x}^\nu = {L^\nu}_\mu\,x^\mu \,. \label{eq:bew_relmech04}
+        \end{align}
+Aus der Kettenregel und der zweiten Gleichung folgt 
+        \begin{align}
+            \d_\mu =\frac{\d}{\d x^\mu} = \frac{\d \underline{x}\nu}{\d x^\mu}\,\frac{\d}{\d \underline{x}^\nu} = {L^\nu}_\mu\,\frac{\d}{\d \underline{x}^\nu} = {L^\nu}_\mu\,\underline{\d}_\nu\,.
+        \end{align}
+Wegen ${L_\nu}^\mu\,{L^\nu}_\mu = \d_\mu^\lambda$ lautet die Umkehrung
+        \begin{align}
+            \underline{\d}_\nu = {L_\nu}^\mu\,\d_\mu \,.
+        \end{align}
+Vergleich mit der ersten Gleichung in \ref{eq:bew_relmech04} ergibt die Behauptung. \\
+Die Komponenten von $\d^\mu$ und $\d_\mu$ lauten 
+        \begin{align}
+            \lk \d^0,\d^1,\d^2,\d^3\rk &= \lk \frac{\d}{\d x_0},\frac{\d}{\d x_1},\frac{\d}{\d x_2},\frac{\d}{\d x_3}\rk = \lk \frac{1}{c}\,\frac{\d}{\d t},-\vec{\nabla}\rk\,, \\
+            \lk \d_0,\d_1,\d_2,\d_3\rk &= \lk \frac{\d}{\d x^0},\frac{\d}{\d x^1},\frac{\d}{\d x^2},\frac{\d}{\d x^3}\rk = \lk \frac{1}{c}\,\frac{\d}{\d t},\vec{\nabla}\rk\,.
+        \end{align}
+Beachte, dass die Vorzeichen im Vergleich zu
+        \begin{align}
+            \lk x^0,x^1,x^2,x^3\rk &= \lk ct,\vec{r}\rk\,, \\
+            \lk x_0,x_1,x_2,x_3\rk &= \lk ct,-\vec{r}\rk
+        \end{align}
+umgekehrt sind. 
+Damit kann man die Lagrange-Gleichungen auswerten. Es ist 
+        \begin{align}
+        \begin{split}
+            0 &= \frac{\D}{\D \tau}\,\frac{\d L}{\d u^\mu} = -m\,c\,\frac{\D}{\D \tau}\,\frac{\d}{\d u^\mu}\,\sqrt{g_{\nu\rho}\,u^\nu\,u^\rho} \\
+            &= -m\,c\,\frac{\D}{\D \tau}\,\frac{g_{\nu\rho}\,\lk\delta_\mu^\nu\,u^\rho + u^\nu\,\delta_\mu^\rho\rk}{2\,\sqrt{g_{\nu\rho}\,u^\nu\,u^\rho}} = -m\,c\,\frac{\D}{\D \tau}\,\frac{\cancel{2}u_\mu}{\cancel{2}\,\sqrt{u_\rho\,u^\rho}} \\
+            &= -m\,\frac{\D u_\mu}{\D \tau}
+        \end{split}
+        \end{align}
+für $\mu = 0,1,2,3$. Also folgt
+        \begin{align}
+            u^0 = \gamma\,c = \text{const} ~~~~ \rightarrow ~~~~ \gamma = \text{const}
+        \end{align}
+und 
+        \begin{align}
+            \vec{u} = \gamma\,\vec{v} = \text{const} ~~~~ \rightarrow ~~~~ \vec{v} = \text{const}\,.
+        \end{align}
+Wir finden $\vec{v} = \text{const}$, wie im nichtrelativistischen Grenzfall - ein kräftefreies Teilchen bewegt sich gleichförmig und geradlinig. Newtons erstes Axiom bleibt also in der SRT gültig.
+
+\subsubsection{Lagrange-Gleichung für ein Teilchen im elektromagnetischen Feld}
+Im nicht-relativistischen Fall gilt
+        \begin{align}
+            \mathcal{L} = \frac{m}{2}\,v^2 + \frac{q}{c}\,\vec{v}\cdot\vec{A}-q\,\phi\,. \label{eq:bew_rel07}
+        \end{align}
+Wir verwenden nun Gaußsche Einheiten, was für die relativistische Formulierung nützlich ist. Dies führt zu dem zusätzlichen Faktor $\frac{1}{c}$ im 2. Term. Der 2. und 3. Term sehen schon sehr nach einem Skalarprodukt aus. Wir definieren das Vierervektorpotential 
+         \begin{align}
+             \lk A_0,A_1,A_2,A_3\rk := \lk \phi,-\vec{A}\rk  \label{eq:bew_rel08}
+         \end{align}
+und \glqq raten\grqq{} die relativistische Form der Lagrange-Funktion, 
+        \begin{align}
+            L = -m\,c\,\sqrt{u_\nu\,u^\nu} - \frac{q}{c}\,u^\nu\,A_\nu\,. \label{eq:bew_rel09}
+        \end{align}
+Den ersten Term hatten wir schon für das freie Teilchen gefunden. Die Lagrange-Gleichungen lauten dann
+        \begin{align}
+        \begin{split}
+            0 &= \frac{\D}{\D \tau}\,\frac{\d L}{\d u^\mu} - \frac{\d L}{\d x^\mu}  \\
+            &= -m\,\frac{\D u_\mu}{\D \tau} - \frac{q}{c}\,\frac{\D A_\mu}{\D \tau} + \frac{q}{c}\,\frac{\d}{\d x^\mu}\,u^\nu\,A_\nu \\
+            &= -m\,\frac{\D u_\mu}{\D \tau} - \frac{q}{c}\,\frac{\D A_\mu}{\D \tau} + \frac{q}{c}\,u^\nu \,\frac{\d A_\nu}{\d x^\mu}\,. 
+        \end{split} \label{eq:bew_rel10}
+        \end{align}
+Durch Einsetzen von $u_\mu = \frac{\D x_\mu}{\D \tau}$ folgt 
+        \begin{align}
+            m\,\frac{\D^2 x_\mu}{\D \tau^2} = -\frac{q}{c}\,\frac{\D A_\mu}{\D \tau} + \frac{q}{c}\,\frac{\D x^\nu}{\D \tau}\,\frac{\d A_\nu}{\d x^\mu}\,. \label{eq:bew_rel11}
+        \end{align}

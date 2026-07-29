@@ -1,0 +1,137 @@
+\begingroup
+\let\cleardoublepage\relax
+\chapter{Physik des Kontinuums (Zusammenfassung)}\label{chap:kontmech}
+\def\chapname{kontmech}
+
+\begin{minipage}{0.5\textwidth}
+\includegraphics[width=\textwidth]{KontmechMotiv.pdf}
+%\includegraphics[width=\textwidth]{Platzhalter.pdf}
+\end{minipage}
+\medskip
+\begin{minipage}{0.5\textwidth}
+\begin{flushright}
+\small
+\emph{Schimpflich ist es, nicht zu gehen, \\
+sondern sich treiben zu lassen und mitten \\
+im Wirbel der Dinge verblüfft zu fragen:\\
+ Wie bin ich bloß hierher gekommen?\\}
+\medskip
+Seneca d.J. (1--65 n.Chr.)\\
+\medskip
+\medskip
+\medskip
+\medskip
+\small
+\emph{Alles in der Welt geht in der Wellenlinie.\\
+Jede Landstraße und so weiter. \\
+Wehe dem, der überall das Lineal anlegt!\\}
+\medskip
+Wilhelm Raabe (1831--1910)\\
+%\emph{Die Welle beugt sich jedem Winde gern.\\}
+%\medskip
+%Johann Wolfgang von Goethe (1749--1832)\\
+\medskip
+\medskip
+\normalsize
+\end{flushright}
+\end{minipage}
+
+\section*{Zusammenfassung des Inhaltes von Kapitel 2 aus Band I -- Mechanik}\label{kap:kontmech_zusammenfassung}
+
+Die Kontinuumsmechanik und insbesondere die Hydro- und Aerodynamik (oft
+zusammengefasst als Fluiddynamik\index{Fluiddynamik}) gehören zu den
+wichtigsten makroskopischen Theorien. Sie haben zahlreiche Anwendungen in
+vielen natur- und ingenieurwissenschaftlichen Disziplinen. Als Beispiele seien
+die Kosmologie, die Meteorologie, die Luft- und Raumfahrt, sowie
+Umweltwissenschaften, wie die Klimatologie und Ozeanographie genannt. Die
+Fluiddynamik wird trotz dieser breiten Anwendungsbereiche von Physikern und
+Ingenieuren häufig unterschätzt und findet sich vielfach auch nicht
+entsprechend im Physik-Curriculum wieder. Dabei hat sich gerade bei den
+(numerischen) Methoden in den letzten 25 Jahren viel getan. Heute sind Dank
+der verfügbaren Rechenleistungen Berechnungen und Simulationen möglich, die
+vor Jahren noch bestenfalls in einem Hochleistungsrechenzentrum realisiert
+werden konnten. 
+
+Aus diesen Gründen wurde das Kapitel \textbf{Physik des Kontinuums} mit in den Band I der "\textit{`Fingerübungen der Physik}"' aufgenommen und dazu die Ansätze der Mechanik erweitert.
+In \textbf{Kap. 1.4} wurde bereits der starre Körper eingeführt, der die Mechanik von Massepunkten um eine endliche Ausdehnung von Körpern erweiterte. Der Körper hat jedoch seine Form behalten und die Bewegung konnte auf sechs Freiheitsgrade beschränkt werden.
+Kann sich jedoch die Form eines Körpers verändern, muss man zur Kontinuumsmechanik übergehen.
+Insbesondere Gase und Flüssigkeiten, unter dem Begriff Fluide\index{Fluide} zusammengefasst, sind beliebig verformbar. Will man ihre Bewegungen oder Strömungen beschreiben, muss man auf die Kontinuumsmechanik zurückgreifen.
+
+Eine Kontinuumstheorie wie die Kontinuumsmechanik\index{Kontinuumstheorie}\index{Kontinuumsmechanik} gibt eine Beschreibung von Vielteilchensystemen durch gegebenenfalls zu definierende makroskopische physikalische Größen wie Dichte, Flüsse, Geschwindigkeiten usw. Sie stellt insofern ein gemittelte Charakterisierung des Vielteilchensystems dar. Man ist ja aber auch gar nicht an der mikroskopischen Dynamik des aus \ca $10^{23}$ oder mehr Teilchen bestehenden Systems interessiert, denn die Beobachtung des Systems findet ja auf Längenskalen im sub-mm bis km-Bereich und auf Zeitskalen im sub-ms bis Stundenbereich statt, während die Dynamik der Einzelteilchen in Skalenbereichen von $\SI{}{\nano\metre}$ \bzw $\SI{}{\femto\second}$ abläuft. Die Grundannahme einer Kontinuumstheorie besteht darin, dass man die langsamen und schnellen Prozesse voneinander separieren kann. So kann man für die Raumkoordinaten einen Volumenbereich definieren (das Volumenelement oder Flüssigkeitselement),\index{Volumenelement}\index{Flüssigkeitselement} über den die mikroskopischen Strukturen hinreichend ausgemittelt sind, im makroskopischen Beobachtungsbereich aber noch eine Variation von physikalischen Größen über die Raumkoordinaten beobachtet werden kann. Analoges gilt für die Zeitskala. 
+Für Zeiten, die deutlich größer sind als die Stoßzeiten (Zeit zwischen zwei Stößen von Teilchen des Systems) können die auf eine Volumenelement wirkenden Kräfte durch makroskopische Größen wie \zb Druck beschrieben werden. 
+Das Volumenelement ist dann auf dieser makroskopischen Zeitskala lokal in einem mechanischen und auch thermischen Gleichgewichtszustand, so dass die Dynamik durch Differentialgleichungen mit nach Zeit und Raum getrennten Ableitungen beschrieben werden kann. Diese zeitliche und räumliche Entwicklung von Dichten $\varrho(\vec{r},t)$ und Geschwindigkeitsprofilen $\vec{v}(\vec{r},t)$ und anderen Größen von Volumenelementen (Flüssigkeitselementen) unter der Wirkung von makroskopisch beschriebenen internen Kräften (\zb Druck) und externen Kräften (\zb der Schwerkraft) ist Gegenstand der Kontinuumsmechanik.\\
+
+Im \textbf{Kapitel 1} \textbf{Physik der Bewegung von Körpern} (Band I) wurde im Wesentlichen die Bewegung und Dynamik von Massepunkten, Systemen von Massepunkten und Festkörpern untersucht. Mathematisch führt die Berechnung der zeitlichen Entwicklung der Raumkoordinaten und Geschwindigkeiten auf die Lösung von gewöhnlichen Differentialgleichungen oder Systemen derselben. Im Fall des Kontinuums führen die Betrachtungen wegen der Veränderlichkeit der relativen Koordinaten von Massepunkten des Kontinuums zueinander und wegen der zeitlichen Veränderung der das Fluid kennzeichnenden physikalischen Größen auf Differentialgleichungen, die sowohl Ableitungen nach der Zeit als auch nach den Raumkoordinaten beinhalten, die man als partielle Differentialgleichungen\index{Differentialgleichung!partielle} bezeichnet und die wesentlich komplexer und schwieriger zu lösen sind, als die in Kapitel 1 behandelten gewöhnlichen Differentialgleichungen\index{Differentialgleichung!gewöhnliche}. 
+
+Es wird deshalb eingangs %des Kapitels \textbf{Physik des Kontinuums} 
+in \textbf{Kap. 2.2} eine Wiederholung der notwendigen Grundkenntnisse in den Methoden der Vektoranalysis\index{Vektoranalysis} gegeben.
+
+Anschließend werden in \textbf{Kap. 2.3} die Kinematik und Dynamik kontinuierlicher Körper behandelt.
+
+In \textbf{Kap 2.4} folgt eine spezielle Betrachtung der Bewegung von Flüssigkeiten und Gasen, wobei sowohl laminare als auch turbulente Strömungen betrachtet werden. Ausführlich wird auf die wichtige Herleitung und Anwendung der Grundgleichung der Fluiddynamik, die \NVS{} eingegangen.\index{Navier-Stokes-Gleichung}
+
+\textbf{Kap. 2.5} behandelt die Dynamik deformierbarer Festkörper\index{Festkörper}\index{Festkörper!deformierbarer} als ein weiteres Anwendungsgebiet der Kontinuumsmechanik.
+
+In \textbf{ Kap 2.6} wird mit den \anf{Fingerübungen} das Methodenwissen der Kontinuumsmechanik in zahlreichen %, zum Teil selten im Physikcurriculum vorkommenden,
+Übungen verschiedener Schwierigkeitsgrade mit jeweils online verfügbaren Lösungsbeispielen (\MKc) vertieft.
+
+Ebenso wie im vorherigen \textbf{Kap. 1} wird auch in diesem Kapitel keine umfassende Darstellung der Kontinuumsmechanik gegeben. Es soll vielmehr ein kompaktes Repetitorium für die darauf folgenden Anwendungen und "`Fingerübungen"' bereit gestellt werden. Für ein so umfassendes und komplexes Gebiet, wie es die Kontinuumsmechanik ist, ist die daher notwendige Straffung besonders ausgeprägt, weswegen im \textbf{Kap. 2} detaillierte Hinweise auf weiterführende Literatur gelistet sind.
+
+\newpage
+\section*{Inhaltsverzeichnis von Kapitel 2 aus Band I\,-\,Mechanik}
+
+%\contentsline {chapter}{\numberline {2}Physik des Kontinuums}{}{chapter.2}%
+%\contentsline {section}{\numberline {2.1}Motivation}{}{section.2.1}%
+%\contentsline {section}{\numberline {2.2}Einschub: Repetitorium Vektoranalysis}{}{section.2.2}%
+%\contentsline {subsection}{\numberline {2.2.1}Grundbegriffe Vektorrechnung}{}{subsection.2.2.1}%
+%\contentsline {subsection}{\numberline {2.2.2}Vektoranalysis, Nabla-Kalk\"ul}{}{subsection.2.2.2}%
+%\contentsline {subsection}{\numberline {2.2.3}Integrals\"atze}{}{subsection.2.2.3}%
+%\contentsline {section}{\numberline {2.3}Kinematik und Dynamik kontinuierlicher K\"orper}{}{section.2.3}%
+%\contentsline {subsection}{\numberline {2.3.1}Materiepunkte und Koordinaten}{}{subsection.2.3.1}%
+%\contentsline {subsection}{\numberline {2.3.2}Kinematik}{}{subsection.2.3.2}%
+%\contentsline {subsection}{\numberline {2.3.3}Eigenschaften von Str\"omungen}{}{subsection.2.3.3}%
+%\contentsline {subsection}{\numberline {2.3.4}Dynamik kontinuierlicher K\"orper}{}{subsection.2.3.4}%
+%\contentsline {subsection}{\numberline {2.3.5}Navier-Stokes-Gleichung}{}{subsection.2.3.5}%
+%\contentsline {section}{\numberline {2.4}Bewegungen von Fl\"ussigkeiten und Gasen}{}{section.2.4}%
+%\contentsline {subsection}{\numberline {2.4.1}Laminare Str\"omungen inkompressibler Fl\"ussigkeiten}{}{subsection.2.4.1}%
+%\contentsline {subsection}{\numberline {2.4.2}Wirbel in Str\"omungen (Turbulenz)}{}{subsection.2.4.2}%
+%\contentsline {subsection}{\numberline {2.4.3}Skalierungseigenschaften der Navier-Stokes-Gleichung}{}{subsection.2.4.3}%
+%\contentsline {section}{\numberline {2.5}Eigenschaften und Dynamik deformierbarer, fester K\"orper}{}{section.2.5}%
+%\contentsline {subsection}{\numberline {2.5.1}Eigenschaften deformierbarer K\"orper}{}{subsection.2.5.1}%
+%\contentsline {subsection}{\numberline {2.5.2}Dynamik deformierbarer K\"orper}{}{subsection.2.5.2}%
+%\contentsline {section}{\numberline {2.6}\"Ubungen zum Kapitel Physik des Kontinuums}{}{section.2.6}%
+
+\begin{table}[]
+\normalsize
+%\small
+%\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llll}
+\textbf{2} &          &       & \textbf{Physik des Kontinuums}     \\
+  & 2.1 &       & \quad         Motivation \\
+  & 2.2 &       & \quad         Einschub: Repetitorium Vektoranalysis   \\
+  &     & 2.2.1 & \quad\quad    Grundbegriffe Vektorrechnung \\
+  &     & 2.2.2 & \quad\quad    Vektoranalysis, Nabla-Kalkül \\
+  &     & 2.2.3 & \quad\quad    Integralsätze\\      
+  & 2.3 &       & \quad         Kinematik und Dynamik kontinuierlicher Körper \\
+  &     & 2.3.1 & \quad\quad    Materiepunkte und Koordinaten \\
+  &     & 2.3.2 & \quad\quad    Kinematik \\
+  &     & 2.3.3 & \quad\quad    Eigenschaften von Strömungen\\
+  &     & 2.3.4 & \quad\quad    Dynamik kontinuierlicher Körper \\
+  &     & 2.3.5 & \quad\quad    Navier-Stokes-Gleichung \\
+  & 2.4 &       & \quad         Bewegungen von Flüssigkeiten und Gasen \\      
+  &     & 2.4.1 & \quad\quad    Laminare Strömungen inkompressibler Flüssigkeiten\\
+  &     & 2.4.2 & \quad\quad    Wirbel in Strömungen (Turbulenz) \\
+  &     & 2.4.3 & \quad\quad    Skalierungseigenschaften der Navier-Stokes-Gleichung\\
+  & 2.5 &       & \quad         Eigenschaften und Dynamik deformierbarer, fester Körper \\      
+  &     & 2.5.1 & \quad\quad    Eigenschaften deformierbarer Körper \\
+  &     & 2.5.2 & \quad\quad    Dynamik deformierbarer Körper \\
+  & 2.6 &       & \quad         Übungen zum Kapitel Physik des Kontinuums \\      
+\end{tabular}%
+%}
+\end{table}
+\endgroup
+
+\newpage 
+\thispagestyle{empty}
+\quad 
+\newpage

@@ -1,0 +1,69 @@
+\subsection{\mscre -- Physik des Kontinuums}\label{kap:kontmech_matlabskripts}
+
+Die \mscre befinden sich im MATLAB-Ordner \texttt{MatlabDateien/kontmech},
+die Hilfsfunktionen im dortigen Unterordner \texttt{Include\-folder} und Daten im Unterordner \texttt{Data}.
+Es wird empfohlen, entweder die Skripte im GitHub Verzeichnis \githubSN zu benutzen oder sich die komplette Verzeichnisstruktur von \MKc~ runter zu laden und diese und auch das Arbeitsbuch im Hauptverzeichnis Fingeruebungen zu installieren. \\
+
+Wir wollen noch einmal explizit darauf hinweisen, dass die \mscre primäre der Vermittlung der physikalischen Modelle dienen und keinen Anspruch auf besonders elegante oder effiziente Programmierung erheben. Unser Buch ist ja kein Lehrbuch für \matlab-Programmierung. Uns ging es bewusst darum, dass die Skripte gut lesbar sind und das physikalische Modell bzw den physikalischen Gedankengang möglichst klar abbilden.
+Die Leser sind aufgerufen, die Programme nach Belieben zu verbessern und kompakter zu gestalten und diese auch ins GitHub Verzeichnis \githubSN zu stellen.
+
+
+%\begin{prob}\label{mls:kontmech_hilfsfunktionen} %MLSkript1 
+%\textbf{Hilfsfunktionen} \\
+%\begin{longtable}{p{0.33\textwidth}p{0.67\textwidth}}
+%\hline\noalign{\smallskip}
+%Skript & Beschreibung \\
+%\noalign{\smallskip}\svhline\noalign{\smallskip}
+%Mathematische Funktionen \\
+%\noalign{\smallskip}\svhline\noalign{\smallskip}
+%\mlkontmechref{Beispiel.m} & Ein Beispieltext.\\
+%\noalign{\smallskip}\svhline\noalign{\smallskip}
+%\end{longtable}
+%\end{prob}
+
+\subsubsection {Skripte zu Beispielen} \label{mls:kontmech_kapitel} 
+\begin{longtable}{p{0.33\textwidth}p{0.67\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlkontmechref{SchwingendeSaite01.m} & Lösen der Differentialgleichung einer
+schwingenden Saite für eine stehende Welle.\\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\end{longtable}
+
+\subsubsection {Skripte zu Übungen} \label{mls:kontmech_uebungen} 
+\begin{longtable}{p{0.33\textwidth}p{0.67\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlkontmechref{AchterbahnKont.m}        & Lösen der Differentialgleichung eines kontinuierlichen, elastischen Achterbahnzuges auf einer Gaußkurven-Strecke.\\
+\mlkontmechref{AchterbahnKontBeschl.m}  & Normalbeschleunigung auf einen Fahrgast im kontinuierlichen, elastischen Achterbahnzug.\\
+\mlkontmechref{Chladni01.m}             & Lösen der Eigenschwingungen einer kreisförmigen, elastischen Fläche.\\
+\mlkontmechref{Chladni02.m}             & Lösen der Eigenschwingungen einer quadratischen, elastischen Fläche.\\
+\mlkontmechref{Chladni03.m}             & Lösen der Eigenschwingungen einer rechteckigen, elastischen Fläche.\\
+\mlkontmechref{Divergenz.m}             & Programm berechnet Vektorfunktionen und ihre Divergenz.\\
+\mlkontmechref{FassFormelGauss.m}       & Programm berechnet Volumen von Rotationskörpern über Gaußschen Integralsatz.\\
+\mlkontmechref{GespannterBogen.m}       & Lösen der Eigenschwingungen eines Bogens, der durch eine Saite gespannt ist.\\
+\mlkontmechref{GradientFunktion1.m}     & Programm berechnet Funktionen und ihre Gradienten.\\
+\mlkontmechref{GradientFunktion2.m}     & Programm berechnet Funktionen und ihre Gradienten (Yukawa-Potential).\\
+\mlkontmechref{GradientFunktion3.m}     & Programm berechnet Funktionen und ihre Gradienten (Kepler-Potential mit Drehimpuls).\\
+\mlkontmechref{KdVTsunami.m}            & Berechnung eines KdV-Solitons, das auf eine Küste zuläuft, an der die Wassertiefe abnimmt.\\
+\mlkontmechref{KdV01.m}                 & Lösen der Korteweg-de-Vries-Gleichung für ein einzelnes Soliton.\\
+\mlkontmechref{KdV02.m}                 & Vergleich mehrerer Solitonen der KdV-Gleichung mit unterschiedlicher Geschwindigkeit.\\
+\mlkontmechref{KdV03.m}                 & Summen aus einzelnen Solitonen in der KdV-Gleichung.\\
+\mlkontmechref{KdV04.m}                 & Interaktion von Solitonen in der KdV-Gleichung.\\
+\mlkontmechref{Kreisrohr.m}             & Berechnen des Geschwindigkeitsprofils einer stationären Strömung in einem kreisrunden Rohr.\\
+\mlkontmechref{NLSGSolitonen.m}         & Lösen der nichtlinearen Schrödinger-Gleichung für ein Soliton.\\
+\mlkontmechref{Rechteckrohr.m}          & Berechnen des Geschwindigkeitsprofils einer stationären Strömung in einem rechteckigen Rohr.\\
+\mlkontmechref{Rotation.m}              & Programm berechnet Vektorfunktionen und ihre Rotation.\\
+\mlkontmechref{SchwingendeSaite02.m}    & Lösen der Differentialgleichung einer eingespannten Saite für eine Gaußsche Störung.\\
+\mlkontmechref{SchwingendeSaite03.m}    & Lösen der Differentialgleichung einer eingespannten Saite für eine einseitig angeregte Welle.\\
+%\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlkontmechref{SinusGordonSolitonen.m}  & Lösen der Sinus-Gordon-Gleichung für ein Soliton.\\
+\mlkontmechref{Tank.m}  & Fluss durch einen quadratischen Tank mit zwei Öffnungen.\\
+\mlkontmechref{Torricelli.m}  & Fluss einer Flüssigkeit aus einem Tank nach dem
+Gesetz von Torricelli.\\
+\end{longtable}
+
+
+

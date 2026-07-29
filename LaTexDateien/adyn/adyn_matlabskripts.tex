@@ -1,0 +1,97 @@
+\newpage
+\subsection{\mscre -- Astrodynamik}\label{kap:adyn_matlabskripts}
+
+Die \mscre befinden sich im MATLAB-Ordner \texttt{MatlabDateien/adyn},
+die Hilfsfunktionen im dortigen Unterordner \texttt{Include\-folder} und Daten im Unterordner \texttt{Data}.
+Es wird empfohlen, entweder die Skripte im GitHub Verzeichnis \githubSN zu benutzen oder sich die komplette Verzeichnisstruktur von \MKc~ runter zu laden und diese und auch das Arbeitsbuch im Hauptverzeichnis Fingeruebungen zu installieren. \\
+
+Wir wollen noch einmal explizit darauf hinweisen, dass die \mscre primäre der Vermittlung der physikalischen Modelle dienen und keinen Anspruch auf besonders elegante oder effiziente Programmierung erheben. Unser Buch ist ja kein Lehrbuch für \matlab-Programmierung. Uns ging es bewusst darum, dass die Skripte gut lesbar sind und das physikalische Modell bzw den physikalischen Gedankengang möglichst klar abbilden.
+Die Leser sind aufgerufen, die Programme nach Belieben zu verbessern und kompakter zu gestalten und diese auch ins GitHub Verzeichnis \githubSN zu stellen.
+
+\subsubsection {Skripte zu Beispielen} \label{mls:adyn_kapitel} 
+\begin{longtable}{p{0.34\textwidth}p{0.66\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mladynref{FlugzeitenMarsVenus.m}           & Programm berechnet die Flugzeiten für Hohmann-Ellipsen zu einem der Nachbar-Planeten (Venus, Mars) in der Näherung kreisförmiger Bahnen der Planeten.\\
+\mladynref{GravityAssist01.m}               & Berechnet verschiedene Abhängigkeiten eines Gravity-Assist-Manövers am Jupiter.\\
+\mladynref{GravityAssist02.m}               & Berechnet verschiedene Abhängigkeiten der Gravity-Assist-Manöver an den Planeten des Sonnensystems.\\
+\mladynref{HohmannTransfer.m}               & Berechnet den Geschwindigkeitsbedarf für den Hohmann-Transfer als Funktion der Verhältnisse von Anfangs- und Endradius der kreisförmigen Erdumlaufbahnen von Satelliten und die Transferzeiten für interplanetare Hohman-Transfers.\\
+\mladynref{Ionenantrieb01.m}                & Programm berechnet die Geschwindigkeitsschübe und die Bahnen/Flugzeiten für einen Ionenantrieb aus einem LEO in ein GEO im Vergleich zum Hohmann-Transfer (Näherungslösung).\\
+\mladynref{LambertProblem01.m}              & Programm berechnet die Parameter der Ellipsenbahn für das Lambert-Problem über Iteration. Verwendet \mladyniref{LambertSolver1.m}\\
+\mladynref{LambertProblem02.m}              & Programm berechnet die Parameter der Ellipsenbahn $a,\, e$ für das Lambert-Problem bei vorgegebener Geometrie für verschiedene ToF. Verwendet \mladyniref{LambertSolver2.m}\\
+\mladynref{LambertProblem03.m}              & Programm berechnet die Parameter der Ellipsenbahn bzw. Hyperbelbahn für das allgemeine Lambert-Problem bei vorgegebenen Positionsvektoren 1 und 2 und der Richtung Bewegung, sowie der Flugzeit (ToF). Als Zentralkörper ist entweder die Erde oder die Sonne angenommen. Verwendet \mladyniref{LambertSolver3.m}.\\
+\mladynref{LMCSMApollo11.m}                 & Rendezvous von LM und CSM von Apollo 11 in der Mondumlaufbahn (Berechnung der Kinematik des Rendezvous über die Clohessy-Wiltshire-Gleichungen).\\
+\mladynref{ParkerSolarProbe.m}              & Programm berechnet die einzelnen Gravity-Assist-Manöver der Parker-Solar-Probe und simuliert die Bahn im Zeitraum von Start bis 2024.\\
+\mladynref{Raketenstart01.m}                & Berechnet Start und Flug einer einstufigen Rakete von der Erdoberfläche.\\
+\mladynref{Raketenstart02.m}                & Programm berechnet Nutzlast-Antriebsvermögen-Relation als Funktion des Strukturmassen-Verhältnisses.\\
+\mladynref{Raketenstart03.m}                & Programm berechnet Nutzlast-Antriebsvermögen-Relation für Ariane 1 und Saturn V.\\
+\mladynref{RaketenstartReal.m}              & Programm berechnet Start einer einstufigen Rakete von der Erdoberfläche unter Berücksichtigung von Reibung und Nickwinkel-Korrekturen.\\
+\mladynref{ReentryNaeherungen.m}            & Programm berechnet die Dynamik des Wiedereintritts eines Raumschiffes in die Erdatmosphäre mit dem vollständigen DGL-System in der Näherung $x,h \ll R_\text{E}$ und in den Näherungslösungen aus dem normierten DGL-System.\\
+\mladynref{Rendezvous01.m}                  & Programm berechnet die Dynamik eines Weltall-Rendezvous eines Astronauten, der sich außerhalb der Raumstation befindet mit der ISS. Lösung der Hill-Gleichungen und Clohessy-Wiltshire-Gleichungen (direkter Anflug mit verschiedenen Antriebsgeschwindigkeiten).\\
+\mladynref{Rendezvous02.m}                  & Programm berechnet die Dynamik eines Weltall-Rendezvous eines Astronauten, der sich außerhalb der Raumstation befindet mit der ISS. Lösung der Hill-Gleichungen und Clohessy-Wiltshire-Gleichungen (verschiedene Antriebsrichtungen).\\
+\mladynref{Rendezvous03.m}                  & Berechnung der Kinematik eines Weltall-Rendezvous eines Targets und Jägers (Lösung über die Kepler-Gleichung bzw. die Clohessy-Wiltshire-Gleichungen).\\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\end{longtable}
+
+\subsubsection{Skripte zu Übungen} \label{mls:adyn_uebungen} %MLSkriptÜbungen
+\begin{longtable}{p{0.34\textwidth}p{0.66\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mladynref{AlternativeRaketenGl.m}          & Berechnet die Raketengleichung nach einem diskreten Modell. \\
+\mladynref{BahnparaBestimmung01.m}          & Berechnet die Bahnparameter von Satellitenbahnen um die Erde aus einem bekannten Orts- und Geschwindigkeitsvektor. \\
+\mladynref{BiElliptischerTransfer.m}        & Berechnet Zwei-Impuls-Übergang von Bahn mit Radius $r_1$ auf eine elliptische Bahn (bielliptischer Übergang) mit Radius $r_2$.\\
+\mladynref{FlugVenusParabelbahn.m}          & Programm berechnet die Parabel-Flugbahn einer Raumsonde zur Venus zu verschiedenen Startzeiten. Vorgegeben ist das Startdatum, gesucht ist das Ankunftsdatum mit dem schnellsten Transfer unabhängig vom notwendigen Antriebsbedarf.\\
+\mladynref{FreReturTrajectorie01.m}         & Berechnet für verschiedene Parameter die Free Return Trajectorie um den Mond.\\
+\mladynref{GravityAssistAnalytik.m}         & Analytische Formeln für Gravity-Assist-Manöver und deren Auswertung.\\
+\mladynref{GravityAssistSimulation.m}       & Programm simuliert die Streuung einer Raumsonde an einem Planeten (Gravity-Assist-Manöver) im heliozentrischen KOS am Beispiel Jupiter.\\
+\mladynref{IonenantriebMond.m}              & Programm berechnet die Geschwindigkeitsschübe und die Bahnen/Flugzeiten für einen Ionenantrieb aus einem LEO zum Mond im Vergleich zum Hohmann-Transfer.\\
+\mladynref{Ionenantrieb02.m}                & Programm berechnet die Geschwindigkeitsschübe und die Bahnen/Flugzeiten für einen Ionenantrieb aus einem LEO in ein GEO im Vergleich zum Hohmann-Transfer.\\
+\mladynref{LambertICBM.m}                   & Programm berechnet die Parameter des Abfangens einer ICBM  (Intercontinental Ballistic Missile) über die Lösung (Bisektionsverfahren) des Lambert-Problems. Verwendet \mladynref{LambertSolver3.m}.\\
+\mladynref{LambertMarsVenus.m}              & Programm berechnet die Parameter der Ellipsenbahn für Flüge zu Mars und Venus für das Lambert-Problem bei vorgegebenen Positionsvektoren 1 und 2 in AE, sowie der Abflug und Ankunftszeit. Verwendet \mladynref{LambertSolver3.m}.\\
+%\mladynref{LambertSolver3.m}                &.\\
+\mladynref{OberthEffektAnalogie.m}          & Analogie zum Oberth-Effekt als Bewegung durch eine Potentialmulde.\\
+\mladynref{OberthSwingBy.m}                 & Berechnet Swing-By Manöver mit Oberth-Effekt am Beispiel Jupiter.\\
+\mladynref{RaketenOptimierung01.m}          & Optimierung einer Mehrstufenrakete (Tandemstufung).\\
+\mladynref{RaketenOptimierung02.m}          & Optimierung einer Mehrstufenrakete mit der Methode der Lagrange-Multiplikatoren am Beispiel Saturn V und Apollo~11.\\
+\mladynref{Raketen2Orbit01.m}               & Programm berechnet Start einer zweistufigen Rakete von der Erdoberfläche unter Berücksichtigung von Reibung und Nickwinkel-Korrekturen. Berechnung im mitbewegten KOS.\\
+\mladynref{Raketen2Orbit02.m}               & Programm berechnet Start einer dreistufigen Rakete von der Erdoberfläche unter Berücksichtigung von Reibung und Nickwinkel-Korrekturen. Berechnung im mitbewegten KOS.\\
+\mladynref{Raketen2Orbit03.m}               & Programm berechnet Startazimut und Startfenster für Start eines Raumschiffs zur ISS von verschiedenen Weltraumzentren.\\
+\mladynref{Raketenstart04.m}                & Programm berechnet Nutzlast-Antriebsvermögen-Relation für gleiche Struktur-/Treibstoffmassenverhältnisse als Funktion der Stufenzahl $N$.\\
+\mladynref{ReentryReal.m}                   & Programm berechnet die Dynamik des Wiedereintritts (Reentry) eines Raumschiffes in die Erdatmosphäre für verschiedene Eintrittswinkel $\gamma_\text{Re}$ und Auftrieb-Drag-Relationen.\\
+\mladynref{ReentrySummary.m}                & Programm berechnet die Dynamik des Wiedereintritts (Reentry) eines Raumschiffes in die Erdatmosphäre für verschiedene Eintrittswinkel $\gamma_\text{Re}$.\\
+\mladynref{Rendezvous04.m}                  & Berechnung der Kinematik eines Weltall-Rendezvous eines Raumtransporters und der ISS (Lösung über die Kepler-Gleichung bzw. Clohessy-Wiltshire-Gleichungen) und Anflug mit direkter Sichtlinie.\\
+\mladynref{Rendezvous05.m}                  & Berechnung der Kinematik eines Weltall-Rendezvous eines Raumtransporters und der ISS (Lösung über die vollständige Lagrange-Gleichung im Vergleich zur Lösung Clohessy-Wiltshire-Gleichungen).\\
+\mladynref{SatPositionen01.m}               & Programm berechnet die Positionen und Bodenspuren von verschiedenen Satelliten um die Erde über die Lösung der Kepler-Gleichung.\\
+\mladynref{SatPositionen02.m}               & Programm berechnet die Bahnparameter und die Bodenspur der ISS auf Basis von Daten der NASA. \\
+\mladynref{SatPositionen03.m}               & Bestimmung der topozentrischen Beobachtungsdaten eines polaren Satelliten und der ISS.\\
+\mladynref{SatPositionen04.m}               & Bestimmung der Bodenspur der ISS und ihrer topozentrischer Beobachtungsdaten von zwei Bodenstationen aus. \\
+\mladynref{SatPositionen05.m}               & Bestimmung der topozentrische Beobachtungsdaten eines polaren Satelliten von zwei Bodenstationen aus\\
+\mladynref{SonnenSynchroneBahn.m}           & Berechnung der Bahn und der Bodenspur eines sonnensynchronen Satelliten.\\
+\mladynref{Spinlaunch.m}                    & Simulation eines Raketenstarts mit dem Spinlaunch System.\\
+\mladynref{Transfer2Moon.m}                 & Berechnet verschiedene Parameter und Trajektorien für einen Flug zum Mond.\\
+\mladynref{Transfer2MoonExample.m}          & Berechnet verschiedene Parameter und Trajektorien für einen Flug zum Mond. Parameter $r_0, v_0, \gamma_0, \lambda_1$ werden vorgegeben.\\
+\mladynref{FreReturTrajectorie01.m}         & Berechnet für verschiedene Parameter die Free Return Trajectorie um den Mond.\\
+\mladynref{TransferUnendlich.m}             & Programm berechnet die Geschwindigkeitsbedarfe für Hohmann-Oberth-Edelbaum-Transfers nach Unendlich, ebenso wie die Flugzeiten (normiert auf die Anfangsgeschwindigkeit/Umlaufzeit/Radius der Anfangs-Kreisbahn).\\
+\mladynref{Transfer2Reentry.m}              & Programm berechnet die Transferbahnparameter (Deorbit) aus einer Kreisbahn zum Wiedereintritts (Reentry) eines Raumschiffes in die Erdatmosphäre in Abhängigkeit vom Eintrittswinkel $\gamma_\text{Re}$.\\
+
+
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{longtable}
+
+\subsubsection {Hilfsfunktionen} \label{mls:adyn_hilfsfunktionen} 
+
+\begin{longtable}{p{0.33\textwidth}p{0.67\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mladyniref{EulerLagrange.m}             & Symbolische Berechnung der Euler-Lagrange Gleichungen (\url{https://www.mathworks.com/matlabcentral/fileexchange/93275-euler-lagrange-solver}), MATLAB Central File Exchange. 27.12.2021, Copyright (c)  Morten Veng 2021.\\
+\mladyniref{R\_x.m} , \mladyniref{R\_y.m}, \mladyniref{R\_z.m}     & Rotationsmatrizen bezüglich x,y,z-Achse.\\
+\mladyniref{LambertSolver1.m}            & Routine zur Berechnung des Bahnparameters $p, e$ der Ellipsenbahn für das Lambert Problem durch ein Bisektionsverfahren.\\
+\mladyniref{LambertSolver2.m}            & Routine zur Berechnung des Bahnparameters $a, e$ der Ellipsenbahn für das Lambert Problem durch ein Bisektionsverfahren.\\
+\mladyniref{LambertSolver3.m}            & Allgemeine Routine zur Berechnung der Bahnparameters $a, e$ der Ellipsen- \bzw Hyperbelbahn für das Lambert Problem auf Basis der Methode von Battin \cite{Battin1999}. Copyright (c) 2017, Meysam Mahooti.\\
+\mladyniref{GetColorLines.m}             & Lädt Farbtabelle für Linien und graphische Darstellungen.\\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\end{longtable}
+

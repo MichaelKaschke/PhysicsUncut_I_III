@@ -1,0 +1,276 @@
+\section{Lösungsbeispiele \autoref{chap:aero} -- Aerodynamik}\label{kap:aero_lsguebungen}
+
+\begin{sol}{prob:aero_testpotential}\label{lsg:aero_testpotential} %Übung1
+\textbf{Überprüfen auf die Existenz eines Potentials} \\ 
+
+Wir untersuchen zunächst das Geschwindigkeitsfeld für die Strömung zwischen
+zwei Wänden. Es ist gegeben durch
+\begin{equation*}
+  v_z(y) = \frac{1}{2\eta} \frac{\partial p(z)}{\partial z}
+  \lk \lk y - \frac{b}{2} \rk^2 -  \frac{b^2}{4} \rk \; .
+\end{equation*}
+Damit es ein Potential besitzen kann, muss nach Gl.
+\eqref{eq:aero_rotationsfrei} gelten, dass
+\begin{equation*}
+  \rotv \vec{v} = \vec{0} \; .
+\end{equation*}
+Berechnen wir also die Rotation. Es gilt
+\begin{align*}
+  \lk \rotv \rk_x &= \frac{\partial v_z}{\partial y} - \frac{\partial v_y}
+  {\partial z} = \frac{1}{\eta} \frac{\partial p(z)}{\partial z} \, 
+  \lk y^2 - \frac{b}{2} \rk \neq 0 \; , \\
+  \lk \rotv \rk_y &= \frac{\partial v_x}{\partial z} - \frac{\partial v_z}
+  {\partial x} = 0 \; , \\
+  \lk \rotv \rk_z &= \frac{\partial v_y}{\partial x} - \frac{\partial v_x}
+  {\partial y} = 0 \; .
+\end{align*}
+Die Rotation verschwindet also nicht und es gibt kein Potential.
+
+Für das kreisrunde Rohr gilt für das Geschwindigkeitsfeld
+\begin{equation*}
+  v_z(r) = \frac{1}{4\eta} \frac{\partial p(z)}{\partial z}
+  \lk r^2 - R^2 \rk \; .
+\end{equation*}
+Die Rotation berechnet sich am besten in Zylinderkoordinaten. Hier lauten
+die Komponenten
+\begin{align*}
+  \lk \rotv \rk_r
+  &= \frac{1}{r} \frac{\partial v_z}{\partial \varphi}
+    - \frac{\partial v_\varphi}{\partial z} = 0 \; , \\
+  \lk \rotv \rk_\varphi
+  &= \frac{\partial v_r}{\partial z} - \frac{\partial v_z}{\partial r}
+    = \frac{1}{2\eta} \frac{\partial p(z)}{\partial z} r
+    \neq 0 \; , \\
+  \lk \rotv \rk_z
+  &= \frac{1}{r} \lk \frac{\partial \,r\, v_\varphi}{\partial r}
+    - \frac{\partial v_r}{\partial \varphi} \rk = 0 \; .
+\end{align*}
+Auch hier verschwindet eine Komponente der Rotation nicht und damit gibt
+es auch für dieses Beispiel kein Potential.
+
+Wir stellen fest, dass auch solch scheinbar einfache Beispiele für Strömungen
+sich nicht durch ein Potential darstellen lassen. Physikalisch liegt die
+Ursache darin, dass benachbarte Flüssigkeitsschichten unterschiedliche
+Geschwindigkeiten besitzen. Man kann es sich so vorstellen, dass eine kleine
+Kugel, die in die Strömung gegeben wird, durch diese unterschiedlichen
+Geschwindigkeiten an ihren beiden Rändern, die mit den verschieden schnell
+strömenden Flüssigkeitsschichten in Berührung kommen, von diesen in Rotation
+versetzt wird.
+
+\end{sol} 
+\textcolor{blue} {$\rightarrow$ zur} \probref{aero_testpotential}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}  \newpage  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{sol}{prob:aero_potentialbeispiel}\label{lsg:aero_potentialbeispiel} %Übung2
+\textbf{Einfache Beispiele für Potentialströmungen} \\ 
+
+\end{sol} 
+\textcolor{blue} {$\rightarrow$ zur} \probref{aero_potentialbeispiel}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}  \newpage  
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{sol}{prob:aero_haftwand}\label{lsg:aero_haftwand} %Übung3
+\textbf{Strömung und Haftbedingung an einer Wand} \\ 
+
+Die numerische Lösung kann analog zu der aus \textbf{Übung~2.11} aus Band~I
+erfolgen. Wir benötigen, um die korrekte Lösung zu erhalten, die Randbedingungen
+für $u(y,z)$ und $\Omega(y,z)$.
+
+Wir betrachten zunächst den linken und den rechten Rand. Nach Gl.~(L~2.81) und
+(L~2.83) aus Band~I erwarten wir für eine Geschwindigkeit in $z$-Richtung
+\begin{subequations}
+  \begin{equation}
+    v_z = -\frac{\partial u}{\partial y} \; .
+  \end{equation}
+  In der diskreten Darstellung der Numerik wird das zu
+  \begin{align}
+    v_z & = -\frac{u(y+\Delta y,z)-u(y,z)}{\Delta y} \\
+    \intertext{bzw.}
+    u(y+\Delta y,z) &= u(y,z) - v_z \Delta y \; .
+  \end{align}
+\end{subequations}
+
+In ähnlicher Wiese lassen sich die Randbedingungen für $\Omega(y,z)$ finden.
+Aus Gl.~(L~2.83) in Band~I erhalten wir für den Fall, dass nur eine
+Geschwindigkeit in $z$-Richtung existiert
+\begin{equation}
+  \Omega = - \frac{1}{2} \lk \frac{\partial^2 u}{\partial y^2} +
+  \frac{\partial^2 u}{\partial z^2} \rk
+  = - \frac{1}{2} \lk - \frac{\partial v_z}{\partial y} +
+  \frac{\partial v_y}{\partial z} \rk
+  = \frac{1}{2} \frac{\partial v_z}{\partial y}
+\end{equation}
+Mit Gl.~\eqref{eq:aero_StroemungsprofilWand} ergibt sich daraus
+\begin{equation}
+  \Omega(y) = \frac{1}{4\eta} \frac{\partial p(z)}{\partial z} \, \lk 2 y
+  - b \rk + \frac{v_0}{2\,b} \; .
+  \label{eq:aero_StroemungWandOmega}
+\end{equation}
+Man erkennt, dass $\Omega(y)$ und damit auch der Wert des Wirbelfeldes an den
+Rändern erst dann eindeutig gegeben ist, wenn der Druckgradient in $z$-Richtung
+gegeben ist. Wir wollen dafür drei Fälle betrachten.
+
+\begin{subequations}
+  \begin{enumerate}[(i)]
+  \item \label{item:aero_RandDruck0}Es liegt keine Druckdifferenz vor:\\
+    In diesem Fall bildet sich nach Gl.~\eqref{eq:aero_StroemungWandOmega} ein
+    lineares Geschwindigkeitsprofil aus und wir finden entsprechend an beiden
+    Rändern den konstanten Wert
+    \begin{equation}
+      \Omega(y) = \frac{v_0}{2\,b} \; .
+      \label{eq:aero_StroemungWandOmega}
+    \end{equation}
+  \item \label{item:aero_RandDruck1}Für
+    \begin{equation*}
+      \frac{1}{2\eta} \frac{\partial p(z)}{\partial z} = \frac{v_0}{b^2} 
+    \end{equation*}
+    finden wir
+    \begin{equation}
+      \Omega(y=0) = 0 \; , \qquad \Omega(y=b) = \frac{v_0}{b} \; .
+    \end{equation}
+    Der Scheitel der Prabel liegt also am linken Rand.
+  \item \label{item:aero_RandDruck2}Analog finden wir für
+    \begin{equation*}
+      \frac{1}{2\eta} \frac{\partial p(z)}{\partial z} = -\frac{v_0}{b^2}  \; ,
+    \end{equation*}
+    dass
+    \begin{equation}
+      \Omega(y=0) = \frac{v_0}{b}  \; , \qquad \Omega(y=b) = 0 \; ,
+    \end{equation}
+    was einem Scheitel der Parabel am rechten Rand entspricht.
+  \end{enumerate}
+\end{subequations}
+
+Der obere und der untere Rand des simulierten Feldes sind vor allem
+dadurch gekennzeichnet, dass es keine $y$-Komponente der Geschwindigkeit gibt.
+Wir fordern also
+\begin{subequations}
+  \begin{equation}
+    \frac{\partial u}{\partial z} = v_y = 0 \; ,
+  \end{equation}
+  also
+  \begin{equation}
+    u(y,z+\Delta z) = u(y,z) \; .
+  \end{equation}
+\end{subequations}
+Hinzu kommt, dass die Rotation sich in $z$-Richtung nicht ändern sollte.
+Daher fordern wir, dass $\Omega(y)$ am oberen und am unteren Rand exakt
+die Werte der direkt angrenzenden Schicht hat.
+
+Wir haben gesehen, dass wir abhängig vom Druckgradienten drei verschiedene
+Randbedingungen für $\Omega(y)$ ansetzen müssen. Die drei oben diskutierten
+Lösungen möchten wir hier vorstellen. Für alle drei gilt, dass am linken Rand
+die Geschwindigkeit verschwindet und sie am rechten Rand ihren maximalen
+Wert erreicht. Zunächst gehen wir auf den Fall \ref{item:aero_RandDruck0}
+von oben ein, d.h. eine verschwindende Druckdifferenz. Die Linien für
+konstantes $u$, die für konstantes $\Omega$ und das Geschwindigkeitsfeld
+sind in \figref{aero_RandDruck0Felder} dargestellt.
+%
+\begin{figure}[tbp]
+  \centering
+  \includegraphics[width=0.8\textwidth]{HaftbWandLinearFelder}
+  \caption[Haftbedingung an einer Wand mit linearem Geschwindigkeitsprofil]
+  {Haftbedingung an einer Wand. Links haftet das Fluid an einer Wand, rechts
+    bewegt es sich mit der Geschwindigkeit $v_0$. Es wird kein Druckgradient
+    in $z$-Richtung angenommen. Gezeigt sind Linien für konstantes $u(y,z)$
+    und konstantes $\Omega(y,z)$ sowie das Geschwindigkeitsfeld.}
+  \label{abb:aero_RandDruck0Felder}
+\end{figure}
+%
+Betrachtet man das Geschwindigkeitsprofil (entlang des mittleren Wertes von
+$z$) sieht man eindeutig das lineare Geschwindigkeitsprofil in
+\figref{aero_RandDruck0Profil}.
+%
+\begin{figure}[tbp]
+  \centering
+  \includegraphics[width=0.5\textwidth]{HaftbWandLinearProfil}
+  \caption[Lineares Geschwindigkeitsprofil an einer Wand]
+  {Lineares Geschwindigkeitsprofil an einer Wand. Es liegt kein Druckgradient
+    vor und $v(y)$ ist für den mittleren Wert von $z$ aus
+    \figref{aero_RandDruck0Felder} dargestellt.}
+  \label{abb:aero_RandDruck0Profil}
+\end{figure}
+%
+Für den Druckgradienten aus Fall \ref{item:aero_RandDruck1},
+\begin{equation*}
+  \frac{1}{2\eta} \frac{\partial p(z)}{\partial z} = \frac{v_0}{b^2} \; ,
+\end{equation*}
+sind $u(y,z)$, $\Omega(y,z)$ und das Geschwindigkeitsfeld in
+\figref{aero_RandDruck1Felder} dargestellt.
+%
+\begin{figure}[tbp]
+  \centering
+  \includegraphics[width=0.8\textwidth]{HaftbWandScheitelLFelder}
+  \caption[Haftbedingung an einer Wand mit parabelförmigen
+  Geschwindigkeitsprofil und Scheitel an der Wand]
+  {Haftbedingung an einer Wand. Links haftet das Fluid an einer Wand, rechts
+    bewegt es sich mit der Geschwindigkeit $v_0$. Es liegt eine Druckgradient
+    von $1/(2\eta)\, \partial p(z)/\partial z = v_0/b^2$ vor. Gezeigt sind
+    Linien für konstantes $u(y,z)$ und konstantes $\Omega(y,z)$ sowie das
+    Geschwindigkeitsfeld.}
+  \label{abb:aero_RandDruck1Felder}
+\end{figure}
+%
+In der Darstellung des Geschwindigkeitsprofils in
+\figref{aero_RandDruck1Profil} sieht man eindeutig den Scheitel am linken
+Rand.
+%
+\begin{figure}[tbp]
+  \centering
+  \includegraphics[width=0.5\textwidth]{HaftbWandScheitelLProfil}
+  \caption[Parabelförmiges Geschwindigkeitsprofil mit Scheitel an der Wand]
+  {Parabelförmiges Geschwindigkeitsprofil mit Scheitel an der Wand. Es liegt
+    ein Druckgradient von $1/(2\eta)\, \partial p(z)/\partial z =
+    v_0/b^2$ vor und $v(y)$ ist für den mittleren Wert von $z$ aus
+    \figref{aero_RandDruck1Felder} dargestellt.}
+  \label{abb:aero_RandDruck1Profil}
+\end{figure}
+%
+Vollkommen analog findet man für den Druckgradienten aus Fall
+\ref{item:aero_RandDruck2},
+\begin{equation*}
+  \frac{1}{2\eta} \frac{\partial p(z)}{\partial z} = -\frac{v_0}{b^2}  \; ,
+\end{equation*}
+die Werte $u(y,z)$, $\Omega(y,z)$ und das Geschwindigkeitsfeld aus
+\figref{aero_RandDruck2Felder}.
+%
+\begin{figure}[tbp]
+  \centering
+  \includegraphics[width=0.8\textwidth]{HaftbWandScheitelRFelder}
+  \caption[Haftbedingung an einer Wand mit parabelförmigen
+  Geschwindigkeitsprofil und Scheitel an der Wand]
+  {Haftbedingung an einer Wand. Links haftet das Fluid an einer Wand, rechts
+    bewegt es sich mit der Geschwindigkeit $v_0$. Es liegt eine Druckgradient
+    von $1/(2\eta)\, \partial p(z)/\partial z = -v_0/b^2$ vor. Gezeigt sind
+    Linien für konstantes $u(y,z)$ und konstantes $\Omega(y,z)$ sowie das
+    Geschwindigkeitsfeld.}
+  \label{abb:aero_RandDruck2Felder}
+\end{figure}
+%
+In der Darstellung des Geschwindigkeitsprofils in
+\figref{aero_RandDruck1Profil} sieht man eindeutig, dass hier der Scheitel
+am rechten Rand liegt, also dort, wo die Geschwindigkeit maximal ist.
+%
+\begin{figure}[tbp]
+  \centering
+  \includegraphics[width=0.5\textwidth]{HaftbWandScheitelRProfil}
+  \caption[Parabelförmiges Geschwindigkeitsprofil mit Scheitel bei der
+  maximalen Geschwindigkeit]
+  {Parabelförmiges Geschwindigkeitsprofil mit Scheitel bei der maximalen
+    Geschwindigkeit. Es liegt ein Druckgradient von $1/(2\eta)\, \partial
+    p(z)/\partial z = -v_0/b^2$ vor und $v(y)$ ist für den mittleren Wert von
+    $z$ aus \figref{aero_RandDruck2Felder} dargestellt.}
+  \label{abb:aero_RandDruck2Profil}
+\end{figure}
+%
+
+
+\end{sol} 
+\textcolor{blue} {$\rightarrow$ zur} \probref{aero_haftwand}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}  \newpage  
+
+

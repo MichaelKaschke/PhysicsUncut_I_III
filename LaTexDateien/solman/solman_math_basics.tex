@@ -1,0 +1,623 @@
+%\input{header.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Mathematische Grundlagen}\label{kap:solman_math}
+
+%\todo {Holger Cartarius :  Können Sie aus Ihrer Erfahrung/Lehrtätigkeit heraus hier in diesem Abschnitt noch ergänzen, zB: Lineare Algebra, Fourier-Transformationen, DGL!  Vielleicht haben Sie ja schon Skripte, die wir verwenden können?}
+
+\section {Übersicht Koordinatensysteme und entsprechende Differentialoperationen} \label{kap:solman_KOS_Diff}
+
+Wir geben im Folgenden die wichtigsten Beziehungen und Differentialoperatoren für die gebräuchlichsten Koordinatensysteme an. Das ebene Polarkoordinatensystem ergibt sich aus dem Zylinderkoordinatensystem mit $z =  0$. $U(\vec{r})$ ist ein beliebiges Skalarfeld, $\vec{A}(\vec{r})$ ein beliebiges Vektorfeld (\cite{Riley2006, Felder2016, Fischer 2018, Jaenich2001}).
+
+\subsection {Kartesische Koordinaten}
+\renewcommand {\arraystretch}{1.3}
+\begin{longtable}{L{3cm}L{8cm}}
+Dreibein & $\vec{e}_1 = \vec{x}, \: \vec{e}_2 = \vec{y},\: \vec{e}_3 = \vec{z} $\\
+Ortsvektor & $\vec{r} = x \, \vec{x} + y \, \vec{y} + z \, \vec{z} $\\
+Differential & $\D \vec{r} = \D x \, \vec{x} + \D y \, \vec{y} + \D z \, \vec{z} $\\
+Geschwindigkeit & $\dot{\vec{r}} = \dot{x} \, \vec{x} + \dot{y} \, \vec{y} + \dot{z} \, \vec{z} $\\
+Beschleunigung & $\ddot{\vec{r}} = \ddot{x} \, \vec{x} + \ddot{y} \, \vec{y} + \ddot{z} \, \vec{z} $\\
+Volumenelement & $\D V = \D^3 r = \D x\: \D y\: \D z $\\ \\
+Gradient & $ \text{\textbf{grad}}\: U = \vec{\nabla}\:U = \lk  \frac{\partial U}{\partial x}, \frac{\partial U}{\partial y}, \frac{\partial U}{\partial z} \rk  = \frac{\partial U}{\partial x}\,\vec{x} + \frac{\partial U}{\partial y}\, \vec{y}  + \frac{\partial U}{\partial z}\, \vec{z}  
+$ \\ 
+Divergenz &  $\text{div}\: \vec{A} = \vec{\nabla} \cdot \vec{A} =  \frac{\partial A_x}{\partial x} + \frac{\partial A_y}{\partial y} + \frac{\partial A_z}{\partial z}$ \\
+Rotation  & $ \text{\textbf{rot}}\: \vec{A} = \vec{\nabla} \times \vec{A} = \left| \begin{matrix} \vec{x} & \vec{y} & \vec{z} \\ \frac{\partial }{\partial x} & \frac{\partial }{\partial y} & \frac{\partial }{\partial z} \\ A_x & A_y & A_z \end{matrix} \right| $\\ 
+& $~~~~~~~~~~~~~~~~ = \lk \frac{\partial A_z}{\partial y} - \frac{\partial A_y}{\partial z} \rk \, \vec{x}\, + \,\lk \frac{\partial A_x}{\partial z} - \frac{\partial A_z}{\partial x} \rk \, \vec{y}\, + \,\lk \frac{\partial A_y}{\partial x} - \frac{\partial A_x}{\partial y} \rk \, \vec{z} $ \\
+\noalign{\smallskip}\\
+Laplace-Operator & $ \bigtriangleup U = \text{div} \: \text{\textbf{grad}} \: U = \lk \frac{\partial^2 U}{\partial x^2} + \frac{\partial^2 U}{\partial y^2} + \frac{\partial^2 U}{\partial z^2} \rk $\\ \\
+ & \\
+\end{longtable}
+
+\section{Sphärische Polarkoordinaten, Kugelkoordinaten}
+\renewcommand {\arraystretch}{1.3}
+\begin{longtable}{L{3cm}L{8cm}}
+Dreibein & $\vec{e}_1 = \vec{e}_r, \: \vec{e}_2 = \vec{e}_\theta,\: \vec{e}_3 = \vec{e}_\phi $\\
+Koordinaten & $x_1 = r \sin\theta \: \cos\phi, \: x_2 = r \sin\theta  \sin\phi, \: x_3 = r \cos\theta  $\\
+Ortsvektor & $\vec{r} = r \, \vec{e}_r $\\
+Differential & $\D \vec{r} = \D r \, \vec{e}_r + r \,\D \theta \,\vec{e}_\theta + r \sin{\theta}\,\D \phi \, \vec{e}_\phi $\\
+Geschwindigkeit & $\dot{\vec{r}} = \dot{r} \, \vec{e}_r + r \dot{\theta} \, \vec{e}_\theta + r \sin{\theta} \dot{\phi} \, \vec{e}_\phi $\\
+Beschleunigung & $\ddot{\vec{r}} =   \lk \ddot{r} - r \dot{\theta}^2 -r^2 \sin^2\theta \ddot{\phi} \rk \, \vec{e}_r $\\
+                                 &$~~  + \big( 2 \dot{r} \dot{\theta} + r \ddot{\theta} - r \sin{\theta} \cos{\theta} \dot{\phi}^2 \big) \, \vec{e}_\theta $\\
+																 &$~~	+ \big( 2 \dot{r} \sin{\theta} \dot{\phi} + 2 r \dot{\theta} \cos{\theta} \dot{\phi} + r \sin{\theta} \ddot{\phi} \big) \, \vec{e}_\phi $\\ \\
+Volumenelement & $\D V = \D^3 r  = r^2\,\D r\,\D\Omega = r^2 \sin{\theta} \:\D r \:\D \theta\: \D \phi $\\
+ & \\
+Gradient & $ \text{\textbf{grad}}\: U = \vec{\nabla}\:U = \lk  \frac{\partial U}{\partial r}, \frac{1}{r} \frac{\partial U}{\partial \theta}, \frac{1}{r \sin{\theta}}\frac{\partial U}{\partial \phi} \rk  $ \\ &  \\
+ & ~~~~~~~~~$= \frac{\partial U}{\partial r} \,\vec{e}_r\,+\, \frac{1}{r}\frac{\partial U}{\partial \theta} \,\vec{e}_\theta \,+\, \frac{1}{r \sin{\theta}}\frac{\partial U}{\partial \phi} \,\vec{e}_\phi$ \\ \\
+Divergenz & $ \text{div} \: \vec{A} = \vec{\nabla} \cdot \vec{A} =  \frac{1}{r^2} \frac{\partial \lk r^2 A_r \rk} {\partial r} + \frac{1}{r \sin{\theta}}\frac{\partial} {\partial  \lk \sin{\theta} \: A_\theta \rk  \theta}+ \frac{1}{r \sin{\theta}}\frac{\partial A_\phi}{\partial \phi}  $\\ \\
+Rotation  & $\text{\textbf{rot}}\: \vec{A} = \vec{\nabla} \times \vec{A} = \frac{1}{r^2 \sin{\theta} }\:\left| \begin{matrix} \vec{e}_r & \vec{e}_\theta & \vec{e}_\phi \\ \frac{\partial }{\partial r} & \frac{\partial }{\partial \theta} & \frac{\partial }{\partial \phi} \\ A_r \;\ & r A_\theta\;\  & r \sin{\theta} \: A_\phi \end{matrix} \right| $\\
+\noalign{\smallskip}\\
+Laplace-Operator & $ \Delta U = \frac{1}{r^2}\frac{\partial}{r}\lk r^2 \frac{\partial U}{\partial r} \rk + \frac{1}{r^2 \sin{\theta}}\frac{\partial}{\partial \theta}\lk \sin{\theta} \frac{\partial U}{\partial \theta} \rk + \frac{1}{r^2 \sin{\theta}} \frac{\partial^2 U}{\partial \phi^2} $\\
+\noalign{\smallskip}\\
+Laplace-Operator & $ \Delta U = \lk \Delta_r + \frac{1}{r^2}\,\Delta_\Omega \rk \, U $\\
+Radialanteil     & $ \Delta_r \coloneqq \frac{1}{r^2}\,\frac{\d}{\d r}\,r^2\,\frac{\d}{\d r} \equiv \frac{1}{r}\,\frac{\d^2}{\d r^2} \equiv \frac{\d^2}{\d r^2} + \frac{2}{r}\,\frac{\d}{\d r} $\\
+Winkelanteil     & $\Delta_\Omega  \coloneqq \frac{1}{\sin\theta}\,\frac{\d}{\d\theta}\,\sin\theta\,\frac{\d}{\d \theta} + \frac{1}{\sin^2\theta}\,\frac{\d^2}{\d \phi^2} $\\
+\noalign{\medskip}\\
+Darstellung in & $\vec{e}_r = \sin\theta\,\cos\phi\,\vec{e}_x + \sin\theta\,\sin\phi\,\vec{e}_y + \cos\theta\,\vec{e}_z $\\
+kartesischen   & $\vec{e}_\theta = \cos\theta\,\cos\phi\,\vec{e}_x + \cos\theta\,\sin\phi\,\vec{e}_y - \sin\theta\,\vec{e}_z $\\
+Koordinaten    & $\vec{e}_\phi =  - \sin\phi\,\vec{e}_x + \cos\phi\,\vec{e}_y$\\
+\end{longtable}
+
+\subsection {Zylinderkoordinaten}
+\renewcommand {\arraystretch}{1.3}
+\begin{longtable}{L{3cm}L{8cm}}
+Dreibein & $\vec{e}_1 = \vec{e}_\varrho, \: \vec{e}_2 = \vec{e}_\phi,\: \vec{e}_3 = \vec{e}_z$\\
+Koordinaten & $x_1 = \varrho \cos\phi, \: x_2 = \varrho \sin\phi, \: x_3 = z $\\
+Ortsvektor & $\vec{r} = \varrho \, \vec{e}_\varrho + z \, \veceZ $\\
+Differential & $\D \vec{r} = \D \varrho \, \vec{e}_\varrho + \varrho \, \D \phi \,\vec{e}_\phi + \D z \, \veceZ $\\
+Geschwindigkeit & $\dot{\vec{r}} = \dot{\varrho} \, \vec{e}_\varrho + \varrho \,\dot{\phi} \,\vec{e}_\phi + \dot{z} \, \veceZ $\\
+Beschleunigung & $\ddot{\vec{r}} = \lk \ddot{\varrho} - \varrho \dot{\phi}^2 \rk \, \vec{e}_\varrho 
+                                    + \lk 2 \dot{\varrho} \dot{\phi} + \varrho \ddot{\phi} \rk \, \vec{e}_\phi + \ddot{z} \,\veceZ $\\ 
+Volumenelement & $\D V = \D^3 r = \varrho \:\D \varrho \:\D \phi\: \D z $\\
+ & \\
+Gradient & $ \text{\textbf{grad}}\: U = \vec{\nabla}\:U = \lk  \frac{\partial U}{\partial \varrho}, \frac{1}{\varrho} \frac{\partial U}{\partial \phi}, \frac{\partial U}{\partial z} \rk $\\
+         & $~~~~~~~~~~~= \frac{\partial U}{\partial \varrho}\,\vec{e}_\varrho \,+\, \frac{1}{\varrho}\frac{\partial U}{\partial \phi} \,\vec{e}_\phi \,+\, \frac{\partial U}{\partial z} \,\veceZ$ \\
+\noalign{\smallskip}\\
+Divergenz & $ \text{div} \: \vec{A} = \vec{\nabla} \cdot \vec{A} =  \frac{1}{\varrho}\frac{\partial \lk \varrho A_\varrho \rk} {\partial \varrho} + \frac{1}{\varrho}\frac{\partial A_\phi} {\partial \phi} + \frac{\partial A_z}{\partial z}  $\\ \\
+Rotation  & $\text{\textbf{rot}}\: \vec{A} = \vec{\nabla} \times \vec{A} = \frac{1}{\varrho}\:\left| \begin{matrix} \vec{e}_r & \vec{e}_\phi & \vec{e}_z \\ \frac{\partial }{\partial \varrho} & \frac{\partial }{\partial \phi} & \frac{\partial }{\partial z} \\ A_\varrho \;\ & \varrho A_\phi \;\  & A_z \end{matrix} \right| $\\
+\noalign{\smallskip}\\
+Laplace-Operator & $ \bigtriangleup U = \frac{1}{\varrho}\frac{\partial}{\varrho}\lk \varrho \frac{\partial U}{\partial \varrho} \rk + \frac{1}{\varrho^2 }\frac{\partial^2 U}{\partial \phi} + \frac{\partial^2 U}{\partial z^2} $\\
+ & \\
+\end{longtable}
+\newpage
+\subsection{Natürliche Koordinaten}
+\renewcommand {\arraystretch}{1.3}
+\begin{longtable}{L{3cm}L{8cm}}
+ Bogenlänge & $s(t) = \int\limits_{t_0}^t \D t' \left|\frac{\D \vec{r}(t')}{\D t'}\right| $ \\
+ & Die Bogenlänge $s$ parametrisiert die Bahnkurve, jeder Punkt $\vec{r}$ auf der Bahnkurve hat einen Wert $s$, der dem Abstand entlang der Bahnkurve vom Ausgangspunkt $\vec{r}(t_0)$ entspricht. $t$ ist ein Parameter der Kurve, der nicht unbedingt eine physikalische Bedeutung haben muss.\\
+ Tangentialvektor & 
+	\[
+		\vec{t}_v = \frac{\vec{v}}{\left| \vec{v} \right|} =  \frac{\D\vec{r} / \D t}{\left| \D\vec{r} / \D t \right|} = \frac{\D\vec{r} / \D t}{ \D s / \D t} = \frac{\D\vec{r}}{\D s} 
+\] \\
+ \linebreak Normalenvektor & 
+	\[
+		\vec{n}_v = \frac{\D \vec{t}_v / \D s}{\left| \D \vec{t}_v / \D s \right|} = \frac{\D \vec{t}_v / \D s}{\kappa} = \varrho_K \frac{\D \vec{t}_v}{\D s}
+\] \\
+ & Der Normalenvektor beschreibt die Änderung des Tangentialvektors entlang der Bahn, sein Betrag entspricht der Krümmung.\\
+Krümmung& $\kappa = \left| \D \vec{t}_v / \D s \right| $ bzw. sein Kehrwert dem Krümmungsradius $\varrho_K = 1/\kappa$\\
+Binormalvektor & 
+	\[\vec{b}_v = \vec{t}_v \times \vec{n}_v \] \\
+ & Damit bilden $ \vec{t}_v ~,~ \vec{n}_v $ und $\vec{b}_v$ ein begleitendes (mitbewegtes) orthonormales (rechtshändiges) Dreibein.\\
+ Geschwindigkeit & 	\[ \dot{\vec{r}} = \vec{v} = v \: \vec{t}_v = \dot{s} \: \vec{t}_v \] \\
+ Beschleunigung & 
+\[	\ddot{\vec{r}} = \dot{\vec{v}}  = \vec{a} = \dot{v} \: \vec{t}_v + v \:\dot{\vec{t}}_v = \ddot{s} \: \vec{t}_v + \dot{s} \: \frac{\D \vec{t}_v}{\D s} \frac{\D s}{\D t} = \ddot{s} \: \vec{t}_v + s^2 \: \frac{\D \vec{t}_v}{\D s} \]
+\[	\ddot{\vec{r}} = \underbrace{\ddot{s} \: \vec{t}_v}_{\text{tangential}} + \underbrace{s^2 \kappa \: \vec{n}_v}_{\text{normal}} = \vec{a}_T + \vec{a}_N
+\] \\
+ & Die Beschleunigung in natürlichen Koordinaten lässt sich also in eine Tangential- und eine Normalkomponente zerlegen, was ein wesentlicher Vorteil bei der Verwendung der natürlichen Koordinaten sein kann.\\
+ & \\
+\end{longtable}
+
+\section {Komplexe Zahlen}
+
+Polardarstellung komplexer Zahlen:
+\begin{align}
+    z = x + \im\,y = |z|\,e^{\im \varphi}, ~~~~ |z| = \sqrt{x^2+y^2}, ~~~~ \tan\varphi = \frac{y}{x} \\
+\end{align}
+\vspace{-0.7cm} \\
+Euler Formel:
+\begin{align}
+    e^{\im\varphi} = \cos\varphi + \im \,\sin\varphi
+\end{align}
+
+
+\section {Vektorrechnung und Vektoranalysis} \label{kap:solman_VektorAnalysis}
+\subsection{Grundbegriffe}
+
+\renewcommand {\arraystretch}{1.3}
+\begin{tabular}{m{9.2cm}m{3cm}}
+  skalare Funktion (eine Variable, ein Funktionswert) & $f(x)$ \\
+  Skalarfeld (mehrere Variablen, ein Funktionswert) & $f(\vec{r})$ \\
+  Raumkurve (eine Variable, mehrere Funktionswerte) & $\vec{f}(x)$ \\
+  Vektorfeld (mehrere Variablen, mehrere Funktionswerte) & \vec{f}(\vec{r})\\ 
+\end{tabular}
+
+\smallskip
+
+\textit{\textbf{Ableitung eines Vektors nach einem Parameter:}} \\
+
+\begin{equation*}
+  \dot{\vec{r}}(t) = \begin{pmatrix} \dot{x}(t) \\ \dot{y}(t) \\  \dot{z}(t) 
+    \end{pmatrix}
+  \end{equation*}
+
+\textit{\textbf{Linienintegrale entlang eines Vektors:}}\\
+
+Linienintegrale finden mehrere Anwendungen. Ein Beispiel sind Arbeitsintegrale aus der Mechanik. Sie werden durch die Parametrisierung
+eines Weges,
+  \begin{equation*}
+    \vec{r} = \vec{r}(t) = \begin{pmatrix} x(t) \\ y(t) \\ z(t) \end{pmatrix}
+    \; , \quad t \in C
+    \; ,
+  \end{equation*}
+berechnet.
+  \begin{equation*}
+    W = \int_C \vec{F}(\vec{r}) \cdot \D\vec{r} = \int_{t_\text{Anfang}}^{t_\text{Ende}} \vec{F}(\vec{r}(t)) \cdot \frac{\D\vec{r}}{\D t} \, \D t \,.
+  \end{equation*}
+	
+\subsection {Vektorrechnung - Dreidimensional}
+
+\begin{subequations}
+\begin{align}
+    \vec{a}\,\lk \vec{b} \times \vec{c} \rk &= \vec{b} \cdot \lk \vec{c} \times \vec{a} \rk = \vec{c} \cdot \lk \vec{a} \times \vec{b} \rk \\
+    \vec{a} \times \lk \vec{b} \times \vec{c} \rk &= \lk \vec{a} \cdot \vec{c} \rk \cdot \vec{b} - \lk \vec{a} \cdot \vec{b} \rk \cdot \vec{c} \\
+    \lk \vec{a} \times \vec{b} \rk \cdot \lk \vec{c} \times \vec{d} \rk &= \lk \vec{a} \cdot \vec{c} \rk \cdot \lk \vec{b} \cdot \vec{d} \rk - \lk \vec{a} \cdot \vec{d} \rk \cdot \lk \vec{b}\cdot \vec{c} \rk \\
+    \lk \vec{a} \times \vec{b} \rk^2 &= \vec{a}^2 \, \vec{b}^2 - \lk \vec{a} \cdot \vec{b}\rk^2 
+\end{align}
+\end{subequations}
+
+\medskip
+\textbf{\textit{Kronecker-Symbol}} $\delta_\text{i,j}$: \\
+\begin{align}
+    \delta_\text{i,j} = \left\{\begin{array}{rcl}1 & \text{wenn}\, i = j\\0 &\text{wenn}\,  i\neq j \end{array}\right.
+\end{align}
+
+\textbf{\textit{Levi-Civita-Symbol }}$epsilon_\text{ijk}$:
+\begin{align}
+    \delta_\text{i, j} = \left\{ \begin{array}{rcl}+1 & \text{wenn $ijk$ gerade Permutation von 123}\\ -1 &\text{wenn $ijk$ ungerade Permutation von 123} \\ 0 & \text{sonst} \end{array}\right.\\
+    \vspace{1cm}
+    \epsilon_\text{ijk}\,\epsilon_\text{lmk} = \delta_\text{il}\,\delta_\text{jm} - \delta_\text{im}\,\delta_\text{jl}, ~~~~~~ \epsilon_\text{ijk}\,\epsilon_\text{ljk} = 2\,\delta_\text{il}\,. \notag
+\end{align}
+
+\textbf{\textit{Einsteinsche Summenkonvention (kartesische Koordinaten):}}
+\begin{align}
+    \vec{a}\cdot\vec{b} = a_\text{i}\,b_\text{i} \equiv \sum\limits_{i=1}^{3}\,a_\text{i}\,b_\text{i}, ~~~~~~ \lk  \vec{a}\times \vec{b} \rk_\text{i} = \epsilon_\text{ijk}\,a_\text{j}\,b_\text{k} \equiv \sum\limits_{j=1}^{3} \sum\limits_{k=1}^{3}\, \epsilon_\text{ijk}\,a_\text{j}\,b_\text{k} \,.
+\end{align} 
+
+\subsection {Vektoranalysis - Dreidimensional}
+
+Erste Ableitung von skalaren Feldern $U\lk \vec{r} \rk$, Vektorfeldern $\vec{A}\lk \vec{r} \rk$:
+\begin{align}
+    \text{Gradient :} ~~ &\textbf{grad}\,U = \vec{\nabla}\,U ~~~~ \text{bzw.} ~~~~ \lk \vec{\nabla}\,U \rk_\text{i} = \d_\text{i}\,U \,,\\
+    \text{Divergenz:} ~~ &\text{div}\cdot\vec{A} = \vec{\nabla}\cdot\vec{A} = \d_\text{i}\,A_\text{i} \,,\\
+    \text{Rotation :} ~~ &\textbf{rot}\,\vec{A} = \vec{\nabla}\times \vec{A} ~~~~ \text{bzw.} ~~~~ \lk \rot\,\vec{A} \rk_i = \epsilon_{ijk}\,\d_\text{j}\,A_\text{k}\,.
+\end{align}
+
+Zweite Ableitungen von skalaren Feldern $U\lk \vec{r}\rk$, Vektorfeldern $\vec{A}\lk \vec{r} \rk$:
+\begin{align}
+    \text{div}\cdot\textbf{grad}\,U &= \vec{\nabla}\cdot\vec{\nabla} U = \Delta\,U \,,\\
+    \textbf{grad}\,\text{div}\,\vec{A} &= \vec{\nabla}\,\lk \vec{\nabla}\,\cdot \vec{A}\rk \,,\\
+    \textbf{rot rot}\,\vec{A} &= \vec{\nabla}\times\lk \vec{\nabla} \times \vec{A}\rk = \vec{\nabla}\,\lk \vec{\nabla}\cdot \vec{A}\rk - \Delta\,\vec{A} \,.
+\end{align}
+
+Insbesondere gelten folgende Identitäten:
+\begin{align}
+    \text{div} \cdot \textbf{rot}\,\vec{A} &= \vec{\nabla} \cdot \lk \vec{\nabla} \times \vec{A}\rk = 0 \,,\\
+    \textbf{rot grad}\,U &= \vec{\nabla}\times\lk \vec{\nabla}\,U \rk = 0 \,.
+\end{align}
+
+\subsection {Vektorrechnung - Vierdimensional}
+
+Kronecker-Symbol:
+\begin{align}
+    {\delta_\nu}^\mu = \left\{\begin{array}{rcl}1 & \text{wenn}\, \mu = \nu\\0 &\text{wenn}\,  \mu\neq \nu \end{array}\right.
+\end{align}
+Minkowski-Metrik:
+\begin{align}
+    \lk\eta_{\mu\nu}\rk = \lk\eta^{\mu\nu}\rk = 
+    \begin{pmatrix}
+        1 & 0 & 0 & 0\\
+        0 & -1 & 0 & 0\\
+        0 & 0 & -1 & 0\\
+        0 & 0 & 0 & -1\\
+    \end{pmatrix}\,, 
+\end{align}
+\vspace{-0.5cm}
+\begin{align}
+    \eta^{\mu\nu}\,\eta_{\mu\nu} = {\delta_\nu}^\mu \,.
+\end{align}
+Lorentz-invariantes Skalarprodukt \\ (mit Summenkonvention):
+\begin{align}
+    a_\mu\,b^\mu &= \eta_{\mu\nu}\,a^\nu\,b^\mu = a_0\,b^0 + a_\text{i}\,b^{\text{i}} = a^0\,b^0 - a^{\text{i}}\,b^{\text{i}}\,.
+\end{align}
+\vspace{0.3cm}
+Viererortsvektor:
+\begin{align}
+    \lk x^\mu\rk = 
+    \begin{pmatrix}
+        x^0\\
+        x^1\\
+        x^2\\
+        x^3\\
+    \end{pmatrix} 
+    \equiv
+    \begin{pmatrix}
+        c\,t\\
+        x\\
+        y\\
+        z\\
+    \end{pmatrix}, ~~~~ \mu \in \{ 0,1,2,3\} \,.
+\end{align}
+Vierergradient:
+\begin{align}
+    \d_\mu \equiv \frac{\d}{\d x^\mu}, ~~~~ \lk\d_\mu\rk = \begin{pmatrix}
+        \frac{1}{c}\,\d_\text{t}\\
+        \nabla\\
+    \end{pmatrix}\,, 
+\end{align}
+\vspace{-0.5cm}
+\begin{align}
+    \lk\d^\mu\rk = \lk\eta^{\mu\nu}\,\d_\nu\rk = 
+    \begin{pmatrix}
+        \frac{1}{c}\,\d_\text{t}\\
+        -\nabla\\
+    \end{pmatrix} \,.
+\end{align}
+Wellen-, d'Alembert- oder Quabla-Operator:
+\begin{align}
+    \d_\mu\,\d^\mu \equiv \d^2\equiv \square = \frac{1}{c^2}\,{\d_\text{t}}^2-\nabla^2 \equiv \frac{1}{c^2}\,{\d_\text{t}}^2 - \Delta \,.
+\end{align}
+Vierdimensionales Levi-Civita-Symbol:
+\begin{align}
+    \epsilon^{\mu\nu\sigma\tau} \coloneqq
+    \left\{\begin{array}{rcl}+1 &\text{wenn $\mu\nu\sigma\tau$ gerade Permutation von 0123}\\ -1 &\text{wenn $\mu\nu\sigma\tau$ ungerade Permutation von 0123} \\ 0 & \text{sonst} \end{array}\right.
+\end{align}
+\begin{align*}
+    \epsilon^{0123} = +1, ~~~~ \epsilon_{0123} = \eta_{00}\,\eta_{11}\,\eta_{22}\,\eta_{33}\,\epsilon^{0123} = -1
+\end{align*}
+
+\section{Integralsätze} \label{kap:solman_Integralsaetze}
+
+\textbf{Linienintegral:}
+\begin{align}
+    \int\displaylimits_{x_\text{a}}^{x_\text{b}} \vec{\nabla} \,U\,\D r &=  U\lk x_\text{b}\rk-U\lk x_\text{a}\rk ~~~\text{\bzw}~~~
+     \int\displaylimits_{x_\text{a}}^{x_\text{b}} \D x_\text{i}\,\d_\text{i}\, U = U \big|_{x_\text{b}}-U \big|_{x_\text{a}} \,.
+\end{align}
+
+\textbf{Satz von Stokes:}
+\begin{align}
+    \int\displaylimits_{\text{F}}\D \vec{f}\,\rot\, \vec{A} &= \oint\displaylimits_{\d F}\D r\,\vec{A} ~~~\text{\bzw}~~~
+    \int\displaylimits_{\text{F}}\D f_\text{i}\,\epsilon_\text{ijk}\,\d_\text{j} A_k = \oint\displaylimits_{\d F}\D x_\text{k} A_k \,. \,. \label{eq:solman_Integralsatz_Stokes}
+\end{align}
+
+\textbf{Satz von Gauß:}
+\begin{align}
+    \int\displaylimits_{\text{V}}\D V\,\divv\,\vec{A} &= \oint\displaylimits_{\d F}\D \vec{f}\,\vec{A} ~~~\text{\bzw}~~~
+    \int\displaylimits_{\text{V}}\D V\,\d_\text{i}\, A_i = \oint\displaylimits_{\d F}\D f_\text{i}\,A_i \,.  \label{eq:solman_Integralsatz_Gauss}
+\end{align}
+
+\textbf{Green'sche Integralsätze:}
+\begin{align}
+    \int\displaylimits_{\text{V}}\D V \lek\lk\vec{\nabla} \phi \rk\lk \vec{\nabla} \chi\rk + \phi\,\Delta\chi\rek &=  \oint\displaylimits_{\d V}\D \vec{f}\,\phi\,\vec{\nabla}\chi ~~~\text{\bzw}\\
+    \int\displaylimits_{\text{V}}\D V\,\lk\phi\,\Delta\chi-\chi\,\Delta\phi\rk &= \oint\displaylimits_{\d V} \D \vec{f}\,\lk\phi\,\vec{\nabla}a\chi-\chi\,\vec{\nabla}\phi\rk\,.
+\end{align}
+
+
+\section {Lineare Algebra} \label{kap:solman_LinAlgebra}
+
+Die Determinante einer gegebenen 2 x 2-Matrix 
+	\[    \mathbb{A} =
+				\begin{pmatrix}
+						a&b\\
+					c&d
+			\end{pmatrix}
+	\]
+ist durch
+\begin{align}
+ \dett(\mathbb{A}) = 
+\begin{pmatrix}
+        a&b\\
+        c&d
+\end{pmatrix} = ad-bc  
+\end{align}
+definiert.
+
+Die Inverse von $\mathbb{A}$ ist gegeben durch
+\begin{align}
+		\mathbb{A}^{-1} = \frac{\mathrm{adj}\lk\mathbb{A}\rk}{\dett\lk \mathbb{A}\rk}
+\end{align}
+worin $\mathrm{adj}\lk\mathbb{A}\rk$ die Adjunkte Matrix ist, die durch  
+	\[\mathrm{adj} = \begin{pmatrix}
+					d&-c\\
+					-b&a
+	\end{pmatrix}^T = 
+	\begin{pmatrix}
+					d&-b\\
+					-c&a
+	\end{pmatrix}\\
+	\]
+definiert ist. Daher gilt:\\
+	\[\mathbb{A}^{-1} =\frac{1}{ad-bc}
+	\begin{pmatrix}
+					d&-b\\
+					-c&a
+	\end{pmatrix}\,.
+	\]
+	
+	
+\section{Rotationsmatrizen} \label{kap:solman_rotmatrix}
+
+\begin{subequations}
+\begin{align}
+     \text{Drehung um~} \veceX :~~~&\mathbb{R}_x(\varphi) = \begin{pmatrix} 1 & 0 & 0 \\ 0 & \cos\varphi
+      & \sin\varphi  \\ 0 & -\sin\varphi & \cos\varphi \end{pmatrix}\,, \\
+     \text{Drehung um~} \veceY :~~~&\mathbb{R}_y(\varphi) = \begin{pmatrix} \cos\varphi & 0 & -\sin\varphi \\
+		  0 & 1 & 0 \\ \sin\varphi  & 0 & \cos\varphi \end{pmatrix}  \,, \\
+    \text{Drehung um~} \veceZ :~~~&\mathbb{R}_z(\varphi) = \begin{pmatrix} \cos\varphi & \sin\varphi & 0 \\
+      -\sin\varphi & \cos\varphi & 0 \\ 0 & 0 & 1 \end{pmatrix} \,.
+\label{eq:solman_rotmatrix}
+\end{align}
+\end{subequations}
+ 
+\section {Gewöhnliche Differentialgleichungen} \label{kap:solman_ODE}
+
+Wir wollen hier das mathematisch Grundprinzip des numerischen Verfahren zur Lösung eines Differentialgleichungssystems 2.~Ordnung, so wie es vielfach in der Physik, vor allem der Mechanik voirkommt, erläutern. Das Verfahren zur Lösung eines Differentialgleichungssystems 1.~Ordnung ergibt sich logischerweise durch Nullsetzten aller zweiten Ableitungen nach der Zeit.
+Wir nehmen an, dass wir ein sogenanntes Anfangswertproblem haben, \dh man startet bei bekannten Orten $\vec{r}_i$ und Geschwindigkeiten $\dot{\vec{r}}_i\,=\,\vec{v}_i$ zu einem Zeitpunkt $t$ und bestimmt die Orte (und Geschwindigkeiten) $\vec{r}_i + \Delta \vec{r}_i $ zu einem späteren Zeitpunkt $t+\Delta t$.
+Dazu werden die Bewegungsgleichungen für die $N$ Körper als ein System von $6 N$ gewöhnlichen Differentialgleichungen erster Ordnung in Komponentenschreibweise angegeben.
+Den Zustand des $N$-Körper-Systems beschreibt man als $6N$-dimensionalen Vektor $\vec{\psi}$\footnote{In der \matlab-Implementierung haben wir den Vektor meist mit \textcolor{cyan}{\texttt{Y}} bezeichnet.}:
+\begin{align*}
+\vec{\psi} = \,	& (x_1(t),y_1(t),z_1(t),\dot{x}_1(t),\dot{y}_1(t),\dot{z}_1(t),\ldots, \\
+				&\ldots,x_{N}(t),y_{N}(t),z_{N}(t),\dot{x}_N(t),\dot{y}_N(t),\dot{z}_N(t)) \,.
+\end{align*}
+Die zeitliche Änderung des Systemzustands $\dot{\vec{\psi}}$ ist wiederum ein $6N$-dimensionaler Vektor
+\begin{align*}
+\dot{\vec{\psi}}=\, &(\dot{x}_1 (t),\dot{y}_1 (t),\dot{z}_1 (t), \ddot{x}_1 (t),\ddot{y}_1 (t),\ddot{z}_1 (t) ,\ldots  \\
+            &\ldots,\dot{x}_{N}(t),\dot{y}_{N}(t),\dot{z}_{N}(t),\ddot{x}_N (t),\ddot{y}_N (t),\ddot{z}_N (t)) \,, 
+\end{align*}
+\bzw verkürzt
+\begin{equation}
+\dot{\vec{\psi}} = (\vec{v}_1 (t),\vec{a}_1 (t), \ldots , \vec{v}_N (t),\vec{a}_N (t)) \,. \label{eq:hm_dot_Psi_vector1} \\
+\end{equation}
+Da die Beschleunigungen $\vec{a}_i (t)$ im Vektor $\dot{\vec{\psi}}$ aus den Bewegungsgleichungen berechenbare Funktionen der Positionen $\vec{r}_i$ sind, kann man \eqref{eq:hm_dot_Psi_vector1} auch als eine berechenbare Funktion $\vec{\chi}$ schreiben:
+\begin{equation}
+\dot{\vec{\psi}} = \vec{\chi}\lek\vec{v}_1 (t),\vec{a}_1 (t), \ldots , \vec{v}_N (t),\vec{a}_N (t)\rek \,. \label{eq:hm_dot_Psi_vector2} \\
+\end{equation}
+Geht man vom Differential $\D t$ zur diskreten Differenzen-Schrittweite $\Delta t$ über, erhält man damit in einfachster Näherung für die Integration
+\begin{equation*}
+\vec{\psi}(t+\Delta t) = \vec{\psi}(t)+\Delta t \cdot \vec{\chi} \,.
+\end{equation*}
+Die verschiedenen numerischen Verfahren unterscheiden sich nun hinsichtlich der Verfeinerung und Optimierung dieses Integrationsschritts \zb durch geeignete Wahl der Schrittweiten.
+Eines der bekanntesten und gleichzeitig relativ einfachen Verfahren ist das \textit{Runge-Kutta-Verfahren}\index{Runge-Kutta-Verfahren} 4.~Ordnung mit Schrittweite $\Delta t$.
+Bei diesem Verfahren wird die Integrationsnäherung dahingehend verbessert, dass durch geeignete Kombinationen verschiedener Differenzenquotienten -- die sich aus $\vec{\chi}$ berechnen lassen -- die auftretenden Diskretisierungsfehler reduziert werden.
+Für das weit verbreitet und relativ breit anwendbare Runge-Kutta-Verfahren gilt folgende Rechenvorschrift:
+\begin{equation}
+\vec{\psi}(t+\Delta t)= \vec{\psi}_{n+1} = \vec{\psi}_n + \Delta t\cdot\bar{\vec{\chi}}_n = \vec{\psi}(t)+\Delta t \cdot \bar{\vec{\chi}}(t) \label{eq:hm_RK_1} \\ 
+\end{equation}
+mit
+\begin{align}
+\bar{\vec{\chi}}_n &= \bar{\vec{\chi}}(t) = \frac{1}{6} \lk\vec{\Theta}_a+2\vec{\Theta}_b+2\vec{\Theta}_c+\vec{\Theta}_d\rk \label{eq:hm_RK_2} \,, \\
+\vec{\Theta}_a &= \phi(\vec{\psi}_n ) \,,\nonumber  \\
+\vec{\Theta}_b &= \phi(\vec{\psi}_n + \frac{1}{2}\Delta t \cdot \vec{\Theta}_a) \,,\nonumber  \\
+\vec{\Theta}_c &= \phi(\vec{\psi}_n + \frac{1}{2}\Delta t \cdot \vec{\Theta}_b) \,,\nonumber \\
+\vec{\Theta}_d &= \phi(\vec{\psi}_n + \Delta t \cdot \vec{\Theta}_c) \,.\nonumber 
+\end{align}
+Man beachte, dass sowohl $\bar{\vec{\chi}}_n$ als auch $\vec{\Theta}_a$, $\vec{\Theta}_b$, $\vec{\Theta}_c$, $\vec{\Theta}_d$ ebenfalls $6N$-dimensionale Vektoren sind.
+Das Verfahren läuft nun folgendermaßen ab: Man berechnet zunächst aus bekannten Anfangswerten den Vektor $\vec{\psi}_n$, daraus $\vec{\chi}_n$, dann nach \eqref{eq:hm_RK_2} einzeln die $\vec{\Theta}_a$ bis $\vec{\Theta}_d$ und schließlich $\bar{\vec{\chi}}_n\!$.
+
+\section {Partielle Differentialgleichungen} \label{kap:solman_PDE}
+
+
+\section{Entwicklung nach einem vollständigen orthogonalen Funktionssystem} \label{kap:solman_specialfunc}
+
+Wir bezeichne mit $f_j$, $j =1 \ldots \infty $ ein vollständiges orthogonales Funktionssystem. Dann gilt, dass sich jede Funktion $F(x)$ nach einem solchen System entwickeln lässt.
+
+\begin{align}
+\begin{split}
+    F\lk x\rk &= \sum\limits_j\,a_\text{j}\,f_j\lk x\rk, \\
+		~~&\text{mit}~~ a_j = \langle f_j,F\rangle, ~~\text{und}~~ \langle F,G\rangle = \int\limits_\text{t}\,F^\ast\lk x\rk\,G\lk x\rk\,\D x \,, \\
+		~~&\text{wobei gilt:}\\
+    \langle f_j,f_\text{k}\rangle &= \delta_\text{jk}, ~~\text{und}~~ \sum\limits_j\,f^\ast_j\lk x'\rk\,f_j\lk x\rk = \delta\lk x'-x\rk \,.
+\end{split}
+\end{align}
+
+\section{Fourier-Analyse und Fourier-Transformation} \label{kap:solman_FourierMethode}
+
+\subsection{Fourier-Analyse} \label{kap:solman_FourierAnalyse}
+
+Fourier führte im Jahr 1822 die Fourier-Reihe ein, die für periodische Signale definiert ist und zu einem diskreten Frequenzspektrum führt:
+
+
+\subsection{Fourier-Transformation} \label{kap:solman_FourierTrafo}
+
+Die Fourier-Transformation ist eine mathematische Methode aus dem Bereich der Fourier-Analyse, mit der aperiodische Signale $f(t,x)$ in ein kontinuierliches Spektrum zerlegt werden. Die Funktion $\tilde{f}\lk \omega,k\rk$, die dieses Spektrum beschreibt, berechnet sich aus einer Integraltransformation und nennt man Fourier-Transformierte oder Spektralfunktion. 
+\begin{subequations}
+\begin{align}
+    \tilde{f}\lk \omega,k\rk &= \int\limits_{-\infty}^\infty\frac{\D t}{\sqrt{2\pi}}\int\frac{d^3\,x}{\lk 2\pi\rk^{\frac{3}{2}}}\,f\lk t,x\rk\,e^{-i\,\lk k\,x-\omega t\rk} \\
+    f\lk t,x\rk &= \int\limits_{-\infty}^\infty\frac{\D \omega}{\sqrt{2\pi}}\int\frac{d^3\,k}{\lk 2\pi\rk^{\frac{3}{2}}}\,\tilde{f}\lk\omega,k\rk\,e^{i\,\lk k\,x-\omega t\rk}
+\end{align}
+\end{subequations}
+
+Achtung: Manchmal wird die Fourier-Transformation abweichend mit anderen Vorfaktoren definiert.
+
+\section {Spezielle Funktionen} \label{kap:solman_SpecialFunc}
+
+%\section{Kugelflächenfunktionen}
+%
+%\begin{align*}
+    %\Delta_\Omega\,Y_\text{lm}\lk \vartheta,\varphi\rk &= -l\,\lk l+1\rk \,Y_\text{lm}\lk \vartheta,\varphi\rk, ~~~~ l \in \mathbb{N}_0, ~~~~ m= -l,\ldots,l \\
+    %Y_\text{lm}\lk \vartheta,\varphi\rk &= \sqrt{\frac{2l+1}{4\pi}\frac{\lk l-m\rk!}{\lk l+m\rk!}}\,{P_\text{l}}^\text{m}\,\lk\cos\vartheta\rk\,e^{im\varphi} \\
+    %{P_\text{l}}^\text{m}\lk u\rk &= \frac{\lk -1\rk^{l+m}}{2^l\,l!}\,\lk1-u^2\rk^\frac{m}{2}\,\frac{d^{l+m}}{d\,u^{l+m}}\,\lk1-u^2\rk^l, ~~~~ P_\text{l} \equiv  P_\text{l}^0
+%\end{align*}
+%
+%\begin{center}
+%\begin{align*}
+%\begin{matrix}
+%Y_\text{lm}\lk \vartheta,\varphi\rk & l=0 & l=1 & l=2\\
+%m=0 & \sqrt{\frac{1}{4\pi}} & \sqrt{\frac{3}{4\pi}}\,\cos\vartheta & \sqrt{\frac{5}{4\pi}}\,\lk3\cos^2\vartheta-1\rk\\
+%m=1 & & -\sqrt{\frac{3}{8\pi}}\,\sin\vartheta\,e^{i\phi} & -\sqrt{\frac{15}{8\pi}}\,\sin\vartheta\,\cos\vartheta\,e^{i\phi}\\
+%m=2  & & & -\sqrt{\frac{15}{32\pi}}\,\sin^2\vartheta\,e^{2i\phi} \\
+%\end{matrix}
+%\end{align*}
+%\end{center}
+%
+%\begin{align*}
+    %Y_\text{l,-m} &= \lk -1\rk^\text{m}\,{Y_\text{lm}}^\ast, ~~~~ \int \D\Omega\,Y_\text{lm}^\ast\lk \vartheta,\varphi\rk\,Y_\text{l'm'}\lk\vartheta,\varphi\rk = \delta_\text{ll'}\,\delta_\text{mm'} \\
+    %\frac{1}{|r-r'|} &= \sum\limits_{i=0}^\infty\,\sum\limits_{m=-l}^l\,\frac{4\pi}{2l+1}\,\frac{{r_<}^l}{{r_>}^{l+1}}\,Y_\text{lm}\lk\vartheta,\phi\rk\,Y_\text{lm}^\ast\lk\vartheta',\phi'\rk \\
+    %&= \sum\limits_{l=0}^\infty\,\frac{{r_<}^l}{{r_>}^{l+1}}\,P_\text{l}\lk\cos\alpha\rk, ~~~~ \cos\alpha\equiv\frac{r\,r'}{r\,r'}, \\
+    %r_< &= \min\lk r,r'\rk, ~~~~ r_> = \max\lk r,r'\rk
+%\end{align*}
+
+\subsection {Legendre Polynome} \label{kap:solman_LegendrePoly}
+
+Die Legendre-Polynome, auch zonale Kugelfunktionen genannt, sind spezielle Polynome, die auf dem Intervall $[-1,1]$ ein orthogonales Funktionensystem bilden. Sie sind die partikulären Lösungen der Legendreschen Differentialgleichung. Die Legendre-Polynome spielen eine wichtige Rolle in der theoretischen Physik, insbesondere in der Gravitationstheorie, der Elektrodynamik und in der Quantenmechanik.\\
+
+\textbf{Legendresche Differentialgleichung}\\
+
+Die Legendreschen Differentialgleichung 
+\begin{align*}
+    \lk 1-x^2\rk\,y''\lk x\rk -2\,x\,y'\lk x\rk + n\,\lk n+1\rk\,y\lk x\rk = 0
+\end{align*}
+kann als gewöhnliche lineare Differentialgleichung zweiter Ordnung auch in der Form 
+\begin{align*}
+    \frac{\D}{\D x}\,\lek\lk 1-x^2\rk\,y'\lk x\rk \rek + n\,\lk n+1\rk\,y\lk x\rk = 0
+\end{align*}
+für $x$ im Bereich $\lek -1,1 \rek$ dargestellt werden. \\
+%Die allgemeine Lösung dieser Differentialgleichung lautet
+%\begin{align*}
+    %y\lk x\rk = A\,\PL n \lk x\rk + B\,\mathcal{Q}_n\lk x\rk\,,
+%\end{align*}
+%mit den beiden linear unabhängigen Funktionen $\PL n \lk x\rk$ und $\mathcal{Q}_n\lk x\rk$. Man bezeichnet die Legendre-Polynome $\PL n \lk x\rk$ daher auch als Legendre-Funktionen 1. Art und $\mathcal{Q}_n\lk x\rk$ als Legendre-Funktionen 2. Art, denn diese sind keine Polynome mehr.\\
+
+\textbf{Legendre-Polynome $\PL n \lk x\rk$}\\
+
+Die ersten Legendre-Polynome lauten (siehe \figref{solman_legpoly}):
+\begin{align}
+\begin{split}
+    \PL 0 \lk x\rk &= 1     \,, \\
+    \PL 1 \lk x\rk &= x     \,,\\
+    \PL 2 \lk x\rk &= \frac{1}{2}\,\lk 3x^2-1\rk     \,,\\
+    \PL 3 \lk x\rk &= \frac{1}{2}\,\lk 5x^2-3x\rk    \,, \\
+    \PL 4 \lk x\rk &= \frac{1}{8}\,\lk 35x^4-30x^2+3\rk   \,,  \\
+    \PL 5 \lk x\rk &= \frac{1}{8}\,\lk 63x^5-70x^3+15x\rk   \,, \\
+    \PL 6 \lk x\rk &= \frac{1}{16}\,\lk 231x^5-315x^4+105x^2-5\rk\,.
+\end{split}
+\end{align}
+Das $n$-te Legendre-Polynom lautet allgemein
+\begin{align}
+    \PL n \lk x\rk = \sum\limits_{k=0}^{\lfloor \frac{n}{2}\rfloor}\lk -1\rk^k\,\frac{\lk 2n-2k\rk!}{\lk n-k\rk!\,\lk n-2k\rk!\,k! 2^n}\,x^{n-2k}\,,
+\end{align}
+wobei die Gauß-Klammer definiert ist als
+\begin{align*}
+    \lfloor \frac{n}{2}\rfloor = \left\{
+\begin{matrix}
+\frac{n}{2} ~~~~ n\,\text{gerade} \\
+\frac{n-1}{2} ~~~~ n\,\text{ungerade} \\
+\end{matrix}
+\right.\,.
+\end{align*}\\
+
+\begin{figure}[!htpb]
+	\includegraphics[width=\textwidth]{LegendrePolynome.pdf} 
+	\caption[Legendre-Polynome.]{Legendre-Polynome $n=0\,\ldots n=6$.}
+	\label{abb:solman_legpoly}
+\end{figure}
+
+Alternativ können die Legendre-Polynome über die \textbf{Rodrigues-Formel}
+
+\begin{align}
+    \PL n \lk x\rk = \frac{1}{2^n\,n!}\,\frac{\D^2}{\D\,x^2}\,\lk\lk x^2-1\rk^2\rk
+\end{align}
+berechnet werden oder über die \textbf{Integraldarstellung}
+
+\begin{align}
+    \PL n \lk x\rk = \frac{1}{\pi}\,\int\limits_0^\pi \lk x+\sqrt{x^2-1}\,\cos\varphi\rk^n\,\D\varphi \,.
+\end{align}
+
+Für die Legendre-Polynome gelten folgende \textbf{Rekursionsformeln}:
+\begin{align*}
+    \lk n+1\rk\,\PL {n+1} \lk x\rk &= \lk 2n+1\rk\,x\,\PL n \lk x\rk -n\,\PL {n-1} \lk x\rk  ~~~~ \lk n=1,2,\ldots;\PL 0=1;\PL1 = x\rk \\
+    \lk x^2-1\rk\,\frac{\D}{\D x}\,\PL n \lk x\rk &= n\,x\,\PL n \lk x\rk -n\,\PL {n-1} \lk x\rk \,.
+\end{align*}
+Die erste rekursive Formel lässt sich mittels der Substitution $n'=n+1$ in folgender, häufig zu findender Weise darstellen:
+\begin{align}
+    n\,\PL n \lk x\rk = \lk 2n-1\rk\,x\,\PL {n-1} \lk x\rk - \lk n-1\rk\,\PL {n-2} \lk x\rk ~~~~ \lk n=2,3,\ldots;\PL 0=1;\PL1 = x\rk \,.
+\end{align}
+
+\textbf{Vollständiges Orthogonalsystem}\\
+
+Die Legendre-Polynome bilden auf ein vollständiges Orthogonalsystem, sie sind also ein Spezialfall von orthogonalen Polynomen. Normiert man diese, so bilden sie ein vollständiges Orthogonalsystem. \\
+Es gilt
+\begin{align}
+    \int\limits_{-1}^1 \PL n \lk x\rk\,\PL m \lk x\rk\,\D x = \frac{2}{2n+1}\,\delta_{nm}\,,
+\end{align}
+wobei $\delta_{nm}$ das Kronecker-Delta bezeichnet. Dabei bedeutet die Vollständigkeit, dass sich jede Funktion $f$ nach Legendre-Polynomen \anf{entwickeln} lässt:
+\begin{align}
+    f\lk x\rk = \sum\limits_{n=0}^\infty c_n\,\PL n \lk x\rk
+\end{align}
+mit den Entwicklungskoeffizienten
+\begin{align}
+    c_n = \frac{2n+1}{2}\int\limits_{-1}^1 f(x)\,\PL n \lk x\rk\,\D x \,.
+\end{align}
+
+
+\subsection {Hermitesche Polynome} \label{kap:solman_HermitePoly}
+
+
+\section{Nützliche Integrale}
+
+\begin{align}
+\int x^2\,\sqrt{c^2-x^2} = \frac{x\,\lk c^2-x^2\rk^{3/2}}{4}+ \frac{c^2\,x\,\sqrt{c^2-x^2}}{8} + \frac{c^4}{8}\,\arcsin\frac{x}{c} \,.
+\end{align}\\
+
+\begin{align}
+\int \frac{\D u}{\sqrt{b^2-u^2}} = \arcsin\frac{x}{c} \,.
+\end{align} \\
+
+\begin{align}
+\int \frac{\D x}{\lk x^2+a^2\rk^m} = \frac{x}{2\,\lk m-1\rk\,a^2\lk x^2+a^2\rk^{m-1}} + \frac{2m-3}{\lk 2m-2\rk\,a^2}\,\int \frac{\D x}{\lk x^2+a^2\rk^{m-1}} \,.
+\end{align}\\
+
+\begin{align}
+\int \lk ax+b\rk^{m/2}\,\D x = \frac{2\,\lk ax+b\rk^{\lk m+2\rk/2}}{\lk m+2\rk\, a} \,.
+\end{align} \\
+
+\begin{align}
+\int x\,\lk ax+b\rk^{m/2}\D x = \frac{2\,\lk ax+b\rk^{\lk m+4\rk/2}}{\lk m+4\rk\, a^2} - \frac{2b\,\lk ax+b\rk^{\lk m+2\rk/2}}{\lk m+2\rk\, a^2} \,.
+\end{align}
+
+\subsection{Numerische Integration}
+
+\textbf{Rechteckregel}
+\begin{align}
+\int\limits_a^b f\lk x\rk \D x\approx h \Big\{f\lk x_1\rk+f\lk x_2\rk+f\lk x_3\rk+\ldots +f\lk x_{N-1}\rk\Big\} \,,
+\end{align}\\
+
+wo $x_\text{i} = a+\lk i-1\rk\,h$, für $1\leq i \leq N$, $h=\lk h-a\rk / \lk N-1\rk$. \\
+
+\textbf{Trapezregel}
+\begin{align}
+\int\limits_a^b f\lk x\rk \D x\approx \frac{h}{2}\Big\{f\lk x_1\rk+2\,\lek f\lk x_2\rk + f\lk x_3\rk + \ldots +f\lk x_{N-1}\rk\rek + f\lk x_\text{N}\rk\big\}\,,
+\end{align}\\
+
+wo die ganze Zahl $N\geq 2$, $x_\text{i} = a+\lk i-1\rk\, h$ für $1\leq i\leq N$, und $h \equiv \lk b-a\rk/\lk N-1\rk$.\\
+
+\textbf{Simpson's Regel}
+\begin{align}
+\int\limits_a^b f\lk x\rk \D x\approx \frac{h}{3}\left\{\begin{array}{rcl} f\lk x_1\rk+2\,\lek f\lk x_2\rk + f\lk x_4\rk + f\lk x_6\rk + \ldots +f\lk x_{N-1}\rk\rek \\+4\,\lek f\lk x_3\rk + f\lk x_5\rk + f\lk x_7\rk + \ldots +f\lk x_{N-2}\rk\rek+ f\lk x_\text{N}\rk\end{array}\right\}\,,
+\end{align}\\
+
+wo $N\geq 3$ eine ungerade ganze Zahl ist, $x_\text{i} = a+\lk i-1\rk\,h$ für $1\leq i\leq N$, und $h \equiv \lk b-a\rk/\lk N-1\rk$.
+
+\section{Funktionentheorie}
+
+Cauchy-Riemann'sche Differenzialgleichungen:
+\begin{align}
+    f\lk z\rk = u\lk x+\im\,y\rk + \im\,v\lk x+\im\,y\rk: ~~~~ u_\text{x} = v_\text{y}, ~~~~ u_\text{y} = -v_\text{x} \,.
+\end{align}
+Residuensatz:
+\begin{align}
+    \oint f\lk z\rk \D z = 2\pi\,\im\,\sum\limits_{j=1}^n\,\res_\text{zj}\,f\lk z\rk \,.
+\end{align}
+Residuum bei einer einfachen Polstelle:
+\begin{align}
+    \res_{z_0}\,f\lk z\rk =  \lim_{z\to z_0}\lk z-z_0\rk\,f\lk z\rk \,.
+\end{align}
+

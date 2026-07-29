@@ -1,0 +1,412 @@
+
+\section{Bewegungsgleichung der Himmelsmechanik}\label{kap:hm_bewegungsgl}
+
+In diesem Kapitel kommen wir zur grundlegenden Bewegungsgleichung der Himmelsmechanik.
+In der Theorie der Gravitation ist die einfachste Konstellation eine aus zwei Körpern, das sogenannte \emph{\gls{zkp}}\index{Zweikörperproblem|textbf} (ZKP) (siehe Kapitel Physik der Bewegung im Band I). 
+%Eine Bewegungsgleichung für das Zweikörperproblem ist dabei eine Gleichung zur Bestimmung der Koordinaten der beiden Körper im Raum als Funktion der Zeit.
+Die entsprechende Bewegungsgleichung der Himmelsmechanik heißt \emph{Kepler-Gleichung}.\index{Kepler-Gleichung|textbf}\indexp{Kepler, Johannes}\footnote{Johannes Kepler (1571 -- 1630 ) war ein deutscher Astronom und Physiker. Er entdeckte die Gesetzmäßigkeiten, nach denen sich Planeten um die Sonne bewegen, die nach ihm benannten Keplerschen Gesetze, womit er zu den Begründern der modernen Naturwissenschaften gehört. Wir schreiben wie sonst im Buch auch entsprechend der verwendeten Notation \emph{Kepler-Gleichung}, analog Lagrange-Gleichung, Euler-Gleichung usw. In der Astronomie hat sich historisch \emph{Keplergleichung} als  Konvention herausgebildet.} 
+Die Bewegungsgleichung der Himmelsmechanik heißt \emph{Kepler-Gleichung}.\index{Kepler-Gleichung|textbf}\indexp{Kepler, Johannes}\footnote{Johannes Kepler (1571 -- 1630 ) war ein deutscher Astronom und Physiker. Er entdeckte die Gesetzmäßigkeiten, nach denen sich Planeten um die Sonne bewegen, die nach ihm benannten Keplerschen Gesetze, womit er zu den Begründern der modernen Naturwissenschaften gehört. Wir schreiben wie sonst im Buch auch entsprechend der verwendeten Notation \emph{Kepler-Gleichung} (analog Lagrange-Gleichung, Euler-Gleichung usw.). In der Astronomie hat sich aber historisch \emph{Keplergleichung} als  Konvention herausgebildet.} 
+Obwohl sie für die Himmelsmechanik eine fundamentale Bedeutung hat, wird die Kepler-Gleichung im Physik-Studium kaum behandelt.
+Wir wollen sie deshalb hier zunächst aus der Newtonschen Gravitationstheorie herleiten und auch eine auf Johannes Kepler selbst zurückgehende einfache geometrische Herleitung angeben.
+Im Anschluss zeigen wir, wie man Lösungen für die Kepler-Gleichung erhalten kann und wie diese \zb für das Sonne-Erde- oder Sonne-Planeten-Problem aussehen.
+Wir werden später auch sehen, dass dieser einfachen Lösungsansatz bereits für das Mond-Erde-System wegen der Einflüsse der Sonne und der anderen Planeten  nicht mehr ausreicht.
+
+\subsection{Herleitung der Kepler-Gleichung} \label{kap:hm_abl_kepler}
+Die physikalischen Grundlagen der Bewegung des ZKP hatten wir uns bereits im Kapitel Physik der Bewegung im Band I angeeignet.
+In \kap{hm_zeitdefinition} benutzten wir bei der Definition einiger KOS das Ergebnis, dass die Bewegung von Himmelskörpern in Bahnebenen stattfindet. Wir zeigen als Wiederholung noch einmal (diesmal in astronomischer Notation), dass sich die Bewegung in einer Ebene direkt aus der Tatsache ergibt, dass die Newtonsche Gravitationskraft eine Zentralkraft ist. 
+Wir betrachten dazu das ZKP nach \figref{hm_2kp}, wobei wir den Körper mit der Masse $M$ als wesentlich schwerer annehmen und deshalb als Zentralkörper bezeichnen.
+Den Körper mit der wesentlich kleineren Masse $m$ wollen wir hingegen einfach Planet P nennen, obwohl es auch ein beliebiger anderer Himmelskörper (\zb Komet) sein kann.
+Mit $\vec{r}_\text{M}$ und $\vec{r}_\text{m}$ bezeichnen wir die Vektoren vom Ursprung O eines beliebigen KOS zu den Massen $M$ \bzw $m$.
+Der Vektor $\vec{r}=\vec{r}_\text{m}-\vec{r}_\text{M}$ zeigt vom Zentralkörper zum Planeten.
+
+\begin{figure}
+\begin{minipage}{\textwidth}
+\leftfigure{\includegraphics[width=0.5\textwidth]{ZKP.pdf}}
+\hspace{\fill}
+\rightfigure{\includegraphics[width=0.5\textwidth]{Flaechensatz.pdf}}
+\leftcaption{Zur Herleitung des Zweikörperproblems.}\label{abb:hm_2kp}
+\rightcaption{Flächensatz.} \label{abb:hm_flaechensatz}
+\end{minipage}
+\end{figure}
+
+Laut Newtons Gravitationsgesetz\index{Gravitation} wirkt auf den Körper mit der Masse $m$ (Planet) durch den Zentralkörper mit der Masse $M$ (\zb die Sonne) eine Kraft
+\begin{equation}
+\vec{F}_\text{m} = m\,\ddot{\vec{r}}_\text{m} = -\frac{G \, M \, m}{r^3} \, \vec{r} \,.
+\label{eq:hm_beschl_zk}
+\end{equation}
+Entsprechend wirkt auf den Zentralkörper durch den Planeten die Kraft
+\begin{equation}
+\vec{F}_\text{M} = M\,\ddot{\vec{r}}_\text{M} = +\frac{G \, m \, M}{r^3} \, \vec{r} \,.
+\label{eq:hm_beschl_pl}
+\end{equation}
+Die Beschleunigungen erhält man durch Division durch die Massen $m$ bzw. $M$:
+\begin{equation}
+\ddot{\vec{r}}_\text{m}-\ddot{\vec{r}}_\text{M} = \ddot{\vec{r}} = -\frac{G(M+m)}{r^3}\, \vec{r} = -\frac{\mu_\text{G}}{r^3}\, \vec{r}
+\label{eq:hm_zk-pl}
+\end{equation}
+mit 
+\begin{equation}
+\mu_\text{G}\!=\!G\,(M+m). 
+\label{eq:hm_def_muG}
+\end{equation}
+Hierin ist $G\!=\!\SI{6.673e-11}{\metre\cubed\per\kg\per\second\squared}$ die bereits in Band I eingeführte \emph{Gravitationskonstante}\glslink{gravkonst}.\index{Gravitationskonstante}\footnote{Man kann die Relativkoordinate auch so wählen, dass der Ort des Massenschwerpunkts $\vec{r}_\text{S}$ des Systems den Ursprung O des KOS bildet. Dann ist $\vec{r}_\text{S} = (M \vec{r}_\text{M} + m \vec{r}_\text{m})/(M+m)=0$ und die Bewegungsgleichung für den Planeten lautet $\ddot{\vec{r}} = -\mu_\text{G} \vec{r}/r^3 $ mit $\mu_\text{G}\!=\!GM (1 + m/M)^{-2}$, was für $ m \ll M$ in \eqref{eq:hm_def_muG} übergeht.} %und $\mu_\text{G}$ der sogenannte \gls{gravparhm}.  
+Zur eindeutigen Lösung von $\vec{r}(t)$ in \eqref{eq:hm_zk-pl} werden für das Differentialgleichungssystem 2.
+Ordnung (in der Zeit) mit drei räumliche Koordinaten folglich sechs Konstanten (Bewegungsintegrale \bzw Anfangsbedingungen) benötigt.
+Wir wollen diese im Folgenden einzeln bestimmen. 
+
+\subparagraph{\textbf{Drehimpulsintegral:}}\index{Drehimpulsintegral}
+Wir beginnen mit der Herleitung des Drehimpulsintegrals\index{Drehimpulsintegral} und bilden dazu das Kreuzprodukt von $\vec{r}$ mit \eqref{eq:hm_zk-pl}:
+\begin{equation*}
+\vec{r} \times \ddot{\vec{r}} = -\frac{\mu_\text{G}}{r^3}\,  \vec{r} \times \vec{r} = 0 \,.\\
+\end{equation*}
+Es gilt aber auch
+\begin{equation*}
+\frac{\D }{\D t} \lk \vec{r} \times \dot{\vec{r}}\rk = \underbrace{\dot{\vec{r}} \times \dot{\vec{r}}}_{=0} + \underbrace{\vec{r} \times \ddot{\vec{r}}}_{=0} = 0 \; ,
+\end{equation*}
+woraus nach Integration sofort 
+\begin{equation}
+\vec{r} \times \dot{\vec{r}} = \vec{L} = \vec{const} 
+\label{eq:hm_kepler1}
+\end{equation}
+folgt.
+Der in \eqref{eq:hm_kepler1} definierte konstante Vektor $\vec{L}$ ist (bis auf den Faktor $m$ bzw. $m_\text{eff}$) gleich dem \gls{drehimpuls} des Planeten in Bezug auf den Zentralkörper.
+Er wird daher auch als \emph{spezifischer} Drehimpuls bezeichnet und ist also eine Konstante.
+Gleichung \eqref{eq:hm_kepler1} wird daher als Drehimpulsintegral bezeichnet.
+Wir werden ab jetzt wie in der Himmelsmechanik und Astronomie üblich die spezifischen Größen\footnote{Häufig benutzt man auch für die spezifischen Größen Kleinbuchstaben oder griechische Symbole, also \zb für den Drehimpuls $\vec{l}$ \bzw $\vec{\lambda}$ anstelle $\vec{L}$. Wir bleiben aber im Folgenden bei den Großbuchstaben, die auch den historisch in der Astronomie eingeführten Bezeichnungen und Symbolen entsprechen.} verwenden, man spart sich damit etwas Schreibarbeit und die Gleichungen werden übersichtlicher.
+Das ist im Übrigen ein in der Physik übliches Vorgehen, bei dem aber immer etwas Aufmerksamkeit angesagt ist.
+Wir haben deshalb den Zusammenhang zwischen
+den \anf{physikalischen} Größen aus Kapitel 1 (Band I)
+und den hier verwendeten astronomischen Größen in Tabelle \ref{tab:hm_notation_hm} gelistet.%
+\footnote{Es sei noch erwähnt, dass \eqref{eq:hm_kepler1}
+nur dann den spezifischen Drehimpuls des Planeten darstellt,
+wenn dessen Masse sehr viel kleiner als die Masse
+des Zentralkörpers ist.
+Im Fall $M\!\approx\!m$ gibt $\vec{L}$ nicht mehr
+den Drehimpuls eines einzelnen Körpers an.}
+Da $\vec{L}$ senkrecht zu $\vec{r}$ und $\dot{\vec{r}}$
+und konstant ist, findet die Bewegung in einer Ebene statt.
+Dies ist eine der Aussagen des \emph{1.~Keplerschen Gesetzes}.
+Aus der Konstanz des Drehimpulses $\vec{L}$ folgt sofort auch das \emph{2.~Keplersche Gesetz} (Flächensatz), da $\abs{\vec{r}\times\dot{\vec{r}}\,\D t}\!=\!\abs{\vec{r}\times\D \vec{r}}$ der doppelten Fläche des von den Vektoren $\vec{r}$ und $\D \vec{r}$ aufgespannten Dreiecks entspricht.
+Das ist aber gleich der Fläche $\D A$, die von $\vec{r}$ in der Zeit $\D t$ überstrichen wird (siehe \figref{hm_flaechensatz}). 
+
+Wegen der Bewegung in einer Ebene sind für die Behandlung vieler Probleme Polarkoordinaten vorteilhaft.
+Wir geben deshalb vielfach neben der vektoriellen Darstellung auch die Formulierung in Polarkoordinaten an.
+Aus \figref{hm_flaechensatz} können wir direkt die ersten Ableitungen der (zeitabhängigen) Einheitsvektoren $\vec{e}_r$ und $\vec{e}_{\upsilon}$ ablesen (Drehung um den Ursprung mit Winkel $\D \upsilon$.):
+\begin{equation*}
+\dot{\vec{e}}_r \! = \dot{\upsilon} \, \vec{e}_{\upsilon}  ~\;\text{und} \;\dot{ \vec{e}}_{\upsilon} = -\dot{\upsilon} \, \vec{e}_{r} \,.
+\end{equation*}
+Hieraus bestimmt sich aus $\vec{r}\!=\!r\, \vec{e}_r$ und $\D \vec{r}\! = \!\D r \, \vec{e}_r + r\,\D  \upsilon \, \vec{e}_{\upsilon} $ die Geschwindigkeit $ \dot{\vec{r}}$ sofort zu 
+\begin{align}
+\dot{\vec{r}}\! = \!\vec{v}\!=\!\dot{r}\, \vec{e}_r + r\dot{\upsilon}\,\vec{e}_{\upsilon} ~. \label{eq:hm_vectoren_polar}
+\end {align}
+Nochmalige Anwendung der Differentiation auf $\dot{\vec{r}}$ führt zu
+\begin{equation}
+\ddot{\vec{r}}\! =\!(\ddot{r}-r\dot{\upsilon}^2)\,\vec{e}_r + (2 \dot{r}\dot{\upsilon}+r\ddot{\upsilon})\,\vec{e}_{\upsilon} . \label{eq:hm_beschl_polar}
+\end{equation}
+Damit können wir den Drehimpuls und seinen Betrag schreiben:
+\begin{equation}
+\vec{L} = \vec{r}\times\dot{\vec{r}} = r^2 \dot{{\upsilon}} \veceZ \; , \label{eq:hm_drehimp_z}
+\end{equation}
+\begin{equation}
+L=r^2\dot{\upsilon} ~. \label{eq:hm_drehimp_z_polar}
+\end{equation}
+
+\subparagraph{\textbf{Energieintegral:}}\index{Energieintegral}
+Als Nächstes wollen wir ein Maß für die \glslink{energie}{Gesamtenergie}\index{Energieintegral} des ZKP bestimmen.
+Da das System konservativ ist, muss diese ja eine Erhaltungsgröße sein.
+Dazu bilden wir das Skalarprodukt von $\vec{v}\!=\!\dot{\vec{r}}$ mit $\ddot{\vec{r}}$:
+\begin{align}
+\begin{split}
+\vec{v} \cdot \dot{\vec{v}} &= \vec{v} \cdot \ddot{\vec{r}} = -\frac{\mu_\text{G}}{r^3}\,\vec{v} \cdot \vec{r} = -\frac{\mu_\text{G}}{r^3}\,\dot{\vec{r}} \cdot \vec{r}  \\
+ &= -\mu_\text{G} \frac{\dot{r}r}{r^3} = -\mu_\text{G} \frac{\dot{r}}{r^2} = \mu_\text{G}\,\frac{\D }{\D t} \lk \frac{1}{r}\rk \,.
+\end{split} \label{eq:hm_v_mal_vpunkt_1}
+\end{align}
+Andererseits gilt
+\begin{equation}
+\vec{v} \cdot \dot{\vec{v}} = \frac{\D }{\D t} \lk \frac{v^2}{2} \rk \label{eq:hm_v_mal_vpunkt_2} .\\
+\end{equation}
+Daraus folgt mit {\eqref{eq:hm_v_mal_vpunkt_1}
+\begin{equation}
+\frac{\D }{\D t} \lk \frac{v^2}{2} - \frac{\mu_\text{G}}{r}\rk = 0 \label{eq:hm_v_mal_vpunkt_3}
+\end{equation}
+und nach Integration
+\begin{equation}
+\frac{v^2}{2} - \frac{\mu_\text{G}}{r} = H = \con\:. \label{eq:hm_bewgl1}
+\end{equation}
+Auf der linken Seite von \eqref{eq:hm_bewgl1} steht die durch $m$ dividierte Summe aus kinetischer und \glslink{potential-hm}{potentieller Energie} des umlaufenden Körpers.
+Diese Summe $H$ ist wie erwartet für ein konservatives System\index{System!konservatives} konstant.\footnote{Wir verwenden den Buchstaben $H$ für die Energie, da die ansonsten übliche Bezeichnung $E$ aus historischen Gründen für die weiter unten eingeführte exzentrische Anomalie reserviert ist.}
+Man erkennt aus dem Energieintegral ferner, dass für $H\!<\!0$ die Bewegung räumlich beschränkt sein muss.
+Damit $\mu_\text{G}/r\!>\!v^2/2$ bleibt, kann $r$ nicht unendlich werden.
+
+\subparagraph{\textbf{Laplace-Integral (Richtungsintegral):}}\index{Laplace-Integral}\index{Richtungsintegral}\indexp{Laplace, Pierre-Simon (Marquis) de}
+
+Wir bilden nun noch das Vektorprodukt aus $\vec{L}$ und $\ddot{\vec{r}}$:
+\begin{equation*}
+\vec{L} \times \ddot{\vec{r}} = \lk \vec{r} \times \dot{\vec{r}}\rk \times \lk \frac{-\mu_\text{G}}{r^3} \rk\, \vec{r} \,.
+\end{equation*}
+Man findet nach etwas Vektoralgebra (\probref{hm_laplace}) eine weitere Integrationskonstante, die wir als \emph{Laplace-Vektor}\index{Laplace-Vektor} $\vec{e}$ der Bewegung bezeichnen:
+\begin{equation}
+\vec{L} \times \dot{\vec{r}} + \lk \frac{\mu_\text{G}}{r} \rk \, \vec{r} = \vec{const} = -\mu_\text{G} \, \vec{e} \,. \label{eq:hm_laplace_int}
+\end{equation}
+Dieser Vektor, der in der (vor allem angelsächsischen) Literatur oft auch als Runge\footnote{Carl David Tolmé Runge (1856--1927) war ein deutscher Mathematiker, der auf zahlreichen Gebieten der Mathematik und mathematischen Physik forschte. In Band I hatten wir Runge bereits im Zusammenhang mit dem Runge-Kutta-Verfahren kennen gelernt.}-Lenz\footnote{Wilhelm Lenz (1888--1957) war ein deutscher Physiker, der an der Universität Hamburg lehrte und auf zahlreichen Gebieten der Physik aktiv war. Er führte \ua den Runge-Lenz-Vektor in die Quantenmechanik ein.}-Vektor\index{Runge-Lenz-Vektor} bezeichnet wird, liegt in der Bahnebene und gibt eine Vorzugsrichtung innerhalb der Bahnebene vor.
+Der Laplace-Vektor ist aber nicht völlig unabhängig von den beiden anderen Bewegungsintegralen.
+Man kann unter Benutzung von \eqref{eq:hm_kepler1} und \eqref{eq:hm_bewgl1} zeigen, dass $\vec{L}\cdot \vec{e}\!=\!0$ und dass demzufolge die Beziehungen
+\begin{equation}
+\mu_\text{G}^2 \, \lk \abs{\vec{e}}^2 - 1 \rk = 2H \, \abs{\vec{L}}^2 ~~~\text{\bzw}~~~~ e^2 = \frac{2H L^2}{\mu_\text{G}^2} + 1  
+\label{eq:hm_relations1}
+\end{equation}
+gelten (\probref{hm_laplace}).
+Der Betrag $\abs{\vec{e}}\!=\!e$ des Laplace-Vektors wird \emph{(numerische) Exzentrizität}\footnote{In der Mathematik wird die numerische Exzentrizität im Allgemeinen mit $\epsilon$ bezeichnet, während dort $e=\sqrt{a^2-b^2}$ für die lineare Exzentrizität steht.
+Da $\epsilon$ in der Himmelsmechanik für die Neigung der Erdachse reserviert ist, bleiben wir bei der Nutzung von $e$ für die (numerische) Exzentrizität (siehe auch Tabelle \ref{tab:hm_notation_hm} im Tabellenanhang.)} genannt und ist nach \eqref{eq:hm_relations1} durch die Energie und den Drehimpuls vollständig festgelegt.
+\vec{e} liefert dann nur noch als unabhängige Größe einen Winkel bzw. eine Richtung.
+Wir haben nun fünf unabhängige Konstanten $\vec{L}$ (3 Komponenten), $H$ und die Richtung von $\vec{e}$ innerhalb der Bahnebene aus den Bewegungsintegralen gewonnen, die wir als physikalische Bahnparameter betrachten können.
+Als sechsten Parameter nutzen wir eine Anfangsbedingung, \zb die Bahnposition des Körpers zu einem bestimmten Zeitpunkt.
+Wir arbeiten wieder mit den Polarkoordinaten $r$ und $\upsilon$, wobei wir die beliebig wählbare Bezugsrichtung des Polar-KOS in Richtung von $\vec{e}$ legen wollen.
+Den Winkel $\upsilon$ zu dieser Bezugsachse wollen wir ab jetzt, wie in der Astronomie üblich, als \emph{wahre Anomalie}\index{Anomalie!wahre|textbf}\footnote{Der Begriff \anf{Anomalie} (\emph{altgriechisch} für Unebenheit, Unregelmäßigkeit) geht auf die antiken Astronomen zurück, die den Winkel in der Bahnbewegung als abweichend und unregelmäßig von der erwarteten \anf{harmonischen} Kreisbahn beobachteten.
+Historisch hat sich für die wahre Anomalie die Bezeichnung mit dem griechischen Buchstaben Ypsilon $\upsilon$ (\figref{hm_polarkoord}) herausgebildet.} bezeichnen.\\
+
+\begin{figure}
+\begin{minipage}{\textwidth}
+\leftfigure{\includegraphics[width=0.5\textwidth]{Polarkoordinaten.pdf}}
+\hspace{\fill}
+\rightfigure{\includegraphics[width=0.5\textwidth]{Geometrie_der_Ellipse.pdf}}
+\leftcaption{Polarkoordinaten.}\label{abb:hm_polarkoord}
+\rightcaption[Geometrie der Ellipse.]{Geometrie der Ellipse. Man beachte die beiden Koordinatensysteme, das $x$-$y$-\KOS hat den Ursprung im Brennpunkt der Ellipse, das sogenannte Mittelpunkts-$x'$-$y'$-\KOS im Mittelpunkt.}\label{abb:hm_ellipse}
+\end{minipage}
+\end{figure}
+
+Mit der Bezugsrichtung von $\vec{e}$ schreiben wir das Skalarprodukt $\vec{r} \cdot \vec{e}$ als
+\begin{align}
+\begin{split}
+\vec{r} \cdot \vec{e} &= -\vec{r} \cdot \lk \frac{\vec{L}\times \dot{\vec{r}}}{\mu_\text{G}} + \frac{\vec{r}}{r} \rk \\
+                      &= - \frac{\vec{r} \cdot ( \vec{L} \times \dot{\vec{r}} )}{\mu_\text{G}} - r = \frac{(\vec{r} \times \dot{\vec{r}}) \cdot \vec{L}}{\mu_\text{G}} - r = \frac{L^2}{\mu_\text{G}} - r = re\,\cos \upsilon \; ,
+\end{split} \label{eq:hm_relations2}
+\end{align}
+woraus
+\begin{align}
+r(\upsilon) = \frac{L^2}{\mu_\text{G}}\,\frac{1}{1+e\,\cos \upsilon} = \frac{p}{1+e\,\cos \upsilon} \label{eq:hm_kegelschnitt}
+\end{align}
+folgt.
+Wir haben damit für die Form der Bahn die Gleichung für Kegelschnitte\index{Kegelschnitt} erhalten.
+Der sogenannte Halb-Parameter $p\!=\!L^2/\mu_\text{G}$ wird \emph{semi-latus rectum} genannt.
+Dies ist der Abstand des Planeten zum Zentralkörper bei einem Winkel $\upsilon = \pm\pi/2$ (\figref{hm_ellipse}).
+Folgende Schlussfolgerungen kann man aus Gleichung \eqref{eq:hm_kegelschnitt} ziehen:
+\begin{itemize}
+	\item Für $\cos\upsilon\!=\!1$ bzw. $\upsilon\!=\!0$, d.\,h. für die Richtung von $\vec{e}$, finden wir den Punkt der Bahn, der dem Zentralkörper am nächsten kommt.
+          Dies ist die sogenannte \index{Periapsis}\emph{\gls{periapsis}} (im Fall der Sonne als Zentralkörper das \index{Perihel|textbf}\emph{\gls{perihel}}).
+          Damit wird der Begriff des Richtungsintegrals für den Laplace-Vektor verständlich.
+	\item Für $\cos\upsilon\!=\!-1$ bzw. $\upsilon\!=\! \pi$, d.\,h. in entgegengesetzter Richtung von $\vec{e}$, erhalten wir den Punkt der Bahn, der dem Zentralkörper am fernsten liegt.
+          Dies ist die \index{Apoapsis}\emph{\gls{apoapsis}} (im Fall der Sonne als Zentralkörper das \index{Aphel|textbf}\emph{\gls{aphel}}).
+	\item Für $\cos\upsilon\!=\!0$, also $\upsilon\!=\!\pm\pi/2$ ergibt sich $r\!=\!p$.
+	\item Für den Fall $0\!<\!e\!<\!1$ ergibt sich aus \eqref{eq:hm_relations2} als Bahn eine Ellipse.
+          In diesem Fall ist auch nach \eqref{eq:hm_relations1} die Energie $H\!<\!0$. 
+	\item Für $e\!=\!1$ ergibt \eqref{eq:hm_kegelschnitt} eine Parabel und für $e\!>\!1$ eine Hyperbel.
+          Wir sehen, dass die genaue Form der Bahn von den Parametern $L$ (Drehimpuls) und $e$ (Exzentrizität) und damit nach \eqref{eq:hm_relations1} auch von der Energie des Systems abhängt.
+\end{itemize}
+Wir wollen uns im Folgenden auf \emph{Ellipsenbahnen}\index{Ellipsenbahnen} (\figref{hm_ellipse}) beschränken.
+Für eine Ellipsenbahn wird die \glslink{groszehalbachse}{große Halbachse} mit $a$ bezeichnet und die \glslink{kleinehalbachse}{kleine} mit $b$.
+Für $e$ gilt dann $0<e=\sqrt{1-\frac{b^2}{a^2}}<1$.
+Damit ergeben sich für den kleinsten und den größten Abstand des umlaufenden Planeten folgende Beziehungen:
+\begin{align}
+r_\text{min} &= \frac{L^2}{\mu_\text{G}} \frac{1}{1+e}~~\,, ~~r_\text{max} = \frac{L^2}{\mu_\text{G}} \frac{1}{1-e} \,. \label{eq:hm_aphel_perihel} 
+\end{align}
+Mit $r_\text{min}\!+\!r_\text{max}\!=\!2a$ folgt daraus
+\begin{equation}
+L = r^2\dot{\upsilon} = \sqrt{a\,\mu_\text{G}(1-e^2)} \,,  \label{eq:hm_drehimpuls_von_ae}
+\end{equation}
+womit wir einen Zusammenhang von physikalischen Bahnparametern ($L$) und geometrischen Parametern der Bahn ($a$, $e$) hergestellt haben.
+Die Bahngleichung $r(\upsilon)$ schreiben wir dann mit den geometrischen Bahnparametern $a$ und $e$ in der üblichen Form:
+\begin{equation}
+r(\upsilon) = \frac{a(1-e^2)}{1+e\,\cos \upsilon} = \frac{p}{1+e\,\cos \upsilon}\,. \label{eq:hm_bahnglg}
+\end{equation}
+Wir leiten jetzt noch das \emph{3. Keplersche Gesetz} her, indem wir die Beziehung für den Drehimpuls \eqref{eq:hm_drehimpuls_von_ae} über die gesamte Ellipse, \dh über eine ganze Umlaufperiode $T_\text{P}$, integrieren:\footnote{Wir erinnern an die geometrische Interpretation des Drehimpulses als 2 $\D A /\D t$ im Rahmen der Herleitung des 2.\ Keplerschen Gesetzes.}
+\begin{equation}
+A = \frac{1}{2} \int\limits_0^{T_\text{P}} L\,\D t = \frac{1}{2}\, L\,T_\text{P} = \frac{1}{2}\sqrt{a \mu_\text{G}\lk 1-e^2\rk } \,T_\text{P} \,. \label{eq:hm_bahnglg_a}
+\end{equation}
+Andererseits ist der Flächeninhalt einer Ellipse $A\!=\!\pi a b\!=\! \pi a^2\sqrt{1-e^2}$.
+Daraus folgt durch Quadrieren von \eqref{eq:hm_bahnglg_a} und Gleichsetzen mit \eqref{eq:hm_bahnglg}
+\begin{equation}
+\frac{T_\text{P}^2}{a^3} = \frac{4\pi^2}{\mu_\text{G}} = \con = \frac{4\pi^2}{GM} ~.
+\label{eq:hm_3_kepler_gesetz}
+\end{equation}
+Die Quadrate der Umlaufperioden zweier Planeten um einen Zentralkörper verhalten sich wie die Kuben ihrer großen Halbachsen. \\
+Wir müssen hier eine Bemerkung zu der Umlaufzeit $T_\text{P}$ machen: Diese Zeit ist als siderische Umlaufzeit\glslink{siderischeumlaufzeit}\ definiert, \dh als die Zeit, die ein Planet für einen vollständigen Umlauf braucht, um \zb die Sonne wieder vor dem gleichen Fixsternhintergrund zu sehen.
+Diese Umlaufzeit lässt sich aber nur für die Erde direkt bestimmen.
+Für alle anderen Planeten muss man sie aus der \glslink{synodischeumlaufzeit}{synodischen Umlaufzeit} berechnen.
+Diese ergibt sich, wenn der andere Planet von der Erde aus betrachtet wieder im gleichen Winkelabstand zur Sonne steht.
+Zum Glück hatte Kepler sehr genaue Aufzeichnungen von Tycho Brahe\footnote{Tycho Brahe\indexp{Brahe, Tycho} (1546--1601) war ein bedeutender dänischer Astronom. Seine Beobachtungen, die Kepler erst nach Brahes Tod auswertete, bildeten die Grundlage für die Ableitung der Keplerschen Gesetze (siehe auch \cite{Hecht2019}). Brahe führt die Beobachtung vor gut 400 Jahren in der damals leistungsstärksten Sternwarte der Welt auf der kleinen Insel Ven im Öresund zwischen Kopenhagen und Malmö durch, wobei er mit exzellenten Winkelmessinstrumenten, aber ohne Teleskop arbeitete, das damals noch unbekannt war.}, die ihm die Berechnung der siderischen Umlaufzeit des Mars ermöglichten.
+In \probref{hm_sideric_period_mars} kann die Berechnung Keplers für die Beobachtung von Mars-\glslink{opposition}{Oppositionen}\index{Mars-Opposition} nachvollzogen werden.
+Bahnberechnungen für die Planeten unseres Sonnensystems sind im \mscr{} \mlhmref{InnerePlaneten.m} zu finden. 
+
+\subparagraph{\textbf{vis-viva-Gleichung:}}
+Wir wollen noch eine weitere wichtige Beziehung herleiten, und zwar die zwischen der Himmelskörperposition (Abstand zum Zentralkörper) und seiner Bahngeschwindigkeit am jeweiligen Ort.
+Diese Relation wird als \gls{visvivahm}\index{vis-viva-Gleichung}\footnote{Diese Formel wurde erstmalig von Gottfried Wilhelm Leibniz (1646--1716), einem der letzten großen Universalgelehrten, gefunden.} bezeichnet und ergibt sich, indem in \eqref{eq:hm_bewgl1} für $H$ die Gleichung \eqref{eq:hm_relations1} und für $L$ die Beziehung \eqref{eq:hm_drehimpuls_von_ae} eingesetzt wird. Wir erhalten die 
+\begin{merksatz}  {vis-viva-Gleichung (\bzw den vis-viva-Satz)}
+\begin{equation}
+v^2 = \mu_\text{G} \lk \frac{2}{r} - \frac{1}{a} \rk \, \label{eq:hm_vis-viva}
+\end{equation}\\
+
+\end{merksatz}
+
+und können damit zu jedem Punkt der Bahn (gegeben durch den Abstand $r$) die dort vorhandene Bahngeschwindigkeit $v$ bestimmen. 
+
+In der Bahngleichung \eqref{eq:hm_bahnglg} stecken mit $a$ und $e$ nur zwei der sechs notwendigen Bahnparameter (Integrationskonstanten).
+Das ist nicht verwunderlich, da wir uns ja mit den $r,\upsilon$-Koordinaten quasi in die Bahnebene \anf{gelegt} haben.
+Zur vollen räumlichen und zeitlichen Beschreibung der Bewegung muss diese Ebene noch im dreidimensionalen Raum positioniert und eine Anfangsbedingung festgelegt werden.
+Dazu benutzt man, wie bereits in \kapitel{hm_koordinatensysteme} beschrieben, eine Bezugsebene und eine Bezugsrichtung, relativ zu denen die Bahnebene positioniert wird.
+Für unser Sonnensystem ist das sinnvollerweise das heliozentrisch-ekliptikale KOS, woraus sich drei weitere geometrische Bahnparameter, nämlich $\omega$ (\glslink{argperiapsis}{Argument des \gls{perihel}s}), $\Omega$ (\glslink{laengeaufstknoten}{Länge des \glslink{aufstknoten}{aufsteigenden Knotens}}\footnote{Alternativ zu $\Omega$ kann auch der Parameter $\varpi=\omega+\Omega$ verwendet werden. Bei dem aus historischen Gründen verwendeten Buchstaben $\varpi$ handelt es sich um eine Variante des griechischen $\pi$.}), und $i$ (Neigung der Bahn gegen die Ekliptik) ergeben (\figref{hm_bahnelemente}).
+Mit den fünf Bahnparametern $a$, $e$, $\omega$, $\Omega$ (bzw. $\varpi$), $i$ bezogen auf das heliozentrisch-ekliptikale KOS und dem Zeitpunkt des \textit{Periheldurchgangs} $t_0$ sind die Bahnen für ein ZKP vollständig charakterisiert.
+Die Bahnparameter unserer Planeten sind in Tabelle \ref{tab:hm_bahnparameter} im Tabellenanhang angegeben.
+Die Exzentrizitäten $e$ ihrer Bahnen sind meist gering, nur Merkur, Mars und Pluto haben eine etwas größere Exzentrizität.
+Was für ein Glück, dass der Mars eine größere Exzentrizität hat! So konnten Brahe und Kepler die elliptische Form der Marsbahn mit den damals verfügbaren Methoden überhaupt bestimmen.
+Wir werden die Bahnelemente in \kapitel{kulmination_sonne} noch etwas ausführlicher diskutieren. 
+
+\begin{figure}
+\includegraphics[width=\textwidth]{Bahnelemente2.pdf}%
+\caption[Bahnelemente der Planeten im Sonnensystem.]{Bahnelemente der Planeten im Sonnensystem. $i$ bezeichnet die Inklination (Neigung der Bahn zur Ekliptik), $\Omega$ die Länge des aufsteigenden Knotens, $\omega$ das Argument (den Winkel) des Perihels, $a$ die große Halbachse, $e$ die Exzentrizität und $t_0$ die Periheldurchgangszeit. Häufig wird auch die Länge des Perihels $\varpi=\omega+\Omega$ angegeben.}
+\label{abb:hm_bahnelemente}
+\end{figure}
+
+Bei Kenntnis der Bahnparameter\footnote{Man findet diese Bahnparameter an vielen Stellen, in astronomischen Jahrbüchern oder auch im Internet. Hier sei besonders auf die Seiten des \textit{\gls{jplhm}~(JPL)}\index{Jet Propulsion Lab (JPL)} auf \url{https://ssd.jpl.nasa.gov/?ephemerides} verwiesen.} im \glslink{ekliptkoord}{ekliptikalen System} kann man jederzeit mit den in Tabelle \ref{tab:hm_Umrechung_KOS} beschriebenen Transformationen die Bahnkoordinaten auch in jedem anderen KOS berechnen.\\
+Wir sind aber nicht nur an der Form der Bahn, sondern insbesondere auch an dem zeitlichen Verlauf der Bewegung entlang der beschriebenen Bahn $r(\upsilon)$ interessiert, also an $r(t)$ bzw. an $\upsilon(t)$.
+Die wahre Anomalie ist unserer Beobachtung wegen der größeren Änderung über die Zeit und einfacheren Messung von Winkeln relativ einfach zugänglich.
+Wir starten mit der Bahngeschwindigkeit in Polarkoordinaten
+\begin{equation} \label{eq:hm_vis-viva_polar}
+v^2 = \dot{r}^2 + r^2\dot{\upsilon}^2 = \dot{r}^2 + \frac{L^2}{r^2}  
+\end{equation}
+und setzen diesen Ausdruck in den vis-viva-Satz \eqref{eq:hm_vis-viva} ein.
+Ebenso benutzen wir für $L$ die Beziehung \eqref{eq:hm_drehimpuls_von_ae} und erhalten  
+\begin{align} \label{eq:hm_dot_r_quadrat} 
+\dot{r}^2 &= \mu_\text{G} \lk \frac{2}{r} - \frac{1}{a} \rk - \frac{L^2}{r^2} = \mu_\text{G} \lk \frac{2}{r} - \frac{1}{a} - \frac{a(1-e^2)}{r^2} \rk \nonumber \\
+					&= \frac{\mu_\text{G}}{r^2} \lk 2r - \frac{r^2}{a} - a\,(1-e^2) \rk\,.  
+\end{align}
+Jetzt führen wir die \gls{exzentranom} \index{Anomalie!exzentrische|textbf} $E(t)$ als Hilfsgröße für die Berechnung von $r(t)$ ein: 
+\begin{equation}
+r(t) = a \,\lk 1-e\,\cos E(t)\rk \,.\label{eq:hm_exzentrische_Anomalie}
+\end{equation}
+Die mag zunächst etwas formal-mathematisch erscheinen. Die geometrische Bedeutung von $E$ wird im \kapitel{deutung_kepler} klar werden.
+Wir leiten \eqref{eq:hm_exzentrische_Anomalie} nach der Zeit ab
+\begin{equation*}
+\dot{r}(t) = \frac{\D r}{\D E} \frac{\D E}{\D t} = a\,e\,\sin E\, \frac{\D E}{\D t} \,,
+\end{equation*}
+setzen  dies in \eqref{eq:hm_dot_r_quadrat} ein und erhalten zunächst
+\begin{align*}
+a^2\,e^2\,\sin^2 E \,\lk\frac{\D E}{\D t}\rk^2 &= \frac{\mu_\text{G}}{r^2} \,(a\,e^2 - a\,e^2\,\cos^2 E) = \frac{\mu_\text{G}}{r^2}\, a\,e^2 \,\sin^2 E\,. 
+\end{align*}
+Durch Kürzen von $a^2e^2\sin^2E$ und Wurzelziehen folgt
+\begin{equation*}
+r \lk \frac{\D E}{\D t} \rk = \sqrt{\frac{\mu_\text{G}}{a}} \,.%\label{eq:hm_r_dE_dt}
+\end{equation*}
+Mit der Definition der exzentrischen Anomalie \eqref{eq:hm_exzentrische_Anomalie} und Trennung der Variablen wird daraus
+\begin{equation}
+\lk 1-e\,\cos E(t) \rk \,\D E = \sqrt{\frac{\mu_\text{G}}{a^3}}\,\D t\,. \label{eq:hm_1-ecosEdE}
+\end{equation}
+Wir führen noch mit der Umlaufzeit $T_\text{P}$ \bzw der Umlaufwinkelgeschwindigkeit $n_\text{P}$ die \emph{mittlere Anomalie} $M$\glslink{mittlereanom} ein:
+\begin{equation}
+M = M(t) = \sqrt{\frac{\mu_\text{G}}{a^3}} \,(t-t_0) = \frac{2 \pi}{T_\text{P}}\,(t-t_0) = n_\text{P}\,(t-t_0) \,. \label{eq:hm_mittlere_anomalie}
+\end{equation}
+Nach Integration von \eqref{eq:hm_1-ecosEdE} über $\D E$ erhalten wir schließlich die ebenso berühmte wie kompakte \emph{Kepler-Gleichung}\index{Kepler-Gleichung}.
+\begin{merksatz}{Kepler-Gleichung}
+\begin{equation}
+E-e\,\sin E = M  \,.\label{eq:hm_keplerglg}
+\end{equation}\\
+
+\end{merksatz}
+
+Diese Gleichung wurde von Kepler\indexp{Kepler, Johannes} 1609 erstmals in seiner \anf{Astronomia Nova} \cite{Kepler1992} veröffentlicht.
+Obwohl sie keine Differentialgleichung ist, handelt es sich tatsächlich um eine Bewegungsgleichung, denn auf beiden Seiten der Kepler-Gleichung stehen mit $M(t)$ und $E(t)$ zeitabhängige Größen.\footnote{Da wir Bewegungsintegrale bei der Herleitung von \eqref{eq:hm_keplerglg} verwendet haben, ist das Verschwinden der Ableitungen nach der Zeit nicht verwunderlich.
+Eigentlich sollte man besser schreiben $E(t)-e\,\sin E(t)\!=\!M(t)$.} Die Bewegungsintegrale stecken in den (geometrischen) Parametern $e$ und $M$.
+$M(t)$ ist durch die große Halbachse $a$ oder nach dem 3.~Keplerschen Gesetz \eqref{eq:hm_3_kepler_gesetz} durch die Umlaufzeit $T_\text{P}$ gegeben.
+Hat man über \eqref{eq:hm_keplerglg} $E(t)$ berechnet, kann man dann über \eqref{eq:hm_exzentrische_Anomalie} den Abstand $r(t)$ bzw. über \eqref{eq:hm_bahnglg} die wahre Anomalie $\upsilon(t)$ bestimmen. \\
+
+
+\subsection{Geometrische Deutung und Ableitung der Kepler-Gleichung} \label{kap:deutung_kepler}
+
+Wir wollen uns jetzt noch die Bedeutung der mittleren, wahren und exzentrischen \emph{Anomalien} anschaulich klar machen.
+Dazu betrachten wir \figref{hm_geom_abl_kepler}.
+Als \gls{fahrstrahl} wollen wir die Verbindungslinie zwischen dem gravitativen Schwerpunkt (\gls{gravizentrum}) des Systems -- hier in guter Näherung die Position des Zentralkörpers -- und der Position des Planeten zum Zeitpunkt $t$ bezeichnen.
+
+Dann ist die \textit{mittlere Anomalie} $M$\glslink{mittlereanom}\ der Winkel, der durch die \gls{apsidenlinie}\index{Apsidenlinie|textbf} (Verbindungslinie von \gls{periapsis} und \gls{apoapsis}) und den Fahrstrahl eines \anf{Quasiplaneten} Q gebildet wird. Q sei ein gedachter Quasiplanet, der mit konstanter Geschwindigkeit eine Kreisbahn mit Radius $a$ um das Ellipsenzentrum durchläuft.\\
+Die \textit{wahre Anomalie} $\upsilon$\glslink{wahreanomalie}\ ist durch den Winkel gegeben, den der Fahrstrahl des "`wahren"' Planeten P an der Position $r$ auf der Ellipse mit der Apsidenlinie bildet. Dieser Winkel ist identisch mit der Definition nach \figref{hm_ellipse}.
+\begin{figure}
+\includegraphics[width=\textwidth]{Geometrie_KG.pdf}
+\caption[Geometrische Herleitung der Kepler-Gleichung.]{Geometrische Herleitung der Kepler-Gleichung. Bezeichnungen: P Planet, H "`Hilfsplanet"'"', Q "`Quasiplanet"', $\mathrm{P_0}$ Perihel (siehe Text).}
+\label{abb:hm_geom_abl_kepler}
+\end{figure}
+
+Wir konstruieren uns einen weiteren Hilfsplaneten H, der dieselbe $x$-Position wie der Planet P hat und dessen $y$-Position sich aber aus der Projektion auf den Kreis mit dem Radius $a$ ergibt.
+Den Winkel, der sich aus dem Fahrstrahl vom Kreis/Ellipsenzentrum O zum Hilfsplaneten H relativ zur Apsidenlinie ergibt, bezeichnen wir mit $E$.
+Wir wollen zunächst zeigen, dass der so definierte Winkel $E$ mit der nach \eqref{eq:hm_exzentrische_Anomalie} definierten \textit{exzentrischen Anomalie}\index{Anomalie!exzentrische} $E$ übereinstimmt.
+Für die $x$-Koordinate $x_\text{P}(t)$ des Punktes $\text{P}(t)$ gilt einerseits
+\begin{equation*}
+x_\text{P}(t) = a\, e\, + r\,\cos \upsilon
+\end{equation*}
+und andererseits
+\begin{equation*}
+x_\text{P}(t) = a\,\cos E \,.
+\end{equation*}
+Gleichsetzen und Multiplikation mit $e$ ergibt
+\begin{equation}
+a\,e^2 + r\,e\,\cos \upsilon = a\,e\,\cos E \,. \label{eq:hm_ae_quadrat}
+\end{equation}
+Wir benutzen die Parameterdarstellung der Ellipse \eqref{eq:hm_bahnglg} in der Form 
+	\[r\, e\,\cos \upsilon\!=\! a\,(1-e^2)-r\,,\]
+die wir in \eqref{eq:hm_ae_quadrat} einsetzen.
+Daraus folgt
+\begin{equation}
+r = a-a\,e\,\cos E = a\,(1-e\,\cos E) \,. \label{eq:hm_r_param_ellipse} 
+\end{equation}
+Damit ist die Gleichheit der nach \figref{hm_geom_abl_kepler} geometrisch definierten exzentrischen Anomalie $E$ mit der Definition \eqref{eq:hm_exzentrische_Anomalie} gezeigt.
+Jetzt können wir unter Benutzung des Flächensatzes mit rein geometrischen Überlegungen die Kepler-Gleichung aus der Geometrie von \figref{hm_geom_abl_kepler} ableiten.\footnote{Diese Ableitung geht auf Kepler zurück und benutzt lediglich den empirisch gefundenen Flächensatz, denn 1609 war das Gravitationsgesetz ja noch nicht bekannt!}
+Wir betrachten zunächst die Kreisbogenfläche $A_{\text{HOP}_0}(t)$.
+Sie kann einerseits durch die Kreisbogenfläche $A_{\text{HOP}_0}(t)\!=\! \pi a^2 E/2\pi \!=\!\lk a^2/2\rk\,E(t)$ (mit $E$ im Bogenmaß) und andererseits als Summe der Dreiecksfläche $A_\text{HOZ}$ und der krummlinigen Dreiecksfläche $A_{\text{HZP}_0}(t)$ (blau gekennzeichnet) berechnet werden:
+\begin{equation*}
+A_{\text{HOP}_0}(t) = \frac{a^2}{2} E(t) = \frac{1}{2} a\,e\,a\,\sin E(t)+A_{\text{HZP}_0}(t)  \,.
+\end{equation*}
+Um eine Bestimmungsgleichung für $E(t)$ zu bekommen, müssen wir also $A_{\text{HZP}_0}(t)$ berechnen.
+Dazu betrachten wir zunächst die Streckenlängen $y_\text{H}\!=\!\overline{\text{NH}}$ und $y_\text{P}\!=\!\overline{\text{NP}}$.
+Aus der Kreis- bzw. Ellipsengleichung folgt
+\begin{align*}
+y_\text{H} &= a \sqrt{1-\frac{\overline{\text{ON}}^2}{a^2}} ~~\text{bzw.} ~~y_\text{P} = b \sqrt{1-\frac{\overline{\text{ON}}^2}{a^2}} \,.
+\end{align*}
+Daraus folgt, dass sich die Flächen $A_\text{PZN}$ und $A_\text{HZN}$ der entsprechenden Dreiecke verhalten wie
+\begin{equation}
+\frac{A_\text{PZN}}{A_\text{HZN}} = \frac{\frac{1}{2} y_\text{P}\,\overline{\text{ZN}}}{\frac{1}{2} y_\text{H}\,\overline{\text{ZN}}} = \frac{b}{a} \,. \label{eq:hm_A_PZN_durch_A_HZN}
+\end{equation}
+Für die Flächen der krummlinigen Dreiecke $A_{\text{PNP}_0}$ (Ellipsensegment) und $A_{\text{HNP}_0}$ (Kreissegment) sowie deren Verhältnis gilt
+\begin{align*}
+  A_{\text{PNP}_0} &= \, \int\limits_{a\cos E}^a\!b\sqrt{1-\frac{x^2}{a^2}} \,\D x \; \quad \text{und} \quad
+  A_{\text{HNP}_0} = \, \int\limits_{a\cos E}^a\!a\sqrt{1-\frac{x^2}{a^2}} \,\D x \\
+  \Rightarrow~~ &~~\frac{A_{\text{PNP}_0}}{A_{\text{HNP}_0}} = \frac{b}{a} \,.
+\end{align*}
+Da sich sowohl die Dreiecksflächen $A_\text{PZN}$ und $A_\text{HZN}$ als auch die krummlinigen Dreiecke $A_{\text{PNP}_0}$ und $A_{\text{HNP}_0}$ jeweils wie $b/a$ verhalten, muss dies auch für die Differenzflächen $A_{\text{PZP}_0}$ und $A_{\text{HZP}_0}$ gelten.
+Damit ist
+\begin{equation}
+A_{\text{HZP}_0}(t) = \frac{a}{b}\,A_{\text{PZP}_0}(t) \,. \label{eq:hm_r_param_ellipse01} 
+\end{equation}
+Nun schauen wir uns noch das Verhältnis der Fläche $A_\text{P}(t)\!=\!A_{\text{PZP}_0}$ zur Kreisbogenfläche $A_\text{Q}(t)\!=\!A_{\text{QOP}_0}$ an.
+Nach einem vollen Umlauf $T_\text{P}$ ist $A_\text{P}(T_\text{P})$ die Fläche der Ellipse $\pi ab$ und $A_\text{Q}(T_\text{P})$ die Fläche des Kreises $\pi a^2$.
+Hier kommt der Flächensatz ins Spiel.
+Nach diesem muss dieses Verhältnis auch für jeden beliebigen Zeitpunkt gelten, daher gilt
+\begin{equation}
+\frac{A_\text{P}(T_\text{P})}{A_\text{Q}(T_\text{P})} = \frac{\pi ab}{\pi a^2} = \frac{A_\text{P}(t)}{A_\text{Q}(t)} = \frac{A_{\text{PZP}_0}}{A_{\text{QOP}_0}} = \frac{b}{a} \,.\label{eq:hm_F_P_durch_F_Q}
+\end{equation}
+Mit \eqref{eq:hm_r_param_ellipse01} folgt sofort
+\begin{equation*}
+A_{\text{HZP}_0} = \frac{a}{b} A_{\text{PZP}_0} = \frac{ab}{ba} A_{\text{QOP}_0} = A_{\text{QOP}_0} = \frac{M}{2}a^2 = \frac{a^2}{2}\frac{2\pi}{T_\text{P}}\,(t-t_0) \,.
+\end{equation*}
+Eingesetzt in die oben gefundene Aufteilung der Fläche folgt daraus
+\begin{equation*}
+\frac{a^2}{2}\,E(t) = \frac{1}{2}a\,e\,a\,\sin E(t) + \frac{a^2}{2} M(t)\; ,
+\end{equation*}
+woraus sich mittels Division durch $a^2/2$ die Kepler-Gleichung ergibt.\\
+
+Wir wollen zum Schluss noch eine nützliche Formel für $\upsilon(t)$ angeben:
+\begin{equation}
+\tan \lk \frac{\upsilon}{2} \rk = \sqrt{\frac{1+e}{1-e}}\,\tan\lk\frac{E}{2}\rk\,. \label{eq:hm_nu(t)_alternativ}
+\end{equation}
+Diese lässt sich ebenfalls aus der Geometrie der \figref{hm_geom_abl_kepler} herleiten, indem man den Kosinus der wahren Anomalie durch die exzentrische Anomalie ausdrückt und die trigonometrische Beziehung für den halben Winkel verwendet (\probref{hm_wahre_anomalie}).
+Ähnliche Bewegungsgleichungen, wie wir sie hier für die Ellipse gezeigt haben, können auch für die Parabel und die Hyperbel hergeleitet werden (\probref{hm_bwglg_hyp_parab}).
+
+Jetzt müssen wir nur noch die Kepler-Gleichung lösen. Das hat es aber durchaus in sich.
+

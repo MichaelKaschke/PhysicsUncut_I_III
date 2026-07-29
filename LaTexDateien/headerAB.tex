@@ -1,0 +1,762 @@
+\documentclass[a4paper,makeidx,envcountchap,graybox,deutsch,ngerman,sectrefs]{svmono}
+%\documentclass[envcountchap,graybox,deutsch,sectrefs]{svmono}
+%%%%% eigene temporäre Abkürzungsliste, für die Zeit, bis einheitliche Schreibungen bestehen
+\usepackage{tempshort}
+%%  Von Springer empfohlene Pakete %% 
+%%\documentclass[envcountsect,graybox,deutsch,sectrefs]{svmono}
+\usepackage{chapterbib}
+\usepackage{type1cm}
+\usepackage[ansinew]{inputenc}
+\usepackage{babel}
+\usepackage[pdftex]{graphicx}  %PDF-Vektorgrafiken einbinden
+\usepackage{newtxtext}         %Typischer Springer-Font
+\usepackage{newtxmath}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage[bottom]{footmisc}  %Platziert alle Fußnoten unten  
+\usepackage[nobreak]{cite}
+%\usepackage{biblatex}
+\usepackage{cancel}
+\usepackage[absolute]{textpos}
+\usepackage{pdflscape}
+\usepackage{graphicx}
+\usepackage{pdflscape}
+\usepackage{ragged2e}
+\usepackage[format=plain,
+      justification=RaggedRight,
+      singlelinecheck=false]
+     {caption}
+\usepackage{longtable}
+%\usepackage{floatrow}
+%\usepackage{mwe}
+\usepackage[figuresright]{rotating}
+\usepackage{bigints}
+\let\laplace\relax  % Vermeidung der Fehlermeldung "\laplace already defined."
+\usepackage{trfsigns}
+%\usepackage{relsize}
+\usepackage{tabulary}
+%\usepackage{xcolor,colortbl}
+%\usepackage[table]{xcolor}
+\usepackage{blindtext}
+%\usepackage{acronym}
+%\usepackage{amsmath}
+\usepackage{acro}
+\usepackage{nomencl}
+
+
+\usepackage{etoolbox}
+%  Eigene Pakete %%
+\usepackage{adjustbox}
+\usepackage{wasysym}
+\usepackage{gensymb}
+\usepackage{float}
+\usepackage{caption}
+\usepackage[left=3cm, right=3cm, top=3cm, bottom=3cm, includeheadfoot]{geometry}
+
+\usepackage{mathtools}   % Vermeidung der Fehlermeldung "Undefined control sequence \coloneqq."
+% header and footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[LE,RO]\thepage
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+%\fancyhead[LO]{\nouppercase\leftmark}
+%\fancyhead[RE]{\nouppercase\rightmark}
+\fancyhead[LO]{\nouppercase\rightmark}
+\fancyhead[RE]{\nouppercase\leftmark}
+\fancyfoot{}
+% svmono hat offenbar irgendwas merkwürdig definiert, darum muß hier verbreitert werden
+%\addtolength\headwidth{25pt}
+%\setlength{\headheight}{25pt}
+
+%% Units
+\usepackage{siunitx}
+\sisetup{
+  locale = US,
+  per-mode = reciprocal, %symbol, % | reciprocal | fraction | ?
+  exponent-product = \cdot,
+  separate-uncertainty,
+  %exponent-to-prefix,
+  %prefixes-as-symbols = false,
+  %list-units = brackets,% | single | repeat
+  %range-units = brackets,% | single | repeat
+  %multi-part-units = brackets,% | single | repeat
+}
+\usepackage{chngcntr}
+\usepackage{booktabs}
+\usepackage{slashed}
+\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+%\usepackage{color} %Einfache Farbendefinition -> von Graybox-Option benötigt
+\usepackage{multirow}
+\usepackage{longtable} %Tabellen über mehrere Seiten hinweg
+\usepackage{framed} % von Graybox-Option benötigt
+\usepackage[shortlabels]{enumitem} %Erweiterte Aufzähloptionen
+\usepackage{array}
+\usepackage[xindy]{imakeidx} %Wortindex und Personenindex erstellen
+
+\usepackage[hyphens]{url}
+%\usepackage[breaklinks,colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=black,filecolor=green,hyperfootnotes=false]{hyperref}
+\usepackage[                                    %Hyperref erstellt ein Bookmark/Lesezeichen im PDF. siehe https://www.namsu.de/Extra/pakete/Hyperref.html
+bookmarksopen=true,															%Das Lesezeichen ist geöffnet beim Öffnen der PDF.
+bookmarksnumbered=true,                         %Zahlen werden im Bookmark angezeigt.   
+plainpages=false,
+pdfpagelabels,
+colorlinks=true,                                %Links werden farbig dargestellt.
+linkcolor=black, citecolor=black, urlcolor=cyan %Farben definieren.
+]{hyperref}                                     %Sollte als letztes eingebunden werden, da es sehr viele Verweise und Änderungen erzeugt. Das Packet ist sehr stark, aber auch umfangreich ist. 
+\pdfminorversion=5
+
+\usepackage{hypcap}
+\usepackage[record,section=section,stylemods={mcols},automake]{glossaries-extra}
+\usepackage{glossary-longextra}
+\setglossarystyle{long-name-sym-desc-loc}
+\setabbreviationstyle[acronym]{long-short}
+
+\definecolor{killA}{rgb}{.7,.3,.3}
+\newcommand\killA[1]{\bgroup\color{killA}{\cancel{#1}}\egroup}
+\newcommand\killB[1]{\bgroup\color{cyan!30!black}{\cancel{#1}}\egroup}
+% typographisch korrekte Abkürzungen (needs to be loaded after hyperref)
+\usepackage{abbrev}
+\newglossary*{bew}{Glossar}
+\newglossary*{hm}{Glossar}
+\newglossary*{adyn}{Glossar}
+\newglossary*{kontmech}{Glossar}
+\newglossary*{aero}{Glossar}
+\newglossary*{edyn}{Glossar}
+\newglossary*{srt}{Glossar}
+\newglossary*{spo}{Glossar}
+\newglossary*{optbas}{Glossar}
+\newglossary*{optger}{Glossar}
+\newglossary*{optatm}{Glossar}
+\GlsXtrLoadResources[src={bew/gloss},type=bew]
+\GlsXtrLoadResources[src={hm/gloss},type=hm]
+\GlsXtrLoadResources[src={adyn/gloss},type=adyn]
+\GlsXtrLoadResources[src={kontmech/gloss},type=kontmech]
+\GlsXtrLoadResources[src={aero/gloss},type=aero]
+\GlsXtrLoadResources[src={spo/gloss},type=spo]
+\GlsXtrLoadResources[src={edyn/gloss},type=edyn]
+\GlsXtrLoadResources[src={srt/gloss},type=srt]
+\GlsXtrLoadResources[src={optbas/gloss},type=optbas]
+\GlsXtrLoadResources[src={optger/gloss},type=optger]
+\GlsXtrLoadResources[src={optatm/gloss},type=optatm]
+\glssetcategoryattribute{bew}{indexname}{true}
+%\renewcommand\index\newterm
+%\newcolumntype{g}[1]{>{\RaggedRight\hspace{0pt}}p{#1}}
+%\renewcommand\glslongextraNameAlign{g}
+\renewcommand\glslongextraLocationAlign{@{\ ~\ }>{\raggedright}p{\glspagelistwidth}}
+\definecolor{gls}{rgb}{.4,.4,.5}
+\renewcommand*{\glstextformat}[1]{\textcolor{gls}{#1}}
+
+%Absatzregeln
+\clubpenalty = 30000 %Keine einzelnen Absatzzeilen
+\widowpenalty = 30000
+\setlength{\parindent}{0em} 
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+\usepackage{xstring}
+
+\newcommand\mfile[2]{%
+\saveexpandmode\noexpandarg
+\StrSubstitute{#2}{_}{\_}[\tmpname]
+\restoreexpandmode
+\href{MatlabDateien/\chapname/#1\tmpname}{\tmpname}}
+
+%%% Hyperlinks zu MATLAB Dateien
+%\newcommand\mlref[1]{\mfile{}{#1}}
+%\newcommand\mlinclref[1]{\mfile{IncludeFolder/}{#1}}
+%\newcommand\mldataref[1]{\mfile{Data/}{#1}}
+
+%%% .. für ein Verzeichnis hoch
+%%% . für aktuelle Verzeichnis
+%% lokal: MatlabDateien/bew
+%\newcommand\mlbewref[1]{\href{MatlabDateien/bew/#1}{#1}}
+%% git: https://github.com/sn-code-inside/fingeruebungen-physik/tree/main/bew
+\newcommand{\mlrefwithindex}[2]{%
+  \index[mfiles]{#2}%   <-- Eintrag im M-File-Index mit aktueller Seitenzahl
+  \href{https://github.com/sn-code-inside/fingeruebungen-physik/tree/main/#1/#2}{#2}%
+}
+
+
+%\newcommand\mlbewref[1]{\href{https://github.com/sn-code-inside/fingeruebungen-physik/tree/main/bew/#1}{#1}}
+%\newcommand\mlbewdref[1]{\href{https://github.com/sn-code-inside/fingeruebungen-physik/tree/main/bew/Data/#1}{#1}}
+%\newcommand\mlbewiref[1]{\href{https://github.com/sn-code-inside/fingeruebungen-physik/tree/main/bew/IncludeFolder/#1}{#1}}
+%\newcommand\mlkontmechref[1]{\href{https://github.com/sn-code-inside/fingeruebungen-physik/tree/main/kontmech/#1}{#1}}
+%\newcommand\mlkontmechdref[1]{\href{https://github.com/sn-code-inside/fingeruebungen-physik/tree/main/kontmech/Data/#1}{#1}}
+%\newcommand\mlkontmechiref[1]{\href{https://github.com/sn-code-inside/fingeruebungen-physik/tree/main/kontmech/IncludeFolder/#1}{#1}}
+%\newcommand\mlhmref[1]{\href{https://github.com/sn-code-inside/fingeruebungen-physik/tree/main/hm/#1}{#1}}
+%\newcommand\mlhmdref[1]{\href{https://github.com/sn-code-inside/fingeruebungen-physik/tree/main/hm/Data/#1}{#1}}
+%\newcommand\mlhmiref[1]{\href{https://github.com/sn-code-inside/fingeruebungen-physik/tree/main/hm/IncludeFolder/#1}{#1}}
+%\newcommand\mladynref[1]{\href{https://github.com/sn-code-inside/fingeruebungen-physik/tree/main/adyn/#1}{#1}}
+%\newcommand\mladyndref[1]{\href{https://github.com/sn-code-inside/fingeruebungen-physik/tree/main/adyn/Data/#1}{#1}}
+%\newcommand\mladyniref[1]{\href{https://github.com/sn-code-inside/fingeruebungen-physik/tree/main/adyn/IncludeFolder/#1}{#1}}
+%\newcommand\mledynref[1]{\href{https://github.com/sn-code-inside/fingeruebungen-physik/tree/main/edyn/#1}{#1}}
+%\newcommand\mledyndref[1]{\href{https://github.com/sn-code-inside/fingeruebungen-physik/tree/main/edyn/Data/#1}{#1}}
+%\newcommand\mledyniref[1]{\href{https://github.com/sn-code-inside/fingeruebungen-physik/tree/main/edyn/IncludeFolder/#1}{#1}}
+%\newcommand\mloptbasref[1]{\href{https://github.com/sn-code-inside/fingeruebungen-physik/tree/main/optbas/#1}{#1}}
+%\newcommand\mloptbasdref[1]{\href{https://github.com/sn-code-inside/fingeruebungen-physik/tree/main/optbas/Data/#1}{#1}}
+%\newcommand\mloptbasiref[1]{\href{https://github.com/sn-code-inside/fingeruebungen-physik/tree/main/optbas/IncludeFolder/#1}{#1}}
+%\newcommand\mloptspezref[1]{\href{https://github.com/sn-code-inside/fingeruebungen-physik/tree/main/optspez/#1}{#1}}
+%\newcommand\mloptspezdref[1]{\href{https://github.com/sn-code-inside/fingeruebungen-physik/tree/main/optspez/Data/#1}{#1}}
+%\newcommand\mloptspeziref[1]{\href{https://github.com/sn-code-inside/fingeruebungen-physik/tree/main/optspez/IncludeFolder/#1}{#1}}
+
+\newcommand\mlbewref[1]{\mlrefwithindex{bew}{#1}}
+\newcommand\mlbewdref[1]{\mlrefwithindex{bew/Data}{#1}}
+\newcommand\mlbewiref[1]{\mlrefwithindex{bew/Include}{#1}}
+\newcommand\mlkontmechref[1]{\mlrefwithindex{kontmech}{#1}}
+\newcommand\mlkontmechdref[1]{\mlrefwithindex{kontmech/Data}{#1}}
+\newcommand\mlkontmechiref[1]{\mlrefwithindex{kontmech/Include}{#1}}
+\newcommand\mlhmref[1]{\mlrefwithindex{hm}{#1}}
+\newcommand\mlhmdref[1]{\mlrefwithindex{hm/Data}{#1}}
+\newcommand\mlhmiref[1]{\mlrefwithindex{hm/Include}{#1}}
+\newcommand\mladynref[1]{\mlrefwithindex{adyn}{#1}}
+\newcommand\mladyndref[1]{\mlrefwithindex{adyn/Data}{#1}}
+\newcommand\mladyniref[1]{\mlrefwithindex{adyn/Include}{#1}}
+\newcommand\mledynref[1]{\mlrefwithindex{edyn}{#1}}
+\newcommand\mledyndref[1]{\mlrefwithindex{edyn/Data}{#1}}
+\newcommand\mledyniref[1]{\mlrefwithindex{edyn/Include}{#1}}
+\newcommand\mlsrtref[1]{\mlrefwithindex{edyn}{#1}}
+\newcommand\mlsrtdref[1]{\mlrefwithindex{srt/Data}{#1}}
+\newcommand\mlsrtiref[1]{\mlrefwithindex{srt/Include}{#1}}
+\newcommand\mloptbasref[1]{\mlrefwithindex{optbas}{#1}}
+\newcommand\mloptbasdref[1]{\mlrefwithindex{optbas/Data}{#1}}
+\newcommand\mloptbasiref[1]{\mlrefwithindex{optbas/Include}{#1}}
+\newcommand\mloptgerref[1]{\mlrefwithindex{optger}{#1}}
+\newcommand\mloptgerdref[1]{\mlrefwithindex{optger/Data}{#1}}
+\newcommand\mloptgeriref[1]{\mlrefwithindex{optger/Include}{#1}}
+\newcommand\mloptatmref[1]{\mlrefwithindex{optatm}{#1}}
+\newcommand\mloptatmdref[1]{\mlrefwithindex{optatm/Data}{#1}}
+\newcommand\mloptatmiref[1]{\mlrefwithindex{optatm/Include}{#1}}
+
+
+\newcommand\mlcmd[1]{\textcolor{cyan}{\texttt{#1}}}
+
+%Grafikregeln
+\graphicspath{{hm/graphs/}
+							{bew/graphs/}
+							{kontmech/graphs/}
+							{hm/graphs/}
+							{adyn/graphs/}
+							{edyn/graphs/}
+							{srt/graphs/}
+							{kontmech/graphs/}
+							{spo/graphs/}
+							{aero/graphs/}
+							{optbas/graphs/}
+							{optger/graphs/}
+							{optatm/graphs/}
+							{solman/graphs/}}
+\DeclareGraphicsExtensions{.pdf, .png, .jpg, .jpeg}
+\def\figname{Abb}
+\newcommand\figref[1]{\figname.\ \ref{abb:#1}}
+\usepackage[labelfont=bf]{caption}
+
+\usepackage{tocloft}
+\usepackage{etoc}
+\setlength\cftfignumwidth{30pt}
+
+% Flatterrand links
+\cftsetindents{chapter}{0em}{4em}
+\cftsetindents{section}{1.5em}{4em}
+\cftsetindents{subsection}{3.8em}{4em}
+
+% flacher Rand links
+%\cftsetindents{chapter}{0em}{4em}
+%\cftsetindents{section}{0em}{4em}
+%\cftsetindents{subsection}{0em}{4em}
+
+\newcommand\partitle[1]{
+\addcontentsline{toc}{part}{#1}
+\begin{titlepage}
+  %\vskip 60%\p@
+  \begin{center}
+    {\LARGE Fingerübungen der Physik -- #1 \par}
+    \vskip 3em%
+    {\large Michael Kaschke und Holger Cartarius\par}
+  \end{center}
+\end{titlepage}
+}
+
+%\newcommand\mlref[1]{\href{\chapname/matlab/#1}{#1}}
+%\newcommand\mlinclref[1]{\href{\chapname/matlab/IncludeFolder/#1}{\color{cyan}{#1}}}
+
+%Neue Kommandos
+\def\eg{e.\,g.\  \ignorespaces}     %e.g. (im Englischen Dokument)
+\newcommand{\lk}{\left(}        %große runde Klammer (links)
+\newcommand{\rk}{\right )}      %große runde Klammer (rechts)
+\newcommand{\lgk}{\left \{}     %große geschweifte Klammer (links)
+\newcommand{\rgk}{\right \}}    %große geschweifte Klammer (rechts)
+\newcommand{\lek}{\left [}      %große eckige Klammer (links)
+\newcommand{\rek}{\right ]}     %große eckige Klammer (rechts)
+\newcommand{\anf}[1]{\glqq#1\grqq}    %Deutsche Anführungszeichen: \anf{}
+\newcommand{\defined}{:=}				%Definition
+\newcommand{\curl}{\text{\textbf{rot}}\,}	%Rotation-Operator curl()
+\newcommand{\ket}[1]{|#1\rangle}		%Quantenmechanischer Zustand
+\newcommand{\curvelintri}{\,\overset{\blacktriangle}{\smallfrown}}
+\newcommand{\straighttri}{\blacktriangle}
+\newcommand{\UT}{\text{UT}}
+\newcommand{\UTC}{\text{UTC}}
+\newcommand{\JD}{\text{JD}}
+\newcommand{\JDE}{\text{JDE}}
+\newcommand{\MJD}{\text{MJD}}
+\newcommand{\TDT}{\text{TDT}}
+\newcommand{\TT}{\text{TT}}
+\newcommand{\NVS}{\text{Navier-Stokes-Gleichungen}}
+\newcommand{\MWG}{\text{Max\-well-Gleich\-ungen}}
+\newcommand{\HG}{\text{Helm\-holtz-Glei\-chung}}
+\newcommand{\sHG}{\text{ska\-lare Helm\-holtz-Glei\-chung}}
+\newcommand{\vHG}{\text{vek\-to\-riel\-le Helm\-holtz-Glei\-chung}}
+\newcommand{\sHGn}{\text{ska\-laren Helm\-holtz-Glei\-chung}}
+\newcommand{\vHGn}{\text{vek\-to\-riel\-len Helm\-holtz-Glei\-chung}}
+\newcommand{\SRT}{\text{Spezielle Relativitätstheorie}}
+\newcommand{\sRT}{\text{speziellen Relativitätstheorie}}
+\newcommand{\EMW}{\text{Elek\-tro\-magne\-tische Wellen}}
+\newcommand{\eMW}{\text{elek\-tro\-magne\-tische Wellen}}
+\newcommand{\eme}{\text{elektromagnetische}}
+\newcommand{\EMF}{\text{Elektromagnetisches Feld}}
+\newcommand{\eMF}{\text{elektromagnetischen Feld}}
+\newcommand{\RT}{\text{Relativitätstheorie~}}
+\newcommand{\au}{\mathrm{AE}}
+\newcommand{\ET}{\text{ET}}
+\newcommand{\TAI}{\text{TAI}}
+\newcommand{\GMST}{\text{GMST}}
+\newcommand{\LMST}{\text{LMST}}
+\newcommand{\MESZ}{\text{MESZ}}
+\newcommand{\KOS}{\text{Koordinatensystem }}
+\newcommand{\DGL}{\text{Differentialgleichung }}
+\newcommand{\NA}{\text{NA}}
+\newcommand{\uA}{\text{u}}  %atomare Masseneinheit
+\newcommand{\MOZ}{\text{MOZ}}
+\newcommand{\grad}{\text{\textbf{grad}}\,}	%Gradient-Operator grad()
+\newcommand{\uproman}[1]{\uppercase\expandafter{\romannumeral#1}}
+\newcommand{\lowroman}[1]{\romannumeral#1\relax}
+\newcommand\todo[1]{\textcolor{red}{TODO: #1}}
+\renewcommand{\=}[1]{\stackrel{\text{#1}}{=}}  %Schrift über Gleich-Zeichen
+\renewcommand{\d}{\partial}
+\newcommand{\abs}[1]{\left\vert#1\right\vert}            %Betragsklammern
+\renewcommand{\Re}{\mathrm{Re}}                          %Realteil
+\renewcommand{\Im}{\mathrm{Im}}                          %Imaginärteil
+\renewcommand{\im}{\mathrm{i}}                           %Imaginäre Einheite
+\newcommand{\epsi}{\varepsilon} 
+\renewcommand{\exp}{\mathrm{exp}}                        %Exponentialfunktion
+\newcommand{\keff}{k_\text{eff}}
+\newcommand{\con}{\text{const}}
+\newcommand{\conv}{\vec{const}}
+\newcommand{\nL}{n_\text{L}}    %n_L Brechungsindex Linse
+\newcommand{\PL}{\mathcal{P}_}  %Legendre Polynome
+\newcommand{\Pl}{\mathcal{P}}   %Legendre Polynome ältere Variante 
+\newcommand{\RB}{\mathcal{R}}   %Allgemeine Radial_Bessel_Funktion
+\newcommand{\ve}{\vec{e}}   %Einheitsvektor
+\newcommand{\vr}{\vec{r}}   %Ortsvektor
+\newcommand{\vk}{\vec{k}}   %Wellenzahlvektor
+\newcommand{\vp}{\vec{p}}   %Impulsvektor
+\newcommand\PLZ[2]{\mathcal{P}_{#1}^{#2}}  %zugeordnete Legendre-Funktionen 
+
+\DeclareRobustCommand{\sB}{\tilde{\mathcal{J}}} %sphärische Bessel-Funktion 
+\DeclareRobustCommand{\sNeu}{\tilde{\mathcal{N}}} %sphärische Neumann-Funktion 
+\DeclareRobustCommand{\sHank}{\tilde{\mathcal{H}}} %sphärische Hankel-Funktion 
+
+\newcommand\BFu {\mathcal{J}} % Bessel-Funktion 
+\newcommand\NeuFu {\mathcal{N}} % Neumann-Funktion 
+\newcommand\HankFu {\mathcal{H}} % Hankel-Funktion
+
+\newcommand\B {\mathcal{J}_\ell\lk kr \rk} % Bessel-Funktion mit \ell
+\newcommand\jB {\tilde{\mathcal{J}}_\ell\lk kr \rk} %sphärische Bessel-Funktion mit \ell
+\newcommand\Neu {\mathcal{N}_\ell\lk kr \rk} %Neumann-Funktion mit \ell
+\newcommand\Hank {\mathcal{H}_\ell\lk kr \rk} %Hankel-Funktion mit \ell
+
+\newcommand{\tu}{~~\text{und}~~}   %und in Gleichungen
+\newcommand{\pdv}{\frac{~\d}{\d}\frac~}   %partielle Ableitung in LGL
+\newcommand{\pdV}{\frac{\d}{\d}\frac}   %partielle Ableitung in LGL
+
+%% JK commands
+ \newcommand{\CP}{\cos\phi}   
+ \newcommand{\SP}{\cos\phi}   
+ \newcommand{\CT}{\cos\theta}   
+ \newcommand{\ST}{\sin\theta}   
+ \newcommand{\U}{U \left(r,\theta\right)}
+
+\newcommand{\artanh}{\mathrm{artanh}}
+\newcommand{\textqed}{\hfill ~ $\square$}
+\newcommand{\mmqed}{\tag*{$\square$}}
+\newcommand{\tensor}[1]{\mathbb{#1}}			 %Tensorvariable, Matrixvariable
+
+\newcommand{\fa}{(\textbf{a})~}
+\newcommand{\fb}{(\textbf{b})~}
+\newcommand{\fc}{(\textbf{c})~}
+\newcommand{\fd}{(\textbf{d})~}
+\newcommand{\fe}{(\textbf{e})~}
+\newcommand{\ff}{(\textbf{f})~}
+\newcommand{\fg}{(\textbf{g})~}
+
+\newcommand{\iF}{im Folgenden~}
+\newcommand{\iA}{im Allgemeinen~}
+
+\newcommand{\zmu}{\mathsf{\times}~}
+
+
+\newcommand{\hatr}{\hat{\vec{r}}}
+\newcommand{\hbtr}{\left| \hat{\vec{r}} \right|}
+
+\DeclareMathOperator\res{Res}
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator\sgn{sgn}
+% für Appendix - MATLAB und Python Referenz
+\newcommand{\py}{Python}
+\newcommand{\rotv}{\vec{rot}\,}
+\newcommand{\gradv}{\vec{grad}\,}
+\newcommand{\nablav}{\vec{\nabla}\,}
+\newcommand{\divv}{\mathrm{div}\,}
+\newcommand{\ceil}{\mathrm{ceil}}
+\newcommand{\sinc}{\mathrm{sinc}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\sign}{\mathrm{sign}}
+\newcommand{\length}{\mathrm{length}}
+\newcommand{\sort}{\mathrm{sort}}
+\newcommand{\summ}{\mathrm{sum}}
+\newcommand{\asin}{\mathrm{asin}}
+\newcommand{\acos}{\mathrm{acos}}
+\newcommand{\atan}{\mathrm{atan}}
+\newcommand{\prodd}{\mathrm{prod}}
+\newcommand{\median}{\mathrm{mediab}}
+\newcommand{\mean}{\mathrm{mean}}
+\newcommand{\std}{\mathrm{std}}
+\newcommand{\eye}{\mathrm{eye}}
+\newcommand{\zeros}{\mathrm{zeros}}
+\newcommand{\ones}{\mathrm{ones}}
+\newcommand{\rand}{\mathrm{rand}}
+\newcommand{\inline}{\mathrm{inline}}
+\newcommand{\modd}{\mathrm{mod}}
+\newcommand{\floor}{\mathrm{floor}}
+\newcommand{\round}{\mathrm{round}}
+\newcommand{\rem}{\mathrm{rem}}
+\newcommand{\sqrtt}{\mathrm{sqrt}}
+\newcommand{\triu}{\mathrm{triu}}
+\newcommand{\tril}{\mathrm{tril}}
+\newcommand{\size}{\mathrm{size}}
+\newcommand{\dett}{\mathrm{det}}
+\newcommand{\rect}{\mathrm{rect}}
+\newcommand{\OTF}{\mathrm{OTF}}
+\newcommand{\inv}{\mathrm{inv}}
+\newcommand{\rank}{\mathrm{rank}}
+\newcommand{\rref}{\mathrm{rref}}
+\newcommand{\eig}{\mathrm{eig}}
+\newcommand{\poly}{\mathrm{poly}}
+\newcommand{\lu}{\mathrm{lu}}
+\newcommand{\qr}{\mathrm{qr}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\quaddd}{\mathrm{quad}}
+\newcommand{\fzero}{\mathrm{fzero}}
+\newcommand{\roots}{\mathrm{roots}}
+\newcommand{\odezd}{\textcolor{mygreen}{\texttt{ode23}}}
+\newcommand{\odevf}{\textcolor{mygreen}{\texttt{ode45}}}
+\newcommand{\odeeds}{\textcolor{mygreen}{\texttt{ode13s}}}
+\newcommand{\odeefs}{\textcolor{mygreen}{\texttt{ode15s}}}
+\newcommand{\ddezd}{\textcolor{mygreen}{\texttt{dde23}}}
+\newcommand{\onlineZ}{online verfügbaren Zusatzmaterialien{}}
+%\newcommand{\MKc}{\url{https://kaschke-medtec.de/fingeruebungen.html}{}}
+\newcommand{\MKc}{\url{https://www.fingeruebungen-physik.de}{}}
+\newcommand{\linklsg}{\href{https://www.fingeruebungen-physik.de}{\textcolor{blue} {$\rightarrow$ Lösungsteil.}}}
+\newcommand{\githubSN}{\url{https://github.com/sn-code-inside/fingeruebungen-physik}{}\,\,}
+
+\newcommand{\PSF}{\mathrm{PSF}} %PSF
+\newcommand{\FT}{\mathcal{F}} %Fourier-Transformierte
+\newcommand{\iFT}{\mathcal{F}^{-1}} %inverse Fourier-Transformierte
+\newcommand{\KFF}{Kugel\-flä\-chen\-funk\-tio\-nen~} %Kugelflächenfunktionen
+\newcommand{\HH}{Hansen-\-Har\-mo\-nics~} %Hansen-Harmonics
+\newcommand{\TE}{^\mathrm{(TE)}} %Transversal elektrisch
+\newcommand{\TM}{^\mathrm{(TM)}} %Transversal magnetisch
+\newcommand{\sumlm}{\sum\limits_{l=0}^\infty \sum\limits_{m=-l}^l} %Summe über l,m KFF
+
+% Aufzählung der Lösungen der Teilaufgaben
+\newlist{subprobs}{enumerate}{1}
+\setlist[subprobs]{
+  label= \textbf{\textit{Teilaufgabe}} \textbf{\textit{\arabic*:}} \protect\thissubprob,
+  ref=\arabic*, itemsep=\baselineskip, align=left}
+\newcommand{\subprob}[1]{
+  \def\thissubprob{\textbf{\textit{#1}}}\item ~\vspace{0.2\baselineskip} \newline}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Abkürzungen, Formelzeichen
+
+\makenomenclature
+\renewcommand{\nomname}{}
+
+\renewcommand{\nomgroup}[1]{%
+  \ifthenelse{\equal{#1}{L}}{\item[]\vspace{0.4\baselineskip}\item[\bfseries Lateinische Symbole]}{%
+  \ifthenelse{\equal{#1}{G}}{\item[]\vspace{0.6\baselineskip}\item[\bfseries Griechische Symbole]}{%
+  \ifthenelse{\equal{#1}{O}}{\item[]\vspace{0.6\baselineskip}\item[\bfseries Indizes und Operatoren]}{}}}%
+}
+
+\newif\iffirstnomgroup
+\firstnomgrouptrue
+
+\renewcommand{\nomgroup}[1]{%
+  \iffirstnomgroup
+    \global\firstnomgroupfalse
+  \else
+    \item[]\vspace{0.6\baselineskip}%
+  \fi
+  \item[\bfseries
+    \ifthenelse{\equal{#1}{L}}{Lateinische Symbole}{%
+    \ifthenelse{\equal{#1}{G}}{Griechische Symbole}{%
+    \ifthenelse{\equal{#1}{O}}{Indizes und Operatoren}{}}}%
+  ]%
+  \item[]\vspace{0.2\baselineskip}%
+}
+
+\setlength{\nomitemsep}{0.25\baselineskip}
+
+\makeatletter
+\renewenvironment{thenomenclature}[1][\nomlabelwidth]{%
+  \nompreamble
+  \setnomtableformat{lp{0.8\textwidth}sp{0.5\textwidth}@{}l}
+  \setlength{\labelsep}{1.8em}
+  \list{}{%
+    \labelwidth#1%
+    \leftmargin\labelwidth
+    \advance\leftmargin\labelsep
+    \itemsep\nomitemsep
+    \let\makelabel\nomlabel
+  }%
+}{%
+  \endlist
+  \nompostamble
+}
+\makeatother
+
+% Gemeinsame Breite der linken Spalte
+\newlength{\verzlabelwidth}
+\setlength{\verzlabelwidth}{2.5cm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{myblue}{RGB}{28,28,172}
+\definecolor{myyellow}{RGB}{237,162,13}
+\definecolor{shadecolor}{gray}{0.95}
+\definecolor{mylilas}{RGB}{170,55,241}
+
+\renewenvironment{example}[1]{
+\refstepcounter{example}\par\medskip
+\begin{shaded} 
+%\begin{samepage}
+ 
+\noindent{\color{mygreen} \rule[3pt]{\textwidth}{0.3mm}}
+\begin{tabular}{>{\arraybackslash}m{1cm}>{\arraybackslash}m{17cm}}
+\includegraphics[width=8mm]{example.pdf}&
+\noindent \textbf{\textit{Beispiel~\theexample: {#1}}}
+\end{tabular}
+\noindent{\color{mygreen} \rule[3pt]{\textwidth}{0.2 mm}}
+%\end{samepage}
+}{\end{shaded}
+\vspace{-1cm}\noindent{\color{mygreen} \rule{\textwidth}{0.3 mm}}
+} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{infobox}[1]{
+     \begin{shaded} 
+     \begin{samepage}
+\noindent{\color{myblue} \rule[3pt]{\textwidth}{0.3 mm}}
+\begin{tabular}{>{\arraybackslash}m{1cm}>{\arraybackslash}m{17cm}}
+\includegraphics[width=6mm]{info.pdf}&
+%\noindent \textbf{\textit{~Infobox:~ {#1}}} 
+\noindent \textbf{\textit{~ {#1}}} 
+\end{tabular}
+\noindent{\color{myblue} \rule[3pt]{\textwidth}{0.2 mm}}
+     \end{samepage}
+}{\end{shaded}
+\vspace{-1cm}\noindent{\color{myblue} \rule{\textwidth}{0.3 mm}}
+} 
+
+
+\newenvironment{merksatz}[1]{
+\begin{shaded} 
+     %\begin{samepage}
+\noindent{\color{myyellow} \rule[3pt]{\textwidth}{0.3 mm}}
+\begin{tabular}{>{\arraybackslash}m{1cm}>{\arraybackslash}m{17cm}}
+\includegraphics[width=6mm]{merke.pdf}&
+%\noindent \textbf{\textit{~Merke:~ {#1}}}
+\noindent \textbf{\textit{~ {#1}}}
+\end{tabular}
+\noindent{\color{myyellow} \rule[3pt]{\textwidth}{0.2 mm}}
+     %\end{samepage}
+}{\end{shaded}
+\vspace{-1cm}\noindent{\color{myyellow} \rule{\textwidth}{0.3 mm}}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newenvironment{nebenrechnungNeu}[1]{
+\begin{shaded} 
+     \begin{samepage}
+\noindent{\color{black} \rule[3pt]{\textwidth}{0.3 mm}}
+\begin{tabular}{>{\arraybackslash}m{1cm}>{\arraybackslash}m{17cm}}
+%\includegraphics[width=6mm]{nr.pdf}&
+\includegraphics[width=6mm]{info.pdf}&
+\noindent \textbf{\textit{~Nebenrechnung:~ {#1}}}
+\end{tabular}
+\noindent{\color{black} \rule[3pt]{\textwidth}{0.2 mm}}
+     \end{samepage}
+}{\end{shaded}
+\vspace{-1cm}\noindent{\color{black} \rule{\textwidth}{0.3 mm}}
+}
+
+\newenvironment{nebenrechnung}[1]{
+\begin{shaded} 
+\begin{samepage}
+\noindent\textbf{Nebenrechnung: \\} 
+\noindent{\color{black} \rule{0.1\columnwidth}{0.2mm} \\}
+\end{samepage}
+}{\end{shaded}
+\noindent{\color{black} \rule{0.1\columnwidth}{0.2mm} \\}
+} % or snugshade
+\definecolor{shadecolor}{gray}{0.95}
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+
+\lstset{language=Matlab,%
+    %basicstyle=\color{red},
+    %basicstyle={\linespread{0.9}\ttfamily},
+    basicstyle=\footnotesize\ttfamily,
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle={\small \color{mygreen}},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\small\color{black}},
+    identifierstyle={\small \color{black}},%
+    stringstyle={\small\color{mylilas}},
+    commentstyle={\small\color{mylilas}},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{for,end,else,break, function},emphstyle=[1]\small \color{blue}, %some words to emphasise
+    emph=[2]{odeset},emphstyle=[2]\small \color{mygreen}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
+%\bibliographystyle{spphys.bst}
+
+%Trennregeln für spezielle Worte
+%\hyphenation{Fresnel \matlab Äqui-nok-ti-um}
+
+\DeclareSIUnit\erg{erg}
+\DeclareSIUnit\cal{cal}
+\DeclareSIUnit\celsius{C}
+\DeclareSIUnit\m{M}
+\DeclareSIUnit\kel{K^{-4}}
+
+%Stichwort- und Personenverzeichnis
+\makeindex[title=Stichwortverzeichnis] % Create the default index
+\makeindex[name=personen,title=Personenverzeichnis] % Create an index named 'personen'
+\newcommand{\indexp}[1]{\index[personen]{#1}}
+\makeindex[name=mfiles,title=MATLAB-Skriptverzeichnis,columns=2]
+
+% list of exercises
+\newcommand{\loxname}{\Large Übungsverzeichnis}  % einheitliche Größe Large
+\newlistof[chapter]{prob}{lox}\loxname
+\newcommand\uebung[3][]{\label{prob:#2}%
+\addcontentsline{lox}{prob}{\protect\numberline{}{\probRef{#2}:~#3#1}}%
+\textbf{#1#3}\\[\baselineskip]}
+\makeatletter
+\renewcommand{\l@prob}{\@dottedtocline{1}{0em}{0em}}
+\makeatother
+\newcommand\einfach{\uebung[~$\ast$~~]}
+\newcommand\mittel{\uebung[~$\ast\,\ast$~~]}
+\newcommand\schwierig{\uebung[~$\ast\,\ast\,\ast$~~]}
+\newcommand\zusatz{\uebung[~$\ast\,\ast\,\ast\,!$~~]}
+%\newcommand\einfach{\uebung[~\textbf{*}~~]}
+%\newcommand\mittel{\uebung[~\textbf{*\,*}~~]}
+%\newcommand\schwierig{\uebung[~\textbf{*\,*\,*}~]}
+%\newcommand\zusatz{\uebung[~\textbf{*\,*\,*\,!}~~]}
+\usepackage[atend]{bookmark}
+%\BookmarkAtEnd{%
+%\bookmarksetup{startatroot}\bookmark[level=0,named=\loxname]{}}
+
+% Einheitliche Überschrift
+\newcommand\verzeichnisueberschrift[1]{\section*{#1}}
+\newcommand\kapitel[1]{Kapitel \ref{kap:#1}}
+\newcommand\kap[1]{Kap. \ref{kap:#1}}
+
+
+% Acronyms
+
+\acsetup{
+  list/name     = Abkürzungsverzeichnis,
+  list/template = tabular
+}
+
+\DeclareAcronym{NASA}{short = NASA, long  = National Aeronautics and Space Administration}
+\DeclareAcronym{ESO}{short = ESO, long  = European Southern Observatory}
+
+\DeclareAcronym{ccd}{short = CCD, long  = Charge-Coupled Device}
+\DeclareAcronym{otf}{short = OTF, long  = Optical Transfer Function}
+\DeclareAcronym{tmm}{short = TMM, long  = Transfermatrix-Methode}
+\DeclareAcronym{tmft}{short = TMFT, long  = Thin Film Matrix Theory}
+\DeclareAcronym{ar}{short = AR, long  = Anti-Reflexion}
+\DeclareAcronym{cgh}{short = CGH, long  = Computer Generated Hologramm}
+\DeclareAcronym{grin}{short = GRIN, long  = Gradient Index}
+\DeclareAcronym{vat}{short = VAT, long  = Value Averaging Theory}
+\DeclareAcronym{fem}{short = FEM, long  =  Finite Elemente Methode}
+\DeclareAcronym{rcwa}{short = RCWA, long  = Rigorous Coupled Wave Theory}
+\DeclareAcronym{tdtd}{short = FDTD, long  = Finite Difference Time Domain}
+\DeclareAcronym{adc}{short = ADC, long  = Analog-Digital-Converter}
+\DeclareAcronym{psf}{short = PSF, long  = Punktspreizfunktion (Point Spread Function)}
+\DeclareAcronym{apsf}{short = APSF, long  = Amplitudenpunktspreizfunktion (Amplitude Point Spread Function)}
+\DeclareAcronym{fwhm}{short = FWHM, long  = Full Width Half Maximum}
+
+\DeclareAcronym{pd}{short = PD, long  =  Photodiode}
+\DeclareAcronym{pmt}{short = PMT, long  =  Photomultiplier Tube}
+\DeclareAcronym{apd}{short = APD, long  =  Avalanche Photodiode}
+\DeclareAcronym{spad}{short = SPAD, long  =  Single-Photon-Avalanche Photodiode}
+\DeclareAcronym{spcd}{short = SPCD, long  =  Single-Photon-Count Detection}
+\DeclareAcronym{cmos}{short = CMOS, long  =  Complementary Metal-Oxide-Semiconductor}
+\DeclareAcronym{mcp}{short = MCP, long  =  Mikrokanalplatte (Micro Channel Plate)}
+\DeclareAcronym{snr}{short = SNR, long  =  Signal-Rausch-Verhältnis (Signal Noise Ratio)}
+\DeclareAcronym{lsm}{short = LSM, long  =  Laser-Raster-Mikroskopie (Laser-Scanning-Microscopy)}
+\DeclareAcronym{ics}{short = ICS, long  =  Infinity Corrected System}
+\DeclareAcronym{dic}{short = DIC, long  =  Differentielle Interferenzkontrast (Differential Interference Contrast)}
+
+\DeclareAcronym{palm}{short = PALM, long  =  Photo-Activated Localization Microscopy}
+\DeclareAcronym{sim}{short = SIM, long  =  Structured Illumination Microscopy}
+\DeclareAcronym{sted}{short = STED, long  =  Stimulated Emission Depletion}
+\DeclareAcronym{storm}{short = STORM, long  =  Stochastic Optical Reconstruction Microscopy}
+
+\DeclareAcronym{aps}{short = APS, long  =  Advanced Photo System}
+\DeclareAcronym{mft}{short = MFT, long  =  Micro Four Thirds}
+\DeclareAcronym{dof}{short = DOF, long  =  Depth of Field}
+\DeclareAcronym{fov}{short = FOV, long  =  Field ov View}
+\DeclareAcronym{mp}{short = MP, long  =  Mega Pixel}
+
+
+
+%-------------------------------------------------------
+% Abkürzungen
+% ------------------------------------------------------
+\begin{document}
+% customize prob and sol in svmono
+\makeatletter
+%\counterwithin*{chapter}{part}
+
+\spn@wtheorem{prob}{\bgroup\exercisename\egroup}{\bfseries}{\rmfamily}
+\makeatother
+\renewenvironment{sol}[1]{\par\addvspace{6pt}\noindent\phantomsection{\textbf{Lösung zu \ref{#1}}} \ignorespaces}{\par\addvspace{6pt}}
+\newcommand\probRef[1]{Übung \ref{prob:#1}}
+\renewcommand\probref[1]{\textbf{\probRef{#1}}}
+\newcommand\lsgref[1]{Lösung \ref{lsg:#1}}
+
+%\newcommand\sbullet[1][.5]{\mathbin{\vcenter{\hbox{\scalebox{#1}{$\bullet$}}}}}
+
+
+
+
+\setcounter{table}{0}
+

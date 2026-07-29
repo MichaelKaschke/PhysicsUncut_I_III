@@ -1,0 +1,318 @@
+\subsection{\mscre--Himmelsmechanik}\label{kap:hm_matlabskripts}
+
+Die \mscre befinden sich im MATLAB-Ordner \texttt{MatlabDateien/hm},
+die Hilfsfunktionen im dortigen Unterordner \texttt{Include\-folder} und Daten im Unterordner \texttt{Data}.
+
+Die \mscre befinden sich im MATLAB-Ordner \texttt{MatlabDateien/hm},
+die Hilfsfunktionen im dortigen Unterordner \texttt{Include\-folder} und Daten im Unterordner \texttt{Data}.
+Es wird empfohlen, entweder die Skripte im GitHub Verzeichnis \githubSN zu benutzen oder sich die komplette Verzeichnisstruktur von \MKc~ runter zu laden und diese und auch das Arbeitsbuch im Hauptverzeichnis Fingeruebungen zu installieren. \\
+
+Wir wollen noch einmal explizit darauf hinweisen, dass die \mscre primäre der Vermittlung der physikalischen Modelle dienen und keinen Anspruch auf besonders elegante oder effiziente Programmierung erheben. Unser Buch ist ja kein Lehrbuch für \matlab-Programmierung. Uns ging es bewusst darum, dass die Skripte gut lesbar sind und das physikalische Modell bzw den physikalischen Gedankengang möglichst klar abbilden.
+Die Leser sind aufgerufen, die Programme nach Belieben zu verbessern und kompakter zu gestalten und diese auch ins GitHub Verzeichnis \githubSN zu stellen.
+
+\subsubsection{Skripte zu Beispielen}\label{mls:hm_bsp_uebungen} %MLSkript1 
+
+\subparagraph{\textbf{Exzentrizität Planetenbahnen}}\label{mls:hm_exzentri} %MLSkript2
+\begin{longtable}{p{0.33\textwidth}p{0.67\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlhmref{PlanetExzentrizitaeten.m}	& Darstellung der Exzentrizitäten der Planetenbahnen (auf große Halbachse $a$ normiert).\\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{longtable}
+
+\subparagraph{\textbf{Analemma}}\label{mls:hm_analemma} %MLSkript3
+\begin{longtable}{p{0.33\textwidth}p{0.67\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlhmref{Analemma01.m}        & Analemma auf Basis einer auf der Mittelpunktsgleichung basierenden Keplerlösung für die Sonnenbahn. Exzentrizität und Ekliptikschiefe werden variiert (Äquinoktium und Ekliptik des Datums). \\
+\mlhmref{Analemma02.m}        & Analemmaberechnung (Näherungsrechnung) für verschiedene geographische Positionen in Alt-Azimut-Darstellung für 24 h. Refraktion und Tagbogenverlängerung vernachlässigt. Es wird eine einfache auf der Mittelpunktsgleichung basierenden Keplerlösung für die Erdbahn benutzt (Äquinoktium und Ekliptik des Datums). \\
+\mlhmref{Analemma03.m}        & Analemmaberechnung für verschiedene Planeten direkt aus der exzentrischen Anomalie $E$ ohne Lösung der Kepler-Gleichung.\\
+\mlhmref{AnalemmaSonne.m}  & Analemmaberechnung der Sonne vom Mond aus auf Basis von auf der Mittelpunktsgleichung basierenden Keplerlösungen für die Sonnen- und Mondbahn.\\
+\mlhmref{AnalemmaMond.m}    & Analemmaberechnung für Mond von der Erde aus betrachtet auf Basis von auf der Mittelpunktsgleichung basierenden Keplerlösungen für die Sonnen- und Mondbahn.\\
+\mlhmref{AnalemmaOkoFit.m}    & Umrechnung einschließlich Bildkorrektur des aufgenommenen Analemma von Oberkochen 2019/20 in das horizontale KOS, sowie Darstellung verschiedener theoretisch berechneter Analemma. \\
+\mlhmref{AnalemmaFindExz.m}   & Umrechnung einschließlich Bildkorrektur des aufgenommenen Analemma von Oberkochen 2019/20 in das horizontale KOS, sowie Fit eines theoretisch berechneten Analemmas mit der Exzentrizität e als Parameter. \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{longtable}
+
+\subparagraph{\textbf{Sonnenaufgangsberechnung (Methode der quadratischen Interpolation)}}\label{mls:hm_sonnenaufgang} %MLSkript4
+\begin{longtable}{p{0.33\textwidth}p{0.67\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlhmref{Sonnenaufgang01.m} & Aufgangs- und Untergangszeiten der Sonne für verschiedene geographische Orte (Breite < 60°) und die Taglängen
+ iterativ aus der Kepler-Gleichung für das ganze Jahr und in der Nähe des Jahreswechsels bzw. Mitsommers.\\
+\mlhmref{Sonnenaufgang02.m} & Aufgangszeiten auf Basis der Kepler-Gleichung  a) mit einer iterativen Methode (Quadratische 
+Interpolation) zur Suche der Nullstellen für Auf- und Untergänge und b) zum Vergleich auf Basis der ZGL-Näherung.\\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{longtable}
+
+\subparagraph{\textbf{Vergleich Zeitgleichung}}\label{mls:hm_zeitglgformeln} %MLSkript5
+\begin{longtable}{p{0.33\textwidth}p{0.67\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlhmref{ZGL01.m} & ZGL auf Basis einer Mittelpunktsgleichung basierenden Keplerlösung für die Sonnenbahn und Vergleich mit empirischen Werten und den Berechnungen des JPL (Äquinoktium und Ekliptik des Datums). \\
+\mlhmref{ZGL02.m} & Reihenentwicklung der ZGL.\\
+\mlhmref{ZGL03.m} & ZGL auf Basis einer (auf der Mittelpunktsgleichung basierten) Keplerlösung für die Erdbahn und Vergleich mit verschiedenen publizierten Näherungsformeln und den Berechnungen des JPL. \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{longtable}
+ 
+\subparagraph{\textbf{Tagbogen-Verlängerung}}\label{mls:hm_tagbogenverl} %MLSkript6
+\begin{longtable}{p{0.33\textwidth}p{0.67\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlhmref{TagbogenVerlaengerung.m} & Tagbogenverlängerung bedingt durch Refraktion und scheinbaren Sonnendurchmesser bei Sonnenaufgang.\\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{longtable}
+
+%\newpage
+\subparagraph{\textbf{Tageslauf Sonne}}\label{mls:hm_tageslauf_sonne} %MLSkript7
+\begin{longtable}{p{0.33\textwidth}p{0.67\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlhmref{TageslaufSonne01.m} & Der Tageslauf der Sonne wird nach der Näherungsformel (3.84) berechnet. Die geographische Breite kann variiert werden. Es wird die Höhe der Sonne für verschieden Jahreszeiten und geographische Breiten dargestellt. Die ZGL wird nicht berücksichtigt.
+Berechnung des Tagbogenverlaufs (Näherung) der Sonne über dem Horizont für verschiedene Jahreszeiten und geographische Breiten.\\
+\mlhmref{TageslaufSonne02.m} & Tagbogenverlauf der Sonne über dem Horizont. (Näherungsformel und zum numerische Lösung. Die geographische Breite kann variiert werden.\\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{longtable}
+ 
+
+
+\subparagraph{\textbf{Berechnung der Aufgangswinkel der Sonne (Verschiedene Orte und Jahreszeiten)}}\label{mls:hm_aufgangswinkel_sonne} %MLSkript8
+\begin{longtable}{p{0.33\textwidth}p{0.67\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlhmref{SonnenaufgangZeit.m}    & Höhe $h$ und Azimut $\mathcal{A}$ und die Zeit-Höhen-Kurven beim Sonnenaufgang auf Basis einer MPG-Keplerlösung für verschiedene geographische Breiten und verschiedene Jahreszeiten (Wintersonnenwende, Frühlingsanfang, Sommersonnenwende, Herbstanfang). Dabei wird die astrometrische Höhe $h$ und die durch Refraktion \ua Effekte bedingte \anf{scheinbare} Höhe $h'$ berechnet.\\ 
+\mlhmref{SonnenaufgangBaabe.m}        & Höhe $h$ und Azimut $\mathcal{A}$ und die Zeit-Höhen-Kurven beim Sonnenaufgang auf Basis einer MPG-Keplerlösung für die Erdbahn für Baabe (Ostsee). Dabei wird die astrometrische Höhe $h$ und die durch Refraktion \ua Effekte bedingte \anf{scheinbare} Höhe $h'$ berechnet.\\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{longtable}
+ 
+
+\subparagraph{\textbf{Innere Planetenbahnen}}\label{mls:hm_innere_planeten} %MLSkript9
+\begin{longtable}{p{0.33\textwidth}p{0.67\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlhmref{InnerePlaneten.m} & Bahnen der inneren Planeten auf Basis der Kepler-Geichung. 
+(Äquinoktium und Ekliptik des Datums) \\
+\mlhmref{VenusTransit01.m} & Koordinaten der Venus und des Merkurs bei Transits. Die Zeiten müssen näherungsweise z.\,B. aus \mlhmref{InnerePlaneten.m} bekannt sein. Die Daten werden mit JPL-Daten verglichen. \\
+\mlhmref{VenusTransit02.m} & Bestimmung der Astronomischen Einheit aus den Daten eines Venustransits. a) Parallaxen-Methode nach Halley: Die beobachteten Werte für zwei geographische Orte zu einer Zeit UT werden dem Internet entnommen, daraus wird die Parallaxe bestimmt und daraus dann die AE berechnet.  b) Kontaktzeitmethode durch Beobachtung an einem Standort.\\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{longtable}
+
+\subparagraph{\textbf{Äußere Planetenbahnen}}\label{mls:hm_aussere_planeten} %MLSkript10
+\begin{longtable}{p{0.33\textwidth}p{0.67\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlhmref{AeusserePlaneten.m} & Bahnen der äußeren Planeten auf Basis der Kepler-Gleichung für den Zeitraum 1920--2020. (Äquinoktium und Ekliptik des Datums) \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{longtable}
+ 
+\subparagraph{\textbf{Störungsrechnung }}\label{mls:hm_stoerunsgrechnung_planeten} %MLSkript11
+\begin{longtable}{p{0.33\textwidth}p{0.67\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlhmiref{VenusExakt.m} & Ekliptikale Koordinaten der Venus auf Basis einer Reihenentwicklung \cite{Montenbruck1999}. \\
+\mlhmiref{MarsExakt.m} & Ekliptikale Koordinaten des Mars auf Basis einer Reihenentwicklung \cite{Montenbruck1999}. \\
+\mlhmiref{JupiterExakt.m} & Ekliptikale Koordinaten des Jupiters auf Basis einer Reihenentwicklung \cite{Montenbruck1999}. \\
+\mlhmiref{SonneExakt.m}  & Ekliptikale Koordinaten der Sonne auf Basis der Newcombschen Theorie \cite{Montenbruck1999}. \\
+\mlhmiref{MondExakt.m}. & Geozentrisch-äquatoriale Koordinaten des Mondes auf Basis der Brownschen Theorie \cite{Montenbruck1999}. \\
+\mlhmref{SL9numerisch.m} & Bahn des Kometen Shoemaker-Levy 9 bis zu seinem Zusammenprall mit dem Jupiter über numerische Integration.
+\end{longtable}
+
+
+\subparagraph{\textbf{Periheldrehung des Merkurs}}\label{mls:hm_perihel_merkur} %MLSkript12
+\begin{longtable}{p{0.33\textwidth}p{0.67\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlhmref{PerihelKappa2.m}    & Perihel-Verschiebung für ein Potential mit Term $\kappa_2 \neq 0$. \\
+\mlhmref{PerihelKappa3.m}    & Perihel-Verschiebung für ein Potential mit Term $\kappa_3 \neq 0$. \\
+\mlhmref{StoerpotentialMerkur.m}  & Störpotentiale und Gravitationskräfte der anderen Planeten auf den Merkur als Ursache der Perihel-Verschiebung des Merkurs nach der Newtonschen Mechanik. \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{longtable}
+
+\subparagraph{\textbf{Kometenbahnen}}\label{mls:hm_kometenbahnen} %MLSkript13
+\begin{longtable}{p{0.33\textwidth}p{0.67\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlhmref{AsteroidenBahnen.m}   & Bahnen der Asteroiden in heliozentrischen Koordinaten unter Benutzung der Gaußschen Vektoren (Äquinoktium und Ekliptik des Datums). \\
+\mlhmref{AsteroidenZeit.m}     & Bahn eines Asteroiden als Funktion der Zeit unter fallweiser Benutzung einer parabolischen Näherung. (Äquinoktium und Ekliptik des Datums). \\
+\mlhmref{KometenBahnen.m}      & Bahnen der Kometen in heliozentrischen Koordinaten unter Benutzung der Gaußschen Vektoren (Äquinoktium und Ekliptik des Datums).\\
+\mlhmref{KometenZeit.m}        & Bahn eines Kometen als Funktion der Zeit unter fallweiser Benutzung einer parabolischen Näherung (Äquinoktium und Ekliptik des Datums). \\
+\mlhmref{KometenObsEqu.m}      & Kometenbahnen in Erdnähe als Funktion der Zeit und die Beobachtungsdaten (Rektaszension und Deklination) unter Benutzung von parabolischen Näherungen.\\
+\mlhmref{KometenObsHor.m}      & Kometenbahnen in Erdnähe als Funktion der Zeit und die Beobachtungsdaten (Azimut und Höhe) unter Benutzung von parabolischen Näherungen.\\
+\mlhmref{KometenSL9.m}         & Kepler-Bahn des Kometen D/1993 F2-D (Shoemaker-Levy 9) als Funktion der Zeit und Vergleich mit Werten des JPL \cite{JPL2020} (Äquinoktium und Ekliptik des Datums). \\
+\mlhmref{KometenHalley.m}      & Bahnen des Kometen Halley von 1986 und 1758 (Äquinoktium und Ekliptik Datums). \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{longtable}
+
+\subparagraph{\textbf{Gezeiten}}\label{mls:hm_gezeiten} %MLSkript13
+\begin{longtable}{p{0.33\textwidth}p{0.67\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlhmref{Gezeitenellipsoid.m}  & Berechnet die Form des Gezeitenellipsoids. \\
+\mlhmref{GezeitenReibung01.m}  & Berechnet Parameter der Gezeitenreibung auf der Erde. \\
+\mlhmref{GezeitenReibung02.m}  & Berechnet Parameter der Gezeitenreibung auf der Erde mit einem einfachen Hantelmodell.\\
+\mlhmref{UmlaufErdeMond.m}     & Simuliert die Bewegung von Erde und Mond um gemeinsamen Schwerpunkt im Laufe eines Monats.\\
+%\mlhmref{GezeitenDGLSystem.m}  & Löst das DGLS-System für ZKP inklusive Gezeitenreibung.\\
+\mlhmref{SimulationAiry.m}     & Simuliert stehende Wellen nach dem Airy-Modell.\\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{longtable}
+
+
+\subparagraph{\textbf{Sonnenfinsternisse}} \label{mls:hm_so_fis} %MLSkript14
+\medskip
+Diese Programme wurden in Teilen auf Basis der C++ Programmstrukturen und der Beschreibung/Erläuterung in  
+"Astronomie mit dem Personal Computer" von Oliver Montenbruck und Thomas Pfleger \cite{Montenbruck1999} entwickelt. 
+Genehmigung des Verlages und der Autoren liegt vor.
+\begin{longtable}{p{0.33\textwidth}p{0.67\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlhmref{Sonnenfinsternis01.m}    & Zeiten des Neu/Vollmondes in einem bestimmten Zeitraum und bestimmt, ob zu der Neumond/Vollmondzeit eine Sonnen- oder Mondfinsternis stattfinden kann. Für die Koordinaten Sonne und Mond werden genauere Reihen verwendet. \\
+%\mlhmref{PhaseFunc.m} 	& Hilfsfunktion zur Berechnung der Zeiten des Neu/Vollmondes und von Finsternissen.\\
+\mlhmref{Sonnenfinsternis02.m}    &  Startet von ungefähren Neumondzeiten und bestimmt, wann und wo um die Neumondzeit eine Sonnenfinsternis stattfinden kann. Für die Sonnenfinsternis wird die Zentrallinie der sogenannten maximalen Verfinsterung berechnet.\\
+\mlhmref{Sonnenfinsternis03.m}    &  Bestimmt ausgehend vom Neumondzeitpunkt für einen gewählten Beobachtungsort die Phase, Größe und Kontaktzeiten einer Sonnenfinsternis.\\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{longtable}
+ 
+\subparagraph{\textbf{Lange Zeiten}}\label{mls:hm_lange_zeiten} %MLSkript15
+\begin{longtable}{p{0.33\textwidth}p{0.67\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlhmref{ZGL04.m} & Zeitgleichung und Analemma über Zeiträume von mehreren Jahrtausenden. \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{longtable}
+
+\medskip
+\subsubsection{Skripte zu verschiedenen Übungen}\label{mls:hm_uebungen} %MLSkriptÜbungen
+\begin{longtable}{p{0.33\textwidth}p{0.67\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlhmref{AbflachungSonne.m}         & Abflachung der Sonne bei Sonnenuntergang als Funktion der Höhe.\\
+\mlhmref{AnalemmaAnomalie.m}      & Zeitgleichung und Analemma direkt aus der exzentrischen Anomalie.\\
+\mlhmref{AufprallgeschwindigkeitKomet.m}        & Aufprallgeschwindigkeit von Kometen/Meteoriten auf der Erde als Funktion verschiedener Parameter.\\
+\mlhmref{Besselreihe.m}         & Bessel-Reihe für exzentrische Anomalie $E$ für verschiedene Exzentrizitäten $e$ und Summationsgrenzen.\\
+\mlhmref{KeplerVergleich.m}         & Lösung der Kepler-Gleichung über verschiedene Iterationsverfahren für verschiedene Exzentrizitäten zwischen 0.1, 0.2,.....0.999. Vergleich der Iteration mit Regula falsi und Newton-Raphson für verschiedene Anfangswerte der mittleren Anomalie M.\\
+\mlhmref{LangzeitJahreszeiten.m}         & Dauer der Jahreszeiten und Energieeintrag der Sonne auf die Nordhemisphäre für einen Zeitraum von 8000 Jahren. Einfache Modellierung der Veränderungen von Exzentrizität, Ekliptikneigung und Richtung der Erdachse.\\
+\mlhmref{Mondbahn01.m}         & Mondbahn für ein einfaches koplanares ZK-Planet-Mond-System bezogen auf den Zentralkörper für verschiedene Verhältnisse der Umlaufzeiten TM (Mond um Planet) und TP (Planet um ZK). \\
+\mlhmref{Mondbahn02.m}         & Heliozentrische Mondbahn aus den Ephemeriden.\\
+\mlhmref{MarsOpposition.m}         & Marsoppositionen im Zeitraum 2000--2020.\\
+\mlhmref{MondErdeSonneApollo8.m}        & Programm berechnet die Positionen von Mond, Erde, Sonne und Apollo 8 am 24.12.1968.\\
+\mlhmref{OlympusMons.m}         & Sonnenaufgang auf dem Mars.\\
+\mlhmref{PlanetenbahnenKepler.m}         & Bahnen der Planeten Venus bis Jupiter auf Basis der Kepler-Gleichung. Venus-Jupiter-Konjunktion für den 22.\ 11.\ 2065 die  (Äquinoktium und Ekliptik des Datum). \\
+\mlhmref{Refraktion.m}         & Refraktionsberechnung für das Kugelschalen-Schichtenmodell und Vergleich mit der Normalrefraktion.\\
+\mlhmref{RocheLimit.m}         & Berechnet Roche-Limit und Hill-Sphären für Planeten unseres Sonnensystems.\\
+\mlhmref{SonnenaufgangReinsch.m}         & Analytische Formel für Sonnenaufgang nach \cite{Reinsch2003} und Vergleich mit numerischer Berechnung.\\
+\mlhmref{SonnenuhrAnalem.m}  & Berechnet Lineatur einer analemmatischen Sonnenuhr für Görlitz.\\
+\mlhmref{SimulationAiry.m}  & Simuliert das Airy-Kanal-Modell der dynamischen Theorie der Gezeiten.\\
+\mlhmref{TageslaufSonne.m}         & Tageslauf der Sonne mit Berücksichtigung der Refraktion $R$ und über den Tag veränderlicher Deklination $\delta$.\\
+\mlhmref{VenusMerkurTransit.m}         & Venustransits am 08.06.2004 und am 06.06.2012.\\
+\mlhmref{VerweildauerKomet.m}        & Verweildauer von Kometen in Erdnähe.\\
+\mlhmref{Wandsonnenuhr.m}    & Berechnet Lineatur einer Wandsonnenuhr.\\
+\mlhmref{ZGLAnalemma.m}      & Zeitgleichung und Analemma auf anderen Planeten (Methode Allison).\\
+\mlhmref{ZGLAnalemmaKepler.m}      & Zeitgleichung und Analemma auf anderen Planeten (Methode Montenbruck).\\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{longtable}
+
+%\newpage
+\subsubsection{Hilfsfunktionen}\label{mls:hm_hilfsfunktionen} %MLSkript1 
+Einige der Programme wurden in Teilen mit freundlicher Genehmigung der Autoren auf Basis der C++ Programmstrukturen und der Beschreibung/Erläuterung in \glqq Astronomie mit dem Personal Computer\grqq{} von Oliver Montenbruck und Thomas Pfleger \cite{Montenbruck1999} entwickelt.\\
+\begin{longtable}{p{0.33\textwidth}p{0.67\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+Mathematische Funktionen \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlhmiref{CalcAnglesfromXYZ.m}         & Sphärische Koordinaten aus kartesischen Koordinaten.\\
+\mlhmiref{CalcXYZfromAngles.m}         & Kartesische Koordinaten aus sphärischen Koordinaten.\\
+\mlhmiref{Frac.m}                      & Nachkommastellen.\\
+\mlhmiref{Modulo.m}                    & Modulus-Funktion.\\
+\mlhmiref{R\_x.m}, \mlhmiref{R\_y.m}, \mlhmiref{R\_z.m},     & Rotationsmatrizen bezüglich x,y,z-Achse.\\
+\mlhmiref{Stumpff.m}                   & Stumpffsche Funktionen.\\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+Hilfsfunktionen für Ein- und Ausgabe \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlhmiref{GetColorLines.m}             & Lädt Farbtabelle für Linien und graphische Darstellungen.\\
+\mlhmiref{StrDMS.m}                    & Umrechnung von Formaten für Ausgabe von Winkeln von Dezimal in Grad, Bogenminute, Bogensekunde.\\
+\mlhmiref{HMS.m}                       & Umrechnung von Formaten für Zeit von Dezimal in hh:mm:ss.s \\
+\mlhmiref{StrHMS.m}                    & Umrechnung von Formaten für Ausgabe von Zeit von Dezimal in hh:mm:ss.s \\
+\mlhmiref{LabelPoints.m}               & Beschriftung von Datenpunkten.\\
+\mlhmiref{OrbitParameter.m}            & Einlesen der Bahnparameter der Planeten.\\ 
+\mlhmiref{KometParameter.m}            & Einlesen der Bahnparameter der Kometen.\\
+\mlhmiref{ImportPlanetParameter.m}     & Einlesen typischer physikalischer Bahnparameter der Planeten und des Mondes.\\
+
+\noalign{\smallskip}\hline\noalign{\smallskip}
+Astronomische Funktionen \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlhmiref{Jd.m}                        & Julianisches Datum aus dem Kalenderdatum.\\
+\mlhmiref{MJD.m}                       & Modifiziertes Julianisches Datum aus dem Kalenderdatum.\\
+\mlhmiref{Jd2JJht.m}                   & Umrechnung von Julianischem Datum in Julianisches Jahrhundert.\\
+\mlhmiref{JJht2Jd.m}                   & Umrechnung von Julianischem Jahrhundert in Julianisches Datum.\\
+\mlhmiref{GMST.m}                      & GMST (Greenwich Mean Sidereal Time) aus MJD.\\
+\mlhmiref{LMST.m}                      & LMST (Local Mean Sidereal Time) aus MJD und geographischer Länge.\\
+\mlhmiref{EpsErde.m}                   & Ekliptikneigung als Funktion der Zeit.\\
+\mlhmiref{EAnom.m}                     & Exzentrische Anomalie durch Iteration.\\  
+\mlhmiref{Ellip.m}                     & Elliptische Koordinaten aus exzentrischer Anomalie.\\
+\mlhmiref{FindRiseSet.m}               & Nullstellensuche Sonnen-Auf- und Untergang im Intervall 0..24 h mit quadratischer Interpolation.\\
+\mlhmiref{PQR.m}                       & Multiplikation mit Transformationsmatrix aus Gaußschen Vektoren.\\
+\mlhmiref{KometPQR.m}                  & Ekliptikale und äquatoriale Koordinaten von Kometen.\\
+\mlhmiref{KometOrbits.m}               & Bahnen der Kometen im Raum.\\
+\mlhmiref{PlanetPQR.m}                 & Ekliptikale und äquatoriale Koordinaten von Planeten.\\
+\mlhmiref{PlanetOrbits.m}              & Bahnen der Planeten im Raum.\\
+\mlhmiref{SonnePQR.m}                  & Ekliptikale und äquatoriale Koordinaten der mittleren Sonne von beliebigen Planeten aus.\\ 
+\mlhmiref{KeplerMond.m}                & Mittelpunktsgleichung-Lösung für Mond.\\
+\mlhmiref{KeplerSonne.m}               & Mittelpunktsgleichung-Lösung für Sonne.\\
+\mlhmiref{KeplerSonneEx.m}             & Mittelpunktsgleichung-Lösung für Sonne -- Äquinoktium des Datums und veränderliche Exzentrizitäten.\\
+\mlhmiref{KeplerSonneLang.m}           & Mittelpunktsgleichung-Lösung für Sonne -- Modellierung für große Zeitabstände von J2000.\\
+%\mlhmiref{SinAlt.m} & Berechnet den Sinus der Höhe aus Deklination, Stundenwinkel und Breitengrad.\\ 
+\mlhmiref{Convert2Equ.m}               & Umwandlung von ekliptikalen Koordinaten in äquatoriale Koordinaten.\\ 
+\mlhmiref{MondExakt.m}                 & Geozentrische Koordinaten des Mondes nach der Brownschen Theorie \cite{Montenbruck1999, Meeus1998}.\\
+\mlhmiref{SonneExakt.m}                & Geozentrische Koordinaten der Sonne nach der Newcomschen Theorie \cite{Montenbruck1999, Meeus1998}.\\
+\mlhmiref{VenusExakt.m}                & Heliozentrische Koordinaten der Venus nach der Störungstheorie \cite{Montenbruck1999, Meeus1998}.\\
+\mlhmiref{JupiterExakt.m}              & Heliozentrische Koordinaten des Jupiter nach der Störungstheorie \cite{Montenbruck1999, Meeus1998}.\\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\end{longtable}
+
+\newpage
+\subsubsection{Datenfiles} \label{mls:hm_datafiles} %MLSkripteDaten
+\begin{longtable}{p{0.4\textwidth}p{0.6\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+csv - Files \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlhmdref{AnalemmaOko2019.csv}              & Analemma-Bilddaten von Aufnahmen in 2019.\\
+\mlhmdref{Bahnparameter.csv}                & Bahnparameter für Äquinoktium und Ekliptik des Datums.\\
+\mlhmdref{BahnparameterJ2000.csv}           & Bahnparameter für Äquinoktium und Ekliptik J2000 \cite{Meeus1998}.\\
+\mlhmdref{BahnparameterAbleitung.csv}       & Erste zeitliche Ableitung der Bahnparameter für Äquinoktium und Ekliptik des Datums.\\
+\mlhmdref{BahnparameterJ2000Ableitung.csv}  & Erste zeitliche Ableitung der Bahnparameter für Äquinoktium und Ekliptik J2000 \cite{Meeus1998}.\\
+\mlhmdref{Kometen.csv}                      & Bahnparameter für einige berühmte Kometen.\\
+\mlhmdref{ParaLangzeit.csv}                 & Parameter für Langzeitveränderungen der Bahnparameter der Erde.\\
+\mlhmdref{PlanetenFarben.csv}               & Daten für Farbkonventionen für Planetendarstellungen etc. Wird mit \mlhmiref{GetColorLines.m} eingelesen.\\
+\mlhmdref{SL9.csv}                          & Daten für Komet Shoemaker-Levy 9 \cite{JPL2020}.\\
+\mlhmdref{SonnePos.csv}                     & Parameter für Störungsrechnung der Sonne \cite{Montenbruck1999, Meeus1998}.\\
+\mlhmdref{VenusPos.csv} etc.                & Parameter für Störungsrechnung der Planeten \cite{Montenbruck1999, Meeus1998}.\\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+dat - Files \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlhmdref{Sonne20040608.dat}         & Koordinaten der Sonne (RA, Deklination) für den 08.\,06.\,2004 \cite{JPL2020}.\\
+\mlhmdref{Venus20040608.dat}         & Koordinaten der Venus (RA, Deklination) für den 08.\,06.\,2004 \cite{JPL2020}.\\
+\mlhmdref{ZGLhorizonJPL.dat}         & Daten für ZGL 2000 \cite{JPL2020}.\\
+\mlhmdref{ZGLempirisch.dat}          & Empirische Daten der ZGL.\\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\end{longtable}
+
+

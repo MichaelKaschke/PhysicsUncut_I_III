@@ -1,0 +1,168 @@
+\subsection{\mscre -- Physik der Bewegung}\label{kap:bew_matlabskripts}
+
+Die \mscre befinden sich im MATLAB-Ordner \texttt{MatlabDateien/bew},
+die Hilfsfunktionen im dortigen Unterordner \texttt{Include\-folder} und Daten im Unterordner \texttt{Data}.
+Es wird empfohlen, entweder die Skripte im GitHub Verzeichnis \githubSN zu benutzen oder sich die komplette Verzeichnisstruktur von \MKc~ runter zu laden und diese und auch das Arbeitsbuch im Hauptverzeichnis Fingeruebungen zu installieren. \\
+
+Wir wollen noch einmal explizit darauf hinweisen, dass die \mscre primäre der Vermittlung der physikalischen Modelle dienen und keinen Anspruch auf besonders elegante oder effiziente Programmierung erheben. Unser Buch ist ja kein Lehrbuch für \matlab-Programmierung. Uns ging es bewusst darum, dass die Skripte gut lesbar sind und das physikalische Modell bzw den physikalischen Gedankengang möglichst klar abbilden.
+Die Leser sind aufgerufen, die Programme nach Belieben zu verbessern und kompakter zu gestalten und diese auch ins GitHub Verzeichnis \githubSN zu stellen.
+
+\subsubsection {Skripte zu Beispielen} \label{mls:bew_kapitel} 
+\begin{longtable}{p{0.33\textwidth}p{0.67\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+%\href{bew/matlab/HarmonOszillator.m}{HarmonOszillator.m} & Lösung der Bewegungsgleichung für den getriebenen harmonischen Oszillator mit Reibung.\\
+
+%\mlbewref{AchterbahnLoop.m}             & Durchlaufen einer kreisförmigen Loop auf einer Achterbahn (Einzelner Wagen und Zug im Vergleich).\\
+\mlbewref{AnHarmonOszillator01.m}       & Schwingungsperiode für den anharmonischen Oszillator exakt und in verschiedenen Näherungen.\\
+\mlbewref{AnHarmonOszillator02.m}       & Lösung der Bewegungsgleichung für den anharmonischen Oszillator in verschiedenen Näherungen.\\
+\mlbewref{BungeeJumping.m}              & Lösung der Lagrange-Gleichungen für das Bungee-Jumping.\\
+\mlbewref{Doppelkegel01.m}              & Herleitung der Lagrange-Gleichungen für den aufwärts rollenden Doppelkegel aus der Lagrange-Funktion mittels der symbolischen Toolbox von \matlab.\\
+\mlbewref{Doppelkegel02.m}              & Lösung der Lagrange-Gleichungen für den aufwärts rollenden Doppelkegel.\\
+\mlbewref{Doppelkegel03.m}              & Phasenraum des aufwärts rollenden Doppelkegels aus der Energieerhaltung.\\
+\mlbewref{Doppelkegel04.m}              & Phasenraum des aufwärts rollenden Doppelkegels aus der Energieerhaltung für verschiedene Parameter.\\
+\mlbewref{Doppelpendel01.m}             & Herleitung der Lagrange-Gleichungen für das Doppelpendel aus der Lagrange-Funktion mittels der symbolischen Toolbox von \matlab.\\
+\mlbewref{Doppelpendel02.m}             & Beispielrechnungen und Simulation des Doppelpendels.\\
+\mlbewref{FallendeKette.m}              & Lösung der Lagrange-Gleichungen für die fallende Kette.\\
+\mlbewref{FallendeLeiter.m}             & Dynamik für eine fallende ("`wegrutschende"') Leiter.\\
+\mlbewref{FallenderStab01.m}            & Kräfteverhältnisse bei fallenden Stab.\\
+\mlbewref{FallenderStab02.m}            & Lösung der Lagrange-Gleichungen für den fallenden Stab für verschiedene Reibungskoeffizienten.\\
+\mlbewref{FoucaultPendel.m}             & Drehung der Schwingungsebene beim Foucault-Pendel.\\
+\mlbewref{GekoppeltePendel01.m}         & Beispielrechnungen und Simulation der gekoppelten Pendel für gleiche Pendel, kleine Winkel.\\
+\mlbewref{GekoppeltePendel02.m}         & Beispielrechnungen und Simulation der gekoppelten Pendel für unterschiedliche Pendel, kleine Winkel.\\
+\mlbewref{GekoppeltePendel03.m}         & Beispielrechnungen und Simulation der gekoppelten Pendel für allgemeine Bedingungen, große Winkel.\\
+\mlbewref{Gyrotwister.m}                & Simulation der Beschleunigung des Kreisels im Gyrotwister durch die Bewegung der Hand.\\
+\mlbewref{GyrotwisterPhase.m}           & Simulation der Beschleunigung des Kreisels im Gyrotwister durch die Bewegung der Hand bei einer Phasendifferenz zur optimalen Bewegung.\\
+\mlbewref{HarmonOszillator.m}           & Lösung der Bewegungsgleichung für den getriebenen harmonischen Oszillator mit Reibung.\\
+\mlbewref{Harpune.m}                    & Lösung der Lagrange-Gleichungen für einen senkrecht geworfenen Enterhaken/eine Harpune.\\
+\mlbewref{JoJo01.m}                     & Berechnungen zur Dynamik eines Jo-Jos.\\
+\mlbewref{KfKreiselFreieAchsen.m}       & Beispielrechnungen und Simulation zur Stabilität des kräftefreien Kreisels mit freien Achsen.\\
+\mlbewref{KfSymmKreiselNutation.m}      & Beispielrechnungen zur Nutation des kräftefreien symmetrischen Kreisels im raumfesten System.\\
+\mlbewref{Klothoide.m}                  & Berechnungen zur Klothoide (Cornu-Spirale) und Form eines Loopings für eine Achterbahn.\\
+\mlbewref{KopPendelKleinWinkel.m}       & Beispielrechnungen und Simulation der gekoppelten Pendel für die Kleinwinklenäherung (analytische und numerische Rechnung).\\
+\mlbewref{NLOszillator01.m}             & Lösung der Bewegungsgleichung für den getriebenen nichtlinearen Oszillator mit Reibung.\\
+\mlbewref{NLOszillator02.m}             & Berechnung des Ljapunow-Exponenten für den getriebenen nichtlinearen Oszillator mit Reibung.\\
+\mlbewref{Pendeluhr.m}                  & Berechnungen zur Pendeluhr.\\
+\mlbewref{RollendesRad.m}               & Bewegung eines rollenden Rades.\\
+\mlbewref{Rutherford.m}                 & Berechnungen zur Rutherford-Streuung.\\
+\mlbewref{Schaukel01.m}                 & Berechnungen zur Dynamik einer Schaukel als parametrischen Oszillator.\\
+\mlbewref{Schaukel02.m}                 & Berechnungen zur Dynamik einer Schaukel als getriebener Oszillator Höhe.\\
+\mlbewref{SchwererKreiselPraez01.m}     & Simulationsrechnung zur Präzession des schweren symmetrischen Kreisels im raumfesten System.\\
+\mlbewref{SchwererKreiselPraez02.m}     & Beispielrechnungen zur Präzession des schweren symmetrischen Kreisels im raumfesten System.\\
+\mlbewref{TrebSimDAE.m}                 & Berechnungen zur Dynamik eines \textit{Trebuchet}. Trebuchet mit Berücksichtigung von Zwangsbedingungen.\\
+\mlbewref{TrebuchetSim02.m}             & Berechnungen zur Dynamik eines \textit{Trebuchet}. Modelle ohne Berücksichtigung der Zwangsbedingungen.\\
+\mlbewref{TrebuchetLGL02.m}             & Symbolische Berechnung Lagrange-Funktion und Lagrange-Gleichungen für ein \textit{Trebuchet}.\\
+
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\end{longtable}
+
+\newpage
+\subsubsection{Skripte zu Übungen} \label{mls:bew_uebungen} %MLSkriptÜbungen
+\begin{longtable}{p{0.33\textwidth}p{0.67\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlbewref{AbplattungPlaneten.m}      & Berechnungen zur Abplattung der Planeten.\\
+\mlbewref{Achterbahn01.m}            & Zeitliche Entwicklung eines Massepunktes auf einer Gauß-Kurve ($z = H\e^{-a^2 x^2}$) unter Einfluss der Gravitation.\\
+\mlbewref{Achterbahn02.m}            & Zeitliche Entwicklung eines Massepunktes auf einer vorgegebenen Kurve ($z = 1+\tanh(x)$) unter Einfluss der Gravitation.\\
+\mlbewref{Achterbahn03.m}            & Zeitliche Entwicklung der Bewegung eines Massepunktes auf einer parametrisierten Kurve (Trisectrix) unter Einfluss der Gravitation.\\
+\mlbewref{Achterbahn04.m}            & Zug $N$ mit Federn gekoppelter Wagen auf einer Achterbahn in Form einer Gauß-Kurve.\\
+\mlbewref{Achterbahn06.m}            & Zug $N$ mit Federn gekoppelter Wagen auf einer Achterbahn in Form eines Kreisloopings.\\
+\mlbewref{AsteroidKollision.m}       & Kollisionswahrscheinlichkeit von Asteroiden mit Planeten.\\
+\mlbewref{AsteroidStreuung.m}        & Berechnung von Trajektorien für Asteroiden in der Erdbahn.\\
+\mlbewref{AsymmKreiselStab.m}        & Betrachtung zur Stabilität des asymmetrischen Kreisels, numerische Lösungen mittels \odevf.\\
+\mlbewref{BallistikCoriolis01.m}     & Berechnung der Effekte der Coriolis-Kraft auf den freien Fall.\\
+\mlbewref{BallistikCoriolis02.m}     & Berechnung der Effekte der Coriolis-Kraft auf die Ballistik eines Projektils, das nach Süden abgeschossen wird. Exakte Lösung.\\
+\mlbewref{BallistikCoriolis03.m}     & Berechnung der Effekte der Coriolis-Kraft auf die Ballistik eines Projektils, das nach Süden abgeschossen wird. Die Reibung wird berücksichtigt. Numerische Lösung mittels \odevf.\\
+\mlbewref{Baton.m}                   & Bewegungsgleichung Baton, numerische Lösung mittels \odevf. \\
+\mlbewref{BaumgartnerFall.m}         & Freier Fall aus großer Höhe (Baumgartner-Weltrekord).\\
+\mlbewref{Billardspiel.m}            & Berechnung der Streuwinkel und Geschwindigkeiten beim Stoß zweier Billardkugeln.\\
+\mlbewref{Brachistochrone.m}         & Berechnungen zur Brachistochrone und Tautochrone, sowie Lagrange-Funktion und  Lagrange Gleichungen des Zykloidenpendels.\\
+\mlbewref{Doppelkegel05.m}           & Phasenraum und Dynamik des aufwärts rollenden Doppelkegels (Näherung 1).\\
+\mlbewref{Doppelkegel06.m}           & Phasenraum und Dynamik des aufwärts rollenden Doppelkegels (Näherung 2).\\
+\mlbewref{DoppelkegelVergleich.m}    & Vergleich der Lösungen für den aufwärts rollenden Doppelkegel.\\
+\mlbewref{ElastischerStoss.m}        & Berechnung des Energieübertrag als Funktion des Streuwinkels im Laborsystem.\\
+\mlbewref{EulerWinkel.m}             & Berechnung von Euler-Winkeln.\\
+\mlbewref{Expander.m}                & Abhängigkeit der Schwingungsperiode von der Anfangsauslenkung eines intrinsisch nichtlinearen Oszillators am Beispiel eine Expanders.\\
+\mlbewref{Gezeitenkraefte.m}         & Berechnet die Verformung eines Rings durch Gezeitenkräfte.\\
+\mlbewref{GekoppeltePendel01.m}      & Lösung der Bewegungsgleichung analytisch und numerisch für gekoppelte Stangenpendel (kleine Winkel, gleiche Längen). \\
+\mlbewref{GekoppeltePendel02.m}      & Lösung der Bewegungsgleichung analytisch und numerisch für gekoppelte Stangenpendel (kleine Winkel, unterschiedliche Längen). \\
+\mlbewref{GekoppeltePendel03.m}      & Lösung der Bewegungsgleichung mit/ohne Reibung für gekoppelte Stangenpendel (allgemeiner Fall). \\
+\mlbewref{Hantelwurf.m}              & Berechnung der Bahn einer geworfenen Hantel als numerische Lösung mittels \odevf.\\
+\mlbewref{HarmonOszQuadReibung.m}    & Lösung der Bewegungsgleichung für den harmonischen Oszillator mit Newton-Reibung.\\
+\mlbewref{JoJo02.m}                  & Berechnungen zur Dynamik eine angetrieben Jo-Jos mit Reibung.\\
+\mlbewref{KarussellCoriolis01.m}     & Berechnung der Effekte der Coriolis-Kraft auf einem gleichförmig rotierenden Karussell.\\
+\mlbewref{KarussellCoriolis02.m}     & Berechnung der Effekte der Coriolis-Kraft auf einem beschleunigt rotierenden Karussell.\\
+\mlbewref{Kettenfontaene.m}          & Programm berechnet den Z-Verlauf der Kettenfontäne.\\
+\mlbewref{KfSymmKreiselSimul.m}      & Simulationsrechnung der Nutation des kräftefreien symmetrischen Kreisels.\\
+\mlbewref{KfKreiselDrehimpuls.m}     & Beispiele zur Simulation des allgemeinen kräftefreien Kreisels und seines Drehimpulses im körperfesten System.\\
+\mlbewref{Kontraktion.m}             & Berechnungen zur Kontraktion und Energie einer rotierenden Galaxie.\\
+\mlbewref{KopPendelKleinWinkel.m}    & Dynamik der gekoppelten Federpendel.\\
+\mlbewref{KreiselKomp.m}             & Simulation des Einstellens der Nordrichtung beim flüssigkeitsgedämpften Kreiselkompass.\\
+\mlbewref{KreiselKompMissweisung.m}  & Berechnung der Missweisung eines Kreiselkompasses bei Bewegung entlang eines Längenkreises.\\
+\mlbewref{LagrangePunkte.m}          & Berechnung der Hill-Kurve und der Lagrange-Punkte.\\
+\mlbewref{LogistischeGleichung01.m}  & Berechnung der Trajektorien der Logistischen Gleichung.\\
+\mlbewref{LogistischeGleichung02.m}  & Bifurkationsgraph und Ljapunow-Exponent der Logistischen Gleichung.\\
+\mlbewref{MolekuelPot.m}             & Simulation der Schwingungen eines zweiatomigen Moleküls.\\
+\mlbewref{MurphysLaw.m}              & Simulation zu Murphy's Law (Butterbrotscheiben-Versuch).\\
+\mlbewref{PerleDraht.m}              & Lösung der Bewegungsgleichung ohne Reibung für die Perle auf Draht. \\
+\mlbewref{PerleDrahtErweiterung.m}   & Lösung der Bewegungsgleichung mit Reibung für die Perle auf Draht mit verschiedenen Potentialen. \\
+\mlbewref{Rollenpendel.m}            & Lösung der Bewegungsgleichung ohne Reibung für das Rollenpendel. \\
+\mlbewref{RollenpendelReibung.m}     & Lösung der Bewegungsgleichung mit Reibung für das Rollenpendel.\\
+\mlbewref{RollendesRad.m}            & Berechnung der Euler-Winkel und der Trajektorie einer Kreisscheibe \bzw eines Reifens auf einer ebenen Fläche (ohne Reibung).\\
+\mlbewref{RollendesRadR.m}           & Berechnung der Euler-Winkel und der Trajektorie einer Kreisscheibe \bzw eines Reifens auf einer ebenen Fläche (mit Reibung).\\
+\mlbewref{RutherfordAlpha.m}         & Trajektorienberechnung der Rutherford-Streuung von $\alpha$-Teilchen an Goldfolie.\\
+\mlbewref{RutherfordAg.m}            & Trajektorienberechnung der Rutherford-Streuung von Silber-Teilchen an Goldfolie.\\
+\mlbewref{SchaukelLG.m}              & Lagrange-Gleichung für die Schaukel mit sitzender und schwingender Person.\\
+\mlbewref{Schaukel03.m}              & Lösung der DGL für die Schaukel mit Kette und verhindertem Überschlag.\\
+\mlbewref{SchwererKreiselSim.m}      & Simulation der Figurenachse eines schweren Kreisels mit und ohne Nutation.\\
+\mlbewref{Sinuslauf.m}               & Berechnung der Frequenz und Stabilität des Sinuslaufs bei starren Radachsen auf Schienen.\\
+\mlbewref{Skydiver.m}                & Berechnung Fall aus großer Höhe (Baumgartner-Weltrekord).\\
+\mlbewref{SwingBy.m}                 & Berechnungen zum Swing- By am Jupiter.\\
+\mlbewref{Tilgung01.m}               & Berechnung der Schwingungsdämpfung in Hochhäusern.\\
+\mlbewref{Tilgung02.m}               & Programm berechnet Frequenzantwort bei der Schwingungsdämpfung an Hochhäusern.\\
+\mlbewref{Tilgung03.m}               & Programm berechnet Frequenzantwort Schwingungsdämpfung für Taipei 101 und den Berliner Fernsehturm.\\
+\mlbewref{Traegheitsmomente.m}       & Berechnungen zu Trägheitsmomenten.\\
+\mlbewref{TrebuchetLGL01.m}          & Lagrange-Funktion und Lagrange-Gleichungen für ein \textit{Trebuchet}.\\
+\mlbewref{TrebuchetSim01.m}          & Berechnungen zur Dynamik des \textit{Trebuchet}.\\
+\mlbewref{VibDaempfung01.m}          & Berechnung der Dynamik eines Stoßdämpfers auf Basis Lagrange-Gleichungen.\\
+\mlbewref{VibDaempfung02.m}          & Berechnung der Dämpfung einer Deckenaufhängung.\\
+\mlbewref{Waschmaschine01.m}         & Berechnung des Schwingungs- und Resonanzverhaltens einer Trommelwaschmaschine in der Hochlaufphase.\\
+\mlbewref{Waschmaschine02.m}         & Berechnung des Schwingungs- und Resonanzverhaltens einer Trommelwaschmaschine in der Auslaufphase.\\
+\mlbewref{WeltraumFahrstuhl.m}       & Berechnungen zum Weltraumfahrstuhl.\\
+\mlbewref{Wilberforce.m}             & Berechnung der Dynamik des linearen und nichtlinearen Wilberforce-Pendels auf Basis von Lagrange-Gleichungen (Resonanzfall).\\
+\mlbewref{WurfmitohneReibung.m}      & Berechnung Auf- und Abstiegszeiten beim senkrechten Wurf mit und ohne Reibung.\\
+
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{longtable}
+
+
+\subsubsection {Hilfsfunktionen} \label{mls:bew_hilfsfunktionen} 
+
+\begin{longtable}{p{0.33\textwidth}p{0.67\textwidth}}
+\hline\noalign{\smallskip}
+Skript & Beschreibung \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+Mathematische Funktionen \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlbewiref{EulerLagrange.m}             & Symbolische Berechnung der Euler-Lagrange Gleichungen (\url{https://www.mathworks.com/matlabcentral/fileexchange/93275-euler-lagrange-solver}), MATLAB Central File Exchange. 27.12.2021, Copyright (c)  Morten Veng 2021.\\
+\mlbewiref{Modulo.m}                    & Modulus-Funktion.\\
+\mlbewiref{R\_x.m}, \mlbewiref{R\_y.m}, \mlbewiref{R\_z.m}     & Rotationsmatrizen bezüglich x,y,z-Achse.\\
+
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+Hilfsfunktionen für Ein- und Ausgabe \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\mlbewiref{Ausgabewerte.m}              & Printfunktion für Ausgabewerte.\\
+\mlbewiref{GetColorLines.m}             & Lädt Farbtabelle für Linien und graphische Darstellungen.\\
+\mlbewiref{ImportFile01.m}              & Einlesen von Daten einer Matrix.\\ 
+\mlbewiref{ImportFile02.m}              & Einlesen von Daten eines Text-Files.\\
+\mlbewiref{LabelPoints.m}               & Beschriftung von Datenpunkten.\\
+\mlbewiref{PlotCircle.m}	            & Graphische Ausgabe von Frühlingspunkt und Sonnen.\\
+\mlbewiref{PlotTrebuchet.m}	            & Graphische Ausgabe der Geometrie eines Trebuchet.\\
+\mlbewiref{StrDMS.m}                    & Umrechnung von Formaten für Ausgabe von Winkeln von Dezimal in Grad, Bogenminute, Bogensekunde.\\
+\mlbewiref{StrHMS.m}                    & Umrechnung von Formaten für Ausgabe von Zeit von Dezimal in hh:mm:ss.s.\\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+\end{longtable}
+
+

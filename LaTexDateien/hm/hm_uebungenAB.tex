@@ -1,0 +1,993 @@
+%%% Anmerkung 2023-11-13 (mk.):
+%%% Links auf Lösungen komplett auskommentiert, da extra file bew_uebungenAB.tex
+%%% Einfaches Ändern durch  ersetzen \hyperref.. <--> %\hyperref.
+
+%%% Links basieren für ein mögliches e_book auf getrennter pdf-Zieldokumente auf pdf-Hypertags:
+%%%        %\href{FingerUeb2_AB.pdf#prb:hm_trafo_koord}{\textcolor{blue} {$\rightarrow$ zur \probref{hm_trafo_koord}.}}\\
+%%% Einfaches Ändern durch  ersetzen %href{FingerUeb1_AB.pdf.. <--> \href{FingerUeb1_AB.pdf..
+%%%
+%%% oder 
+%%% für das Arbeitsbuch als geschlossenes Zieldokument auf normalen Verweisen (siehe bew_uebungenAB.tex):
+%%%        \textcolor{blue} {$\rightarrow$ zur} \probref{hm_trafo_koord}.\\
+%%%
+
+\addtocontents{toc}{\protect\setcounter{tocdepth}{3}}% alles zeigen
+
+\section{Übungen zu \autoref{chap:hm} -- Himmelsmechanik}\label{kap:hm_uebungen}
+
+\medskip
+Die Übungen sind mit Schwierigkeitsindikatoren markiert, von einfach ($\ast$) über mittel ($\ast \ast$) bis schwierig ($\ast \ast \ast$).
+Zusatzaufgaben sind zum Teil mit ($\ast \ast \ast \;!$) markiert und eher als Erweiterung des Theorieteils zu betrachten.
+Einige wenige Übungen sind rein analytisch, die große Mehrzahl beinhaltet aber \matlab-Anwendungen.
+Die entsprechenden \mscre finden sich im GitHub unter \githubSN \bzw
+in den \onlineZ{} (\MKc).\\
+
+%%%-----------------------------------------------------------------------------------------------------------
+
+\subsection{Übungen zu Raum und Zeit in der Himmelsmechanik}
+
+\medskip
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung1
+\einfach{hm_trafo_koord}{Transformation astronomischer Koordinatensysteme} 
+Wir wollen uns mit den verschiedenen astronomischen KOS vertraut machen.
+\begin{enumerate}
+	\item Leiten Sie die Transformationsmatrizen für die KOS-Transformationen in Tabelle \ref{tab:hm_Umrechung_KOS} im Tabellenanhang ab und verifizieren Sie die dort angegebenen Formeln. 
+	\item Eine schöne Anwendung der Transformationsgleichung ist die Navigation in der Seefahrt.
+          Zur Bestimmung des Längengrades auf See benutzte man folgende Methode: Ein Stern mit bekannten Koordinaten $\alpha_1$, $\delta_1$ steht zu einer bestimmten, bekannten Zeit GMST ($=\theta_0$) über einem Punkt der Erde mit den Koordinaten $\lambda\!=\!\theta_0-\alpha$ und $\varphi$ genau im Zenit.
+          Sein Stundenwinkel $\tau$ ist dann offensichtlich $0$.
+          Alle Orte, für die dieser Stern zu einem festen Zeitpunkt $t$ die Zenitdistanz $z$ hat, liegen dann auf einem Kreis mit dem Radius $z_1$ um $\lambda$, $\varphi$.
+          Dieser Kreis wird auch Standlinie genannt.
+          Bestimmt man also zu einem Zeitpunkt $t$ die Zenitdistanz $z_1\!=\!90\degree-h_1$ eines bekannten Sterns mit den Koordinaten ($\alpha_1$ , $\delta_1$), dann befindet man sich irgendwo auf dieser Standlinie.
+          Jetzt sucht man einen zweiten Stern mit ($\alpha_2$, $\delta_2$) und bestimmt wieder die Zenitdistanz $z_2$.
+          Dann erhält man eine weitere Standlinie, die die erste an zwei Punkten schneidet.
+          Einer dieser Schnittpunkte ist der gesuchte Ort.
+          Um zu entscheiden, welcher von beiden Punkten der richtige ist, benutzt man eine iterative Methode.
+          Ausgangspunkt dafür ist meist die letzte bekannte Position.
+          Man vollziehe diese Bestimmung des Längengrades mittels der in Tabelle \ref{tab:hm_astro_KOS} und Tabelle \ref{tab:hm_Umrechung_KOS} angegebenen Beziehung nach.
+\end{enumerate}
+
+\medskip 
+\hyperref[lsg:adyn_canonball]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:adyn_canonball}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\begin{prob} %Übung2
+\mittel{hm_erdrotation}{Verlangsamung der Erdrotation}
+Berechnen Sie die Verschiebung der Zeitmarken der Sonnenfinsternisse durch die Verlangsamung der Erdrotation.
+Als Näherungsformel kann man für die Abnahme in Sekunden folgende Beziehung annehmen:
+\begin{equation}
+\Delta T_\text{rot} = \frac{0.9}{10^5 \, a_\text{trop}} \: n^2_\text{Tage} ~.\label{eq:hm_ueb_verl_erdrot}
+\end{equation}
+Hier sind $n_\text{Tage}$ die Zahl der vergangenen Tage und $a_\text{trop}$ die Dauer eines tropischen Jahres in Tagen.
+Erklären Sie damit, dass man mit einem heutigen Astroprogramm die Sonnenfinsternis in Babylon vom 15.04.136 v. Chr. ca. $40$\textdegree\ westlich von Babylon berechnet, obwohl die babylonischen Astronomen diese sehr genau in Babylon registriert hatten.
+Dem interessierten Leser sei die Literatur \cite{Stephenson2016,Steele1997} empfohlen und ebenso die \href{https://eclipse.gsfc.nasa.gov/SEsearch/SEsearchmap.php?Ecl=-1350415}{NASA Eclipse Web Site}.
+
+\medskip 
+\hyperref[lsg:hm_erdrotation]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_erdrotation}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung3
+\einfach{hm_sideric_period_mars}{Siderische Umlaufzeit des Mars}
+Berechnen Sie die siderische Umlaufzeit des Mars aus den beobachteten Zeitabständen zwischen zwei aufeinanderfolgenden Oppositionen des Planeten.
+
+\medskip 
+\hyperref[lsg:hm_sideric_period_mars]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_sideric_period_mars}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt} 
+\end{prob}
+
+%%%-----------------------------------------------------------------------------------------------------------
+\subsection{Übungen zur Kepler-Gleichung}
+
+\medskip
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung4
+\einfach{hm_laplace}{Laplace-Integral}
+Leiten Sie aus \eqref{eq:hm_zk-pl} das Laplace-Integral nach \eqref{eq:hm_laplace_int} ab.
+Zeigen Sie außerdem, dass für den Laplacevektor $\vec{e}$ aus \eqref{eq:hm_laplace_int} die Beziehungen $\vec{L}\cdot\vec{e}\!=\!0$ und
+\begin{align*}
+\mu_\text{G}^2\,\lk\abs{\vec{e}}^2 - 1\rk &= 2H \abs{\vec{L}}^2 ~~\text{bzw.} \\
+e^2 &= \frac{2HL^2}{\mu_\text{G}^2} + 1 
+\end{align*}
+gemäß \eqref{eq:hm_relations1} gelten.
+
+\medskip 
+\hyperref[lsg:hm_laplace]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_laplace}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung5
+\einfach{hm_wahre_anomalie}{Wahre Anomalie}
+Leiten Sie die Beziehung \eqref{eq:hm_nu(t)_alternativ} her:
+\begin{equation*}
+\tan\lk\frac{\upsilon}{2}\rk = \sqrt{\frac{1+e}{1-e}} \tan\lk\frac{E}{2}\rk ~~.
+\end{equation*}
+
+\medskip 
+\hyperref[lsg:hm_wahre_anomalie]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_wahre_anomalie}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt} 
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung6
+\mittel{hm_bwglg_hyp_parab}{Bewegungsgleichungen für Hyperbel und Parabel}
+Leiten Sie die zur Kepler-Gleichung \eqref{eq:hm_keplerglg} äquivalente Beziehung für Hyperbel- und Parabelbahnen ab.
+Was können Sie zur Lösungsproblematik für beide Fälle sagen?
+Geben Sie eine geschlossene Lösung für den Fall der Parabel an.
+
+\medskip 
+\hyperref[lsg:hm_bwglg_hyp_parab]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_bwglg_hyp_parab}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung7
+\einfach{hm_iteration}{Iteration}
+Führen Sie das in \kapitel{iteration_kepler} beschriebene Iterationsverfahren numerisch für verschiedene Exzentrizitäten $e\!=\!0.1,\,0.2,\,\ldots ,\,0.9$ und $0.999$ durch.
+Wählen Sie als Anfangswert neben $M$ auch andere Werte.
+Vergleichen Sie die Ergebnisse jeweils mit den Ergebnissen zweier anderer Näherungsverfahren (Regula falsi und Newton-Raphson).
+
+\medskip 
+\hyperref[lsg:hm_iteration]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_iteration}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung8
+\mittel{hm_bessel}{Bessel-Reihe}
+Führen Sie die Reihenentwicklung \eqref{eq:hm_lsg_kepler_reihe} für die Bessel-Lösung einmal selbst bis zur vierten Ordnung in $e$ für verschiedene Exzentrizitäten $e\!=\!0.1,\,0.2,\,\ldots ,\,0.9$ und $0.999$ durch.
+Vergleichen Sie das Ergebnis mit der numerischen Berechnung nach \probref{hm_iteration}. 
+
+\medskip 
+\hyperref[lsg:hm_bessel]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_bessel}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung9
+\schwierig{hm_alternative_MPG}{Alternative Herleitung der Mittelpunktsgleichung}
+Leiten Sie die Mittelpunktsgleichung auf einem alternativen Weg her.
+Starten Sie dabei von \eqref{eq:hm_nu(t)_alternativ} und benutzen Sie vorteilhafterweise komplexe Winkelfunktionen sowie die Bessel-Reihe \eqref{eq:hm_lsg_kepler_reihe}. 
+
+\medskip 
+\hyperref[lsg:hm_alternative_MPG]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_alternative_MPG}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%%%-----------------------------------------------------------------------------------------------------------
+\subsection{Übungen zur Bewegung der Erde in der Ekliptik und zu Himmelsbeobachtungen von der Erde}
+
+\medskip
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung10
+\mittel{hm_erdbahn_im_jahr}{Die Erdbahn im Laufe eines Jahres}
+Berechnen Sie die Aphel- und Perihel-Distanz der Erde, den über ein Jahr zeit- und raumgemittelten Abstand der Erde von der Sonne, die Dauer der Jahreszeiten und den Energieeintrag der Sonne auf die Nordhemisphäre jeweils für das Sommer- und Winterhalbjahr.
+Was können Sie daraus zum Einfluss auf mögliche Klimaveränderungen sagen?
+
+\medskip 
+\hyperref[lsg:hm_erdbahn_im_jahr]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_erdbahn_im_jahr}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung11
+\schwierig{hm_refrak_optik}{Refraktion -- ein Ausflug in die Optik}
+Für die Berechnung der Refraktion gibt es zwei einfache Schichten-Modelle: das planparallele Modell und das Kugelschalenmodell (\figref{hm_refr_kugelschale}).
+Berechnen Sie die Refraktion $R(z)$ für beide Modelle und erläutern Sie, für welches der beiden Modelle Sie sich bei der Beobachtung von Sonnenaufgängen entscheiden würden.
+In welcher Situation ist das jeweils andere Modell vorteilhaft?
+Können Sie mit einem dieser Modelle die Beziehung \eqref{eq:hm_tau_zgl} erklären? \\
+Hinweise: Mit $z_\infty$ wird die wahre Zenitdistanz bezeichnet.
+Es gilt dann $z_\infty\!=\!90\degree-h$.
+Analog gilt für die scheinbare Zenitdistanz $z_1\!=\!z'\!=\!90\degree-h'$.
+Mit $\D R$ wird die differentielle Refraktion beschrieben.
+Für die Brechzahl gilt:
+\begin{equation*}
+\frac{n^2-1}{n^2+2}\!=\!\rho\!=\!\frac{\bar{\mu}_\text{molek}p}{TR_0} \; .
+\end{equation*}
+Hierin ist $\bar{\mu}_\text{molek}$ das mittlere Molekulargewicht, $R_0$ die universelle Gaskonstante, $T$ die Temperatur und $p$ der Druck.
+\begin{figure}%
+\includegraphics[width=\textwidth]{Refraktion0102.pdf}%
+\caption[Planparalleles und Kugelschalen-Schichtenmodell.]{Planparalleles und Kugelschalen-Schichtenmodell zur Berechnung der Refraktion.
+Für die Winkel im $\bigtriangleup\mathrm{A}'\mathrm{MA}$ gilt: $\angle\mathrm{MA}'\mathrm{A}=180\degree-\alpha'$ und $\angle\mathrm{A}'\mathrm{MA}=\alpha-\D R$.}%
+\label{abb:hm_refr_kugelschale}%
+\end{figure}
+
+\medskip 
+\hyperref[lsg:hm_refrak_optik]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_refrak_optik}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung12
+\einfach{hm_abflachung_sonne}{Abflachung der Sonne beim Untergang}
+Berechnen Sie mit Hilfe von \eqref{eq:hm_tau_zgl} die Abflachung der Sonne, wenn der untere Rand der Sonne gerade die scheinbare Höhe $h$ hat und der wahre Winkeldurchmesser der Sonne genau $32'$ beträgt. 
+
+\medskip 
+\hyperref[lsg:hm_abflachung_sonne]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_abflachung_sonne}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung13
+\einfach{hm_tageslauf_sonne}{Tageslauf der Sonne}
+Berechnen Sie den Tageslauf der Sonne mit Berücksichtigung der Refraktion $R$ und einer über den Tag veränderlichen Deklination $\delta$.
+Tragen Sie die Abweichung zum berechneten Verlauf bei Benutzung von \eqref{eq:hm_delta_von_T_hash} für eine während des Tages konstant gehaltene Deklination auf.
+Vernachlässigen Sie für die Näherung die Refraktion.
+Berechnen Sie den Tageslauf für verschiedene geographische Breiten und die Äquinoktien bzw. Sonnenwenden.
+
+\medskip 
+\hyperref[lsg:hm_tageslauf_sonne]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_tageslauf_sonne}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\newpage\begin{prob} %Übung14
+\einfach{hm_sonnenaufg_nyc}{Sonnenaufgang NYC}
+Berechnen Sie, um wieviel früher ein Beobachter auf dem One World Trade Center (Höhe auf dem Dach: $531\:$m) den Sonnenaufgang zur Sommersonnenwende sieht als ein Beobachter am Fuße der Freiheitsstatue.
+Berücksichtigen Sie dabei die Refraktion!
+
+\medskip 
+\hyperref[lsg:hm_sonnenaufg_nyc]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_sonnenaufg_nyc}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung15
+\mittel{hm_analytic_sunrise}{Analytische Formel für Sonnenauf- und Sonnenuntergang}
+Leiten Sie eine handhabbare analytische Formel für den Sonnenaufgang her.
+Berechnen Sie mit dieser Formel auch eine Näherung für die in \figref{hm_Sonnenauf_untergang} dargestellte Verschiebung zwischen dem Tag der Wintersonnenwende und dem kürzesten Tag bzw. dem Tag mit dem spätesten Sonnenaufgang (ohne Berücksichtigung von Refraktion).\footnote{Wir folgen dabei der Vorgehensweise in \cite{Reinsch2003}.}
+
+\medskip 
+\hyperref[lsg:hm_analytic_sunrise]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_analytic_sunrise}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung16
+\einfach{hm_VertikalAnalemmaSonnenuhr}{Konstruktion von Sonnenuhren}{Konstruktion einer vertikalen und einer analemmatischen Sonnenuhr.}
+Berechnen Sie das Ziffernblatt einer Vertikal-Sonnenuhr, die an einer Hauswand angebracht ist, die unter einem beliebigen Winkel $\alpha$ zur Ost-West-Richtung steht (\figref{hm_sundial05}).
+Berechnen Sie ebenfalls das Ziffernblatt einer analemmatischen Sonnenuhr für die Stadt Görlitz.
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{Sonnenuhr05.pdf}%
+\caption[Prinzip der Vertikal-Sonnenuhr.]{Prinzip der Vertikal-Sonnenuhr bei einer beliebigen Ausrichtung der Wand.}%
+\label{abb:hm_sundial05}%
+\end{figure}
+
+\medskip 
+\hyperref[lsg:hm_VertikalAnalemmaSonnenuhr]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_VertikalAnalemmaSonnenuhr}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+\begin{prob} %Übung17
+\mittel{hm_opposition_mars}{Mars-Oppositionen von 2000 bis 2040}
+Berechnen Sie die Mars-Oppositionen für den Zeitraum 2000--2040 und stellen Sie diese für den Zeitraum 2002--2020 in einem heliozentrischen Diagramm der Mars- und Erdbahn dar.
+Berechnen Sie auch den jeweils kleinsten Abstand des Mars zur Erde und unter welchem Höhenwinkel er in Europa zu beobachten war.
+Wann hatte man die besten Chancen, Details der Marsoberfläche zu sehen?
+Geben Sie jeweils den Winkeldurchmesser des Mars an, unter dem der Planet zu sehen war.
+Wann ist Ihrer Meinung nach die nächste tolle Beobachtungsgelegenheit? 
+
+\medskip 
+\hyperref[lsg:hm_opposition_mars]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_opposition_mars}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung18
+\schwierig{hm_venus_2004_2012}{Venustransit-Beobachtungen 2004 und 2012} 
+Eines der am seltensten von der Erde aus zu beobachtenden Himmelsphänomene ist der Transit der Venus vor der Sonne.
+\begin{enumerate}
+	\item Leiten Sie die Beziehung \eqref{eq:hm_Venus_AE_Messung} her und berechnen Sie den effektiven Abstand $d_\text{eff}$ zwischen Tromsø (N) und Canberra (AUS) für den Venustransit am 06.06.2012 um 03:12 UT.
+	\item Leiten Sie die Formel für die Kontaktzeitmethode her und berechnen Sie die Abhängigkeit des Ergebnisses von der Genauigkeit der Bestimmung der Transitzeiten.
+          Beginnen Sie zunächst mit der vereinfachenden Annahme von konzentrischen und koplanaren Kreisbahnen für Venus und Erde.
+          Nutzen Sie die erhaltenen Beziehungen für die Auswertung der Beobachtungsdaten vom 06.06.2004 in Oberkochen ($\phi = 48.78\degree , \lambda= 10.1\degree$).
+          Berechnen Sie den effektiven Abstand $d_\text{eff}$ und daraus die Astronomische Einheit.
+          Diskutieren Sie die erreichte Genauigkeit.
+          Transitbeginn wurde zu 07:16 MESZ $\pm 1$ min und Transitende zu 13:18 MESZ $\pm 1$ min festgestellt.
+          Die relative Sehnenlänge konnte zu 0.775 bestimmt werden.
+	\item Verbessern Sie das Modell, in dem Sie sowohl die Elliptizität der Bahnen, als auch die Neigung der Venusbahn gegen die Ekliptik und die topozentrischen Koordinaten des Beobachters berücksichtigen.
+\end{enumerate}
+
+\medskip 
+\hyperref[lsg:hm_venus_2004_2012]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_venus_2004_2012}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung19
+\schwierig{hm_jupiterbedeckung_venus}{Jupiterbedeckung durch die Venus am 22.11.2065}
+Berechnen Sie für den 22.11.2065 von 0:00 bis 24:00 UT die geozentrisch-äquatorialen Koordinaten von Jupiter und Venus.
+Benutzen Sie zum einen die einfache Keplerlösung und zum anderen die Reihenentwicklung aus der Störungsrechnung.
+Vergleichen Sie die beiden Ergebnisse (Beachten Sie dabei den Unterschied von UT und ET!).\\
+In welchen Regionen der Erde kann man eine Bedeckung des Jupiters beobachten?
+Berechnen Sie dazu die Winkeldurchmesser der beiden Planeten von der Erde aus ($R_{\venus}\!=\!6051\:\text{km}$, $R_{\jupiter}\!=\!69911\:\text{km}$).
+Müssen die Lichtlaufzeiten berücksichtigt werden (siehe \kapitel{kometen})?
+
+\medskip 
+\hyperref[lsg:hm_jupiterbedeckung_venus]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_jupiterbedeckung_venus}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%%%-----------------------------------------------------------------------------------------------------------
+\newpage
+\subsection{Übungen zu Himmelsbeobachtungen von anderen Himmelskörpern aus}
+
+\medskip
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung20
+\einfach{hm_erdaufgang_von_mond}{Kann man einen Erdaufgang vom Mond aus sehen?}
+Gibt es für einen Astronauten auf dem Mond Erdauf- und Erduntergänge?
+Wenn ja, unter welchen Bedingungen?
+Hinweis: Berücksichtigen Sie, dass die gebundene Rotation des Mondes wegen der elliptischen Bahn des Mondes nicht ganz vollständig ist (sogenannte Libration).
+Hätte die Apollo 11 Mannschaft die Chance gehabt, Aufgänge der Erde von der Mondoberfläche aus zu sehen? 
+
+\medskip 
+\hyperref[lsg:hm_erdaufgang_von_mond]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_erdaufgang_von_mond}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung21
+\mittel{hm_erdaufgang_von_apollo}{Earth Rise von Apollo 8}
+Erklären Sie das Zustandekommen des berühmten Bildes \anf{Earth Rise} (aufgenommen am 24.12.1968 um ca: 16:38 UT bzw. 75:47 h Bordzeit von Apollo 8).
+Berechnen Sie mit den Ihnen in den \mscren zur Verfügung stehenden Routinen die Konstellation von Mond, Erde, Sonne und Raumschiff und stellen Sie diese graphisch dar.
+Finden Sie die Bahndaten von Apollo 8 aus der Literatur.
+Benutzen Sie dafür die Webseite der NASA \href{https://nasa.gov/history} und \href{https://www.nasa.gov/wp-content/uploads/static/history/alsj/a11/a11fltpln_final_reformat.pdf}.
+Ebenfalls sehr instruktiv und hilfreich ist das Video der NASA: \href{https://www.youtube.com/watch?v=dE-vOscpiNc}{https://www.youtube.com/watch?v=dE-vOscpiNc}.
+\begin{figure}%
+\includegraphics[width=0.6\textwidth]{Earth_Rise_Nasa.jpg} \label {abb:hm_earthrise}
+\caption[Earth Rise aufgenommen am 24.12.1968 von Apollo 8.]{Earth Rise aufgenommen am 24.12.1968 von Apollo 8. (Copyright NASA).}% 
+\end{figure}
+
+\medskip 
+\hyperref[lsg:hm_erdaufgang_von_apollo]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_erdaufgang_von_apollo}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung22
+\schwierig{hm_Analemma_Mars}{Zeitgleichung und Analemmas auf anderen Planeten}
+Die NASA (NASA/JPL/Cornell/ASU/TAMU) veröffentlichte das vom Mars-Rover Opportunity aufgenommene Analemma (\figref{hm_Mars_Analemma}).
+Dieser fotografierte ein Marsjahr lang  jeden 3. Sol (Marstag) um 11:02 mittlere Ortszeit ein Bild mit der Sonne (in Richtung Zenit).
+Daraus resultiert dieses Marsanalemma.
+In UTC-Zeit entsprach das dem Zeitraum zwischen dem 16. Juli 2006 und dem 2. Juni 2008. 
+
+\begin{figure}%
+\includegraphics[width=0.6\textwidth]{Mars_Analemma.jpg}%
+\caption[Rover Opportunitys Mars-Analemma.]{Rover Opportunitys Mars-Analemma aufgenommen zwischen 2006 und 2008 -- Bildcredit: NASA/JPL/Cornell/ASU/TAMU. }%
+\label{abb:hm_Mars_Analemma}%
+\end{figure}
+
+Berechnen Sie für den Mars und die anderen Planeten die Zeitgleichungen und die Analemmas und versuchen Sie das aufgenommene Analemma zu reproduzieren.
+Die Landekoordinaten können näherungsweise mit $\varphi = -2.5\degree$ und $\lambda = 354.5\degree$ angenommen werden.\\
+Die Werte für die Achsneigungen, Rotationsperioden und relativen Lagen der Rotationsachsen zur Ekliptik der einzelnen Planeten können Sie dem Internet bzw. \cite{JPL2020, Montenbruck1999} entnehmen.
+
+\medskip 
+\hyperref[lsg:hm_Analemma_Mars]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_Analemma_Mars}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung23
+\mittel{hm_sonnenaufgang_mars}{Sonnenaufgang Mars}
+Zur Vorbereitung eines Marsfluges berechnen Sie mit Hilfe der einfachen Keplerlösung die Sonnenaufgänge für das Jahr 2030 auf dem Mars und zwar auf und am Fuße des Olympus Mons (Koordinaten auf dem Mars:$18.65\degree$ N $, 133.8\degree W$).
+Er hat eine Gipfelhöhe von über $22\:\text{km}$ über dem mittleren Planetenniveau.
+Der Mars rotiert in 24 Stunden und 37.4 Minuten um die eigene Achse (siderischer Tag).
+In Bezug auf die Sonne ergibt sich daraus ein Marstag (auch Sol genannt) von 24 Stunden, 39 Minuten und 35 Sekunden.
+Wie würde man einen Mars-Kalender in den Erdkalender umrechnen?
+Benutzen Sie dazu die einfache Keplerlösung für die Marsbahn.
+
+\medskip 
+\hyperref[lsg:hm_sonnenaufgang_mars]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_sonnenaufgang_mars}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+\subsection{Übungen zu Monden, Kometen und Asteroiden}
+
+\medskip
+
+\begin{prob} %Übung24
+\einfach{hm_MondbahnHelioz}{Heliozentrische Mondbahn}
+
+Oft sieht man in populärwissenschaftlichen Darstellungen, dass die heliozentrische Mondbahn angeblich wegen der Erde eine Schleifenbewegung wie im rechten Teil der Abbildung \figref{hm_MondbahnHelioz} oder eine stark ausgeprägte Wellenbahn wie im linken Bild ausführt. Das ist aber keineswegs so, sondern es ergibt sich eine sehr schwach ausgeprägte Wellenbahn, die nur wenig von der heliozentrischen Ellipsenbahn der Erde abweicht.\\
+Begründen Sie das Ergebnis zunächst anschaulich und rechnen Sie es numerisch nach. Unter welchen Bedingungen können Monde in unserem Sonnensystem eine Schleifenbahn wie in Abbildung \figref{hm_MondbahnHelioz} gezeigt ausführen?
+
+\begin{figure}%
+\includegraphics[width=\textwidth]{MondbahnHelioz.pdf}%
+\caption[Formen von heliozentrischen Mondbahnen.]{Formen von heliozentrischen Mondbahnen. -- Bild nach \cite{Bastian2011}.}%
+\label{abb:hm_MondbahnHelioz}%
+\end{figure}
+
+\medskip 
+\hyperref[lsg:hm_MondbahnHelioz]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_MondbahnHelioz}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung25
+\mittel{hm_kometen_asteroiden}{Kometen und Asteroiden}
+Während des Schreibens dieses Buches passierte der Komet Neowise den Bereich zwischen Erdbahn und Sonne. Das gab Anlass für diese Aufgabe.
+\begin{enumerate}
+	\item Komet Neowise: Berechnen Sie die Bahn des Kometen Neowise und stellen Sie diese in zwei Projektionen für die Gesamtbahn und den Zeitabschnitt um den Periheldurchgang bzw. die Erdbahnkreuzung dar.
+          Geben Sie die geozentrisch-äquatorialen Koordinaten und die topozentrisch-horizontalen Koordinaten für den 12.07.2020 21:00 UTC an.
+          Der Beobachtungsort lag bei: $48.867164\degree$N, $10.223733\degree$O.
+          In welchem Sternbild war Neowise zu sehen?
+        \item Komet Halley: Berechnen Sie die Beobachtungsdaten für den Kometen Halley für 1758 und 1986 jeweils in der Nähe des Perihels und der Erdnähe und vergleichen Sie diese (Tabelle \ref{tab:hm_parameter_halley_alt-neu}, \mscr{} \mlhmref{KometenHalley.m}).
+	\item Der große Komet von 1680 \cite{Stoyan2013,Krause2013}: Anfang Dezember 1680 näherte sich der große Komet immer mehr der Sonne und am 18. Dezember ging er durch seinen sonnennächsten Punkt (Perihel).
+          Er entwickelte eine solche Helligkeit, dass er am Taghimmel neben der Sonne zu sehen war.
+          Die Schönheit des Kometen wurde durch einen imposanten Schweif verstärkt.
+          John Flamsteed\indexp{Flamsteed, John}\footnote{John Flamsteed (1646--1719) war ein englischer Astronom und seit 1675 der erste \emph{Astronomer Royal} des englischen Königshauses (vor Halley). Er schrieb \ua eine wichtige Abhandlung über die Bestimmung der Zeitgleichung, sammelte die Daten von rund 2800 sichtbaren Sternen und lag eher unverschuldet mit Newton in einem Urheberrechtsstreit.} berichtete, dass dieser sich am 21.~Dezember mit der Breite des Vollmonds senkrecht vom Horizont bis fast zum Zenit erstreckte.
+          Der Kopf des Kometen war so hell wie ein Stern erster Größe.
+        Am 28.~Dezember erreichte der Schweif nach Robert Hooke\indexp{Hooke, Robert}\footnote{Robert Hooke (1635--1703) war ein englischer Naturforscher, der hauptsächlich durch das nach ihm benannte Elastizitätsgesetz bekannt ist. 
+	Mit Newton verband Hooke eine tiefe Abneigung.
+        Newton\indexp{Newton, Sir Isaac} lehnte jegliche Anerkennung für Hookes Beiträge ab, die Newton zu seiner mathematische Formulierung der Bewegungs- und Gravitationsgesetze benutzte.}
+        in England eine Länge von $90$\textdegree\ und reichte damit über das halbe Firmament.
+        Man kann sich vorstellen, welche ungeheure Wirkung der Komet im Jahre 1680 auf die Menschen hatte.
+        Der Komet wurde zuletzt am 19.03.1681 beobachtet.
+        Die Bahnparameter konnte man ableiten und diese finden sich in Tabelle \ref{tab:hm_parameter_kometen} im Tabellenanhang.
+        Berechnen Sie die Beobachtungsdaten für Greenwich und erklären Sie, warum der Komet so beeindruckend war.
+	\item Asteroiden: Berechnen Sie die Bahn für die in Tabelle \ref{tab:hm_parameter_asteroide} angegebenen Asteroiden und stellen Sie diese für die Jahre 2021 und 2022 mit den Bahnen der inneren Planeten dar.
+          Wann befinden sie sich in Opposition zur Erde, wann gibt es eine optimale Beobachtungschance?
+          Was sind dann die geozentrisch-äquatorialen Koordinaten?
+          Wie groß ist die Gefahr einer Kollision mit dem Asteroiden 231937?
+\end{enumerate}
+Stellen Sie die Bahnen für die Teilaufgaben 1. bis 4. jeweils heliozentrisch und in Perihel- und Erdnähe in einem $\alpha,\delta$-Diagramm dar.
+
+\medskip 
+\hyperref[lsg:hm_kometen_asteroiden]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_kometen_asteroiden}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung26
+\schwierig{hm_verweildauer_komet_erdbahn}{Kometen und Meteoriten\index{Meteorit}}
+Dies ist eine Aufgabe mit Bezug zur Region, in der einer der Autoren lebt. (Teile der Übung nach \cite{Quetz2017})
+\begin{enumerate}
+	\item Können Sie eine Erklärung geben, warum die meisten Kometen nur ca. 1--2 Monate zu sehen sind?
+          Berechnen Sie dazu zunächst analytisch die Zeit für einen Kometen mit Perihel $0.1\!<\!q\!<\!0.8\:$AE und einer \gls{inklination} von $\approx\!0$.
+          Verkürzt oder verlängert sich die Beobachtungszeit beim Übergang zu starken Bahnneigungen (z.B. Donati 1856, Großer Komet 1689)?
+          Überprüfen Sie Ihre Abschätzungen mit \mscr{} \mlhmref{KometenBahnen.m} \bzw \mlhmref{KometenZeity.m}.
+	\item Berechnen Sie die Aufschlaggeschwindigkeit eines Kometen/Meteoriten auf der Erde unter Annahme der Kenntnis seiner Bahnelemente $a_\text{K}, e_\text{K}, i_\text{K}$.
+	\item Können Sie aus den Durchmessern des Nördlinger Ries (24 km) und des Steinheimer Beckens (3.8 km)\footnote{Beide Einschlagkrater entstanden vor ca.\ 14--15 Millionen Jahren durch Meteore, wobei Oberkochen (gelber Stern auf der Karte) glücklicherweise nicht getroffen wurde.} auf Basis der sogenannten Shoemaker Formel \cite{Shoemaker1979} eine Abschätzung für die kinetische Energie des Meteoriten beim Aufschlag machen?
+	\begin{figure}%
+\includegraphics[width=\textwidth]{NoerdlingenSteinheim.pdf}%
+\caption[Satellitenkarte mit zwei Einschlagkratern.]{Satellitenkarte mit den beiden Einschlagkratern des Nördlinger Ries und Stein\-heimer Beckens.}%
+\label{abb:hm_NoerdlingenSteinheim}%
+\end{figure}
+	Die Shoemaker\footnote{Eugene Merle Shoemaker (1928--1997) war ein US-amerikanischer Geologe, Impaktforscher und Astronom. Bekannt wurde er als Mitentdecker und Namensgeber des Kometen Shoemaker-Levy 9 (mit seiner Frau Carolyn Shoemaker und David H. Levy). Er konnte in seinen geologischen Forschungen nachweisen, dass der Barringer-Meteorkrater in den USA und tatsächlich auch das Nördlinger Ries durch einen Meteoriteneinschlag entstanden sind. Er war 1969 auch Chefwissenschaftler der Apollo-11-Mission.}\indexp{Shoemaker, Eugene Merle} Formel stellt einen Zusammenhang zwischen Kraterdurchmesser $D$ und kinetischer Aufprallenergie $E_\text{kin}$ her, wobei $E_\text{kin}$ in kt TNT-Äquivalent ausgegeben wird und $D$ in km:
+	\begin{equation}
+	D=0.074 \:\kappa\: E_\text{kin}^{1/3.4}  \;. \label{eq:hm_Shoemaker1979}
+	\end{equation}
+Dabei ist der Parameter $\kappa\!=\!1.3$ für Durchmesser $D\!\geq\! 3\:\text{km}$.
+Geben Sie unter Benutzung der minimalen und maximalen Aufschlaggeschwindigkeit aus Aufgabenteil 2 den möglichen Bereich für die Durchmesser der Meteoriten an.
+Die mittlere Dichte ist $\rho\!=\!2.8 \:\text{g}/\text{cm}^3$ (\figref{hm_NoerdlingenSteinheim}).\\
+Können Sie eine plausible Herleitung/Abschätzung für die Shoemaker  Formel geben? (Übung nach \cite{Quetz2017})
+\item Können Sie die Vermutung bestätigen, dass es sich bei den beiden nahe beieinander liegenden Einschlagkratern um das Ergebnis des Einschlags eines Doppel-Planetoiden\index{Planetoiden} (bzw. eines Planetoiden mit seinem Mond) handelt?
+  Benutzen Sie für Ihre Argumentation das Ergebnis von Aufgabenteil 3.
+\end{enumerate}
+\medskip 
+\hyperref[lsg:hm_verweildauer_komet_erdbahn]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_verweildauer_komet_erdbahn}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung27
+\einfach{hm_Doppelstern}{Doppelstern-System - Vergleich numerische und analytische Lösung}
+Vergleichen Sie die numerische Rechnung für ein Doppelsternsystem mit der analytischen Rechnung. Variieren Sie die Genauigkeiten im Solver für die Differentialgleichungen. Stellen Sie die Energie, die Bewegung des Schwerpunktes und den Drehimpuls über die Zeit dar. Welche Aussagen können Sie machen?
+
+\medskip 
+\hyperref[lsg:hm_Doppelstern]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_Doppelstern}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung28
+\mittel{hm_Sonnensystem}{Sonnensystem - Numerische, Kepler- und JPL-Berechnung}
+Erstellen Sie ein \matlab-Programm, welches die Bewegung des gesamten Sonnensystems auf Basis der Newtonschen Bewegungsgleichungen im Schwerpunktsystem berechnet und vergleichen Sie die so berechneten Koordinaten mit der ZKP-Kepler-Lösung (\vgl \mscr{}~ \mlhmref{InnerePlaneten.m}) und mit den Berechnungen des JPL \cite{JPL2020}. Die Anfangswerte können Sie sich vom JPL beschaffen.\\
+Betrachten Sie dabei das Sonnensystem in einem Inertialsystem. Typischerweise nimmt man das \textit{International Celestial Reference Frame} (ICRF) \cite{Park2021,JPL2020}. Dieses \KOS wird durch die Positionen von Quasaren und anderen extragalaktischen Objekten mit starker Radiostrahlung definiert. Gewonnen werden diese Positionen durch die sogenannte VLBI\footnote{\textit{Very Long Baseline Interferometry (VLBI)} ist eine Methode der Radioastronomie für Messungen mit höchster räumlicher Auflösung und Positionsgenauigkeit.}. Der Koordinatenursprung des ICRF ist der Schwerpunkt (das Baryzentrum) des Sonnensystems (\textit{Solar System Barycenter SSBC}).
+
+\medskip 
+\hyperref[lsg:hm_Sonnensystem]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_Sonnensystem}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung29
+\mittel{hm_Dreifachstern}{Dreikörper-System - Lösung für 3 identische Massen}
+Es ist immer wieder erstaunlich, wie neue interessante Effekte aus den Bewegungsgleichungen unter dem Einfluss der Gravitation gefunden werden können. Erst im Jahr 1993 \bzw 2000 gelang es Wissenschaftlern nachzuweisen, dass drei identische Massen, die sich allein unter dem gegenseitigen Einfluss der Gravitation befinden auf einer achtförmigen Kurve bewegen \cite{Moore1993, Chenciner2000}.\\
+\begin{enumerate}
+\item Zeigen Sie numerisch durch Lösung der Bewegungsgleichungen, dass bei geeignet gewählten Anfangsbedingungen diese Bahnform tatsächlich erhalten werden kann und auch stabil ist. Wählen Sie den koplanaren Fall aus, in welchem die Massen sich anfänglich bei $[-x_0, 0],\, [0, 0],\ [+x_0, 0]$ befinden und gehen Sie von einem Anfangs-Gesamtimpuls von 0 aus, in dem Sie die beiden äußeren Massen in entgegengesetzte Richtung der mittleren Masse jeweils mit $v_0/2$ starten lassen. Variieren Sie den Winkel von $\vec{v}_0$ zur $x$-Achse\footnote{Eine allgemeinere Betrachtung zum Auffinden von geeigneten Anfangsbedingungen für stationäre \bzw periodische Lösungen des Dreikörper-Problems findet sich in \cite{Suvakov2014}}.
+\item Schon länger bekannt ist die Lösung für das Dreikörperproblem, bei dem sich die drei identischen Massen an den Eckpunkten eines gleichseitigen Dreiecks befinden. Hier kann man die Bewegungsgleichungen sogar analytisch lösen. Erstellen Sie auch ein \matlab-Programm für die numerische Lösung. Wenn Sie dieses für längere Zeiten ausführen, werden Sie sehen, dass die Lösung instabil und sogar chaotisch wird (\vgl Band I). Kleinste Störungen (in unserem Fall numerische Rundungen) führen zur Instabilität. Können Sie das auch analytisch begründen? Sehen Sie dazu auch die Rechnungen im \kap{Stabile_Bahnen} an.
+\end{enumerate}
+\medskip 
+\hyperref[lsg:hm_Dreifachstern]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_Dreifachstern}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung30
+\schwierig{hm_Tempel1_SwiftTuttle}{Kometen im Sonnensystem -- Kollision mit der Erde?}
+Wir haben im \kap{kometen} gezeigt, wie man über die Lösung der Kepler-Gleichung bei (näherungsweise) bekannten Bahnparametern die Bahnen der Kometen bestimmen kann.
+Jedoch unterliegen die Bahnen der Kometen im von der Sonne weiter entfernten Bereich den Gravitationskräften der äußeren Planeten und werden dadurch gestört.
+\begin{enumerate}
+\item Es gibt Vermutungen, dass der Komet Swift-Tuttle, der am 12. Dezember 1992 um 21:23 UT sein Perihel hatte, möglicherweise bei seiner Wiederkehr im Jahre 2126 die Erde treffen könnte. Die Bahnparameter des Kometen konnten wie folgt bestimmt werden (\cite{JPL2020}):\\
+\begin{align*}
+a      &=  26.09206949782666 \:\text{AE} \\
+e      &=   0.9632257550460384 \\
+i      &= 113.4538169971712\degree\\
+\omega &= 152.9821676305871\degree \\
+\Omega &= 139.3811920815948\degree \\
+T_\text{Per}  &= 1992-\text{Dec}-11.9997845562 \\
+q      &= 0.9595161550688684\:\text{AE} ~~ \text{(Perihelabstand)}\\
+M      &= 7.631696167124793 \degree ~~ \text{am} ~~2450000.5 ~~\text{(1995-Oct-10.0000000)}\\
+n      &= 0.007395053\,\mathrm{a}^{-1}~~ \text{(mittlere Bewegung)}             
+\end{align*}  
+
+Müssen wir uns wegen einer möglichen Kollision Sorgen machen? 
+Vergleichen Sie Ihr Ergebnis unter Benutzung des \matlab-Programms aus \probref{hm_Sonnensystem} wiederum mit den Berechnungen des JPL \cite{JPL2020} und den Lösungen aus der Kepler-Gleichung, wie \zb in \probref{hm_kometen_asteroiden}. Was können Sie daraus über die Bahn des Kometen sagen? 
+
+\item Berechnen Sie unter Benutzung des \matlab-Programms aus \probref{hm_Sonnensystem} und den Lösungen aus der Kepler-Gleichung, wie \zb in \probref{hm_kometen_asteroiden} die Bahn des Kometen 9P/Tempel 1 für die Jahre 2016 und 2022 und vergleichen Sie diese. 
+Die Bahnparameter des Kometen konnten wie folgt bestimmt werden (\cite{JPL2020}):\\
+\begin{align*}
+a      &=  3.146289866273702 \:\text{AE} \\
+e      &=   0.509730344014817\\
+i      &= 10.47332142324269\degree\\
+\omega &= 179.1945054082475\degree \\
+\Omega &= 68.75570898836558\degree \\
+T_\text{Per} &= 2016-\text{Aug}-02.5673848162 \\
+q      &= 1.542530450367674\:\text{AE} ~~ \text{(Perihelabstand)}\\
+M      &= 333.055652021317 \degree ~~ \text{am} ~~2457450.5 ~~\text{(2016-Mar-03.0000000)}\\
+n      &= 0.176606212 \,\mathrm{a}^{-1}~~ \text{(mittlere Bewegung)}               
+\end{align*}  
+\end{enumerate}
+
+\medskip 
+\hyperref[lsg:hm_Tempel1_SwiftTuttle]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_Tempel1_SwiftTuttle}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung31
+\einfach{hm_lichtlaufzeit}{Lichtlaufzeit, Unterschied zwischen ET und UT}
+Leiten Sie Gleichung \eqref{eq:hm_scheinbare_koord_B} ab und schätzen Sie die Effekte der Lichtlaufzeit auf die Beobachtungskoordinaten für die Kometen Halley und Neowise in Perihelnähe ab.
+Nutzen Sie dabei für die Berechnung der Geschwindigkeiten die vis-viva-Gleichung.
+In welcher Zeit $\Delta t$ verliert man bei Einstellung auf die berechneten Koordinaten den Kometen aus dem Bildfeld der Vollformat-CCD Kamera?
+Diese befinde sich im Zwischenfokus des äquatorial-montierten und mitgeführten Teleskops mit einer Brennweite von $f\!=\!2500\:$mm.
+Berechnen Sie auch welchen Fehler man begeht, wenn man bei der Berechnung der Position nach der Kepler-Gleichung anstelle der ET die Weltzeit UT benutzt.
+Befindet sich das Objekt dann noch im eingestellten Sichtfeld des Teleskops?
+
+\medskip 
+\hyperref[lsg:hm_lichtlaufzeit]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_lichtlaufzeit}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\subsection{Übungen zu Gezeiten}
+
+\medskip
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung32
+\mittel{hm_rochelimit}{Zur Herleitung des Roche-Limits}\index{Roche-Limit}
+Berechnen Sie unter der Annahme, dass ein Asteroid/Komet eine Dichte von ca. $\SI{500}{\kg\per\cubic\metre}$ hat, ab welcher Entfernung er beim Passieren der Jupiterbahn von dem Planeten zerrissen wird. \\
+Vergleichen Sie Ihr Ergebnis mit den Messungen zum Kometen Shoemaker-Levy (\vgl \kap{hm_numerische_proced}) und auch mit der Hill-Sphäre $r_\text{H}$ (\vgl \probref{hm_hill_sphere}) des Jupiters. \\
+Berechnen Sie die Roche-Grenzen für die Planeten unseres Sonnensystems und diskutieren Sie diese im Vergleich zu den Hill-Sphären.
+
+\medskip 
+\hyperref[lsg:hm_rochelimit]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_rochelimit}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung33
+\einfach{hm_gezeiten01}{Tidenhub in einem Wasserglas}
+\begin{enumerate}
+	\item Wie groß ist der Tidenhub $\Delta h$ in einem Wasserglas (Durchmesser $\SI{10}{\cm}$) und in einem großen See (\zb Bodensee) (Durchmesser $\SI{50}{\km}$)? 
+	\item Gibt es eine Abhängigkeit von der geographischen Breite?
+\end{enumerate}
+
+\medskip 
+\hyperref[lsg:hm_gezeiten01]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_gezeiten01}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung34
+\einfach{hm_gezeiten02}{Bewegung der Erde im Erde-Mond-System}
+Zeigen Sie mit einer \matlab-Computersimulation, dass jeder Punkt der Erde innerhalb eines synodischen Monats eine Kreisbewegung um sein eigenes Umlaufzentrum ausführt. \\
+
+\medskip 
+\hyperref[lsg:hm_gezeiten02]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_gezeiten02}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung35
+\einfach{hm_gezeiten03}{Newtonsche Gleichgewichtstheorie}
+Abstand zwischen zwei Hochwassern und Tidenhub bei verschiedenen Deklinationen:
+\begin{enumerate}
+	\item Berechnen Sie den mittleren zeitlichen Abstand zwischen zwei Hochwassern im Gezeitensystem Erde-Mond.
+	\item Berechnen Sie den Tidenhub für zwei aufeinanderfolgende Mondtiden für eine geographische Breite $\varphi$ und bei der minimalen und maximalen Monddeklination $\delta_\text{M}$.
+	\item Berechnen Sie den Tidenhub am Äquator für zwei aufeinanderfolgende Tiden bei Vollmond für verschiedene Deklinationen des Mondes zur Wintersonnenwende. Vergleichen Sie das Ergebnis mit den Beobachtungen von Dezember 2022 im Indischen Ozean (\figref{hm_DiegoGarciaTideTable}).
+	\item Erklären Sie das Auftreten von drei Amphidromiepunkten in der Nordsee.
+\end{enumerate}
+\begin{figure}%
+\includegraphics[width=\textwidth]{DiegoGarciaTideTable.pdf}%
+\caption{Tiden-Tabelle von Diego Garcia im Indischen Ozean.}
+	\label{abb:hm_DiegoGarciaTideTable}
+\end{figure}
+\hyperref[lsg:hm_gezeiten03]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_gezeiten02}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\begin{prob} %Übung36
+\einfach{hm_gezeiten04}{Gezeitenellipsoid}
+\begin{enumerate}
+	\item Berechnen Sie Form des Gezeitenellipsoids und die relativen Höhen nach der Newtonschen Gleichgewichtstheorie. \\
+	\item Berechnen Sie Form des Gezeitenellipsoids nach der Potentialtheorie entsprechend \kap{hm_potentialtheorie}. \\
+
+\end{enumerate}
+\medskip 
+\hyperref[lsg:hm_gezeiten04]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_gezeiten04}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+%\newpage
+\begin{prob} %Übung37
+\mittel{hm_gezeiten05}{Wasserkanal nach Airy}
+Einfaches Modell zur Dynamischen Theorie: 
+Zeigen Sie, dass die Überlagerung der beiden Einzelschwingungen $q_1\lk t\rk$ und $q_2\lk t\rk$ in dem Wasserkanal nach Airy für die Summe der erzeugten Störungen (Höhenänderungen im Kanal)
+	\[   \Delta h = q_1\lk t\rk \cos 2\theta + q_2\lk t\rk \sin 2\theta  = \hat{q}\,\cos\lek 2\,\lk \omega_\text{E}t-\delta/2-\theta\rk\rek \,. 
+	\]
+eine gute Näherung für die am Äquator an einem Ort $R_\text{E},\, \theta$ beobachteten Gezeiten darstellt. Hierin ist $\theta$ ein beliebiger Längengrad und $\delta$ eine zu berechnende Phasenverschiebung zwischen der direkten Linie Erdmittelpunkt-Mond und dem sich ausbildenden und zu berechnenden Maximum der Gezeitenwelle, $\omega_\text{E}$ die Kreisfrequenz der Erdrotation. Nehmen Sie für die Gezeitenwelle im Kanal eine Umlauffrequenz $\omega_0$ und eine Dämpfung $\gamma$ an.
+
+\medskip 
+\hyperref[lsg:hm_gezeiten05]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_gezeiten05}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung38
+\mittel{hm_gezeiten06}{Gezeitenreibung - Hantelmodell}
+Berechnen Sie die Gezeitenreibung und damit die zeitliche Entwicklung im Erde-Mond-System. Nehmen Sie für das Gezeitenellipsoid in \figref{hm_gezeiten08} eine Hantel als einfaches Modell 
+der Masseverteilung an.
+
+\medskip 
+\hyperref[lsg:hm_gezeiten06]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_gezeiten06}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung39
+\mittel{hm_gezeiten06a}{Gezeitenreibung - Auswirkung Mond}
+Natürlich erzeugt auch das Gravitationsfeld der Erde auf dem Mond Gezeitenberge und ebenso eine Gezeitenreibung, falls es  eine Zeitverschiebung zwischen dem Gezeitenberg auf dem Mond und der Erde-Mond-Linie gibt. Dies würde völlig analog wie bei der Erde zu einer Verlangsamung der Mondeigenrotation $\Omega_\text{M}$ führen, solange bis diese mit der Umlaufwinkelgeschwindigkeit um die Erde übereinstimmt. Berechnen Sie die Verlangsamungsrate der Mondeigenrotation unter folgenden Annahmen:
+\begin{align*}
+    \Omega_\text{M}\lk 0\rk &= 4\omega_\text{M} &&\text{(initiale Eigenrotation 4x der heutigen Umlauffrequenz)}\\
+    \mu_\text{M} &\approx 50 && \text{(effektive Festigkeit)}\\
+    \delta &= 0.01\,\text{rad}
+\end{align*}
+Hinweis: Das sind natürlich nur sehr grobe Annahmen, der Leser möge das Ergebnis über eine größere Bandbreite von Parametern darstellen. \\
+
+\medskip 
+\hyperref[lsg:hm_gezeiten06a]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_gezeiten06a}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung40
+\schwierig{hm_gezeiten07}{Gravitationspotential außerhalb eines Rotationsellipsoids}
+Berechnen Sie das Gravitationspotential außerhalb eines homogenen Rotationsellipsoids.
+Rechnen Sie insbesondere die Beziehungen \eqref{eq:hm_pot_theo11} und \eqref{eq:hm_pot_theo12} inklusive der fehlenden Schritte nach.
+
+\medskip 
+\hyperref[lsg:hm_gezeiten07]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_gezeiten07}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung41
+\mittel{hm_gezeiten09}{Vergleich Gravitationseffekte auf die Erde}
+In der Himmelsmechanik finden wir \zt seit dem Altertum, aber auch erst seit \ca 150 Jahren gut verstandene Effekte der Gravitation auf die Erdkugel.
+Vergleichen Sie vier der wichtigsten Phänomene hinsichtlich ihrer physikalischen Ursachen und Koordinatensysteme:
+\begin{enumerate}
+	\item Rotationsabplattung 
+	\item Präzession der Erdachse 
+	\item Gezeiten 
+	\item Gezeitenreibung 
+\end{enumerate}
+ 
+\medskip 
+\hyperref[lsg:hm_gezeiten09]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_gezeiten09}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+\subsection{Übungen zu Stabilität von Planetenbahnen, zur Periheldrehung des Merkurs und zu Sonnenfinsternissen}
+
+\medskip
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung42
+\einfach{hm_hill_sphere}{Warum hat der Mond keinen Mond?}
+In unserem Sonnensystem gibt es $173$ Monde, die unsere $8$ Planeten (Pluto nicht mitgerechnet) umkreisen.
+Keiner der Monde hat aber einen eigenen Mond.
+Die Frage ist, ob es physikalisch überhaupt denkbar wäre, dass eine Mond einen Satelliten hat?
+Zur Lösung des Problems gehen Sie zunächst von dem Dreikörperproblem Sonne-Erde-Mond aus, dass durch die Bedingung $m_{\astrosun} \gg m_{\earth} \gg m_\text{Mond} $ zu einem sogenannten reduzierten Dreikörperproblem wird.
+Betrachten Sie die Kräfte auf dem Mond in einer vereinfachten Geometrie und berechnen Sie, bis zu welchem Mondbahnradius der Mond ein treuer Begleiter der Erde bleibt.
+Vergleichen Sie das Ergebnis mit dem Mondbahnradius für die gebundene Rotation (\probref{hm_erdrotation}).
+Übertragen Sie die Ergebnisse dann auf die gestellte Frage.
+Wir verweisen auch auf das Kapitel 1.2.3.6 zum Dreikörperproblem im Band I.
+
+\medskip 
+\hyperref[lsg:hm_hill_sphere]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_hill_sphere}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung43
+\schwierig{hm_potential_merkur}{Berechnung der Störpotentiale auf den Merkur}
+Berechnung des Störpotentials der anderen Planeten auf den Merkur: 
+Leiten Sie die Gleichung \eqref{eq:hm_merkur_mittlere_beschl} her. Bestimmen Sie den Parameterbereich für die Potentiale stabiler Bahnen
+	\begin{enumerate}
+		\item der Form $U(r)\!=\!-{r^q}$ (Parameterbereich $q$),
+		\item der Form $U(r)\!=\!-r^{-1} + C \, r^{-3}$ (Parameterbereich $C$).
+	\end{enumerate}
+	
+\medskip 
+\hyperref[lsg:hm_potential_merkur]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_potential_merkur}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung44
+\schwierig{hm_perihel_kappa3}{Periheldrehung des Merkurs}
+Berechnen Sie die Lösung der Bewegungsgleichung und die Periheldrehung einer Planetenbahn, die aus einem Zentralkraftfeld mit Zusatzterm  $\kappa_1/r^2$ resultiert.
+Was können Sie über die Größenordnung der Effekte sagen, was über die Effekte aus diesen Störungen?
+Stellen Sie auch die Bahnen für verschiedene Parameter $\kappa_3$ graphisch dar.
+Vergleichen Sie Ihre Rechnung mit den Abschätzungen zum relativistischen Beitrag der Periheldrehung des Merkurs. 
+
+\medskip 
+\hyperref[lsg:hm_perihel_kappa3]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_perihel_kappa3}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Übung45
+\schwierig{hm_MoFi}{Mond- und Sonnenfinsternisse}
+Aus den Überlegungen von \kapitel{basics_sofis} ist relativ klar, dass eine totale Mondfinsternis sehr häufig vor oder nach einer totalen Sonnenfinsternis auftreten muss.
+Ermitteln Sie für den Zeitraum von 1990 bis 2040 die Zeiten möglicher Sonnen- und Mondfinsternisse (unabhängig vom Ort auf der Erde). 
+Berechnen Sie, an welchem Tag um den Zeitraum der Sonnenfinsternis vom 21.08.2017 eine Mondfinsternis auftrat und wo diese zu beobachten war.
+
+\medskip 
+\hyperref[lsg:hm_MoFi]{\textcolor{blue} {$\rightarrow$ Lösungsvorschlag}}\\
+%\href{FingerUeb2_AB.pdf#lsg:hm_MoFi}{\textcolor{blue} {$\rightarrow$ Lösungsteil}}.\\
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+
+%%%%%Zusatzaufgaben---------------------------------------------------------------------------
+
+\subsection{Weiterführende Zusatzaufgaben und Probleme}
+\medskip
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Zusatz1
+\mittel{hm_Zusatz_ZKP_r}{Alternatives Zweikörperproblem}
+Hätte Newton aus Keplers Daten auch auf ein Kraftgesetz kommen können, nach welchem die Gravitation sich nach $1/r$ verhält anstelle $1/r^2$?
+Wie würde die Bahnform für einen gebundenen Zustand für diesen Fall aussehen? \\
+\end{prob} 
+
+\medskip 
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Zusatz3
+\schwierig{hm_Aalener_Sonnenuhr}{Aalener Sonnenuhr nach Hermann Zeuner}
+Eine didaktisch sehr schöne und noch dazu kompakte Sonnenuhr, die eine Kombination von Äquatorial-Polar- und analemmatischer Sonnenuhr darstellt, wurde von dem Aalener Mathematik- und Physiklehrer Hermann Zeuner (1921--2008) konstruiert und wird von der Juniorenfirma der Carl Zeiss AG auch mit einer im Internet zu findenden Anleitung vertrieben.
+
+	\begin{figure}%
+\includegraphics[width=0.5\textwidth]{ZusatzUebung2.pdf}%
+\caption{Aalener Sonnenuhr nach Herrmann Zeuner.}%
+\label{abb:hm_prob_aalener_sonnenuhr}%
+\end{figure}
+
+Erläutern Sie das Grundprinzip und schätzen Sie die Genauigkeit ab.
+Ist diese Sonnenuhr als Reiseuhr tauglich?\\
+
+\end{prob}
+\medskip 
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+
+%-----------------------------------------------------------------------------------------------------------
+\newpage
+\begin{prob} %Zusatz3
+\schwierig{hm_Zusatz_VenusTransit_Vorwaerts}{Venustransit 2004 -- Berechnung der Projektion vor der Sonne}
+Sehr instruktiv ist eine "`Vorwärtsrechnung"' des Venustransits, d.h. eine Berechnung der relativen geozentrisch-äquatorialen Koordinaten von Sonne und Venus oder der entsprechenden topographisch-horizontalen Koordinaten (Achtung: hier wirklich topographische Koordinaten verwenden!) mit den heute verfügbaren Daten aus der Störungsrechnung.
+Hier kann man ebenfalls eine Abschätzung treffen für die notwendige Genauigkeit der Messung der Transitzeiten. Für die konkrete Kalkulation seien im Folgenden die verwendeten Parameter gegeben:
+\begin{align*}
+	\frac{D_\text{\astrosun}}{2} = \sin \lk \frac{31'\,31''}{2} \rk ~, ~~~~
+	R_\text{I} = \tan \lk \frac{59''}{2} \rk ~,~~~~
+	\hat{R} = \frac{D_\text{\astrosun}}{2} - R_\text{I} ~.
+	\end{align*}
+\end{prob}
+\medskip 
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Zusatz4
+\mittel{hm_Zusatz_ErdeTransit_from_Mars}{Marsmission 2084 -- Erdtransit vor der Sonne}
+Mit zukünftigen Marsmissionen wird man nicht bis zum nächsten Venustransit warten müssen, um wieder einen Planeten vor der Sonne vorüberziehen zu sehen.
+Ein Beobachter auf dem Mars kann natürlich auch beobachten, wie unsere Erde und eventuell ihr Mond vor der Sonne vorüberziehen.
+Das letzte Ereignis dieser Art war am 11. Mai 1984 und das nächste ist am 10.~November 2084 (Wir sind nicht sicher, ob bereits jetzt Anmeldungen entgegen genommen werden.).
+Wir empfehlen aber in jedem Fall mit dem \mscr{} \mlhmref{InnerePlaneten.m} das Datum zu überprüfen.
+Für eine genauere Rechnung der Transitzeiten benutzen Sie die Koordinatenberechnungen nach der Störungstheorie, d.h. die Funktionen \mlhmiref{SonneExakt.m}, \mlhmiref{MarsExakt.m}. Wird der Mond gemeinsam mit der Erde vor der Sonne vorüberziehen? \\
+\end{prob}
+\medskip 
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+
+
+%-----------------------------------------------------------------------------------------------------------
+\hypertarget{prb:hm_Z7Praezession}{} %Zusatz5
+\begin{prob} %Zusatz6
+\zusatz{hm_Zusatz_Praezession}{Berechnung des Drehmomentes für die Präzession der Erdachse}
+Berechnen Sie das Drehmoment der Präzession für ein Rotationsellipsoid im Gravitationsfeld von Sonne und Mond über eine Entwicklung seines Gravitationspotentials nach Kugelflächenfunktionen.
+
+\medskip
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+
+%-----------------------------------------------------------------------------------------------------------
+\textbf{}
+\begin{prob} %Zusatz6
+\zusatz{hm_gezeiten08}{Lösung Bewegungsgleichung für die Gezeitenreibung}
+Lösen Sie das DGL-System \eqref{eq:hm_gezreibung17} numerisch in \matlab{}. 
+Gehen Sie dabei wie folgt vor:
+\begin{enumerate}
+	\item Berechnen Sie das ZKP mit Erde und Mond als Massepunkte um die Stabilität ihres numerischen Verfahrens zu testen. Verkleinern Sie eventuell die Schrittweite der Integration. Nutzen Sie \zb \odevf\ oder programmieren Sie selbst eine Euler-Integration.
+	\item Gehen Sie dann in das Schwerpunktsystem und wiederholen die Rechnungen und Tests.
+	\item Berechnen das ZKP mit Gezeiten. Dazu benutzen Sie \ddezd, einen \matlab-Solver für sogenannte DDEs (\textit{Delayed Differential Equations}) oder \textit{retardierte Differentialgleichungen}. Diese sind Differentialgleichungen mit einem nacheilendem Argument, \dh die Ableitung einer gesuchten Funktion $Y(t)$ zum Zeitpunkt $t$ hängt nicht nur vom Funktionswert an diesem Zeitpunkt ab, sondern auch von Funktionswerten an früheren Zeitpunkten $t-\tau$ oder von Integralen über die Funktion über vergangene Zeitintervalle. In unserem Fall nehmen wir den Gezeitenberg mit einem festen Delay $\delta = \text{const}$ an. Das gilt dann natürlich nur für begrenzte Zeiten, hat aber den Vorteil, dass wir die eingebaute \matlab-Routine \ddezd\ für das entstehende DDE-DGL-Systeme verwenden können. Zeigen Sie im Ergebnis der Rechnungen die Inkonsistenz der Lösung auf.
+	\item Im nächsten Schritt nähern Sie das Delay $\delta$ durch eine lineare Funktion  $\delta(t) = \delta(t=0) \lk(1 - \,\frac{\dot{\omega}_\text{E}}{\omega_\text{E}}\,t\rk $ an, um die Inkonsistenz zu "`heilen"'.  Die Verschiebung des Gezeitenbergs $\delta(t)$ wird langsam gegen Null gehen.
+	\item Jetzt lassen wir alle Näherungen fallen, \dh alle Größen, auch $\delta(t)$, werden numerisch aus dem DGL-System \eqref{eq:hm_gezreibung17} mit \ddezd\ (Schwerpunktkoordinaten) berechnet. 
+	Eine detaillierte Darstellung zur Numerik findet sich \ua in \cite{Schebesta1994}.
+\end{enumerate}
+
+\medskip 
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Zusatz7
+\zusatz{hm_gezeiten_zusatz}{Verbessertes Modell der Gezeitenverformung der Erde.}
+Berechnen Sie mit einem verbesserten Modell die Ausformung des Gezeitenellipsoids auf der Erde.
+Benutzen Sie die Literatur \cite{Murray2008, Norsen2017}. \\
+
+\medskip 
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+
+\end{prob}
+
+%-----------------------------------------------------------------------------------------------------------
+
+\begin{prob} %Zusatz8
+\zusatz{hm_pluto_charon}{Pluto-Charon-Liebe.}
+Bestimmen Sie aus der heutigen Rotationszeit des Zweikörper-Systems Pluto-Charon, deren Massen und deren Abstand $d$ die Energie und den Drehimpuls des Systems. Wenn man mal davon ausgeht, dass die beiden Zwergplaneten sich mal eng umschlunegn ahtten, vor wie langer Zeit haben sie sich denn dann getrennt, um die heutige Abstandsposition einzunehmen.\\
+
+\medskip 
+\noindent\rule[1ex]{\textwidth}{0.5pt}
+
+\end{prob}
+
+
+

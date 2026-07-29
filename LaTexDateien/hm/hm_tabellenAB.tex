@@ -1,0 +1,286 @@
+\section{Tabellen}\label{kap:hm_tabellen}
+
+Zu weiteren in Text und Übungen verwendeten Daten siehe Tab.
+\ref{tab:hm_Umrechung_KOS}, \ref{tab:hm_notation_hm},
+\ref{tab:hm_bahnparameter}, \ref{tab:hm_zeitl_aenderung_bahnparameter_lin},
+\ref{tab:hm_parameter_kometen}, \ref{tab:hm_parameter_halley_alt-neu},
+\ref{tab:hm_parameter_shoemaker} und \ref{tab:hm_parameter_asteroide}.
+
+\begin{sidewaystable}
+\vspace{16cm}
+\caption{Transformation astronomischer Koordinatensysteme.}
+\smallskip
+\begin{adjustbox}{width=\textwidth,totalheight=0.75\textheight,keepaspectratio}
+\begin{tabular}{L{1.5cm}L{2.0cm}L{2.cm}L{6.5cm}L{6.5cm}}
+\hline\noalign{\smallskip}
+Umrechnung	& KOS 1 & KOS 2 & Transformation KOS 1 $\rightarrow$ KOS 2 & Transformation KOS 2 $\rightarrow$ KOS 1 \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+BA $\rightarrow$ HE & Bahn & Heliozentrisch-ekliptikal & Parameter:\linebreak Bahnneigung $i$,\linebreak Länge des aufsteigenden Knotens $\Omega$,\linebreak Argument des Perihels $\omega$ \\\\ 
+ &$r$, $\upsilon$ & $l$, $b$, $r$ & $u=\upsilon+\omega$ & \\
+ & & & $\cos b\cos(l-\Omega) = \cos u$ & \\
+ & & & $\cos b\sin(l-\Omega) = \sin u\cos i$ & \\
+ & & & $\sin b = \sin u\sin i$ & \\
+\hline\noalign{\smallskip}
+HE $\leftrightarrow$ GE & Heliozentrisch-ekliptikal & Geozentrisch-ekliptikal & Parameter:\linebreak heliozentrische Erdkoordinaten $R$, $L$, $B$  & Parameter:\linebreak heliozentrische Erdkoordinaten $R$, $L$, $B$ \\\\
+& $l$, $b$, $r$ & $\lambda$, $\beta$, $\Delta$ & $r\cos b\cos l = R\cos B\cos L+\Delta\cos\beta\cos\lambda$ & \\
+ & & & $r\cos b\sin l = R\cos B\sin L+\Delta\cos\beta\sin\lambda$ & \\
+ & & & $r\sin b = R\sin B+\Delta\sin\beta$ & \\
+\hline\noalign{\smallskip}
+GE $\leftrightarrow$ GA & Geozentrisch-ekliptikal & Geozentrisch-äquatorial \linebreak (space-fixed) & Parameter:\linebreak  Ekliptikschiefe $\epsilon$ \vspace{\baselineskip}& Parameter:\linebreak  Ekliptikschiefe $\epsilon$ \\ \\
+ & $\lambda$, $\beta$ & $\alpha$, $\delta$ & $\cos\delta\cos\alpha = \cos\beta\cos\lambda$ & $\cos\beta\cos\lambda =\cos\delta\cos\alpha$\\
+ & & & $\cos\delta\sin\alpha = \cos\beta\sin\lambda\cos\epsilon-\sin\beta\sin\epsilon$ & $\cos\beta\sin\lambda =\cos\delta\sin\alpha\cos\epsilon+\sin\delta\sin\epsilon$ \\
+ & & & $\sin\delta = \cos\beta\sin\lambda\sin\epsilon+\sin\beta\cos\epsilon$ & $\sin\beta = -\cos\delta\sin\alpha\sin\epsilon+\sin\delta\cos\epsilon$ \\
+\hline\noalign{\smallskip}
+GA $\leftrightarrow$ TA & Geozentrisch-äquatorial \linebreak (space-fixed) & Topozentrisch-äquatorial & Parameter: \linebreak Erdradius $R_\text{\earth}$, \linebreak Sternzeit $\theta$, \linebreak Geographische Breite $\varphi$, \linebreak Geozentrische Breite  $\phi =\varphi -0.1924\degree \sin(2\varphi)$, \linebreak $\rho_\text{\earth} = R_\text{\earth}-21.38 \sin^2\varphi$ \vspace{\baselineskip} & Parameter: \linebreak Erdradius $R_\text{\earth}$, \linebreak Sternzeit $\theta$, \linebreak Geographische Breite $\varphi$,\linebreak Geozentrische Breite  $\phi =\varphi -0.1924\degree \sin(2\varphi)$, \linebreak $\rho_\text{\earth} = R_\text{\earth}-21.38 \sin^2\varphi$ \vspace{\baselineskip}\\
+& $\alpha$, $\delta$, $\Delta$ & $\alpha'$, $\delta'$, $\Delta'$ & $\Delta'\cos\delta'\cos\alpha' = \Delta\cos\delta\cos\alpha - \rho_\text{\earth}\cos\phi\cos\theta$ & $\Delta\cos\delta\cos\alpha = \Delta'\cos\delta'\cos\alpha' + \rho_\text{\earth}\cos\phi\cos\theta$ \\
+ & & & $\Delta'\cos\delta'\sin\alpha' = \Delta\cos\delta\sin\alpha - \rho_\text{\earth}\cos\phi\cos\theta$ & $\Delta\cos\delta\sin\alpha = \Delta'\cos\delta'\sin\alpha' + \rho_\text{\earth}\cos\phi\cos\theta$ \\
+ & & & $\Delta'\sin\delta' = \Delta\sin\delta - \rho_\text{\earth}\sin\theta$ \vspace{\baselineskip}& $\Delta\sin\delta = \Delta'\sin\delta' + \rho_\text{\earth}\sin\theta$ \\
+ & & & Näherungen für $\rho_\text{\earth} \ll \Delta$: & \\
+ & & & $\alpha-\alpha' = \frac{8.79''}{\Delta\lek\text{AE}\rek}\frac{\cos\phi}{\cos\delta}\sin(\theta-\alpha)\cos\delta$ & \\
+ & & & $\delta-\delta' = \frac{8.79''}{\Delta\lek\text{AE}\rek}\lek\cos\delta\sin\phi -\sin\delta\cos\phi\cos(\theta-\alpha)\rek$ & \\
+\hline\noalign{\smallskip}
+GA $\leftrightarrow$ TH & Geozentrisch-äquatorial \linebreak (earth-fixed) & Topozentrisch-horizontal & Parameter: \linebreak Geographische Breite $\varphi$, \linebreak Stundenwinkel $\tau$ \vspace{\baselineskip}& Parameter: \linebreak Geographische Breite $\varphi$, \linebreak Stundenwinkel $\tau$ \\ \\
+& $\tau$, $\delta$ & $\mathcal{A}$, $h$& $\sin h = \cos\delta\cos\tau\cos\varphi+\sin\delta\sin\varphi$ & $\sin\delta = \sin h\sin\varphi - \cos h\cos\mathcal{A}\cos\varphi$ \\
+ & & & $\cos h\sin\mathcal{A} = \cos\delta\sin\tau$ & $\cos\delta\sin\tau = \cos h\sin\mathcal{A}$\\
+ & & & $\cos h\cos\mathcal{A} = \cos\delta\cos\tau\sin\varphi - \sin\delta\cos\varphi$ & $\cos\delta\cos\tau = \sin h\cos\varphi + \cos h\cos\mathcal{A}\sin\varphi$\\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{tabular}
+\end{adjustbox}
+\label{tab:hm_Umrechung_KOS}
+\end{sidewaystable}
+\clearpage
+
+\begin{table}%tab
+\caption{Vergleich der in Physik und Himmels\-me\-cha\-nik/As\-tro\-no\-mie üblichen Notationen für das Zweikörperproblem.}
+\smallskip
+\begin{tabular}{L{3.6cm}L{4.3cm}L{4.1cm}}
+Physikalisch-  \linebreak Mathematische Größe	&	 Physikalische Notation\linebreak Band I	& Astronomische Notation \linebreak \autoref{chap:hm} \linebreak Spezifische Größen, \dh auf die Masse $m$ bezogen.\\ \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\smallskip
+& & \\
+Effektive Masse	&$m_\text{eff} = \dfrac{m_1m_2}{m_1+m_2}$	&$m_\text{eff} = 1$	\\	\\
+Gravitationspotential	&$U(r) = -\dfrac{\kappa}{r} = -\dfrac{G m_1 m_2}{r}$	&$U(r) = -\dfrac{\mu_\text{G}}{r} = -\dfrac{G (m_1 + m_2)}{r}$\\	\\
+Energie	&$E = \dfrac{1}{2}  m_\text{eff}\: \dot{r}^2 \!+\! \dfrac{L}{2  m_\text{eff}\: r^2} \!+\! U(r)$ & $H = \dfrac{1}{2} \dot{r}^2 + \dfrac{L}{2\, r^2} + U(r)$	\\	\\
+Drehimpuls	&$L = m_\text{eff}\: r^2 \dot{\varphi}$&$L = r^2 \dot{\upsilon}$	\\	\\
+Numerische Exzentrizität &$\epsilon = \sqrt{\dfrac{2 E L^2} {m_\text{eff}\: \kappa^2}}$&$e = \sqrt{\dfrac{2 H L^2}{\mu_\text{G}^2} + 1} $ \\ \\
+Bahnparameter  &$p = \dfrac{ L^2}{ m_\text{eff}\: \kappa}$&$p = \dfrac{ L^2}{ \mu_\text{G}} $\\ \\
+Große Halbachse  &$a = \dfrac{p}{1-\epsilon^2}$ & $a = \dfrac{p}{1-e^2} $ \\ \\
+Wahre Anomalie  &$\varphi$ &$\upsilon$ \\ \\
+Exzentrische Anomalie & - &$E$ \\ \\
+\noalign{\smallskip}\hline\noalign{\smallskip} \\
+\end{tabular}\\ 
+\label{tab:hm_notation_hm}
+\end{table}
+
+\begin{table}%tab6
+\caption{Mittlere Bahnparameter der Planeten unseres Sonnensystems.}
+\smallskip
+\begin{adjustbox}{width=\textwidth,totalheight=\textheight,keepaspectratio}
+\begin{tabular}{L{1.3cm}R{1.3cm}R{1.3cm}R{1.2cm}R{1.5cm}R{1.5cm}R{1.6cm}R{1.4cm}R{1.5cm}}
+\multicolumn{8}{l}{\textbf{Bezug: Äquinoktium und Ekliptik des Datums}\cite{Meeus1998}.} \\
+\hline\noalign{\smallskip}
+Element					& $a$ \;\   & $e$ \;\ & $i$ \;\            & $\Omega$ \;\       & $\varpi$ \;\       & $M_0$ \;\          & $L_0$ \;\          & $n_\text{anom}$ \;\ \\
+Einheit					& in AE \;\ &         & in \textdegree \;\ & in \textdegree \;\ & in \textdegree \;\ & in \textdegree \;\ & in \textdegree \;\ & in \textdegree/Jh. \;\ \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+Merkur \mercury & 0.387089 & 0.205631 & 7.004986& 48.330893	&  77.456119 & 174.794787	& 252.250906&149473.269\\
+Venus \venus		&	0.723329 & 0.006772 & 3.394662& 76.679920	& 131.563703 &  50.416098	& 181.979801& 58518.220\\
+Erde \earth 		& 1.000000 & 0.016709 & 0.000000& 0.000000	& 102.937348 & 357.529109	& 100.466457& 35999.371\\
+Mars \mars			& 1.523679 & 0.093401 & 1.849726& 49.558093	& 336.060234 &  19.372766	& 355.433000& 19140.563\\
+Jupiter \jupiter&	5.202603 & 0.048497 & 1.303267& 100.464407&  14.331207 &  20.020312	&  34.351519&  3033.639\\
+Saturn \saturn	&	9.554909 & 0.055548 & 2.488879& 113.665503&  93.057237 & 317.020207	&  50.077444&  1218.864\\
+Uranus	\uranus	&	19.218446& 0.046381 & 0.773197& 74.005957 & 173.005291 & 141.049714	& 314.055005&   427.285\\
+Neptun	\neptune&	30.110387	& 0.009456 & 1.769953& 131.784057& 48.120276 & 256.228389	& 304.348665&   217.882\\
+Pluto \pluto		&	39.481687 & 0.248808 & 17.14175& 110.303470&224.066760 &  14.86205	& 238.928810&   145.112\\
+\noalign{\smallskip}\hline\noalign{\smallskip} \\
+\end{tabular} 
+\end{adjustbox}
+\vspace{0.5cm}
+\begin{adjustbox}{width=\textwidth,totalheight=\textheight,keepaspectratio}
+\begin{tabular}{L{1.3cm}R{1.3cm}R{1.3cm}R{1.2cm}R{1.5cm}R{1.5cm}R{1.6cm}R{1.4cm}R{1.5cm}}
+\multicolumn{8}{l}{\textbf{Bezug: Äquinoktium und Ekliptik J2000}\cite{Montenbruck1999, Standish1992, Murray2008}.} \\
+\hline\noalign{\smallskip}
+Element					& $a$ \;\   & $e$ \;\ & $i$ \;\            & $\Omega$ \;\       & $\varpi$ \;\       & $M_0$ \;\          & $L_0$ \;\          & $n_\text{anom}$ \;\ \\
+Einheit					& in AE \;\ &         & in \textdegree \;\ & in \textdegree \;\ & in \textdegree \;\ & in \textdegree \;\ & in \textdegree \;\ & in \textdegree/Jh. \;\ \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+Merkur \mercury & 0.387098 &	0.20563069 & 7.00487	& 48.33167	&  77.45645 & 174.79439 & 252.25084	&	149473.095	\\
+Venus \venus		&	0.723332 &	0.00677323  & 3.39471	& 76.67922	& 131.53298	&  50.44675 & 181.97973	&	 58517.8572	\\
+Erde \earth 		& 1.000000 &	0.01671022 & 0.00005	& 174.873176	& 102.94719	& 357.51716 & 100.46435	&	 35999.3719	\\
+Mars \mars			& 1.523662 &	0.09341233	 & 1.85061	& 49.57854	& 336.06020	&  19.39312 & 355.45332	&	 19140.877	\\
+Jupiter \jupiter&	5.203363 &	0.04839266 & 1.30531	& 100.55615	& 14.75385	&  19.65053 &  34.40438	&	  3032.974\\		
+Saturn \saturn	&	9.537070 &	0.0541506  & 2.48446	& 113.71504	& 92.43194	& 317.51238 &  49.94432	&	  1222.285\\
+Uranus	\uranus	&	19.191264 &	0.0471771 & 0.76986	& 74.22988	& 170.96424	& 142.26794 & 313.23218 &	   4286.193\\
+Neptun	\neptune&	30.068964	& 0.008589 & 1.76917	& 131.72169	& 44.97135	& 259.90868 & 304.88003	&	   218.332\\	
+Pluto \pluto		&	39.481687 &	0.2488077 & 17.14175	& 110.30347	& 224.06676	&  14.86205 & 238.92881	&	   145.112 \\
+\hline
+%\noalign{\smallskip}
+\end{tabular}
+\end{adjustbox}
+Die Parameter beziehen sich auf das Äquinoktium und die Ekliptik des Datums bzw. das Äquinoktium und die Ekliptik der Standardepoche J2000 \cite{Standish1992, Murray2008, Meeus1998}.
+Im letzteren Fall gelten die für die Erde gelisteten Werte für den Erde-Mond-Schwerpunkt.\\
+Für die Epoche J2000 gilt $\epsilon\!=\!23.4392911\degree$.
+Die große Halbachse $a$ ist in Astronomischen Einheiten ($1\:\text{AE}= 149597870700\:\text{m}$) angegeben, alle Winkel in $\degree$.
+Das Perihelargument $\omega$ wird in der Bahnebene vom aufsteigenden Knoten bis zum Perihel gemessen.
+Die Länge des Perihels $\varpi$ wird in der Ekliptik vom Frühlingspunkt bis zum aufsteigenden Knoten und dann in der Bahnebene des Himmelskörpers vom aufsteigenden Knoten bis zum Perihel gemessen ($\varpi\!=\!\Omega+\omega$).
+Die mittlere tägliche Bewegung $n$ (mittlere Umlaufgeschwindigkeit) wird in Grad pro Jahrhundert angegeben.
+Die mittlere Länge $L_0$  wird in der Ekliptik vom Frühlingspunkt bis zur mittleren Position des Planeten gemessen.
+Statt der mittleren Länge wird oft die mittlere Anomalie $M_0$ angegeben (Vergleiche auch dazu \figref{hm_planetenbahnen_rel_ekliptik}). 
+Wir haben in der Tabelle für die inneren Planeten die mittleren Bahnelemente angegeben, d.\,h. die Elemente für ein reines ZKP.
+Bei den äußeren Planeten (ab Jupiter) sind die Einflüsse der anderen Planeten so groß, dass man deshalb für diese Planeten jährliche, aktuelle Bahnelemente angibt, die mit Methoden der Störungsrechnung berechnet werden.
+Für unsere Zwecke können wir aber mit \anf{mittleren} Bahnelementen rechnen.
+Obwohl seit dem 24.08.2006 die \href{https://de.wikipedia.org/wiki/Internationale_Astronomische_Union}{Internationale Astronomische Union (IAU)} durch eine präzisere Begriffsdefinition für Planeten den Pluto nur noch in der Kategorie Zwergplanet führt, haben wir aus Nostalgiegründen (Merksatz in der Schule: \anf{\emph{M}it \emph{V}iel \emph{E}lan \emph{M}urmelt \emph{J}eder \emph{S}chüler \emph{U}nsere \emph{N}eun \emph{P}laneten}) in der Tabelle den Pluto mit als Planet aufgeführt.\\ \\
+Die Daten der Tabelle \ref{tab:hm_bahnparameter} sind in den Dateien \mlhmdref{Bahnparameter.csv} bzw. \mlhmdref{BahnparameterJ2000.csv} gespeichert.
+Die Daten für den Mars sind aus \cite{Allison2000} entnommen.
+\label{tab:hm_bahnparameter}
+\end{table}
+
+\begin{table}%tab7
+\caption{Linearer Term der zeitlichen Veränderung der Bahnparameter.} 
+\smallskip
+\begin{tabular}{L{1.3cm}R{1.5cm}R{1.5cm}R{1.2cm}R{1.2cm}R{1.2cm}R{1.7cm}R{1.7cm}}
+\multicolumn{8}{l}{\textbf{Bezug: Äquinoktium und Ekliptik des Datums }\cite{Meeus1998}.} \\
+\hline\noalign{\smallskip}
+Element	\linebreak Einheit	& $\dot{a}$ \linebreak $\times 10^{-8}\linebreak \text{AE}/\text{Jh.}$	& $\dot{e}$	\linebreak $\times 10^{-8} \linebreak \text{AE}/\text{Jh.}$& $\d i/\d t$	& $\dot{\varpi}$	& $\dot{\Omega}$	& $\dot{L}_0$ \linebreak $= n_\text{trop}$& $\dot{M}_0$ \linebreak $= n_\text{anom}$\\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+Merkur \mercury		& 66 			& 2527 		& 0.0018  	& 1.5555  & 1.1862  & 149474.0710 	& 149472.5150 \\
+Venus \venus 			& 92 			& -4938 	& 0.0010  	& 1.4080  & 0.9011  & 58319.2119 		& 58517.8039 \\
+Erde \earth 			& -5 			& -3804 	& 0.0000  	& 1.7195  & 0.0000  & 36000.7690  	& 35999.0498 \\
+Mars \mars				& -7221 	& 11902 	& -0.0006  	& 1.8408  & 0.7721  & 19140.5028  	& 19139.8585 \\
+Jupiter \jupiter	& 60737 	& -12880 	& -0.0055  	& 1.6126  & 1.0210  & 3034.9057  		& 3033.6272 \\
+Saturn \saturn 		& -301530 & -36762 	& -0.0037  	& 1.9638  & 0.8771  & 1222.1138  		& 1213.8664 \\
+Uranus \uranus    & 152025 	& -19150 	& 0.0008  	& 1.4864  & 0.5211  & 428.467  		& 426.9282 \\
+Neptun \neptune 	& -125196 & 2514 		& -0.0093 	& 1.4263  & 1.1022  & 218.4862 		& 217.9599 \\
+Pluto \pluto    	& -125196 & 2514 		&  	&   & 0 & 145.2078  		& 143.7818 \\
+\noalign{\smallskip}\hline\noalign{\smallskip} \\
+\end{tabular} 
+\vspace{0.5cm}
+\begin{tabular}{L{1.3cm}R{1.5cm}R{1.5cm}R{1.2cm}R{1.2cm}R{1.2cm}R{1.7cm}R{1.7cm}}
+\multicolumn{8}{l}{\textbf{Bezug: Äquinoktium und Ekliptik J2000}\cite{Standish1992, Murray2008}.} \\
+\hline\noalign{\smallskip}
+Element	\linebreak Einheit	& $\dot{a}$ \linebreak $\times 10^{-8}\linebreak \text{AE}/\text{Jh.}$	& $\dot{e}$	\linebreak $\times 10^{-8}\linebreak \text{AE}/\text{Jh.}$& $\d i/\d t$	& $\dot{\varpi}$	& $\dot{\Omega}$	& $\dot{L}_0$ \linebreak $= n_\text{trop}$& $\dot{M}_0$ \linebreak $= n_\text{anom}$\\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+Merkur \mercury		& 66 			& 2527 		& -0.0065  & 0.1593  & -0.1254  & 149472.6738  & 149472.5153 \\
+Venus \venus			& 92 			& -4938 	& -0.0008  & 0.0049  & -0.2780  & 58317.8149   & 58517.8039 \\
+Erde \earth				& -5 			& -3804 	& -0.0130  & 0.3226  & -0.2411  & 35999.3720   & 35999.0498 \\
+Mars \mars				& -7221 	& 11902 	& -0.0071  & 0.4439  & -0.2950  & 19140.5061   & 19139.8572 \\
+Jupiter \jupiter 	& 60737 	& -12880	& -0.0012  & 0.2156  & 0.1767   & 3034.9057    & 3033.6272 \\
+Saturn \saturn		& -301530 & -36762 	&  0.0017  & 0.5665  & -0.2567  & 1222.1138    & 1213.8664 \\
+Uranus \uranus 		& 152025 	& -19150 	& -0.0006  & 0.0893  & 0.0741   & 428.4670     & 426.9282 \\
+Neptun \neptune 	& -125196 & 2514 		& -0.0009  & 0.0292  & -0.0062  & 219.8833  		& 217.9599 \\
+Pluto \pluto 			& -76912  & 6465 		&  0.3075  & 1.4263  & -0.0104  & 145.2078	 	& 143.7818 \\
+\noalign{\smallskip}\hline\noalign{\smallskip} \\
+\end{tabular}
+Die Parameter beziehen sich auf das Äquinoktium des Datums bzw. das Äquinoktium und die Ekliptik der Standardepoche J2000.
+Im letzteren Fall gelten die für die Erde gelisteten Werte für den Erde-Mond-Schwerpunkt. Alle Einheiten außer für $\dot{a}$ und $\dot{e}$ sind in $\degree/\text{Jh.}$ angegeben.\\ \\
+Die Bahnparameter als Funktion der Zeit $t$  (in Julianischen Jahrhunderten) berechnen sich zu: $x(t)\!=\!x+\dot{x}\,t$.\\ \\
+Es sei darauf hingewiesen, dass die ersten fünf Spalten der Tabelle tatsächlich zeitliche Veränderungen der Bahnparameter darstellen, währen die beiden letzten Spalten für $\dot{L}_0$ und $\dot{M}_0$ die Länge bzw. Mittlere Anomalie des Perihels beschreiben und daher eigentlich Umlaufgeschwindigkeiten für die mittlere Bewegung $n$\index{Bewegung!mittlere|textbf} darstellen. \\
+Die zeitliche Veränderung der Ekliptikschiefe $\epsilon$ kann wie folgt beschrieben werden:\\ 
+$\epsilon\!=\!23.4392911\degree-46.8150''\,t-0.00059''\,t^2 + 0.001813''\,t^3$. \\ \\
+Die Daten für den Mars sind aus \cite{Allison2000} entnommen.
+Die Daten der Tabelle \ref{tab:hm_zeitl_aenderung_bahnparameter_lin} sind in den Dateien \mlhmdref{BahnparameterAbleitung.csv} bzw. \mlhmdref{BahnparameterJ2000Ableitung.csv} gespeichert.
+\label{tab:hm_zeitl_aenderung_bahnparameter_lin}
+\end{table}
+
+\begin{table}%tab8
+\caption{Parameter berühmter Kometen \cite{JPL2020}.}
+\smallskip
+\begin{tabular}{L{1.2cm}C{1.8cm}C{2.7cm}C{2cm}C{2cm}L{1.3cm}}
+\hline\noalign{\smallskip}
+Element				& Großer Komet \linebreak (1680) & Komet Halley \linebreak (1986)	& Komet Neowise \linebreak (2020) & Komet Donati \linebreak (1858) &	Einheit \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+$e$						&	0.999986			&	0.967142908462304 & 0.999188062	& 0.996295 &	\\		
+$a$						&	444.4285714		&	17.8341442925537	& 362.8965186	& 156.1319838 &	AE \\	
+$q$						&	0.006222			&	0.585978111516909	& 0.294649337 & 0.578469 & AE	\\	
+$i$						&	60.6784				&	162.262690579161	& 128.9372925	& 116.9512 & Grad (\textdegree)	\\	
+$\Omega$			&	276.6339			&	58.42008097656843 & 61.01054495	& 167.3044	&	Grad (\textdegree)	\\	
+$\omega$			&	350.6128			&	111.3324851045177	& 37.27889887	& 129.1144	&	Grad (\textdegree)			\\	
+$M$						&	-0.0020500		&	38.3842644764388	& 0.001328884	& 0.003807	&	Grad (\textdegree)			\\	
+$t_0$					&	2335019.9876	&	2446467.3953170509 & 2459034.179 & 2399952.965 & TT	\\	
+							&1680-Dec-18.4876 & 1986-Feb-\linebreak 05.89539 & 2020-Jul-03.67911 & 1858-Sep-30.4645 & \\
+$T_\text{P}$	&	---					&	75.31589278				& 6913.25			& --- 	&	Jahre			\\	
+$n$						&	0.0001052			&	0.0130865647924		& 0.000142571		& 0.0005052	&	Grad/Tag $\lk \degree/\text{d} \rk$	\\	
+$Q$						&	888.850				&	35.0823						& 725.499			& 311.685 & AE\\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\end{tabular} \\
+\label{tab:hm_parameter_kometen}
+\\
+Die Bahnelemente beziehen sich auf die Epoche des Periheldurchgangsdatums im Koordinatensystem von Äquinoktium und Ekliptik von J2000. Die mittlere Bewegung $n$ \index{Bewegung!mittlere} ist in Grad pro Tag angegeben \cite{JPL2020}.
+\end{table}
+
+\begin{table}%tab9
+\caption{Vergleich Parameter des Kometen Halley für verschiedene Epochen (1758 und 1986) \cite{JPL2020}.}
+\smallskip
+\begin{tabular}{L{1.2cm}C{3cm}C{3cm}L{2cm}}
+\hline\noalign{\smallskip}
+Element			&	Komet Halley \linebreak (1986)  	& Komet Halley \linebreak (1758)	&	Einheit \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+$e$						&	0.967142908462304	&	0.967686 &		---				\\	
+$a$						&	17.8341442925537	&	--- &	AE			\\	
+$q$						& 0.585978111516909		&	0.584466 &	AE				\\	
+$i$						&	162.262690579161		&	162.372 & Grad (\textdegree)	\\	
+$\Omega$			&	58.42008097656843		&	57.2458 &	Grad (\textdegree)	\\	
+$\omega$			&	111.3324851045177		&	110.7093	& Grad (\textdegree)			\\	
+$M$						&	38.3842644764388		&	--- &	Grad (\textdegree)			\\	
+$t_0$					&	2446467.39531705092		&	2363592.5623 & TT				\\	
+							& 1986-Feb-05.89539 & 1759-Mar-13.06230 & \\
+$T_\text{P}$	&	75.31589278					& ---	& Jahre				\\	
+$n$						&	0.0130865647924		& ---  &	Grad/Tag $\lk \degree/\text{d} \rk$				\\	
+$Q$						&	35.0823 	& ---	&	AE		\\
+\noalign{\smallskip}\hline\noalign{\smallskip}	
+\end{tabular}\\
+\label{tab:hm_parameter_halley_alt-neu}
+Die Bahnelemente beziehen sich auf die Epoche des Periheldurchgangsdatums im Koordinatensystem von Äquinoktium und Ekliptik von J2000.
+\end{table}
+
+
+\begin{table}%tab10
+\caption{Wesentliche Parameter des Kometen Shoemaker-Levy 9\index{Komet!Shoemaker-Levy} (2 Bruchstücke) \cite{JPL2020}.}
+\smallskip
+\begin{tabular}{L{1.2cm}C{3cm}C{3cm}L{2cm}}
+\hline\noalign{\smallskip}
+Element			&	D/1993 F2-D \linebreak Shoemaker-Levy 9		& D/1993 F2-A \linebreak Shoemaker-Levy 9	&	Einheit \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+$e$						&	0.214725345	&	0.216209167 &		---				\\	
+$a$						&	6.851576928		&	6.864794628 &	AE			\\	
+$q$						& 5.38036971		&	5.3805631 &	AE				\\	
+$i$						&	5.972967603		&	6.003293874& Grad (\textdegree)	\\	
+$\Omega$			&	220.6003061		&	220.537655 &	Grad (\textdegree)	\\	
+$\omega$			&	354.9131083		&	354.8935192	& Grad (\textdegree)			\\	
+$M$						&	2.412564931		&	2.460243948 &	Grad (\textdegree)			\\	
+$t_0$					&	2449436.6 		&	2449435.603 & TT				\\	
+							& 1994-Mar-25.1003817 & 1994-Mar-24.1031964 & \\
+$T_\text{P}$	&	17.93 					& 17.99				& Jahre				\\	
+$n$						&	0.054956399		&	0.054797753 &	Grad/Tag $\lk \degree/\text{d} \rk$				\\	
+$Q$						&	8.322784146 	&	8.349026155	&	AE		\\
+\noalign{\smallskip}\hline\noalign{\smallskip}	
+\end{tabular}\\
+Die Bahnelemente beziehen sich auf die Epoche des Periheldurchgangsdatums im Koordinatensystem von Äquinoktium und Ekliptik von J2000.
+\label{tab:hm_parameter_shoemaker}
+\end{table}
+
+\begin{table}%tab11
+\caption{Wesentliche Parameter der Asteroiden 268057 und 103770 \cite{JPL2020}.}
+\smallskip
+\begin{tabular}{L{1.2cm}C{3cm}C{3cm}C{3cm}L{2cm}}
+\hline\noalign{\smallskip}
+Element	&	Asteroid 231937 \linebreak (2001 FO32)	&	Asteroid 268057 \linebreak Michaelkaschke \linebreak (2004 RQ24)	& Asteroid 103770 \linebreak Wilfriedlang \linebreak (2000 DP1)	&	Einheit \\
+\noalign{\smallskip}\svhline\noalign{\smallskip}
+$e$					&	0.8261262239	&	0.082402561	&	0.126261549 &		---				\\	
+$a$					&	1.7011287637	&	2.807169394		&	3.139173278 &	AE				\\	
+$q$					&	0.2957816817	&	2.575851446		&	2.742816397 &	AE				\\	
+$i$					&	38.981921719	&	3.265048167		&	16.5770908 & Grad (\textdegree)	\\	
+$\Omega$		&	181.73154319	&	270.5748039		&	358.5446343 &	Grad (\textdegree)	\\	
+$\omega$		&	123.31366145	&	113.4224849		&	218.2774378	& Grad (\textdegree)			\\	
+$M$					&	299.160042891	&	101.9754001		&	198.1967447 &	Grad (\textdegree)			\\	
+$t_0$				&	2459337.45901	&	2458513.875 	&	2459913.574 & TT				\\	
+						&	2021-May-02.95900974 & 2019-Jan-30.37515943 & 2022-Nov-30.07429017 & \\
+$T_\text{P}$	&	2.22	&	4.7 					& 5.56				& Jahre				\\	
+$n$					&	0.4422018838	&	0.209556504		&	0.177207109 &	Grad/Tag $\lk \degree/\text{d} \rk$				\\	
+$Q$					& 3.10647584585	&	3.038487342 &	3.53553015	&	AE		\\
+\noalign{\smallskip}\hline\noalign{\smallskip}	
+\end{tabular}\\ 
+Die Bahnelemente beziehen sich auf die Epoche des Periheldurchgangsdatums im Koordinatensystem von Äquinoktium und die Ekliptik von J2000.\\ \\
+Der Asteroid 231937 (2001 FO32) kam im Jahre 2021 der Erde relativ nahe (siehe \mlhmref{AsteroidenZeit.m}). 
+\label{tab:hm_parameter_asteroide}
+\end{table}
+
+

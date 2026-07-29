@@ -1,0 +1,35 @@
+%\IfFileExists{headerAB.tex}{\input{headerAB.tex}}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}% nichts zeigen bei Arbeitsbuch
+\addtocontents{toc}{\protect\setcounter{tocdepth}{3}}% alles zeigen bei WorkBook
+
+\chapter{Himmelsmechanik} \label{chap:hm}
+\def\chapname{hm}
+\bibliographystyle{spphys}
+\input{hm/hm_motivation}
+\input{hm/hm_raum_und_zeit}
+\input{hm/hm_bewegungsgleichung}
+\input{hm/hm_lsgkepler}
+\input{hm/hm_anwkeplergleichung}
+\input{hm/hm_sofi}
+\input{hm/hm_gezeiten}
+\input{hm/hm_langezeiten}
+\clearpage
+\input{hm/hm_tabellenAB}
+\clearpage
+\renewcommand\glslongextraNameAlign{p{36mm}}
+\renewcommand\glslongextraDescAlign{p{60mm}}
+\clearpage
+\bgroup
+\small
+\printunsrtglossary[type=hm]
+\egroup
+\clearpage
+\fancyhead[RE]{\nouppercase\rightmark}
+\begingroup
+\let\cleardoublepage\relax
+\bibliography{referenzen}
+\endgroup
+\fancyhead[RE]{\nouppercase\leftmark}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\IfFileExists{footer.tex}{\input{footer.tex}}{}
